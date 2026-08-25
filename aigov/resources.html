@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resource Library — XYZ AI Program</title>
+<meta name="description" content="Annotated resource library and two-week study sprint for the lead enterprise architect.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230B5563'/><text y='68' x='50' text-anchor='middle' font-size='52' font-family='monospace' fill='white'>AI</text></svg>">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-in">
+    <a class="brand" href="index.html">
+      <span class="mark">XYZ / AI</span>
+      <span class="name">Engagement workspace</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Plan</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="resources.html" aria-current="page">Resources</a>
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch theme">&#9790;</button>
+    </nav>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="side">
+      <div class="side-head">
+        <span class="eyebrow">Contents</span>
+        <span class="eyebrow" id="progPct">0%</span>
+      </div>
+      <input class="tocsearch" id="tocSearch" type="search" placeholder="Filter sections…" aria-label="Filter sections">
+      <ul class="toc" id="toc"></ul>
+      <div class="progress-card">
+        <div class="progress-num"><span class="eyebrow">Sections read</span><span id="progNum">0 / 0</span></div>
+        <div class="bar"><i id="progBar"></i></div>
+        <button class="reset" id="resetProg" type="button">Reset progress</button>
+      </div>
+    </aside>
+    <main class="doc" data-doc="resources">
+      <h1 class="doctitle" id="resource-library-for-the-lead-enterprise-architect">Resource Library for the Lead Enterprise Architect</h1>
+      <p class="subtitle">XYZ Corp AI Consumption, Multi-Model Access and GenAI Landscape engagement</p>
+      <p><strong>Compiled:</strong> 17 August 2026</p>
+      <p><strong>How to use this list.</strong> It is ordered by when you will need it, not by topic importance. Section 0 is the two-week study sprint to run before and during mobilisation. Sections 1–10 are working references you return to. Section 11 is the background reading that makes you better at the next engagement rather than this one.</p>
+      <p><strong>Link discipline.</strong> Where a URL is given it was current at compilation. Where only a domain is given, navigate from there — deep links on these sites change often. Never paste a figure from a secondary source into a client deliverable without opening the primary source and checking the date.</p>
+      <p><strong>Source grading used throughout:</strong><br />
+      <strong>[P]</strong> primary — vendor documentation, regulation, standard, official research<br />
+      <strong>[S]</strong> credible secondary — analyst, practitioner research, established publication<br />
+      <strong>[C]</strong> commentary — useful for framing, verify every fact</p>
+      <h1 id="0-two-week-study-sprint">0. Two-week study sprint</h1>
+      <p>Run this in parallel with mobilisation. Roughly 25–30 hours.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Days</th>
+      <th>Focus</th>
+      <th>Read / do</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>1–2</td>
+      <td>The commercial mechanics you are about to negotiate</td>
+      <td>OpenAI Admin, Usage and Cost API docs (§1); OpenAI enterprise credits and spend-control help pages (§1); OpenAI Service Credit Terms (§1)</td>
+      </tr>
+      <tr>
+      <td>3</td>
+      <td>The competitor's mechanics</td>
+      <td>GitHub Copilot usage-based billing announcement and plans page; Copilot budget and allowance docs (§2)</td>
+      </tr>
+      <tr>
+      <td>4</td>
+      <td>The alternative access route</td>
+      <td>AWS Bedrock pricing page and user guide; billing modes; data protection page (§3)</td>
+      </tr>
+      <tr>
+      <td>5–6</td>
+      <td>The financial discipline</td>
+      <td>FinOps Framework 2026 overview; FinOps for AI working-group output; FOCUS specification; State of FinOps 2026 (§4)</td>
+      </tr>
+      <tr>
+      <td>7</td>
+      <td>The regulation that bites now</td>
+      <td>AI Act text Articles 4, 5 and 50; Digital Omnibus analysis; C2PA overview (§5)</td>
+      </tr>
+      <tr>
+      <td>8</td>
+      <td>The security control set</td>
+      <td>OWASP GenAI security material; MITRE ATLAS; agentic threat guidance (§6)</td>
+      </tr>
+      <tr>
+      <td>9</td>
+      <td>Measuring the thing everyone argues about</td>
+      <td>DORA research; SPACE framework paper; the 2025–26 AI productivity-paradox analyses (§7)</td>
+      </tr>
+      <tr>
+      <td>10</td>
+      <td>The architecture you will recommend</td>
+      <td>AI gateway comparisons; LiteLLM and Portkey docs; reference architectures (§8)</td>
+      </tr>
+      <tr>
+      <td>11</td>
+      <td>The capability you must build</td>
+      <td>AI CoE operating-model material; charter and decision-rights patterns (§9)</td>
+      </tr>
+      <tr>
+      <td>12</td>
+      <td>The client's industry</td>
+      <td>Fashion and retail GenAI adoption material; provenance and likeness issues (§10)</td>
+      </tr>
+      <tr>
+      <td>13–14</td>
+      <td>Synthesis</td>
+      <td>Draft the workload taxonomy, the evaluation criteria and the data request from what you have read</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Set one rule for the sprint: for every claim you plan to use in a client deliverable, note the primary source and the date you checked it. Build that habit now and the credibility of the engagement follows.</p>
+      <h1 id="1-openai-platform-consumption-administration-commercial">1. OpenAI platform — consumption, administration, commercial</h1>
+      <p><strong>Do not build the consumption baseline before you have read all of section 1.</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>OpenAI API reference — overview</td>
+      <td>[P]</td>
+      <td>https://developers.openai.com/api/reference/overview</td>
+      </tr>
+      <tr>
+      <td>Admin APIs guide — users, projects, keys, spend limits, audit logs, model permissions</td>
+      <td>[P]</td>
+      <td>https://developers.openai.com/api/docs/guides/admin-apis — the mechanics of entitlement analysis and guardrails</td>
+      </tr>
+      <tr>
+      <td>Costs endpoint reference (<code>/v1/organization/costs</code>)</td>
+      <td>[P]</td>
+      <td>https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/usage/methods/costs — note grouping by project and line item</td>
+      </tr>
+      <tr>
+      <td>OpenAI Cookbook — using the Usage and Cost APIs</td>
+      <td>[P]</td>
+      <td>https://cookbook.openai.com/examples/completions_usage_api — working code you can adapt in an afternoon</td>
+      </tr>
+      <tr>
+      <td>Flexible pricing for Enterprise, Edu and Business plans</td>
+      <td>[P]</td>
+      <td>https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans — the shared credit pool model that underpins your allocation design</td>
+      </tr>
+      <tr>
+      <td>Manage usage limits and overages (Enterprise / Edu)</td>
+      <td>[P]</td>
+      <td>https://help.openai.com/en/articles/20001001-manage-usage-limits-and-overages-in-chatgpt-enterprise-and-edu — group limits, user overrides, monthly migration</td>
+      </tr>
+      <tr>
+      <td>Managing credits and spend controls (Business)</td>
+      <td>[P]</td>
+      <td>https://help.openai.com/en/articles/20001155-managing-credits-and-spend-controls-in-chatgpt-business</td>
+      </tr>
+      <tr>
+      <td>Codex rate card</td>
+      <td>[P]</td>
+      <td>https://help.openai.com/en/articles/20001106-codex-rate-card — token-aligned credit rates; model retirement notices</td>
+      </tr>
+      <tr>
+      <td>Using Codex with your ChatGPT plan</td>
+      <td>[P]</td>
+      <td>https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan</td>
+      </tr>
+      <tr>
+      <td>Announcement — enterprise usage analytics and spend controls (June 2026)</td>
+      <td>[P]</td>
+      <td>https://openai.com/index/chatgpt-enterprise-spend-controls/</td>
+      </tr>
+      <tr>
+      <td>OpenAI Service Credit Terms</td>
+      <td>[P]</td>
+      <td>https://openai.com/policies/service-credit-terms/ — read before you negotiate rollover</td>
+      </tr>
+      <tr>
+      <td>OpenAI enterprise privacy commitments</td>
+      <td>[P]</td>
+      <td>https://openai.com/enterprise-privacy/ — the baseline your data redlines start from</td>
+      </tr>
+      <tr>
+      <td>API pricing</td>
+      <td>[P]</td>
+      <td>https://openai.com/api/pricing/ and https://platform.openai.com/docs/pricing</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Negotiation-specific (buyer-side, commercially motivated — read critically):</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Note</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Redress Compliance — OpenAI enterprise procurement negotiation playbook</td>
+      <td>[C]</td>
+      <td>https://redresscompliance.com/openai-enterprise-procurement-negotiation-playbook — useful on consumption-forecast error and commit structure</td>
+      </tr>
+      <tr>
+      <td>Redress Compliance — enterprise guide to negotiating OpenAI contracts</td>
+      <td>[C]</td>
+      <td>https://redresscompliance.com/the-enterprise-guide-to-negotiating-openai-contracts.html — clause-level checklists</td>
+      </tr>
+      <tr>
+      <td>Redress Compliance — enterprise AI credits pricing compared (2026)</td>
+      <td>[C]</td>
+      <td>https://redresscompliance.com/enterprise-ai-credits-pricing-compared-pillar-2026 — normalising credit currencies across vendors</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>These three are advisory-firm marketing. The clause checklists are genuinely useful. The percentages are not evidence. Use the structure, source the numbers yourself.</p>
+      <h1 id="2-github-copilot-the-workstream-2-counterparty">2. GitHub Copilot — the Workstream 2 counterparty</h1>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>GitHub blog — Copilot moving to usage-based billing (effective 1 June 2026)</td>
+      <td>[P]</td>
+      <td>https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/ — the single most important document for the multi-model cost argument</td>
+      </tr>
+      <tr>
+      <td>Copilot plans and pricing</td>
+      <td>[P]</td>
+      <td>https://github.com/features/copilot/plans</td>
+      </tr>
+      <tr>
+      <td>Copilot billing concepts</td>
+      <td>[P]</td>
+      <td>https://docs.github.com/en/copilot/concepts/billing/copilot-requests</td>
+      </tr>
+      <tr>
+      <td>Managing request allowances and budgets</td>
+      <td>[P]</td>
+      <td>https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/manage-and-track-spending/manage-request-allowances</td>
+      </tr>
+      <tr>
+      <td>Copilot documentation root (metrics, admin, policies)</td>
+      <td>[P]</td>
+      <td>https://docs.github.com/en/copilot</td>
+      </tr>
+      <tr>
+      <td>CloudZero — what teams actually pay for Copilot in 2026</td>
+      <td>[S]</td>
+      <td>https://www.cloudzero.com/blog/github-copilot-cost/ — good on the credit-model transition</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Action:</strong> export XYZ's historic Copilot billing and metrics data in week 0. See playbook §2.8.</p>
+      <h1 id="3-aws-bedrock-and-alternative-access-routes">3. AWS Bedrock and alternative access routes</h1>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Amazon Bedrock pricing</td>
+      <td>[P]</td>
+      <td>https://aws.amazon.com/bedrock/pricing/ — on-demand, batch, provisioned throughput; the only rate card you should quote</td>
+      </tr>
+      <tr>
+      <td>Amazon Bedrock documentation</td>
+      <td>[P]</td>
+      <td>https://docs.aws.amazon.com/bedrock/ — model availability by region, cross-region inference, guardrails, knowledge bases, agents</td>
+      </tr>
+      <tr>
+      <td>Bedrock data protection and privacy</td>
+      <td>[P]</td>
+      <td>https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html — the core of the residency argument</td>
+      </tr>
+      <tr>
+      <td>AWS Well-Architected — generative AI guidance</td>
+      <td>[P]</td>
+      <td>https://aws.amazon.com/architecture/well-architected/ — navigate to the generative AI lens</td>
+      </tr>
+      <tr>
+      <td>Azure OpenAI Service documentation</td>
+      <td>[P]</td>
+      <td>https://learn.microsoft.com/azure/ai-services/openai/ — the third access route; check if XYZ has Azure commitments that AI spend could draw down</td>
+      </tr>
+      <tr>
+      <td>Microsoft Cloud Adoption Framework — AI scenario</td>
+      <td>[P]</td>
+      <td>https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/ai/ — operating-model guidance, useful even in a non-Azure estate</td>
+      </tr>
+      <tr>
+      <td>Anthropic documentation</td>
+      <td>[P]</td>
+      <td>https://docs.claude.com — for the secondary-model position</td>
+      </tr>
+      <tr>
+      <td>CloudZero — Bedrock pricing analysis</td>
+      <td>[S]</td>
+      <td>https://www.cloudzero.com/blog/amazon-bedrock-pricing/ — good on adjacent charges that break estimates</td>
+      </tr>
+      <tr>
+      <td>Artificial Analysis</td>
+      <td>[S]</td>
+      <td>https://artificialanalysis.ai/ — independent, continuously updated model comparison on quality, price, latency and throughput. The fastest route to a defensible route-comparison table.</td>
+      </tr>
+      <tr>
+      <td>LMArena</td>
+      <td>[S]</td>
+      <td>https://lmarena.ai/ — comparative preference data; use as one input, never alone</td>
+      </tr>
+      <tr>
+      <td>Stanford HELM</td>
+      <td>[P]</td>
+      <td>https://crfm.stanford.edu/helm/ — rigorous, slower-moving benchmark suite</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h1 id="4-finops-cost-governance-and-unit-economics">4. FinOps, cost governance and unit economics</h1>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>FinOps Framework</td>
+      <td>[P]</td>
+      <td>https://www.finops.org/framework/ — domains, capabilities, personas, maturity</td>
+      </tr>
+      <tr>
+      <td>FinOps Framework 2026 update</td>
+      <td>[P]</td>
+      <td>https://www.finops.org/insights/2026-finops-framework/ — Scopes, Technology Categories, Executive Strategy Alignment</td>
+      </tr>
+      <tr>
+      <td>FinOps for AI — working group overview</td>
+      <td>[P]</td>
+      <td>https://www.finops.org/wg/finops-for-ai-overview/ — token economics, KPIs, crawl/walk/run, AI scope mapping. Read this before designing the governance framework.</td>
+      </tr>
+      <tr>
+      <td>State of FinOps 2026 data</td>
+      <td>[P]</td>
+      <td>https://data.finops.org/ — 98% of FinOps practices now manage AI spend; use for the "this is standard practice" argument</td>
+      </tr>
+      <tr>
+      <td>FOCUS — FinOps Open Cost and Usage Specification</td>
+      <td>[P]</td>
+      <td>https://focus.finops.org/ — the normalisation schema for multi-provider cost data. Adopt its field names in your truth layer and the client inherits an industry-standard model.</td>
+      </tr>
+      <tr>
+      <td>FinOps Foundation asset library and KPI list</td>
+      <td>[P]</td>
+      <td>https://www.finops.org/ — templates for showback, allocation and unit economics</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Key idea to carry into the framework design:</strong> the 2026 framework explicitly says an innovation-focused AI scope should tolerate more waste and run at a faster cadence than steady-state scopes. Design two different control regimes, not one.</p>
+      <h1 id="5-regulation-standards-and-assurance">5. Regulation, standards and assurance</h1>
+      <h2 id="51-eu-ai-act">5.1 EU AI Act</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Regulation (EU) 2024/1689 — AI Act, consolidated text</td>
+      <td>[P]</td>
+      <td>https://eur-lex.europa.eu/eli/reg/2024/1689/oj — read Articles 4, 5 and 50 in full</td>
+      </tr>
+      <tr>
+      <td>Regulation (EU) 2026/1744 — Digital Omnibus on AI</td>
+      <td>[P]</td>
+      <td>Search EUR-Lex for 2026/1744. Published 24 July 2026, in force 27 July 2026.</td>
+      </tr>
+      <tr>
+      <td>AI Act Explorer</td>
+      <td>[S]</td>
+      <td>https://artificialintelligenceact.eu/ — navigable article-by-article version with timelines</td>
+      </tr>
+      <tr>
+      <td>European Commission — AI Office and AI Act policy</td>
+      <td>[P]</td>
+      <td>https://digital-strategy.ec.europa.eu/en/policies/ai-office</td>
+      </tr>
+      <tr>
+      <td>Gibson Dunn — Omnibus analysis</td>
+      <td>[S]</td>
+      <td>https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/ — clear on what moved and what did not</td>
+      </tr>
+      <tr>
+      <td>Cloud Security Alliance — research note on the high-risk deferral</td>
+      <td>[S]</td>
+      <td>https://labs.cloudsecurityalliance.org/research/csa-research-note-eu-ai-act-high-risk-deadline-omnibus-20260/</td>
+      </tr>
+      <tr>
+      <td>CEN-CENELEC JTC 21</td>
+      <td>[P]</td>
+      <td>https://www.cencenelec.eu/areas-of-work/cen-cenelec-topics/artificial-intelligence/ — the harmonised standards that will define conformity</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="52-management-systems-and-risk-frameworks">5.2 Management systems and risk frameworks</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>ISO/IEC 42001:2023 — AI management systems</td>
+      <td>[P]</td>
+      <td>https://www.iso.org — search "ISO/IEC 42001". The certifiable management-system spine for the CoE. Also ask every shortlisted vendor whether they hold it.</td>
+      </tr>
+      <tr>
+      <td>ISO/IEC 23894 — AI risk management guidance</td>
+      <td>[P]</td>
+      <td>https://www.iso.org — complements 42001</td>
+      </tr>
+      <tr>
+      <td>NIST AI Risk Management Framework</td>
+      <td>[P]</td>
+      <td>https://www.nist.gov/itl/ai-risk-management-framework — Govern, Map, Measure, Manage</td>
+      </tr>
+      <tr>
+      <td>NIST Generative AI Profile (NIST AI 600-1)</td>
+      <td>[P]</td>
+      <td>https://airc.nist.gov/ — GenAI-specific control mapping. The most directly usable control catalogue source for your framework.</td>
+      </tr>
+      <tr>
+      <td>NIST AI Resource Center — playbook and crosswalks</td>
+      <td>[P]</td>
+      <td>https://airc.nist.gov/ — crosswalks between NIST, ISO and EU AI Act save weeks</td>
+      </tr>
+      <tr>
+      <td>UK ICO — AI and data protection guidance</td>
+      <td>[P]</td>
+      <td>https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/artificial-intelligence/ — practical on DPIAs and employee monitoring</td>
+      </tr>
+      <tr>
+      <td>EDPB opinions and guidelines</td>
+      <td>[P]</td>
+      <td>https://www.edpb.europa.eu/ — including AI-model-related opinions</td>
+      </tr>
+      <tr>
+      <td>OECD AI Policy Observatory</td>
+      <td>[P]</td>
+      <td>https://oecd.ai/ — multi-jurisdiction tracking for XYZ's operating footprint</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="53-content-provenance-and-disclosure">5.3 Content provenance and disclosure</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>C2PA — Coalition for Content Provenance and Authenticity</td>
+      <td>[P]</td>
+      <td>https://c2pa.org/ — the technical standard behind AI content disclosure</td>
+      </tr>
+      <tr>
+      <td>Content Authenticity Initiative</td>
+      <td>[P]</td>
+      <td>https://contentauthenticity.org/ — implementation guidance and tooling</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>For a fashion brand generating campaign imagery, sections 5.1 and 5.3 together are the compliance core. Article 50 applies now.</p>
+      <h1 id="6-security-for-genai-and-agents">6. Security for GenAI and agents</h1>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>OWASP GenAI Security Project (incl. Top 10 for LLM Applications)</td>
+      <td>[P]</td>
+      <td>https://genai.owasp.org/ — the standard engineering checklist; also covers agentic threats and mitigations</td>
+      </tr>
+      <tr>
+      <td>MITRE ATLAS</td>
+      <td>[P]</td>
+      <td>https://atlas.mitre.org/ — adversary tactics and techniques against AI systems</td>
+      </tr>
+      <tr>
+      <td>Cloud Security Alliance — AI research</td>
+      <td>[P]</td>
+      <td>https://cloudsecurityalliance.org/research/topics/artificial-intelligence — AI controls matrix and audit material</td>
+      </tr>
+      <tr>
+      <td>Model Context Protocol specification</td>
+      <td>[P]</td>
+      <td>https://modelcontextprotocol.io/ — read before approving any MCP server; it is a supply-chain surface</td>
+      </tr>
+      <tr>
+      <td>AI Incident Database</td>
+      <td>[S]</td>
+      <td>https://incidentdatabase.ai/ — real failure modes. Use two or three to make risk tiering concrete for executives.</td>
+      </tr>
+      <tr>
+      <td>NCSC guidance on secure AI system development</td>
+      <td>[P]</td>
+      <td>https://www.ncsc.gov.uk/ — search "secure AI system development"</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h1 id="7-measuring-engineering-impact-workstream-2-evidence-base">7. Measuring engineering impact (Workstream 2 evidence base)</h1>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>DORA — research and reports</td>
+      <td>[P]</td>
+      <td>https://dora.dev/ — the four delivery metrics and the annual research including AI-specific findings</td>
+      </tr>
+      <tr>
+      <td>SPACE framework — original paper</td>
+      <td>[P]</td>
+      <td>https://queue.acm.org/detail.cfm?id=3454124 — Satisfaction, Performance, Activity, Communication, Efficiency. The framework for the developer-experience lens.</td>
+      </tr>
+      <tr>
+      <td>DX — DORA metrics in the AI era</td>
+      <td>[S]</td>
+      <td>https://getdx.com/blog/dora-metrics/ — how the metrics distort under AI adoption</td>
+      </tr>
+      <tr>
+      <td>Faros AI — the AI productivity paradox</td>
+      <td>[S]</td>
+      <td>https://www.faros.ai/blog/key-takeaways-from-the-dora-report-2025 — individual output up sharply, organisational delivery flat</td>
+      </tr>
+      <tr>
+      <td>METR — developer productivity research</td>
+      <td>[P]</td>
+      <td>https://metr.org/ — includes the finding that developers systematically misestimate their own AI-assisted speed. Cite this when sentiment and telemetry disagree.</td>
+      </tr>
+      <tr>
+      <td>Public-sector Copilot pilot using DORA and SPACE</td>
+      <td>[P]</td>
+      <td>https://arxiv.org/pdf/2409.17434 — a rare published evaluation design you can adapt directly for the trial post-mortem</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Use these to protect yourself.</strong> When someone quotes a single productivity percentage at you, this section is why you ask which metric, at which level, over what period.</p>
+      <h1 id="8-model-access-architecture-gateways-evaluation-and-observability">8. Model access architecture, gateways, evaluation and observability</h1>
+      <h2 id="81-gateways">8.1 Gateways</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>LiteLLM documentation</td>
+      <td>[P]</td>
+      <td>https://docs.litellm.ai/ — virtual keys, per-team budgets, provider coverage. The open-source reference implementation.</td>
+      </tr>
+      <tr>
+      <td>LiteLLM repository</td>
+      <td>[P]</td>
+      <td>https://github.com/BerriAI/litellm</td>
+      </tr>
+      <tr>
+      <td>Portkey documentation</td>
+      <td>[P]</td>
+      <td>https://portkey.ai/docs — managed gateway with caching and guardrails</td>
+      </tr>
+      <tr>
+      <td>Kong AI Gateway</td>
+      <td>[P]</td>
+      <td>https://konghq.com/products/kong-ai-gateway — if XYZ already runs Kong</td>
+      </tr>
+      <tr>
+      <td>TrueFoundry — 2026 AI gateway landscape comparison</td>
+      <td>[C]</td>
+      <td>https://www.truefoundry.com/blog/a-definitive-guide-to-ai-gateways-in-2026-competitive-landscape-comparison — vendor-authored; useful for the criteria list, not the ranking</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="82-evaluation">8.2 Evaluation</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>OpenAI Evals</td>
+      <td>[P]</td>
+      <td>https://github.com/openai/evals</td>
+      </tr>
+      <tr>
+      <td>promptfoo</td>
+      <td>[P]</td>
+      <td>https://www.promptfoo.dev/ — the fastest way to stand up a comparison harness across models</td>
+      </tr>
+      <tr>
+      <td>Ragas</td>
+      <td>[P]</td>
+      <td>https://docs.ragas.io/ — retrieval-augmented generation evaluation</td>
+      </tr>
+      <tr>
+      <td>LangSmith</td>
+      <td>[P]</td>
+      <td>https://docs.smith.langchain.com/ — tracing and evaluation</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Build the eval sets during the engagement and hand them over. They are the asset that lets XYZ re-decide when the next model ships.</p>
+      <h2 id="83-observability-and-cost-attribution">8.3 Observability and cost attribution</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Langfuse</td>
+      <td>[P]</td>
+      <td>https://langfuse.com/docs — open-source LLM observability with cost tracking</td>
+      </tr>
+      <tr>
+      <td>Helicone</td>
+      <td>[P]</td>
+      <td>https://www.helicone.ai/ — lightweight proxy-based observability</td>
+      </tr>
+      <tr>
+      <td>OpenTelemetry GenAI semantic conventions</td>
+      <td>[P]</td>
+      <td>https://opentelemetry.io/ — search "gen-ai semantic conventions". Adopt these attribute names so telemetry stays portable.</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h1 id="9-building-and-running-the-coe">9. Building and running the CoE</h1>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Microsoft Cloud Adoption Framework — AI adoption and governance</td>
+      <td>[P]</td>
+      <td>https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/ai/ — the most complete free operating-model reference</td>
+      </tr>
+      <tr>
+      <td>AWS Cloud Adoption Framework for AI, ML and generative AI</td>
+      <td>[P]</td>
+      <td>https://aws.amazon.com/cloud-adoption-framework/ — perspectives, capabilities, maturity</td>
+      </tr>
+      <tr>
+      <td>Google Cloud AI Adoption Framework</td>
+      <td>[P]</td>
+      <td>https://cloud.google.com/ — search "AI adoption framework"</td>
+      </tr>
+      <tr>
+      <td>MIT Sloan Management Review — AI and business strategy</td>
+      <td>[S]</td>
+      <td>https://sloanreview.mit.edu/big-ideas/artificial-intelligence-business-strategy/ — governance and organisational research rather than vendor material</td>
+      </tr>
+      <tr>
+      <td>McKinsey — State of AI</td>
+      <td>[S]</td>
+      <td>https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai — adoption benchmarks for the "are we behind?" question</td>
+      </tr>
+      <tr>
+      <td>Harvard Program on Negotiation</td>
+      <td>[S]</td>
+      <td>https://www.pon.harvard.edu/ — BATNA, anchoring, concession structure. Read before drafting the negotiation brief.</td>
+      </tr>
+      <tr>
+      <td>ClarityArc — AI CoE design (2026)</td>
+      <td>[C]</td>
+      <td>https://www.clarityarc.com/insights/ai-centre-of-excellence-design — practical on the 90/180-day sequencing and the acceleration-versus-blocking tension</td>
+      </tr>
+      <tr>
+      <td>Trantor — building an AI CoE (2026)</td>
+      <td>[C]</td>
+      <td>https://www.trantorinc.com/blog/how-to-build-an-ai-center-of-excellence-team-budget-and-kpis — charter contents and operating-model trade-offs</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>The last two are consultancy content. Use them for structure and checklists. The charter you write should be XYZ's, built from Part 6 of the playbook.</p>
+      <h1 id="10-retail-fashion-and-the-clients-market">10. Retail, fashion and the client's market</h1>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Resource</th>
+      <th>Grade</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>McKinsey — State of Fashion (with Business of Fashion)</td>
+      <td>[S]</td>
+      <td>https://www.mckinsey.com/industries/retail/our-insights/state-of-fashion — the annual reference every fashion executive has read. Know what it says about AI this year.</td>
+      </tr>
+      <tr>
+      <td>Business of Fashion — technology coverage</td>
+      <td>[S]</td>
+      <td>https://www.businessoffashion.com/</td>
+      </tr>
+      <tr>
+      <td>Vogue Business — technology</td>
+      <td>[S]</td>
+      <td>https://www.voguebusiness.com/technology — practical coverage of brand-side AI deployments including synthetic imagery and model likeness</td>
+      </tr>
+      <tr>
+      <td>National Retail Federation</td>
+      <td>[S]</td>
+      <td>https://nrf.com/ — retail technology adoption research and the annual Big Show agenda as a landscape signal</td>
+      </tr>
+      <tr>
+      <td>Adobe / Salesforce / Shopify commerce insight reports</td>
+      <td>[S]</td>
+      <td>Vendor research, but the traffic and conversion data on AI-referred shopping is not available elsewhere</td>
+      </tr>
+      <tr>
+      <td>EU Ecodesign for Sustainable Products Regulation and Digital Product Passport</td>
+      <td>[P]</td>
+      <td>https://commission.europa.eu/ — search "ecodesign sustainable products regulation". Relevant because generated product data becomes regulated product data.</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Watch-out for the landscape map:</strong> the fashion GenAI vendor space contains many thin application layers over a small number of foundation models. Apply the model-dependency criterion in playbook §5.2 to every vendor you score.</p>
+      <h1 id="11-deeper-background-makes-you-better-at-the-next-one">11. Deeper background — makes you better at the next one</h1>
+      <p><strong>Books</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td><em>Accelerate</em></td>
+      <td>Forsgren, Humble, Kim</td>
+      <td>The research basis for DORA. Read it before you argue about developer productivity.</td>
+      </tr>
+      <tr>
+      <td><em>Team Topologies</em></td>
+      <td>Skelton, Pais</td>
+      <td>The vocabulary for hub-and-spoke, platform teams and cognitive load — directly applicable to CoE design</td>
+      </tr>
+      <tr>
+      <td><em>Cloud FinOps</em></td>
+      <td>Storment, Fuller</td>
+      <td>The discipline your token governance framework is an instance of</td>
+      </tr>
+      <tr>
+      <td><em>Getting to Yes</em></td>
+      <td>Fisher, Ury, Patton</td>
+      <td>BATNA and principled negotiation, in the original</td>
+      </tr>
+      <tr>
+      <td><em>Good Strategy / Bad Strategy</em></td>
+      <td>Rumelt</td>
+      <td>The test for whether your directional guidance note is a strategy or a list of aspirations</td>
+      </tr>
+      <tr>
+      <td><em>The Goal</em> / <em>The Phoenix Project</em></td>
+      <td>Goldratt / Kim et al.</td>
+      <td>Constraint thinking — why individual AI speedups do not become organisational throughput</td>
+      </tr>
+      <tr>
+      <td><em>On Writing Well</em></td>
+      <td>Zinsser</td>
+      <td>Simplicity, brevity, clarity, humanity. Your deliverables are read by tired people.</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Standing sources to follow during the engagement</strong></p>
+      <ul>
+      <li>OpenAI, Anthropic, Google and AWS changelogs and release notes — subscribe to all of them; model retirements arrive here first</li>
+      <li>The FinOps Foundation blog and community calls</li>
+      <li>DORA and DX research publications</li>
+      <li>EU AI Act implementation trackers</li>
+      <li>Gartner and Forrester, if XYZ holds subscriptions — use the inquiry hours, they are usually unspent</li>
+      </ul>
+      <p><strong>Certifications worth holding (not required for this engagement)</strong></p>
+      <ul>
+      <li>FinOps Certified Practitioner — https://learn.finops.org/</li>
+      <li>ISO/IEC 42001 lead implementer or auditor — for CoE assurance credibility</li>
+      <li>Cloud provider AI practitioner or specialty certifications — for the access-route conversations</li>
+      </ul>
+      <h1 id="12-fast-reference-checklist">12. Fast-reference checklist</h1>
+      <p>Before each major deliverable ships, confirm:</p>
+      <ul>
+      <li>[ ] Every figure has a primary source and a date checked</li>
+      <li>[ ] The baseline reconciles to the invoice and the variance is stated</li>
+      <li>[ ] Evidence grades are shown, and the grade distribution is visible</li>
+      <li>[ ] Confidence ranges replace point estimates wherever the data does not support precision</li>
+      <li>[ ] What you could not find out is stated explicitly</li>
+      <li>[ ] Every recommendation has an owner, a date and a revisit trigger</li>
+      <li>[ ] No individual-level usage data appears in any published artefact</li>
+      <li>[ ] Legal and Data Protection have seen anything touching disclosure, residency or employee monitoring</li>
+      <li>[ ] The recommendation appears in the first paragraph</li>
+      <li>[ ] A client staff member can re-run the analysis from the run-book</li>
+      </ul>
+    </main>
+  </div>
+</div>
+<footer class="foot"><div class="wrap"><div class="wrapin">
+  <span>Market evidence checked 17 Aug 2026. Re-verify every price and date against the primary source before client use.</span>
+  <span><a href="resources.md" download>Download the markdown</a></span>
+</div></div></footer>
+<button class="totop" type="button" aria-label="Back to top">&#8593;</button>
+<script src="assets/app.js"></script>
+</body>
+</html>

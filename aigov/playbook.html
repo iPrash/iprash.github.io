@@ -1,0 +1,2990 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engagement Playbook — XYZ AI Program</title>
+<meta name="description" content="Analysis, strategy, design and execution playbook for the XYZ Corp enterprise AI engagement.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230B5563'/><text y='68' x='50' text-anchor='middle' font-size='52' font-family='monospace' fill='white'>AI</text></svg>">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-in">
+    <a class="brand" href="index.html">
+      <span class="mark">XYZ / AI</span>
+      <span class="name">Engagement workspace</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Plan</a>
+      <a href="playbook.html" aria-current="page">Playbook</a>
+      <a href="resources.html">Resources</a>
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch theme">&#9790;</button>
+    </nav>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="side">
+      <div class="side-head">
+        <span class="eyebrow">Contents</span>
+        <span class="eyebrow" id="progPct">0%</span>
+      </div>
+      <input class="tocsearch" id="tocSearch" type="search" placeholder="Filter sections…" aria-label="Filter sections">
+      <ul class="toc" id="toc"></ul>
+      <div class="progress-card">
+        <div class="progress-num"><span class="eyebrow">Sections read</span><span id="progNum">0 / 0</span></div>
+        <div class="bar"><i id="progBar"></i></div>
+        <button class="reset" id="resetProg" type="button">Reset progress</button>
+      </div>
+    </aside>
+    <main class="doc" data-doc="playbook">
+      <h1 class="doctitle" id="xyz-corp-enterprise-ai-program">XYZ Corp — Enterprise AI Program</h1>
+      <p class="subtitle">Analysis, Strategy, Design and Execution Playbook</p>
+      <p><strong>Prepared for:</strong> the lead Enterprise Architect<br />
+      <strong>Scope:</strong> AI Consumption &amp; Governance · Multi-Model Access Strategy · GenAI Landscape Review<br />
+      <strong>Date of market evidence:</strong> 17 August 2026<br />
+      <strong>Status:</strong> working playbook — not a client deliverable in this form</p>
+      <blockquote>
+      <p><strong>Currency warning.</strong> Every price, SKU, date and product fact in this playbook was checked in August 2026. This market changes monthly. Re-verify each figure against the primary source before you put it in front of the client. Part 11 lists the primary sources.</p>
+      </blockquote>
+      <h1 id="part-0-how-to-use-this-document">Part 0 — How to use this document</h1>
+      <p>This playbook has three uses.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>If you are</th>
+      <th>Read</th>
+      <th>Purpose</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Mobilising the engagement</td>
+      <td>Parts 1, 2, 10</td>
+      <td>Framing, plan, cadence</td>
+      </tr>
+      <tr>
+      <td>Running a workstream</td>
+      <td>Parts 3, 4 or 5</td>
+      <td>Method, data, analysis, deliverable spec</td>
+      </tr>
+      <tr>
+      <td>Building the durable capability</td>
+      <td>Parts 6, 7, 8</td>
+      <td>Operating model, controls, templates</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Do not send this document to the client. It contains the reasoning behind the engagement design, including the parts of the brief that are wrong. Client-facing artefacts are specified separately in each workstream.</p>
+      <p><strong>Language convention.</strong> Deliverables use short sentences, active voice, and one idea per sentence. Define each term once and use it consistently. A tired executive at 22:00 must be able to read the recommendation and act on it.</p>
+      <h1 id="part-1-read-of-the-brief">Part 1 — Read of the brief</h1>
+      <h2 id="11-what-the-client-asked-for">1.1 What the client asked for</h2>
+      <p>Three workstreams, eleven deliverables. Stated as an analysis exercise.</p>
+      <h2 id="12-what-the-client-is-actually-buying">1.2 What the client is actually buying</h2>
+      <p>Read the brief again and note four signals.</p>
+      <ol>
+      <li>"Convert that visibility into commercial leverage." The consumption baseline is not a reporting exercise. It is ammunition for a negotiation with a fixed date.</li>
+      <li>"Business impact and stakeholder sentiment created by Copilot's withdrawal — several teams have raised this directly." A decision was taken, it damaged trust, and someone senior now needs cover to revisit it or to defend it.</li>
+      <li>"Initial signal suggests roughly 20–30% ... to be validated against actual usage data rather than assumption." Somebody has already produced a number without evidence. The client knows it and does not trust it.</li>
+      <li>"XYZ is already collating this data." The internal estate data does not exist yet in usable form. Assume it arrives late and dirty.</li>
+      </ol>
+      <p>So the real purchase is: <strong>a defensible evidence base, delivered before the renewal clock runs out, that lets IT leadership make three decisions in public and survive the challenge.</strong></p>
+      <p>The three decisions are:</p>
+      <ul>
+      <li><strong>D1 — What do we sign at renewal, and on what structure?</strong></li>
+      <li><strong>D2 — Do we run one model platform or several, and who gets which?</strong></li>
+      <li><strong>D3 — Where do we build, buy or partner across the GenAI market?</strong></li>
+      </ul>
+      <p>Everything else is supporting work. Write every deliverable so it visibly serves D1, D2 or D3.</p>
+      <h2 id="13-the-five-traps-in-this-brief">1.3 The five traps in this brief</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>#</th>
+      <th>Trap</th>
+      <th>Why it kills the engagement</th>
+      <th>Counter-move</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>T1</td>
+      <td>Renewal date not stated</td>
+      <td>The whole of Workstream 1 is worthless if it lands after the signature</td>
+      <td>Fix the renewal date in the first 48 hours. Work the plan backwards from it. See 2.3.</td>
+      </tr>
+      <tr>
+      <td>T2</td>
+      <td>Copilot is a political question dressed as a technical one</td>
+      <td>A clean technical answer that ignores the politics gets rejected</td>
+      <td>Run a structured sentiment round. Publish what you heard. Then answer with data. See 4.1.</td>
+      </tr>
+      <tr>
+      <td>T3</td>
+      <td>The 20–30% split may be someone's stated position</td>
+      <td>Validating it looks like auditing a colleague</td>
+      <td>Frame it as a hypothesis you were asked to test. Test it in public. Report the number the data gives, high or low.</td>
+      </tr>
+      <tr>
+      <td>T4</td>
+      <td>"Landscape review" invites an unbounded market scan</td>
+      <td>You will spend six weeks producing a poster</td>
+      <td>Cap the taxonomy at the categories that map to XYZ's value chain. Force category confirmation in scoping. See 5.1.</td>
+      </tr>
+      <tr>
+      <td>T5</td>
+      <td>Consumption data is assumed to be available</td>
+      <td>Admin API access, identity joins and historic exports each take days of approvals</td>
+      <td>Raise the data request on day 1, not week 2. See 3.1.</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="14-operating-principles">1.4 Operating principles</h2>
+      <p>Adopt these and state them at kickoff. They are also how the firm proves it is a reliable AI partner.</p>
+      <ol>
+      <li><strong>Evidence over assertion.</strong> Every number in every deliverable carries a source, a date and a confidence grade.</li>
+      <li><strong>Decisions, not documents.</strong> Each deliverable ends with a recommended decision, an owner and a date.</li>
+      <li><strong>Show the working.</strong> Publish the model, the assumptions and the sensitivity. Let the client change an assumption and see the answer move.</li>
+      <li><strong>No surprises upward.</strong> Bad news travels immediately, with an option attached.</li>
+      <li><strong>Leave the capability behind.</strong> Every model, dashboard and register is handed over with a run-book. The client can run the next cycle without you.</li>
+      <li><strong>Separate the reversible from the irreversible.</strong> Move fast on reversible choices. Slow down only for contract terms, data flows and anything with an exit cost.</li>
+      </ol>
+      <h2 id="15-success-criteria-agree-these-at-kickoff">1.5 Success criteria — agree these at kickoff</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Criterion</th>
+      <th>Measure</th>
+      <th>Target</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Renewal readiness</td>
+      <td>Negotiation brief accepted by procurement and CIO before negotiation opens</td>
+      <td>≥ 14 days before first negotiation session</td>
+      </tr>
+      <tr>
+      <td>Evidence quality</td>
+      <td>Share of baseline reconciled to invoice</td>
+      <td>≥ 98% of spend</td>
+      </tr>
+      <tr>
+      <td>Decision throughput</td>
+      <td>Steering decisions taken vs tabled</td>
+      <td>≥ 90% closed at first tabling</td>
+      </tr>
+      <tr>
+      <td>Trust recovery</td>
+      <td>Developer sentiment score on "I understand why tooling decisions are made"</td>
+      <td>Improvement vs baseline round</td>
+      </tr>
+      <tr>
+      <td>Durability</td>
+      <td>Governance framework operating without the engagement team</td>
+      <td>30 days of clean operation before exit</td>
+      </tr>
+      <tr>
+      <td>Quantified position</td>
+      <td>Identified addressable saving and identified underused entitlement</td>
+      <td>Stated with a confidence range, not a point estimate</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h1 id="part-2-engagement-design">Part 2 — Engagement design</h1>
+      <h2 id="21-the-spine">2.1 The spine</h2>
+      <p>The three workstreams share one data and decision spine. Design them as one program, not three reports.</p>
+      <div class="codewrap"><pre><code>                     ┌──────────────────────────────────────────┐
+                           │  CONSUMPTION TRUTH LAYER                 │
+                           │  usage · cost · identity · entitlement   │
+                           └───────────────┬──────────────────────────┘
+                                           │
+              ┌────────────────────────────┼────────────────────────────┐
+              │                            │                            │
+         WS1 Consumption            WS2 Multi-model              WS3 Landscape
+         &amp; Governance               access                       review
+              │                            │                            │
+         segmentation               workload taxonomy            capability taxonomy
+         decision matrix            platform evaluation          vendor scorecard
+         guardrails                 cost model                   estate cross-check
+              │                            │                            │
+              └────────────────────────────┼────────────────────────────┘
+                                           │
+                           ┌───────────────▼──────────────────────────┐
+                           │  DECISIONS  D1 renewal · D2 platform     │
+                           │             D3 build/buy/partner         │
+                           └───────────────┬──────────────────────────┘
+                                           │
+                           ┌───────────────▼──────────────────────────┐
+                           │  OPERATING MODEL — the AI CoE            │
+                           │  the thing that runs after you leave     │
+                           └──────────────────────────────────────────┘
+      </code></pre></div>
+      <p>Two shared assets carry across all three workstreams. Build them once.</p>
+      <ul>
+      <li><strong>The Workload Taxonomy.</strong> One controlled vocabulary of work classes. WS1 costs them. WS2 maps them to models. WS3 maps them to vendors. If each workstream invents its own list, the deliverables will not reconcile and the client will notice.</li>
+      <li><strong>The Consumption Truth Layer.</strong> One reconciled dataset. Every chart in every deliverable draws from it.</li>
+      </ul>
+      <h2 id="22-phases">2.2 Phases</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Phase</th>
+      <th>Weeks</th>
+      <th>Purpose</th>
+      <th>Exit test</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>P0 Mobilise</td>
+      <td>0–1</td>
+      <td>Access, scope, stakeholders, renewal date</td>
+      <td>Data access granted; taxonomy v0.1 agreed; renewal date fixed</td>
+      </tr>
+      <tr>
+      <td>P1 Baseline</td>
+      <td>1–4</td>
+      <td>Consumption truth layer; estate register; sentiment round</td>
+      <td>Baseline reconciles to invoice within 2%; register covers ≥ 90% of known AI spend</td>
+      </tr>
+      <tr>
+      <td>P2 Analyse</td>
+      <td>4–7</td>
+      <td>Segmentation, workload mapping, platform evaluation, market map</td>
+      <td>Findings pack survives a hostile review by the engineering lead</td>
+      </tr>
+      <tr>
+      <td>P3 Recommend</td>
+      <td>7–10</td>
+      <td>Decision matrix, cost model, negotiation brief, blueprint</td>
+      <td>Steering takes D1, D2, D3</td>
+      </tr>
+      <tr>
+      <td>P4 Operationalise</td>
+      <td>10–12</td>
+      <td>Guardrails live, CoE charter, handover</td>
+      <td>Governance runs one full monthly cycle without the engagement team</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Twelve weeks is the default. Compress P2 and P3 if the renewal date demands it. Never compress P0 — late data access is the single most common cause of overrun.</p>
+      <h2 id="23-the-renewal-driven-schedule">2.3 The renewal-driven schedule</h2>
+      <p>Fix this in week 0. Work backwards from the renewal date, <strong>R</strong>.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Milestone</th>
+      <th>Timing</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>First negotiation session</td>
+      <td>R − 90 days (target)</td>
+      </tr>
+      <tr>
+      <td>Negotiation brief approved by CIO and procurement</td>
+      <td>R − 105 days</td>
+      </tr>
+      <tr>
+      <td>Draft brief and BATNA costed</td>
+      <td>R − 120 days</td>
+      </tr>
+      <tr>
+      <td>Consumption baseline locked</td>
+      <td>R − 135 days</td>
+      </tr>
+      <tr>
+      <td>Data access granted</td>
+      <td>R − 150 days</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>If R is closer than 150 days, you are already late. Say so in writing on day 1 and switch to the compressed plan: a two-week baseline on invoice and admin-console data only, deferring identity joins and use-case attribution to a second pass.</p>
+      <h2 id="24-governance-and-cadence">2.4 Governance and cadence</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Forum</th>
+      <th>Frequency</th>
+      <th>Attendees</th>
+      <th>Decides</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Daily stand-up (engagement team)</td>
+      <td>Daily, 15 min</td>
+      <td>Team</td>
+      <td>Blockers</td>
+      </tr>
+      <tr>
+      <td>Data clinic</td>
+      <td>2× weekly, 45 min</td>
+      <td>EA, data analyst, client platform admin</td>
+      <td>Data quality, joins, exceptions</td>
+      </tr>
+      <tr>
+      <td>Workstream review</td>
+      <td>Weekly, 60 min</td>
+      <td>EA, workstream leads, client counterparts</td>
+      <td>Findings, direction</td>
+      </tr>
+      <tr>
+      <td>Steering</td>
+      <td>Fortnightly, 60 min</td>
+      <td>CIO or sponsor, Head of Engineering, Procurement, Security, Data Protection, Finance</td>
+      <td>D1/D2/D3 and escalations</td>
+      </tr>
+      <tr>
+      <td>Developer forum</td>
+      <td>Weeks 2, 6, 10</td>
+      <td>Engineering community</td>
+      <td>Sentiment, validation, adoption</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Two rules. Every steering paper is circulated 48 hours ahead. Every steering meeting ends with the decision log read back aloud.</p>
+      <h2 id="25-stakeholder-map-and-raci">2.5 Stakeholder map and RACI</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Stakeholder</th>
+      <th>Interest</th>
+      <th>Risk to you</th>
+      <th>Handling</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>CIO / sponsor</td>
+      <td>Defensible decisions, budget control</td>
+      <td>Wants a number too early</td>
+      <td>Give a range with confidence, refuse a point estimate until P2 exit</td>
+      </tr>
+      <tr>
+      <td>Head of Engineering</td>
+      <td>Developer productivity, team morale</td>
+      <td>Owns the Copilot withdrawal decision</td>
+      <td>Co-author the trial post-mortem. Do not surprise them.</td>
+      </tr>
+      <tr>
+      <td>Procurement / vendor management</td>
+      <td>Renewal outcome</td>
+      <td>May already have a position</td>
+      <td>Bring them into WS1 from week 1. They own the negotiation, you own the evidence.</td>
+      </tr>
+      <tr>
+      <td>Finance / FinOps</td>
+      <td>Forecast accuracy, chargeback</td>
+      <td>Wants full chargeback immediately</td>
+      <td>Sell the showback-first ladder (3.6)</td>
+      </tr>
+      <tr>
+      <td>Security and Data Protection</td>
+      <td>Data flows, residency, AI Act</td>
+      <td>Can veto late</td>
+      <td>Give them the model-access architecture in P2, not P3</td>
+      </tr>
+      <tr>
+      <td>Marketing / Digital / Creative</td>
+      <td>Owns most GenAI spend in a fashion brand</td>
+      <td>Often outside IT's view</td>
+      <td>Treat as a first-class stakeholder in WS3. Much of the shadow estate sits here.</td>
+      </tr>
+      <tr>
+      <td>Developer community</td>
+      <td>Tooling they actually use</td>
+      <td>Feels decisions happen to them</td>
+      <td>Developer forum; publish verbatim feedback</td>
+      </tr>
+      <tr>
+      <td>OpenAI account team</td>
+      <td>Renewal value</td>
+      <td>Will seek to shape your baseline</td>
+      <td>Do not share the baseline before the brief is approved</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>RACI extract (full grid in Part 8, T1).</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Activity</th>
+      <th>EA</th>
+      <th>WS lead</th>
+      <th>Client platform admin</th>
+      <th>Procurement</th>
+      <th>Security</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Consumption baseline</td>
+      <td>A</td>
+      <td>R</td>
+      <td>C</td>
+      <td>I</td>
+      <td>I</td>
+      </tr>
+      <tr>
+      <td>Decision matrix</td>
+      <td>A</td>
+      <td>R</td>
+      <td>C</td>
+      <td>I</td>
+      <td>C</td>
+      </tr>
+      <tr>
+      <td>Token governance framework</td>
+      <td>A</td>
+      <td>R</td>
+      <td>R</td>
+      <td>I</td>
+      <td>C</td>
+      </tr>
+      <tr>
+      <td>Negotiation brief</td>
+      <td>R</td>
+      <td>C</td>
+      <td>I</td>
+      <td>A</td>
+      <td>C</td>
+      </tr>
+      <tr>
+      <td>Platform evaluation</td>
+      <td>A</td>
+      <td>R</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      </tr>
+      <tr>
+      <td>Landscape and blueprint</td>
+      <td>A</td>
+      <td>R</td>
+      <td>I</td>
+      <td>C</td>
+      <td>C</td>
+      </tr>
+      <tr>
+      <td>CoE charter</td>
+      <td>R</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="26-team-shape">2.6 Team shape</h2>
+      <p>Minimum viable team for a twelve-week run.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Role</th>
+      <th>FTE</th>
+      <th>Why</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Lead EA (you)</td>
+      <td>1.0</td>
+      <td>Architecture, decisions, client relationship</td>
+      </tr>
+      <tr>
+      <td>Data analyst / engineer</td>
+      <td>1.0</td>
+      <td>Truth layer, segmentation, cost model. Non-negotiable.</td>
+      </tr>
+      <tr>
+      <td>Platform engineer</td>
+      <td>0.5</td>
+      <td>Gateway, admin APIs, guardrail implementation</td>
+      </tr>
+      <tr>
+      <td>Commercial / sourcing analyst</td>
+      <td>0.5</td>
+      <td>Rate cards, BATNA, negotiation brief</td>
+      </tr>
+      <tr>
+      <td>Market researcher</td>
+      <td>0.5 (WS3 heavy in P2)</td>
+      <td>Vendor scorecards, reference calls</td>
+      </tr>
+      <tr>
+      <td>Risk and compliance advisor</td>
+      <td>0.2</td>
+      <td>AI Act, DPIA, security posture</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>If you can fund only one addition to yourself, fund the data analyst. The credibility of all three workstreams rests on the truth layer.</p>
+      <h2 id="27-deliverable-specifications-and-acceptance-criteria">2.7 Deliverable specifications and acceptance criteria</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>#</th>
+      <th>Deliverable</th>
+      <th>WS</th>
+      <th>Format</th>
+      <th>Accepted when</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>D1.1</td>
+      <td>Consumption baseline and segmentation report</td>
+      <td>1</td>
+      <td>Deck (20pp) + live dashboard + data dictionary</td>
+      <td>Reconciles to invoice ≤ 2% variance; every cohort has a named owner</td>
+      </tr>
+      <tr>
+      <td>D1.2</td>
+      <td>Model / tool usage matrix</td>
+      <td>1</td>
+      <td>One-page matrix + reference guide + machine-readable routing table</td>
+      <td>Engineering lead and Security both sign; cost per task class stated</td>
+      </tr>
+      <tr>
+      <td>D1.3</td>
+      <td>Token governance framework</td>
+      <td>1</td>
+      <td>Policy pack + control catalogue + implemented gateway config</td>
+      <td>One full monthly cycle run by client staff</td>
+      </tr>
+      <tr>
+      <td>D1.4</td>
+      <td>Renewal negotiation brief</td>
+      <td>1</td>
+      <td>Confidential brief (12pp) + costed BATNA + ask/concede ladder</td>
+      <td>Procurement confirms it is usable at the table without rework</td>
+      </tr>
+      <tr>
+      <td>D2.1</td>
+      <td>Multi-model comparison and cost model</td>
+      <td>2</td>
+      <td>Workbook with sensitivity + written method note</td>
+      <td>A third party can reproduce the numbers from the method note</td>
+      </tr>
+      <tr>
+      <td>D2.2</td>
+      <td>Workload-to-model recommendation</td>
+      <td>2</td>
+      <td>Deck + routing table</td>
+      <td>Validated against ≥ 8 weeks of real telemetry, not assumption</td>
+      </tr>
+      <tr>
+      <td>D2.3</td>
+      <td>Directional guidance note</td>
+      <td>2</td>
+      <td>4-page note for IT leadership</td>
+      <td>Contains explicit revisit triggers with thresholds</td>
+      </tr>
+      <tr>
+      <td>D3.1</td>
+      <td>GenAI landscape map</td>
+      <td>3</td>
+      <td>Category map + vendor scorecards</td>
+      <td>Categories confirmed in scoping; every score has evidence grade</td>
+      </tr>
+      <tr>
+      <td>D3.2</td>
+      <td>Gap analysis against current estate</td>
+      <td>3</td>
+      <td>Heat map + register</td>
+      <td>≥ 90% of AI spend located and classified</td>
+      </tr>
+      <tr>
+      <td>D3.3</td>
+      <td>Target-state blueprint</td>
+      <td>3</td>
+      <td>Architecture + build/buy/partner calls + roadmap</td>
+      <td>Each call has a rule, a cost and a trigger</td>
+      </tr>
+      <tr>
+      <td>X.1</td>
+      <td>AI CoE charter and run-book</td>
+      <td>Cross</td>
+      <td>Charter + run-book + metrics pack</td>
+      <td>Sponsor signs; first intake processed by client staff</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="28-first-five-days-do-these-immediately">2.8 First five days — do these immediately</h2>
+      <p>These are time-critical. Two of them expire.</p>
+      <ol>
+      <li><strong>Fix the renewal date and contract vehicle.</strong> Ask for the order form and the master agreement. Note whether ChatGPT Enterprise and API platform sit on one paper or two.</li>
+      <li><strong>Request OpenAI admin access</strong> — an Admin API key, plus reader access to the Global Admin Console analytics and the billing invoices. Approvals take days.</li>
+      <li><strong>Export the Copilot trial data before it is unreachable.</strong> Billing usage reports and metrics history for a cancelled subscription do not stay available indefinitely. If any Copilot entitlement remains, export everything today. If it has lapsed, ask GitHub for a historical export in writing this week. Missing trial data is the single most likely cause of a weak WS2.</li>
+      <li><strong>Check the model retirement calendar.</strong> OpenAI has scheduled the retirement of GPT-5.4 and GPT-5.4 mini in Codex for ChatGPT-signed-in users on 31 August 2026, with GPT-5.6 Terra and GPT-5.6 Luna as the stated replacements. If XYZ has workspace defaults, saved model settings, managed configs or automations pinned to the retiring models, they break. Raise it in week 1. It is also your first proof of usefulness, and it earns you a contract ask (deprecation notice periods — see 3.7).</li>
+      <li><strong>Ask whether any ChatGPT Enterprise workspace still uses weekly role-based limits.</strong> OpenAI has been migrating remaining workspaces to monthly usage-limit structures during August 2026. A migration mid-baseline distorts your period comparisons. Record the date it happens.</li>
+      </ol>
+      <h1 id="part-3-workstream-1-ai-consumption-governance">Part 3 — Workstream 1: AI Consumption &amp; Governance</h1>
+      <p><strong>Objective restated as a decision:</strong> produce the evidence that lets XYZ decide what to sign, and the controls that make the signature hold.</p>
+      <h2 id="31-data-acquisition-plan">3.1 Data acquisition plan</h2>
+      <p>Raise all of this on day 1 as a single, numbered data request. Track it as a register with an owner and a due date per line.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>#</th>
+      <th>Source</th>
+      <th>What it gives you</th>
+      <th>How to get it</th>
+      <th>Watch-out</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>1</td>
+      <td>OpenAI <strong>Cost API</strong> (<code>/v1/organization/costs</code>)</td>
+      <td>Daily spend, groupable by project and by invoice line item</td>
+      <td>Admin API key</td>
+      <td>Daily buckets only. Cannot be your sole source of user attribution.</td>
+      </tr>
+      <tr>
+      <td>2</td>
+      <td>OpenAI <strong>Usage API</strong> (<code>/v1/organization/usage/...</code>)</td>
+      <td>Token counts by model, project, API key, user; separate endpoints for completions, embeddings, images, audio, moderations, vector stores, code interpreter</td>
+      <td>Admin API key</td>
+      <td>Input, cached input and output tokens are separate meters. Cached input is materially cheaper — count it separately or your unit costs will be wrong.</td>
+      </tr>
+      <tr>
+      <td>3</td>
+      <td>OpenAI <strong>Global Admin Console</strong> analytics</td>
+      <td>ChatGPT and Codex credit usage in one view, broken down by user, product and model</td>
+      <td>Global admin role</td>
+      <td>Introduced mid-2026. Confirm which workspaces are in scope of the global console versus standalone.</td>
+      </tr>
+      <tr>
+      <td>4</td>
+      <td><strong>Codex analytics API</strong></td>
+      <td>Codex-specific consumption and adoption</td>
+      <td>Admin access</td>
+      <td>Codex credit pricing moved to token-aligned rates in April 2026. Pre-April data is not comparable. Normalise or exclude.</td>
+      </tr>
+      <tr>
+      <td>5</td>
+      <td>OpenAI <strong>Audit logs</strong></td>
+      <td>Who changed limits, keys, projects, model permissions</td>
+      <td>Admin API</td>
+      <td>Your evidence for governance maturity claims</td>
+      </tr>
+      <tr>
+      <td>6</td>
+      <td>OpenAI <strong>Projects / Users / Invites</strong></td>
+      <td>Entitlement: seats bought, assigned, pending, never activated</td>
+      <td>Admin API</td>
+      <td>Entitlement minus activation is the single most valuable number in the negotiation</td>
+      </tr>
+      <tr>
+      <td>7</td>
+      <td><strong>Invoices and order form</strong></td>
+      <td>Settled truth; committed spend; overage rate; credit terms</td>
+      <td>Finance / procurement</td>
+      <td>Reconcile everything to this. API cost figures are planning estimates, not invoices.</td>
+      </tr>
+      <tr>
+      <td>8</td>
+      <td><strong>Azure Cost Management</strong> (if any Azure OpenAI)</td>
+      <td>Parallel OpenAI consumption on a different paper</td>
+      <td>Cloud team</td>
+      <td>Frequently forgotten. Check before you claim a total.</td>
+      </tr>
+      <tr>
+      <td>9</td>
+      <td><strong>GitHub billing usage report + Copilot metrics</strong></td>
+      <td>The Copilot trial evidence base</td>
+      <td>GitHub enterprise admin</td>
+      <td>See 2.8 item 3. Time-critical.</td>
+      </tr>
+      <tr>
+      <td>10</td>
+      <td><strong>AWS Cost and Usage Report</strong> (Bedrock lines)</td>
+      <td>Any existing Bedrock consumption</td>
+      <td>Cloud team</td>
+      <td>Often a data-science team experiment nobody logged</td>
+      </tr>
+      <tr>
+      <td>11</td>
+      <td><strong>Entra ID / Okta + HR feed</strong></td>
+      <td>Team, cost centre, job family, joiner-mover-leaver dates</td>
+      <td>Identity team</td>
+      <td>The join key that turns usage into segmentation. Get a DPIA view early.</td>
+      </tr>
+      <tr>
+      <td>12</td>
+      <td><strong>Expense system + card statements</strong></td>
+      <td>Shadow AI: individual subscriptions to image, video and voice tools</td>
+      <td>Finance</td>
+      <td>In a fashion brand, expect meaningful spend inside Marketing and Creative</td>
+      </tr>
+      <tr>
+      <td>13</td>
+      <td><strong>CASB / SSE / proxy logs</strong></td>
+      <td>Unsanctioned AI domains in use</td>
+      <td>Security</td>
+      <td>Aggregate only. Do not produce a named-user surveillance report.</td>
+      </tr>
+      <tr>
+      <td>14</td>
+      <td><strong>Contract register</strong></td>
+      <td>Every AI-adjacent SaaS renewal date</td>
+      <td>Vendor management</td>
+      <td>Feeds WS3 and reveals renewal collisions</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Privacy guardrail.</strong> You are joining usage telemetry to identity. In most jurisdictions this is employee monitoring. Before you build the join:</p>
+      <ul>
+      <li>Agree the lawful basis and complete or update a DPIA with Data Protection.</li>
+      <li>Report at team level by default. Restrict individual-level views to named administrators with a documented purpose.</li>
+      <li>Never publish individual-level league tables. They destroy trust faster than anything else in this engagement and they corrupt the data — people change behaviour when they are ranked.</li>
+      <li>Check works-council or employee-representation requirements in each country where XYZ operates.</li>
+      </ul>
+      <h2 id="32-the-consumption-truth-layer">3.2 The consumption truth layer</h2>
+      <p>Build a small dimensional model. Do not analyse in spreadsheets scattered across a shared drive.</p>
+      <p><strong>Fact table — <code>fct_ai_usage</code></strong> (grain: day × workspace × project × user × model × meter)</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Column</th>
+      <th>Notes</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>usage_date</td>
+      <td>Day bucket</td>
+      </tr>
+      <tr>
+      <td>platform</td>
+      <td>openai_api, chatgpt_enterprise, codex, copilot, bedrock, other</td>
+      </tr>
+      <tr>
+      <td>workspace_id / project_id</td>
+      <td>Native identifier</td>
+      </tr>
+      <tr>
+      <td>user_key</td>
+      <td>Pseudonymised; join to identity dimension</td>
+      </tr>
+      <tr>
+      <td>model</td>
+      <td>Exact model string, not a family label</td>
+      </tr>
+      <tr>
+      <td>meter</td>
+      <td>input_tokens, cached_input_tokens, output_tokens, credits, requests, images, audio_seconds</td>
+      </tr>
+      <tr>
+      <td>quantity</td>
+      <td>Metered quantity</td>
+      </tr>
+      <tr>
+      <td>list_cost</td>
+      <td>Quantity × published rate</td>
+      </tr>
+      <tr>
+      <td>effective_cost</td>
+      <td>Quantity × contracted rate</td>
+      </tr>
+      <tr>
+      <td>use_case_id</td>
+      <td>Nullable at baseline; populated by attribution (3.4)</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Dimensions:</strong> <code>dim_user</code> (team, function, cost centre, country, job family, start date), <code>dim_model</code> (family, tier, modality, rate card, status, retirement date), <code>dim_project</code>, <code>dim_use_case</code>, <code>dim_entitlement</code> (seat type, assigned date, activation date, credit allowance).</p>
+      <p><strong>Rules that save you later.</strong></p>
+      <ol>
+      <li>Store list cost and effective cost separately. The gap between them is a negotiation exhibit.</li>
+      <li>Store cached input tokens as their own meter. Prompt caching can move a unit cost by an order of magnitude.</li>
+      <li>Never overwrite. Append and version. When a rate card changes mid-period you must be able to restate.</li>
+      <li>Reconcile monthly to the invoice. Publish the variance. A baseline that does not reconcile is an opinion.</li>
+      <li>Keep a <code>data_quality</code> flag per row: <code>reconciled</code>, <code>estimated</code>, <code>imputed</code>. Every chart states the mix.</li>
+      </ol>
+      <h2 id="33-segmentation-model">3.3 Segmentation model</h2>
+      <p>The brief asks for early adopters, steady-state users and laggards. That three-way split is too coarse to negotiate with. Use five axes and derive seven cohorts.</p>
+      <p><strong>Axes</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Axis</th>
+      <th>Definition</th>
+      <th>Source</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Activation</td>
+      <td>Any usage in the last 30 days</td>
+      <td>Usage API / console</td>
+      </tr>
+      <tr>
+      <td>Frequency</td>
+      <td>Distinct active days per month</td>
+      <td>Usage</td>
+      </tr>
+      <tr>
+      <td>Intensity</td>
+      <td>Credits or effective cost per active user per month</td>
+      <td>Cost</td>
+      </tr>
+      <tr>
+      <td>Breadth</td>
+      <td>Distinct capabilities used (chat, deep research, Codex, voice, image, API)</td>
+      <td>Usage by endpoint</td>
+      </tr>
+      <tr>
+      <td>Embeddedness</td>
+      <td>Usage inside a defined business workflow rather than ad-hoc</td>
+      <td>Use-case attribution + interviews</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Cohorts.</strong> Set thresholds from XYZ's own distribution — use deciles, not imported benchmarks. Starting definitions:</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Cohort</th>
+      <th>Definition</th>
+      <th>So what</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>C1 Never activated</td>
+      <td>Seat assigned, zero usage since assignment</td>
+      <td>Direct reclaim. Hard number for the negotiation.</td>
+      </tr>
+      <tr>
+      <td>C2 Lapsed</td>
+      <td>Active historically, nothing in 60 days</td>
+      <td>Reclaim or re-enable. Ask why — often a workflow blocker, not disinterest.</td>
+      </tr>
+      <tr>
+      <td>C3 Occasional</td>
+      <td>Active 1–4 days/month, low intensity</td>
+      <td>Enablement target. Cheap to move.</td>
+      </tr>
+      <tr>
+      <td>C4 Steady</td>
+      <td>Active 5–15 days/month, moderate intensity, ≥ 2 capabilities</td>
+      <td>The core. Protect.</td>
+      </tr>
+      <tr>
+      <td>C5 Power</td>
+      <td>Top decile intensity, high breadth, embedded</td>
+      <td>Your value evidence. Interview them. Their workflows become the reference patterns.</td>
+      </tr>
+      <tr>
+      <td>C6 Constrained</td>
+      <td>Hitting limits or requesting increases, high value work</td>
+      <td><strong>The most important cohort.</strong> Evidence that entitlement is mis-allocated, not over-bought.</td>
+      </tr>
+      <tr>
+      <td>C7 Runaway</td>
+      <td>Top decile intensity, low or unclear value, often automation misconfiguration</td>
+      <td>The saving. Investigate before you cut.</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Derived measures for the negotiation.</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Measure</th>
+      <th>Formula</th>
+      <th>Use</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Activation rate</td>
+      <td>Activated seats ÷ paid seats</td>
+      <td>Headline underuse</td>
+      </tr>
+      <tr>
+      <td>Entitlement utilisation</td>
+      <td>Credits consumed ÷ credits purchased</td>
+      <td>Credit ask</td>
+      </tr>
+      <tr>
+      <td>Concentration</td>
+      <td>Share of total credits used by top 10% of users</td>
+      <td>Argues for pooled credits, not per-seat caps</td>
+      </tr>
+      <tr>
+      <td>Zombie cost</td>
+      <td>C1 + C2 seats × seat price × months</td>
+      <td>Direct reclaim</td>
+      </tr>
+      <tr>
+      <td>Constrained value at risk</td>
+      <td>Estimated value of work blocked in C6</td>
+      <td>Argues for a larger pool, not a smaller one</td>
+      </tr>
+      <tr>
+      <td>Burn trajectory</td>
+      <td>3-month rolling growth in effective cost</td>
+      <td>Commit sizing</td>
+      </tr>
+      <tr>
+      <td>Peak-to-mean ratio</td>
+      <td>Peak month ÷ mean month</td>
+      <td>Argues for rollover and flex, not a flat commit</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Interpretation discipline.</strong> Low usage is not automatically waste. Test three explanations before you call a seat wasted: no training, no approved use case, or a blocked workflow (data classification, integration gap, latency). The negotiation position is different in each case.</p>
+      <h2 id="34-use-case-attribution">3.4 Use-case attribution</h2>
+      <p>Raw telemetry tells you which model was called. It does not tell you what work was done. You need the second one for the decision matrix and the value case.</p>
+      <p>Three methods, used together.</p>
+      <ol>
+      <li><strong>Tagging at source (best, prospective).</strong> Enforce metadata on every API call through the gateway (3.6): <code>cost_centre</code>, <code>business_unit</code>, <code>use_case_id</code>, <code>environment</code>, <code>data_class</code>, <code>initiator</code> (human or agent). Issue virtual keys per use case. This makes attribution automatic from the date it is switched on.</li>
+      <li><strong>Project and key archaeology (retrospective).</strong> Map existing projects and API keys to owners and use cases by interview. Expect 60–80% coverage and a long tail of "misc".</li>
+      <li><strong>Structured interviews and a short survey (qualitative).</strong> 12–20 interviews across cohorts C3–C7, plus a survey to the whole population. Ask what work the tool does, what it replaced, and what it unblocked.</li>
+      </ol>
+      <p>Publish the coverage rate honestly: "78% of spend attributed to a named use case; 22% unattributed, concentrated in three legacy projects."</p>
+      <h2 id="35-the-model-tool-usage-matrix">3.5 The model / tool usage matrix</h2>
+      <p>This is the deliverable that changes daily behaviour. Design it as a one-page routing table that a developer or marketer can follow without reading a policy.</p>
+      <p><strong>Columns</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Column</th>
+      <th>Content</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Work class</td>
+      <td>From the shared Workload Taxonomy</td>
+      </tr>
+      <tr>
+      <td>Typical example</td>
+      <td>Concrete, from XYZ's own work</td>
+      </tr>
+      <tr>
+      <td>Data classification permitted</td>
+      <td>Public / Internal / Confidential / Restricted</td>
+      </tr>
+      <tr>
+      <td>Default tool</td>
+      <td>Named product and interface</td>
+      </tr>
+      <tr>
+      <td>Default model tier</td>
+      <td>Frontier reasoning / workhorse / fast-cheap / specialist</td>
+      </tr>
+      <tr>
+      <td>Escalation</td>
+      <td>When to move up a tier, and who approves</td>
+      </tr>
+      <tr>
+      <td>Human review</td>
+      <td>Required / spot check / none</td>
+      </tr>
+      <tr>
+      <td>Relative unit cost</td>
+      <td>Indexed, e.g. 1× / 6× / 40×</td>
+      </tr>
+      <tr>
+      <td>Typical cost per 100 tasks</td>
+      <td>Modelled, with the assumption stated</td>
+      </tr>
+      <tr>
+      <td>Prohibited</td>
+      <td>Explicit anti-patterns</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Work classes to start from</strong> (validate against XYZ's telemetry; do not import wholesale):</p>
+      <p><em>Engineering:</em> inline completion · scoped code change in IDE · multi-file agentic task · code review · test generation · migration/refactor at scale · incident diagnosis · documentation.</p>
+      <p><em>Commercial and corporate:</em> drafting and editing · summarisation at volume · structured extraction/classification · retrieval Q&amp;A over internal documents · translation and localisation · research synthesis · data analysis · meeting capture.</p>
+      <p><em>Brand and product:</em> concept imagery · production imagery · video · voice and dubbing · product copy at catalogue scale · design exploration.</p>
+      <p><strong>The cost-implication method.</strong> Do not publish unit prices that will be wrong in a month. Publish a formula and an indexed table.</p>
+      <div class="codewrap"><pre><code>cost_per_task = (input_tokens_uncached × rate_in
+                     + input_tokens_cached  × rate_cached
+                     + output_tokens        × rate_out
+                     + tool_calls           × tool_rate)
+                     × retries_factor
+                     × (1 + agent_amplification)
+      </code></pre></div>
+      <p>Then measure <code>tokens_per_task</code> from real telemetry for each work class, and express results as an index against the cheapest viable path. Three findings this method reliably produces, all of which are worth money:</p>
+      <ul>
+      <li><strong>Agent amplification.</strong> An agentic task consumes many multiples of a single chat turn, because it plans, reads files, retries and self-checks. Teams that budget agentic work at chat rates will overrun. Measure the multiplier for XYZ's own workloads and publish it.</li>
+      <li><strong>Output tokens dominate.</strong> Output is typically priced several times higher than input across frontier models. Verbosity is a cost lever. So is asking for structured output.</li>
+      <li><strong>Caching is the cheapest optimisation nobody enables.</strong> Cached input is priced far below uncached input. Repeated system prompts and repeated document context are the obvious candidates.</li>
+      </ul>
+      <p><strong>Routing principle to state plainly:</strong> default to the cheapest model that clears the quality bar for the work class, and escalate deliberately. Published buyer-side analyses of enterprise estates put the saving from disciplined task-based routing in the range of tens of percent with no quality loss. Do not quote someone else's percentage to the client. Measure XYZ's own with an A/B on two or three high-volume work classes, then quote that.</p>
+      <p><strong>Quality bar, not vibes.</strong> For each work class where routing down saves real money, build a small evaluation set (30–100 real examples with graded expected outcomes). Run the candidate models. Record pass rate, latency and cost. That evaluation set is a durable asset — it is what lets XYZ re-run this decision when the next model ships. Hand it over.</p>
+      <h2 id="36-token-and-credit-governance-framework">3.6 Token and credit governance framework</h2>
+      <p>Seven layers. Deliver a control catalogue with an owner and an implementation state for each control.</p>
+      <p><strong>Layer 1 — Policy.</strong> Acceptable use. Data classification rules mapped to approved models and platforms. Prohibited uses. Disclosure rules for AI-generated customer-facing content (see Part 7 — this is now a legal obligation, not a preference). Keep it to two pages. Nobody reads ten.</p>
+      <p><strong>Layer 2 — Identity and entitlement.</strong> SSO enforced on every AI platform. Group-based role assignment. Joiner-mover-leaver automation. A seat reclamation SLA: no activation within 30 days of assignment, or 60 days dormant, triggers automatic reclaim with a one-click re-request. Publish the reclaim rule before you enforce it.</p>
+      <p><strong>Layer 3 — Allocation.</strong> Move from per-seat caps to a pooled envelope with group limits. Structure:</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Element</th>
+      <th>Design</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Enterprise envelope</td>
+      <td>Monthly credit ceiling aligned to the commit</td>
+      </tr>
+      <tr>
+      <td>Group allocations</td>
+      <td>Per business unit or engineering group, sized on the segmentation</td>
+      </tr>
+      <tr>
+      <td>User overrides</td>
+      <td>For C5/C6 individuals with documented need</td>
+      </tr>
+      <tr>
+      <td>Reserve pool</td>
+      <td>15–20% held centrally for exceptions and spikes</td>
+      </tr>
+      <tr>
+      <td>Innovation allowance</td>
+      <td>A ring-fenced pot with deliberately loose controls (see below)</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Modern platform tooling now supports this directly: ChatGPT Enterprise supports group-level limits with user overrides drawing on a shared workspace pool, and GitHub Copilot moved to credit allowances with organisation-level pooling and user-level budgets in June 2026. Use the native controls first. Add a gateway where native controls cannot reach.</p>
+      <p><strong>The innovation exception.</strong> The 2026 FinOps Framework makes an important point that most governance frameworks get wrong: an innovation-focused AI scope should tolerate higher waste, run at a faster cadence, and accept lower maturity. If you apply steady-state efficiency standards to experimentation, you either suppress the experiments or you manufacture the appearance of governance. Ring-fence an explicit innovation budget, cap it, and do not police it at the same granularity as production.</p>
+      <p><strong>Layer 4 — Runtime control.</strong> Where the estate spans more than one provider, put an AI gateway in the path. It is the only place where routing, budgets, model allow-lists, caching, redaction and logging can be enforced consistently. See 4.5 for the build/buy assessment.</p>
+      <p>Controls to implement at the gateway: virtual keys per use case with hard budgets · model allow-list per key · rate limits · prompt and response logging with PII redaction · semantic or exact-prefix caching · automatic failover · mandatory metadata tags.</p>
+      <p><strong>Layer 5 — Observability.</strong> Dashboards for three audiences.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Audience</th>
+      <th>Cadence</th>
+      <th>Content</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Platform / FinOps</td>
+      <td>Daily</td>
+      <td>Burn vs envelope, anomalies, cache hit rate, failover events, top movers</td>
+      </tr>
+      <tr>
+      <td>Business unit lead</td>
+      <td>Weekly</td>
+      <td>Group consumption vs allocation, cohort mix, adoption trend</td>
+      </tr>
+      <tr>
+      <td>Executive</td>
+      <td>Monthly</td>
+      <td>Cost per unit of work, value delivered, commit utilisation, forecast to renewal</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Set alerts on rate of change, not only on absolute thresholds. The failure mode is a misconfigured automation that burns a month of credits in three days.</p>
+      <p><strong>Layer 6 — Accountability.</strong> Use a maturity ladder. Do not start at chargeback.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Stage</th>
+      <th>Mechanism</th>
+      <th>Timing</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>1 Showback</td>
+      <td>Visible cost by team, no financial transfer</td>
+      <td>Month 1</td>
+      </tr>
+      <tr>
+      <td>2 Showback with budget</td>
+      <td>Teams own an allocation and a forecast</td>
+      <td>Month 3</td>
+      </tr>
+      <tr>
+      <td>3 Soft chargeback</td>
+      <td>Costs appear in team P&amp;L, not enforced</td>
+      <td>Month 6</td>
+      </tr>
+      <tr>
+      <td>4 Chargeback</td>
+      <td>Real transfer, with exception path</td>
+      <td>Month 9+</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Jumping straight to chargeback drives usage into shadow tools and destroys the visibility you just built.</p>
+      <p><strong>Layer 7 — Exception path.</strong> High-value use cases must be able to exceed guardrails without a two-week wait.</p>
+      <ul>
+      <li>Request form: use case, value estimate, alternatives tested, data classification, requested increase, duration.</li>
+      <li>Decision SLA: two business days for increases under a stated threshold, five days above it.</li>
+      <li>Approver: platform owner below threshold, CoE lead above.</li>
+      <li>Every exception has an expiry date and a review. No permanent exceptions.</li>
+      <li>Publish exception volumes monthly. A rising exception rate means your allocation model is wrong, not that people are misbehaving.</li>
+      </ul>
+      <p><strong>Deliverable form.</strong> A control catalogue table: control ID · layer · description · owner · implementation state (designed / configured / enforced) · evidence location · review date.</p>
+      <h2 id="37-renewal-negotiation-brief">3.7 Renewal negotiation brief</h2>
+      <p>This is the highest-value deliverable in the engagement. Procurement owns the negotiation. You own the evidence and the architecture options that create leverage.</p>
+      <h3 id="371-structure-of-the-brief">3.7.1 Structure of the brief</h3>
+      <ol>
+      <li>Position summary — one page, three asks, one walk-away condition</li>
+      <li>Consumption evidence — baseline, segmentation, trajectory, confidence range</li>
+      <li>Entitlement analysis — what is paid for and not used, what is constrained</li>
+      <li>Forecast scenarios — low / base / high with drivers stated</li>
+      <li>Costed BATNA — the credible alternative, with a migration plan and a switching cost</li>
+      <li>Ask ladder — what to open with, what to trade, what to hold</li>
+      <li>Term sheet redlines — the clauses that matter</li>
+      <li>Choreography — sequence, timing, who says what</li>
+      </ol>
+      <h3 id="372-build-the-forecast-properly">3.7.2 Build the forecast properly</h3>
+      <p>Vendor-supplied consumption estimates are systematically low. Independent buyer-side reviews of enterprise GenAI deals report first-year vendor estimates running well below actual burn once agentic features are enabled, and committed spend sized to optimistic growth creating shortfall risk. Two implications:</p>
+      <ul>
+      <li><strong>Model your own forecast.</strong> Three scenarios, each with explicit drivers: headcount in scope, activation rate, agentic share of workload, average tokens per task, cache hit rate, model mix.</li>
+      <li><strong>Commit at the conservative end.</strong> Then negotiate the right to consume above the commit at the same rate. You want the discount without the shortfall exposure.</li>
+      </ul>
+      <p>Run a sensitivity table. Show the client which single variable moves the annual number most. In most estates it is the agentic share of workload, not headcount.</p>
+      <h3 id="373-the-ask-ladder">3.7.3 The ask ladder</h3>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Priority</th>
+      <th>Ask</th>
+      <th>Rationale from your evidence</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td><strong>Hold</strong></td>
+      <td>Commit sized at your P50, not the vendor's forecast</td>
+      <td>Forecast model, scenario table</td>
+      </tr>
+      <tr>
+      <td><strong>Hold</strong></td>
+      <td>Same negotiated rate applies to consumption above the commit</td>
+      <td>Removes shortfall risk without capping growth</td>
+      </tr>
+      <tr>
+      <td><strong>Hold</strong></td>
+      <td>Data terms: no training on XYZ data, defined retention, deletion on exit, export rights</td>
+      <td>Non-negotiable for a consumer brand</td>
+      </tr>
+      <tr>
+      <td><strong>Hold</strong></td>
+      <td>Renewal uplift cap in writing (low single digits) and no silent auto-renewal; 90-day notice</td>
+      <td>Year-two lock-in is where quote-only vendors extract value</td>
+      </tr>
+      <tr>
+      <td><strong>Push</strong></td>
+      <td>Credit rollover of unused entitlement</td>
+      <td>Peak-to-mean ratio; C1/C2 unused entitlement</td>
+      </tr>
+      <tr>
+      <td><strong>Push</strong></td>
+      <td>Pooled credits across seat types rather than per-seat caps</td>
+      <td>Concentration measure — top decile drives most usage</td>
+      </tr>
+      <tr>
+      <td><strong>Push</strong></td>
+      <td>Model deprecation notice period and migration support</td>
+      <td>The 31 August 2026 Codex model retirement is your live example</td>
+      </tr>
+      <tr>
+      <td><strong>Push</strong></td>
+      <td>Seat flex band (±10–15%) without repricing</td>
+      <td>Seasonal workforce in fashion retail</td>
+      </tr>
+      <tr>
+      <td><strong>Trade</strong></td>
+      <td>Multi-year term in exchange for rate lock</td>
+      <td>Only if data and exit terms are already secured</td>
+      </tr>
+      <tr>
+      <td><strong>Trade</strong></td>
+      <td>Reference status, case study, logo rights</td>
+      <td>Costs XYZ little, worth real money to the vendor</td>
+      </tr>
+      <tr>
+      <td><strong>Ask</strong></td>
+      <td>Free pilot seats (10–25 for 60–90 days) for the next capability</td>
+      <td>Cheap for the vendor to give</td>
+      </tr>
+      <tr>
+      <td><strong>Ask</strong></td>
+      <td>Funded solution architect days, enablement workshops, migration credits</td>
+      <td>Converts directly into your CoE build</td>
+      </tr>
+      <tr>
+      <td><strong>Ask</strong></td>
+      <td>Contracted overage rate stated on the order form, with alerting thresholds</td>
+      <td>Estimated dollar values now surface in admin analytics only when a contracted overage rate exists</td>
+      </tr>
+      <tr>
+      <td><strong>Ask</strong></td>
+      <td>Regional data residency and sub-processor commitments</td>
+      <td>Feeds the AI Act and GDPR position</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h3 id="374-build-a-real-batna">3.7.4 Build a real BATNA</h3>
+      <p>A negotiating position without an alternative is a request. Cost the alternative properly, in writing, before the first session.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>BATNA element</th>
+      <th>What to produce</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Alternative access route</td>
+      <td>Bedrock (or equivalent) rate card for the equivalent model mix, including cross-region inference uplift and batch discount where applicable</td>
+      </tr>
+      <tr>
+      <td>Alternative coding tool</td>
+      <td>Copilot re-entry cost at current credit-based pricing</td>
+      </tr>
+      <tr>
+      <td>Alternative frontier model</td>
+      <td>A second frontier provider quote for the workhorse tier</td>
+      </tr>
+      <tr>
+      <td>Migration cost</td>
+      <td>Engineering days to move the top five workloads behind the gateway, with the gateway as the enabling asset</td>
+      </tr>
+      <tr>
+      <td>Switching timeline</td>
+      <td>Weeks to move 30% of consumption; weeks to move 80%</td>
+      </tr>
+      <tr>
+      <td>Residual lock-in</td>
+      <td>What genuinely cannot move: fine-tuned models, workspace-native features, embedded workflows</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>The gateway is what makes the BATNA credible. If XYZ can demonstrate that a portion of traffic can be redirected in days, the negotiation changes character. Build it before the negotiation, not after.</p>
+      <h3 id="375-timing-and-choreography">3.7.5 Timing and choreography</h3>
+      <ul>
+      <li>Open the conversation early. Do not let the vendor set the calendar.</li>
+      <li>Bring one competing quote to the table. It does not have to be a threat to be leverage.</li>
+      <li>Vendor quarter-end and year-end create flexibility. Align the closing session where you can.</li>
+      <li>Do not share your full baseline with the account team before the brief is approved. Share the conclusions you choose to share.</li>
+      <li>Keep the walk-away condition written down and agreed with the CIO in advance. Under pressure, undefined walk-aways move.</li>
+      </ul>
+      <h3 id="376-where-entitlement-is-being-underused-the-headline-exhibit">3.7.6 Where entitlement is being underused — the headline exhibit</h3>
+      <p>Produce one slide with four numbers and their money value:</p>
+      <ol>
+      <li>Seats paid for, never activated (C1)</li>
+      <li>Seats dormant beyond 60 days (C2)</li>
+      <li>Credits purchased and unconsumed in the period, and whether they expired</li>
+      <li>Constrained high-value users who were blocked (C6)</li>
+      </ol>
+      <p>Numbers 1–3 are the reclaim argument. Number 4 is the reallocation argument. Presenting all four together is what stops the vendor reframing your underuse finding as "you should buy fewer seats and more credits" on their terms rather than yours.</p>
+      <h1 id="part-4-workstream-2-multi-model-access-strategy">Part 4 — Workstream 2: Multi-Model Access Strategy</h1>
+      <p><strong>Objective restated as a decision:</strong> which models, through which route, at what cost — and under what conditions we change our mind.</p>
+      <h2 id="40-the-context-you-must-hold-in-your-head">4.0 The context you must hold in your head</h2>
+      <p>Two market facts from 2026 change the shape of this analysis. Verify both before you rely on them.</p>
+      <ol>
+      <li><strong>GitHub Copilot moved to usage-based billing on 1 June 2026.</strong> Premium requests were retired and replaced by GitHub AI Credits, metered on input, output and cached tokens at each model's listed API rate. Seat prices did not change (Business $19/user/month including $19 in monthly credits; Enterprise $39/user/month including $39 in credits). Code completions and next-edit suggestions remain included and do not draw on credits. Organisation-level pooling and user-level budgets are available to admins.</li>
+      <li><strong>OpenAI Codex moved to token-aligned credit pricing in April 2026</strong>, and enterprise-grade credit analytics and spend controls landed in June 2026.</li>
+      </ol>
+      <p><strong>Consequence for the recommendation.</strong> Copilot and Codex are no longer a seat-price-versus-consumption comparison. Both are now consumption products with a seat-priced floor. The old argument for consolidating on one platform — "we already pay per seat, so marginal use is free" — no longer holds on either side. The comparison is now genuinely about routing, capability fit and where the free tier sits. That is a materially better argument for a mixed estate than the one the brief assumes, and it is a finding worth leading with.</p>
+      <p>Note the second-order effect: Copilot's free-completions tier means low-intensity developers can be served at near-zero marginal cost, while high-intensity agentic work is metered on both platforms. That shape supports segmenting developers by intensity, not by team.</p>
+      <h2 id="41-current-state-assessment-the-copilot-trial-post-mortem">4.1 Current-state assessment: the Copilot trial post-mortem</h2>
+      <p>Handle this as a trust-repair exercise with an evidence layer, not as an audit.</p>
+      <h3 id="411-sequence">4.1.1 Sequence</h3>
+      <ol>
+      <li><strong>Reconstruct the record.</strong> What was the trial's stated hypothesis, population, duration, success criteria and decision rule? In most organisations the answer is that no explicit criteria existed. Record that finding without blame — it is the strongest argument for the evaluation framework you are about to introduce.</li>
+      <li><strong>Recover the data.</strong> Billing usage reports, seat assignment history, Copilot metrics, repository telemetry for the trial window and a matched pre-trial window.</li>
+      <li><strong>Run the sentiment round.</strong> Structured, anonymised, published.</li>
+      <li><strong>Analyse.</strong> Quantitative and qualitative side by side.</li>
+      <li><strong>Publish a fair account.</strong> Including what the withdrawal cost.</li>
+      </ol>
+      <h3 id="412-measurement-framework">4.1.2 Measurement framework</h3>
+      <p>Do not measure with a single metric. Use three lenses together.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Lens</th>
+      <th>Metrics</th>
+      <th>Source</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Delivery (team level)</td>
+      <td>Deployment frequency, lead time for changes, change failure rate, time to restore</td>
+      <td>CI/CD, incident system</td>
+      </tr>
+      <tr>
+      <td>Developer experience (individual level)</td>
+      <td>Satisfaction, perceived flow, friction points, time-on-task</td>
+      <td>SPACE-style survey, diary study</td>
+      </tr>
+      <tr>
+      <td>AI-specific</td>
+      <td>Utilisation (active users, sessions), acceptance/retention of suggested code, cost per accepted change, review burden, rework rate on AI-touched code at 30/60/90 days</td>
+      <td>Tool telemetry + repo analysis</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Three warnings from the 2025–2026 research literature. Put these in the deliverable.</strong></p>
+      <ul>
+      <li><strong>The productivity paradox.</strong> Individual output metrics rise sharply with AI coding assistants while organisational delivery metrics often stay flat. Throughput gains show up later, if the surrounding system can absorb them. Do not accept "PRs merged" as proof of value, and do not accept flat DORA metrics as proof of no value.</li>
+      <li><strong>Speed without a quality counterweight is a false reading.</strong> Pair every speed metric with a quality metric and track AI-touched code over 30–90 days. Defects and rework surface late.</li>
+      <li><strong>Developers are poor estimators of their own productivity.</strong> Use sentiment for direction and diagnosis, telemetry for magnitude. Never use either alone.</li>
+      </ul>
+      <p><strong>Never use these metrics for individual performance management, and say so in the deliverable.</strong> If developers believe the data will be used against them, the sentiment round returns nothing useful and the telemetry gets gamed.</p>
+      <h3 id="413-the-sentiment-round">4.1.3 The sentiment round</h3>
+      <p>This is the part the brief is really asking about. Run it properly.</p>
+      <ul>
+      <li><strong>Format:</strong> 30-minute structured interviews with 10–15 developers spanning the teams that objected and the teams that did not, plus a short anonymous survey to the whole engineering population.</li>
+      <li><strong>Questions:</strong> What did Copilot do in your workflow that nothing else does? What broke when it was withdrawn? What did you switch to? What did that cost you in time? What would change your mind? How was the decision communicated?</li>
+      <li><strong>Bias control:</strong> interview volunteers <em>and</em> a random sample. The loudest voices are not the population.</li>
+      <li><strong>Publish verbatim, anonymised quotes</strong> alongside the numbers. Nothing rebuilds trust faster than people seeing their own words in a leadership deck, unedited.</li>
+      <li><strong>Separate three distinct grievances</strong> in the analysis, because they need different responses: (a) the tool was better for a specific task; (b) the decision was made without consultation; (c) the switch cost time nobody accounted for. Only (a) is a tooling question.</li>
+      </ul>
+      <h3 id="414-quantify-the-withdrawal">4.1.4 Quantify the withdrawal</h3>
+      <p>State the cost of the withdrawal in the deliverable, with a confidence range: switching time, workflow rebuild, any measurable delivery dip in the following quarter, and attrition or engagement signals if HR will share them. Also state the saving it produced. Then let leadership see both sides. A consultant who only reports the cost looks like an advocate. A consultant who reports both looks like an architect.</p>
+      <h2 id="42-workload-to-model-mapping">4.2 Workload-to-model mapping</h2>
+      <h3 id="421-test-the-2030-hypothesis-do-not-assume-it">4.2.1 Test the 20–30% hypothesis, do not assume it</h3>
+      <p>The brief offers a split of roughly 20–30% of developer workload on Copilot with the balance on Codex. Treat it as a hypothesis, H0, and design a test.</p>
+      <p><strong>Method</strong></p>
+      <ol>
+      <li><strong>Build the developer workload taxonomy</strong> (from 3.5). Nine to twelve classes.</li>
+      <li><strong>Size each class.</strong> Three independent estimates, triangulated:<ul>
+      <li>Telemetry: distribution of session types, agentic task counts, review events, completion acceptance.</li>
+      <li>Diary study: 15–20 developers, one week, time logged against the taxonomy.</li>
+      <li>Repository analysis: change size distribution, file-touch counts, PR characteristics.</li>
+      </ul>
+      </li>
+      <li><strong>Score each class against each platform</strong> on capability fit, cost per task, workflow friction and blast radius.</li>
+      <li><strong>Derive the split.</strong> The output is a share of <em>workload</em>, and separately a share of <em>developers</em>, and separately a share of <em>spend</em>. These three numbers differ. The brief conflates them. Make the distinction explicit — it is a small piece of rigour that markedly raises the credibility of the whole workstream.</li>
+      </ol>
+      <p><strong>Likely shape of the finding</strong> (state as a prior to be tested, never as a conclusion): inline completion and small scoped edits favour the always-on, free-tier IDE experience; multi-file agentic tasks, large refactors and long-horizon work favour the dedicated coding agent; code review sits in contention and should be decided on cost per review and defect catch rate. If XYZ's telemetry says otherwise, report what the telemetry says.</p>
+      <h3 id="422-present-it-as-a-routing-table-not-a-percentage">4.2.2 Present it as a routing table, not a percentage</h3>
+      <p>A percentage is a headline that will be misquoted. A routing table is operable. Deliver both, and lead with the table.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Work class</th>
+      <th>Primary</th>
+      <th>Secondary</th>
+      <th>Basis</th>
+      <th>Est. share of workload</th>
+      <th>Est. share of spend</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Inline completion</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Scoped edit in IDE</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Multi-file agentic task</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Large refactor / migration</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Code review</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Test generation</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Incident diagnosis</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Documentation</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Security remediation</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="43-evaluation-framework-for-access-routes">4.3 Evaluation framework for access routes</h2>
+      <p>Score every candidate access route on the same criteria, with weights agreed by steering <strong>before</strong> scoring. Agreeing weights after seeing scores is how evaluations lose their authority.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Criterion</th>
+      <th>Weight (agree at steering)</th>
+      <th>Evidence source</th>
+      <th>Scoring anchors</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Capability fit per work class</td>
+      <td>25%</td>
+      <td>Internal eval sets (3.5), benchmark evidence, pilot</td>
+      <td>1 = fails bar; 5 = clears bar on all target classes</td>
+      </tr>
+      <tr>
+      <td>Cost per workload</td>
+      <td>20%</td>
+      <td>Cost model (4.6)</td>
+      <td>Indexed against cheapest viable route</td>
+      </tr>
+      <tr>
+      <td>Latency and throughput</td>
+      <td>10%</td>
+      <td>Measured p50/p95, time-to-first-token, tokens/sec, under XYZ's real prompt shapes</td>
+      <td>Against the work class requirement, not in the abstract</td>
+      </tr>
+      <tr>
+      <td>Data residency and privacy</td>
+      <td>15%</td>
+      <td>Contract, region availability, sub-processor list, training terms</td>
+      <td>Binary gates plus gradation</td>
+      </tr>
+      <tr>
+      <td>Security posture</td>
+      <td>10%</td>
+      <td>Network isolation, key management, audit logging, guardrails, certifications</td>
+      <td>Against XYZ's control baseline</td>
+      </tr>
+      <tr>
+      <td>Vendor concentration risk</td>
+      <td>10%</td>
+      <td>Share of AI spend, substitutability, exit cost</td>
+      <td>Portfolio-level, not per-route</td>
+      </tr>
+      <tr>
+      <td>Operational burden</td>
+      <td>5%</td>
+      <td>FTE to run, integration effort, skills available</td>
+      <td>Honest estimate from platform engineering</td>
+      </tr>
+      <tr>
+      <td>Commercial flexibility</td>
+      <td>5%</td>
+      <td>Commit structure, rollover, overage, exit</td>
+      <td>From the contract, not the website</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Gates that override the score: any route that fails a mandatory data residency, security certification or contractual data-use requirement is excluded regardless of total score. Say this before scoring.</p>
+      <h2 id="44-bedrock-or-equivalent-evaluation">4.4 Bedrock (or equivalent) evaluation</h2>
+      <h3 id="441-what-to-assess">4.4.1 What to assess</h3>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Dimension</th>
+      <th>What to check in 2026</th>
+      <th>Why it matters here</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Model families available</td>
+      <td>First-party Amazon models plus multiple third-party families (Anthropic, Meta, Mistral, Cohere, Stability and others), with OpenAI frontier models added to the platform during 2026</td>
+      <td>Determines whether Bedrock is a genuine diversification route or just a second door to the same models</td>
+      </tr>
+      <tr>
+      <td>Billing modes</td>
+      <td>On-demand per token; batch at a substantial discount (commonly ~50%) with asynchronous turnaround; provisioned throughput in model units on 1- or 6-month commitments</td>
+      <td>Batch is the most under-used lever for catalogue-scale fashion workloads</td>
+      </tr>
+      <tr>
+      <td>Break-even for provisioned throughput</td>
+      <td>Provisioned only wins at high, sustained utilisation. Below roughly 60–85% sustained utilisation, on-demand or batch usually wins</td>
+      <td>Prevents an expensive mistake</td>
+      </tr>
+      <tr>
+      <td>Prompt caching</td>
+      <td>Large reductions on repeated input context where supported</td>
+      <td>The single biggest lever on RAG and long-system-prompt workloads</td>
+      </tr>
+      <tr>
+      <td>Adjacent charges</td>
+      <td>Knowledge base vector storage, agent orchestration, guardrails, data transfer, embeddings</td>
+      <td>Where Bedrock estimates typically under-read actual bills</td>
+      </tr>
+      <tr>
+      <td>Data residency</td>
+      <td>Region availability per model; behaviour of cross-region inference and where inference may execute</td>
+      <td>Central to the EU position for a fashion brand with EU customers</td>
+      </tr>
+      <tr>
+      <td>Security posture</td>
+      <td>VPC and private connectivity, KMS-managed keys, CloudTrail logging, IAM integration, native guardrails</td>
+      <td>Bedrock's strongest argument: it inherits controls XYZ already operates</td>
+      </tr>
+      <tr>
+      <td>Latency</td>
+      <td>Measured, per model, per region, under XYZ's prompt shapes</td>
+      <td>Vendor-quoted latency is not evidence</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h3 id="442-the-concentration-risk-subtlety-worth-writing-down">4.4.2 The concentration-risk subtlety worth writing down</h3>
+      <p>Adding Bedrock as an access route does not automatically reduce vendor concentration. Two reasons.</p>
+      <ul>
+      <li>If XYZ routes the <em>same</em> model family through a different platform, the model dependency is unchanged. Only the commercial and infrastructure dependency changes.</li>
+      <li>The provider landscape in 2026 includes cross-holdings and distribution arrangements between the major cloud platforms and the major model labs, including an AWS–OpenAI distribution arrangement announced in February 2026. Verify the current position before writing a concentration-risk paragraph.</li>
+      </ul>
+      <p><strong>Therefore:</strong> define concentration risk on two axes and report both.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Axis</th>
+      <th>Question</th>
+      <th>Mitigation</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Model dependency</td>
+      <td>Would a quality regression, retirement or price change in one model family break a critical workflow?</td>
+      <td>Maintain a validated secondary model per tier, with an eval set proving it clears the bar</td>
+      </tr>
+      <tr>
+      <td>Commercial dependency</td>
+      <td>What share of AI spend sits with one commercial counterparty?</td>
+      <td>Access route diversity, gateway abstraction, contractual exit terms</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>The honest recommendation is usually: use the gateway to make substitution <em>possible</em> and cheap, then concentrate consumption where the economics are best, and re-test substitution quarterly. Diversification bought by permanently splitting traffic is expensive. Diversification bought by maintaining a tested exit is cheap.</p>
+      <h2 id="45-the-access-architecture">4.5 The access architecture</h2>
+      <p>The architectural decision underneath all of this is whether to put an AI gateway between applications and providers.</p>
+      <p><strong>Recommend one.</strong> Once XYZ calls more than one provider, or spends meaningfully on tokens, the gateway is where cost attribution, routing, model allow-listing, budgets, caching, redaction and audit logging are actually enforced. Without it, each of those controls has to be re-implemented in every application.</p>
+      <p><strong>Options to assess</strong> (all active in 2026; verify current capability):</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Option</th>
+      <th>Shape</th>
+      <th>Fits when</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Open-source proxy (e.g. LiteLLM)</td>
+      <td>Self-hosted, very broad provider coverage, virtual keys with budgets</td>
+      <td>XYZ wants portability, has platform engineering capacity, may run self-hosted models</td>
+      </tr>
+      <tr>
+      <td>Managed AI-native gateway (e.g. Portkey and peers)</td>
+      <td>SaaS control plane, semantic caching, guardrails, observability out of the box</td>
+      <td>XYZ wants speed over control and accepts a SaaS dependency in the request path</td>
+      </tr>
+      <tr>
+      <td>API-management extension (e.g. Kong AI Gateway, Azure API Management)</td>
+      <td>AI plugins on an existing gateway estate</td>
+      <td>XYZ already runs that gateway and wants governance continuity</td>
+      </tr>
+      <tr>
+      <td>Cloud-native (Bedrock as the abstraction, or a cloud AI gateway)</td>
+      <td>Fewest moving parts inside one cloud</td>
+      <td>XYZ is decisively single-cloud and accepts that as the boundary</td>
+      </tr>
+      <tr>
+      <td>Build</td>
+      <td>Internal service</td>
+      <td>Almost never justified. Assess it so you can rule it out with a number.</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Selection criteria:</strong> latency overhead added at p95 · provider coverage · budget and key granularity · caching mechanics · guardrail and redaction capability · self-hosting option · audit and compliance features · failure behaviour when the gateway is down · operational cost in FTE.</p>
+      <p><strong>Non-negotiable design points.</strong></p>
+      <ol>
+      <li>The gateway must not be a single point of failure. Design the fallback path and test it.</li>
+      <li>Enforce metadata tagging at the gateway. This is what makes 3.4 automatic.</li>
+      <li>Log prompts and responses with redaction, with a retention period agreed with Data Protection.</li>
+      <li>Keep the request path simple. A gateway that adds meaningful p95 latency to interactive workloads will be bypassed.</li>
+      </ol>
+      <p><strong>Reference architecture (target state)</strong></p>
+      <div class="codewrap"><pre><code> Users / Apps / Agents
+              │
+         Identity (SSO, groups, RBAC)
+              │
+         ┌────▼─────────────────────────────────────────┐
+         │  AI GATEWAY                                   │
+         │  virtual keys · budgets · model allow-list    │
+         │  routing &amp; failover · cache · redaction       │
+         │  metadata tagging · logging                   │
+         └────┬──────────────┬──────────────┬────────────┘
+              │              │              │
+         OpenAI API     Bedrock        Other providers
+         ChatGPT Ent.   (Anthropic,    (specialist:
+         Codex          Amazon, Meta,   voice, video,
+                        Mistral…)       image)
+              │              │              │
+         ┌────▼──────────────▼──────────────▼────────────┐
+         │  OBSERVABILITY &amp; FINOPS                        │
+         │  usage · cost · quality evals · anomalies      │
+         └────────────────────────────────────────────────┘
+      </code></pre></div>
+      <p>Note that seat-based products (ChatGPT Enterprise, Copilot IDE, Codex in the IDE) do not route through the gateway. Govern those with native admin controls. Be explicit in the deliverable about which controls apply where — this is a common and embarrassing gap in AI governance frameworks.</p>
+      <h2 id="46-the-cost-model">4.6 The cost model</h2>
+      <p>Build one workbook. It serves WS1 and WS2 and it is the artefact procurement will keep.</p>
+      <p><strong>Sheets</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Sheet</th>
+      <th>Content</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td><code>Assumptions</code></td>
+      <td>Every input, one place, colour-coded as measured / estimated / vendor-quoted</td>
+      </tr>
+      <tr>
+      <td><code>Rate cards</code></td>
+      <td>Per model per route, with source URL and date checked</td>
+      </tr>
+      <tr>
+      <td><code>Workload</code></td>
+      <td>Work classes, volumes, tokens per task, agent amplification, retry rate, cache hit rate</td>
+      </tr>
+      <tr>
+      <td><code>Scenarios</code></td>
+      <td>Low / base / high, with drivers</td>
+      </tr>
+      <tr>
+      <td><code>Route comparison</code></td>
+      <td>Cost per 1,000 tasks per work class per route</td>
+      </tr>
+      <tr>
+      <td><code>TCO</code></td>
+      <td>Adds platform, gateway, engineering, enablement and run costs</td>
+      </tr>
+      <tr>
+      <td><code>Sensitivity</code></td>
+      <td>Tornado chart on the five biggest drivers</td>
+      </tr>
+      <tr>
+      <td><code>Output</code></td>
+      <td>The three or four numbers leadership will quote</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Rules.</strong> No hard-coded numbers in formulas. Every rate card cell carries a source and a date. Include a "what would have to be true" section: state the assumption values at which the recommendation flips.</p>
+      <p><strong>TCO components teams routinely forget:</strong> gateway run cost · observability and eval tooling · vector storage and retrieval infrastructure · data preparation · human review time · enablement and training · seat cost for people whose usage is below the free tier · the cost of running two platforms in parallel during migration.</p>
+      <h2 id="47-directional-guidance-note">4.7 Directional guidance note</h2>
+      <p>Four pages for IT leadership. No appendices.</p>
+      <p><strong>Structure</strong></p>
+      <ol>
+      <li><strong>Position</strong> — one paragraph. The target portfolio and the access route for each tier.</li>
+      <li><strong>Why</strong> — the three findings that drive it, each with a number.</li>
+      <li><strong>What changes</strong> — for developers, for marketing, for platform engineering.</li>
+      <li><strong>What it costs</strong> — the number, the range, and the biggest uncertainty.</li>
+      <li><strong>Revisit triggers</strong> — the conditions under which this position must be reopened.</li>
+      </ol>
+      <p><strong>Target portfolio, expressed by tier</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Tier</th>
+      <th>Purpose</th>
+      <th>Primary</th>
+      <th>Secondary (validated)</th>
+      <th>Access route</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Frontier reasoning</td>
+      <td>Hard analysis, complex agentic work</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Workhorse</td>
+      <td>Most drafting, summarisation, RAG</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Fast / low cost</td>
+      <td>High-volume classification, extraction, routing</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Coding agent</td>
+      <td>Multi-file autonomous engineering work</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>IDE assistant</td>
+      <td>Inline completion, scoped edits</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Embeddings</td>
+      <td>Retrieval</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Image</td>
+      <td>Concept and production imagery</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Video</td>
+      <td>Campaign and product video</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Voice</td>
+      <td>Contact centre, localisation, dubbing</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>For each tier: name the primary, name a secondary that has been <em>tested against the eval set</em>, and state the access route. A secondary that has never been tested is not a secondary.</p>
+      <p><strong>Revisit triggers — state thresholds, not sentiments</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Trigger</th>
+      <th>Threshold</th>
+      <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Price change</td>
+      <td>Any effective rate change &gt; 15% on a tier</td>
+      <td>Re-run route comparison within 10 working days</td>
+      </tr>
+      <tr>
+      <td>Model retirement notice</td>
+      <td>Any notice affecting a primary or secondary</td>
+      <td>Run migration assessment; invoke contractual notice terms</td>
+      </tr>
+      <tr>
+      <td>Quality regression</td>
+      <td>Eval set pass rate falls &gt; 5 points</td>
+      <td>Fail over to secondary; open vendor ticket</td>
+      </tr>
+      <tr>
+      <td>Latency breach</td>
+      <td>p95 exceeds work-class requirement for 3 consecutive days</td>
+      <td>Route-level failover</td>
+      </tr>
+      <tr>
+      <td>Concentration</td>
+      <td>One commercial counterparty exceeds 70% of AI spend</td>
+      <td>Report to steering; test substitution</td>
+      </tr>
+      <tr>
+      <td>Commit utilisation</td>
+      <td>Below 70% or above 95% of committed spend at mid-term</td>
+      <td>Re-forecast; open commercial conversation</td>
+      </tr>
+      <tr>
+      <td>Regulatory change</td>
+      <td>New obligation affecting model use or disclosure</td>
+      <td>Compliance review before further rollout</td>
+      </tr>
+      <tr>
+      <td>New capability tier</td>
+      <td>A materially new modality reaches enterprise readiness</td>
+      <td>Landscape refresh (WS3 cadence)</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Set the standing review cadence at quarterly, with the triggers able to force an out-of-cycle review. State who owns the review: the CoE lead, not the engagement team.</p>
+      <h1 id="part-5-workstream-3-genai-landscape-review">Part 5 — Workstream 3: GenAI Landscape Review</h1>
+      <p><strong>Objective restated as a decision:</strong> where does XYZ build, where does it buy, where does it partner — and what should it stop doing.</p>
+      <h2 id="51-bound-the-scope-first">5.1 Bound the scope first</h2>
+      <p>The brief names voice and video and leaves further categories "to be confirmed in scoping". Do not let that stay open. Bring a proposed taxonomy to the scoping session and force a decision on it in week 1.</p>
+      <p><strong>Proposed capability taxonomy for a fashion brand.</strong> Twelve domains, mapped to the value chain. Ask steering to confirm, add or strike.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>#</th>
+      <th>Domain</th>
+      <th>Representative capability</th>
+      <th>Typical owner</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>1</td>
+      <td>Brand and campaign content</td>
+      <td>Image generation, editing, variation at scale</td>
+      <td>Marketing / Creative</td>
+      </tr>
+      <tr>
+      <td>2</td>
+      <td>Video</td>
+      <td>Campaign video, product video, social cutdowns, localisation</td>
+      <td>Marketing</td>
+      </tr>
+      <tr>
+      <td>3</td>
+      <td>Voice</td>
+      <td>Contact centre agents, IVR, dubbing, brand voice</td>
+      <td>Customer Service</td>
+      </tr>
+      <tr>
+      <td>4</td>
+      <td>Product content</td>
+      <td>Copy at catalogue scale, attribution, PIM enrichment, translation</td>
+      <td>E-commerce</td>
+      </tr>
+      <tr>
+      <td>5</td>
+      <td>Discovery</td>
+      <td>Visual and semantic search, recommendation, virtual try-on, sizing</td>
+      <td>E-commerce</td>
+      </tr>
+      <tr>
+      <td>6</td>
+      <td>Conversational and agentic commerce</td>
+      <td>Shopping assistants, agent-readable storefronts, service resolution</td>
+      <td>Digital</td>
+      </tr>
+      <tr>
+      <td>7</td>
+      <td>Design and product development</td>
+      <td>Concept exploration, colourways, 3D and sample reduction</td>
+      <td>Design</td>
+      </tr>
+      <tr>
+      <td>8</td>
+      <td>Merchandising and planning</td>
+      <td>Demand forecast, allocation, markdown, assortment</td>
+      <td>Merchandising</td>
+      </tr>
+      <tr>
+      <td>9</td>
+      <td>Supply chain and sourcing</td>
+      <td>Supplier communication, document processing, compliance data</td>
+      <td>Supply Chain</td>
+      </tr>
+      <tr>
+      <td>10</td>
+      <td>Store and workforce</td>
+      <td>Scheduling, clienteling, in-store assistance, loss prevention</td>
+      <td>Retail Ops</td>
+      </tr>
+      <tr>
+      <td>11</td>
+      <td>Corporate functions</td>
+      <td>Finance, legal, HR, procurement assistance</td>
+      <td>Functions</td>
+      </tr>
+      <tr>
+      <td>12</td>
+      <td>Engineering and platform</td>
+      <td>Coding agents, gateway, RAG, evals, observability, agent infrastructure</td>
+      <td>IT</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Cross-cutting themes</strong> to assess separately, because they cut across every domain and are where a fashion brand carries specific exposure: content provenance and disclosure · likeness and model rights · IP and training-data posture · sustainability claim accuracy · accessibility.</p>
+      <p><strong>Prioritisation rule for the scan.</strong> Rank domains on (a) share of current or planned spend, (b) proximity to revenue, (c) regulatory exposure, (d) rate of market change. Do deep vendor work on the top five or six. Give the rest a one-page market summary. A shallow scan across twelve domains is worth less than a deep scan across five.</p>
+      <h2 id="52-vendor-scorecard">5.2 Vendor scorecard</h2>
+      <p>Nine criteria. Score 1–5. Every score carries an evidence grade.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Criterion</th>
+      <th>What good looks like</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Capability depth</td>
+      <td>Solves the specific work class, not the category</td>
+      </tr>
+      <tr>
+      <td>Retail / fashion proof</td>
+      <td>Named comparable customers at comparable scale; verifiable outcomes</td>
+      </tr>
+      <tr>
+      <td>Enterprise readiness</td>
+      <td>SSO, RBAC, audit logs, DPA, sub-processor transparency, security certifications, an articulated AI Act position</td>
+      </tr>
+      <tr>
+      <td>Data posture</td>
+      <td>Training on customer data, retention, residency, deletion, export</td>
+      </tr>
+      <tr>
+      <td>Integration fit</td>
+      <td>Works with XYZ's commerce, PIM, DAM, CDP and identity stack</td>
+      </tr>
+      <tr>
+      <td>Commercial model</td>
+      <td>Predictable, aligned to value, no punitive overage cliff, exit terms</td>
+      </tr>
+      <tr>
+      <td>Viability</td>
+      <td>Funding, ownership, revenue signal, customer concentration, roadmap credibility</td>
+      </tr>
+      <tr>
+      <td>Lock-in and substitutability</td>
+      <td>How much would it cost to leave in 18 months</td>
+      </tr>
+      <tr>
+      <td>Model dependency</td>
+      <td>Which foundation models sit underneath, and what happens if those change</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>The last criterion matters more than it looks.</strong> A large share of application-layer GenAI vendors are thin layers over the same handful of foundation models. Two consequences for XYZ: (a) an apparently diversified vendor portfolio may sit on a single model dependency; (b) the vendor's margin depends on model prices they do not control. Ask every vendor which models they use and what their price-change policy is. Record the answers.</p>
+      <p><strong>Evidence grading.</strong> Apply to every claim in the scorecard.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Grade</th>
+      <th>Meaning</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>A</td>
+      <td>Primary source: contract, documentation, measured test, reference call with a comparable customer</td>
+      </tr>
+      <tr>
+      <td>B</td>
+      <td>Credible secondary: independent analyst, peer review at scale, verified case study</td>
+      </tr>
+      <tr>
+      <td>C</td>
+      <td>Vendor claim, unverified</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Publish the grade distribution. A landscape map built entirely on grade C is marketing.</p>
+      <h2 id="53-research-protocol">5.3 Research protocol</h2>
+      <p><strong>Primary research (do this — it is what distinguishes the work).</strong></p>
+      <ul>
+      <li>Reference calls: three per shortlisted vendor, at least one sourced by you rather than by the vendor.</li>
+      <li>Analyst inquiry calls if XYZ holds a subscription. Use the inquiry hours; they are usually unused.</li>
+      <li>A short RFI to shortlisted vendors: 15 questions, standard format, comparable answers.</li>
+      <li>Hands-on test against XYZ's own eval sets where the vendor allows a trial.</li>
+      <li>Peer network: other retail and consumer brands, industry bodies, CIO networks.</li>
+      </ul>
+      <p><strong>Secondary research.</strong></p>
+      <ul>
+      <li>Analyst market maps for structure, not for conclusions.</li>
+      <li>Vendor documentation, changelogs, status pages, trust centres, security portals.</li>
+      <li>Public financial disclosure and earnings commentary for viability signals.</li>
+      <li>Job postings as a leading indicator of roadmap direction.</li>
+      <li>Practitioner communities for failure modes that never appear in case studies.</li>
+      </ul>
+      <p><strong>Bias controls.</strong> State them in the method note.</p>
+      <ol>
+      <li>Score against the same criteria in the same order for every vendor.</li>
+      <li>Two assessors score independently on the shortlist; reconcile differences in writing.</li>
+      <li>Disclose any commercial relationship between your firm and any assessed vendor. If one exists, say so on the page where that vendor is scored.</li>
+      <li>Include at least one vendor per category that the client has not heard of. If your map only contains the incumbents, you have not done research.</li>
+      <li>Record what you could not find out. Absence of evidence is a finding.</li>
+      </ol>
+      <h2 id="54-internal-cross-check">5.4 Internal cross-check</h2>
+      <p>The brief notes XYZ is collating this data. Assume it is incomplete. Build the register yourself in parallel.</p>
+      <p><strong>Estate register — one row per AI tool or initiative</strong></p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Field</th>
+      <th>Notes</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Tool / initiative</td>
+      <td>Name</td>
+      </tr>
+      <tr>
+      <td>Domain</td>
+      <td>From 5.1 taxonomy</td>
+      </tr>
+      <tr>
+      <td>Status</td>
+      <td>Pilot / production / committed but unstarted / dormant</td>
+      </tr>
+      <tr>
+      <td>Business owner</td>
+      <td>A person, not a department</td>
+      </tr>
+      <tr>
+      <td>Technical owner</td>
+      <td>A person</td>
+      </tr>
+      <tr>
+      <td>Contract value and renewal date</td>
+      <td>From vendor management</td>
+      </tr>
+      <tr>
+      <td>Users: entitled vs active</td>
+      <td>From WS1 method</td>
+      </tr>
+      <tr>
+      <td>Data classification processed</td>
+      <td>Highest class</td>
+      </tr>
+      <tr>
+      <td>Underlying model(s)</td>
+      <td>Ask the vendor</td>
+      </tr>
+      <tr>
+      <td>Overlapping capability</td>
+      <td>Cross-reference to other rows</td>
+      </tr>
+      <tr>
+      <td>Value evidence</td>
+      <td>Grade A/B/C</td>
+      </tr>
+      <tr>
+      <td>Disposition</td>
+      <td>Keep / consolidate / renegotiate / retire / escalate</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Shadow estate discovery.</strong> Four sources, triangulated: expense and card data · SSO and identity provider application logs · network or CASB telemetry (aggregate only) · a no-blame amnesty survey. In a fashion brand, expect the largest shadow concentration in Marketing, Creative and E-commerce, not in IT. Announce the amnesty. Punishing disclosure guarantees you never see the real estate.</p>
+      <p><strong>Three analyses to produce</strong></p>
+      <ol>
+      <li><strong>Gap.</strong> Domains with material business value and no capability. Rank by value at stake.</li>
+      <li><strong>Duplication.</strong> Two or more tools serving the same work class. <strong>Deduplicate on capability, not on brand</strong> — three tools with different names may all be doing catalogue copy generation on the same underlying model.</li>
+      <li><strong>Over-investment.</strong> Committed spend materially above realised usage or value. Cross-reference to the WS1 cohorts. This is where the money is.</li>
+      </ol>
+      <p><strong>Heat map.</strong> Domains on one axis, four measures on the other: current spend · realised value (graded) · capability coverage · risk exposure. One page. It is the slide the executive team will remember.</p>
+      <h2 id="55-target-state-blueprint">5.5 Target-state blueprint</h2>
+      <h3 id="551-the-decision-rule-for-build-buy-partner-consume">5.5.1 The decision rule for build / buy / partner / consume</h3>
+      <p>Use four options, not three. The brief's omission of "consume" is worth correcting — most thin use cases need a model call behind a gateway, not a product.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Option</th>
+      <th>Use when</th>
+      <th>Test</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td><strong>Consume</strong></td>
+      <td>Thin capability, no proprietary data, no specialised UX</td>
+      <td>Could a competent engineer build this in under two weeks on top of the gateway?</td>
+      </tr>
+      <tr>
+      <td><strong>Buy</strong></td>
+      <td>Commodity capability, mature vendor market, not differentiating</td>
+      <td>Would XYZ's customers notice if this were identical to a competitor's? If no, buy.</td>
+      </tr>
+      <tr>
+      <td><strong>Partner</strong></td>
+      <td>Requires vendor IP plus XYZ's proprietary data or brand context</td>
+      <td>Is there a specific vendor whose capability plus XYZ's data creates something neither has alone?</td>
+      </tr>
+      <tr>
+      <td><strong>Build</strong></td>
+      <td>Touches proprietary data, expresses brand differentiation, and is reusable across domains</td>
+      <td>Three conditions, all required. Two out of three is a "buy".</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Add two constraints on top of the rule:</p>
+      <ul>
+      <li><strong>Build capacity is finite.</strong> Rank build candidates and fund the top two or three. A blueprint with nine "build" calls is a wish list.</li>
+      <li><strong>Every build call carries a run cost.</strong> State it. Most build decisions are made on construction cost and regretted on run cost.</li>
+      </ul>
+      <h3 id="552-blueprint-layers">5.5.2 Blueprint layers</h3>
+      <p>Present the target state as layers, with the build/buy/partner/consume call marked on each component.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Layer</th>
+      <th>Components</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Experience</td>
+      <td>Storefront, app, store tools, contact centre, internal assistants</td>
+      </tr>
+      <tr>
+      <td>Agent and orchestration</td>
+      <td>Agent runtime, tool registry, workflow orchestration, human-in-the-loop</td>
+      </tr>
+      <tr>
+      <td>Capability services</td>
+      <td>Content generation, product enrichment, search and discovery, forecasting, service resolution</td>
+      </tr>
+      <tr>
+      <td>Model access</td>
+      <td>Gateway, model portfolio, routing, caching, failover</td>
+      </tr>
+      <tr>
+      <td>Data and retrieval</td>
+      <td>Product data, customer data, brand and asset data, vector stores, feature store, lineage</td>
+      </tr>
+      <tr>
+      <td>Governance and quality</td>
+      <td>Eval harness, guardrails, observability, cost attribution, incident management</td>
+      </tr>
+      <tr>
+      <td>Security and identity</td>
+      <td>SSO, RBAC, secrets, DLP, network isolation, audit</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Mark each component with: current state · target state · disposition · owner · sequence (now / next / later).</p>
+      <h3 id="553-roadmap">5.5.3 Roadmap</h3>
+      <p>Three horizons, each with named owners and a stated funding source.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Horizon</th>
+      <th>Timeframe</th>
+      <th>Content</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Now</td>
+      <td>0–3 months</td>
+      <td>Retire duplicates, reclaim entitlement, stand up gateway and observability, publish routing matrix, close the highest-exposure compliance gaps</td>
+      </tr>
+      <tr>
+      <td>Next</td>
+      <td>3–9 months</td>
+      <td>Consolidate onto the target portfolio, deliver top two build candidates, formalise the CoE, first chargeback stage</td>
+      </tr>
+      <tr>
+      <td>Later</td>
+      <td>9–18 months</td>
+      <td>Domain expansion, agentic workflows in production, second landscape refresh</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h1 id="part-6-building-the-ai-centre-of-excellence">Part 6 — Building the AI Centre of Excellence</h1>
+      <p>You have strong theory and no CoE build behind you. This part is the practical scaffolding. Everything here is designed so a first-time builder can execute it without improvising.</p>
+      <h2 id="61-choose-the-archetype-deliberately">6.1 Choose the archetype deliberately</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Archetype</th>
+      <th>Hub owns</th>
+      <th>Spokes own</th>
+      <th>Fails when</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Centralised</td>
+      <td>Everything</td>
+      <td>Nothing</td>
+      <td>Demand exceeds hub capacity; hub becomes a queue</td>
+      </tr>
+      <tr>
+      <td>Federated</td>
+      <td>Standards only</td>
+      <td>Delivery, platform choices</td>
+      <td>Fragmentation; duplicate spend; governance gaps</td>
+      </tr>
+      <tr>
+      <td>Hub-and-spoke</td>
+      <td>Platform, standards, governance, enablement, commercial</td>
+      <td>Use cases, domain data, adoption, value</td>
+      <td>Hub takes delivery work and becomes a bottleneck</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Recommendation for XYZ: hub-and-spoke.</strong> Two reasons specific to this client. First, the Copilot withdrawal has already created a perception that tooling decisions happen centrally and without consultation; a visible federation of decision rights is part of the remedy. Second, in a fashion brand the highest-value GenAI use cases sit in Marketing, Creative, E-commerce and Merchandising — functions that will not accept an IT-owned delivery queue.</p>
+      <p>Hub-and-spoke is the dominant enterprise pattern in 2026 practitioner literature, but the pattern is not the point. The decision rights are. Write them down.</p>
+      <h2 id="62-charter-define-these-six-things-or-do-not-launch">6.2 Charter — define these six things or do not launch</h2>
+      <ol>
+      <li><strong>Purpose and mandate.</strong> Why the CoE exists. What it owns. What it explicitly does <em>not</em> own.</li>
+      <li><strong>Scope.</strong> Which technologies and which use-case classes are in scope. Where the boundary with data, security and architecture sits.</li>
+      <li><strong>Decision rights.</strong> What the CoE approves, what it recommends, what it can veto, and what it merely observes. Be specific. Ambiguity here is what turns CoEs into bureaucracy.</li>
+      <li><strong>Funding model.</strong> Who pays for the platform, who pays for consumption, and how the innovation pot is funded.</li>
+      <li><strong>Service catalogue.</strong> What a business unit actually gets: intake, architecture review, model access, eval support, enablement, risk review, cost visibility.</li>
+      <li><strong>Metrics.</strong> How the CoE itself is measured, and by whom.</li>
+      </ol>
+      <p>Keep the charter to four pages. Get it signed by a sponsor with budget authority and the standing to resolve cross-functional disputes.</p>
+      <h2 id="63-decision-rights-table-the-anti-bureaucracy-device">6.3 Decision rights table — the anti-bureaucracy device</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Decision</th>
+      <th>CoE approves</th>
+      <th>CoE advises</th>
+      <th>Business unit decides</th>
+      <th>Steering decides</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Which model tier for a work class</td>
+      <td>✔</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>New foundation model provider</td>
+      <td></td>
+      <td>✔</td>
+      <td></td>
+      <td>✔</td>
+      </tr>
+      <tr>
+      <td>Use case in a pre-approved pattern</td>
+      <td></td>
+      <td>✔</td>
+      <td>✔</td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Use case with Restricted data</td>
+      <td>✔</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Customer-facing autonomous agent</td>
+      <td></td>
+      <td>✔</td>
+      <td></td>
+      <td>✔</td>
+      </tr>
+      <tr>
+      <td>Vendor purchase under threshold</td>
+      <td></td>
+      <td>✔</td>
+      <td>✔</td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Vendor purchase over threshold</td>
+      <td></td>
+      <td>✔</td>
+      <td></td>
+      <td>✔</td>
+      </tr>
+      <tr>
+      <td>Budget increase within allocation</td>
+      <td></td>
+      <td></td>
+      <td>✔</td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Budget increase beyond allocation</td>
+      <td>✔</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Production release of a Tier 1 risk system</td>
+      <td>✔</td>
+      <td></td>
+      <td></td>
+      <td>✔</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>Design principle: default-allow lanes.</strong> Publish two or three pre-approved patterns (for example: internal RAG over Internal-class documents, using approved models through the gateway, with logging on). Anything matching a pattern needs registration, not approval. Everything else enters the gate process. Without default-allow lanes, the CoE becomes the bottleneck the brief is trying to avoid.</p>
+      <h2 id="64-roles">6.4 Roles</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Role</th>
+      <th>FTE at launch</th>
+      <th>Sourcing</th>
+      <th>Accountability</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Executive sponsor</td>
+      <td>0.1</td>
+      <td>Existing exec</td>
+      <td>Budget, escalation, air cover</td>
+      </tr>
+      <tr>
+      <td>CoE lead</td>
+      <td>1.0</td>
+      <td>Hire or promote</td>
+      <td>Charter, portfolio, decisions</td>
+      </tr>
+      <tr>
+      <td>AI platform engineer</td>
+      <td>1.0–2.0</td>
+      <td>Existing platform team</td>
+      <td>Gateway, model access, observability</td>
+      </tr>
+      <tr>
+      <td>AI architect</td>
+      <td>1.0</td>
+      <td>Existing EA function</td>
+      <td>Patterns, reference architectures, reviews</td>
+      </tr>
+      <tr>
+      <td>Evaluation / quality lead</td>
+      <td>0.5</td>
+      <td>Data science or QA</td>
+      <td>Eval sets, quality gates, regression testing</td>
+      </tr>
+      <tr>
+      <td>AI FinOps analyst</td>
+      <td>0.5</td>
+      <td>Finance / FinOps</td>
+      <td>Truth layer, showback, forecast, commit management</td>
+      </tr>
+      <tr>
+      <td>Risk and compliance partner</td>
+      <td>0.3</td>
+      <td>Legal / Data Protection</td>
+      <td>Risk tiering, DPIAs, AI Act posture</td>
+      </tr>
+      <tr>
+      <td>Enablement lead</td>
+      <td>0.5</td>
+      <td>L&amp;D or internal comms</td>
+      <td>Training, champions, adoption</td>
+      </tr>
+      <tr>
+      <td>Domain champions (spokes)</td>
+      <td>0.2 × N</td>
+      <td>Business units</td>
+      <td>Use case ownership, adoption, value tracking</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>A minimum viable CoE is four to six people at the hub plus named champions in the spokes. Larger than that at launch and you build an institution before you have proved a service.</p>
+      <h2 id="65-intake-and-stage-gates">6.5 Intake and stage gates</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Gate</th>
+      <th>Name</th>
+      <th>Entry criteria</th>
+      <th>Decision</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>G0</td>
+      <td>Idea</td>
+      <td>One-paragraph description, named business owner</td>
+      <td>Register or decline</td>
+      </tr>
+      <tr>
+      <td>G1</td>
+      <td>Qualified</td>
+      <td>Value hypothesis with a number, data classification, feasibility view, risk tier</td>
+      <td>Fund discovery or decline</td>
+      </tr>
+      <tr>
+      <td>G2</td>
+      <td>Pilot approved</td>
+      <td>Success criteria, eval set defined, cost envelope, guardrails, DPIA if required</td>
+      <td>Approve pilot with expiry date</td>
+      </tr>
+      <tr>
+      <td>G3</td>
+      <td>Production approved</td>
+      <td>Eval results, security review, cost per unit of work, run model, human-in-loop design, rollback plan</td>
+      <td>Approve production</td>
+      </tr>
+      <tr>
+      <td>G4</td>
+      <td>Scaled</td>
+      <td>Adoption and value evidence, unit economics stable</td>
+      <td>Fund scaling</td>
+      </tr>
+      <tr>
+      <td>G5</td>
+      <td>Review or retire</td>
+      <td>Quarterly value review</td>
+      <td>Continue, remediate or retire</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Two rules that keep the portfolio honest. Every pilot has an expiry date at G2 — pilots that neither fail nor scale are the most expensive thing in an AI portfolio. And G5 must be capable of retiring things; if nothing is ever retired, the gate is decorative.</p>
+      <h2 id="66-risk-tiering">6.6 Risk tiering</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Tier</th>
+      <th>Definition</th>
+      <th>Controls</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>T1</td>
+      <td>Autonomous action affecting customers, money, safety or legal rights</td>
+      <td>Full review, DPIA, eval gate, human oversight design, incident runbook, steering approval, logging and monitoring, periodic re-validation</td>
+      </tr>
+      <tr>
+      <td>T2</td>
+      <td>Customer-facing content or recommendations with human review</td>
+      <td>Eval gate, disclosure controls, brand review, monitoring, spot audit</td>
+      </tr>
+      <tr>
+      <td>T3</td>
+      <td>Internal decision support</td>
+      <td>Registration, standard guardrails, sample review</td>
+      </tr>
+      <tr>
+      <td>T4</td>
+      <td>Individual productivity within approved tools and data classes</td>
+      <td>Policy and training only</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Map the tiers to the regulatory obligations in Part 7. Most of a fashion brand's GenAI portfolio sits in T2–T4. The T1 cases are usually recruitment tools, credit or fraud decisions, and autonomous customer-facing agents.</p>
+      <h2 id="67-metrics-for-the-coe">6.7 Metrics for the CoE</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Category</th>
+      <th>Metric</th>
+      <th>Warning</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Adoption</td>
+      <td>Activation rate, steady-user share, breadth of capability use</td>
+      <td>Do not report raw seat counts</td>
+      </tr>
+      <tr>
+      <td>Unit economics</td>
+      <td>Cost per unit of work by work class; trend</td>
+      <td>The number that proves governance works</td>
+      </tr>
+      <tr>
+      <td>Value</td>
+      <td>Realised benefit per production use case, graded by evidence quality</td>
+      <td>Force an evidence grade or this becomes fiction</td>
+      </tr>
+      <tr>
+      <td>Portfolio</td>
+      <td>Use cases by gate; time in gate; retirement rate</td>
+      <td>Time-in-gate is your bureaucracy detector</td>
+      </tr>
+      <tr>
+      <td>Quality</td>
+      <td>Eval pass rates, regression incidents, human-override rate</td>
+      <td></td>
+      </tr>
+      <tr>
+      <td>Risk</td>
+      <td>Open findings by tier, exception count and ageing, incidents</td>
+      <td>Rising exception count means allocation is mis-sized</td>
+      </tr>
+      <tr>
+      <td>Platform</td>
+      <td>Availability, p95 latency, cache hit rate, failover events</td>
+      <td></td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="68-first-90-180-365-days">6.8 First 90 / 180 / 365 days</h2>
+      <p><strong>Days 0–90 — decide, do not build.</strong> Charter, mandate, operating model, decision rights, sponsor, funding, initial risk tiering, first intake process, consumption truth layer live, seat reclamation running. Executive attention is at its maximum now and will never be this available again. Spend it on the organisational decisions, not the technology.</p>
+      <p><strong>Days 90–180 — platform and process.</strong> Gateway in production. Observability and showback live. Routing matrix published and adopted. Eval harness operating for the top three work classes. First cohort of use cases through G2 and G3. Enablement programme running. Minimum viable governance, not complete governance.</p>
+      <p><strong>Days 180–365 — scale and prove.</strong> Chargeback stage 3. Second landscape refresh. Agentic patterns in production with T1 controls. Value reporting to the executive team with graded evidence. CoE running its own quarterly review of the model portfolio using the triggers in 4.7.</p>
+      <p>Expect 12–18 months to a fully mature capability. Say that to the sponsor at the start. A CoE sold as a 90-day fix will be judged a failure at day 91.</p>
+      <h1 id="part-7-risk-compliance-and-the-fashion-specific-overlay">Part 7 — Risk, compliance and the fashion-specific overlay</h1>
+      <p>This is where a generic AI strategy becomes an XYZ strategy. A consumer fashion brand carries exposures that a B2B software company does not.</p>
+      <h2 id="71-the-eu-ai-act-position-as-at-august-2026-verify-before-use">7.1 The EU AI Act position as at August 2026 — verify before use</h2>
+      <p>The timeline moved in 2026, and most compliance calendars are now wrong in both directions. Get this right in front of the client; it is a fast credibility win.</p>
+      <p>Regulation (EU) 2026/1744 — the "Digital Omnibus on AI" — was published in the Official Journal on 24 July 2026 and entered into force on 27 July 2026, days before the AI Act's original high-risk deadline.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Date</th>
+      <th>Obligation</th>
+      <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Already in force</td>
+      <td>Prohibited practices; general-purpose AI model obligations; AI literacy duty (Art. 4)</td>
+      <td>Applies now</td>
+      </tr>
+      <tr>
+      <td><strong>2 August 2026</strong></td>
+      <td><strong>Article 50 transparency obligations</strong> — disclose that users are interacting with an AI system; disclose AI-generated or manipulated content</td>
+      <td><strong>Applies now.</strong> Not deferred.</td>
+      </tr>
+      <tr>
+      <td>2 December 2026</td>
+      <td>Article 50(2) marking requirements extended to systems already on the market at 2 Aug 2026; new prohibitions (including AI-generated non-consensual intimate imagery and CSAM)</td>
+      <td>Imminent</td>
+      </tr>
+      <tr>
+      <td>2 December 2027</td>
+      <td>High-risk obligations for standalone Annex III systems (recruitment, credit scoring, biometrics, education and similar)</td>
+      <td>Deferred from Aug 2026</td>
+      </tr>
+      <tr>
+      <td>2 August 2028</td>
+      <td>High-risk obligations for AI embedded in regulated products (Annex I)</td>
+      <td>Deferred</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p><strong>What this means for XYZ specifically.</strong></p>
+      <ol>
+      <li><strong>AI-generated marketing content must be disclosed.</strong> A fashion brand generating campaign imagery, product imagery, video or synthetic models is squarely inside Article 50. Build the disclosure and provenance capability now, not in 2027. Content Credentials (C2PA) is the practical mechanism — it is embedded in the major creative tools and gives a machine-readable provenance trail.</li>
+      <li><strong>Customer-facing chat and voice agents must disclose they are AI.</strong> Check every deployed assistant this quarter.</li>
+      <li><strong>Recruitment tooling is the likely Annex III exposure.</strong> If HR uses AI screening, that is high-risk and the December 2027 clock is running. Start now; conformity work takes longer than people expect.</li>
+      <li><strong>The AI literacy duty already applies.</strong> It is cheap to satisfy and easy to evidence. Fold it into the CoE enablement programme and record completion.</li>
+      <li><strong>The deferral is not a reason to slow down.</strong> The obligations that create the most day-to-day work for a consumer brand — transparency, disclosure, provenance — were not deferred.</li>
+      </ol>
+      <h2 id="72-the-wider-regulatory-and-legal-surface-for-a-fashion-brand">7.2 The wider regulatory and legal surface for a fashion brand</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Area</th>
+      <th>Exposure</th>
+      <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Data protection (GDPR and equivalents)</td>
+      <td>Customer data in prompts; employee monitoring via usage telemetry; automated decision-making</td>
+      <td>DPIAs; lawful basis for the WS1 identity join; data-flow map per model route</td>
+      </tr>
+      <tr>
+      <td>Likeness and model rights</td>
+      <td>Synthetic or digitally altered models; digital twins of real models</td>
+      <td>Explicit consent, scope, duration and compensation terms; check union and agency agreements</td>
+      </tr>
+      <tr>
+      <td>Advertising standards</td>
+      <td>AI-generated imagery that misrepresents fit, colour, material or body shape</td>
+      <td>Review process before publication; disclosure</td>
+      </tr>
+      <tr>
+      <td>Sustainability claims</td>
+      <td>Generated product copy asserting material or environmental claims</td>
+      <td>Claims must be traceable to source data. Generative copy is a greenwashing risk vector.</td>
+      </tr>
+      <tr>
+      <td>IP</td>
+      <td>Training-data provenance of image and video tools; ownership of outputs; brand asset leakage into third-party training</td>
+      <td>Contractual warranties and indemnities; check every creative tool's training terms</td>
+      </tr>
+      <tr>
+      <td>Product data</td>
+      <td>Digital product passport and equivalent regimes</td>
+      <td>Accuracy of generated product attributes matters legally, not just commercially</td>
+      </tr>
+      <tr>
+      <td>US state and sectoral law</td>
+      <td>Varies by state; hiring-tool audit rules in some jurisdictions</td>
+      <td>Map by operating footprint</td>
+      </tr>
+      <tr>
+      <td>Accessibility</td>
+      <td>AI-generated alt text, captions, voice interfaces</td>
+      <td>Quality gate, not an afterthought</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="73-security-controls-specific-to-genai">7.3 Security controls specific to GenAI</h2>
+      <p>Fold these into the CoE control catalogue. Use OWASP's LLM and agentic-security material as the source checklist.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Threat</th>
+      <th>Control</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Prompt injection, direct and indirect</td>
+      <td>Input and output filtering; least-privilege tools; no implicit trust in retrieved content; human confirmation for consequential actions</td>
+      </tr>
+      <tr>
+      <td>Data exfiltration through agents</td>
+      <td>Egress controls; tool allow-lists; output scanning; blast-radius limits per agent</td>
+      </tr>
+      <tr>
+      <td>Secrets in prompts and logs</td>
+      <td>Redaction at the gateway; secret scanning; retention limits</td>
+      </tr>
+      <tr>
+      <td>Model or plugin supply chain (including MCP servers)</td>
+      <td>Registry of approved tools and servers; provenance checks; change review</td>
+      </tr>
+      <tr>
+      <td>Insecure AI-generated code reaching production</td>
+      <td>Mandatory review for AI-touched code; SAST/DAST in the pipeline; 30/60/90-day defect tracking on AI-touched changes</td>
+      </tr>
+      <tr>
+      <td>Over-permissioned service accounts</td>
+      <td>Scoped credentials per use case; virtual keys with budgets; rotation</td>
+      </tr>
+      <tr>
+      <td>Excessive agency</td>
+      <td>Explicit authority limits per agent; approval steps for irreversible actions</td>
+      </tr>
+      <tr>
+      <td>Shadow AI</td>
+      <td>Discovery (5.4); sanctioned easy path; amnesty rather than punishment</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="74-third-party-and-model-risk">7.4 Third-party and model risk</h2>
+      <p>Add these to the vendor scorecard as gates, not scores: training on customer data · data residency and sub-processors · retention and deletion · model change and deprecation notice periods · incident notification terms · audit rights · exit and data export · indemnities for IP and output.</p>
+      <p><strong>Model change management is the underrated one.</strong> Models are retired and replaced on vendor timetables. The 31 August 2026 Codex model retirement is a live example. Build a standing process: a register of every model in production use, the pinned version, the workflows that depend on it, and the owner who must act on a retirement notice.</p>
+      <h1 id="part-8-templates">Part 8 — Templates</h1>
+      <p>Short, usable versions. Expand in the working files.</p>
+      <h2 id="t1-data-request-register">T1 — Data request register</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>#</th>
+      <th>Item</th>
+      <th>Source system</th>
+      <th>Owner (client)</th>
+      <th>Requested</th>
+      <th>Due</th>
+      <th>Received</th>
+      <th>Quality</th>
+      <th>Blocker</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="t2-interview-guide-consumption-and-use-case">T2 — Interview guide (consumption and use case)</h2>
+      <ol>
+      <li>What do you use AI tools for in a typical week? Walk me through one real example.</li>
+      <li>What did that work look like before?</li>
+      <li>What stops you using it more?</li>
+      <li>Have you ever hit a limit? What did you do?</li>
+      <li>What would you lose if it were withdrawn tomorrow?</li>
+      <li>What do you use that IT does not know about? <em>(ask late, no consequences)</em></li>
+      <li>What would you tell leadership if they had to choose one tool?</li>
+      </ol>
+      <p>Record verbatim. Code against the workload taxonomy. Ten to twenty interviews is enough for saturation in most organisations.</p>
+      <h2 id="t3-survey-instrument-keep-to-10-questions">T3 — Survey instrument (keep to 10 questions)</h2>
+      <p>Frequency of use · capabilities used · work classes supported · perceived time saved (banded) · confidence in output quality · limits encountered · training received · tools used outside the sanctioned set (anonymous) · one thing that would help most (free text) · role and team (for segmentation only).</p>
+      <h2 id="t4-decision-log">T4 — Decision log</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Decision</th>
+      <th>Options considered</th>
+      <th>Rationale</th>
+      <th>Owner</th>
+      <th>Reversible?</th>
+      <th>Review date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      </tbody>
+      </table></div>
+      <h2 id="t5-risk-register">T5 — Risk register</h2>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>ID</th>
+      <th>Risk</th>
+      <th>Category</th>
+      <th>Likelihood</th>
+      <th>Impact</th>
+      <th>Mitigation</th>
+      <th>Owner</th>
+      <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Seed it with these eight, which recur on every engagement of this type:</p>
+      <ol>
+      <li>Renewal date arrives before the evidence base is complete.</li>
+      <li>Data access is granted late or partially.</li>
+      <li>Copilot trial data is unrecoverable.</li>
+      <li>Consumption data cannot be joined to identity for privacy or works-council reasons.</li>
+      <li>The 20–30% hypothesis is contradicted by data and its author objects.</li>
+      <li>Internal estate data from the client arrives late or incomplete.</li>
+      <li>A model retirement or pricing change invalidates part of the cost model mid-engagement.</li>
+      <li>Governance controls are perceived as surveillance and drive usage into shadow tools.</li>
+      </ol>
+      <h2 id="t6-exception-request-form">T6 — Exception request form</h2>
+      <p>Use case · requester and business owner · value estimate and basis · data classification · current allocation and requested increase · alternatives tested (including cheaper models) · guardrails in place · duration requested · approver · expiry date · review outcome.</p>
+      <h2 id="t7-steering-paper-format-two-pages-always-the-same-shape">T7 — Steering paper format (two pages, always the same shape)</h2>
+      <ol>
+      <li>Decision required — one sentence</li>
+      <li>Recommendation — one paragraph</li>
+      <li>Evidence — three exhibits maximum</li>
+      <li>Options considered and why rejected</li>
+      <li>Risks and mitigations</li>
+      <li>What happens if we do nothing</li>
+      <li>Owner and date</li>
+      </ol>
+      <h2 id="t8-weekly-status-one-page">T8 — Weekly status (one page)</h2>
+      <p>Progress against plan · decisions taken · decisions needed · risks changed this week · data blockers · next week's focus. Same shape every week. Never longer.</p>
+      <h2 id="t9-handover-run-book-contents">T9 — Handover run-book contents</h2>
+      <p>Data pipeline and refresh schedule · dashboard definitions and owners · rate card update procedure · monthly governance cycle checklist · exception process · eval set locations and re-run instructions · vendor contacts and contract dates · model retirement watch process · escalation paths · the decision log.</p>
+      <h1 id="part-9-anti-patterns">Part 9 — Anti-patterns</h1>
+      <p>Twelve ways this engagement fails. Read this list at the start of each phase.</p>
+      <ol>
+      <li><strong>Boiling the ocean on the landscape.</strong> Twelve domains scanned shallowly. Cap it at five deep.</li>
+      <li><strong>Reporting a baseline that does not reconcile to the invoice.</strong> One challenged number destroys the credibility of all of them.</li>
+      <li><strong>Publishing individual usage league tables.</strong> Corrupts the data and the relationship.</li>
+      <li><strong>Treating low usage as waste without diagnosis.</strong> Three explanations, one conclusion. Test all three.</li>
+      <li><strong>Letting the vendor's forecast become your forecast.</strong> Build your own.</li>
+      <li><strong>Recommending a platform position without a tested secondary.</strong> An untested alternative is not an alternative.</li>
+      <li><strong>Quoting someone else's savings percentage as XYZ's.</strong> Measure XYZ's own with a controlled comparison.</li>
+      <li><strong>Governance without an exception path.</strong> Guarantees shadow usage.</li>
+      <li><strong>Jumping to chargeback in month one.</strong> Drives spend out of sight.</li>
+      <li><strong>Answering the Copilot question with data only.</strong> Half the problem was how the decision was made. Address that half explicitly.</li>
+      <li><strong>A CoE that approves everything.</strong> Build default-allow lanes on day one, or the CoE becomes the queue it was created to remove.</li>
+      <li><strong>Leaving no run-book.</strong> The engagement's value evaporates 60 days after you leave.</li>
+      </ol>
+      <p>Add a thirteenth for this specific client: <strong>conflating share of workload, share of developers and share of spend.</strong> The 20–30% figure will be quoted back at you. Define which one you mean, every time.</p>
+      <h1 id="part-10-twelve-week-execution-calendar">Part 10 — Twelve-week execution calendar</h1>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Week</th>
+      <th>Workstream 1</th>
+      <th>Workstream 2</th>
+      <th>Workstream 3</th>
+      <th>Cross</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>0</td>
+      <td>Data request issued; renewal date fixed; admin access requested</td>
+      <td>Copilot data export requested (urgent)</td>
+      <td>Taxonomy proposal drafted</td>
+      <td>Kickoff; principles agreed; RACI signed</td>
+      </tr>
+      <tr>
+      <td>1</td>
+      <td>Admin API connected; invoice reconciliation started</td>
+      <td>Trial record reconstructed</td>
+      <td>Scoping session: taxonomy confirmed</td>
+      <td>Steering 1: scope, criteria, weights</td>
+      </tr>
+      <tr>
+      <td>2</td>
+      <td>Truth layer v1; entitlement extract</td>
+      <td>Sentiment round launched</td>
+      <td>Estate register started; shadow discovery</td>
+      <td>Developer forum 1</td>
+      </tr>
+      <tr>
+      <td>3</td>
+      <td>Segmentation v1; cohort thresholds calibrated</td>
+      <td>Workload taxonomy sized; diary study runs</td>
+      <td>Vendor longlist; RFI issued</td>
+      <td>Data clinic cadence established</td>
+      </tr>
+      <tr>
+      <td>4</td>
+      <td><strong>Baseline locked</strong>; reconciliation published</td>
+      <td>Telemetry analysis; measurement framework applied</td>
+      <td>Shortlist; reference calls booked</td>
+      <td>Steering 2: baseline accepted</td>
+      </tr>
+      <tr>
+      <td>5</td>
+      <td>Use-case attribution; matrix drafted</td>
+      <td>Platform evaluation scoring; latency tests</td>
+      <td>Scorecards in progress</td>
+      <td>Security review of access architecture</td>
+      </tr>
+      <tr>
+      <td>6</td>
+      <td>Governance framework designed; gateway design agreed</td>
+      <td>Cost model built</td>
+      <td>Gap and duplication analysis</td>
+      <td>Developer forum 2: findings tested</td>
+      </tr>
+      <tr>
+      <td>7</td>
+      <td>Guardrails configured in a test workspace</td>
+      <td>Routing table drafted; 20–30% hypothesis result</td>
+      <td>Heat map drafted</td>
+      <td>Steering 3: D2 direction agreed</td>
+      </tr>
+      <tr>
+      <td>8</td>
+      <td>Forecast scenarios; BATNA costed</td>
+      <td>Directional note drafted</td>
+      <td>Blueprint drafted</td>
+      <td>Procurement working session</td>
+      </tr>
+      <tr>
+      <td>9</td>
+      <td><strong>Negotiation brief drafted</strong></td>
+      <td>Recommendation finalised</td>
+      <td>Build/buy/partner calls made</td>
+      <td>Legal and Data Protection review</td>
+      </tr>
+      <tr>
+      <td>10</td>
+      <td>Brief approved; guardrails enforced in production</td>
+      <td>Directional note issued</td>
+      <td>Blueprint issued</td>
+      <td>Steering 4: D1 and D3 taken</td>
+      </tr>
+      <tr>
+      <td>11</td>
+      <td>First monthly governance cycle run by client staff</td>
+      <td>Eval sets handed over</td>
+      <td>Roadmap sequenced and funded</td>
+      <td>CoE charter signed</td>
+      </tr>
+      <tr>
+      <td>12</td>
+      <td>Run-book handover; showback live</td>
+      <td>Model watch process live</td>
+      <td>Refresh cadence set</td>
+      <td>Closeout; lessons learned; value statement</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Adjust the calendar to the renewal date, not the other way round. If the renewal is inside 12 weeks, run WS1 at double pace and defer WS3 depth to a second phase — but tell the client that trade-off explicitly, in writing, in week 0.</p>
+      <h1 id="part-11-making-this-a-reference-engagement">Part 11 — Making this a reference engagement</h1>
+      <p>The brief says this is an opportunity to prove the firm as a reliable partner in AI projects. Reliability is demonstrated by specific, checkable behaviours. These are the ones that register with clients.</p>
+      <ol>
+      <li><strong>Reconcile to the invoice and say so.</strong> Most consumption analyses do not. Publishing a 1.4% variance and explaining it buys more credibility than any slide.</li>
+      <li><strong>Publish confidence, not just numbers.</strong> Ranges, evidence grades, and a stated list of what you could not find out.</li>
+      <li><strong>Hand over reproducible artefacts.</strong> The cost model with no hard-coded numbers. The eval sets. The dashboard definitions. The run-book. A client who can re-run your analysis in six months will call you back.</li>
+      <li><strong>Report the finding that costs you scope.</strong> If the data says the Copilot hypothesis was wrong, or that governance tooling XYZ already owns is sufficient, say it. This is the single strongest trust signal available in a consulting engagement.</li>
+      <li><strong>Deliver something in week 1.</strong> The model retirement warning in 2.8 is a live example. Small, unasked-for, immediately useful.</li>
+      <li><strong>Design for your own absence.</strong> Every control has a named client owner before you leave, and 30 days of the client running it while you are still there to watch.</li>
+      <li><strong>Write for the reader, not for the record.</strong> Short sentences. One idea each. The recommendation in the first paragraph.</li>
+      </ol>
+      <h2 id="closing-note-to-the-ea">Closing note to the EA</h2>
+      <p>Three things will determine whether this engagement succeeds, and none of them is analytical sophistication.</p>
+      <p><strong>Get the data early.</strong> Every week of delayed access compresses analysis at the far end, where the thinking is worth most.</p>
+      <p><strong>Handle the Copilot question with more care than it appears to deserve.</strong> It is presented as one input to a technical recommendation. It is actually the trust context in which every other recommendation will be received. Get it right and the rest of the engagement is easier. Get it wrong and correct analysis will be rejected on political grounds.</p>
+      <p><strong>Do not confuse the deliverables with the outcome.</strong> Eleven artefacts is the contract. Three decisions, defensibly made and durably operated, is the job.</p>
+    </main>
+  </div>
+</div>
+<footer class="foot"><div class="wrap"><div class="wrapin">
+  <span>Market evidence checked 17 Aug 2026. Re-verify every price and date against the primary source before client use.</span>
+  <span><a href="playbook.md" download>Download the markdown</a></span>
+</div></div></footer>
+<button class="totop" type="button" aria-label="Back to top">&#8593;</button>
+<script src="assets/app.js"></script>
+</body>
+</html>
