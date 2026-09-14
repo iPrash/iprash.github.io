@@ -76,6 +76,13 @@ for any new part.
 **Checklist items** (`- [ ]` lines in the markdown) become working checkboxes client-side via
 `app.js`, not through a markdown extension. Same as aigov.
 
+**One line per paragraph in the markdown sources.** The build enables `nl2br`, so every newline
+inside a paragraph becomes a literal `<br>`. Both source files were first written hard-wrapped
+at ~90 columns and rendered with a break at every wrap point; they were unwrapped and rebuilt
+on 14 Sept 2026. The lines look uncomfortably long in an editor and correct on the page. This is
+now also recorded in `_project/NEW-SITE.md` and the gotchas list in
+`_project/PROJECT-INSTRUCTIONS.md`.
+
 ## Content standards
 
 Lean, direct sentences. No verbatim JD text. No employer or client names.

@@ -1,14 +1,11 @@
 # Resources
 ## Free reading, video, and hands-on material, numbered to match the Roadmap
 
-Every link here was checked before publishing: opened and read, not just found in a search
-result. Tags: 📖 read, 🎥 watch, 🧪 hands-on.
+Every link here was checked before publishing: opened and read, not just found in a search result. Tags: 📖 read, 🎥 watch, 🧪 hands-on.
 
-Where a platform mixes free and paid content, the entry says so. Anything that turned out to be
-metered or subscription-gated was dropped rather than listed as free.
+Where a platform mixes free and paid content, the entry says so. Anything that turned out to be metered or subscription-gated was dropped rather than listed as free.
 
-Parts 1 to 11 are Stage 1 (Lead). Parts 12 to 18 are Stage 2 (Principal). Parts 11 and 18 are
-checklists and have no resources.
+Parts 1 to 11 are Stage 1 (Lead). Parts 12 to 18 are Stage 2 (Principal). Parts 11 and 18 are checklists and have no resources.
 
 ---
 

@@ -134,6 +134,11 @@ When I claim to understand something, test it with a question rather than agreei
 - **CRLF noise.** Python writing text on Windows produces CRLF and makes files look modified when
   they are not. `build.py` writes LF explicitly and `.gitattributes` enforces it. If files appear
   modified with an empty `git diff`, run `git add -A` — identical files drop off the staged list.
+- **Markdown paragraphs must be one line each.** The build enables `nl2br`, which turns
+  every newline into a `<br>`. Hard-wrapped prose renders with a break at every wrap
+  point and is unreadable. Cost a full rebuild of the frontier-engineer site's two source
+  documents in Sept 2026. Symptom: text on the page breaks mid-sentence at a consistent
+  column. Check with `grep -c '<br />' <file>.html` after a build.
 - **Pages caches hard.** Verify with a hard refresh or `curl.exe -sI`.
 - **No frameworks, no bundlers, no dependencies beyond `markdown`.** The value of these sites is
   that they will still work untouched in five years. Do not propose a build pipeline, a static

@@ -100,6 +100,12 @@ Markdown conventions the build understands:
 - Tables get horizontal scroll wrappers automatically.
 - `- [ ]` lines become working checkboxes.
 - A `---` immediately before a `#` heading is removed, to avoid a doubled rule.
+- **Keep each paragraph on a single line.** The build runs markdown's `nl2br`
+  extension, so every newline inside a paragraph becomes a literal `<br>`. Hard-wrapping
+  prose at 80 or 90 columns, the way most markdown is written, produces a visible line
+  break at every wrap point. Long lines look wrong in the editor and right on the page.
+  Use `nl2br` deliberately where stacked short lines are wanted, as aigov does for its
+  document header block and source-grading legend.
 
 ## 5. Build and check
 
