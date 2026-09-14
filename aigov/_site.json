@@ -1,0 +1,33 @@
+{
+  "slug": "aigov",
+  "order": 2,
+  "title": "AI governance &amp; multi-model strategy",
+  "blurb": "Engagement playbook and resource library — consumption governance, model access, GenAI landscape",
+  "glyph": "AI",
+  "brand_mark": "XYZ / AI",
+  "brand_name": "Engagement workspace",
+  "home_nav": "Plan",
+  "evidence_date": "17 Aug 2026",
+  "footer": "Market evidence checked 17 Aug 2026. Re-verify every price and date against the primary source before client use.",
+  "index_template": "_index_template.html",
+  "index_title": "XYZ Corp AI Program — Engagement Workspace",
+  "index_desc": "Plan, playbook and resource library for the XYZ Corp AI consumption, multi-model access and GenAI landscape engagement.",
+  "pages": [
+    {
+      "src": "playbook.md",
+      "out": "playbook.html",
+      "id": "playbook",
+      "nav": "Playbook",
+      "title": "Engagement Playbook — XYZ AI Program",
+      "desc": "Analysis, strategy, design and execution playbook for the XYZ Corp enterprise AI engagement."
+    },
+    {
+      "src": "resources.md",
+      "out": "resources.html",
+      "id": "resources",
+      "nav": "Resources",
+      "title": "Resource Library — XYZ AI Program",
+      "desc": "Annotated resource library and two-week study sprint for the lead enterprise architect."
+    }
+  ]
+}

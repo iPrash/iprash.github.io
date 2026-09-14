@@ -1,0 +1,8 @@
+{
+  "slug": "TPM",
+  "order": 1,
+  "title": "Senior TPM interview prep",
+  "blurb": "System design, program sense and behavioural preparation with progress tracking",
+  "static": true,
+  "note": "Hand-written HTML. No markdown sources, no pages list, so the build leaves it alone."
+}
