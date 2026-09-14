@@ -1,0 +1,32 @@
+{
+  "slug": "frontier-engineer",
+  "order": 3,
+  "title": "Frontier Engineer &rarr; Principal",
+  "blurb": "A step-by-step learning path from Lead to Principal Frontier Engineer, built from my own role's job descriptions",
+  "glyph": "FE",
+  "brand_mark": "FE",
+  "brand_name": "Frontier Engineer → Principal",
+  "home_nav": "Home",
+  "footer": "A personal study guide, not an employer document. No verbatim job description text is published here.",
+  "index_template": "_index_template.html",
+  "index_title": "Frontier Engineer → Principal — Learning Roadmap",
+  "index_desc": "A step-by-step, JD-aligned learning roadmap and free-resource library for progressing from Lead to Principal Frontier Engineer.",
+  "pages": [
+    {
+      "src": "roadmap.md",
+      "out": "roadmap.html",
+      "id": "roadmap",
+      "nav": "Roadmap",
+      "title": "Learning Roadmap — Frontier Engineer to Principal",
+      "desc": "A 13-part, JD-aligned learning roadmap for progressing from Lead to Principal Frontier Engineer."
+    },
+    {
+      "src": "resources.md",
+      "out": "resources.html",
+      "id": "resources",
+      "nav": "Resources",
+      "title": "Free Resources — Frontier Engineer to Principal",
+      "desc": "Curated free reading, video, and hands-on resources, numbered to match the learning roadmap."
+    }
+  ]
+}

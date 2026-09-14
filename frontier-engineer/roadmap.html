@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Roadmap — Frontier Engineer to Principal</title>
+<meta name="description" content="A 13-part, JD-aligned learning roadmap for progressing from Lead to Principal Frontier Engineer.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230B5563'/><text y='68' x='50' text-anchor='middle' font-size='52' font-family='monospace' fill='white'>FE</text></svg>">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-in">
+    <a class="brand" href="index.html">
+      <span class="mark">FE</span>
+      <span class="name">Frontier Engineer → Principal</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="roadmap.html" aria-current="page">Roadmap</a>
+      <a href="resources.html">Resources</a>
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch theme">&#9790;</button>
+    </nav>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="side">
+      <div class="side-head">
+        <span class="eyebrow">Contents</span>
+        <span class="eyebrow" id="progPct">0%</span>
+      </div>
+      <input class="tocsearch" id="tocSearch" type="search" placeholder="Filter sections…" aria-label="Filter sections">
+      <ul class="toc" id="toc"></ul>
+      <div class="progress-card">
+        <div class="progress-num"><span class="eyebrow">Sections read</span><span id="progNum">0 / 0</span></div>
+        <div class="bar"><i id="progBar"></i></div>
+        <button class="reset" id="resetProg" type="button">Reset progress</button>
+      </div>
+    </aside>
+    <main class="doc" data-doc="roadmap">
+      <h1 class="doctitle" id="frontier-engineer-principal">Frontier Engineer → Principal</h1>
+      <p class="subtitle">A step-by-step learning path from my own role's Lead and Principal job descriptions</p>
+      <p>This is my study guide, not a tutorial for anyone else's employer. I built it from my own<br />
+      company's Lead and Principal Frontier Engineer job descriptions, restructured into skill<br />
+      areas I can actually learn against. It does not reproduce those job descriptions. It follows<br />
+      their shape: the same areas of responsibility, in the same order, each broken into what I<br />
+      need to know, what I need to have built, and where to learn it for free.</p>
+      <p>I am currently a Lead Frontier Engineer. The target is Principal.</p>
+      <ul>
+      <li>[ ] Read Part 0 before anything else. It sets the map.</li>
+      <li>[ ] Work Parts 1 through 11 roughly in order the first time through. After that, revisit<br />
+            whichever part is weakest.</li>
+      <li>[ ] Part 12 is the one to keep open permanently. It is the promotion tracker.</li>
+      </ul>
+      <p>Resources for each part live on the <a href="resources.html">Resources</a> page, numbered to match.</p>
+      <h1 id="part-0-how-to-use-this">Part 0 — How to use this</h1>
+      <h2 id="01-the-shape-of-the-role">0.1 The shape of the role</h2>
+      <p>Both Lead and Principal Frontier Engineers sit at the same intersection of engineering,<br />
+      consulting, and productization. The job is to go into a client environment, work out where<br />
+      AI can move a real business number, build a working version of that fast, and turn it into<br />
+      something that survives contact with production. Neither level is a pure research role and<br />
+      neither is a pure delivery role. The mix is the point.</p>
+      <h2 id="02-what-actually-changes-between-lead-and-principal">0.2 What actually changes between Lead and Principal</h2>
+      <p>The two role descriptions share almost identical section headings. That is deliberate. A<br />
+      Principal is not doing different work, they are doing it at a different radius. Reading both<br />
+      side by side, the delta comes down to five things.</p>
+      <div class="tablewrap"><table>
+      <thead>
+      <tr>
+      <th>Dimension</th>
+      <th>Lead</th>
+      <th>Principal</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>Scope</td>
+      <td>One client, one engagement, working under a Principal</td>
+      <td>Multiple clients or industries at once, working directly with CXOs</td>
+      </tr>
+      <tr>
+      <td>Technical role</td>
+      <td>Builds and productionizes the solution</td>
+      <td>Architects the solution and directs the squad building it</td>
+      </tr>
+      <tr>
+      <td>Strategic role</td>
+      <td>Feeds insights upward</td>
+      <td>Sets the AI transformation roadmap and advises leadership on it</td>
+      </tr>
+      <tr>
+      <td>Reuse</td>
+      <td>Contributes reusable components</td>
+      <td>Owns productizing patterns into company-wide platforms and standards</td>
+      </tr>
+      <tr>
+      <td>External footprint</td>
+      <td>Internal and client-facing</td>
+      <td>Publishes, speaks, and builds relationships with vendors and academia</td>
+      </tr>
+      </tbody>
+      </table></div>
+      <p>Principal itself has two sub-levels. L1 operates at portfolio, program, or business-unit<br />
+      scope. L2 operates at company-wide, multi-business-unit scope, with heavier weight on<br />
+      external ecosystem influence and on productizing what L1s and Leads build. Part 12 tracks<br />
+      that L1-to-L2 delta separately, since it is a second, smaller jump after the first one.</p>
+      <h2 id="03-a-note-on-vibing">0.3 A note on "vibing"</h2>
+      <p>My company's job description uses this word for AI-assisted rapid prototyping: building a<br />
+      working proof of concept by directing an AI coding assistant rather than hand-writing every<br />
+      line. It is a real, named expectation of the role at Lead level and above, not a shortcut to<br />
+      apologize for. Part 1 treats it as a skill with its own technique, not just "using Claude<br />
+      Code."</p>
+      <h1 id="part-1-foundations">Part 1 — Foundations</h1>
+      <h2 id="11-large-language-models-without-the-hand-waving">1.1 Large language models, without the hand-waving</h2>
+      <p>Before anything else: what a transformer actually does with a prompt, what a context window<br />
+      is and why it has a cost, what "temperature" and sampling change, and where hallucination<br />
+      comes from mechanically. It is not a bug being patched. It is the model doing exactly what it<br />
+      is built to do: predict plausible tokens. This matters because every later part assumes it.<br />
+      Evaluation, cost control, and prompt design all fall out of this model.</p>
+      <h2 id="12-prompt-engineering-as-an-engineering-discipline">1.2 Prompt engineering as an engineering discipline</h2>
+      <p>Treat prompts as versioned, tested artifacts, not one-off text. Few-shot versus zero-shot,<br />
+      chain-of-thought and when it helps versus when it just burns tokens, structured output<br />
+      (JSON mode, function calling and tool use), and system-prompt design for a production agent<br />
+      rather than a chat toy.</p>
+      <h2 id="13-retrieval-augmented-generation-rag">1.3 Retrieval-augmented generation (RAG)</h2>
+      <p>The default answer to "the model doesn't know my data." Chunking strategy, embeddings and<br />
+      vector stores, hybrid search combining keyword and vector methods, and the part most<br />
+      tutorials skip: what breaks in RAG at enterprise scale. Stale indexes, chunk boundaries<br />
+      cutting a fact in half, and retrieval precision versus recall tradeoffs show up as wrong<br />
+      answers, not crashes.</p>
+      <h2 id="14-ai-assisted-rapid-prototyping-vibing">1.4 AI-assisted rapid prototyping ("vibing")</h2>
+      <p>The skill is not typing a request into an AI coding tool. It is scoping the smallest working<br />
+      slice before starting, keeping a tight edit-run-check loop, reading every diff before<br />
+      accepting it, and knowing when to take the wheel back because the assistant is thrashing.<br />
+      This is the mechanic behind "smallest-viable, end-to-end scope for rapid validation."<br />
+      Proving something works beats designing the perfect version of it.</p>
+      <h2 id="15-what-a-proof-of-value-actually-needs-to-prove">1.5 What a proof of value actually needs to prove</h2>
+      <p>A working demo is not a proof of value. A proof of value needs a stated business metric, a<br />
+      baseline, and a measured delta, even a rough one, or it is just a demo. Get in the habit of<br />
+      writing the success metric down before writing any code.</p>
+      <h1 id="part-2-discovery-and-scoping">Part 2 — Discovery and Scoping</h1>
+      <h2 id="21-mapping-a-business-process-you-dont-own">2.1 Mapping a business process you don't own</h2>
+      <p>Techniques for extracting an accurate process map from people who live inside the process<br />
+      and can't see it from outside: value stream mapping, swimlane diagrams, and structured<br />
+      discovery interviews. The failure mode to train against is mapping the process as it's<br />
+      described in a slide deck instead of the one people actually run.</p>
+      <h2 id="22-turning-a-business-problem-into-a-technical-scope">2.2 Turning a business problem into a technical scope</h2>
+      <p>Decomposing an ambiguous ask, such as "make support faster," into acceptance criteria and<br />
+      guardrails a build can be checked against. The discipline here is closer to product<br />
+      management than engineering: define what "done" means, numerically, before anyone opens an<br />
+      editor.</p>
+      <h2 id="23-reading-a-technology-landscape-fast">2.3 Reading a technology landscape fast</h2>
+      <p>Given a client's actual stack, an ERP like SAP or Oracle, a CRM like Salesforce, a data<br />
+      platform like Snowflake or Databricks, a cloud AI platform like Vertex AI, Bedrock, or<br />
+      OpenAI's enterprise offering, know enough about each to scope integration work without<br />
+      becoming a specialist in all of them. Part 4 goes deeper on the platforms themselves. This<br />
+      section is about scoping speed, not platform mastery.</p>
+      <h2 id="24-the-smallest-viable-end-to-end-slice">2.4 The smallest viable end-to-end slice</h2>
+      <p>The core discipline of scoping under time pressure: cut a thin vertical slice through the<br />
+      whole system (data in, model call, output back to a real user) rather than a thick slice of<br />
+      one layer. A slice that touches every layer, even badly, teaches you more per hour than a<br />
+      polished layer that touches nothing else.</p>
+      <h1 id="part-3-client-co-creation-client-transformation-advisory">Part 3 — Client Co-Creation → Client Transformation Advisory</h1>
+      <h2 id="31-facilitating-a-technical-workshop-with-non-technical-stakeholders">3.1 Facilitating a technical workshop with non-technical stakeholders</h2>
+      <p>Running a joint discovery or design session so both a CXO and a platform engineer leave with<br />
+      the same understanding. Structure the agenda, translate jargon in both directions live, and<br />
+      close every session with a written-down decision, not just a good conversation.</p>
+      <h2 id="32-model-evaluation-as-a-client-facing-deliverable">3.2 Model evaluation as a client-facing deliverable</h2>
+      <p>Part 1's evaluation techniques, reframed as something a business stakeholder needs to trust<br />
+      before signing off: benchmarks tied to a business KPI, not just an accuracy score, presented<br />
+      so a non-technical sponsor can see why the number is credible.</p>
+      <h2 id="33-domain-fluency-without-a-domain-degree">3.3 Domain fluency without a domain degree</h2>
+      <p>A working, not academic, grasp of finance, healthcare, supply chain, retail, or<br />
+      manufacturing, enough to spot which of a client's stated problems is actually the expensive<br />
+      one. This is a Principal-weighted skill (their JD names it explicitly), but Leads who build<br />
+      it early move faster.</p>
+      <h2 id="34-from-advisor-to-trusted-advisor">3.4 From advisor to trusted advisor</h2>
+      <p>The distinction that actually separates the two role levels here: a Lead validates a<br />
+      solution against requirements; a Principal is trusted to tell a CXO their requirements are<br />
+      wrong. That trust is earned through a track record, not claimed. But knowing what the<br />
+      behavior looks like, naming the uncomfortable tradeoff before being asked, lets you start<br />
+      practicing it now.</p>
+      <h1 id="part-4-technical-delivery-solution-architecture">Part 4 — Technical Delivery → Solution Architecture</h1>
+      <p>This part is the technical core of the role and the most resource-heavy. It is split into<br />
+      five sub-areas.</p>
+      <h2 id="41-agentic-ai-systems">4.1 Agentic AI systems</h2>
+      <p>Single-agent versus multi-agent design, the orchestrator/worker pattern, tool use and<br />
+      function calling, memory (short-term context versus long-term stores), and, critically,<br />
+      knowing when a plain deterministic workflow beats an agent. Most production "agentic AI"<br />
+      failures are agents used where a script would have been faster, cheaper, and more reliable.</p>
+      <h2 id="42-enterprise-ai-platforms">4.2 Enterprise AI platforms</h2>
+      <p>Working fluency, at the build-and-integrate level rather than the vendor-certification<br />
+      level, across the three platform families the role names: Google Vertex AI, AWS Bedrock, and<br />
+      enterprise OpenAI or Azure OpenAI. What matters practically: model access and routing,<br />
+      fine-tuning and grounding options, cost and quota controls, and each platform's native<br />
+      evaluation and observability tooling.</p>
+      <h2 id="43-data-platforms-for-ai">4.3 Data platforms for AI</h2>
+      <p>Snowflake and Databricks are the two data-platform ecosystems named in the role. Focus on the<br />
+      AI-relevant surface: feature stores, vector search extensions, governed access to data an LLM<br />
+      pipeline will read, and how each platform's native AI tooling (Cortex, Mosaic AI) plugs into<br />
+      a broader agent or RAG system.</p>
+      <h2 id="44-business-platform-literacy">4.4 Business platform literacy</h2>
+      <p>SAP S/4HANA, Salesforce, and Oracle, not learned as a functional consultant would learn them,<br />
+      but at the level needed to scope an integration: what data each platform exposes through an<br />
+      API, what its extension and customization layer looks like, and where an AI feature would<br />
+      actually sit in it.</p>
+      <h2 id="45-productionizing-aillm-workloads-llmops">4.5 Productionizing AI/LLM workloads (LLMOps)</h2>
+      <p>The unglamorous half of the job, and the half that separates a demo from a deployed system:<br />
+      retrieval pipeline reliability, prompt versioning and regression testing, response caching,<br />
+      telemetry (what to log, and how to log it without leaking sensitive data), and cost controls<br />
+      (token budgets, model routing by task complexity, caching hit rate as a cost lever).</p>
+      <h2 id="46-cicd-and-infrastructure-as-code-for-ai-systems">4.6 CI/CD and infrastructure-as-code for AI systems</h2>
+      <p>Standard software delivery discipline applied to a system with a nondeterministic component.<br />
+      What's different about testing and rolling out a change to a prompt or a model version versus<br />
+      a change to plain code, and how IaC (Terraform or equivalent) fits AI infrastructure<br />
+      specifically: vector databases, GPU-backed endpoints, and model registries.</p>
+      <h2 id="47-full-stack-delivery-and-enterprise-integration">4.7 Full-stack delivery and enterprise integration</h2>
+      <p>Tying the data, API, orchestration, and UI layers together end to end, plus the enterprise<br />
+      plumbing every real deployment needs regardless of AI content: SSO and identity federation,<br />
+      ERP/CRM integration patterns, and observability that covers the whole stack, not just the<br />
+      model call.</p>
+      <h1 id="part-5-validation-and-iteration">Part 5 — Validation and Iteration</h1>
+      <h2 id="51-building-an-evaluation-plan-before-building-the-system">5.1 Building an evaluation plan before building the system</h2>
+      <p>The habit to instill: write the evaluation plan and acceptance thresholds before the first<br />
+      line of the pilot, not after it's built and someone asks how you know this works. An<br />
+      evaluation plan states what's measured, how, against what baseline, and what score counts as<br />
+      good enough to proceed.</p>
+      <h2 id="52-llm-and-rag-evaluation-in-practice">5.2 LLM and RAG evaluation in practice</h2>
+      <p>Concrete evaluation techniques: reference-based metrics versus LLM-as-judge, RAG-specific<br />
+      measures (retrieval precision and recall, faithfulness, answer relevance), and the<br />
+      open-source tooling that operationalizes these. See Resources; this is one of the most<br />
+      concretely learnable, hands-on parts of the whole roadmap.</p>
+      <h2 id="53-telemetry-that-ties-technical-and-business-kpis-together">5.3 Telemetry that ties technical and business KPIs together</h2>
+      <p>The role's evaluation work isn't just a technical score. It has to connect to a business<br />
+      number a client cares about. Practice writing telemetry specs that capture both a technical<br />
+      metric (latency, accuracy) and a linked business metric (tickets deflected, hours saved) from<br />
+      day one of a pilot.</p>
+      <h2 id="54-running-a-demo-review-and-sign-off">5.4 Running a demo, review, and sign-off</h2>
+      <p>The soft skill wrapped around the hard one: structure a demo so a stakeholder's first<br />
+      reaction is confidence, not skepticism. Show the metric before the feature, and show a<br />
+      failure case handled gracefully before someone finds it themselves.</p>
+      <h1 id="part-6-security-compliance-and-reliability">Part 6 — Security, Compliance, and Reliability</h1>
+      <h2 id="61-deploying-in-a-regulated-enterprise-environment">6.1 Deploying in a regulated enterprise environment</h2>
+      <p>The baseline expectations a client's security and compliance teams will hold any AI system<br />
+      to: data classification, access controls scoped to least privilege, and audit logging<br />
+      sufficient to reconstruct what a system did and why.</p>
+      <h2 id="62-the-regulatory-frameworks-that-actually-apply">6.2 The regulatory frameworks that actually apply</h2>
+      <p>Working knowledge, not legal expertise, of SOX, HIPAA, and GDPR as they touch an AI system<br />
+      specifically, plus the EU AI Act, increasingly relevant even for US-based work with European<br />
+      clients or data. Know which obligations attach to which kind of AI system. A chatbot and a<br />
+      hiring-decision model are not regulated the same way.</p>
+      <h2 id="63-observability-alerting-and-slos-for-ai-systems">6.3 Observability, alerting, and SLOs for AI systems</h2>
+      <p>Extend standard site-reliability practice to a system with a nondeterministic, cost-metered<br />
+      component: what an SLO means for an LLM-backed service, and what to alert on beyond uptime<br />
+      (cost spikes, latency percentile drift, evaluation-score regression in production).</p>
+      <h2 id="64-responsible-and-ethical-ai-operationally">6.4 Responsible and ethical AI, operationally</h2>
+      <p>Not the philosophy, the checklist: bias testing before deployment, a documented mitigation<br />
+      plan when bias is found, transparency about AI involvement to end users, and auditability<br />
+      built in from the start rather than retrofitted after an incident.</p>
+      <h1 id="part-7-change-management-and-enablement">Part 7 — Change Management and Enablement</h1>
+      <h2 id="71-driving-adoption-of-something-you-built">7.1 Driving adoption of something you built</h2>
+      <p>The pattern that determines whether a deployed system gets used: identify the people whose<br />
+      job changes, involve them before launch, and measure adoption explicitly rather than assuming<br />
+      "it's live" means "it's used."</p>
+      <h2 id="72-knowledge-transfer-that-actually-transfers">7.2 Knowledge transfer that actually transfers</h2>
+      <p>Structure a handoff to a client's own engineering and operations teams so the system survives<br />
+      after the engagement ends. Write runbooks for someone who wasn't in the room when the system<br />
+      was built, not for yourself six months from now.</p>
+      <h2 id="73-building-reusable-playbooks-and-templates">7.3 Building reusable playbooks and templates</h2>
+      <p>The discipline of generalizing a one-off solution into something reusable on the next<br />
+      engagement, without over-engineering it before there's a second use case to generalize from.</p>
+      <h1 id="part-8-post-launch-ownership">Part 8 — Post-Launch Ownership</h1>
+      <h2 id="81-hyper-care-and-the-stabilization-window">8.1 Hyper-care and the stabilization window</h2>
+      <p>What the weeks immediately after launch should look like: closer monitoring than steady<br />
+      state, a fast path for triaging and fixing issues, and a defined point at which hyper-care<br />
+      ends and the system moves to normal operations.</p>
+      <h2 id="82-tracking-adoption-and-business-impact-after-handoff">8.2 Tracking adoption and business impact after handoff</h2>
+      <p>Instrument a system so its ongoing value is visible without having to go ask. Build usage<br />
+      dashboards, and a lightweight, repeatable way to re-measure the original success metric weeks<br />
+      or months later.</p>
+      <h2 id="83-feeding-field-learnings-back-upstream">8.3 Feeding field learnings back upstream</h2>
+      <p>Turn what broke or surprised you in production into structured feedback that actually reaches<br />
+      a platform or product team, not just a note in your own files.</p>
+      <h1 id="part-9-platform-engineering-and-productization">Part 9 — Platform Engineering and Productization</h1>
+      <h2 id="91-from-one-off-solution-to-reusable-platform-component">9.1 From one-off solution to reusable platform component</h2>
+      <p>Recognize the pattern that shows up across engagements and extract it into something with a<br />
+      stable interface (a library, a scaffold, a template) before building it three separate times<br />
+      by hand.</p>
+      <h2 id="92-designing-for-reuse-without-overbuilding">9.2 Designing for reuse without overbuilding</h2>
+      <p>The tension at the center of platform engineering: a component built for one client is<br />
+      brittle everywhere else, and a component built for every hypothetical client never ships.<br />
+      Learn to abstract from two real cases, not zero.</p>
+      <h2 id="93-productization-as-a-principal-level-skill">9.3 Productization as a Principal-level skill</h2>
+      <p>The step beyond building reusable components: turning a proven pattern into something a<br />
+      company formally adopts, supports, and scales, a named accelerator or platform capability<br />
+      with an owner, not just a shared folder of code.</p>
+      <h1 id="part-10-advanced-ai-development-ai-strategy-and-visioning">Part 10 — Advanced AI Development → AI Strategy and Visioning</h1>
+      <h2 id="101-fine-tuning-and-model-customization">10.1 Fine-tuning and model customization</h2>
+      <p>When fine-tuning is the right tool versus prompt engineering or RAG, and the practical<br />
+      mechanics of it: dataset preparation, parameter-efficient fine-tuning (LoRA and similar), and<br />
+      evaluating a fine-tuned model against the baseline it's meant to beat.</p>
+      <h2 id="102-multi-modal-ai">10.2 Multi-modal AI</h2>
+      <p>Working knowledge across text, image, and code generation (the modalities the Lead role<br />
+      names), extending toward video and 3D generation (which the Principal role adds), enough to<br />
+      know what's genuinely production-ready today versus still research-grade.</p>
+      <h2 id="103-translating-ai-strategy-into-an-architecture-roadmap">10.3 Translating AI strategy into an architecture roadmap</h2>
+      <p>The Principal-level version of scoping is not "what do we build this quarter" but "what<br />
+      sequence of builds, over 12 to 18 months, gets an enterprise from where it is to where its AI<br />
+      strategy says it should be." Short, mid, and long-horizon roadmapping is a distinct planning<br />
+      skill from sprint-level scoping.</p>
+      <h1 id="part-11-thought-leadership-and-ecosystem-collaboration">Part 11 — Thought Leadership and Ecosystem Collaboration</h1>
+      <h3 id="principal-only-in-the-source-role-worth-starting-into-as-a-lead">Principal-only in the source role, worth starting into as a Lead</h3>
+      <h2 id="111-writing-and-publishing-applied-ai-insight">11.1 Writing and publishing applied AI insight</h2>
+      <p>Turn what you learn on engagements into a publishable point of view: pick a topic narrow<br />
+      enough to say something real about, and a format (post, whitepaper, talk) that fits the<br />
+      insight rather than padding it out.</p>
+      <h2 id="112-building-relationships-with-the-wider-ecosystem">11.2 Building relationships with the wider ecosystem</h2>
+      <p>Hyperscalers, platform vendors, and the research and academic side of the field. Practical<br />
+      entry points at Lead level: contribute to open-source tools you actually use, engage in a<br />
+      platform vendor's technical community, and follow, not just skim, a small number of research<br />
+      labs and practitioner voices closely.</p>
+      <h1 id="part-12-the-lead-principal-gap">Part 12 — The Lead → Principal gap</h1>
+      <h2 id="121-what-ready-for-principal-looks-like-against-the-performance-measures">12.1 What "ready for Principal" looks like against the performance measures</h2>
+      <p>Not a technical skill checklist; that's Parts 1 through 11. This is the evidence checklist a<br />
+      promotion case actually needs, built from the shape of the Principal performance measures:</p>
+      <ul>
+      <li>[ ] A quantified business outcome I can point to from a real engagement (efficiency,<br />
+            cost, accuracy, or a new capability)</li>
+      <li>[ ] At least one reusable asset (template, accelerator, framework) I built that someone<br />
+            else has adopted</li>
+      <li>[ ] A case where I advised a client on strategy or direction, not just delivery</li>
+      <li>[ ] A multi-client or multi-domain engagement, or a credible plan for getting one</li>
+      <li>[ ] At least one person I've mentored toward field readiness</li>
+      <li>[ ] One published or presented piece of thought leadership</li>
+      <li>[ ] A relationship with at least one platform vendor or hyperscaler beyond a vendor rep<br />
+            contact</li>
+      </ul>
+      <h2 id="122-the-l1-l2-delta-for-later">12.2 The L1 → L2 delta, for later</h2>
+      <p>Once Principal L1 is reached, the next jump is company-wide, multi-business-unit scope<br />
+      instead of portfolio or program scope, strategic CXO relationships instead of engagement-level<br />
+      stakeholder management, and measurable contributions to productizing and standardizing<br />
+      company-wide AI platforms rather than one engagement's accelerators. It's worth knowing the<br />
+      shape of this now, even years out. It changes what "reusable" should mean in 12.1.</p>
+    </main>
+  </div>
+</div>
+<footer class="foot"><div class="wrap"><div class="wrapin">
+  <span>A personal study guide, not an employer document. No verbatim job description text is published here.</span>
+  <span><a href="roadmap.md" download>Download the markdown</a></span>
+</div></div></footer>
+<button class="totop" type="button" aria-label="Back to top">&#8593;</button>
+<script src="assets/app.js"></script>
+</body>
+</html>

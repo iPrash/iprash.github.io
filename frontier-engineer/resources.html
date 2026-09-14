@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Resources — Frontier Engineer to Principal</title>
+<meta name="description" content="Curated free reading, video, and hands-on resources, numbered to match the learning roadmap.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230B5563'/><text y='68' x='50' text-anchor='middle' font-size='52' font-family='monospace' fill='white'>FE</text></svg>">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-in">
+    <a class="brand" href="index.html">
+      <span class="mark">FE</span>
+      <span class="name">Frontier Engineer → Principal</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="resources.html" aria-current="page">Resources</a>
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch theme">&#9790;</button>
+    </nav>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="side">
+      <div class="side-head">
+        <span class="eyebrow">Contents</span>
+        <span class="eyebrow" id="progPct">0%</span>
+      </div>
+      <input class="tocsearch" id="tocSearch" type="search" placeholder="Filter sections…" aria-label="Filter sections">
+      <ul class="toc" id="toc"></ul>
+      <div class="progress-card">
+        <div class="progress-num"><span class="eyebrow">Sections read</span><span id="progNum">0 / 0</span></div>
+        <div class="bar"><i id="progBar"></i></div>
+        <button class="reset" id="resetProg" type="button">Reset progress</button>
+      </div>
+    </aside>
+    <main class="doc" data-doc="resources">
+      <h1 class="doctitle" id="resources">Resources</h1>
+      <p class="subtitle">Free reading, video, and hands-on material, numbered to match the Roadmap</p>
+      <p>Every link here was checked before publishing. Tags: 📖 read, 🎥 watch, 🧪 hands-on.<br />
+      Where a resource has a paid tier I don't need (a certificate, a graded assignment, extra<br />
+      compute credits), I say so. The material itself is free either way.</p>
+      <h1 id="part-1-foundations">Part 1 — Foundations</h1>
+      <h2 id="11-12-large-language-models-and-prompt-engineering">1.1 – 1.2 Large language models and prompt engineering</h2>
+      <ul>
+      <li>📖 <a href="https://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a>. Jay Alammar's visual walkthrough of the architecture behind every model in this field. Free, CC-licensed.</li>
+      <li>🎥 <a href="https://karpathy.ai/zero-to-hero.html">Neural Networks: Zero to Hero</a>. Andrej Karpathy's video series, building up from backpropagation to a working GPT from scratch. All videos free on YouTube.</li>
+      <li>🧪 <a href="https://github.com/anthropics/prompt-eng-interactive-tutorial">Anthropic's Interactive Prompt Engineering Tutorial</a>. A free, hands-on Jupyter-notebook course, 9 chapters plus appendix, with exercises and an answer key.</li>
+      <li>📖 <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Claude prompting best practices</a>. Anthropic's own docs.</li>
+      <li>📖 <a href="https://github.com/dair-ai/Prompt-Engineering-Guide">dair-ai Prompt Engineering Guide</a>. The open-source guide behind promptingguide.ai, broader than one vendor. Covers prompting, RAG, and agents.</li>
+      </ul>
+      <h2 id="13-retrieval-augmented-generation">1.3 Retrieval-augmented generation</h2>
+      <ul>
+      <li>🎥 <a href="https://www.freecodecamp.org/news/learn-rag-fundamentals-and-advanced-techniques/">RAG Fundamentals and Advanced Techniques</a>. Free 2-hour course on the freeCodeCamp YouTube channel.</li>
+      </ul>
+      <h2 id="14-ai-assisted-rapid-prototyping-vibing">1.4 AI-assisted rapid prototyping ("vibing")</h2>
+      <ul>
+      <li>📖 <a href="https://code.claude.com/docs/en/best-practices">Best practices for Claude Code</a>. Anthropic's own official guide to the exact skill this section is about: scoping, verification loops, and knowing when to take the wheel back. Read this one closely. It's the most directly applicable resource in the whole roadmap.</li>
+      </ul>
+      <h1 id="part-2-discovery-and-scoping">Part 2 — Discovery and Scoping</h1>
+      <h2 id="21-mapping-a-business-process">2.1 Mapping a business process</h2>
+      <ul>
+      <li>📖 <a href="https://asq.org/quality-resources/value-stream-mapping">Value Stream Mapping Tutorial</a>. ASQ's free guide to the core technique, with a worked example.</li>
+      </ul>
+      <h2 id="23-reading-a-technology-landscape-fast">2.3 Reading a technology landscape fast</h2>
+      <ul>
+      <li>See Part 4 below for the platform-specific resources (Vertex AI, Bedrock, Snowflake, Databricks, S/4HANA, Salesforce, Oracle). Scoping speed comes from the same material as depth, just read less deep on the first pass.</li>
+      </ul>
+      <h1 id="part-3-client-co-creation-client-transformation-advisory">Part 3 — Client Co-Creation → Client Transformation Advisory</h1>
+      <h2 id="33-domain-fluency-without-a-domain-degree">3.3 Domain fluency without a domain degree</h2>
+      <ul>
+      <li>📖 <a href="https://umbrex.com/resources/industry-primers/">Umbrex Industry Primers</a>. Free, consultant-written primers across finance, healthcare, retail, manufacturing, and 18 other sectors. This is the single best starting point for the domain-fluency requirement in both role levels.</li>
+      </ul>
+      <h2 id="34-trusted-advisor-skills-and-consulting-fundamentals">3.4 Trusted-advisor skills and consulting fundamentals</h2>
+      <ul>
+      <li>📖 <a href="https://alison.com/course/introduction-to-stakeholder-management">Introduction to Stakeholder Management (Alison)</a>. Genuinely free to take; only an optional certificate costs money. Multi-course Professional Certificates on Coursera are usually subscription-gated even in "audit," so this is the more reliably free option for the underlying skill.</li>
+      </ul>
+      <h1 id="part-4-technical-delivery-solution-architecture">Part 4 — Technical Delivery → Solution Architecture</h1>
+      <h2 id="41-agentic-ai-systems">4.1 Agentic AI systems</h2>
+      <ul>
+      <li>📖 <a href="https://www.anthropic.com/engineering/building-effective-agents">Building Effective Agents</a>. Anthropic's own engineering guide to agent design patterns and, just as important, when not to use an agent.</li>
+      <li>📖 <a href="https://github.com/langchain-ai/langgraph">LangGraph</a>. Official docs and tutorials for the most widely used agent-orchestration framework. Free, open source.</li>
+      <li>📖 <a href="https://openai.github.io/openai-agents-python/">OpenAI Agents SDK</a>. Official docs, free.</li>
+      <li>📖 <a href="https://docs.crewai.com/en/introduction">CrewAI</a>. Official docs for the role-based multi-agent framework. Free, open-source core.</li>
+      </ul>
+      <h2 id="42-enterprise-ai-platforms">4.2 Enterprise AI platforms</h2>
+      <ul>
+      <li>🧪 <a href="https://www.skills.google/paths/118">Introduction to Generative AI (Google Skills)</a>. Free course content. Some optional hands-on labs on the platform use paid credits, the core lessons don't.</li>
+      <li>🧪 <a href="https://skillbuilder.aws/generative-ai">Building Generative AI Applications Using Amazon Bedrock (AWS Skill Builder)</a>. Free digital course.</li>
+      <li>🧪 <a href="https://github.com/aws-samples/amazon-bedrock-workshop">amazon-bedrock-workshop</a>. AWS's own free, hands-on notebook workshop covering Bedrock end to end.</li>
+      </ul>
+      <h2 id="43-data-platforms-for-ai">4.3 Data platforms for AI</h2>
+      <ul>
+      <li>🧪 <a href="https://learn.snowflake.com/en/">Snowflake University</a>. Official training platform. Not everything here is free: look for the on-demand and "badge" courses, which are; instructor-led and certification-prep courses are paid.</li>
+      <li>🧪 <a href="https://www.databricks.com/resources/learn/training/databricks-fundamentals">Databricks Fundamentals</a> and <a href="https://www.databricks.com/training/catalog/ai-agent-fundamentals-4482">AI Agent Fundamentals</a>. Databricks' own free training catalog.</li>
+      </ul>
+      <h2 id="44-business-platform-literacy">4.4 Business platform literacy</h2>
+      <ul>
+      <li>📖 <a href="https://learning.sap.com/">SAP Learning</a> courses on S/4HANA (openSAP's content moved here). "Implementing SAP S/4HANA Cloud Public Edition" and "Data Migration to SAP S/4HANA" are both listed as free on Class Central; confirm the price shown before enrolling, SAP Learning mixes free and paid content on the same platform.</li>
+      <li>🧪 <a href="https://trailhead.salesforce.com/en/einstein-ai-trail">Salesforce Trailhead: Einstein AI trail</a>. Salesforce's own free, hands-on learning platform.</li>
+      <li>🧪 <a href="https://mylearn.oracle.com/ou/course/oracle-cloud-infrastructure-ai-foundations/147805">Oracle Cloud Infrastructure AI Foundations</a>. Oracle's own foundations course; the course content is free. Oracle has run free-exam promotions for this associate certification before, but that isn't permanent, check the current exam price before registering.</li>
+      </ul>
+      <h2 id="45-productionizing-aillm-workloads-llmops">4.5 Productionizing AI/LLM workloads (LLMOps)</h2>
+      <ul>
+      <li>🧪 <a href="https://www.promptfoo.dev/docs/intro/">Promptfoo</a>. Free, open-source, runs locally. The best hands-on way to learn eval-driven prompt development.</li>
+      <li>🧪 <a href="https://deepeval.com/docs/introduction">DeepEval</a>. Free, open-source LLM and RAG evaluation framework with a large library of built-in metrics.</li>
+      <li>🧪 <a href="https://docs.ragas.io/en/stable/getstarted/">Ragas</a>. Free, open-source, RAG-specific evaluation (faithfulness, answer relevance, context precision and recall).</li>
+      </ul>
+      <h2 id="46-cicd-and-infrastructure-as-code">4.6 CI/CD and infrastructure-as-code</h2>
+      <ul>
+      <li>🧪 <a href="https://developer.hashicorp.com/terraform/tutorials">Terraform tutorials</a>. HashiCorp's own free, hands-on tutorials, including cloud-specific getting-started paths.</li>
+      </ul>
+      <h2 id="47-full-stack-delivery-and-enterprise-integration">4.7 Full-stack delivery and enterprise integration</h2>
+      <ul>
+      <li>📖 <a href="https://opentelemetry.io/docs/getting-started/">OpenTelemetry: Getting Started</a>. The vendor-neutral, free, open-source standard for the observability half of this section.</li>
+      </ul>
+      <h1 id="part-5-validation-and-iteration">Part 5 — Validation and Iteration</h1>
+      <ul>
+      <li>🧪 Reuse Part 4.5's three evaluation tools (Promptfoo, DeepEval, Ragas). This section is about the practice of writing an evaluation plan, not new tools.</li>
+      <li>📖 <a href="https://docs.ragas.io/en/latest/tutorials/rag/">Ragas: Evaluate a simple RAG system</a>. A concrete worked tutorial that doubles as a template for writing your own evaluation plan.</li>
+      </ul>
+      <h1 id="part-6-security-compliance-and-reliability">Part 6 — Security, Compliance, and Reliability</h1>
+      <ul>
+      <li>📖 <a href="https://www.skills.google/course_templates/554">Introduction to Responsible AI (Google Skills)</a>. Free course.</li>
+      <li>📖 <a href="https://learn.microsoft.com/en-us/training/modules/embrace-responsible-ai-principles-practices/">Embrace Responsible AI Principles and Practices (Microsoft Learn)</a>. Free, official.</li>
+      <li>📖 <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">EU AI Act, official text</a>. Go to the primary source rather than a summary blog for anything you'll rely on. Free.</li>
+      <li>📖 <a href="https://sre.google/sre-book/table-of-contents/">Google SRE Book</a>. The full book, free online, for the observability and SLO half of this section.</li>
+      </ul>
+      <h1 id="part-7-change-management-and-enablement">Part 7 — Change Management and Enablement</h1>
+      <ul>
+      <li>📖 <a href="https://www.prosci.com/methodology/adkar">Prosci ADKAR Model</a>. The standard framework, free overview page.</li>
+      <li>🎥 <a href="https://www.prosci.com/resources/webinars/introduction-to-adkar-30-minutes">Introduction to ADKAR (30 minutes)</a>. Free recorded webinar.</li>
+      </ul>
+      <h1 id="part-8-post-launch-ownership">Part 8 — Post-Launch Ownership</h1>
+      <ul>
+      <li>📖 <a href="https://sre.google/sre-book/table-of-contents/">Google SRE Book</a>. Same resource as Part 6. The hyper-care and post-launch chapters are the relevant ones here (see the table of contents for "Monitoring Distributed Systems" and "Managing Incidents").</li>
+      </ul>
+      <h1 id="part-9-platform-engineering-and-productization">Part 9 — Platform Engineering and Productization</h1>
+      <ul>
+      <li>📖 <a href="https://backstage.io/docs/overview/what-is-backstage/">What is Backstage?</a>. Official docs for the open-source reference implementation of an internal developer platform. Free, CNCF project. You don't need to adopt Backstage itself; reading how it's structured is the fastest way to understand what "platform engineering" concretely means.</li>
+      </ul>
+      <h1 id="part-10-advanced-ai-development-ai-strategy-and-visioning">Part 10 — Advanced AI Development → AI Strategy and Visioning</h1>
+      <h2 id="101-fine-tuning-and-model-customization">10.1 Fine-tuning and model customization</h2>
+      <ul>
+      <li>🧪 <a href="https://huggingface.co/learn/smol-course/unit1/3a">Hugging Face: LoRA and PEFT, Efficient Fine-Tuning</a>. Free, hands-on course unit.</li>
+      <li>🧪 <a href="https://github.com/huggingface/peft">huggingface/peft</a>. The official library docs and examples, free and open source.</li>
+      </ul>
+      <h2 id="103-translating-ai-strategy-into-a-roadmap">10.3 Translating AI strategy into a roadmap</h2>
+      <ul>
+      <li>📖 <a href="https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-ai-transformation-manifesto">The AI transformation manifesto</a>. Free McKinsey Insights article. Useful for the shape of a multi-horizon transformation roadmap. Read critically rather than as gospel.</li>
+      </ul>
+      <h1 id="part-11-thought-leadership-and-ecosystem-collaboration">Part 11 — Thought Leadership and Ecosystem Collaboration</h1>
+      <ul>
+      <li>No single resource here. This part is about doing the thing (writing, publishing, engaging) more than studying it. Pick one specific, narrow thing you learned building through this roadmap and write it up.</li>
+      </ul>
+      <h1 id="part-12-the-lead-principal-gap">Part 12 — The Lead → Principal gap</h1>
+      <ul>
+      <li>No resources. This is a self-assessment checklist. Revisit it after finishing a pass through Parts 1 through 11, and again every few months.</li>
+      </ul>
+    </main>
+  </div>
+</div>
+<footer class="foot"><div class="wrap"><div class="wrapin">
+  <span>A personal study guide, not an employer document. No verbatim job description text is published here.</span>
+  <span><a href="resources.md" download>Download the markdown</a></span>
+</div></div></footer>
+<button class="totop" type="button" aria-label="Back to top">&#8593;</button>
+<script src="assets/app.js"></script>
+</body>
+</html>

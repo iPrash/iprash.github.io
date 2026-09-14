@@ -26,6 +26,7 @@ One repo, one Pages site, several subsites at `/<slug>/`.
 |---|---|---|---|---|
 | `TPM` | /TPM/ | Senior TPM interview prep | Static HTML | `_project/sites/TPM.md` |
 | `aigov` | /aigov/ | AI governance & multi-model strategy | Generated from markdown | `_project/sites/aigov.md` |
+| `frontier-engineer` | /frontier-engineer/ | Frontier Engineer → Principal learning roadmap | Generated from markdown | `_project/sites/frontier-engineer.md` |
 
 Read the site brief before working on a site. Conventions differ between them.
 
@@ -50,6 +51,16 @@ iprash.github.io/
 │   ├── _index_template.html     home page structure
 │   ├── README.md
 │   └── assets/{style.css,app.js}   hand-maintained
+├── frontier-engineer/
+│   ├── _site.json
+│   ├── index.html               GENERATED
+│   ├── roadmap.html             GENERATED
+│   ├── resources.html           GENERATED
+│   ├── roadmap.md               SOURCE
+│   ├── resources.md             SOURCE
+│   ├── _index_template.html     home page structure
+│   └── assets/{style.css,app.js}   hand-maintained, copied from aigov's engine with the
+│                                    localStorage prefix changed to avoid cross-site collision
 ├── _build/
 │   ├── build.py
 │   └── templates/landing.html
@@ -59,7 +70,7 @@ iprash.github.io/
     ├── PROJECT-INSTRUCTIONS.md  full working rules
     ├── PROJECT-CONTEXT.md       this file
     ├── NEW-SITE.md
-    └── sites/{TPM.md,aigov.md,_TEMPLATE.md}
+    └── sites/{TPM.md,aigov.md,frontier-engineer.md,_TEMPLATE.md}
 ```
 
 `_build/` and `_project/` are published (harmless — no index.html, nothing links to them) but
@@ -111,6 +122,7 @@ curl.exe -sI https://iprash.github.io/aigov/assets/style.css | Select-Object -Fi
 | Files show modified, `git diff` empty | Python wrote CRLF on Windows; `autocrlf=true` normalised it on comparison | `build.py` writes LF explicitly; `.gitattributes` enforces it; `git add -A` clears the flag |
 | — | `robocopy` returns exit code 1 on success | Not an error |
 | — | Bare `curl` in PowerShell is `Invoke-WebRequest` | Use `curl.exe` |
+| `device_bash` (Claude's shell on this machine) dead: "no Plan9 drive shares mounted" | Windows update KB5124008/KB5124012 (8 Sept 2026) broke Cowork's Plan9 folder-sharing on Windows. Confirmed by Anthropic and Microsoft; no fix shipped yet as of 14 Sept 2026 | No repo-side fix. Workaround in the meantime: build/generate files in Claude's cloud workspace instead of on this machine, then transfer with `device_stage_files` / `device_commit_files`, which still work. Used to build the `frontier-engineer` site. Revert to running `build.py` directly on this machine once Microsoft ships the fix — check status.claude.com |
 
 Repo was deleted and recreated clean in Sept 2026 after the TPM project-site repo and the user
 site repo both tried to serve `/TPM/`. Old `github.com/iPrash/TPM` should be archived once
@@ -126,10 +138,17 @@ site repo both tried to serve `/TPM/`. Old `github.com/iPrash/TPM` should be arc
 - **localStorage only.** No accounts, no sync, no analytics. Progress does not follow between
   devices, and that is accepted.
 - **Site tooling at repo root, not per site.** One build script serves all sites.
+- **localStorage keys are namespaced per site** (e.g. aigov's `xyzai.*`, frontier-engineer's
+  `fe.*`). All sites share one origin, so two sites reusing the same key prefix would silently
+  overwrite each other's reading progress. Pick a short, distinct prefix for every new site.
 
 ## 8. Open items
 
 - Archive `github.com/iPrash/TPM` once `/TPM/` is confirmed working from this repo.
-- A third site is planned. Follow `_project/NEW-SITE.md`.
 - `aigov` evidence was last checked 17 Aug 2026 and includes at least one now-passed date.
   See its site brief.
+- `frontier-engineer` added Sept 2026. Its resource links were checked 14 Sept 2026; see its
+  site brief for the re-verification cadence.
+- `device_bash` (Claude's shell on this machine) has been down since 8 Sept 2026 pending a
+  Microsoft fix for the Plan9 regression. See §6. Nothing to do here except wait and use the
+  stage/commit workaround for anything that needs a build step.
