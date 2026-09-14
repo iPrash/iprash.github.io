@@ -1,0 +1,188 @@
+{{HEAD}}
+{{NAV}}
+
+<div class="wrap">
+
+  <section class="hero">
+    <span class="eyebrow">Enterprise Architecture · Engagement workspace</span>
+    <h1>The plan runs backwards from the renewal date.</h1>
+    <p class="lede">Three workstreams, eleven deliverables, twelve weeks — supporting <b>three decisions</b>:
+      what XYZ signs at renewal, which models run through which platform, and where it builds, buys or partners.
+      Everything on this site serves one of those three.</p>
+
+    <div class="ruler">
+      <div class="ruler-head">
+        <span class="eyebrow">Twelve-week execution calendar</span>
+        <span class="eyebrow">Playbook §10 · phases §2.2</span>
+      </div>
+
+      <div class="bands" aria-hidden="true">
+        <span class="band b0" style="grid-column:1 / span 2">P0 Mobilise</span>
+        <span class="band b1" style="grid-column:3 / span 3">P1 Baseline</span>
+        <span class="band b2" style="grid-column:6 / span 3">P2 Analyse</span>
+        <span class="band b3" style="grid-column:9 / span 3">P3 Recommend</span>
+        <span class="band b4" style="grid-column:12 / span 2">P4 Operationalise</span>
+      </div>
+
+      <div class="ruler-grid">
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="pin"></span><span class="wk-num">00</span><span class="wk-lab">Data request<br>Renewal date</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="wk-num">01</span><span class="wk-lab">Admin API<br>Steering 1</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="wk-num">02</span><span class="wk-lab">Truth layer<br>Sentiment</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="wk-num">03</span><span class="wk-lab">Segmentation<br>Diary study</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="pin"></span><span class="wk-num">04</span><span class="wk-lab">Baseline<br>locked</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="wk-num">05</span><span class="wk-lab">Attribution<br>Latency tests</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="wk-num">06</span><span class="wk-lab">Governance<br>Cost model</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="wk-num">07</span><span class="wk-lab">Routing table<br>Steering 3</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="wk-num">08</span><span class="wk-lab">Forecast<br>BATNA</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="pin"></span><span class="wk-num">09</span><span class="wk-lab">Negotiation<br>brief</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="pin"></span><span class="wk-num">10</span><span class="wk-lab">D1 &amp; D3<br>taken</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="wk-num">11</span><span class="wk-lab">Client runs<br>the cycle</span></a>
+        <a class="wk" href="playbook.html#part-10-twelve-week-execution-calendar"><span class="wk-num">12</span><span class="wk-lab">Handover<br>Closeout</span></a>
+      </div>
+
+      <div class="ruler-foot">
+        <div class="rcalc">
+          <label for="renewalDate"><span class="eyebrow">Renewal date (R)</span></label>
+          <input type="date" id="renewalDate" aria-describedby="renewalStatus">
+          <span id="renewalStatus" class="eyebrow">not set</span>
+        </div>
+        <span class="eyebrow">Stored in this browser only</span>
+      </div>
+
+      <div class="backdates" id="backdates"></div>
+    </div>
+    <p class="note" style="margin-top:14px">On mobile the ruler shows weeks 00–06. Open the playbook for the full calendar.</p>
+  </section>
+
+  <section class="sec">
+    <span class="eyebrow">Do these first · playbook §2.8</span>
+    <h2>Five things that are time-critical</h2>
+    <div class="urgent">
+      <div class="urgent-head">
+        <strong>Two of these expire</strong>
+        <span class="eyebrow">Week 0 — before any analysis starts</span>
+      </div>
+      <ul class="ulist">
+        <li>
+          <span class="n">01</span>
+          <span class="t"><b>Fix the renewal date and contract vehicle</b>
+            <span>Ask for the order form and master agreement. Note whether ChatGPT Enterprise and the API platform sit on one paper or two.</span></span>
+          <span class="chip">Blocking</span>
+        </li>
+        <li>
+          <span class="n">02</span>
+          <span class="t"><b>Request OpenAI admin access</b>
+            <span>Admin API key, Global Admin Console analytics, billing invoices. Approvals take days — raise on day 1, not week 2.</span></span>
+          <span class="chip">Blocking</span>
+        </li>
+        <li>
+          <span class="n">03</span>
+          <span class="t"><b>Export the Copilot trial data before it is unreachable</b>
+            <span>Billing usage reports and metrics history for a cancelled subscription do not stay available. Missing trial data is the most likely cause of a weak Workstream 2.</span></span>
+          <span class="chip hot">Expiring</span>
+        </li>
+        <li>
+          <span class="n">04</span>
+          <span class="t"><b>Check the model retirement calendar</b>
+            <span>GPT-5.4 and GPT-5.4 mini retire in Codex for ChatGPT-signed-in users on 31 Aug 2026, replaced by GPT-5.6 Terra and Luna. Pinned workspace defaults and automations break.</span></span>
+          <span class="chip hot" id="codexDays">—</span>
+        </li>
+        <li>
+          <span class="n">05</span>
+          <span class="t"><b>Ask about weekly role-based limits</b>
+            <span>Remaining ChatGPT Enterprise workspaces migrate to monthly usage limits during August 2026. A migration mid-baseline distorts period comparisons. Record the date it happens.</span></span>
+          <span class="chip">Data quality</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <span class="eyebrow">What the client is actually buying</span>
+    <h2>Three decisions</h2>
+    <div class="grid g3">
+      <a class="card" href="playbook.html#37-renewal-negotiation-brief">
+        <span class="code">D1 · Workstream 1</span>
+        <h3>What do we sign, and on what structure?</h3>
+        <p>Consumption baseline, seven-cohort segmentation, token governance, and the ask ladder with a costed BATNA behind it.</p>
+        <span class="go">Open workstream 1 →</span>
+      </a>
+      <a class="card" href="playbook.html#part-4-workstream-2-multi-model-access-strategy">
+        <span class="code">D2 · Workstream 2</span>
+        <h3>One model platform, or several?</h3>
+        <p>The Copilot post-mortem as trust repair, the 20–30% hypothesis tested against telemetry, and the gateway that makes substitution cheap.</p>
+        <span class="go">Open workstream 2 →</span>
+      </a>
+      <a class="card" href="playbook.html#part-5-workstream-3-genai-landscape-review">
+        <span class="code">D3 · Workstream 3</span>
+        <h3>Build, buy, partner — or consume?</h3>
+        <p>Twelve capability domains for a fashion brand, evidence-graded vendor scorecards, and the estate cross-check that finds the duplication.</p>
+        <span class="go">Open workstream 3 →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <span class="eyebrow">The two documents</span>
+    <h2>Read and track</h2>
+    <div class="grid g2">
+      <a class="card" href="playbook.html">
+        <span class="code">~15,000 words · 11 parts</span>
+        <h3>Engagement playbook</h3>
+        <p>Framing, engagement design, the three workstreams in method-level detail, the CoE build, the compliance overlay, templates, anti-patterns and the week-by-week calendar.</p>
+        <span class="go"><span id="pct-playbook">0% read</span> → open</span>
+      </a>
+      <a class="card" href="resources.html">
+        <span class="code">12 sections · 100+ sources</span>
+        <h3>Resource library</h3>
+        <p>A two-week study sprint plus graded sources: OpenAI and Copilot admin docs, Bedrock, FinOps 2026, the AI Act position, OWASP, DORA and SPACE, gateways, CoE patterns and fashion-retail market material.</p>
+        <span class="go"><span id="pct-resources">0% read</span> → open</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <span class="eyebrow">Hold the line on these</span>
+    <h2>Operating principles</h2>
+    <dl class="dl">
+      <div><dt>01</dt><dd><b>Evidence over assertion</b><span>Every number carries a source, a date and a confidence grade.</span></dd></div>
+      <div><dt>02</dt><dd><b>Decisions, not documents</b><span>Each deliverable ends with a recommended decision, an owner and a date.</span></dd></div>
+      <div><dt>03</dt><dd><b>Show the working</b><span>Publish the model and the assumptions. Let the client change one and watch the answer move.</span></dd></div>
+      <div><dt>04</dt><dd><b>No surprises upward</b><span>Bad news travels immediately, with an option attached.</span></dd></div>
+      <div><dt>05</dt><dd><b>Leave the capability behind</b><span>Every model, dashboard and register handed over with a run-book.</span></dd></div>
+      <div><dt>06</dt><dd><b>Separate reversible from irreversible</b><span>Move fast on reversible choices. Slow down for contract terms, data flows and exit costs.</span></dd></div>
+    </dl>
+  </section>
+
+  <section class="sec">
+    <span class="eyebrow">Regulatory clock · playbook §7.1</span>
+    <h2>What already applies</h2>
+    <div class="grid g3">
+      <div class="card">
+        <span class="code">2 Aug 2026 · live now</span>
+        <h3>Article 50 transparency</h3>
+        <p>Disclose AI interaction and AI-generated or manipulated content. Not deferred. For a fashion brand generating campaign imagery, this is live exposure this quarter.</p>
+      </div>
+      <div class="card">
+        <span class="code">2 Dec 2026 · imminent</span>
+        <h3>Marking rules and new prohibitions</h3>
+        <p>Article 50(2) marking extends to systems already on the market, and the new prohibitions take effect.</p>
+      </div>
+      <div class="card">
+        <span class="code">2 Dec 2027 / 2 Aug 2028</span>
+        <h3>High-risk obligations</h3>
+        <p>Deferred by Regulation (EU) 2026/1744. Recruitment tooling is the likely Annex III exposure — the clock is running.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="foot"><div class="wrap"><div class="wrapin">
+  <span>Market evidence checked {{EVIDENCE}}. Re-verify every price and date against the primary source before client use.</span>
+  <span>Progress and the renewal date are stored in this browser only.</span>
+</div></div></footer>
+<button class="totop" type="button" aria-label="Back to top">&#8593;</button>
+<script src="assets/app.js"></script>
+</body>
+</html>

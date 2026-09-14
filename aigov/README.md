@@ -65,3 +65,19 @@ Both document pages have print styles: the navigation, sidebar and toggles drop 
 ---
 
 Market evidence in these documents was checked on 17 August 2026. Re-verify every price, SKU and date against the primary source before putting a figure in front of a client.
+
+## Rebuilding
+
+The HTML pages are generated from the markdown. Never hand-edit them.
+
+```
+pip install markdown
+cd aigov
+python _build/build.py
+```
+
+Edit `playbook.md` or `resources.md` for content, `_build/index_template.html` for the
+home page, and `assets/style.css` or `assets/app.js` for styling and behaviour. Those
+last three are hand-maintained and are not touched by the build.
+
+`_project/` holds the Claude Project handoff documents. It is not part of the site.
