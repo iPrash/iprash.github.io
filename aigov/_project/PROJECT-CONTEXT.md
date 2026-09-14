@@ -15,7 +15,7 @@
 | Sibling site | https://iprash.github.io/TPM/ (Senior TPM interview prep) |
 | Landing page | https://iprash.github.io/ |
 | Repo | github.com/iPrash/iprash.github.io |
-| Local | `C:\Users\ipras\OneDrive\workspace\iprash.github.io` |
+| Local | `C:\Users\ipras\OneDrive\Documents\Claude\iprash.github.io` |
 
 ## 2. Repository layout
 
@@ -45,7 +45,7 @@ GitHub Pages: **Deploy from a branch → main → / (root)**. No Actions workflo
 ## 3. Build and deploy
 
 ```powershell
-cd C:\Users\ipras\OneDrive\workspace\iprash.github.io\aigov
+cd C:\Users\ipras\OneDrive\Documents\Claude\iprash.github.io\aigov
 python _build\build.py          # needs: pip install markdown
 cd ..
 git add -A
@@ -137,3 +137,4 @@ Three-hour priority order if time collapses: §3.7 negotiation brief → §4.0�
 - Archive `github.com/iPrash/TPM` once `/TPM/` is confirmed serving from the consolidated repo.
 - Nothing in the documents has been re-verified since 17 Aug 2026.
 - Considered and not done: shared CSS across TPM and aigov, a search across both documents, cross-device progress sync.
+
