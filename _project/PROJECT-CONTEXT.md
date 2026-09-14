@@ -54,7 +54,9 @@ iprash.github.io/
 │   ├── build.py
 │   └── templates/landing.html
 └── _project/
-    ├── PROJECT-INSTRUCTIONS.md
+    ├── README-FIRST.md          entry point — Claude reads this first
+    ├── INSTRUCTIONS-FIELD.txt   the text pasted into the Claude Project settings
+    ├── PROJECT-INSTRUCTIONS.md  full working rules
     ├── PROJECT-CONTEXT.md       this file
     ├── NEW-SITE.md
     └── sites/{TPM.md,aigov.md,_TEMPLATE.md}

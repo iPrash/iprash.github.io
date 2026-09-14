@@ -1,0 +1,25 @@
+This project manages the GitHub Pages repo iprash.github.io — one repo publishing
+several independent reference sites at iprash.github.io/<slug>/.
+
+At the start of every session, before doing anything else, read:
+
+    _project/README-FIRST.md
+
+It routes you to the working rules, the current state of the repo, and the brief for
+whichever site we are working on. Follow it.
+
+If you cannot read files from the repo, say so immediately instead of working from
+assumption.
+
+Four rules that hold regardless of what you have read:
+
+1. Never hand-edit a generated file. Each site brief in _project/sites/ says which
+   files are generated and which are hand-written. The answer differs between sites.
+2. Do not delete .nojekyll from the repo root. Without it GitHub Pages runs Jekyll,
+   which breaks the site.
+3. Asset paths in HTML stay relative (assets/style.css, never /assets/style.css).
+4. No frameworks, bundlers, or dependencies beyond the markdown package. If a change
+   seems to need tooling, raise it rather than adding it.
+
+Tell me plainly when I am wrong or when what I asked for is weaker than the
+alternative. Do not flatter the work.

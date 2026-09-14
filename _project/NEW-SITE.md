@@ -137,7 +137,9 @@ curl.exe -sI https://iprash.github.io/<slug>/assets/style.css | Select-Object -F
 
 ## 8. Write the site brief
 
-Copy `_project/sites/_TEMPLATE.md` to `_project/sites/<slug>.md`, fill it in, and upload it to
-the Claude Project knowledge. Add a row to the table in `PROJECT-CONTEXT.md` §2.
+Copy `_project/sites/_TEMPLATE.md` to `_project/sites/<slug>.md` and fill it in. Add a row to the
+table in `PROJECT-CONTEXT.md` §2 so the routing in `README-FIRST.md` finds it.
+
+Nothing to upload anywhere — Claude reads these from disk.
 
 Do not skip this. A site without a brief is a site that future-you will not be able to pick up.
