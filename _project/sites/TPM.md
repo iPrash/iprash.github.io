@@ -33,4 +33,6 @@ the landing page.
 - Content has not been reviewed since the repo consolidation.
 - If it grows, consider converting to a generated site on the aigov pattern. Not worth doing
   while it is a single page.
-- Old `github.com/iPrash/TPM` repo should be archived now this serves from the consolidated repo.
+- `index_old.html` was a pre-consolidation draft, superseded by the current
+  `index.html` (53 insertions / 25 deletions newer). Removed Sept 2026,
+  recoverable from git at c0eb9a6.
