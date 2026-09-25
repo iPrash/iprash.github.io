@@ -54,14 +54,15 @@ FAVICON = ("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='
            "font-family='monospace' fill='white'>{glyph}</text></svg>")
 
 
-def head(title, desc, css="assets/style.css", glyph="AI"):
+def head(title, desc, css="assets/style.css", glyph="AI", noindex=False):
+    robots = '\n<meta name="robots" content="noindex,nofollow">' if noindex else ""
     return f"""<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="{desc}">
+<meta name="description" content="{desc}">{robots}
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -194,7 +195,8 @@ def build_site(cfg):
             sys.exit(f"  Missing source: {src}")
         body = "\n".join("      " + line for line in md_to_html(src).split("\n"))
         write(site / p["out"], DOCPAGE.format(
-            head=head(p["title"], p["desc"], glyph=cfg.get("glyph", "AI")),
+            head=head(p["title"], p["desc"], glyph=cfg.get("glyph", "AI"),
+                      noindex=cfg.get("noindex", False)),
             nav=nav(cfg, p["out"]),
             docid=p["id"], body=body, md=p["src"], footer=footer))
 
@@ -205,22 +207,63 @@ def build_site(cfg):
             sys.exit(f"  Missing template: {tpl}")
         out = tpl.read_text(encoding="utf-8")
         out = out.replace("{{HEAD}}", head(cfg["index_title"], cfg["index_desc"],
-                                           glyph=cfg.get("glyph", "AI")))
+                                           glyph=cfg.get("glyph", "AI"),
+                                           noindex=cfg.get("noindex", False)))
         out = out.replace("{{NAV}}", nav(cfg, "index.html"))
         out = out.replace("{{FOOTER}}", footer)
         out = out.replace("{{EVIDENCE}}", cfg.get("evidence_date", ""))
         write(site / "index.html", out)
 
 
+def load_projects():
+    """The portfolio list. Separate from the site list, because a project may
+    live in another repo, or be a link with no page in this repo at all."""
+    path = HERE / "projects.json"
+    if not path.exists():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return [p for p in data.get("projects", []) if p.get("listed", True)]
+
+
+def project_card(p):
+    """One card. Uses assets/shots/<slug>.png when present, and falls back to a
+    generated tile so a project without a screenshot still renders complete."""
+    slug = p.get("slug", "")
+    shot = REPO / "assets" / "shots" / f"{slug}.png"
+    if shot.exists():
+        media = f'<img src="assets/shots/{slug}.png" alt="{p["title"]} screenshot" loading="lazy">'
+    else:
+        media = ('<span class="tile" aria-hidden="true">'
+                 f'<b>{p.get("glyph", "")}</b></span>')
+
+    tags = "".join(f"<em>{t}</em>" for t in p.get("tags", []))
+    repo = p.get("repo", "")
+    source = f'<a class="src" href="{repo}">Source</a>' if repo else ""
+    status = p.get("status", "")
+    badge = f'<span class="status">{status}</span>' if status else ""
+
+    return f"""  <article class="card" style="--accent:{p.get('accent', '#0B5563')}">
+    <a class="shot" href="{p['url']}" tabindex="-1" aria-hidden="true">{media}</a>
+    <div class="meta">
+      <h2><a href="{p['url']}">{p['title']}</a></h2>
+      <p>{p.get('blurb', '')}</p>
+      <div class="tags">{tags}</div>
+      <div class="links">{badge}{source}</div>
+    </div>
+  </article>"""
+
+
 def build_landing(sites):
+    """The landing page is a project index. Learning sites are deliberately not
+    listed here; they are reached through learning/ instead."""
     print("[landing]")
     tpl = TEMPLATES / "landing.html"
     if not tpl.exists():
         sys.exit(f"Missing template: {tpl}")
-    cards = "\n".join(
-        '<a href="{slug}/">{title}<span>{blurb}</span></a>'.format(
-            slug=c["slug"], title=c["title"], blurb=c.get("blurb", ""))
-        for c in sites if c.get("listed", True))
+    projects = load_projects()
+    if not projects:
+        print("  note: _build/projects.json is missing or empty")
+    cards = "\n".join(project_card(p) for p in projects)
     write(REPO / "index.html", tpl.read_text(encoding="utf-8").replace("{{CARDS}}", cards))
 
 

@@ -1,0 +1,9 @@
+{
+  "slug": "FIFA26",
+  "order": 10,
+  "title": "MyFIFA26",
+  "blurb": "World Cup 2026 what-if analyser",
+  "static": true,
+  "listed": false,
+  "note": "Hand-written single-file app, moved in from its own repo Sept 2026. Static: no markdown sources and no pages list, so the build never touches it. It does not appear on the landing page from here; the portfolio card comes from _build/projects.json instead. Registers a service worker scoped to /FIFA26/, so the folder name must not change."
+}

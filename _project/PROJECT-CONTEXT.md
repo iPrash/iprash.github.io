@@ -2,7 +2,7 @@
 
 *Upload to project knowledge. Update when something material changes.*
 
-**Last updated:** 14 September 2026
+**Last updated:** 25 September 2026
 
 ---
 
@@ -22,11 +22,22 @@ One repo, one Pages site, several subsites at `/<slug>/`.
 
 ## 2. Sites
 
+The root page is a **project index**. Study material is deliberately not listed on it.
+
+**Projects** (shown on the landing page, driven by `_build/projects.json`):
+
 | Slug | URL | Title | Type | Brief |
 |---|---|---|---|---|
-| `TPM` | /TPM/ | Senior TPM interview prep | Static HTML | `_project/sites/TPM.md` |
+| `FIFA26` | /FIFA26/ | MyFIFA26, World Cup 2026 what-if analyser | Static HTML, PWA | `_project/sites/FIFA26.md` |
+
+**Learning sites** (unlisted and noindexed, reached only through /learning/):
+
+| Slug | URL | Title | Type | Brief |
+|---|---|---|---|---|
+| `learning` | /learning/ | Hub listing the three study sites | Static HTML | this file |
+| `frontier-engineer` | /frontier-engineer/ | Frontier Engineer: Lead → Principal | Generated from markdown | `_project/sites/frontier-engineer.md` |
 | `aigov` | /aigov/ | AI governance & multi-model strategy | Generated from markdown | `_project/sites/aigov.md` |
-| `frontier-engineer` | /frontier-engineer/ | Frontier Engineer → Principal learning roadmap | Generated from markdown | `_project/sites/frontier-engineer.md` |
+| `TPM` | /TPM/ | Senior TPM interview prep | Static HTML | `_project/sites/TPM.md` |
 
 Read the site brief before working on a site. Conventions differ between them.
 
@@ -37,7 +48,10 @@ iprash.github.io/
 ├── .nojekyll                    disables Jekyll — do not delete
 ├── .gitattributes               * text=auto eol=lf
 ├── .gitignore                   Thumbs.db, desktop.ini, .DS_Store, *.zip
-├── index.html                   GENERATED landing page
+├── index.html                   GENERATED project index, from _build/projects.json
+├── assets/shots/                landing page screenshots, <slug>.png, optional
+├── FIFA26/                      static single-file PWA, moved in from its own repo
+├── learning/                    static hub, unlisted, reached from the footer mark
 ├── TPM/
 │   ├── _site.json               static, no pages list
 │   └── index.html               hand-written
@@ -63,6 +77,7 @@ iprash.github.io/
 │                                    localStorage prefix changed to avoid cross-site collision
 ├── _build/
 │   ├── build.py
+│   ├── projects.json            the portfolio list shown on the landing page
 │   └── templates/landing.html
 └── _project/
     ├── README-FIRST.md          entry point — Claude reads this first
@@ -80,10 +95,15 @@ are not part of any site.
 
 `build.py` globs `*/_site.json` to discover sites. Each config drives:
 
-- the landing page card (`title`, `blurb`, `order`, `listed`)
 - the nav bar, derived from `pages` so it stays in sync automatically
 - page titles, descriptions and the footer line
 - whether the site is generated at all — a config without `pages` is static and untouched
+- `noindex: true` adds a `robots` meta to every page the build generates for that site
+
+**The landing page no longer comes from the site list.** It is built from
+`_build/projects.json`, which is a separate list on purpose: a project may live in another
+repo, or be a link with no page here at all. A folder having a `_site.json` no longer puts it
+on the front page. See §9.
 
 ```
 python _build/build.py             everything
@@ -138,17 +158,62 @@ site repo both tried to serve `/TPM/`. Old `github.com/iPrash/TPM` should be arc
 - **localStorage only.** No accounts, no sync, no analytics. Progress does not follow between
   devices, and that is accepted.
 - **Site tooling at repo root, not per site.** One build script serves all sites.
+- **The landing page is a project index, not a directory of everything here.** Study material
+  is reachable but not advertised. What is on the front page is decided by
+  `_build/projects.json` alone.
+- **Hidden means tidy, not private.** This repo is public, so anyone can read every folder
+  whatever the landing page links to. The noindex tags keep the study sites out of search
+  results; they do not restrict access, and nothing here should be treated as if they did.
 - **localStorage keys are namespaced per site** (e.g. aigov's `xyzai.*`, frontier-engineer's
   `fe.*`). All sites share one origin, so two sites reusing the same key prefix would silently
   overwrite each other's reading progress. Pick a short, distinct prefix for every new site.
 
-## 8. Open items
+## 9. The portfolio list
+
+`_build/projects.json` holds one entry per card, in display order:
+
+```json
+{
+  "slug": "FIFA26",
+  "title": "MyFIFA26",
+  "url": "FIFA26/",
+  "repo": "https://github.com/iPrash/FIFA26",
+  "blurb": "One or two sentences.",
+  "tags": ["Single file", "No dependencies"],
+  "status": "Live",
+  "glyph": "26",
+  "accent": "#1E6B4F",
+  "listed": true
+}
+```
+
+- `url` is relative when the path is served from iprash.github.io, so an entry does not need
+  editing when a project is consolidated into this repo from its own.
+- A card uses `assets/shots/<slug>.png` when that file exists, and falls back to a generated
+  tile built from `glyph` and `accent` when it does not. The check happens at build time.
+  Roughly 16:10 suits the card; about 1200px wide is plenty.
+- `listed: false` parks an entry without deleting it.
+- Adding a project needs no folder here. An entry pointing at an external URL is enough.
+
+## 10. Open items
 
 - Archive `github.com/iPrash/TPM` once `/TPM/` is confirmed working from this repo.
 - `aigov` evidence was last checked 17 Aug 2026 and includes at least one now-passed date.
   See its site brief.
 - `frontier-engineer` added Sept 2026. Its resource links were checked 14 Sept 2026; see its
   site brief for the re-verification cadence.
+- **No `robots.txt` yet, deliberately.** A disallow would stop crawlers fetching the study
+  pages, and a crawler that cannot fetch a page never sees its noindex, so anything already
+  indexed could sit there indefinitely. Let the noindex tags de-index them first, over a few
+  weeks, then add a disallow if it still seems worth it.
+- The FIFA26 card shows the fallback tile until a screenshot is added at
+  `assets/shots/FIFA26.png`.
+- Other projects to write cards for when ready: FlippedMath, Language Conversation,
+  Progressive_ACV. Each needs a line of description and a decision on whether it goes public.
+- The old `github.com/iPrash/FIFA26` repo should be archived now the app is served from here.
+  Unpublishing its Pages site is reversible: any future commit to its publishing branch
+  republishes it and the `/FIFA26/` collision returns. Archiving makes it read-only, which
+  makes the unpublish stick.
 - `device_bash` (Claude's shell on this machine) has been down since 8 Sept 2026 pending a
   Microsoft fix for the Plan9 regression. See §6. Nothing to do here except wait and use the
   stage/commit workaround for anything that needs a build step.

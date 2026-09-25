@@ -1,0 +1,2839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#1f9d57">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>MyFIFA26 - World Cup 2026</title>
+<style>
+  :root{
+    --ink:#0d1b14;          /* near-black green ink */
+    --paper:#f6f5ef;        /* warm paper */
+    --line:#d9d7cc;         /* hairline */
+    --pitch:#1f9d57;        /* qualification green */
+    --pitch-dk:#13713d;
+    --board:#163d2a;        /* LED board bg */
+    --board-stripe:#1c4a33;
+    --chalk:#f5faf7;        /* board text */
+    --muted:#7e8b82;
+    --gold:#e8b53a;         /* group winner */
+    --silver:#9fb6c9;       /* runner-up */
+    --bronze:#cf915a;       /* third place */
+    --pickdraw:#5b6e7e;
+    --pick-clr:var(--gold);   /* changes per pick mode: blue=likely, green=my, gold=default */
+    --pick-bg:rgba(218,165,32,.12);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0}
+  body{
+    background:var(--paper);color:var(--ink);
+    font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+  }
+  /* ---------- sticky qualification board ---------- */
+  .top-sticky{position:sticky;top:0;z-index:50;background:var(--paper)}
+  .board{
+    background:
+      repeating-linear-gradient(90deg,var(--board) 0 14px,var(--board-stripe) 14px 28px);
+    color:var(--chalk);
+    padding:8px 8px 6px;
+    box-shadow:0 6px 14px -8px rgba(0,0,0,.6);
+    border-bottom:2px solid var(--pitch);
+  }
+  .board__head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding:0 2px 6px;
+  }
+  .board__title{font-weight:800;letter-spacing:.04em;font-size:13px;text-transform:uppercase}
+  .board__title b{color:var(--pitch)}
+  .board__count{font-size:11px;color:#bcd2c2}
+  .board__count strong{color:var(--gold)}
+
+  /* scroll region holding the group cards + thirds */
+  .boardbody{max-height:50vh;overflow:auto;padding-right:2px}
+
+  /* ----- 12 colour-coded group cards (top 24) ----- */
+  .groups{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+  .gcard{
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+    border-top:2px solid var(--gc);border-radius:7px;overflow:hidden;cursor:pointer
+  }
+  .gcard__h{
+    font:800 10px/1 ui-monospace,monospace;color:var(--gc);
+    padding:3px 6px 1px;letter-spacing:.06em;display:flex;justify-content:space-between;align-items:center
+  }
+  .gcard__h .lkmark{font-size:8px}
+  .gteam{display:flex;align-items:center;gap:4px;padding:2px 6px 2px 5px}
+  .gteam:last-child{padding-bottom:3px}
+  .gteam .rk{font:800 8px/1 ui-monospace,monospace;color:var(--gc);width:6px;flex:none;opacity:.85}
+  .gteam .flag{width:17px;height:13px;flex:none}
+  .gteam .cd{font:700 11px/1 ui-monospace,monospace;color:var(--chalk);letter-spacing:.02em}
+  .gteam .pt{margin-left:auto;font:700 10px/1 ui-monospace,monospace;color:#acc2b6;flex:none}
+  .gteam.prov{opacity:.55}
+
+  /* ----- best-eight third-place chips ----- */
+  .thirds-h{
+    display:flex;align-items:center;gap:7px;margin:9px 2px 5px;
+    font:800 9px/1 ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:#9fb3a7
+  }
+  .thirds-h::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.12)}
+  .thirds{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+  .tchip{
+    display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);border-left:3px solid var(--gc);
+    border-radius:6px;padding:3px 5px
+  }
+  .tchip .gg{font:800 8px/1 ui-monospace,monospace;color:var(--gc);flex:none}
+  .tchip .flag{width:16px;height:12px;flex:none}
+  .tchip .cd{font:700 11px/1 ui-monospace,monospace;color:var(--chalk)}
+  .tchip .pt{margin-left:auto;font:700 9px/1 ui-monospace,monospace;color:#acc2b6;flex:none}
+  .tchip.cut{opacity:.3}                  /* below the qualification line */
+
+  /* toggle switch */
+  .toggle{display:flex;align-items:center;gap:5px;cursor:pointer}
+  .toggle__lbl{font:600 8px/1 ui-monospace,monospace;color:#9fb3a7;letter-spacing:.02em}
+  .toggle__lbl.active{color:var(--chalk)}
+  .toggle__track{
+    width:26px;height:14px;background:rgba(255,255,255,.18);border-radius:7px;
+    position:relative;transition:background .2s;flex:none
+  }
+  .toggle__track.on{background:var(--pitch)}
+  .toggle__knob{
+    position:absolute;top:2px;left:2px;width:10px;height:10px;
+    background:#fff;border-radius:50%;transition:left .2s
+  }
+  .toggle__track.on .toggle__knob{left:14px}
+
+  /* full-group extras */
+  .gteam .gd{font:600 9px/1 ui-monospace,monospace;color:#8aa;margin-left:2px;flex:none}
+  .gteam.elim{opacity:.35}
+  .groups.full{grid-template-columns:repeat(3,1fr)}
+
+  .board__legend{display:flex;gap:10px;flex-wrap:wrap;padding:6px 2px 0;font-size:9.5px;color:#9fb3a7}
+  .board__legend i{font-style:normal}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:3px;vertical-align:middle;background:#acc2b6}
+
+  /* drawer toggle */
+  .board__drawer{
+    display:flex;align-items:center;justify-content:center;
+    width:44px;height:22px;margin:0 auto;
+    border:2px solid var(--pitch);border-top:none;
+    border-radius:0 0 10px 10px;
+    background:var(--pitch);color:#fff;
+    font-size:18px;cursor:pointer;line-height:1;
+  }
+  .board__drawer svg{transition:transform .2s}
+  .board__drawer.expanded svg{transform:rotate(180deg)}
+  .board__drawer:hover,.board__drawer:active{background:var(--pitch-dk)}
+  .board.collapsed .boardbody{max-height:68px;overflow:hidden;transition:max-height .3s ease}
+  .board:not(.collapsed) .boardbody{max-height:50vh;transition:max-height .3s ease}
+  .board.collapsed .board__legend{display:none}
+
+  /* ---------- controls ---------- */
+  .bar-wrap{
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    margin-top:6px;padding:0 8px 2px;
+  }
+  .bar{
+    display:flex;gap:6px;align-items:center;
+    padding:7px 5px;max-width:560px;margin:0 auto;
+  }
+  .bar__left,.bar__right{flex:1;min-width:0}
+  .bar__left{display:flex;align-items:center;gap:2px}
+  .bar__center{flex:none;display:flex;gap:4px;align-items:center}
+  .bar__right{display:flex;justify-content:flex-end}
+  .bar p{margin:0;font-size:11px;line-height:1.35;color:var(--muted);margin-right:4px}
+  .btn{
+    font:600 9px/1.15 system-ui;border:1px solid var(--line);background:#fff;
+    color:var(--ink);padding:4px 4px;border-radius:6px;cursor:pointer;
+    text-align:center;white-space:nowrap
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn--likely{border-color:rgba(74,144,217,.45);color:rgba(74,144,217,.7)}
+  .btn--likely.btn--active{border-color:#4a90d9;color:#4a90d9}
+  .btn--my{border-color:rgba(46,204,113,.45);color:rgba(46,204,113,.7)}
+  .btn--my.btn--active{border-color:#2ecc71;color:#2ecc71}
+  .btn--danger{border-color:rgba(192,57,43,.45);color:rgba(192,57,43,.7)}
+  .btn--danger.btn--active{border-color:#c0392b;color:#c0392b}
+  .btn--pitch{border-color:#48a6f5;color:#2a6fad}
+  .btn--refresh{position:relative;overflow:hidden;padding:4px 6px}
+  .btn--refresh.cooldown{opacity:.45}
+  .btn--refresh.cooldown::after{
+    content:"";position:absolute;bottom:0;left:0;height:2px;
+    background:#48a6f5;animation:refill 30s linear forwards
+  }
+  @keyframes refill{from{width:0}to{width:100%}}
+  .btn--share{border-color:var(--silver);color:#3c5a70}
+  .bar__btns{display:flex;gap:4px;flex-shrink:0}
+  .btn-duo{display:flex;border-radius:6px;border:1px solid transparent}
+  .btn-duo .btn:first-child{border-radius:6px 0 0 6px;border-right:none}
+  .btn-duo .btn:last-child{border-radius:0 6px 6px 0;padding:5px 6px}
+  .btn--active{border-width:2px!important;font-weight:700}
+  .btn--my-share{font-size:13px;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(46,204,113,.3)!important}
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:#fff;padding:8px 16px;border-radius:8px;
+    font:600 12px/1.3 system-ui;z-index:999;opacity:0;transition:opacity .3s;
+    pointer-events:none
+  }
+  .toast.show{opacity:1}
+
+  /* ---------- panel container (swipeable on mobile, side-by-side on desktop) ---------- */
+  .panels{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:smooth;
+  }
+  .panel{
+    flex:0 0 100%;
+    min-width:0;
+    scroll-snap-align:start;
+  }
+  .panel--fixtures{padding-bottom:48px}
+  .panel--bracket{padding-bottom:48px}
+
+  /* tab bar (mobile only) */
+  .tabs{
+    display:flex;gap:0;border-bottom:1px solid var(--line);
+    background:var(--paper);max-width:560px;margin:0 auto;padding:0 10px;
+  }
+  .tab{
+    flex:1;padding:8px 0 6px;text-align:center;
+    font:700 11px/1 ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;
+    background:none;border-top:none;border-left:none;border-right:none;
+    transition:color .2s,border-color .2s
+  }
+  .tab.active{color:var(--pitch-dk);border-bottom-color:var(--pitch)}
+
+  @media(min-width:768px){
+    .panels{overflow:visible;scroll-snap-type:none}
+    .panel{flex:0 0 50%}
+    .tabs{display:none}
+  }
+
+  /* ---------- fixtures ---------- */
+  .fix-inner{max-width:560px;margin:0 auto;padding:4px 10px}
+  .day{margin-top:14px}
+  .day__h{
+    display:flex;align-items:center;gap:5px;margin:0 2px 7px;white-space:nowrap;
+    font:800 12px/1 ui-monospace,monospace;letter-spacing:.03em;text-transform:uppercase;color:var(--pitch-dk)
+  }
+  .day__h::after{content:"";flex:1;height:1px;background:var(--line)}
+  .day__h .tag{color:var(--muted);font-weight:600;letter-spacing:0;text-transform:none}
+  .day__h .grp-link{color:var(--pitch-dk);text-decoration:underline;text-decoration-style:dotted;cursor:pointer}
+
+  .match{
+    display:grid;grid-template-columns:22px 1fr;gap:2px;align-items:center;
+    background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:2px 9px 8px;margin-bottom:7px;
+  }
+  .match__venue{
+    grid-column:1/-1;position:relative;text-align:center;
+    font:600 10px/1 ui-monospace,monospace;color:var(--muted);
+    padding:0;margin:0;min-height:14px;
+  }
+  .match__grp{
+    font:800 11px/1 ui-monospace,monospace;color:#fff;background:var(--muted);
+    border-radius:5px;text-align:center;padding:5px 0;align-self:stretch;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px
+  }
+  .match__grp .mn{font:600 8px/1 ui-monospace,monospace;opacity:.7}
+  .pick{display:grid;grid-template-columns:1fr auto 1fr;gap:5px;align-items:stretch}
+  .side{
+    display:flex;align-items:center;gap:6px;border:1.5px solid var(--line);
+    background:#fff;border-radius:8px;padding:7px 8px;cursor:pointer;min-width:0;
+    transition:border-color .12s,background .12s;
+  }
+  .side.away{flex-direction:row-reverse;text-align:right}
+  .match--locked .side.away,.match--live .side.away{flex-direction:row}
+  .flag{display:inline-block;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.14)}
+  .side .flag{width:26px;height:19px;flex:none}
+  .side .cd{font:700 13px/1 ui-monospace,monospace;letter-spacing:.02em}
+  .side .nm{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .side .stack{min-width:0;display:flex;flex-direction:column;gap:1px;align-items:flex-start}
+  .side.away .stack{align-items:flex-end}
+  .draw{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    border:1.5px solid var(--line);background:#fff;border-radius:8px;
+    padding:0 9px;cursor:pointer;color:var(--muted);
+    font:700 10px/1.1 ui-monospace,monospace
+  }
+  .draw small{font-size:8px;font-weight:600;opacity:.8}
+  .side.sel{border-color:var(--pick-clr);background:var(--pick-bg)}
+  .side.sel .cd{color:var(--pitch-dk)}
+  .draw.sel{border-color:var(--pickdraw);background:rgba(91,110,126,.12);color:#3c4a55}
+  .side.dim,.draw.dim{opacity:.5}
+  .win-badge{font-size:11px;color:var(--pitch);margin-left:2px}
+  .side.away .win-badge{margin-left:0;margin-right:2px}
+
+  /* ----- score steppers ----- */
+  .score-row{
+    grid-column:2;display:flex;align-items:center;justify-content:center;gap:4px;position:relative;
+    padding:2px 0 0;font:700 13px/1 ui-monospace,monospace;color:var(--ink)
+  }
+  .score-row .sbtn{
+    width:22px;height:22px;border:1px solid var(--line);border-radius:5px;
+    background:#fff;color:var(--muted);font:700 13px/1 system-ui;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    padding:0;line-height:1
+  }
+  .score-row .sbtn:active{background:#f0f0ea}
+  .score-row .sval{width:18px;text-align:center}
+  .score-row .sdash{color:var(--muted);margin:0 2px}
+
+  /* locked (confirmed) match */
+  .match--locked{opacity:1;border-color:var(--pitch);background:rgba(31,157,87,.06)}
+  .match--locked .pick{pointer-events:none}
+  .match--locked .side{cursor:default;border-color:var(--line)}
+  .match--locked .side.lk-win,.match--live .side.lk-win{background:rgba(218,165,32,.25);border:2px solid var(--gold);font-weight:800}
+  .match--locked .side.lk-win .cd,.match--live .side.lk-win .cd{font-weight:800}
+  .match--locked .side.lk-draw,.match--live .side.lk-draw{background:rgba(31,157,87,.08)}
+  .match--locked .lk-score,.match--live .lk-score{font:800 15px/1 ui-monospace,monospace;color:var(--pitch-dk)}
+  .match--locked .side:first-child .lk-score,.match--live .side:first-child .lk-score{margin-left:auto;padding-right:2px}
+  .match--locked .side:last-child .lk-score,.match--live .side:last-child .lk-score{margin-right:auto;padding-left:2px}
+  .match--locked .lk-sep,.match--live .lk-sep{display:flex;align-items:center;justify-content:center;padding:0 4px}
+  .match--locked .lk-sep hr,.match--live .lk-sep hr{width:16px;border:none;border-top:2px solid var(--line);margin:0}
+  .badge{font:700 9px/1 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;position:absolute;right:0;top:50%;transform:translateY(-50%)}
+  .locked-badge{color:var(--pitch)}
+  .live-badge{color:#e74c3c;animation:pulse 1.5s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .match--live{border:2px solid #e74c3c}
+  .match__goals{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 8px 4px;font:400 9px/1.3 system-ui;color:var(--muted)}
+  .match__goals-away{text-align:right}
+  .pen-score{font-size:12px;opacity:.7;margin:0 1px}
+  .floor-flash{position:absolute;left:50%;transform:translateX(-50%);bottom:100%;
+    font:600 9px/1 ui-monospace,monospace;color:#e74c3c;white-space:nowrap;
+    background:rgba(231,76,60,.1);padding:2px 6px;border-radius:4px;
+    animation:flashOut 1.2s ease forwards;pointer-events:none}
+  @keyframes flashOut{0%{opacity:1}70%{opacity:1}100%{opacity:0}}
+  .lv-sc{font:800 16px/1 ui-monospace,monospace;color:#e74c3c;margin-left:auto}
+  .side.away .lv-sc{margin-left:0;margin-right:auto}
+
+  /* ---------- knockout bracket ---------- */
+  .ko-inner{max-width:560px;margin:0 auto;padding:4px 10px}
+  .ko-note{
+    text-align:center;padding:20px 10px;color:var(--muted);
+    font:600 12px/1.5 system-ui,sans-serif
+  }
+  .ko__round{margin-bottom:12px}
+  .ko__round-h{
+    display:flex;align-items:center;gap:5px;margin:0 2px 7px;white-space:nowrap;
+    font:800 12px/1 ui-monospace,monospace;letter-spacing:.03em;text-transform:uppercase;color:var(--pitch-dk)
+  }
+  .ko__round-h::after{content:"";flex:1;height:1px;background:var(--line)}
+  .ko__grid{display:grid;grid-template-columns:1fr;gap:5px}
+  .ko__match{
+    display:flex;flex-direction:column;position:relative;
+    background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:2px 9px 8px;font:600 11px/1.2 ui-monospace,monospace;
+    gap:0;margin-bottom:7px
+  }
+  .ko__venue{font:600 10px/1 ui-monospace,monospace;color:var(--muted);text-align:center;padding:1px 0;position:relative}
+  .ko__row{display:grid;grid-template-columns:22px 1fr auto 1fr;gap:2px;align-items:stretch}
+  .ko__mn{font:800 11px/1 ui-monospace,monospace;color:#fff;background:var(--muted);border-radius:5px;padding:5px 0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  .ko__slot{
+    display:flex;align-items:center;gap:6px;min-width:0;
+    padding:7px 8px;border-radius:8px;border:1.5px solid var(--line)
+  }
+  .ko__slot .flag{width:26px;height:19px;flex:none}
+  .ko__slot .stack{min-width:0;display:flex;flex-direction:column;gap:1px;align-items:flex-start}
+  .ko__slot--away .stack{align-items:flex-end}
+  .ko__slot .cd{font:700 13px/1 ui-monospace,monospace;white-space:nowrap}
+  .ko__slot .nm{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .ko__grp{font:900 10px/1 ui-monospace,monospace;flex:none;background:#fff;padding:2px 4px;border-radius:3px;border:1px solid #000}
+  .ko__vs{color:var(--muted);font-size:10px;text-align:center;align-self:center}
+  .ko__slot--dual{opacity:.7}
+  .ko__slot--tbd{opacity:.35}
+  .ko__slot--tbd .cd{font-style:italic;font-weight:600}
+  .ko__slot--home{border-left:3px solid var(--gc,var(--line))}
+  .ko__slot--away{border-right:3px solid var(--gc,var(--line));justify-content:flex-end;text-align:right}
+  .ko__date-h{
+    display:flex;align-items:center;gap:8px;margin:10px 2px 5px;
+    font:800 11px/1 ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;color:var(--pitch-dk)
+  }
+  .ko__date-h::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  /* ----- popups ----- */
+  .overlay{
+    position:fixed;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .2s
+  }
+  .overlay.open{opacity:1;pointer-events:auto}
+  .wnew-overlay{background:rgba(0,0,0,.5);z-index:300}
+  .install-overlay{background:rgba(0,0,0,.7);z-index:400}
+  .install-overlay .wnew{max-width:min(90vw,360px)}
+  .install-overlay h4{margin:12px 0 6px;font:700 12px/1.2 ui-monospace,monospace;color:var(--pitch)}
+  .install-overlay ol{margin:0 0 10px;padding-left:20px;font:12px/1.7 system-ui,sans-serif;color:#cde0d3}
+  .install-overlay .install-note{font:11px/1.4 system-ui,sans-serif;color:#8fa;margin:0 0 14px;opacity:.7}
+  .wnew{
+    background:var(--board);color:var(--chalk);border-radius:12px;
+    padding:16px 18px;max-width:min(88vw,340px);
+    box-shadow:0 12px 40px rgba(0,0,0,.5);border-top:3px solid var(--pitch);
+    text-align:left
+  }
+  .wnew h3{margin:0 0 10px;font:800 14px/1.2 ui-monospace,monospace;color:var(--pitch)}
+  .wnew ul{margin:0 0 14px;padding-left:18px;font:12px/1.6 system-ui,sans-serif;color:#cde0d3}
+  .wnew li{margin-bottom:4px}
+  .wnew button{
+    display:block;width:100%;padding:8px;border:none;border-radius:6px;
+    background:var(--pitch);color:#fff;font:700 13px/1 system-ui,sans-serif;cursor:pointer
+  }
+  .gpop-overlay{background:rgba(0,0,0,.5);z-index:200}
+  .gpop{
+    background:var(--board);color:var(--chalk);border-radius:12px;
+    padding:14px 16px;min-width:300px;max-width:90vw;
+    box-shadow:0 12px 40px rgba(0,0,0,.5);border-top:3px solid var(--gc)
+  }
+  .gpop__h{
+    font:800 14px/1 ui-monospace,monospace;color:var(--gc);
+    margin-bottom:10px;display:flex;justify-content:space-between;align-items:center
+  }
+  .gpop__close{
+    background:none;border:none;color:#9fb3a7;font-size:18px;cursor:pointer;padding:0 2px
+  }
+  .gpop table{width:100%;border-collapse:collapse;font:600 12px/1.6 ui-monospace,monospace}
+  .gpop th{color:#9fb3a7;font-weight:600;text-align:center;padding:2px 4px;font-size:10px}
+  .gpop th:first-child,.gpop td:first-child{text-align:left}
+  .gpop td{padding:3px 4px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+  .gpop .tm{display:flex;align-items:center;gap:5px;text-align:left}
+  .gpop .tm .flag{width:20px;height:15px}
+  .gpop .pts-col{color:var(--gold);font-weight:800}
+
+  /* help button */
+  .help-btn{
+    width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);
+    background:rgba(255,255,255,.08);color:var(--chalk);font:700 12px/20px ui-monospace,monospace;
+    cursor:pointer;padding:0;flex-shrink:0;margin-left:4px
+  }
+  .help-btn:hover{background:rgba(255,255,255,.18)}
+
+  footer{max-width:560px;margin:20px auto 0;padding:0 14px;color:var(--muted);font-size:11px;line-height:1.55}
+  footer code{background:#ececdf;padding:1px 4px;border-radius:4px}
+  .asof{color:var(--pitch-dk);font-weight:600}
+
+  /* ---------- bracket tree overlay ---------- */
+  .bkt-overlay{background:rgba(0,0,0,.7);z-index:500}
+  .bkt-popup{
+    background:var(--board);color:var(--chalk);border-radius:14px;
+    box-shadow:0 12px 50px rgba(0,0,0,.6);border-top:3px solid var(--pitch);
+    width:min(96vw,1200px);max-height:min(90vh,850px);
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  .bkt-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:6px 12px;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0
+  }
+  .bkt-header h3{margin:0;font:800 14px/1.2 ui-monospace,monospace;color:var(--pitch)}
+  .bkt-actions{display:flex;gap:4px;align-items:center;justify-content:flex-start;padding:4px 12px;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0}
+  .btn--ov{font:600 10px/1.2 system-ui;padding:4px 8px;border-radius:6px;background:var(--paper);border:1px solid var(--line);color:var(--ink);cursor:pointer;white-space:nowrap}
+  .btn--ov-likely{border-color:rgba(74,144,217,.45);color:rgba(74,144,217,.7);background:rgba(74,144,217,.08)}
+  .btn--ov-likely.btn--active{border-color:#4a90d9;color:#4a90d9;background:rgba(74,144,217,.15)}
+  .btn--ov-my{border-color:rgba(46,204,113,.45);color:rgba(46,204,113,.7);background:rgba(46,204,113,.08)}
+  .btn--ov-my.btn--active{border-color:#2ecc71;color:#2ecc71;background:rgba(46,204,113,.15)}
+  .btn--ov-danger{border-color:rgba(192,57,43,.45);color:rgba(192,57,43,.7);background:rgba(192,57,43,.08)}
+  .btn--ov-danger.btn--active{border-color:#c0392b;color:#c0392b;background:rgba(192,57,43,.15)}
+  .btn--ov.btn--active{border-width:2px;font-weight:700}
+  .btn-duo--ov{display:flex}
+  .btn-duo--ov .btn:first-child{border-radius:6px 0 0 6px;border-right:none}
+  .btn-duo--ov .btn:last-child{border-radius:0 6px 6px 0;padding:4px 6px;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(46,204,113,.3)!important}
+  .btn--ov-my-share svg{display:block}
+  .bkt-close{
+    background:none;border:none;color:#9fb3a7;font-size:22px;cursor:pointer;padding:0 4px;line-height:1
+  }
+  .bkt-close:hover{color:#fff}
+  .bkt-scroll{
+    flex:1;overflow:auto;-webkit-overflow-scrolling:touch;
+    padding:10px 6px 10px;
+  }
+  /* --- grid-based bracket tree --- */
+  .bkt-tree{
+    display:grid;
+    /* 17 cols: R32L cL1 R16L cL2 QFL cL3 SFL cL4 FINAL cR4 SFR cR3 QFR cR2 R16R cR1 R32R */
+    grid-template-columns:
+      minmax(70px,1fr) 10px minmax(70px,1fr) 10px minmax(70px,1fr) 10px
+      minmax(70px,1fr) 10px minmax(80px,1fr) 10px minmax(70px,1fr) 10px
+      minmax(70px,1fr) 10px minmax(70px,1fr) 10px minmax(70px,1fr);
+    grid-template-rows:repeat(39,17px);
+    gap:0;
+    min-width:1000px;
+    padding:8px 4px;
+    align-items:stretch;
+  }
+  .bkt-match{
+    display:flex;flex-direction:column;gap:0;padding:0 2px;
+    justify-content:center;overflow:visible;position:relative;
+  }
+  .bkt-mn{
+    font:600 8px/1 ui-monospace,monospace;color:rgba(255,255,255,.85);text-align:center;
+    padding:0 0 1px;white-space:nowrap;position:relative;
+  }
+  .bkt-dt{font-weight:400;color:rgba(255,255,255,.7)}
+  .bkt-dt-line{font:400 8px/1 ui-monospace,monospace;color:rgba(255,255,255,.7);text-align:center;padding:0 0 2px}
+  .bkt-venue{font:400 7px/1 ui-monospace,monospace;color:rgba(255,255,255,.5);text-align:center;white-space:nowrap;padding:1px 0 0}
+  .bkt-venue--abs{position:absolute;bottom:-8px;left:0;right:0;padding:0}
+  .bkt-team{
+    display:flex;align-items:center;gap:3px;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    padding:3px 5px;min-width:0;
+    font:600 12px/1.2 ui-monospace,monospace;
+  }
+  .bkt-team:first-of-type{border-radius:4px 4px 0 0;border-bottom:none}
+  .bkt-team:last-of-type{border-radius:0 0 4px 4px}
+  .bkt-team--has{border-left:3px solid var(--gc,rgba(255,255,255,.15))}
+  .bkt-team--tbd{opacity:.35}
+  .bkt-team .flag{width:20px;height:14px;flex:none}
+  .bkt-team .cd{white-space:nowrap}
+  /* connector lines */
+  .bkt-conn{position:relative}
+  .bkt-conn::after{content:"";position:absolute;background:rgba(255,255,255,.2)}
+  /* horizontal right half-line */
+  .bkt-hr::after{top:50%;right:0;width:50%;height:2px;transform:translateY(-1px)}
+  /* horizontal left half-line */
+  .bkt-hl::after{top:50%;left:0;width:50%;height:2px;transform:translateY(-1px)}
+  /* horizontal full line */
+  .bkt-hf::after{top:50%;left:0;width:100%;height:2px;transform:translateY(-1px)}
+  /* vertical full */
+  .bkt-vf::after{left:50%;top:0;width:2px;height:100%;transform:translateX(-1px)}
+  /* vertical bottom half (top-right corner) */
+  .bkt-vb::after{left:50%;top:50%;width:2px;height:50%;transform:translateX(-1px)}
+  .bkt-vb::before{content:"";position:absolute;top:50%;right:0;width:50%;height:2px;background:rgba(255,255,255,.2);transform:translateY(-1px)}
+  /* vertical top half (bottom-right corner) */
+  .bkt-vt::after{left:50%;top:0;width:2px;height:50%;transform:translateX(-1px)}
+  .bkt-vt::before{content:"";position:absolute;top:50%;right:0;width:50%;height:2px;background:rgba(255,255,255,.2);transform:translateY(-1px)}
+  /* mirrored: vertical bottom + left line */
+  .bkt-vb-l::after{right:50%;top:50%;width:2px;height:50%;transform:translateX(1px)}
+  .bkt-vb-l::before{content:"";position:absolute;top:50%;left:0;width:50%;height:2px;background:rgba(255,255,255,.2);transform:translateY(-1px)}
+  /* mirrored: vertical top + left line */
+  .bkt-vt-l::after{right:50%;top:0;width:2px;height:50%;transform:translateX(1px)}
+  .bkt-vt-l::before{content:"";position:absolute;top:50%;left:0;width:50%;height:2px;background:rgba(255,255,255,.2);transform:translateY(-1px)}
+  /* mirrored vertical full (right-aligned) */
+  .bkt-vf-l::after{right:50%;top:0;width:2px;height:100%;transform:translateX(1px)}
+  /* round labels */
+  .bkt-rlbl{
+    font:800 9px/1 ui-monospace,monospace;color:var(--pitch);
+    text-transform:uppercase;letter-spacing:.06em;text-align:center;
+    display:flex;align-items:end;justify-content:center;padding-bottom:2px;
+  }
+  /* final cell */
+  .bkt-final{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:2px;
+  }
+  .bkt-final-label{
+    font:800 11px/1 ui-monospace,monospace;color:var(--gold);
+    text-align:center;letter-spacing:.08em;text-transform:uppercase;
+  }
+  .bkt-trophy{font-size:22px;line-height:1}
+  .btn--bracket{border:2px solid var(--gold);outline:2px solid #c8941e;outline-offset:-1px;background:linear-gradient(135deg,#fef9e7,#fdf0c8);color:#8a6d1b;font:600 10px/1.15 system-ui;padding:4px 10px}
+  .btn--bracket span{font-size:18px}
+
+  /* knockout pickable/picked states */
+  .ko__slot--pickable{cursor:pointer;transition:background .15s,border-color .15s}
+  @media(hover:hover){.ko__slot--pickable:hover{background:rgba(31,157,87,.08)}}
+  .ko__slot--picked{background:var(--pick-bg)!important;border:2px solid var(--pick-clr)!important}
+  .ko__slot--picked .cd{color:var(--pitch-dk)}
+  .bkt-team--pickable{cursor:pointer;transition:background .15s}
+  @media(hover:hover){.bkt-team--pickable:hover{background:rgba(255,255,255,.12)}}
+  .bkt-team--picked{background:var(--pick-bg)!important;border:2px solid var(--pick-clr)!important}
+  .bkt-team--picked .cd{color:var(--chalk)}
+  .bkt-team--winner{background:rgba(218,165,32,.12)!important;border:2px solid var(--gold)!important}
+  .bkt-team--winner .cd{font-weight:800}
+
+  /* bracket scores */
+  .bkt-sc{margin-left:auto;font:800 13px/1 ui-monospace,monospace;color:var(--chalk)}
+  .bkt-match--live{border:1px solid #e74c3c;border-radius:4px}
+  .bkt-match--live .bkt-sc{color:#e74c3c}
+  .bkt-match--live .bkt-mn{color:#e74c3c}
+  .bkt-match--done{background:rgba(31,157,87,.12);border-radius:4px}
+  .bkt-match--done .bkt-sc{color:var(--chalk)}
+  .bkt-badge{font:700 7px/1 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;position:absolute;right:-2px;top:0}
+  .bkt-badge--final{color:var(--pitch)}
+  .bkt-badge--live{color:#e74c3c;animation:pulse 1.5s infinite}
+  .bkt-final.bkt-match--live{border:1px solid #e74c3c;border-radius:6px}
+  .bkt-final.bkt-match--done{background:rgba(31,157,87,.12);border-radius:6px}
+
+  /* list view KO scores */
+  .ko__sc{font:800 14px/1 ui-monospace,monospace;color:var(--ink);margin-left:auto}
+  .ko__sc--live{color:#e74c3c}
+  .ko__slot--away .ko__sc{margin-left:0;margin-right:auto}
+  .ko__match--live{border-color:#e74c3c}
+  .ko__match--live .ko__mn{color:#e74c3c}
+  .ko__match--done{border-color:var(--pitch);background:rgba(31,157,87,.06)}
+</style>
+</head>
+<body>
+
+<div class="top-sticky">
+<header class="board" id="board">
+  <div class="board__head">
+    <div class="board__title">My<b>FIFA26</b> <button class="help-btn" id="helpBtn" aria-label="Help" title="Help">?</button></div>
+    <div class="toggle" id="viewToggle">
+      <span class="toggle__lbl active" id="tLblW">Winners</span>
+      <div class="toggle__track" id="tTrack"><div class="toggle__knob"></div></div>
+      <span class="toggle__lbl" id="tLblF">Full Group</span>
+    </div>
+    <div class="board__count">🔒 Qual: <strong id="lockN">0</strong>/32</div>
+  </div>
+  <div class="boardbody">
+    <div class="groups" id="groups"></div>
+    <div class="thirds-h">Best 8 third-placed → final R32 spots</div>
+    <div class="thirds" id="thirds"></div>
+  </div>
+  <div class="board__legend">
+    <i><span class="dot"></span>1 = winner · 2 = runner-up</i>
+    <i>🔒 already qualified</i>
+    <i>faded third = misses the cut</i>
+  </div>
+</header>
+<button class="board__drawer" id="boardDrawer" aria-label="Toggle board"><svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,2 9,8 16,2"/></svg></button>
+<div class="bar-wrap">
+  <div class="bar">
+    <div class="bar__left">
+      <p id="hint">Tap team to pick.<br>Bracket updates Live.</p>
+      <button class="btn btn--pitch btn--refresh" id="refreshBtn" title="Refresh">&#x21bb;<br>Refresh</button>
+    </div>
+    <div class="bar__center">
+      <button class="btn btn--bracket" id="bracketTreeBtn" title="View full tournament bracket"><span>🏆</span><br>Bracket</button>
+    </div>
+    <div class="bar__right">
+      <div class="bar__btns">
+        <button class="btn btn--likely" id="likely" title="Auto-fill with most likely outcomes">Likely<br>Picks</button>
+        <div class="btn-duo"><button class="btn btn--my" id="myPicks" title="Restore your saved picks">My<br>Picks</button><button class="btn btn--my btn--my-share" id="share" title="Share your picks via link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button></div>
+        <button class="btn btn--danger" id="reset" title="Clear all picks (My Picks are preserved)">Clear<br>Picks</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<div class="overlay wnew-overlay" id="wnewOverlay">
+  <div class="wnew" id="wnew"></div>
+</div>
+<div class="overlay wnew-overlay" id="helpOverlay">
+  <div class="wnew" id="helpPopup"></div>
+</div>
+<div class="overlay install-overlay" id="installOverlay">
+  <div class="wnew" id="installPopup"></div>
+</div>
+<div class="overlay gpop-overlay" id="gpopOverlay">
+  <div class="gpop" id="gpop"></div>
+</div>
+<div class="overlay bkt-overlay" id="bktOverlay">
+  <div class="bkt-popup">
+    <div class="bkt-header">
+      <h3>🏆 Knockout Bracket</h3>
+      <button class="bkt-close" id="bktClose">&times;</button>
+    </div>
+    <div class="bkt-actions">
+      <button class="btn btn--ov btn--ov-likely" id="ovLikely" title="Auto-fill with most likely outcomes">Likely Picks</button>
+      <div class="btn-duo btn-duo--ov"><button class="btn btn--ov btn--ov-my" id="ovMyPicks" title="Restore your saved picks">My Picks</button><button class="btn btn--ov btn--ov-my btn--ov-my-share" id="ovShare" title="Share your picks via link"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button></div>
+      <button class="btn btn--ov btn--ov-danger" id="ovReset" title="Clear all picks (My Picks are preserved)">Clear Picks</button>
+    </div>
+    <div class="bkt-scroll">
+      <div class="bkt-tree" id="bktTree"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Tab bar for mobile -->
+<div class="tabs" id="tabs">
+  <button class="tab active" data-panel="0">Group Matches</button>
+  <button class="tab" data-panel="1">Knockout Bracket</button>
+</div>
+</div><!-- /top-sticky -->
+
+<!-- Two-panel container -->
+<div class="panels" id="panels">
+  <div class="panel panel--fixtures">
+    <div class="fix-inner" id="fixtures"></div>
+    <footer>
+      <p class="asof">Group stage complete. Round of 32 underway — pick bracket winners or tap Likely Picks to auto-fill.</p>
+      <p><b>How it works:</b> Group standings used points → GD → goals scored. The 8 best third-placed teams took the final 8 R32 slots. Tap a team in the bracket to pick the winner — your picks cascade through R16, QF, SF, and the Final.</p>
+      <p>Each group is colour-coded A–L; that colour follows a team into the bracket so you can see where it came from. Live scores update automatically from ESPN.</p>
+    </footer>
+  </div>
+  <div class="panel panel--bracket">
+    <div class="ko-inner" id="bracket"></div>
+  </div>
+</div>
+
+<script>
+/* ── HTML-escape external strings (ESPN player names, clock) ── */
+function esc(s){return s?s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"):""}
+
+/* =================== DATA =================== */
+const TEAMS = {
+  MEX:{n:"Mexico",iso:"mx",g:"A"}, KOR:{n:"South Korea",iso:"kr",g:"A"}, CZE:{n:"Czechia",iso:"cz",g:"A"}, RSA:{n:"South Africa",iso:"za",g:"A"},
+  CAN:{n:"Canada",iso:"ca",g:"B"}, SUI:{n:"Switzerland",iso:"ch",g:"B"}, BIH:{n:"Bosnia & Herz.",iso:"ba",g:"B"}, QAT:{n:"Qatar",iso:"qa",g:"B"},
+  BRA:{n:"Brazil",iso:"br",g:"C"}, MAR:{n:"Morocco",iso:"ma",g:"C"}, SCO:{n:"Scotland",iso:"gb-sct",g:"C"}, HAI:{n:"Haiti",iso:"ht",g:"C"},
+  USA:{n:"United States",iso:"us",g:"D"}, AUS:{n:"Australia",iso:"au",g:"D"}, PAR:{n:"Paraguay",iso:"py",g:"D"}, TUR:{n:"Türkiye",iso:"tr",g:"D"},
+  GER:{n:"Germany",iso:"de",g:"E"}, CIV:{n:"Ivory Coast",iso:"ci",g:"E"}, ECU:{n:"Ecuador",iso:"ec",g:"E"}, CUW:{n:"Curaçao",iso:"cw",g:"E"},
+  NED:{n:"Netherlands",iso:"nl",g:"F"}, JPN:{n:"Japan",iso:"jp",g:"F"}, SWE:{n:"Sweden",iso:"se",g:"F"}, TUN:{n:"Tunisia",iso:"tn",g:"F"},
+  EGY:{n:"Egypt",iso:"eg",g:"G"}, IRN:{n:"Iran",iso:"ir",g:"G"}, BEL:{n:"Belgium",iso:"be",g:"G"}, NZL:{n:"New Zealand",iso:"nz",g:"G"},
+  ESP:{n:"Spain",iso:"es",g:"H"}, URU:{n:"Uruguay",iso:"uy",g:"H"}, CPV:{n:"Cabo Verde",iso:"cv",g:"H"}, KSA:{n:"Saudi Arabia",iso:"sa",g:"H"},
+  FRA:{n:"France",iso:"fr",g:"I"}, NOR:{n:"Norway",iso:"no",g:"I"}, SEN:{n:"Senegal",iso:"sn",g:"I"}, IRQ:{n:"Iraq",iso:"iq",g:"I"},
+  ARG:{n:"Argentina",iso:"ar",g:"J"}, AUT:{n:"Austria",iso:"at",g:"J"}, ALG:{n:"Algeria",iso:"dz",g:"J"}, JOR:{n:"Jordan",iso:"jo",g:"J"},
+  POR:{n:"Portugal",iso:"pt",g:"K"}, COL:{n:"Colombia",iso:"co",g:"K"}, COD:{n:"DR Congo",iso:"cd",g:"K"}, UZB:{n:"Uzbekistan",iso:"uz",g:"K"},
+  ENG:{n:"England",iso:"gb-eng",g:"L"}, GHA:{n:"Ghana",iso:"gh",g:"L"}, CRO:{n:"Croatia",iso:"hr",g:"L"}, PAN:{n:"Panama",iso:"pa",g:"L"}
+};
+
+/* Real flag images (work everywhere, incl. Windows where flag emoji don't render) */
+const FLAG_BASE = "https://flagcdn.com";
+function flag(code, cls){
+  const t = TEAMS[code];
+  return `<img class="flag ${cls||''}" src="${FLAG_BASE}/${t.iso}.svg" alt="${code}" loading="lazy" decoding="async">`;
+}
+
+/* matches already played (used to seed points + goal diff) */
+const PLAYED = [
+  ["A","MEX",2,0,"RSA"],["A","KOR",2,1,"CZE"],["A","CZE",1,1,"RSA"],["A","MEX",1,0,"KOR"],
+  ["B","CAN",1,1,"BIH"],["B","SUI",1,1,"QAT"],["B","SUI",4,1,"BIH"],["B","CAN",6,0,"QAT"],
+  ["C","BRA",1,1,"MAR"],["C","SCO",1,0,"HAI"],["C","MAR",1,0,"SCO"],["C","BRA",3,0,"HAI"],
+  ["D","USA",4,1,"PAR"],["D","AUS",2,0,"TUR"],["D","USA",2,0,"AUS"],["D","PAR",1,0,"TUR"],
+  ["E","GER",7,1,"CUW"],["E","CIV",1,0,"ECU"],["E","GER",2,1,"CIV"],["E","ECU",0,0,"CUW"],
+  ["F","NED",2,2,"JPN"],["F","SWE",5,1,"TUN"],["F","NED",5,1,"SWE"],["F","JPN",4,0,"TUN"],
+  ["G","BEL",1,1,"EGY"],["G","IRN",2,2,"NZL"],["G","BEL",0,0,"IRN"],["G","EGY",3,1,"NZL"],
+  ["H","ESP",0,0,"CPV"],["H","KSA",1,1,"URU"],["H","ESP",4,0,"KSA"],["H","URU",2,2,"CPV"],
+  ["I","FRA",3,1,"SEN"],["I","NOR",4,1,"IRQ"],["I","FRA",3,0,"IRQ"],["I","NOR",3,2,"SEN"],
+  ["J","ARG",3,0,"ALG"],["J","AUT",3,1,"JOR"],["J","ARG",2,0,"AUT"],["J","ALG",2,1,"JOR"],
+  ["K","POR",1,1,"COD"],["K","COL",3,1,"UZB"],["K","POR",5,0,"UZB"],["K","COL",1,0,"COD"],
+  ["L","ENG",4,2,"CRO"],["L","GHA",1,0,"PAN"],["L","ENG",0,0,"GHA"],["L","CRO",1,0,"PAN"]
+];
+
+/* remaining matches the user picks, grouped by date */
+const FIXTURES = [
+  {date:"Wed · Jun 24 · 3:00 PM ET", note:"Group B · Matchday 3", ms:[
+    [49,"B","SUI","CAN","BC Place, Vancouver"],[50,"B","BIH","QAT","Lumen Field, Seattle"]
+  ]},
+  {date:"Wed · Jun 24 · 6:00 PM ET", note:"Group C · Matchday 3", ms:[
+    [51,"C","SCO","BRA","Hard Rock Stadium, Miami"],[52,"C","MAR","HAI","Mercedes-Benz Stadium, Atlanta"]
+  ]},
+  {date:"Wed · Jun 24 · 9:00 PM ET", note:"Group A · Matchday 3", ms:[
+    [53,"A","CZE","MEX","Estadio Azteca, Mexico City"],[54,"A","RSA","KOR","Estadio BBVA, Monterrey"]
+  ]},
+  {date:"Thu · Jun 25 · 4:00 PM ET", note:"Group E · Matchday 3", ms:[
+    [55,"E","ECU","GER","MetLife Stadium, East Rutherford"],[56,"E","CUW","CIV","Lincoln Financial Field, Philadelphia"]
+  ]},
+  {date:"Thu · Jun 25 · 7:00 PM ET", note:"Group F · Matchday 3", ms:[
+    [57,"F","JPN","SWE","AT&T Stadium, Arlington"],[58,"F","TUN","NED","Arrowhead Stadium, Kansas City"]
+  ]},
+  {date:"Thu · Jun 25 · 10:00 PM ET", note:"Group D · Matchday 3", ms:[
+    [59,"D","TUR","USA","SoFi Stadium, Los Angeles"],[60,"D","PAR","AUS","Levi's Stadium, Santa Clara"]
+  ]},
+  {date:"Fri · Jun 26 · 3:00 PM ET", note:"Group I · Matchday 3", ms:[
+    [61,"I","NOR","FRA","Gillette Stadium, Foxborough"],[62,"I","SEN","IRQ","BMO Field, Toronto"]
+  ]},
+  {date:"Fri · Jun 26 · 8:00 PM ET", note:"Group H · Matchday 3", ms:[
+    [63,"H","CPV","KSA","NRG Stadium, Houston"],[64,"H","URU","ESP","Estadio Akron, Guadalajara"]
+  ]},
+  {date:"Fri · Jun 26 · 11:00 PM ET", note:"Group G · Matchday 3", ms:[
+    [65,"G","EGY","IRN","Lumen Field, Seattle"],[66,"G","NZL","BEL","BC Place, Vancouver"]
+  ]},
+  {date:"Sat · Jun 27 · 5:00 PM ET", note:"Group L · Matchday 3", ms:[
+    [67,"L","PAN","ENG","MetLife Stadium, East Rutherford"],[68,"L","CRO","GHA","Lincoln Financial Field, Philadelphia"]
+  ]},
+  {date:"Sat · Jun 27 · 7:30 PM ET", note:"Group K · Matchday 3", ms:[
+    [69,"K","COL","POR","Hard Rock Stadium, Miami"],[70,"K","COD","UZB","Mercedes-Benz Stadium, Atlanta"]
+  ]},
+  {date:"Sat · Jun 27 · 10:00 PM ET", note:"Group J · Matchday 3", ms:[
+    [71,"J","ALG","AUT","Arrowhead Stadium, Kansas City"],[72,"J","JOR","ARG","AT&T Stadium, Arlington"]
+  ]}
+];
+
+/* =================== ENGINE =================== */
+const GROUPS = "ABCDEFGHIJKL".split("");
+const allFix = FIXTURES.flatMap(d=>d.ms);          // [id,g,h,a]
+const fixById = Object.fromEntries(allFix.map(m=>[m[0],m]));
+const fixByGroup = Object.fromEntries(GROUPS.map(g=>[g,allFix.filter(m=>m[1]===g)]));
+
+/* locked = fixture IDs with confirmed real scores from scores.json */
+const locked = {};  // id -> {s1, s2}
+const liveScores = {}; // id -> {s1, s2, t1, t2} for in-progress matches
+
+/* Knockout match results and live scores (match number → {s1, s2, t1, t2}) */
+const koResults = {};     // completed KO matches from scores.json
+const liveKoScores = {};  // in-progress KO matches from ESPN
+
+/* ESPN API team name → our 3-letter code */
+const ESPN_TEAMS = {
+  "Mexico":"MEX","South Africa":"RSA","South Korea":"KOR","Czechia":"CZE",
+  "Canada":"CAN","Bosnia-Herzegovina":"BIH","Switzerland":"SUI","Qatar":"QAT",
+  "United States":"USA","Paraguay":"PAR","Australia":"AUS","Türkiye":"TUR",
+  "Brazil":"BRA","Morocco":"MAR","Scotland":"SCO","Haiti":"HAI",
+  "Germany":"GER","Curaçao":"CUW","Netherlands":"NED","Japan":"JPN",
+  "Ivory Coast":"CIV","Ecuador":"ECU","Sweden":"SWE","Tunisia":"TUN",
+  "Spain":"ESP","Cape Verde":"CPV","Belgium":"BEL","Egypt":"EGY",
+  "Saudi Arabia":"KSA","Uruguay":"URU","Iran":"IRN","New Zealand":"NZL",
+  "France":"FRA","Senegal":"SEN","Norway":"NOR","Iraq":"IRQ",
+  "Argentina":"ARG","Algeria":"ALG","Austria":"AUT","Jordan":"JOR",
+  "Portugal":"POR","Congo DR":"COD","Colombia":"COL","Uzbekistan":"UZB",
+  "England":"ENG","Croatia":"CRO","Ghana":"GHA","Panama":"PAN"
+};
+
+/* reverse lookup: "SUI|CAN" -> fixture id, so we can match scores.json to fixtures */
+const fixByTeams = {};
+allFix.forEach(([id,g,h,a])=>{ fixByTeams[h+"|"+a]=id; });
+
+// seed order = current standing within group, used as the final tiebreaker
+const seedIndex = {};
+
+function baseStats(){
+  const s={};
+  for(const c in TEAMS) s[c]={pts:0,gf:0,ga:0,gd:0};
+  for(const [g,h,hs,as_,a] of PLAYED){
+    s[h].gf+=hs; s[h].ga+=as_; s[a].gf+=as_; s[a].ga+=hs;
+    if(hs>as_) s[h].pts+=3; else if(hs<as_) s[a].pts+=3; else {s[h].pts++; s[a].pts++;}
+  }
+  for(const c in s) s[c].gd=s[c].gf-s[c].ga;
+  return s;
+}
+let BASE = baseStats();
+
+// establish seed order from base standings
+function buildSeedIndex(){
+  GROUPS.forEach(g=>{
+    const teams=Object.keys(TEAMS).filter(c=>TEAMS[c].g===g);
+    teams.sort((x,y)=>cmpRaw(BASE[x],BASE[y],x,y,0));
+    teams.forEach((c,i)=>seedIndex[c]=i);
+  });
+}
+buildSeedIndex();
+
+function cmpRaw(A,B,ca,cb,extra){
+  return (B.pts-A.pts) || (B.gd-A.gd) || (B.gf-A.gf) || ((seedIndex[ca]??0)-(seedIndex[cb]??0));
+}
+
+// add picks (points + goals) onto a fresh copy of base stats
+function statsWith(picks){
+  const s={}; for(const c in BASE) s[c]={...BASE[c]};
+  for(const id in picks){
+    const p=picks[id]; if(!p) continue;
+    if(locked[id]) continue; // already counted in BASE via PLAYED
+    const [,, h,a]=fixById[id];
+    const r = typeof p==="object" ? p.r : p;
+    const hs = typeof p==="object" ? p.hs : (r==="H"?1:r==="D"?0:0);
+    const as_ = typeof p==="object" ? p.as : (r==="A"?1:r==="D"?0:0);
+    if(r==="H") s[h].pts+=3; else if(r==="A") s[a].pts+=3; else {s[h].pts++; s[a].pts++;}
+    s[h].gf+=hs; s[h].ga+=as_; s[a].gf+=as_; s[a].ga+=hs;
+    s[h].gd=s[h].gf-s[h].ga; s[a].gd=s[a].gf-s[a].ga;
+  }
+  return s;
+}
+
+// helper: get result string from a pick (handles old string format and new object format)
+function pickResult(p){ return !p ? "" : typeof p==="object" ? p.r : p; }
+function pickScores(p){
+  if(!p) return null;
+  if(typeof p==="object") return {hs:p.hs, as:p.as};
+  if(p==="H") return {hs:1,as:0};
+  if(p==="A") return {hs:0,as:1};
+  return {hs:0,as:0};
+}
+function makePick(r,hs,as){ return {r,hs,as}; }
+function defaultPick(r,lv){
+  if(!lv) return r==="H"?{r,hs:1,as:0}:r==="A"?{r,hs:0,as:1}:{r,hs:0,as:0};
+  // Live match: scores can only go up from live baseline
+  const ls1=lv.s1, ls2=lv.s2;
+  if(r==="D"){ const mx=Math.max(ls1,ls2); return {r,hs:mx,as:mx}; }
+  if(r==="H") return {r, hs:ls1>ls2?ls1:ls2+1, as:ls2};
+  /* A */ return {r, hs:ls1, as:ls2>ls1?ls2:ls1+1};
+}
+
+function standings(picks){
+  const s=statsWith(picks), tables={};
+  GROUPS.forEach(g=>{
+    const teams=Object.keys(TEAMS).filter(c=>TEAMS[c].g===g);
+    teams.sort((x,y)=>cmpRaw(s[x],s[y],x,y));
+    tables[g]=teams;
+  });
+  // rank the 12 third-placed teams
+  const thirds=GROUPS.map(g=>tables[g][2]);
+  thirds.sort((x,y)=>cmpRaw(s[x],s[y],x,y));
+  return {tables, thirds, s};
+}
+
+/* ---- clinched: top-2 guaranteed no matter the scoreline (static) ----
+   A team is locked only if, across EVERY win/draw/loss combination of the
+   remaining games in its group, at most one other team can finish on equal-or-
+   higher points. That can't be undone by any goal difference, so it's a true
+   mathematical lock (matches the six teams FIFA lists as already qualified). */
+function clinchedTop2(){
+  const clinched=new Set();
+  GROUPS.forEach(g=>{
+    const rem=fixByGroup[g].filter(([id])=>!locked[id]), teams=Object.keys(TEAMS).filter(c=>TEAMS[c].g===g);
+    if(rem.length===0){
+      // group complete — top 2 from actual standings are locked
+      const sorted=teams.slice().sort((a,b)=>(BASE[b].pts-BASE[a].pts)||(BASE[b].gd-BASE[a].gd)||(BASE[b].gf-BASE[a].gf));
+      clinched.add(sorted[0]); clinched.add(sorted[1]);
+      return;
+    }
+    const safe=Object.fromEntries(teams.map(t=>[t,true]));
+    const N=Math.pow(3,rem.length);
+    for(let mask=0;mask<N;mask++){
+      const p=Object.fromEntries(teams.map(t=>[t,BASE[t].pts]));
+      let m=mask;
+      for(const [,,h,a] of rem){
+        const o=m%3; m=(m-o)/3;
+        if(o===0) p[h]+=3; else if(o===1) p[a]+=3; else {p[h]++; p[a]++;}
+      }
+      teams.forEach(t=>{
+        const above=teams.filter(u=>u!==t && p[u]>=p[t]).length;
+        if(above>1) safe[t]=false;
+      });
+    }
+    teams.forEach(t=>{ if(safe[t]) clinched.add(t); });
+  });
+  return clinched;
+}
+let LOCKED = clinchedTop2();
+
+/* ---- scenario-locked: top-2 guaranteed given current picks ----
+   Same brute-force as clinchedTop2 but treats picked matches as settled.
+   Only unpicked remaining matches are enumerated. Returns a Set of teams
+   that are mathematically locked in the user's scenario (shown as 🟢). */
+function scenarioLocked(picks){
+  const sl=new Set();
+  GROUPS.forEach(g=>{
+    const all=fixByGroup[g], teams=Object.keys(TEAMS).filter(c=>TEAMS[c].g===g);
+    // Start from BASE (confirmed results only)
+    const basePts=Object.fromEntries(teams.map(t=>[t,BASE[t].pts]));
+    // Apply picked matches as settled
+    const unpicked=[];
+    for(const [id,,h,a] of all){
+      if(locked[id]) continue; // already confirmed
+      const p=picks[id];
+      if(p && p.r){
+        if(p.r==="H") basePts[h]+=3;
+        else if(p.r==="A") basePts[a]+=3;
+        else { basePts[h]++; basePts[a]++; }
+      } else {
+        unpicked.push([h,a]);
+      }
+    }
+    if(unpicked.length===0){
+      // All matches settled (confirmed + picked) — top 2 are locked
+      const sorted=teams.slice().sort((a,b)=>(basePts[b]-basePts[a]));
+      sl.add(sorted[0]); sl.add(sorted[1]);
+      return;
+    }
+    const safe=Object.fromEntries(teams.map(t=>[t,true]));
+    const N=Math.pow(3,unpicked.length);
+    if(N>100000) return; // safety: skip if too many combos
+    for(let mask=0;mask<N;mask++){
+      const p=Object.fromEntries(teams.map(t=>[t,basePts[t]]));
+      let m=mask;
+      for(const [h,a] of unpicked){
+        const o=m%3; m=(m-o)/3;
+        if(o===0) p[h]+=3; else if(o===1) p[a]+=3; else {p[h]++; p[a]++;}
+      }
+      teams.forEach(t=>{
+        const above=teams.filter(u=>u!==t && p[u]>=p[t]).length;
+        if(above>1) safe[t]=false;
+      });
+    }
+    teams.forEach(t=>{ if(safe[t]) sl.add(t); });
+  });
+  return sl;
+}
+let SCENARIO_LOCKED = new Set();
+
+/* =================== KNOCKOUT BRACKET DATA =================== */
+/* Inlined from r32-bracket.js — FIFA Annex C */
+const R32_MATCHES = [
+  {m:73, home:"2A", away:"2B"},
+  {m:74, home:"1E", away:{third:["A","B","C","D","F"]}},
+  {m:75, home:"1F", away:"2C"},
+  {m:76, home:"1C", away:"2F"},
+  {m:77, home:"1I", away:{third:["C","D","F","G","H"]}},
+  {m:78, home:"2E", away:"2I"},
+  {m:79, home:"1A", away:{third:["C","E","F","H","I"]}},
+  {m:80, home:"1L", away:{third:["E","H","I","J","K"]}},
+  {m:81, home:"1D", away:{third:["B","E","F","I","J"]}},
+  {m:82, home:"1G", away:{third:["A","E","H","I","J"]}},
+  {m:83, home:"2K", away:"2L"},
+  {m:84, home:"1H", away:"2J"},
+  {m:85, home:"1B", away:{third:["E","F","G","I","J"]}},
+  {m:86, home:"1J", away:"2H"},
+  {m:87, home:"1K", away:{third:["D","E","I","J","L"]}},
+  {m:88, home:"2D", away:"2G"}
+];
+const THIRD_COLS = ["A","B","D","E","G","I","K","L"];
+const THIRD_MAP = {"EFGHIJKL":"EJIFHGLK","DFGHIJKL":"HGIDJFLK","DEGHIJKL":"EJIDHGLK","DEFHIJKL":"EJIDHFLK","DEFGIJKL":"EGIDJFLK","DEFGHJKL":"EGJDHFLK","DEFGHIKL":"EGIDHFLK","DEFGHIJL":"EGJDHFLI","DEFGHIJK":"EGJDHFIK","CFGHIJKL":"HGICJFLK","CEGHIJKL":"EJICHGLK","CEFHIJKL":"EJICHFLK","CEFGIJKL":"EGICJFLK","CEFGHJKL":"EGJCHFLK","CEFGHIKL":"EGICHFLK","CEFGHIJL":"EGJCHFLI","CEFGHIJK":"EGJCHFIK","CDGHIJKL":"HGICJDLK","CDFHIJKL":"CJIDHFLK","CDFGIJKL":"CGIDJFLK","CDFGHJKL":"CGJDHFLK","CDFGHIKL":"CGIDHFLK","CDFGHIJL":"CGJDHFLI","CDFGHIJK":"CGJDHFIK","CDEHIJKL":"EJICHDLK","CDEGIJKL":"EGICJDLK","CDEGHJKL":"EGJCHDLK","CDEGHIKL":"EGICHDLK","CDEGHIJL":"EGJCHDLI","CDEGHIJK":"EGJCHDIK","CDEFIJKL":"CJEDIFLK","CDEFHJKL":"CJEDHFLK","CDEFHIKL":"CEIDHFLK","CDEFHIJL":"CJEDHFLI","CDEFHIJK":"CJEDHFIK","CDEFGJKL":"CGEDJFLK","CDEFGIKL":"CGEDIFLK","CDEFGIJL":"CGEDJFLI","CDEFGIJK":"CGEDJFIK","CDEFGHKL":"CGEDHFLK","CDEFGHJL":"CGJDHFLE","CDEFGHJK":"CGJDHFEK","CDEFGHIL":"CGEDHFLI","CDEFGHIK":"CGEDHFIK","CDEFGHIJ":"CGJDHFEI","BFGHIJKL":"HJBFIGLK","BEGHIJKL":"EJIBHGLK","BEFHIJKL":"EJBFIHLK","BEFGIJKL":"EJBFIGLK","BEFGHJKL":"EJBFHGLK","BEFGHIKL":"EGBFIHLK","BEFGHIJL":"EJBFHGLI","BEFGHIJK":"EJBFHGIK","BDGHIJKL":"HJBDIGLK","BDFHIJKL":"HJBDIFLK","BDFGIJKL":"IGBDJFLK","BDFGHJKL":"HGBDJFLK","BDFGHIKL":"HGBDIFLK","BDFGHIJL":"HGBDJFLI","BDFGHIJK":"HGBDJFIK","BDEHIJKL":"EJBDIHLK","BDEGIJKL":"EJBDIGLK","BDEGHJKL":"EJBDHGLK","BDEGHIKL":"EGBDIHLK","BDEGHIJL":"EJBDHGLI","BDEGHIJK":"EJBDHGIK","BDEFIJKL":"EJBDIFLK","BDEFHJKL":"EJBDHFLK","BDEFHIKL":"EIBDHFLK","BDEFHIJL":"EJBDHFLI","BDEFHIJK":"EJBDHFIK","BDEFGJKL":"EGBDJFLK","BDEFGIKL":"EGBDIFLK","BDEFGIJL":"EGBDJFLI","BDEFGIJK":"EGBDJFIK","BDEFGHKL":"EGBDHFLK","BDEFGHJL":"HGBDJFLE","BDEFGHJK":"HGBDJFEK","BDEFGHIL":"EGBDHFLI","BDEFGHIK":"EGBDHFIK","BDEFGHIJ":"HGBDJFEI","BCGHIJKL":"HJBCIGLK","BCFHIJKL":"HJBCIFLK","BCFGIJKL":"IGBCJFLK","BCFGHJKL":"HGBCJFLK","BCFGHIKL":"HGBCIFLK","BCFGHIJL":"HGBCJFLI","BCFGHIJK":"HGBCJFIK","BCEHIJKL":"EJBCIHLK","BCEGIJKL":"EJBCIGLK","BCEGHJKL":"EJBCHGLK","BCEGHIKL":"EGBCIHLK","BCEGHIJL":"EJBCHGLI","BCEGHIJK":"EJBCHGIK","BCEFIJKL":"EJBCIFLK","BCEFHJKL":"EJBCHFLK","BCEFHIKL":"EIBCHFLK","BCEFHIJL":"EJBCHFLI","BCEFHIJK":"EJBCHFIK","BCEFGJKL":"EGBCJFLK","BCEFGIKL":"EGBCIFLK","BCEFGIJL":"EGBCJFLI","BCEFGIJK":"EGBCJFIK","BCEFGHKL":"EGBCHFLK","BCEFGHJL":"HGBCJFLE","BCEFGHJK":"HGBCJFEK","BCEFGHIL":"EGBCHFLI","BCEFGHIK":"EGBCHFIK","BCEFGHIJ":"HGBCJFEI","BCDHIJKL":"HJBCIDLK","BCDGIJKL":"IGBCJDLK","BCDGHJKL":"HGBCJDLK","BCDGHIKL":"HGBCIDLK","BCDGHIJL":"HGBCJDLI","BCDGHIJK":"HGBCJDIK","BCDFIJKL":"CJBDIFLK","BCDFHJKL":"CJBDHFLK","BCDFHIKL":"CIBDHFLK","BCDFHIJL":"CJBDHFLI","BCDFHIJK":"CJBDHFIK","BCDFGJKL":"CGBDJFLK","BCDFGIKL":"CGBDIFLK","BCDFGIJL":"CGBDJFLI","BCDFGIJK":"CGBDJFIK","BCDFGHKL":"CGBDHFLK","BCDFGHJL":"CGBDHFLJ","BCDFGHJK":"HGBCJFDK","BCDFGHIL":"CGBDHFLI","BCDFGHIK":"CGBDHFIK","BCDFGHIJ":"HGBCJFDI","BCDEIJKL":"EJBCIDLK","BCDEHJKL":"EJBCHDLK","BCDEHIKL":"EIBCHDLK","BCDEHIJL":"EJBCHDLI","BCDEHIJK":"EJBCHDIK","BCDEGJKL":"EGBCJDLK","BCDEGIKL":"EGBCIDLK","BCDEGIJL":"EGBCJDLI","BCDEGIJK":"EGBCJDIK","BCDEGHKL":"EGBCHDLK","BCDEGHJL":"HGBCJDLE","BCDEGHJK":"HGBCJDEK","BCDEGHIL":"EGBCHDLI","BCDEGHIK":"EGBCHDIK","BCDEGHIJ":"HGBCJDEI","BCDEFJKL":"CJBDEFLK","BCDEFIKL":"CEBDIFLK","BCDEFIJL":"CJBDEFLI","BCDEFIJK":"CJBDEFIK","BCDEFHKL":"CEBDHFLK","BCDEFHJL":"CJBDHFLE","BCDEFHJK":"CJBDHFEK","BCDEFHIL":"CEBDHFLI","BCDEFHIK":"CEBDHFIK","BCDEFHIJ":"CJBDHFEI","BCDEFGKL":"CGBDEFLK","BCDEFGJL":"CGBDJFLE","BCDEFGJK":"CGBDJFEK","BCDEFGIL":"CGBDEFLI","BCDEFGIK":"CGBDEFIK","BCDEFGIJ":"CGBDJFEI","BCDEFGHL":"CGBDHFLE","BCDEFGHK":"CGBDHFEK","BCDEFGHJ":"HGBCJFDE","BCDEFGHI":"CGBDHFEI","AFGHIJKL":"HJIFAGLK","AEGHIJKL":"EJIAHGLK","AEFHIJKL":"EJIFAHLK","AEFGIJKL":"EJIFAGLK","AEFGHJKL":"EGJFAHLK","AEFGHIKL":"EGIFAHLK","AEFGHIJL":"EGJFAHLI","AEFGHIJK":"EGJFAHIK","ADGHIJKL":"HJIDAGLK","ADFHIJKL":"HJIDAFLK","ADFGIJKL":"IGJDAFLK","ADFGHJKL":"HGJDAFLK","ADFGHIKL":"HGIDAFLK","ADFGHIJL":"HGJDAFLI","ADFGHIJK":"HGJDAFIK","ADEHIJKL":"EJIDAHLK","ADEGIJKL":"EJIDAGLK","ADEGHJKL":"EGJDAHLK","ADEGHIKL":"EGIDAHLK","ADEGHIJL":"EGJDAHLI","ADEGHIJK":"EGJDAHIK","ADEFIJKL":"EJIDAFLK","ADEFHJKL":"HJEDAFLK","ADEFHIKL":"HEIDAFLK","ADEFHIJL":"HJEDAFLI","ADEFHIJK":"HJEDAFIK","ADEFGJKL":"EGJDAFLK","ADEFGIKL":"EGIDAFLK","ADEFGIJL":"EGJDAFLI","ADEFGIJK":"EGJDAFIK","ADEFGHKL":"HGEDAFLK","ADEFGHJL":"HGJDAFLE","ADEFGHJK":"HGJDAFEK","ADEFGHIL":"HGEDAFLI","ADEFGHIK":"HGEDAFIK","ADEFGHIJ":"HGJDAFEI","ACGHIJKL":"HJICAGLK","ACFHIJKL":"HJICAFLK","ACFGIJKL":"IGJCAFLK","ACFGHJKL":"HGJCAFLK","ACFGHIKL":"HGICAFLK","ACFGHIJL":"HGJCAFLI","ACFGHIJK":"HGJCAFIK","ACEHIJKL":"EJICAHLK","ACEGIJKL":"EJICAGLK","ACEGHJKL":"EGJCAHLK","ACEGHIKL":"EGICAHLK","ACEGHIJL":"EGJCAHLI","ACEGHIJK":"EGJCAHIK","ACEFIJKL":"EJICAFLK","ACEFHJKL":"HJECAFLK","ACEFHIKL":"HEICAFLK","ACEFHIJL":"HJECAFLI","ACEFHIJK":"HJECAFIK","ACEFGJKL":"EGJCAFLK","ACEFGIKL":"EGICAFLK","ACEFGIJL":"EGJCAFLI","ACEFGIJK":"EGJCAFIK","ACEFGHKL":"HGECAFLK","ACEFGHJL":"HGJCAFLE","ACEFGHJK":"HGJCAFEK","ACEFGHIL":"HGECAFLI","ACEFGHIK":"HGECAFIK","ACEFGHIJ":"HGJCAFEI","ACDHIJKL":"HJICADLK","ACDGIJKL":"IGJCADLK","ACDGHJKL":"HGJCADLK","ACDGHIKL":"HGICADLK","ACDGHIJL":"HGJCADLI","ACDGHIJK":"HGJCADIK","ACDFIJKL":"CJIDAFLK","ACDFHJKL":"HJFCADLK","ACDFHIKL":"HFICADLK","ACDFHIJL":"HJFCADLI","ACDFHIJK":"HJFCADIK","ACDFGJKL":"CGJDAFLK","ACDFGIKL":"CGIDAFLK","ACDFGIJL":"CGJDAFLI","ACDFGIJK":"CGJDAFIK","ACDFGHKL":"HGFCADLK","ACDFGHJL":"CGJDAFLH","ACDFGHJK":"HGJCAFDK","ACDFGHIL":"HGFCADLI","ACDFGHIK":"HGFCADIK","ACDFGHIJ":"HGJCAFDI","ACDEIJKL":"EJICADLK","ACDEHJKL":"HJECADLK","ACDEHIKL":"HEICADLK","ACDEHIJL":"HJECADLI","ACDEHIJK":"HJECADIK","ACDEGJKL":"EGJCADLK","ACDEGIKL":"EGICADLK","ACDEGIJL":"EGJCADLI","ACDEGIJK":"EGJCADIK","ACDEGHKL":"HGECADLK","ACDEGHJL":"HGJCADLE","ACDEGHJK":"HGJCADEK","ACDEGHIL":"HGECADLI","ACDEGHIK":"HGECADIK","ACDEGHIJ":"HGJCADEI","ACDEFJKL":"CJEDAFLK","ACDEFIKL":"CEIDAFLK","ACDEFIJL":"CJEDAFLI","ACDEFIJK":"CJEDAFIK","ACDEFHKL":"HEFCADLK","ACDEFHJL":"HJFCADLE","ACDEFHJK":"HJECAFDK","ACDEFHIL":"HEFCADLI","ACDEFHIK":"HEFCADIK","ACDEFHIJ":"HJECAFDI","ACDEFGKL":"CGEDAFLK","ACDEFGJL":"CGJDAFLE","ACDEFGJK":"CGJDAFEK","ACDEFGIL":"CGEDAFLI","ACDEFGIK":"CGEDAFIK","ACDEFGIJ":"CGJDAFEI","ACDEFGHL":"HGFCADLE","ACDEFGHK":"HGECAFDK","ACDEFGHJ":"HGJCAFDE","ACDEFGHI":"HGECAFDI","ABGHIJKL":"HJBAIGLK","ABFHIJKL":"HJBAIFLK","ABFGIJKL":"IJBFAGLK","ABFGHJKL":"HJBFAGLK","ABFGHIKL":"HGBAIFLK","ABFGHIJL":"HJBFAGLI","ABFGHIJK":"HJBFAGIK","ABEHIJKL":"EJBAIHLK","ABEGIJKL":"EJBAIGLK","ABEGHJKL":"EJBAHGLK","ABEGHIKL":"EGBAIHLK","ABEGHIJL":"EJBAHGLI","ABEGHIJK":"EJBAHGIK","ABEFIJKL":"EJBAIFLK","ABEFHJKL":"EJBFAHLK","ABEFHIKL":"EIBFAHLK","ABEFHIJL":"EJBFAHLI","ABEFHIJK":"EJBFAHIK","ABEFGJKL":"EJBFAGLK","ABEFGIKL":"EGBAIFLK","ABEFGIJL":"EJBFAGLI","ABEFGIJK":"EJBFAGIK","ABEFGHKL":"EGBFAHLK","ABEFGHJL":"HJBFAGLE","ABEFGHJK":"HJBFAGEK","ABEFGHIL":"EGBFAHLI","ABEFGHIK":"EGBFAHIK","ABEFGHIJ":"HJBFAGEI","ABDHIJKL":"IJBDAHLK","ABDGIJKL":"IJBDAGLK","ABDGHJKL":"HJBDAGLK","ABDGHIKL":"IGBDAHLK","ABDGHIJL":"HJBDAGLI","ABDGHIJK":"HJBDAGIK","ABDFIJKL":"IJBDAFLK","ABDFHJKL":"HJBDAFLK","ABDFHIKL":"HIBDAFLK","ABDFHIJL":"HJBDAFLI","ABDFHIJK":"HJBDAFIK","ABDFGJKL":"FJBDAGLK","ABDFGIKL":"IGBDAFLK","ABDFGIJL":"FJBDAGLI","ABDFGIJK":"FJBDAGIK","ABDFGHKL":"HGBDAFLK","ABDFGHJL":"HGBDAFLJ","ABDFGHJK":"HGBDAFJK","ABDFGHIL":"HGBDAFLI","ABDFGHIK":"HGBDAFIK","ABDFGHIJ":"HGBDAFIJ","ABDEIJKL":"EJBAIDLK","ABDEHJKL":"EJBDAHLK","ABDEHIKL":"EIBDAHLK","ABDEHIJL":"EJBDAHLI","ABDEHIJK":"EJBDAHIK","ABDEGJKL":"EJBDAGLK","ABDEGIKL":"EGBAIDLK","ABDEGIJL":"EJBDAGLI","ABDEGIJK":"EJBDAGIK","ABDEGHKL":"EGBDAHLK","ABDEGHJL":"HJBDAGLE","ABDEGHJK":"HJBDAGEK","ABDEGHIL":"EGBDAHLI","ABDEGHIK":"EGBDAHIK","ABDEGHIJ":"HJBDAGEI","ABDEFJKL":"EJBDAFLK","ABDEFIKL":"EIBDAFLK","ABDEFIJL":"EJBDAFLI","ABDEFIJK":"EJBDAFIK","ABDEFHKL":"HEBDAFLK","ABDEFHJL":"HJBDAFLE","ABDEFHJK":"HJBDAFEK","ABDEFHIL":"HEBDAFLI","ABDEFHIK":"HEBDAFIK","ABDEFHIJ":"HJBDAFEI","ABDEFGKL":"EGBDAFLK","ABDEFGJL":"EGBDAFLJ","ABDEFGJK":"EGBDAFJK","ABDEFGIL":"EGBDAFLI","ABDEFGIK":"EGBDAFIK","ABDEFGIJ":"EGBDAFIJ","ABDEFGHL":"HGBDAFLE","ABDEFGHK":"HGBDAFEK","ABDEFGHJ":"HGBDAFEJ","ABDEFGHI":"HGBDAFEI","ABCHIJKL":"IJBCAHLK","ABCGIJKL":"IJBCAGLK","ABCGHJKL":"HJBCAGLK","ABCGHIKL":"IGBCAHLK","ABCGHIJL":"HJBCAGLI","ABCGHIJK":"HJBCAGIK","ABCFIJKL":"IJBCAFLK","ABCFHJKL":"HJBCAFLK","ABCFHIKL":"HIBCAFLK","ABCFHIJL":"HJBCAFLI","ABCFHIJK":"HJBCAFIK","ABCFGJKL":"CJBFAGLK","ABCFGIKL":"IGBCAFLK","ABCFGIJL":"CJBFAGLI","ABCFGIJK":"CJBFAGIK","ABCFGHKL":"HGBCAFLK","ABCFGHJL":"HGBCAFLJ","ABCFGHJK":"HGBCAFJK","ABCFGHIL":"HGBCAFLI","ABCFGHIK":"HGBCAFIK","ABCFGHIJ":"HGBCAFIJ","ABCEIJKL":"EJBAICLK","ABCEHJKL":"EJBCAHLK","ABCEHIKL":"EIBCAHLK","ABCEHIJL":"EJBCAHLI","ABCEHIJK":"EJBCAHIK","ABCEGJKL":"EJBCAGLK","ABCEGIKL":"EGBAICLK","ABCEGIJL":"EJBCAGLI","ABCEGIJK":"EJBCAGIK","ABCEGHKL":"EGBCAHLK","ABCEGHJL":"HJBCAGLE","ABCEGHJK":"HJBCAGEK","ABCEGHIL":"EGBCAHLI","ABCEGHIK":"EGBCAHIK","ABCEGHIJ":"HJBCAGEI","ABCEFJKL":"EJBCAFLK","ABCEFIKL":"EIBCAFLK","ABCEFIJL":"EJBCAFLI","ABCEFIJK":"EJBCAFIK","ABCEFHKL":"HEBCAFLK","ABCEFHJL":"HJBCAFLE","ABCEFHJK":"HJBCAFEK","ABCEFHIL":"HEBCAFLI","ABCEFHIK":"HEBCAFIK","ABCEFHIJ":"HJBCAFEI","ABCEFGKL":"EGBCAFLK","ABCEFGJL":"EGBCAFLJ","ABCEFGJK":"EGBCAFJK","ABCEFGIL":"EGBCAFLI","ABCEFGIK":"EGBCAFIK","ABCEFGIJ":"EGBCAFIJ","ABCEFGHL":"HGBCAFLE","ABCEFGHK":"HGBCAFEK","ABCEFGHJ":"HGBCAFEJ","ABCEFGHI":"HGBCAFEI","ABCDIJKL":"IJBCADLK","ABCDHJKL":"HJBCADLK","ABCDHIKL":"HIBCADLK","ABCDHIJL":"HJBCADLI","ABCDHIJK":"HJBCADIK","ABCDGJKL":"CJBDAGLK","ABCDGIKL":"IGBCADLK","ABCDGIJL":"CJBDAGLI","ABCDGIJK":"CJBDAGIK","ABCDGHKL":"HGBCADLK","ABCDGHJL":"HGBCADLJ","ABCDGHJK":"HGBCADJK","ABCDGHIL":"HGBCADLI","ABCDGHIK":"HGBCADIK","ABCDGHIJ":"HGBCADIJ","ABCDFJKL":"CJBDAFLK","ABCDFIKL":"CIBDAFLK","ABCDFIJL":"CJBDAFLI","ABCDFIJK":"CJBDAFIK","ABCDFHKL":"HFBCADLK","ABCDFHJL":"CJBDAFLH","ABCDFHJK":"HJBCAFDK","ABCDFHIL":"HFBCADLI","ABCDFHIK":"HFBCADIK","ABCDFHIJ":"HJBCAFDI","ABCDFGKL":"CGBDAFLK","ABCDFGJL":"CGBDAFLJ","ABCDFGJK":"CGBDAFJK","ABCDFGIL":"CGBDAFLI","ABCDFGIK":"CGBDAFIK","ABCDFGIJ":"CGBDAFIJ","ABCDFGHL":"CGBDAFLH","ABCDFGHK":"HGBCAFDK","ABCDFGHJ":"HGBCAFDJ","ABCDFGHI":"HGBCAFDI","ABCDEJKL":"EJBCADLK","ABCDEIKL":"EIBCADLK","ABCDEIJL":"EJBCADLI","ABCDEIJK":"EJBCADIK","ABCDEHKL":"HEBCADLK","ABCDEHJL":"HJBCADLE","ABCDEHJK":"HJBCADEK","ABCDEHIL":"HEBCADLI","ABCDEHIK":"HEBCADIK","ABCDEHIJ":"HJBCADEI","ABCDEGKL":"EGBCADLK","ABCDEGJL":"EGBCADLJ","ABCDEGJK":"EGBCADJK","ABCDEGIL":"EGBCADLI","ABCDEGIK":"EGBCADIK","ABCDEGIJ":"EGBCADIJ","ABCDEGHL":"HGBCADLE","ABCDEGHK":"HGBCADEK","ABCDEGHJ":"HGBCADEJ","ABCDEGHI":"HGBCADEI","ABCDEFKL":"CEBDAFLK","ABCDEFJL":"CJBDAFLE","ABCDEFJK":"CJBDAFEK","ABCDEFIL":"CEBDAFLI","ABCDEFIK":"CEBDAFIK","ABCDEFIJ":"CJBDAFEI","ABCDEFHL":"HFBCADLE","ABCDEFHK":"HEBCAFDK","ABCDEFHJ":"HJBCAFDE","ABCDEFHI":"HEBCAFDI","ABCDEFGL":"CGBDAFLE","ABCDEFGK":"CGBDAFEK","ABCDEFGJ":"CGBDAFEJ","ABCDEFGI":"CGBDAFEI","ABCDEFGH":"HGBCAFDE"};
+
+function assignThirds(qualifyingGroups){
+  const key=[...qualifyingGroups].sort().join('');
+  const v=THIRD_MAP[key];
+  if(!v) return null;
+  const out={};
+  THIRD_COLS.forEach((host,i)=> out[host]=v[i]);
+  return out;
+}
+
+function combinations(arr, k){
+  const result=[];
+  function go(start,chosen){
+    if(chosen.length===k){result.push([...chosen]);return;}
+    for(let i=start;i<=arr.length-(k-chosen.length);i++){chosen.push(arr[i]);go(i+1,chosen);chosen.pop();}
+  }
+  go(0,[]);
+  return result;
+}
+
+/* Map THIRD_COLS host positions to R32 match numbers */
+const THIRD_HOST_TO_MATCH = {A:79, B:85, D:81, E:74, G:82, I:77, K:87, L:80};
+
+/* Later knockout rounds */
+const R16_MATCHES = [
+  {m:89, home:"W74", away:"W77"},
+  {m:90, home:"W73", away:"W75"},
+  {m:91, home:"W76", away:"W78"},
+  {m:92, home:"W79", away:"W80"},
+  {m:93, home:"W83", away:"W84"},
+  {m:94, home:"W81", away:"W82"},
+  {m:95, home:"W86", away:"W88"},
+  {m:96, home:"W85", away:"W87"}
+];
+const QF_MATCHES = [
+  {m:97, home:"W89", away:"W90"},
+  {m:98, home:"W93", away:"W94"},
+  {m:99, home:"W91", away:"W92"},
+  {m:100, home:"W95", away:"W96"}
+];
+const SF_MATCHES = [
+  {m:101, home:"W97", away:"W98"},
+  {m:102, home:"W99", away:"W100"}
+];
+const FINAL_MATCH = {m:104, home:"W101", away:"W102"};
+const THIRD_PLACE = {m:103, home:"L101", away:"L102"};
+
+/* KO_FEEDS_INTO: maps match number → [{target, slot, type}]
+   e.g. KO_FEEDS_INTO[81] = [{target:94, slot:"home", type:"W"}]
+   meaning: winner of M81 fills M94's home slot */
+const KO_FEEDS_INTO = {};
+[...R16_MATCHES,...QF_MATCHES,...SF_MATCHES,FINAL_MATCH,THIRD_PLACE].forEach(match=>{
+  ["home","away"].forEach(slot=>{
+    const ref = match[slot];
+    const wm = ref.match(/^([WL])(\d+)$/);
+    if(wm){
+      const type = wm[1], src = parseInt(wm[2]);
+      if(!KO_FEEDS_INTO[src]) KO_FEEDS_INTO[src] = [];
+      KO_FEEDS_INTO[src].push({target:match.m, slot, type});
+    }
+  });
+});
+/* All KO match numbers in bracket order */
+const KO_ORDER = R32_MATCHES.map(m=>m.m).concat(
+  R16_MATCHES.map(m=>m.m), QF_MATCHES.map(m=>m.m),
+  SF_MATCHES.map(m=>m.m), [FINAL_MATCH.m, THIRD_PLACE.m]
+);
+
+/* Knockout match venues */
+const KO_VENUES = {
+  73:"SoFi Stadium, Los Angeles",       74:"Gillette Stadium, Boston",
+  75:"Estadio BBVA, Monterrey",         76:"NRG Stadium, Houston",
+  77:"MetLife Stadium, New Jersey",      78:"AT&T Stadium, Dallas",
+  79:"Estadio Azteca, Mexico City",      80:"Mercedes-Benz Stadium, Atlanta",
+  81:"Levi's Stadium, Santa Clara",      82:"Lumen Field, Seattle",
+  83:"BMO Field, Toronto",              84:"SoFi Stadium, Los Angeles",
+  85:"BC Place, Vancouver",             86:"Hard Rock Stadium, Miami",
+  87:"Arrowhead Stadium, Kansas City",   88:"AT&T Stadium, Dallas",
+  89:"Lincoln Financial Field, Philadelphia", 90:"NRG Stadium, Houston",
+  91:"MetLife Stadium, New Jersey",      92:"Estadio Azteca, Mexico City",
+  93:"AT&T Stadium, Dallas",            94:"Lumen Field, Seattle",
+  95:"Mercedes-Benz Stadium, Atlanta",   96:"BC Place, Vancouver",
+  97:"Gillette Stadium, Boston",         98:"SoFi Stadium, Los Angeles",
+  99:"Hard Rock Stadium, Miami",        100:"Arrowhead Stadium, Kansas City",
+  101:"AT&T Stadium, Dallas",           102:"Mercedes-Benz Stadium, Atlanta",
+  103:"Hard Rock Stadium, Miami",        104:"MetLife Stadium, New Jersey"
+};
+
+/* Knockout match dates + ET kick-off times */
+const KO_DATES = {
+  73:"Sun · Jun 28 · 3:00 PM ET",    74:"Mon · Jun 29 · 4:30 PM ET", 75:"Mon · Jun 29 · 9:00 PM ET",    76:"Mon · Jun 29 · 1:00 PM ET",
+  77:"Tue · Jun 30 · 5:00 PM ET",    78:"Tue · Jun 30 · 1:00 PM ET",    79:"Tue · Jun 30 · 9:00 PM ET",    80:"Wed · Jul 1 · 12:00 PM ET",
+  81:"Wed · Jul 1 · 8:00 PM ET",     82:"Wed · Jul 1 · 4:00 PM ET",     83:"Thu · Jul 2 · 7:00 PM ET",     84:"Thu · Jul 2 · 3:00 PM ET",
+  85:"Thu · Jul 2 · 11:00 PM ET",    86:"Fri · Jul 3 · 6:00 PM ET",     87:"Fri · Jul 3 · 9:30 PM ET",  88:"Fri · Jul 3 · 2:00 PM ET",
+  89:"Sat · Jul 4 · 5:00 PM ET",     90:"Sat · Jul 4 · 1:00 PM ET",     91:"Sun · Jul 5 · 4:00 PM ET",     92:"Sun · Jul 5 · 8:00 PM ET",
+  93:"Mon · Jul 6 · 3:00 PM ET",     94:"Mon · Jul 6 · 8:00 PM ET",     95:"Tue · Jul 7 · 12:00 PM ET",    96:"Tue · Jul 7 · 4:00 PM ET",
+  97:"Thu · Jul 9 · 4:00 PM ET",     98:"Fri · Jul 10 · 3:00 PM ET",    99:"Sat · Jul 11 · 5:00 PM ET",   100:"Sat · Jul 11 · 9:00 PM ET",
+  101:"Tue · Jul 14 · 3:00 PM ET",  102:"Wed · Jul 15 · 3:00 PM ET",
+  103:"Sat · Jul 18 · 5:00 PM ET",  104:"Sun · Jul 19 · 3:00 PM ET"
+};
+
+/* ---- Knockout resolution engine (memoized) ---- */
+let _koCache = null, _koCacheKey = "";
+function resolveKnockout(){
+  const cacheKey = JSON.stringify(picks) + "|" + Object.keys(locked).length;
+  // Deep copy: callers mutate resolved/slotLabels via resolveKoWithPicks
+  if(_koCache && _koCacheKey === cacheKey) return {resolved: JSON.parse(JSON.stringify(_koCache.resolved)), nPicked: _koCache.nPicked, slotLabels: JSON.parse(JSON.stringify(_koCache.slotLabels)), allDone: _koCache.allDone};
+  const {tables, thirds, s} = standings(picks);
+  const nPicked = Object.values(picks).filter(v=>v&&pickResult(v)).length;
+
+  // Which groups are fully determined? (all fixtures in that group have picks)
+  const groupDone = {};
+  GROUPS.forEach(g=>{
+    groupDone[g] = fixByGroup[g].every(([id])=> picks[id] && pickResult(picks[id]));
+  });
+  const allDone = GROUPS.every(g=>groupDone[g]);
+
+  // Build qualifiers map
+  // Fully-picked groups: use final standings
+  // Incomplete groups: show clinched teams, but if both top-2 are locked
+  // and remaining matches could swap their order, show as dual (either/or)
+  const qualifiers = {};
+  GROUPS.forEach(g=>{
+    if(groupDone[g]){
+      qualifiers["1"+g] = tables[g][0];
+      qualifiers["2"+g] = tables[g][1];
+    } else {
+      const t = tables[g];
+      const t0Locked = LOCKED.has(t[0]), t1Locked = LOCKED.has(t[1]);
+      const rem = fixByGroup[g].filter(([id])=> !locked[id] && !(picks[id] && pickResult(picks[id])));
+
+      if(t0Locked && t1Locked){
+        // Both locked: check if remaining matches could swap their order
+        const canSwap = rem.some(([,, h, a])=> (h===t[0]&&a===t[1]) || (h===t[1]&&a===t[0]));
+        if(canSwap){
+          const dual = {dual:[t[0],t[1]]};
+          qualifiers["1"+g] = dual;
+          qualifiers["2"+g] = dual;
+        } else {
+          qualifiers["1"+g] = t[0];
+          qualifiers["2"+g] = t[1];
+        }
+      } else if(t0Locked && !t1Locked){
+        // Only 1st is locked: check if any remaining match could let t[1] overtake t[0]
+        // Brute-force remaining outcomes to see if t[0] can drop to 2nd
+        const teams = Object.keys(TEAMS).filter(c=>TEAMS[c].g===g);
+        let canDrop = false;
+        const N = Math.pow(3, rem.length);
+        for(let mask=0; mask<N; mask++){
+          const p = Object.fromEntries(teams.map(c=>[c, s[c].pts]));
+          let m = mask;
+          for(const [,, h, a] of rem){
+            const o = m%3; m = (m-o)/3;
+            if(o===0) p[h]+=3; else if(o===1) p[a]+=3; else {p[h]++; p[a]++;}
+          }
+          if(teams.some(u => u!==t[0] && p[u] > p[t[0]])) { canDrop = true; break; }
+        }
+        if(canDrop){
+          const partial = {partial: t[0]};
+          qualifiers["1"+g] = partial;
+          qualifiers["2"+g] = partial;
+        } else {
+          qualifiers["1"+g] = t[0];
+        }
+      } else if(t1Locked){
+        qualifiers["2"+g] = t[1];
+      }
+    }
+  });
+
+  // Third-place resolution: full when all groups decided, partial when some slots are invariant
+  let thirdTeams = {}; // matchNum -> team code
+  if(allDone){
+    const bestThirds = thirds.slice(0, 8);
+    const qualGroups = bestThirds.map(c => TEAMS[c].g);
+    const thirdAssignment = assignThirds(qualGroups);
+    if(thirdAssignment){
+      THIRD_COLS.forEach(host=>{
+        const originGroup = thirdAssignment[host];
+        const matchNum = THIRD_HOST_TO_MATCH[host];
+        thirdTeams[matchNum] = tables[originGroup][2];
+      });
+    }
+  } else {
+    // Partial third-place resolution via full brute-force.
+    // Done groups (all fixtures locked): 3rd-place team + stats are fixed.
+    // Open groups: enumerate every W/D/L outcome of remaining matches,
+    // compute each group's 3rd-place team + stats for every outcome.
+    // Then combine across groups, rank all 12 thirds, pick top 8,
+    // run assignThirds, and check which R32 slots are invariant.
+    const doneGroups = GROUPS.filter(g => fixByGroup[g].every(([id])=>locked[id]));
+    const openGroups = GROUPS.filter(g => !doneGroups.includes(g));
+
+    // For done groups: fixed 3rd-place outcome
+    const doneThirds = {}; // group -> {team, pts, gd, gf}
+    doneGroups.forEach(g => {
+      const team = tables[g][2];
+      doneThirds[g] = {team, pts:s[team].pts, gd:s[team].gd, gf:s[team].gf};
+    });
+
+    // For each open group: enumerate all possible W/D/L outcomes and collect
+    // the set of distinct 3rd-place results (team, pts, gd, gf).
+    // Pts are exact (depend only on W/D/L). GD uses 1-0 scores as proxy.
+    const openOutcomes = {}; // group -> [{team, pts, gd, gf}, ...]
+    openGroups.forEach(g => {
+      const rem = fixByGroup[g].filter(([id])=>!locked[id]);
+      const teams = Object.keys(TEAMS).filter(c=>TEAMS[c].g===g);
+      const N = Math.pow(3, rem.length);
+      const seen = new Set();
+      const outcomes = [];
+      for(let mask=0; mask<N; mask++){
+        const p = {};
+        teams.forEach(t => { p[t] = {pts:BASE[t].pts, gd:BASE[t].gd, gf:BASE[t].gf, ga:BASE[t].ga}; });
+        let m = mask;
+        for(const [,, h, a] of rem){
+          const o = m%3; m = (m-o)/3;
+          if(o===0){ p[h].pts+=3; p[h].gf++; p[a].ga++; p[h].gd++; p[a].gd--; }
+          else if(o===1){ p[a].pts+=3; p[a].gf++; p[h].ga++; p[a].gd++; p[h].gd--; }
+          else { p[h].pts++; p[a].pts++; }
+        }
+        const sorted = teams.slice().sort((x,y)=>
+          (p[y].pts-p[x].pts)||(p[y].gd-p[x].gd)||(p[y].gf-p[x].gf)||((seedIndex[x]??0)-(seedIndex[y]??0))
+        );
+        const third = sorted[2];
+        const key = third+"|"+p[third].pts+"|"+p[third].gd+"|"+p[third].gf;
+        if(!seen.has(key)){
+          seen.add(key);
+          outcomes.push({team:third, pts:p[third].pts, gd:p[third].gd, gf:p[third].gf});
+        }
+      }
+      openOutcomes[g] = outcomes;
+    });
+
+    // Cross-product of all open group outcomes, combined with fixed done-group thirds.
+    // For each combination: rank all 12 thirds, pick top 8, run assignThirds.
+    const slotResults = {}; // matchNum -> Set of team codes
+    THIRD_COLS.forEach(host => { slotResults[THIRD_HOST_TO_MATCH[host]] = new Set(); });
+
+    // Build array of open group outcome arrays for iteration
+    const openKeys = openGroups.slice();
+    const openArrs = openKeys.map(g => openOutcomes[g]);
+    const lengths = openArrs.map(a => a.length);
+    const totalCombos = lengths.reduce((a,b)=>a*b, 1);
+
+    if(totalCombos > 100000) {/* too many open groups — skip brute-force */}
+    else for(let combo=0; combo<totalCombos; combo++){
+      const allThirds = [];
+      let c = combo;
+      for(let i=0; i<openKeys.length; i++){
+        const idx = c % lengths[i]; c = (c - idx) / lengths[i];
+        allThirds.push({g:openKeys[i], ...openArrs[i][idx]});
+      }
+      doneGroups.forEach(g => allThirds.push({g, ...doneThirds[g]}));
+
+      // Rank by points; at the 8/9 cut, if teams are tied on pts,
+      // enumerate all subsets (GD from proxy is unreliable across groups).
+      allThirds.sort((a,b) => b.pts - a.pts);
+      const cutPts = allThirds[7].pts;
+      const alwaysIn = allThirds.filter(t => t.pts > cutPts);
+      const tied = allThirds.filter(t => t.pts === cutPts);
+      const slotsToFill = 8 - alwaysIn.length;
+
+      if(slotsToFill <= 0 || slotsToFill >= tied.length){
+        // No ambiguity at the cut line
+        const top8 = allThirds.slice(0,8).map(t => t.g);
+        const assignment = assignThirds(top8);
+        if(assignment){
+          THIRD_COLS.forEach(host => {
+            const matchNum = THIRD_HOST_TO_MATCH[host];
+            slotResults[matchNum].add(allThirds.find(t => t.g === assignment[host]).team);
+          });
+        }
+      } else {
+        // Tied at cut: enumerate which tied teams fill remaining slots
+        const alwaysInG = alwaysIn.map(t => t.g);
+        const tiedG = tied.map(t => t.g);
+        const subsets = combinations(tiedG, slotsToFill);
+        for(const subset of subsets){
+          const top8 = alwaysInG.concat(subset);
+          const assignment = assignThirds(top8);
+          if(!assignment) continue;
+          THIRD_COLS.forEach(host => {
+            const matchNum = THIRD_HOST_TO_MATCH[host];
+            slotResults[matchNum].add(allThirds.find(t => t.g === assignment[host]).team);
+          });
+        }
+      }
+    }
+
+    // Slots where only ONE team appeared across ALL scenarios are locked
+    for(const matchNum in slotResults){
+      if(slotResults[matchNum].size === 1){
+        thirdTeams[matchNum] = [...slotResults[matchNum]][0];
+      }
+    }
+  }
+
+  // Resolve R32
+  const resolved = {}; // matchNum -> {home, away, homeDual, awayDual, homePartial, awayPartial}
+  R32_MATCHES.forEach(match=>{
+    let home = null, homeDual = null, homePartial = null;
+    if(typeof match.home === "string"){
+      const q = qualifiers[match.home];
+      if(q && q.dual) homeDual = q.dual;
+      else if(q && q.partial) homePartial = q.partial;
+      else home = q || null;
+    }
+    let away = null, awayDual = null, awayPartial = null;
+    if(typeof match.away === "string"){
+      const q = qualifiers[match.away];
+      if(q && q.dual) awayDual = q.dual;
+      else if(q && q.partial) awayPartial = q.partial;
+      else away = q || null;
+    } else {
+      away = thirdTeams[match.m]||null;
+    }
+    resolved[match.m] = {home, away, homeDual, awayDual, homePartial, awayPartial};
+  });
+
+  // Slot labels for R32 matches (for display when team unknown)
+  const slotLabels = {};
+  R32_MATCHES.forEach(match=>{
+    slotLabels[match.m] = {
+      home: typeof match.home === "string" ? match.home : "1"+match.home,
+      away: typeof match.away === "string" ? match.away : "3rd"
+    };
+  });
+
+  // R16 onward: show the teams from resolved R32 matches
+  R16_MATCHES.forEach(match=>{
+    const hm = parseInt(match.home.slice(1));
+    const am = parseInt(match.away.slice(1));
+    resolved[match.m] = {home:null, away:null, homeFrom:match.home, awayFrom:match.away};
+  });
+  QF_MATCHES.forEach(match=>{
+    resolved[match.m] = {home:null, away:null, homeFrom:match.home, awayFrom:match.away};
+  });
+  SF_MATCHES.forEach(match=>{
+    resolved[match.m] = {home:null, away:null, homeFrom:match.home, awayFrom:match.away};
+  });
+  resolved[FINAL_MATCH.m] = {home:null, away:null, homeFrom:FINAL_MATCH.home, awayFrom:FINAL_MATCH.away};
+  resolved[THIRD_PLACE.m] = {home:null, away:null, homeFrom:THIRD_PLACE.home, awayFrom:THIRD_PLACE.away};
+
+  _koCache = {resolved, nPicked, slotLabels, allDone};
+  _koCacheKey = cacheKey;
+  // Return deep copy since callers mutate resolved via resolveKoWithPicks
+  return {resolved: JSON.parse(JSON.stringify(resolved)), nPicked, slotLabels: JSON.parse(JSON.stringify(slotLabels)), allDone};
+}
+
+/* =================== PERSISTENCE =================== */
+const FIX_IDS = allFix.map(m=>m[0]);  // ordered fixture IDs for encoding
+
+function savePicks(p){
+  try{ localStorage.setItem("fifa26_picks",JSON.stringify(p)); }catch(e){}
+}
+function loadPicks(){
+  try{
+    const v=localStorage.getItem("fifa26_picks"); if(!v) return {};
+    const p=JSON.parse(v);
+    // migrate old string picks to object format
+    for(const id in p){ if(typeof p[id]==="string") p[id]=defaultPick(p[id]); }
+    // discard picks with IDs that don't match any current fixture
+    const validIds = new Set(FIX_IDS.map(String));
+    for(const id in p){ if(!validIds.has(String(id))) delete p[id]; }
+    return p;
+  }catch(e){ return {}; }
+}
+function encodePicks(p){
+  // format: result chars + "." + score pairs (hs,as;hs,as;...)
+  const results=FIX_IDS.map(id=>{const v=p[id]; return v?pickResult(v):"_";}).join("");
+  const scores=FIX_IDS.map(id=>{const v=p[id]; if(!v) return ""; const sc=pickScores(v); return sc.hs+","+sc.as;}).join(";");
+  return results+"."+scores;
+}
+function encodeKoPicks(kp){
+  // format: "81:USA,94:GER,104:ESP"
+  return Object.entries(kp).map(([m,t])=>m+":"+t).join(",");
+}
+function decodeKoPicks(str){
+  const kp={};
+  if(!str) return kp;
+  str.split(",").forEach(s=>{
+    const [m,t]=s.split(":");
+    if(m&&t) kp[parseInt(m)]=t;
+  });
+  return kp;
+}
+function decodePicks(str){
+  const p={};
+  // support old format (24 chars, no dot) and new format (results.scores)
+  if(str.indexOf(".")===-1){
+    FIX_IDS.forEach((id,i)=>{
+      const c=str[i]; if(c==="H"||c==="A"||c==="D") p[id]=defaultPick(c);
+    });
+  } else {
+    const [results,scores]=str.split(".");
+    const sc=scores.split(";");
+    FIX_IDS.forEach((id,i)=>{
+      const c=results[i]; if(c==="H"||c==="A"||c==="D"){
+        const pair=sc[i]?sc[i].split(",").map(Number):[0,0];
+        p[id]={r:c,hs:pair[0]||0,as:pair[1]||0};
+      }
+    });
+  }
+  return p;
+}
+function toast(msg){
+  const el=document.getElementById("toast");
+  el.textContent=msg; el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"),2200);
+}
+
+/* ---- Knockout picks persistence ---- */
+function saveKoPicks(kp){ try{localStorage.setItem("fifa26_ko_picks",JSON.stringify(kp));}catch(e){} }
+function loadKoPicks(){ try{const v=localStorage.getItem("fifa26_ko_picks"); return v?JSON.parse(v):{};}catch(e){return {};} }
+
+/* ---- "My Picks" snapshot (saved when user manually edits, restored via My Picks button) ---- */
+function saveMyPicks(p, kp){
+  try{
+    localStorage.setItem("fifa26_my_picks",JSON.stringify(p));
+    localStorage.setItem("fifa26_my_ko_picks",JSON.stringify(kp));
+  }catch(e){}
+}
+function loadMyPicks(){
+  try{
+    const p=localStorage.getItem("fifa26_my_picks");
+    const kp=localStorage.getItem("fifa26_my_ko_picks");
+    return {picks: p?JSON.parse(p):{}, koPicks: kp?JSON.parse(kp):{}};
+  }catch(e){ return {picks:{}, koPicks:{}}; }
+}
+function hasMyPicks(){
+  try{ return !!localStorage.getItem("fifa26_my_picks"); }catch(e){ return false; }
+}
+function clearMyPicks(){
+  try{ localStorage.removeItem("fifa26_my_picks"); localStorage.removeItem("fifa26_my_ko_picks"); }catch(e){}
+}
+
+/* Cascade bracket picks: fill downstream slots from koPicks */
+function resolveKoWithPicks(resolved, koPicks){
+  KO_ORDER.forEach(m=>{
+    const pick = koPicks[m];
+    if(!pick) return;
+    const r = resolved[m];
+    if(!r) return;
+    const feeds = KO_FEEDS_INTO[m];
+    if(!feeds) return;
+    feeds.forEach(({target, slot, type})=>{
+      if(!resolved[target]) resolved[target] = {home:null, away:null};
+      if(type === "W") resolved[target][slot] = pick;
+      else if(type === "L"){
+        // loser = the other team in the match
+        const loser = (r.home === pick) ? r.away : r.home;
+        if(loser) resolved[target][slot] = loser;
+      }
+    });
+  });
+}
+
+/* Invalidate bracket picks if upstream teams changed.
+   Re-resolves after each deletion to cascade invalidation properly. */
+function invalidateKoPicks(resolved, koPicks){
+  let changed = false, pass = true;
+  while(pass){
+    pass = false;
+    // Re-resolve from scratch each pass
+    const fresh = Object.assign({}, resolved);
+    resolveKoWithPicks(fresh, koPicks);
+    for(const m of KO_ORDER){
+      if(!koPicks[m]) continue;
+      const r = fresh[m];
+      if(!r || (koPicks[m] !== r.home && koPicks[m] !== r.away)){
+        delete koPicks[m];
+        changed = true;
+        pass = true; // need another pass — downstream may now be invalid
+        break;
+      }
+    }
+  }
+  return changed;
+}
+
+// load from URL params first (shared link), else localStorage
+let _sharedKoPicks = null; // temp holder for URL ko picks
+function initPicks(){
+  const params=new URLSearchParams(window.location.search);
+  const pp=params.get("p");
+  if(pp && pp.length>=FIX_IDS.length){
+    const p=decodePicks(pp);
+    // Also load bracket picks from URL if present
+    const kk=params.get("ko");
+    if(kk){ _sharedKoPicks = decodeKoPicks(kk); }
+    // clean URL without reload
+    window.history.replaceState({},"",window.location.pathname);
+    toast("Loaded shared picks!");
+    return p;
+  }
+  return loadPicks();
+}
+
+/* Group stage complete — LIKELY no longer needed for group picks.
+   Bracket likely picks are computed by computeLikelyKoPicks() using LIKELY_STRENGTH. */
+const LIKELY = {};
+
+/* Strength ranking for likely KO picks (Polymarket odds, Jun 26 2026) */
+const LIKELY_STRENGTH = [
+  "FRA","ARG","ESP","ENG","POR","NED","BRA","GER",
+  "NOR","USA","MAR","COL","JPN","MEX","BEL","SUI",
+  "ECU","CRO","AUT","CIV","EGY","CAN","SEN","SWE",
+  "BIH","URU","PAR","GHA","AUS","COD","KOR","CPV",
+  "RSA","KSA","SCO","IRN","ALG","NZL","UZB","IRQ",
+  "HAI","JOR","TUR","CUW","QAT","TUN","PAN","CZE"
+];
+
+function computeLikelyKoPicks(){
+  const {resolved} = resolveKnockout(picks);
+  const kp = {};
+  KO_ORDER.forEach(m => {
+    const r = resolved[m];
+    if(!r || !r.home || !r.away) return;
+    // Completed match — use actual winner, not probability
+    let winner;
+    if(koResults[m]){
+      winner = koResults[m].s1 > koResults[m].s2 ? koResults[m].t1 : koResults[m].t2;
+    } else {
+      const hi = LIKELY_STRENGTH.indexOf(r.home);
+      const ai = LIKELY_STRENGTH.indexOf(r.away);
+      if(hi < 0 && ai < 0) return;
+      winner = (hi >= 0 && (ai < 0 || hi < ai)) ? r.home : r.away;
+    }
+    kp[m] = winner;
+    const feeds = KO_FEEDS_INTO[m];
+    if(!feeds) return;
+    feeds.forEach(({target, slot, type}) => {
+      if(!resolved[target]) resolved[target] = {home:null, away:null};
+      if(type === "W") resolved[target][slot] = winner;
+      else if(type === "L"){
+        const loser = (r.home === winner) ? r.away : r.home;
+        if(loser) resolved[target][slot] = loser;
+      }
+    });
+  });
+  return kp;
+}
+
+/* =================== STATE + RENDER =================== */
+let picks=initPicks();
+let koPicks = _sharedKoPicks || loadKoPicks();
+if(_sharedKoPicks){ saveKoPicks(koPicks); _sharedKoPicks=null; }
+// first visit: start with likely bracket picks so the bracket is populated
+if(!Object.keys(koPicks).length){
+  koPicks = computeLikelyKoPicks();
+  saveKoPicks(koPicks);
+}
+
+/* 12 distinct hues, one per group (bright enough for the dark board) */
+const GC = {
+  A:"#e6194b", B:"#f58231", C:"#ffe119", D:"#3cb44b", E:"#42d4f4", F:"#4363d8",
+  G:"#911eb4", H:"#f032e6", I:"#bfef45", J:"#fabed4", K:"#9a6324", L:"#469990"
+};
+
+let viewMode="winners";  // "winners" or "full"
+const groupsEl=document.getElementById("groups");
+const thirdsEl=document.getElementById("thirds");
+const fixturesEl=document.getElementById("fixtures");
+const bracketEl=document.getElementById("bracket");
+
+/* ── Bracket pick click handler ── */
+bracketEl.addEventListener("click",e=>{
+  const slot = e.target.closest("[data-ko-team]");
+  if(!slot) return;
+  const matchNum = parseInt(slot.dataset.koMatch);
+  if(koResults[matchNum]) return; // completed — don't allow pick changes
+  if(!confirmPickOverwrite()) return;
+  const team = slot.dataset.koTeam;
+  if(koPicks[matchNum] === team) delete koPicks[matchNum];
+  else koPicks[matchNum] = team;
+  saveKoPicks(koPicks); saveMyPicks(picks, koPicks);
+  renderBracket();
+  if(document.getElementById("bktOverlay").classList.contains("open")) renderBracketOverlay();
+});
+
+document.getElementById("viewToggle").addEventListener("click",()=>{
+  viewMode=viewMode==="winners"?"full":"winners";
+  const full=viewMode==="full";
+  document.getElementById("tTrack").classList.toggle("on",full);
+  document.getElementById("tLblW").classList.toggle("active",!full);
+  document.getElementById("tLblF").classList.toggle("active",full);
+  renderBoard();
+});
+
+function renderBoard(){
+  SCENARIO_LOCKED = scenarioLocked(picks);
+  const {tables,thirds,s}=standings(picks);
+  const full=viewMode==="full";
+  groupsEl.classList.toggle("full",full);
+
+  groupsEl.innerHTML = GROUPS.map(g=>{
+    const t=tables[g];
+    const rows = full
+      ? t.map((c,i)=>gteam(i+1,c,s,full)).join("")
+      : gteam(1,t[0],s,false)+gteam(2,t[1],s,false);
+    return `<div class="gcard" data-grp="${g}" style="--gc:${GC[g]}">
+        <div class="gcard__h"><span>${g}</span>${(LOCKED.has(t[0])&&LOCKED.has(t[1]))?'<span class="lkmark">🔒🔒</span>':(SCENARIO_LOCKED.has(t[0])&&SCENARIO_LOCKED.has(t[1]))?'<span class="lkmark">🟢🟢</span>':''}</div>
+        ${rows}
+      </div>`;
+  }).join("");
+
+  thirdsEl.innerHTML = thirds.map((code,i)=>{
+    const g=TEAMS[code].g, cut=i>=8;
+    return `<div class="tchip ${cut?'cut':''}" style="--gc:${GC[g]}">
+        <span class="gg">${g}</span>${flag(code)}
+        <span class="cd">${code}</span><span class="pt">${s[code].pts}</span>
+      </div>`;
+  }).join("");
+
+  // Count qualified teams: top-2 locked + best 8 thirds if all groups complete
+  const allGroupsDone = GROUPS.every(g => fixByGroup[g].every(([id])=>locked[id]));
+  const lockedThirds = allGroupsDone ? 8 : 0;
+  const totalLocked = LOCKED.size + lockedThirds;
+  const scenOnly=SCENARIO_LOCKED.size-LOCKED.size;
+  document.getElementById("lockN").textContent=totalLocked+(scenOnly>0?' + '+scenOnly+'🟢':'');
+}
+
+function gteam(rk,code,s,full){
+  const lock=LOCKED.has(code);
+  const scenLock=!lock && SCENARIO_LOCKED.has(code);
+  const prov = !lock && !scenLock && rk<=2;
+  const elim = rk>2 && !lock && !scenLock;
+  const gd=s[code].gd;
+  const gdStr=gd>0?"+"+gd:gd===0?"0":""+gd;
+  const icon=lock?'🔒 ':scenLock?'🟢 ':'';
+  return `<div class="gteam ${prov?'prov':''} ${elim&&full?'elim':''}">
+      <span class="rk">${rk}</span>${flag(code)}
+      <span class="cd">${code}</span>
+      ${full?'<span class="gd">'+gdStr+'</span>':''}
+      <span class="pt">${icon}${s[code].pts}</span>
+    </div>`;
+}
+
+function side(code,r,which,pts,liveScore){
+  const sel=r===which;
+  const dim=r && !sel;
+  const lv = liveScore!=null ? `<span class="lv-sc">${liveScore}</span>` : '';
+  return `<button class="side ${which==='A'?'away':''} ${sel?'sel':''} ${dim?'dim':''}" data-pick="${which}">
+      ${flag(code)}
+      <span class="stack"><span class="cd">${code}</span><span class="nm">${TEAMS[code].n} (${pts})</span></span>
+      ${lv}
+    </button>`;
+}
+
+function renderFixtures(){
+  const s=statsWith(picks);
+  fixturesEl.innerHTML = FIXTURES.map(day=>`
+    <section class="day">
+      <h2 class="day__h">${day.date} · <span class="tag">${day.note.replace(/Group ([A-L])/,'<span class="grp-link" data-grp="$1">Group $1</span>')}</span></h2>
+      ${day.ms.map(([id,g,h,a,venue])=>{
+        const lk=locked[id];
+        const p=picks[id];
+        const r=pickResult(p);
+        const sc=pickScores(p);
+        const lv = liveScores[id];
+        const venueHtml = venue ? `<div class="match__venue"><span>${venue}</span>${lk?'<span class="badge locked-badge">Final</span>':lv?`<span class="badge live-badge">🔴 LIVE${lv.clock?" · "+esc(lv.clock):""}</span>`:''}</div>` : '';
+        if(lv && !lk){
+          // live match — identical to normal match, just red border + LIVE badge
+          return `<div class="match match--live" data-id="${id}">
+            ${venueHtml}
+            <div class="match__grp">${g}<span class="mn">${id}</span></div>
+            <div class="pick">
+              ${side(h,r,"H",s[h].pts,lv.s1)}
+              <button class="draw ${r==='D'?'sel':''} ${r&&r!=='D'?'dim':''}" data-pick="D">DRAW<small>tie</small></button>
+              ${side(a,r,"A",s[a].pts,lv.s2)}
+            </div>
+            ${r&&r!=='D'?`<div class="score-row">
+              <button class="sbtn" data-sc="hm">−</button><span class="sval">${sc.hs}</span>
+              <button class="sbtn" data-sc="hp">+</button>
+              <span class="sdash">–</span>
+              <button class="sbtn" data-sc="am">−</button><span class="sval">${sc.as}</span>
+              <button class="sbtn" data-sc="ap">+</button>
+            </div>`:''}${r==='D'?`<div class="score-row">
+              <button class="sbtn" data-sc="dm">−</button>
+              <span class="sval">${sc.hs}</span><span class="sdash">–</span><span class="sval">${sc.as}</span>
+              <button class="sbtn" data-sc="dp">+</button>
+            </div>`:''}
+          </div>`;
+        }
+        if(lk){
+          // confirmed result — compact read-only display
+          const isDraw = lk.s1===lk.s2;
+          const hWin = lk.s1>lk.s2, aWin = lk.s1<lk.s2;
+          const hCls = hWin?'lk-win':isDraw?'lk-draw':'dim';
+          const aCls = aWin?'lk-win':isDraw?'lk-draw':'dim';
+          const lkSide = (code,score,cls,pts,isAway)=>isAway
+            ? `<button class="side away ${cls}" data-pick="">
+              <span class="lk-score">${score}</span>
+              <span class="stack"><span class="cd">${code}</span><span class="nm">${TEAMS[code].n} (${pts})</span></span>
+              ${flag(code)}
+            </button>`
+            : `<button class="side ${cls}" data-pick="">
+              ${flag(code)}
+              <span class="stack"><span class="cd">${code}</span><span class="nm">${TEAMS[code].n} (${pts})</span></span>
+              <span class="lk-score">${score}</span>
+            </button>`;
+          let grpGoalsHtml = "";
+          if(lk.goals && lk.goals.length){
+            const hG = lk.goals.filter(gl=>gl.team===h).map(gl=>`${esc(gl.player)} ${esc(gl.min)}`).join(", ");
+            const aG = lk.goals.filter(gl=>gl.team===a).map(gl=>`${esc(gl.player)} ${esc(gl.min)}`).join(", ");
+            grpGoalsHtml = `<div class="match__goals"><span class="match__goals-side">${hG}</span><span class="match__goals-side match__goals-away">${aG}</span></div>`;
+          }
+          return `<div class="match match--locked" data-id="${id}">
+            ${venueHtml}
+            <div class="match__grp">${g}<span class="mn">${id}</span></div>
+            <div class="pick">
+              ${lkSide(h,lk.s1,hCls,s[h].pts,false)}
+              <div class="lk-sep"><hr></div>
+              ${lkSide(a,lk.s2,aCls,s[a].pts,true)}
+            </div>
+            ${grpGoalsHtml}
+          </div>`;
+        }
+        return `<div class="match" data-id="${id}">
+          ${venueHtml}
+          <div class="match__grp">${g}<span class="mn">${id}</span></div>
+          <div class="pick">
+            ${side(h,r,"H",s[h].pts)}
+            <button class="draw ${r==='D'?'sel':''} ${r&&r!=='D'?'dim':''}" data-pick="D">DRAW<small>tie</small></button>
+            ${side(a,r,"A",s[a].pts)}
+          </div>
+          ${r&&r!=='D'?`<div class="score-row">
+            <button class="sbtn" data-sc="hm">−</button><span class="sval">${sc.hs}</span>
+            <button class="sbtn" data-sc="hp">+</button>
+            <span class="sdash">–</span>
+            <button class="sbtn" data-sc="am">−</button><span class="sval">${sc.as}</span>
+            <button class="sbtn" data-sc="ap">+</button>
+          </div>`:''}${r==='D'?`<div class="score-row">
+            <button class="sbtn" data-sc="dm">−</button>
+            <span class="sval">${sc.hs}</span><span class="sdash">–</span><span class="sval">${sc.as}</span>
+            <button class="sbtn" data-sc="dp">+</button>
+          </div>`:''}
+        </div>`;
+      }).join("")}
+    </section>`).join("");
+}
+
+/* ---- Bracket rendering ---- */
+function koSlot(code, groupLetter, label, isAway, dual, partial){
+  if(partial){
+    const gc = TEAMS[partial].g ? GC[TEAMS[partial].g] : "var(--line)";
+    if(isAway) return `<span class="ko__slot ko__slot--away ko__slot--dual" style="--gc:${gc}"><span class="cd">TBD</span> / ${flag(partial)} <span class="cd">${partial}</span></span>`;
+    return `<span class="ko__slot ko__slot--home ko__slot--dual" style="--gc:${gc}">${flag(partial)} <span class="cd">${partial}</span> / <span class="cd">TBD</span></span>`;
+  }
+  if(dual){
+    const [a,b] = dual;
+    const gc = TEAMS[a].g ? GC[TEAMS[a].g] : "var(--line)";
+    if(isAway) return `<span class="ko__slot ko__slot--away ko__slot--dual" style="--gc:${gc}"><span class="cd">${b}</span> ${flag(b)} / ${flag(a)} <span class="cd">${a}</span></span>`;
+    return `<span class="ko__slot ko__slot--home ko__slot--dual" style="--gc:${gc}">${flag(a)} <span class="cd">${a}</span> / ${flag(b)} <span class="cd">${b}</span></span>`;
+  }
+  if(!code) return `<span class="ko__slot ko__slot--tbd"><span class="cd">${label||"TBD"}</span></span>`;
+  const gc = groupLetter ? GC[groupLetter] : "var(--line)";
+  const grpTag = groupLetter ? `<span class="ko__grp" style="color:${gc}">${groupLetter}</span>` : "";
+  if(isAway) return `<span class="ko__slot ko__slot--away" style="--gc:${gc}"><span class="stack"><span class="cd">${code}</span><span class="nm">${TEAMS[code].n}</span></span> ${flag(code)}${grpTag}</span>`;
+  return `<span class="ko__slot ko__slot--home" style="--gc:${gc}">${grpTag}${flag(code)} <span class="stack"><span class="cd">${code}</span><span class="nm">${TEAMS[code].n}</span></span></span>`;
+}
+
+/* Parse "Jun 29 · 4:30 PM" into {date:"Jun 29", time:"4:30 PM", sortKey:1630} */
+function parseKoDate(m){
+  const s = KO_DATES[m] || "";
+  const parts = s.split(" · ");
+  const date = parts.length >= 3 ? parts[0] + " · " + parts[1] : (parts[0] || s);
+  const time = parts.length >= 3 ? parts[2] : (parts[1] || "");
+  // sortKey: convert time to minutes for ordering
+  let mins = 0;
+  if(time){
+    const tm = time.match(/(\d+)(?::(\d+))?\s*(AM|PM)/i);
+    if(tm){
+      let h = parseInt(tm[1]); const mm = parseInt(tm[2]||"0");
+      if(tm[3].toUpperCase()==="PM" && h!==12) h+=12;
+      if(tm[3].toUpperCase()==="AM" && h===12) h=0;
+      mins = h*60+mm;
+    }
+  }
+  return {date, time, sortKey:mins};
+}
+
+/* Group an array of match objects by date, sorted by time within each date */
+function koRoundHtml(roundName, matches, buildMatch){
+  // Sort matches by date order (preserve original order for date grouping) then by time
+  const enriched = matches.map(m=>({match:m, ...parseKoDate(m.m)}));
+  // Group by date, preserving date order from KO_DATES
+  const groups = [];
+  let lastDate = "";
+  enriched.forEach(e=>{
+    if(e.date !== lastDate){ groups.push({date:e.date, items:[]}); lastDate=e.date; }
+    groups[groups.length-1].items.push(e);
+  });
+  // Sort items within each date group by time
+  groups.forEach(g=>g.items.sort((a,b)=>a.sortKey-b.sortKey));
+
+  let html = `<div class="ko__round"><h2 class="ko__round-h">${roundName}</h2>`;
+  groups.forEach(g=>{
+    html += `<div class="ko__date-h">${g.date}</div><div class="ko__grid ko__grid--wide">`;
+    g.items.forEach(e=>{
+      html += buildMatch(e.match, e.time);
+    });
+    html += `</div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function renderBracket(){
+  const {resolved, nPicked, slotLabels, allDone} = resolveKnockout();
+
+  // Invalidate stale bracket picks against base resolution, then cascade
+  if(invalidateKoPicks(resolved, koPicks)) saveKoPicks(koPicks);
+  // Cascade bracket picks into resolved
+  resolveKoWithPicks(resolved, koPicks);
+
+  let html = "";
+
+  function mnTime(m){ return `<span class="ko__mn">${m}</span>`; }
+  function koVenue(m, time, badge){
+    const v = KO_VENUES[m];
+    const t = time ? `${time} · ` : "";
+    const b = badge || "";
+    return v ? `<div class="ko__venue">${t}${v}${b}</div>` : (time ? `<div class="ko__venue">${time}${b}</div>` : "");
+  }
+
+  // Render a pickable KO slot — if both teams known, slot is tappable
+  function koPickSlot(code, groupLetter, label, isAway, matchNum, dual, partial){
+    if(dual || partial) return koSlot(code, groupLetter, label, isAway, dual, partial);
+    if(!code) return koSlot(null, null, label, isAway);
+    const picked = koPicks[matchNum] === code;
+    const gc = groupLetter ? GC[groupLetter] : "var(--line)";
+    const cls = `ko__slot ${isAway?"ko__slot--away":"ko__slot--home"} ko__slot--pickable${picked?" ko__slot--picked":""}`;
+    const grpTag = groupLetter ? `<span class="ko__grp" style="color:${gc}">${groupLetter}</span>` : "";
+    // Show score if match has live or final result
+    const live = liveKoScores[matchNum], final_ = koResults[matchNum];
+    const src = live || final_;
+    const sc = src ? (src.t1===code ? src.s1 : src.s2) : null;
+    const scHtml = sc != null ? `<span class="ko__sc${live?" ko__sc--live":""}">${sc}</span>` : "";
+    if(isAway) return `<span class="${cls}" style="--gc:${gc}" data-ko-match="${matchNum}" data-ko-team="${code}">${scHtml}<span class="stack"><span class="cd">${code}</span><span class="nm">${TEAMS[code].n}</span></span> ${flag(code)}${grpTag}</span>`;
+    return `<span class="${cls}" style="--gc:${gc}" data-ko-match="${matchNum}" data-ko-team="${code}">${grpTag}${flag(code)} <span class="stack"><span class="cd">${code}</span><span class="nm">${TEAMS[code].n}</span></span>${scHtml}</span>`;
+  }
+
+  // Generic KO match renderer — works for all rounds
+  function koMatchHtml(match, time, r, sl){
+    const hg = r && r.home ? TEAMS[r.home].g : null;
+    const ag = r && r.away ? TEAMS[r.away].g : null;
+    const hLabel = sl ? sl.home : (match.home||"TBD");
+    const aLabel = sl ? sl.away : (match.away||"TBD");
+    const bothKnown = r && r.home && r.away && !r.homeDual && !r.awayDual;
+    const koLive = liveKoScores[match.m], koDone = koResults[match.m];
+    const src = koLive || koDone;
+
+    // Completed or live KO match — render like group locked matches
+    if(src && bothKnown){
+      const hCode = r.home, aCode = r.away;
+      const s1 = src.t1===hCode ? src.s1 : src.s2;
+      const s2 = src.t1===hCode ? src.s2 : src.s1;
+      const hPenWin = src.pen ? (src.t1===hCode ? src.pen[0]>src.pen[1] : src.pen[1]>src.pen[0]) : false;
+      const aPenWin = src.pen ? !hPenWin : false;
+      const hWin = s1>s2 || hPenWin, aWin = s1<s2 || aPenWin;
+      const koPick = koPicks[match.m];
+      const hSel = koLive && koPick===hCode ? ' sel' : '';
+      const aSel = koLive && koPick===aCode ? ' sel' : '';
+      const hCls = koLive ? '' + hSel : (hWin?'lk-win':'dim');
+      const aCls = koLive ? '' + aSel : (aWin?'lk-win':'dim');
+      const wrapCls = koLive ? 'match match--live' : 'match match--locked';
+      const badge = koLive
+        ? `<span class="badge live-badge">🔴 LIVE${src.clock ? " · "+esc(src.clock) : ""}</span>`
+        : src.pen ? '<span class="badge locked-badge">FINAL (PENS)</span>'
+        : src.et ? '<span class="badge locked-badge">FINAL (AET)</span>'
+        : '<span class="badge locked-badge">Final</span>';
+      const penH = src.pen ? `<span class="pen-score">(${src.t1===hCode ? src.pen[0] : src.pen[1]})</span>` : "";
+      const penA = src.pen ? `<span class="pen-score">(${src.t1===hCode ? src.pen[1] : src.pen[0]})</span>` : "";
+      const v = KO_VENUES[match.m];
+      const t = time ? `${time} · ` : "";
+      const venueText = v ? `${t}${v}` : (time||"");
+      const venueHtml = `<div class="match__venue">${venueText}${badge}</div>`;
+      const hGrpTag = hg ? `<span class="ko__grp" style="color:${GC[hg]}">${hg}</span>` : "";
+      const aGrpTag = ag ? `<span class="ko__grp" style="color:${GC[ag]}">${ag}</span>` : "";
+      let goalsHtml = "";
+      if(src.goals && src.goals.length){
+        const hGoals = src.goals.filter(g=>g.team===hCode).map(g=>`${esc(g.player)} ${esc(g.min)}`).join(", ");
+        const aGoals = src.goals.filter(g=>g.team===aCode).map(g=>`${esc(g.player)} ${esc(g.min)}`).join(", ");
+        goalsHtml = `<div class="match__goals"><span class="match__goals-side">${hGoals}</span><span class="match__goals-side match__goals-away">${aGoals}</span></div>`;
+      }
+      const pickAttr = koLive ? ` data-ko-match="${match.m}" data-ko-team=` : '';
+      return `<div class="${wrapCls}" data-ko-m="${match.m}">
+        ${venueHtml}
+        <div class="match__grp" style="background:var(--muted)"><span class="mn">${match.m}</span></div>
+        <div class="pick">
+          <button class="side ${hCls}"${koLive ? ` data-ko-match="${match.m}" data-ko-team="${hCode}"` : ' data-pick=""'}>
+            ${hGrpTag}${flag(hCode)}
+            <span class="stack"><span class="cd">${hCode}</span><span class="nm">${TEAMS[hCode].n}</span></span>
+            <span class="lk-score">${s1}${penH}</span>
+          </button>
+          <div class="lk-sep"><hr></div>
+          <button class="side away ${aCls}"${koLive ? ` data-ko-match="${match.m}" data-ko-team="${aCode}"` : ' data-pick=""'}>
+            <span class="lk-score">${s2}${penA}</span>
+            <span class="stack"><span class="cd">${aCode}</span><span class="nm">${TEAMS[aCode].n}</span></span>
+            ${flag(aCode)}${aGrpTag}
+          </button>
+        </div>
+        ${goalsHtml}
+      </div>`;
+    }
+
+    // Future/unpicked KO match — keep existing ko__row style
+    const liveCls = koLive ? " ko__match--live" : koDone ? " ko__match--done" : "";
+    return `<div class="ko__match${liveCls}" data-ko-m="${match.m}">
+      ${koVenue(match.m,time)}
+      <div class="ko__row">${mnTime(match.m)}
+      ${bothKnown ? koPickSlot(r.home, hg, hLabel, false, match.m) : koSlot(r?r.home:null, hg, hLabel, false, r?r.homeDual:null, r?r.homePartial:null)}
+      <span class="ko__vs">vs</span>
+      ${bothKnown ? koPickSlot(r.away, ag, aLabel, true, match.m) : koSlot(r?r.away:null, ag, aLabel, true, r?r.awayDual:null, r?r.awayPartial:null)}</div>
+    </div>`;
+  }
+
+  // R32
+  html += koRoundHtml("Round of 32", R32_MATCHES, (match,time)=>{
+    return koMatchHtml(match, time, resolved[match.m], slotLabels[match.m]);
+  });
+
+  // R16+: build labels for display
+  const laterRounds = [
+    ["Round of 16", R16_MATCHES],
+    ["Quarter-Finals", QF_MATCHES],
+    ["Semi-Finals", SF_MATCHES],
+    ["Final", [FINAL_MATCH]],
+    ["Third Place", [THIRD_PLACE]]
+  ];
+  laterRounds.forEach(([name, matches])=>{
+    html += koRoundHtml(name, matches, (match,time)=>{
+      const r = resolved[match.m];
+      const sl = {home: match.home, away: match.away};
+      return koMatchHtml(match, time, r, sl);
+    });
+  });
+
+  bracketEl.innerHTML = html;
+}
+
+/* ========== BRACKET TREE OVERLAY ========== */
+function bktTeamHtml(code, groupLetter, label, matchNum, score){
+  if(!code){
+    return `<div class="bkt-team bkt-team--tbd"><span class="cd">${label||"TBD"}</span></div>`;
+  }
+  const gc = groupLetter ? GC[groupLetter] : "rgba(255,255,255,.15)";
+  const done = matchNum && koResults[matchNum];
+  const picked = matchNum && koPicks[matchNum] === code;
+  const pickable = matchNum && !done ? " bkt-team--pickable" : "";
+  const pickedCls = picked && !done ? " bkt-team--picked" : done && picked ? " bkt-team--winner" : "";
+  const dataAttr = matchNum && !done ? ` data-ko-match="${matchNum}" data-ko-team="${code}"` : "";
+  const scoreBadge = score != null ? ` <span class="bkt-sc">${score}</span>` : "";
+  return `<div class="bkt-team bkt-team--has${pickable}${pickedCls}" style="--gc:${gc}"${dataAttr}>${flag(code)} <span class="cd">${code}</span>${scoreBadge}</div>`;
+}
+
+function bktMatchCell(m, col, row, span, res, labels){
+  const r = res[m];
+  const sl = labels[m];
+  let hCode=null, aCode=null, hGrp=null, aGrp=null;
+  let hLbl = sl ? sl.home : "TBD";
+  let aLbl = sl ? sl.away : "TBD";
+  if(r){
+    hCode = r.home; aCode = r.away;
+    if(r.homeDual) hLbl = r.homeDual.join("/");
+    if(r.awayDual) aLbl = r.awayDual.join("/");
+    if(hCode) hGrp = TEAMS[hCode].g;
+    if(aCode) aGrp = TEAMS[aCode].g;
+  }
+  const bothKnown = hCode && aCode;
+  const venue = KO_VENUES[m] || "";
+  const live = liveKoScores[m];
+  const final_ = koResults[m];
+  // Align scores to resolved home/away (scores.json t1/t2 may differ from bracket order)
+  let hScore = null, aScore = null;
+  if(live){
+    if(live.t1===hCode){hScore=live.s1;aScore=live.s2;}
+    else{hScore=live.s2;aScore=live.s1;}
+  } else if(final_){
+    if(final_.t1===hCode){hScore=final_.s1;aScore=final_.s2;}
+    else{hScore=final_.s2;aScore=final_.s1;}
+  }
+  const liveCls = live ? " bkt-match--live" : final_ ? " bkt-match--done" : "";
+  const badge = live ? ' <span class="bkt-badge bkt-badge--live">LIVE</span>' : final_ ? ` <span class="bkt-badge bkt-badge--final">${final_.pen?"FINAL (PENS)":final_.et?"FINAL (AET)":"FINAL"}</span>` : '';
+  return `<div class="bkt-match${liveCls}" style="grid-column:${col};grid-row:${row}/span ${span}">
+    <div class="bkt-mn">${m} <span class="bkt-dt">${(KO_DATES[m]||"").replace(/^\w+ · /,"")}</span>${badge}</div>
+    ${bktTeamHtml(hCode, hGrp, hLbl, bothKnown ? m : null, hScore)}
+    ${bktTeamHtml(aCode, aGrp, aLbl, bothKnown ? m : null, aScore)}
+    ${venue ? `<div class="bkt-venue${span<=3?" bkt-venue--abs":""}">${venue}</div>` : ""}
+  </div>`;
+}
+
+function bktConn(col, row, span, cls){
+  return `<div class="bkt-conn ${cls}" style="grid-column:${col};grid-row:${row}/span ${span}"></div>`;
+}
+
+function renderBracketOverlay(){
+  const {resolved, slotLabels} = resolveKnockout();
+  const res = Object.assign({}, resolved);
+  const labels = Object.assign({}, slotLabels);
+  [...R16_MATCHES,...QF_MATCHES,...SF_MATCHES,FINAL_MATCH,THIRD_PLACE].forEach(m=>{
+    if(!labels[m.m]) labels[m.m] = {home:m.home, away:m.away};
+    if(!res[m.m]) res[m.m] = {home:null, away:null};
+  });
+  // Cascade bracket picks
+  resolveKoWithPicks(res, koPicks);
+
+  /*
+   * Grid: 17 columns × 32 rows
+   * Cols: 1=R32L 2=cL1 3=R16L 4=cL2 5=QFL 6=cL3 7=SFL 8=cL4 9=FINAL
+   *       10=cR4 11=SFR 12=cR3 13=QFR 14=cR2 15=R16R 16=cR1 17=R32R
+   * Each R32 match = 2 rows, stride of 4 → 8 matches in 32 rows
+   */
+  const r32rows = [1,6,11,16,21,26,31,36];
+  const r16rows = [2,12,22,32];
+  const qfRows  = [5,25];
+
+  const leftR32=[74,77,73,75,83,84,81,82], leftR16=[89,90,93,94], leftQF=[97,98], leftSF=101;
+  const rightR32=[76,78,79,80,86,88,85,87], rightR16=[91,92,95,96], rightQF=[99,100], rightSF=102;
+
+  let h='';
+
+  // helper: add left-side connectors (bracket ] shape — arm goes right toward next round)
+  function addConnsL(col, pairs, matchRows, span){
+    for(let p=0;p<pairs;p++){
+      const midTop = matchRows[p*2] + Math.floor(span/2) - (span%2===0?1:0);
+      const midBot = matchRows[p*2+1] + Math.ceil(span/2) - 1 + (span%2===0?1:0);
+      h += bktConn(col, midTop, 1, 'bkt-vb-l');
+      if(midBot-midTop-1>0) h += bktConn(col, midTop+1, midBot-midTop-1, 'bkt-vf-l');
+      h += bktConn(col, midBot, 1, 'bkt-vt-l');
+    }
+  }
+  // helper: add right-side connectors (bracket [ shape — arm goes left toward next round)
+  function addConnsR(col, pairs, matchRows, span){
+    for(let p=0;p<pairs;p++){
+      const midTop = matchRows[p*2] + Math.floor(span/2) - (span%2===0?1:0);
+      const midBot = matchRows[p*2+1] + Math.ceil(span/2) - 1 + (span%2===0?1:0);
+      h += bktConn(col, midTop, 1, 'bkt-vb');
+      if(midBot-midTop-1>0) h += bktConn(col, midTop+1, midBot-midTop-1, 'bkt-vf');
+      h += bktConn(col, midBot, 1, 'bkt-vt');
+    }
+  }
+
+  // Left R32 (col 1) + connectors (col 2)
+  leftR32.forEach((m,i)=> h += bktMatchCell(m, 1, r32rows[i], 3, res, labels));
+  addConnsL(2, 4, r32rows, 3);
+
+  // Left R16 (col 3) + connectors (col 4)
+  leftR16.forEach((m,i)=> h += bktMatchCell(m, 3, r16rows[i], 5, res, labels));
+  addConnsL(4, 2, r16rows, 5);
+
+  // Left QF (col 5) + connectors (col 6)
+  leftQF.forEach((m,i)=> h += bktMatchCell(m, 5, qfRows[i], 10, res, labels));
+  addConnsL(6, 1, qfRows, 10);
+
+  // Left SF (col 7) + connector (col 8)
+  h += bktMatchCell(leftSF, 7, 9, 20, res, labels);
+  h += bktConn(8, 19, 1, 'bkt-hf');
+
+  // FINAL (col 9)
+  const finalLive = liveKoScores[104] ? " bkt-match--live" : koResults[104] ? " bkt-match--done" : "";
+  h += `<div class="bkt-final${finalLive}" style="grid-column:9;grid-row:13/span 10">
+    <div class="bkt-trophy">🏆</div>
+    <div class="bkt-final-label">FINAL</div>
+    ${(()=>{const r2=res[104],sl=labels[104];
+      let hC=null,aC=null,hG=null,aG=null,hL=sl?sl.home:"TBD",aL=sl?sl.away:"TBD";
+      if(r2){hC=r2.home;aC=r2.away;if(hC)hG=TEAMS[hC].g;if(aC)aG=TEAMS[aC].g;}
+      const bk=hC&&aC?104:null;
+      const lv104=liveKoScores[104], fn104=koResults[104];
+      const src104=lv104||fn104; let hSc=null,aSc=null;
+      if(src104){if(src104.t1===hC){hSc=src104.s1;aSc=src104.s2;}else{hSc=src104.s2;aSc=src104.s1;}}
+      return `<div class="bkt-mn">104</div><div class="bkt-dt-line">${(KO_DATES[104]||"").replace(/^\w+ · /,"")}</div>${bktTeamHtml(hC,hG,hL,bk,hSc)}${bktTeamHtml(aC,aG,aL,bk,aSc)}<div class="bkt-venue">${KO_VENUES[104]||""}</div>`;
+    })()}
+  </div>`;
+
+  // 3rd place (col 9, below final)
+  const thirdLive = liveKoScores[103] ? " bkt-match--live" : koResults[103] ? " bkt-match--done" : "";
+  h += `<div class="bkt-match${thirdLive}" style="grid-column:9;grid-row:27/span 5">
+    <div class="bkt-mn" style="color:var(--bronze)">3rd · 103</div>
+    <div class="bkt-dt-line">${(KO_DATES[103]||"").replace(/^\w+ · /,"")}</div>
+    ${(()=>{const r2=res[103],sl=labels[103];
+      let hC=null,aC=null,hG=null,aG=null,hL=sl?sl.home:"TBD",aL=sl?sl.away:"TBD";
+      if(r2){hC=r2.home;aC=r2.away;if(hC)hG=TEAMS[hC].g;if(aC)aG=TEAMS[aC].g;}
+      const bk=hC&&aC?103:null;
+      const lv103=liveKoScores[103], fn103=koResults[103];
+      const src103=lv103||fn103; let hSc=null,aSc=null;
+      if(src103){if(src103.t1===hC){hSc=src103.s1;aSc=src103.s2;}else{hSc=src103.s2;aSc=src103.s1;}}
+      return `${bktTeamHtml(hC,hG,hL,bk,hSc)}${bktTeamHtml(aC,aG,aL,bk,aSc)}<div class="bkt-venue">${KO_VENUES[103]||""}</div>`;
+    })()}
+  </div>`;
+
+  // Right SF (col 11) + connector (col 10)
+  h += bktMatchCell(rightSF, 11, 9, 20, res, labels);
+  h += bktConn(10, 19, 1, 'bkt-hf');
+
+  // Right QF (col 13) + connectors (col 12)
+  rightQF.forEach((m,i)=> h += bktMatchCell(m, 13, qfRows[i], 10, res, labels));
+  addConnsR(12, 1, qfRows, 10);
+
+  // Right R16 (col 15) + connectors (col 14)
+  rightR16.forEach((m,i)=> h += bktMatchCell(m, 15, r16rows[i], 5, res, labels));
+  addConnsR(14, 2, r16rows, 5);
+
+  // Right R32 (col 17) + connectors (col 16)
+  rightR32.forEach((m,i)=> h += bktMatchCell(m, 17, r32rows[i], 3, res, labels));
+  addConnsR(16, 4, r32rows, 3);
+
+  document.getElementById("bktTree").innerHTML = h;
+}
+
+/* one delegated listener handles every pick */
+function flashFloor(btn){
+  const msg=document.createElement("span");
+  msg.className="floor-flash";
+  msg.textContent="Live score floor";
+  btn.parentElement.appendChild(msg);
+  setTimeout(()=>msg.remove(),1200);
+}
+
+fixturesEl.addEventListener("click",e=>{
+  // ignore clicks on locked (confirmed) matches
+  const matchEl=e.target.closest(".match");
+  if(matchEl && locked[matchEl.dataset.id]) return;
+
+  // score stepper buttons
+  const sc=e.target.closest("[data-sc]");
+  if(sc){
+    const id=e.target.closest(".match").dataset.id;
+    const p=picks[id]; if(!p) return;
+    const act=sc.dataset.sc;
+    let {r,hs,as}=p;
+    const lv=liveScores[id];
+    const floorH=lv?lv.s1:0, floorA=lv?lv.s2:0;
+    let blocked=false;
+    if(act==="hp"&&hs<15) hs++;
+    else if(act==="hm"&&hs>floorH){
+      hs--;
+      if(r==="H"&&hs<=as) as=Math.max(hs-1,floorA);
+    }
+    else if(act==="ap"&&as<15) as++;
+    else if(act==="am"&&as>floorA){
+      as--;
+      if(r==="A"&&as<=hs) hs=Math.max(as-1,floorH);
+    }
+    else if(act==="dp"&&hs<15){hs++;as++;}
+    else if(act==="dm"&&hs>floorH&&as>floorA){hs--;as--;}
+    else if(lv&&(act==="hm"||act==="am"||act==="dm")) blocked=true;
+    // enforce win/draw constraints
+    if(r==="H"&&hs<=as) hs=as+1;
+    if(r==="A"&&as<=hs) as=hs+1;
+    if(r==="D") as=hs;
+    if(blocked){ flashFloor(sc); return; }
+    if(!confirmPickOverwrite()) return;
+    picks[id]={r,hs,as};
+    savePicks(picks); saveMyPicks(picks, koPicks); renderFixtures(); renderBoard(); renderBracket();
+    return;
+  }
+  // result pick buttons
+  const btn=e.target.closest("[data-pick]"); if(!btn) return;
+  if(!confirmPickOverwrite()) return;
+  const id=e.target.closest(".match").dataset.id;
+  const want=btn.dataset.pick;
+  const cur=pickResult(picks[id]);
+  const lv=liveScores[id]||null;
+  picks[id] = (cur===want) ? null : defaultPick(want,lv);
+  savePicks(picks); saveMyPicks(picks, koPicks); renderFixtures(); renderBoard(); renderBracket();
+});
+
+let pickMode = null; // null | "likely" | "my"
+function setPickMode(mode){
+  pickMode = mode;
+  // Pick-mode colors: blue=likely, green=my, gold=default
+  const s = document.documentElement.style;
+  if(mode==="likely"){ s.setProperty("--pick-clr","#4a90d9"); s.setProperty("--pick-bg","rgba(74,144,217,.12)"); }
+  else if(mode==="my"){ s.setProperty("--pick-clr","#2ecc71"); s.setProperty("--pick-bg","rgba(46,204,113,.12)"); }
+  else { s.removeProperty("--pick-clr"); s.removeProperty("--pick-bg"); }
+  const likelyBtn = document.getElementById("likely");
+  const myBtn = document.getElementById("myPicks");
+  const ovLikelyBtn = document.getElementById("ovLikely");
+  const ovMyBtn = document.getElementById("ovMyPicks");
+  likelyBtn.classList.toggle("btn--active", mode==="likely");
+  myBtn.classList.toggle("btn--active", mode==="my");
+  const shareBtn = document.getElementById("share");
+  if(shareBtn) shareBtn.classList.toggle("btn--active", mode==="my");
+  const resetBtn = document.getElementById("reset");
+  resetBtn.classList.toggle("btn--active", mode===null);
+  ovLikelyBtn.classList.toggle("btn--active", mode==="likely");
+  ovMyBtn.classList.toggle("btn--active", mode==="my");
+  const ovShareBtn = document.getElementById("ovShare");
+  if(ovShareBtn) ovShareBtn.classList.toggle("btn--active", mode==="my");
+  const ovResetBtn = document.getElementById("ovReset");
+  ovResetBtn.classList.toggle("btn--active", mode===null);
+}
+function confirmPickOverwrite(){
+  if(pickMode === "my") return true; // silent auto-save
+  const msg = pickMode === "likely"
+    ? "Overwrite your picks using Likely Picks as a baseline?"
+    : "Overwrite your saved picks and start afresh?";
+  if(confirm(msg)){ setPickMode("my"); return true; }
+  return false;
+}
+
+document.getElementById("likely").addEventListener("click",()=>{
+  koPicks = computeLikelyKoPicks();
+  saveKoPicks(koPicks); renderFixtures(); renderBoard(); renderBracket();
+  setPickMode("likely");
+  toast("Loaded likely bracket picks");
+});
+
+document.getElementById("myPicks").addEventListener("click",()=>{
+  if(!hasMyPicks()){ toast("No saved picks yet — make some picks first!"); return; }
+  const my = loadMyPicks();
+  // Preserve locked match results
+  for(const id in locked){ if(picks[id]) my.picks[id]=picks[id]; }
+  // Preserve completed KO match winners
+  for(const m in koResults){ my.koPicks[m] = koPicks[m]; }
+  picks = my.picks; koPicks = my.koPicks;
+  savePicks(picks); saveKoPicks(koPicks); renderFixtures(); renderBoard(); renderBracket();
+  setPickMode("my");
+  toast("Restored your picks");
+});
+
+document.getElementById("reset").addEventListener("click",()=>{
+  if(!Object.values(picks).some(v=>v&&pickResult(v)) && !Object.keys(koPicks).length) return;
+  const kept={}; for(const id in locked){ if(picks[id]) kept[id]=picks[id]; }
+  picks=kept;
+  const keptKo={}; for(const m in koResults){ if(koPicks[m]) keptKo[m]=koPicks[m]; }
+  koPicks=keptKo; savePicks(picks); saveKoPicks(koPicks); renderFixtures(); renderBoard(); renderBracket();
+  setPickMode(null);
+});
+
+document.getElementById("share").addEventListener("click",()=>{
+  const n=Object.values(picks).filter(v=>v&&pickResult(v)).length;
+  const nKo=Object.keys(koPicks).length;
+  if(!n && !nKo){ toast("Make some picks first!"); return; }
+  let url=window.location.origin+window.location.pathname+"?p="+encodePicks(picks);
+  if(nKo) url += "&ko="+encodeKoPicks(koPicks);
+  const desc = n+"/24 group" + (nKo ? " + "+nKo+" bracket" : "") + " picks";
+
+  // Try native Web Share API first (phones)
+  if(navigator.share){
+    navigator.share({
+      title:"My FIFA26 Picks",
+      text:"Check out my World Cup predictions ("+desc+")",
+      url:url
+    }).catch(err => {
+      if(err.name !== "AbortError") console.error("Share failed:", err);
+    });
+  } else {
+    // Fallback: copy to clipboard (desktop)
+    navigator.clipboard.writeText(url).then(
+      ()=>toast("Link copied! "+desc),
+      ()=>{ prompt("Copy this link:",url); }
+    );
+  }
+});
+
+/* overlay action buttons — mirror main buttons + re-render overlay */
+document.getElementById("ovLikely").addEventListener("click",()=>{
+  document.getElementById("likely").click();
+  renderBracketOverlay();
+});
+document.getElementById("ovMyPicks").addEventListener("click",()=>{
+  document.getElementById("myPicks").click();
+  renderBracketOverlay();
+});
+document.getElementById("ovReset").addEventListener("click",()=>{
+  document.getElementById("reset").click();
+  renderBracketOverlay();
+});
+document.getElementById("ovShare").addEventListener("click",()=>{
+  document.getElementById("share").click();
+});
+
+/* group popup */
+const gpopOverlay=document.getElementById("gpopOverlay");
+const gpopEl=document.getElementById("gpop");
+
+function showGroupPopup(g){
+  const s=statsWith(picks);
+  const teams=Object.keys(TEAMS).filter(c=>TEAMS[c].g===g);
+  teams.sort((x,y)=>cmpRaw(s[x],s[y],x,y));
+  // compute W/D/L from PLAYED + picks
+  const wdl={};
+  teams.forEach(c=>wdl[c]={w:0,d:0,l:0,mp:0});
+  for(const [pg,h,hs,as_,a] of PLAYED){
+    if(pg!==g) continue;
+    wdl[h].mp++; wdl[a].mp++;
+    if(hs>as_){wdl[h].w++;wdl[a].l++;}else if(hs<as_){wdl[a].w++;wdl[h].l++;}else{wdl[h].d++;wdl[a].d++;}
+  }
+  for(const id in picks){
+    const p=picks[id]; if(!p) continue;
+    if(locked[id]) continue; // already counted from PLAYED
+    const [,fg,h,a]=fixById[id]; if(fg!==g) continue;
+    const r=pickResult(p);
+    wdl[h].mp++; wdl[a].mp++;
+    if(r==="H"){wdl[h].w++;wdl[a].l++;}else if(r==="A"){wdl[a].w++;wdl[h].l++;}else{wdl[h].d++;wdl[a].d++;}
+  }
+  gpopEl.style.setProperty("--gc",GC[g]);
+  gpopEl.innerHTML=`
+    <div class="gpop__h"><span>Group ${g}</span><button class="gpop__close">✕</button></div>
+    <table>
+      <tr><th style="text-align:left">Team</th><th>MP</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr>
+      ${teams.map((c,i)=>{
+        const st=s[c], w=wdl[c];
+        const gd=st.gd;
+        return `<tr>
+          <td><div class="tm">${i+1} ${flag(c)} ${TEAMS[c].n}</div></td>
+          <td>${w.mp}</td><td>${w.w}</td><td>${w.d}</td><td>${w.l}</td>
+          <td>${gd>0?"+"+gd:gd}</td><td class="pts-col">${st.pts}</td>
+        </tr>`;
+      }).join("")}
+    </table>`;
+  gpopOverlay.classList.add("open");
+}
+
+gpopOverlay.addEventListener("click",e=>{
+  if(e.target===gpopOverlay||e.target.closest(".gpop__close"))
+    gpopOverlay.classList.remove("open");
+});
+
+document.addEventListener("click",e=>{
+  const grpLink=e.target.closest("[data-grp]");
+  if(grpLink){ showGroupPopup(grpLink.dataset.grp); return; }
+});
+
+/* ---- Panel tabs (mobile swipe + tab clicks) ---- */
+const panelsEl = document.getElementById("panels");
+const tabBtns = document.querySelectorAll(".tab");
+
+tabBtns.forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const idx = parseInt(btn.dataset.panel);
+    panelsEl.scrollTo({left: idx * panelsEl.offsetWidth, behavior:"smooth"});
+  });
+});
+
+// Update active tab on scroll
+let lastActiveIdx = 0;
+
+// Board drawer toggle
+const drawerBtn = document.getElementById("boardDrawer");
+const boardEl = document.getElementById("board");
+boardEl.classList.add("collapsed");
+drawerBtn.addEventListener("click", () => {
+  boardEl.classList.toggle("collapsed");
+  drawerBtn.classList.toggle("expanded");
+});
+
+// Start on bracket tab (knockout stage is active)
+if(window.innerWidth < 900){
+  panelsEl.scrollTo({left: panelsEl.offsetWidth, behavior:"instant"});
+  tabBtns.forEach((btn,i)=> btn.classList.toggle("active", i===1));
+  lastActiveIdx = 1;
+}
+
+panelsEl.addEventListener("scroll",()=>{
+  const scrollLeft = panelsEl.scrollLeft;
+  const panelWidth = panelsEl.offsetWidth;
+  const activeIdx = Math.round(scrollLeft / panelWidth);
+  tabBtns.forEach((btn,i)=>{
+    btn.classList.toggle("active", i===activeIdx);
+  });
+  // On mobile, scroll to appropriate position when switching tabs
+  if(window.innerWidth < 900 && activeIdx !== lastActiveIdx){
+    if(activeIdx === 1){
+      // Switched TO bracket tab: scroll to today's bracket match
+      setTimeout(scrollUpBracket, 50);
+    } else if(activeIdx === 0){
+      // Switched TO groups tab: scroll up
+      setTimeout(scrollUpGroup, 50);
+    }
+    lastActiveIdx = activeIdx;
+  }
+});
+
+renderFixtures();
+renderBoard();
+renderBracket();
+// Highlight the active pick mode on load
+setPickMode(hasMyPicks() ? "my" : "likely");
+
+
+/* ── Today's date string in ET (shared by scroll functions) ── */
+function getTodayStr(){
+  const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const d = new Date(new Date().toLocaleString('en-US', {timeZone:'America/New_York'}));
+  return `${days[d.getDay()]} · ${months[d.getMonth()]} ${d.getDate()}`;
+}
+
+/* ── Scroll up in groups panel ── */
+function scrollUpGroup(){
+  const topSticky = document.querySelector(".top-sticky");
+  const boardH = topSticky ? topSticky.offsetHeight : 0;
+  const groupsPanel = document.getElementById("groups");
+
+  // Priority: scroll to first live GROUP match's date header
+  const liveMatch = groupsPanel && groupsPanel.querySelector(".match--live");
+  if(liveMatch){
+    const section = liveMatch.closest(".day") || liveMatch.parentElement;
+    const header = section && section.querySelector(".day__h");
+    const scrollEl = header || liveMatch;
+    const rect = scrollEl.getBoundingClientRect();
+    const target = window.scrollY + rect.top - boardH - 10;
+    window.scrollTo({top: target, behavior:"smooth"});
+    return;
+  }
+
+  // Otherwise scroll to today's first group fixture
+  const todayStr = getTodayStr();
+  const dayHeaders = groupsPanel ? groupsPanel.querySelectorAll(".day__h") : document.querySelectorAll(".day__h");
+  for(const h of dayHeaders){
+    const parts = h.textContent.split(" · ");
+    const dateText = parts.slice(0, 2).join(" · ");
+    if(dateText === todayStr){
+      const rect = h.getBoundingClientRect();
+      const target = window.scrollY + rect.top - boardH - 10;
+      window.scrollTo({top: target, behavior:"smooth"});
+      return;
+    }
+  }
+  // No matching date — scroll to top
+  window.scrollTo({top: 0, behavior:"smooth"});
+}
+
+/* ── Scroll up in bracket panel ── */
+function scrollUpBracket(){
+  const topSticky = document.querySelector(".top-sticky");
+  const boardH = topSticky ? topSticky.offsetHeight : 0;
+
+  // Priority: scroll to first live KO match (directly to the match, not date header)
+  const bracketPanel = document.getElementById("bracket");
+  const liveKoMatch = bracketPanel && (bracketPanel.querySelector(".match--live") || bracketPanel.querySelector(".ko__match--live"));
+  if(liveKoMatch){
+    const rect = liveKoMatch.getBoundingClientRect();
+    const target = window.scrollY + rect.top - boardH - 10;
+    window.scrollTo({top: target, behavior:"smooth"});
+    return;
+  }
+
+  // Otherwise scroll to today's bracket date header
+  const todayStr = getTodayStr();
+  const dateHeaders = bracketPanel ? bracketPanel.querySelectorAll(".ko__date-h") : [];
+  for(const h of dateHeaders){
+    if(h.textContent.trim() === todayStr){
+      const rect = h.getBoundingClientRect();
+      const target = window.scrollY + rect.top - boardH - 10;
+      window.scrollTo({top: target, behavior:"smooth"});
+      return;
+    }
+  }
+}
+
+/* ── Fetch live scores from scores.json ── */
+async function fetchScores(){
+  try{
+    const base = window.location.hostname ? "" : "";
+    const url = window.location.href.replace(/\/[^\/]*$/,"/scores.json");
+    const resp = await fetch(url, {cache:"no-store"});
+    if(!resp.ok) return;
+    const data = await resp.json();
+    let changed = false;
+    for(const m of data.matches){
+      if(m.s1===null || m.s2===null) continue;
+      // Knockout match (has match number >= 73)
+      if(m.m && m.m >= 73){
+        const kr = koResults[m.m];
+        const penChanged = m.pen && (!kr || !kr.pen || kr.pen[0]!==m.pen[0] || kr.pen[1]!==m.pen[1]);
+        const goalsChanged = m.goals && (!kr || !kr.goals);
+        if(!kr || kr.s1!==m.s1 || kr.s2!==m.s2 || penChanged || goalsChanged){
+          koResults[m.m] = {s1:m.s1, s2:m.s2, t1:m.t1, t2:m.t2, et:m.et, pen:m.pen, goals:m.goals};
+          // Lock the koPick to the actual winner (check penalty shootout first)
+          const winner = m.pen ? (m.pen[0] > m.pen[1] ? m.t1 : m.t2) : (m.s1 > m.s2 ? m.t1 : m.t2);
+          koPicks[m.m] = winner;
+          changed = true;
+        }
+        continue;
+      }
+      // find the fixture id by team pairing
+      const id = fixByTeams[m.t1+"|"+m.t2];
+      if(!id) continue; // not a Matchday 3 match (already in PLAYED)
+      if(locked[id]){
+        // already locked — but update goals if scores.json has them
+        if(m.goals && !locked[id].goals) { locked[id].goals = m.goals; changed = true; }
+        continue;
+      }
+      // lock this match with confirmed score
+      locked[id] = {s1:m.s1, s2:m.s2, goals:m.goals};
+      // add to PLAYED so baseStats picks it up
+      PLAYED.push([m.g, m.t1, m.s1, m.s2, m.t2]);
+      // override user's pick with the real result
+      const r = m.s1>m.s2 ? "H" : m.s1<m.s2 ? "A" : "D";
+      picks[id] = {r, hs:m.s1, as:m.s2};
+      changed = true;
+    }
+    if(changed){
+      // recompute engine from updated PLAYED
+      BASE = baseStats();
+      buildSeedIndex();
+      LOCKED = clinchedTop2();
+      savePicks(picks);
+      saveKoPicks(koPicks);
+      renderFixtures();
+      renderBoard();
+      renderBracket();
+    }
+  }catch(e){/* file:// or network error — silent fallback */}
+}
+/* ── Fetch live scores from ESPN API ── */
+let liveInterval = null;
+
+/* Find KO match number for a team pairing by checking resolved bracket */
+function findKoMatch(hCode, aCode, cachedResolved){
+  const resolved = cachedResolved || (()=>{
+    const {resolved: r} = resolveKnockout();
+    resolveKoWithPicks(r, koPicks);
+    return r;
+  })();
+  for(const m of KO_ORDER){
+    const r = resolved[m];
+    if(!r) continue;
+    if((r.home===hCode && r.away===aCode) || (r.home===aCode && r.away===hCode))
+      return {m, flipped: r.home===aCode};
+  }
+  return null;
+}
+
+function _processEspnEvents(events){
+  // Cache resolved bracket once for all KO lookups in this batch
+  const {resolved: _res} = resolveKnockout();
+  resolveKoWithPicks(_res, koPicks);
+  const cachedRes = _res;
+  let changed = false, hasLive = false;
+  const seen = new Set();
+  for(const event of events){
+    if(seen.has(event.id)) continue; seen.add(event.id);
+    const comp = event.competitions[0];
+    const stState = comp.status.type.state;        // "pre","in","post"
+    const stDone  = comp.status.type.completed;      // true when FT
+    const home = comp.competitors.find(c=>c.homeAway==="home");
+    const away = comp.competitors.find(c=>c.homeAway==="away");
+    if(!home||!away) continue;
+    const hCode = ESPN_TEAMS[home.team.displayName];
+    const aCode = ESPN_TEAMS[away.team.displayName];
+    if(!hCode||!aCode) continue;
+    const s1 = parseInt(home.score), s2 = parseInt(away.score);
+    const shortDetail = comp.status.type.shortDetail || "";
+    const hShootout = home.shootoutScore != null ? parseInt(home.shootoutScore) : null;
+    const aShootout = away.shootoutScore != null ? parseInt(away.shootoutScore) : null;
+    const hasPen = hShootout != null && aShootout != null;
+    const hasET = comp.status.period >= 3; // period 3+ = extra time or pens
+    const espnDetails = comp.details || [];
+    const teamIdMap = {};
+    teamIdMap[home.team.id] = hCode;
+    teamIdMap[away.team.id] = aCode;
+    const espnGoals = espnDetails
+      .filter(d => d.scoringPlay)
+      .map(d => ({
+        min: d.clock?.displayValue || "",
+        team: teamIdMap[d.team?.id] || "",
+        player: d.athletesInvolved?.[0]?.displayName || ""
+      }));
+
+    // Try group fixture first
+    const id = fixByTeams[hCode+"|"+aCode];
+    if(id){
+      if(stState==="post" && stDone && !locked[id]){
+        locked[id]={s1,s2};
+        PLAYED.push([TEAMS[hCode].g, hCode, s1, s2, aCode]);
+        picks[id]={r:s1>s2?"H":s1<s2?"A":"D", hs:s1, as:s2};
+        delete liveScores[id];
+        changed=true;
+        try{
+          const cache=JSON.parse(localStorage.getItem("fifa26_live_scores")||"{}");
+          cache[id]={s1,s2,t1:hCode,t2:aCode,g:TEAMS[hCode].g};
+          localStorage.setItem("fifa26_live_scores",JSON.stringify(cache));
+        }catch(e){}
+      } else if(stState==="in"){
+        hasLive=true;
+        liveScores[id]={s1,s2,t1:hCode,t2:aCode,clock:shortDetail,goals:espnGoals};
+        changed=true;
+        const p=picks[id];
+        if(p && p.r){
+          let bump=false;
+          if(p.hs<s1){p.hs=s1;bump=true;}
+          if(p.as<s2){p.as=s2;bump=true;}
+          if(bump){
+            if(p.r==="H"&&p.hs<=p.as) p.hs=p.as+1;
+            if(p.r==="A"&&p.as<=p.hs) p.as=p.hs+1;
+            if(p.r==="D"){const mx=Math.max(p.hs,p.as);p.hs=mx;p.as=mx;}
+          }
+        }
+      }
+      continue;
+    }
+
+    // Try knockout match
+    const ko = findKoMatch(hCode, aCode, cachedRes);
+    if(!ko) continue;
+    const koM = ko.m;
+    const ks1 = ko.flipped ? s2 : s1;  // align scores to resolved home/away
+    const ks2 = ko.flipped ? s1 : s2;
+    const koH = ko.flipped ? aCode : hCode;
+    const koA = ko.flipped ? hCode : aCode;
+
+    if(stState==="post" && stDone && !koResults[koM]){
+      const penArr = hasPen ? [ko.flipped ? aShootout : hShootout, ko.flipped ? hShootout : aShootout] : null;
+      koResults[koM] = {s1:ks1, s2:ks2, t1:koH, t2:koA, et:hasET||undefined, pen:penArr||undefined, goals:espnGoals};
+      const winner = hasPen ? (hShootout > aShootout ? hCode : aCode) : (ks1 > ks2 ? koH : koA);
+      koPicks[koM] = winner;
+      delete liveKoScores[koM];
+      saveKoPicks(koPicks);
+      try{
+        const cache=JSON.parse(localStorage.getItem("fifa26_live_scores")||"{}");
+        cache["ko_"+koM]=koResults[koM];
+        localStorage.setItem("fifa26_live_scores",JSON.stringify(cache));
+      }catch(e){}
+      changed=true;
+    } else if(stState==="in"){
+      hasLive=true;
+      const livePen = hasPen ? [ko.flipped ? aShootout : hShootout, ko.flipped ? hShootout : aShootout] : null;
+      liveKoScores[koM] = {s1:ks1, s2:ks2, t1:koH, t2:koA, clock:shortDetail, goals:espnGoals, et:hasET||undefined, pen:livePen||undefined};
+      changed=true;
+    }
+  }
+  return {changed, hasLive};
+}
+async function fetchLiveScores(){
+  try{
+    const base = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard";
+    const today = new Date().toISOString().slice(0,10).replace(/-/g,"");
+    const yest = new Date(Date.now()-864e5).toISOString().slice(0,10).replace(/-/g,"");
+    const urls = [base, base+"?dates="+today, base+"?dates="+yest];
+    const results = await Promise.allSettled(urls.map(u=>fetch(u).then(r=>r.ok?r.json():null)));
+    const allEvents = [];
+    for(const r of results){
+      if(r.status==="fulfilled" && r.value && r.value.events) allEvents.push(...r.value.events);
+    }
+    const {changed, hasLive} = _processEspnEvents(allEvents);
+    if(changed){
+      BASE=baseStats(); buildSeedIndex(); LOCKED=clinchedTop2();
+      savePicks(picks);
+      renderFixtures(); renderBoard(); renderBracket();
+    }
+    if(hasLive && !liveInterval){
+      liveInterval=setInterval(fetchLiveScores, 60000);
+    } else if(!hasLive && liveInterval){
+      clearInterval(liveInterval); liveInterval=null;
+    }
+  }catch(e){/* CORS/network — silent */}
+  return {hasLive: Object.keys(liveKoScores).length > 0 || Object.keys(liveScores).length > 0};
+}
+
+/* Apply cached ESPN scores from localStorage (instant on reload) */
+try{
+  const cache=JSON.parse(localStorage.getItem("fifa26_live_scores")||"{}");
+  let cacheChanged=false, koCacheChanged=false;
+  for(const id in cache){
+    if(id.startsWith("ko_")){
+      const koM=parseInt(id.slice(3));
+      if(!koResults[koM]){
+        koResults[koM]=cache[id];
+        const r=cache[id];
+        const winner=r.pen?(r.pen[0]>r.pen[1]?r.t1:r.t2):(r.s1>r.s2?r.t1:r.t2);
+        koPicks[koM]=winner;
+        koCacheChanged=true;
+      }
+      continue;
+    }
+    if(locked[id]) continue;
+    const m=cache[id];
+    locked[id]={s1:m.s1,s2:m.s2};
+    PLAYED.push([m.g, m.t1, m.s1, m.s2, m.t2]);
+    picks[id]={r:m.s1>m.s2?"H":m.s1<m.s2?"A":"D", hs:m.s1, as:m.s2};
+    cacheChanged=true;
+  }
+  if(cacheChanged){
+    BASE=baseStats(); buildSeedIndex(); LOCKED=clinchedTop2();
+    savePicks(picks); renderFixtures(); renderBoard(); renderBracket();
+  }
+  if(koCacheChanged){
+    saveKoPicks(koPicks); renderBracket();
+  }
+}catch(e){}
+
+fetchScores().then(()=>{
+  fetchLiveScores().then(()=>{
+    // Wait for DOM to paint live match elements, then scroll
+    function scrollWhenReady(tries){
+      const bp = document.getElementById("bracket");
+      const live = bp && (bp.querySelector(".match--live") || bp.querySelector(".ko__match--live"));
+      if(live || tries <= 0){
+        scrollUpBracket();
+      } else {
+        requestAnimationFrame(()=> setTimeout(()=> scrollWhenReady(tries-1), 100));
+      }
+    }
+    scrollWhenReady(10);
+  });
+});
+
+/* ── What's New popup (shows once per version) ── */
+const WNEW_VER="v6";
+try{
+  if(localStorage.getItem("fifa26_seen")!==WNEW_VER){
+    const wo=document.getElementById("wnewOverlay");
+    document.getElementById("wnew").innerHTML=`
+      <h3>What's New</h3>
+      <ul>
+        <li><b>Bracket Picks:</b> tap any knockout match to pick a winner — cascades through to the Final</li>
+        <li><b>Likely Picks:</b> now fills the full bracket too (Polymarket odds)</li>
+        <li><b>My Picks:</b> save your picks and restore anytime</li>
+        <li><b>🏆 Bracket Overlay:</b> full-screen tournament tree with action buttons</li>
+        <li><b>Share</b> now includes bracket picks</li>
+      </ul>
+      <button id="wnewOk">Got it</button>`;
+    wo.classList.add("open");
+    document.getElementById("wnewOk").addEventListener("click",()=>{
+      wo.classList.remove("open");
+      try{localStorage.setItem("fifa26_seen",WNEW_VER);}catch(e){}
+    });
+    wo.addEventListener("click",e=>{
+      if(e.target===wo){
+        wo.classList.remove("open");
+        try{localStorage.setItem("fifa26_seen",WNEW_VER);}catch(e){}
+      }
+    });
+  }
+}catch(e){}
+
+/* ── Refresh button ── */
+const refreshBtn = document.getElementById("refreshBtn");
+// Cooldown: disable for 30s after page load to prevent rapid reloads
+const lastRefresh = parseInt(localStorage.getItem("lastRefresh")||"0");
+const elapsed = Date.now() - lastRefresh;
+if(elapsed < 30000){
+  refreshBtn.classList.add("cooldown");
+  setTimeout(()=> refreshBtn.classList.remove("cooldown"), 30000 - elapsed);
+}
+refreshBtn.addEventListener("click",()=>{
+  if(refreshBtn.classList.contains("cooldown")){ toast("Wait 30s between refreshes"); return; }
+  try{ localStorage.setItem("lastRefresh", Date.now().toString()); }catch(e){}
+  refreshBtn.classList.add("cooldown");
+  if('caches' in window){
+    caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(()=>{
+      if('serviceWorker' in navigator){
+        navigator.serviceWorker.getRegistration().then(reg=>{
+          if(reg) reg.update().then(()=>location.reload());
+          else location.reload();
+        });
+      } else { location.reload(); }
+    });
+  } else { location.reload(); }
+});
+
+/* ── Help overlay ── */
+(function(){
+  const ho=document.getElementById("helpOverlay");
+  const hp=document.getElementById("helpPopup");
+  hp.innerHTML=`
+    <h3>How to Use</h3>
+    <ul>
+      <li><b><a href="#" id="installLink" style="color:var(--pitch);text-decoration:underline">Install App:</a></b> Add MyFIFA26 to your home screen for an app-like experience!</li>
+      <li><b>Likely Picks:</b> Auto-fills groups + full bracket with likely (Polymarket) outcomes. Tweak any match.</li>
+      <li><b>Bracket Picks:</b> Tap a team in any knockout match — winner cascades through the rounds.</li>
+      <li><b>My Picks:</b> Saves your picks. Restore anytime — never lost.</li>
+      <li><b>🏆 Bracket Overlay:</b> Full tournament tree with its own action buttons.</li>
+      <li><b>Completed Matches:</b> Real results load automatically — can't be changed.</li>
+      <li><b>Knockout Bracket:</b> Swipe left or tap "Knockout Bracket" tab for the full R32 → Final draw.</li>
+      <li><b>Score Steppers:</b> +/− to set exact scorelines for tiebreakers.</li>
+      <li><b>Group Standings:</b> Tap a group card for the full table.</li>
+      <li><b>Share:</b> Link encodes both group + bracket picks.</li>
+      <li><b>Clear:</b> Wipes display but My Picks are preserved.</li>
+    </ul>
+    <button id="helpOk">Got it</button>`;
+  function closeHelp(){ho.classList.remove("open");}
+  document.getElementById("helpBtn").addEventListener("click",()=>ho.classList.add("open"));
+  document.getElementById("helpOk").addEventListener("click",closeHelp);
+  ho.addEventListener("click",e=>{if(e.target===ho)closeHelp();});
+
+  // Install overlay (super-overlay on top of help)
+  const io=document.getElementById("installOverlay");
+  const ip=document.getElementById("installPopup");
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isAndroid=/Android/.test(navigator.userAgent);
+  let deferredPrompt=null;
+  window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;});
+
+  ip.innerHTML=`
+    <h3>Install MyFIFA26</h3>
+    <p style="font:12px/1.5 system-ui,sans-serif;color:#cde0d3;margin:0 0 10px">Get the full app experience — launches from your home screen, no browser bar!</p>
+    ${isIOS ? `
+    <h4>iPhone / iPad (Safari)</h4>
+    <ol>
+      <li>Tap the <b>Share</b> button <span style="font-size:16px">⎙</span> at the bottom of Safari</li>
+      <li>Scroll down and tap <b>"Add to Home Screen"</b></li>
+      <li>Tap <b>"Add"</b> in the top-right corner</li>
+    </ol>
+    <p class="install-note">Must use Safari — Chrome/Firefox on iOS don't support this.</p>
+    ` : isAndroid ? `
+    <h4>Android (Chrome)</h4>
+    <ol>
+      <li>Tap the <b>⋮ menu</b> (three dots) in the top-right of Chrome</li>
+      <li>Tap <b>"Add to Home screen"</b> or <b>"Install app"</b></li>
+      <li>Tap <b>"Install"</b> to confirm</li>
+    </ol>
+    <p class="install-note">Works in Chrome, Edge, and Samsung Internet.</p>
+    ` : `
+    <h4>On Your Phone</h4>
+    <p style="font:12px/1.5 system-ui,sans-serif;color:#cde0d3;margin:0 0 6px"><b>iPhone (Safari):</b> Tap Share → "Add to Home Screen" → Add</p>
+    <p style="font:12px/1.5 system-ui,sans-serif;color:#cde0d3;margin:0 0 10px"><b>Android (Chrome):</b> Tap ⋮ menu → "Install app" or "Add to Home screen"</p>
+    <h4>Desktop (Chrome / Edge)</h4>
+    <ol>
+      <li>Look for the <b>install icon</b> in the address bar (⊕ or ↓)</li>
+      <li>Click <b>"Install"</b></li>
+    </ol>
+    `}
+    <button id="installOk">Got it</button>`;
+
+  document.getElementById("installLink").addEventListener("click",e=>{
+    e.preventDefault();
+    if(deferredPrompt){deferredPrompt.prompt();deferredPrompt=null;return;}
+    io.classList.add("open");
+  });
+  document.getElementById("installOk").addEventListener("click",()=>io.classList.remove("open"));
+  io.addEventListener("click",e=>{if(e.target===io)io.classList.remove("open");});
+})();
+
+/* ── Bracket tree overlay ── */
+(function(){
+  const overlay = document.getElementById("bktOverlay");
+  const bktTree = document.getElementById("bktTree");
+  document.getElementById("bracketTreeBtn").addEventListener("click",()=>{
+    renderBracketOverlay();
+    overlay.classList.add("open");
+  });
+  document.getElementById("bktClose").addEventListener("click",()=>overlay.classList.remove("open"));
+  overlay.addEventListener("click",e=>{if(e.target===overlay)overlay.classList.remove("open");});
+  // Bracket pick in overlay
+  bktTree.addEventListener("click",e=>{
+    const el = e.target.closest("[data-ko-team]");
+    if(!el) return;
+    const matchNum = parseInt(el.dataset.koMatch);
+    if(koResults[matchNum]) return; // completed — don't allow pick changes
+    if(!confirmPickOverwrite()) return;
+    const team = el.dataset.koTeam;
+    if(koPicks[matchNum] === team) delete koPicks[matchNum];
+    else koPicks[matchNum] = team;
+    saveKoPicks(koPicks); saveMyPicks(picks, koPicks);
+    renderBracket();
+    renderBracketOverlay();
+  });
+})();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js', {updateViaCache:'none'});
+  navigator.serviceWorker.addEventListener('message',e=>{
+    if(e.data&&e.data.type==='SW_UPDATED') location.reload();
+  });
+}
+</script>
+</body>
+</html>

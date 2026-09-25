@@ -1,0 +1,17 @@
+{
+  "_comment": "The portfolio list shown on the landing page. Order here is the order shown. A project may live in this repo or in another one; url is relative when the path is served from iprash.github.io, so an entry does not change when a project is consolidated into this repo. Drop a screenshot at assets/shots/<slug>.png and the card picks it up on the next build; without one the card renders a generated tile instead. Set listed:false to park an entry without deleting it.",
+  "projects": [
+    {
+      "slug": "FIFA26",
+      "title": "MyFIFA26",
+      "url": "FIFA26/",
+      "repo": "https://github.com/iPrash/FIFA26",
+      "blurb": "A what-if analyser for the 2026 World Cup. Group standings, a clinch checker, third-place qualification worked out from FIFA's own Annex C table, and a knockout bracket you can pick your way through.",
+      "tags": ["Single file", "No dependencies", "Live ESPN scores"],
+      "status": "Live",
+      "glyph": "26",
+      "accent": "#1E6B4F",
+      "year": "2026"
+    }
+  ]
+}

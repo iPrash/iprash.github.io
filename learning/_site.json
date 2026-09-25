@@ -1,0 +1,10 @@
+{
+  "slug": "learning",
+  "order": 90,
+  "title": "Learning",
+  "blurb": "Study material. Not listed on the landing page.",
+  "static": true,
+  "listed": false,
+  "noindex": true,
+  "note": "Hand-written HTML, self-contained. Reached from the small mark in the landing page footer. Add a row here when a new study site is added."
+}

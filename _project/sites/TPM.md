@@ -25,6 +25,11 @@ Interview preparation I can work through from any device.
 **Everything here is hand-written.** The build script does not generate any file in this folder.
 Edit `index.html` directly.
 
+**The `robots` meta is hand-maintained.** This site is unlisted and noindexed, but because it is
+static the build cannot inject the tag the way it does for aigov and frontier-engineer. The
+`<meta name="robots" content="noindex,nofollow">` in `index.html` was added by hand on
+25 Sept 2026. If `index.html` is ever regenerated or replaced wholesale, put it back.
+
 The only thing the build reads from this folder is `_site.json`, and only to place the card on
 the landing page.
 

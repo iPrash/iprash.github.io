@@ -1,5 +1,23 @@
 # Adding a site to iprash.github.io
 
+**Decide which of the two you are adding first.** They are different jobs.
+
+**A project**, shown on the landing page. Add an entry to `_build/projects.json` and run
+`python _build\build.py --landing`. That is the whole job if the project lives in another
+repo or is just a link. If it also needs a folder here, add the folder and give it a
+`_site.json` marked `"static": true` so the build leaves its HTML alone. See
+PROJECT-CONTEXT.md §9 for the entry shape.
+
+**A learning site**, not shown on the landing page. Follow the rest of this file, then set
+`"listed": false` and `"noindex": true` in its `_site.json`, and add it to `learning/index.html`
+so the hub lists it. Do not add it to `projects.json`.
+
+If a site is static, the build does not generate its pages, so `noindex: true` does nothing
+for it. Put the `robots` meta in its HTML by hand, as TPM and learning both do.
+
+---
+
+
 Ten minutes. The landing page and nav update themselves — never hand-edit the root `index.html`.
 
 Replace `<slug>` throughout. The slug becomes the URL: `iprash.github.io/<slug>/`. Use lowercase,

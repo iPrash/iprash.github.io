@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230B5563'/><text y='68' x='50' text-anchor='middle' font-size='46' font-family='monospace' fill='white'>iP</text></svg>">
+<style>
+ :root{--paper:#EFF1F3;--surface:#fff;--ink:#11161B;--ink-2:#4E5964;--ink-3:#7B858F;--rule:#D6DADF;--petrol:#0B5563}
+ @media (prefers-color-scheme:dark){
+  :root{--paper:#0D1419;--surface:#141D24;--ink:#E6EBEF;--ink-2:#9DA9B4;--ink-3:#77838E;--rule:#27343E;--petrol:#5CC4D8}
+ }
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--paper);color:var(--ink);
+      font-family:"Space Grotesk",system-ui,-apple-system,sans-serif;
+      display:flex;align-items:center;min-height:100vh;padding:8vh 1.5rem;line-height:1.5}
+ main{max-width:40rem;margin:0 auto;width:100%}
+ .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;
+          text-transform:uppercase;color:var(--ink-3)}
+ h1{font-size:clamp(24px,4vw,32px);letter-spacing:-.03em;margin:.5rem 0 .6rem;font-weight:700}
+ .lede{color:var(--ink-2);font-size:.95rem;margin:0 0 2.2rem;max-width:34rem}
+ a.item{display:block;text-decoration:none;color:var(--ink);background:var(--surface);
+   border:1px solid var(--rule);border-radius:3px;padding:1.15rem 1.3rem;margin-bottom:.7rem;
+   font-size:1.02rem;font-weight:500;letter-spacing:-.01em;transition:border-color .15s,transform .15s}
+ a.item:hover{border-color:var(--petrol);transform:translateY(-1px)}
+ a.item span{display:block;color:var(--ink-2);font-size:.87rem;font-weight:400;margin-top:.28rem;letter-spacing:0}
+ a.item::after{content:"→";float:right;color:var(--petrol);font-weight:400}
+ footer{margin-top:2.4rem;color:var(--ink-3);font-size:.78rem;font-family:"IBM Plex Mono",monospace}
+ footer a{color:var(--petrol);text-decoration:none}
+ :focus-visible{outline:2px solid var(--petrol);outline-offset:3px}
+</style>
+</head>
+<body>
+<main>
+  <span class="eyebrow">iprash.github.io</span>
+  <h1>Learning</h1>
+  <p class="lede">Reference material I built for myself and work from. Not listed on the
+    projects page, and asked to stay out of search results.</p>
+
+  <a class="item" href="../frontier-engineer/">Frontier Engineer: Lead → Principal<span>A two-stage learning path: everything the Lead role requires, then what Principal adds on top</span></a>
+  <a class="item" href="../aigov/">AI governance &amp; multi-model strategy<span>Engagement playbook and resource library: consumption governance, model access, GenAI landscape</span></a>
+  <a class="item" href="../TPM/">Senior TPM interview prep<span>System design, program sense and behavioural preparation with progress tracking</span></a>
+
+  <footer><a href="../">Back to projects</a></footer>
+</main>
+</body>
+</html>

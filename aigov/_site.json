@@ -29,5 +29,7 @@
       "title": "Resource Library — XYZ AI Program",
       "desc": "Annotated resource library and two-week study sprint for the lead enterprise architect."
     }
-  ]
+  ],
+  "listed": false,
+  "noindex": true
 }

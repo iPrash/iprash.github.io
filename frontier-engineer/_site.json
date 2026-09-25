@@ -28,5 +28,7 @@
       "title": "Free Resources — Frontier Engineer, Lead to Principal",
       "desc": "Curated free reading, video, and hands-on resources, numbered to match the two-stage learning roadmap."
     }
-  ]
+  ],
+  "listed": false,
+  "noindex": true
 }
