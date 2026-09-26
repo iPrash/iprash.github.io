@@ -30,14 +30,18 @@ The root page is a **project index**. Study material is deliberately not listed 
 |---|---|---|---|---|
 | `FIFA26` | /FIFA26/ | MyFIFA26, World Cup 2026 what-if analyser | Static HTML, PWA | `_project/sites/FIFA26.md` |
 
-**Learning sites** (unlisted and noindexed, reached only through /learning/):
+**Learning sites** (unlisted and noindexed, reached only through /learn/):
 
-| Slug | URL | Title | Type | Brief |
+| Folder | URL | Title | Type | Brief |
 |---|---|---|---|---|
-| `learning` | /learning/ | Hub listing the three study sites | Static HTML | this file |
-| `frontier-engineer` | /frontier-engineer/ | Frontier Engineer: Lead → Principal | Generated from markdown | `_project/sites/frontier-engineer.md` |
-| `aigov` | /aigov/ | AI governance & multi-model strategy | Generated from markdown | `_project/sites/aigov.md` |
-| `TPM` | /TPM/ | Senior TPM interview prep | Static HTML | `_project/sites/TPM.md` |
+| `learn/` | /learn/ | Hub listing the study sites | Static HTML | this file |
+| `learn/frontier-engineer/` | /learn/frontier-engineer/ | Frontier Engineer: Lead → Principal | Generated from markdown | `_project/sites/frontier-engineer.md` |
+| `learn/aigov/` | /learn/aigov/ | AI governance & multi-model strategy | Generated from markdown | `_project/sites/aigov.md` |
+| `learn/TPM/` | /learn/TPM/ | Senior TPM interview prep | Static HTML | `_project/sites/TPM.md` |
+
+Study sites were moved under `learn/` on 25 Sept 2026, while there were only three of
+them and few bookmarks to break. New ones go straight there. The root stays for projects.
+Redirect stubs sit at the three old paths; see §10.
 
 Read the site brief before working on a site. Conventions differ between them.
 
@@ -51,30 +55,35 @@ iprash.github.io/
 ├── index.html                   GENERATED project index, from _build/projects.json
 ├── assets/shots/                landing page screenshots, <slug>.png, optional
 ├── FIFA26/                      static single-file PWA, moved in from its own repo
-├── learning/                    static hub, unlisted, reached from the footer mark
-├── TPM/
-│   ├── _site.json               static, no pages list
-│   └── index.html               hand-written
-├── aigov/
-│   ├── _site.json
-│   ├── index.html               GENERATED
-│   ├── playbook.html            GENERATED
-│   ├── resources.html           GENERATED
-│   ├── playbook.md              SOURCE
-│   ├── resources.md             SOURCE
-│   ├── _index_template.html     home page structure
-│   ├── README.md
-│   └── assets/{style.css,app.js}   hand-maintained
-├── frontier-engineer/
-│   ├── _site.json
-│   ├── index.html               GENERATED
-│   ├── roadmap.html             GENERATED
-│   ├── resources.html           GENERATED
-│   ├── roadmap.md               SOURCE
-│   ├── resources.md             SOURCE
-│   ├── _index_template.html     home page structure
-│   └── assets/{style.css,app.js}   hand-maintained, copied from aigov's engine with the
-│                                    localStorage prefix changed to avoid cross-site collision
+├── TPM/index.html               redirect stub only → learn/TPM/ (no _site.json)
+├── aigov/index.html             redirect stub only → learn/aigov/
+├── frontier-engineer/index.html redirect stub only → learn/frontier-engineer/
+├── learn/                    every study site lives under here
+│   ├── _site.json               static, unlisted, noindexed
+│   ├── index.html               hand-written hub, reached from the footer mark
+│   ├── TPM/
+│   │   ├── _site.json           static, no pages list
+│   │   └── index.html           hand-written, robots meta added by hand
+│   ├── aigov/
+│   │   ├── _site.json
+│   │   ├── index.html           GENERATED
+│   │   ├── playbook.html        GENERATED
+│   │   ├── resources.html       GENERATED
+│   │   ├── playbook.md          SOURCE
+│   │   ├── resources.md         SOURCE
+│   │   ├── _index_template.html home page structure
+│   │   ├── README.md
+│   │   └── assets/{style.css,app.js}   hand-maintained
+│   └── frontier-engineer/
+│       ├── _site.json
+│       ├── index.html           GENERATED
+│       ├── roadmap.html         GENERATED
+│       ├── resources.html       GENERATED
+│       ├── roadmap.md           SOURCE
+│       ├── resources.md         SOURCE
+│       ├── _index_template.html home page structure
+│       └── assets/{style.css,app.js}   hand-maintained, copied from aigov's engine with the
+│                                        localStorage prefix changed to avoid collision
 ├── _build/
 │   ├── build.py
 │   ├── projects.json            the portfolio list shown on the landing page
@@ -93,7 +102,10 @@ are not part of any site.
 
 ## 4. How the build works
 
-`build.py` globs `*/_site.json` to discover sites. Each config drives:
+`build.py` discovers sites by globbing **both** `*/_site.json` and `*/*/_site.json`, so a
+study site nested under `learn/` is found as well as a project at the root. Each config
+carries `_path`, its folder relative to the repo, which is what the build prints and what the
+URL follows. Each config drives:
 
 - the nav bar, derived from `pages` so it stays in sync automatically
 - page titles, descriptions and the footer line
@@ -142,6 +154,7 @@ curl.exe -sI https://iprash.github.io/aigov/assets/style.css | Select-Object -Fi
 | Files show modified, `git diff` empty | Python wrote CRLF on Windows; `autocrlf=true` normalised it on comparison | `build.py` writes LF explicitly; `.gitattributes` enforces it; `git add -A` clears the flag |
 | — | `robocopy` returns exit code 1 on success | Not an error |
 | — | Bare `curl` in PowerShell is `Invoke-WebRequest` | Use `curl.exe` |
+| `/FIFA26/` returned 404 after consolidating the app into this repo, while the new landing page and `/learn/` both served correctly from the same commit | A project repo **named** `FIFA26` claims `iprash.github.io/FIFA26/` for as long as it exists under that name. Unpublishing its Pages site removed the deployment, which is why the path 404'd rather than serving the old copy, but it did not release the claim | Renamed the repo to `FIFA26-archive`. The path was released immediately. Waiting did not help, and **archiving would not have helped either** |
 | `device_bash` (Claude's shell on this machine) dead: "no Plan9 drive shares mounted" | Windows update KB5124008/KB5124012 (8 Sept 2026) broke Cowork's Plan9 folder-sharing on Windows. Confirmed by Anthropic and Microsoft; no fix shipped yet as of 14 Sept 2026 | No repo-side fix. Workaround in the meantime: build/generate files in Claude's cloud workspace instead of on this machine, then transfer with `device_stage_files` / `device_commit_files`, which still work. Used to build the `frontier-engineer` site. Revert to running `build.py` directly on this machine once Microsoft ships the fix — check status.claude.com |
 
 Repo was deleted and recreated clean in Sept 2026 after the TPM project-site repo and the user
@@ -161,6 +174,11 @@ site repo both tried to serve `/TPM/`. Old `github.com/iPrash/TPM` should be arc
 - **The landing page is a project index, not a directory of everything here.** Study material
   is reachable but not advertised. What is on the front page is decided by
   `_build/projects.json` alone.
+- **Never let a repo name match a folder here.** A project repo named `X` owns
+  `iprash.github.io/X/` while it exists under that name, and the folder `X/` in this repo
+  cannot serve that path. This has now cost time twice, on `/TPM/` and on `/FIFA26/`. Before
+  consolidating any project in, rename or delete its repo. Unpublishing its Pages site is not
+  enough, and neither is archiving it.
 - **Hidden means tidy, not private.** This repo is public, so anyone can read every folder
   whatever the landing page links to. The noindex tags keep the study sites out of search
   results; they do not restrict access, and nothing here should be treated as if they did.
@@ -208,12 +226,15 @@ site repo both tried to serve `/TPM/`. Old `github.com/iPrash/TPM` should be arc
   weeks, then add a disallow if it still seems worth it.
 - The FIFA26 card shows the fallback tile until a screenshot is added at
   `assets/shots/FIFA26.png`.
+- **Redirect stubs at `TPM/`, `aigov/` and `frontier-engineer/`** are single `index.html`
+  files, each a meta-refresh to the matching `learn/` path plus its own noindex. They have
+  no `_site.json`, so the build ignores them entirely. They exist only so URLs saved before
+  25 Sept 2026 still land. Delete the three folders once you are confident nothing points at
+  the old paths; nothing else depends on them.
 - Other projects to write cards for when ready: FlippedMath, Language Conversation,
   Progressive_ACV. Each needs a line of description and a decision on whether it goes public.
-- The old `github.com/iPrash/FIFA26` repo should be archived now the app is served from here.
-  Unpublishing its Pages site is reversible: any future commit to its publishing branch
-  republishes it and the `/FIFA26/` collision returns. Archiving makes it read-only, which
-  makes the unpublish stick.
+- `github.com/iPrash/FIFA26` was renamed to `FIFA26-archive` on 25 Sept 2026 and can now be
+  archived for tidiness. Archiving is not what fixed the collision; the rename was. See §6.
 - `device_bash` (Claude's shell on this machine) has been down since 8 Sept 2026 pending a
   Microsoft fix for the Plan9 regression. See §6. Nothing to do here except wait and use the
   stage/commit workaround for anything that needs a build step.

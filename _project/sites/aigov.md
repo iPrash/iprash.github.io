@@ -1,6 +1,7 @@
 # aigov — site brief
 
-**URL:** https://iprash.github.io/aigov/
+**URL:** https://iprash.github.io/learn/aigov/
+**Moved:** 25 Sept 2026, from /aigov/. A redirect stub remains at the old path.
 **Type:** generated
 **Created:** August 2026
 **Evidence last checked:** 17 August 2026

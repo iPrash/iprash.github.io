@@ -23,7 +23,7 @@ Together these are about 12KB. Read them properly rather than skimming.
 
 | If the task is | Read next |
 |---|---|
-| Working on a specific site's content | `_project/sites/<slug>.md` — **always, before editing anything in that folder** |
+| Working on a specific site's content | `_project/sites/<slug>.md` — **always, before editing anything in that folder**. Briefs are named by slug even though study sites now live at `learn/<slug>/` |
 | Adding a new site | `_project/NEW-SITE.md` |
 | Changing the build, or debugging it | `_build/build.py` |
 | Changing a site's styling or interactive behaviour | that site's `assets/style.css` and `assets/app.js` |

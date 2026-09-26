@@ -170,11 +170,20 @@ def write(path, content):
 
 
 def load_sites():
+    """Find every site config.
+
+    Two levels deep, not one: projects sit at the repo root, and study sites sit
+    under learn/ so the root stays readable as more of them are added. A site's
+    slug stays its folder name; `_path` is where it actually lives, which is what
+    the URL follows.
+    """
+    found = set(REPO.glob("*/_site.json")) | set(REPO.glob("*/*/_site.json"))
     sites = []
-    for cfg_path in sorted(REPO.glob("*/_site.json")):
+    for cfg_path in sorted(found):
         cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
         cfg["slug"] = cfg.get("slug", cfg_path.parent.name)
         cfg["_dir"] = cfg_path.parent
+        cfg["_path"] = cfg_path.parent.relative_to(REPO).as_posix()
         sites.append(cfg)
     sites.sort(key=lambda c: (c.get("order", 99), c["slug"]))
     return sites
@@ -184,9 +193,9 @@ def build_site(cfg):
     site = cfg["_dir"]
     pages = cfg.get("pages", [])
     if not pages:
-        print(f"[{cfg['slug']}] static — nothing to generate")
+        print(f"[{cfg['_path']}] static — nothing to generate")
         return
-    print(f"[{cfg['slug']}]")
+    print(f"[{cfg['_path']}]")
     footer = cfg.get("footer", "")
 
     for p in pages:
@@ -255,7 +264,7 @@ def project_card(p):
 
 def build_landing(sites):
     """The landing page is a project index. Learning sites are deliberately not
-    listed here; they are reached through learning/ instead."""
+    listed here; they are reached through learn/ instead."""
     print("[landing]")
     tpl = TEMPLATES / "landing.html"
     if not tpl.exists():
@@ -279,12 +288,12 @@ def main():
         sys.exit("No sites found. Every site folder needs a _site.json.")
 
     print(f"Repo: {REPO}")
-    print("Sites: " + ", ".join(c["slug"] for c in sites))
+    print("Sites: " + ", ".join(c["_path"] for c in sites))
     print("MODE: check only, nothing written\n" if CHECK_ONLY else "")
 
     if not landing_only:
         for cfg in sites:
-            if args and cfg["slug"] not in args:
+            if args and cfg["slug"] not in args and cfg["_path"] not in args:
                 continue
             build_site(cfg)
 

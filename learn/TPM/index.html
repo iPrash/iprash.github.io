@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Senior TPM — Prep Launchpad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F7F3;
+    --surface:#FFFFFF;
+    --ink:#16202E;
+    --muted:#5C6672;
+    --faint:#8A93A0;
+    --line:#E5E4DC;
+    --accent:#0E6E63;      /* deep teal — links / active */
+    --accent-soft:#E2F0ED;
+    --brass:#B8862F;       /* sequence + done */
+    --brass-soft:#F4EBD8;
+    --done-bg:#F3F6F5;
+    --display:'Space Grotesk',system-ui,sans-serif;
+    --body:'Inter',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--body);font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* ---- Sticky progress header ---- */
+  header.bar{
+    position:sticky;top:0;z-index:20;
+    background:rgba(247,247,243,.86);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar-inner{
+    max-width:880px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;gap:16px;
+  }
+  .bar-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faint);white-space:nowrap;
+  }
+  .track{flex:1;height:8px;border-radius:99px;background:#E7E7E0;overflow:hidden;}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#12928230);
+        background:var(--accent);border-radius:99px;transition:width .45s cubic-bezier(.4,0,.2,1);}
+  .bar-count{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;}
+
+  /* ---- Hero ---- */
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;}
+  .hero{padding:64px 0 40px;border-bottom:1px solid var(--line);}
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--brass);margin:0 0 18px;
+  }
+  h1{
+    font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,54px);
+    line-height:1.02;letter-spacing:-.02em;margin:0 0 20px;
+  }
+  h1 .thin{color:var(--muted);font-weight:500;}
+  .lede{font-size:18px;color:var(--muted);max-width:60ch;margin:0 0 28px;}
+
+  .tracks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;}
+  .tk{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 16px 18px;}
+  .tk .n{font-family:var(--mono);font-size:12px;color:var(--brass);font-weight:600;}
+  .tk h4{font-family:var(--display);font-weight:600;font-size:15px;margin:8px 0 6px;}
+  .tk p{font-size:13px;color:var(--muted);margin:0;line-height:1.45;}
+
+  .note{
+    margin:34px 0 0;padding:16px 18px;background:var(--accent-soft);
+    border:1px solid #CFE6E1;border-radius:12px;font-size:14.5px;color:#0C4a44;
+  }
+  .note b{color:#0A3f3a;}
+
+  /* ---- AWS weekend 80/20 panel ---- */
+  .aws-panel{margin:6px 0 24px;padding:22px 24px;background:var(--ink);color:#EAEEF2;border-radius:14px;}
+  .aws-panel .sub{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#F0C46A;margin:0 0 4px;}
+  .aws-panel h3{font-family:var(--display);font-weight:600;font-size:19px;margin:0 0 16px;color:#fff;letter-spacing:-.01em;}
+  .aws-panel ol{margin:0;padding-left:24px;display:flex;flex-direction:column;gap:11px;}
+  .aws-panel li{font-size:14px;line-height:1.5;color:#D3DAE2;padding-left:4px;}
+  .aws-panel li::marker{color:#F0C46A;font-family:var(--mono);font-weight:600;font-size:12px;}
+  .aws-panel li b{color:#fff;font-weight:600;}
+  .aws-panel code{font-family:var(--mono);font-size:12px;background:#26374d;padding:1px 6px;border-radius:5px;color:#EAEEF2;}
+  .aws-panel .skip{margin:16px 0 0;padding-top:14px;border-top:1px solid #2C3B4E;font-size:13px;color:#93A0AE;line-height:1.5;}
+  .aws-panel .skip b{color:#E9B84E;font-weight:600;}
+
+  /* ---- Phases ---- */
+  main{padding:20px 0 90px;}
+  .phase{padding:44px 0 8px;border-bottom:1px solid var(--line);}
+  .phase:last-child{border-bottom:none;}
+  .phase-head{display:flex;align-items:baseline;gap:16px;margin-bottom:6px;}
+  .seq{
+    font-family:var(--mono);font-size:13px;font-weight:600;color:#fff;
+    background:var(--ink);border-radius:8px;padding:4px 9px;letter-spacing:.02em;flex:none;
+  }
+  .phase h2{font-family:var(--display);font-weight:600;font-size:24px;letter-spacing:-.01em;margin:0;}
+  .phase-req{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--faint);text-transform:uppercase;}
+  .focus{font-size:14.5px;color:var(--muted);margin:10px 0 22px;padding-left:14px;border-left:2px solid var(--brass-soft);}
+  .focus b{color:var(--ink);font-weight:600;}
+
+  .phase-progress{font-family:var(--mono);font-size:12px;color:var(--faint);margin-left:auto;flex:none;}
+
+  /* ---- Resource rows ---- */
+  ul.res{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  li.item{
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:15px 16px;display:flex;gap:14px;align-items:flex-start;
+    transition:border-color .18s,box-shadow .18s,background .18s;
+  }
+  li.item:hover{border-color:#CFCFC6;box-shadow:0 2px 14px rgba(20,32,46,.05);}
+  li.item.next{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+  li.item.done{background:var(--done-bg);}
+  li.item.done .r-title a{color:var(--faint);text-decoration:line-through;}
+  li.item.done .why{color:var(--faint);}
+
+  .check{
+    flex:none;width:24px;height:24px;border-radius:7px;border:2px solid #CDCFC7;
+    background:#fff;cursor:pointer;margin-top:2px;position:relative;transition:all .15s;
+  }
+  .check:hover{border-color:var(--accent);}
+  li.item.done .check{background:var(--brass);border-color:var(--brass);}
+  .check svg{position:absolute;inset:0;margin:auto;width:14px;height:14px;
+    stroke:#fff;stroke-width:3;fill:none;opacity:0;transform:scale(.6);transition:all .15s;}
+  li.item.done .check svg{opacity:1;transform:scale(1);}
+  .check:focus-visible{outline:3px solid var(--accent-soft);outline-offset:2px;}
+
+  .r-body{flex:1;min-width:0;}
+  .r-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .r-title{font-family:var(--display);font-weight:600;font-size:15.5px;line-height:1.3;}
+  .r-title a{color:var(--ink);}
+  .r-title a:hover{color:var(--accent);}
+  .star{color:var(--brass);font-size:13px;}
+  .r-top .ext{font-size:12px;color:var(--faint);font-weight:500;}
+  .r-title a:hover + .ext{color:var(--accent);}
+  .why{font-size:13.5px;color:var(--muted);margin:5px 0 0;}
+  .tags{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap;}
+  .tag{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+    padding:3px 8px;border-radius:99px;border:1px solid var(--line);color:var(--muted);background:#FAFAF7;
+  }
+  .tag.free{color:var(--accent);border-color:#CFE6E1;background:var(--accent-soft);}
+
+  footer{max-width:880px;margin:0 auto;padding:30px 24px 60px;color:var(--faint);font-size:13px;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+  .reset{
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    background:none;border:1px solid var(--line);color:var(--muted);
+    padding:7px 12px;border-radius:8px;cursor:pointer;transition:all .15s;
+  }
+  .reset:hover{border-color:#C86B5A;color:#C0503C;}
+
+  @media(max-width:640px){
+    .tracks{grid-template-columns:1fr;}
+    .hero{padding:44px 0 32px;}
+    .bar-label{display:none;}
+    .phase-req{display:none;}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <span class="bar-label">Ramp-up progress</span>
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <span class="bar-count" id="count">0 / 0</span>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Senior Technical Program Manager</p>
+    <h1>Interview prep,<br><span class="thin">in the order you should tackle it.</span></h1>
+    <p class="lede">Every resource below is free and mapped to a requirement from the job description. Work top to bottom, open each link, and tick it off — the bar up top tracks how far along you are.</p>
+
+    <div class="tracks">
+      <div class="tk"><span class="n">Track 01</span><h4>Technical depth</h4><p>System design, cloud, scalability. Lead the conversation and reason about trade-offs.</p></div>
+      <div class="tk"><span class="n">Track 02</span><h4>Program sense</h4><p>Roadmaps, dependencies, risk, delivery. Where senior offers are won or lost.</p></div>
+      <div class="tk"><span class="n">Track 03</span><h4>Leadership</h4><p>Influence without authority, align stakeholders, communicate up the chain.</p></div>
+    </div>
+
+    <p class="note"><b>Before you start:</b> your level is judged by the <b>scope</b> of the programs you describe — team count, dependencies, blast radius, business impact. As you read, collect 4–6 detailed stories you can tell with real numbers.</p>
+  </section>
+</div>
+
+<main class="wrap">
+
+  <!-- PHASE 1 -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="seq">01</span>
+      <h2>Systems Thinking &amp; Architecture</h2>
+      <span class="phase-progress" data-phase="1"></span>
+    </div>
+    <p class="phase-req">Distributed systems · cloud platforms · scalability</p>
+    <p class="focus"><b>Goal:</b> vocabulary + judgment, not code. Read the Primer once, drill the flashcards, then design 8–10 systems out loud — always talking trade-offs.</p>
+    <ul class="res">
+      <li class="item" data-id="p1-primer">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="star">★</span><span class="r-title"><a href="https://github.com/donnemartin/system-design-primer" target="_blank" rel="noopener">The System Design Primer</a></span><span class="ext">github.com ↗</span></div>
+        <p class="why">The default free starting point. Read end-to-end for vocabulary, then drill the Anki flashcards daily.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p1-awesome-res">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://github.com/ashishps1/awesome-system-design-resources" target="_blank" rel="noopener">Awesome System Design Resources</a></span><span class="ext">github.com ↗</span></div>
+        <p class="why">The "30 core concepts" survey — use it to find and close gaps fast.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p1-awesome">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://github.com/madd86/awesome-system-design" target="_blank" rel="noopener">Awesome System Design (index)</a></span><span class="ext">github.com ↗</span></div>
+        <p class="why">Curated index of distributed-systems courses, talks, and tooling.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p1-gaurav">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://www.youtube.com/@gkcs" target="_blank" rel="noopener">Gaurav Sen — System Design</a></span><span class="ext">youtube.com ↗</span></div>
+        <p class="why">Beginner-friendly walkthroughs for building intuition on patterns and trade-offs.</p>
+        <div class="tags"><span class="tag">Video</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p1-sdi">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://www.youtube.com/@SystemDesignInterview" target="_blank" rel="noopener">System Design Interview</a></span><span class="ext">youtube.com ↗</span></div>
+        <p class="why">Full problem walkthroughs in the format interviewers actually expect.</p>
+        <div class="tags"><span class="tag">Video</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p1-mit">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://pdos.csail.mit.edu/6.824/" target="_blank" rel="noopener">MIT 6.824 Distributed Systems</a></span><span class="ext">mit.edu ↗</span></div>
+        <p class="why">For real depth — consensus, replication, consistency. Optional but sets you apart.</p>
+        <div class="tags"><span class="tag">Course</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p1-highscale">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://highscalability.com/" target="_blank" rel="noopener">High Scalability</a></span><span class="ext">highscalability.com ↗</span></div>
+        <p class="why">Real architectures (Reddit, Netflix, Uber) = concrete stories you can reference.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- PHASE 2 -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="seq">02</span>
+      <h2>Software Development Lifecycle</h2>
+      <span class="phase-progress" data-phase="2"></span>
+    </div>
+    <p class="phase-req">Agile · Scrum · DevOps practices</p>
+    <p class="focus"><b>Goal:</b> be fluent in Kanban vs. Scrum, the Scrum ceremonies, and the four DORA metrics. Have one story where you improved a delivery or operational metric.</p>
+    <ul class="res">
+      <li class="item" data-id="p2-atlassian">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="star">★</span><span class="r-title"><a href="https://www.atlassian.com/agile" target="_blank" rel="noopener">Atlassian Agile Coach</a></span><span class="ext">atlassian.com ↗</span></div>
+        <p class="why">Practical guides on Agile, Scrum vs. Kanban, and epics/stories/themes.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p2-scrum">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://scrumguides.org/" target="_blank" rel="noopener">The Official Scrum Guide</a></span><span class="ext">scrumguides.org ↗</span></div>
+        <p class="why">~13 pages, the source of truth on Scrum roles, events, and artifacts. Read it once fully.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p2-sre">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="star">★</span><span class="r-title"><a href="https://sre.google/sre-book/table-of-contents/" target="_blank" rel="noopener">Google SRE Book</a></span><span class="ext">sre.google ↗</span></div>
+        <p class="why">Free full text. Error budgets, toil, SLOs — your best source for "operational excellence."</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p2-sreworkbook">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://sre.google/workbook/table-of-contents/" target="_blank" rel="noopener">Google SRE Workbook</a></span><span class="ext">sre.google ↗</span></div>
+        <p class="why">Practical companion — implementing SLOs, canarying, release velocity vs. reliability.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p2-dora">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://dora.dev/" target="_blank" rel="noopener">DORA — DevOps metrics</a></span><span class="ext">dora.dev ↗</span></div>
+        <p class="why">Learn the four delivery metrics cold: deploy frequency, lead time, change fail rate, time to restore.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- PHASE 3 -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="seq">03</span>
+      <h2>Amazon Web Services (AWS)</h2>
+      <span class="phase-progress" data-phase="3"></span>
+    </div>
+    <p class="phase-req">AWS focus · weekend 80/20</p>
+    <p class="focus"><b>Goal:</b> conversational fluency, not hands-on depth. You need to name the right service and reason about trade-offs — not configure anything. Nail the panel below first; the links are there to fill it in.</p>
+
+    <div class="aws-panel">
+      <p class="sub">The 20% that carries 80%</p>
+      <h3>Learn these seven things this weekend</h3>
+      <ol>
+        <li><b>Well-Architected Framework — the 6 pillars:</b> Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, Sustainability. Your structuring device for <em>every</em> architecture answer. Highest ROI, do this first.</li>
+        <li><b>Regions vs. Availability Zones + HA:</b> Region = geographic area; AZ = isolated datacenter within it. <code>Multi-AZ</code> = high availability; <code>multi-Region</code> = disaster recovery / global latency.</li>
+        <li><b>The service map</b> — one flagship per category, with "what it is + when I'd use it": compute (<code>EC2</code>, <code>Lambda</code>, <code>ECS/EKS+Fargate</code>) · storage (<code>S3</code>, <code>EBS</code>) · database (<code>RDS/Aurora</code>, <code>DynamoDB</code>, <code>ElastiCache</code>) · networking (<code>VPC</code>, <code>ELB</code>, <code>Route 53</code>, <code>CloudFront</code>) · decoupling (<code>SQS</code>, <code>SNS</code>) · security (<code>IAM</code>, <code>KMS</code>) · observability (<code>CloudWatch</code>, <code>CloudTrail</code>).</li>
+        <li><b>IAM + Shared Responsibility Model:</b> AWS secures <em>the cloud</em>; you secure <em>what's in it</em>. IAM = least privilege, roles, MFA. This is your security &amp; SOC 2 answer.</li>
+        <li><b>Scaling &amp; decoupling patterns:</b> Auto Scaling Group behind a load balancer for elastic capacity; <code>SQS</code> to absorb spikes; caching (<code>CloudFront</code>/<code>ElastiCache</code>) to cut load.</li>
+        <li><b>The 6 Rs of migration:</b> Rehost, Replatform, Repurchase, Refactor, Retire, Retain. Walk it: inventory → prioritize → pick an R per app → landing zone → migrate in waves → validate → cut over → decommission.</li>
+        <li><b>Cost basics:</b> On-Demand vs. Reserved vs. Spot; pay-as-you-go. Raising a cost/risk trade-off unprompted scores TPM points.</li>
+      </ol>
+      <p class="skip"><b>Skip this weekend:</b> console/CLI click-throughs, hands-on labs, exact service limits, CloudFormation/Terraform syntax, and 90% of the 200+ services. None of it earns TPM points. The interview move: structure any architecture answer around the pillars and name the specific services.</p>
+    </div>
+
+    <ul class="res">
+      <li class="item" data-id="p3-wa">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="star">★</span><span class="r-title"><a href="https://aws.amazon.com/architecture/well-architected/" target="_blank" rel="noopener">AWS Well-Architected Framework</a></span><span class="ext">aws.amazon.com ↗</span></div>
+        <p class="why">The 6 pillars — read this first. It's the single highest-leverage AWS resource for framing answers.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p3-cheat">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="star">★</span><span class="r-title"><a href="https://tutorialsdojo.com/aws-cheat-sheets/" target="_blank" rel="noopener">TutorialsDojo — AWS Cheat Sheets</a></span><span class="ext">tutorialsdojo.com ↗</span></div>
+        <p class="why">One-page-per-service overviews. Your fastest path through the service map above — skim by category.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p3-cpe">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://skillbuilder.aws/" target="_blank" rel="noopener">AWS Cloud Practitioner Essentials (Skill Builder)</a></span><span class="ext">skillbuilder.aws ↗</span></div>
+        <p class="why">Vendor-official free foundations. Skim the modules that match the service map — don't complete the whole course.</p>
+        <div class="tags"><span class="tag">Course</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p3-migrate">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://aws.amazon.com/cloud-migration/" target="_blank" rel="noopener">AWS Cloud Migration — the 6 Rs</a></span><span class="ext">aws.amazon.com ↗</span></div>
+        <p class="why">Maps straight to the JD's migration bullet. Learn the 6 Rs and be able to sequence a migration end to end.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p3-practice">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://www.examcert.app/free-practice-tests/cloud/" target="_blank" rel="noopener">AWS Cloud Practitioner practice tests</a></span><span class="ext">examcert.app ↗</span></div>
+        <p class="why">Free CLF-C02 questions. Use a round to expose gaps fast, then re-read the weak spots.</p>
+        <div class="tags"><span class="tag">Practice</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p3-net">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://www.practicalnetworking.net/" target="_blank" rel="noopener">Practical Networking — fundamentals</a></span><span class="ext">practicalnetworking.net ↗</span></div>
+        <p class="why">Only the basics that map to VPC: subnets, routing, and load balancing. Skip the rest for now.</p>
+        <div class="tags"><span class="tag">Video</span><span class="tag free">Free</span></div></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- PHASE 4 -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="seq">04</span>
+      <h2>Program Strategy &amp; Compliance</h2>
+      <span class="phase-progress" data-phase="4"></span>
+    </div>
+    <p class="phase-req">Roadmaps · cloud migrations · AI infra · SOC 2 · GDPR</p>
+    <p class="focus"><b>Goal:</b> have a ready framework for "how would you run a cloud migration" and "how would you drive a compliance program." Treat compliance as a program with technical deliverables — every requirement maps to a control.</p>
+    <ul class="res">
+      <li class="item" data-id="p4-mario">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="star">★</span><span class="r-title"><a href="https://www.mariogerard.com/interview-questions-for-a-technical-program-manager-tpm/" target="_blank" rel="noopener">Mario Gerard — TPM interview blog</a></span><span class="ext">mariogerard.com ↗</span></div>
+        <p class="why">How TPM loops are structured and how to answer program-sense / roadmap questions.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p4-mariolearn">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://learn.mariogerard.com/p/technical-program-manager-interview-preperation" target="_blank" rel="noopener">Mario Gerard — TPM prep hub</a></span><span class="ext">learn.mariogerard.com ↗</span></div>
+        <p class="why">Free prep hub organizing the question themes across a full TPM loop.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p4-igo-tpm">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://igotanoffer.com/blogs/tech/technical-program-manager-interview" target="_blank" rel="noopener">IGotAnOffer — TPM guide</a></span><span class="ext">igotanoffer.com ↗</span></div>
+        <p class="why">Competencies, a prep plan, and how to frame roadmap / strategy answers.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p4-igo-pm">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://igotanoffer.com/blogs/tech/program-manager-interview-prep" target="_blank" rel="noopener">IGotAnOffer — Program Mgmt primer</a></span><span class="ext">igotanoffer.com ↗</span></div>
+        <p class="why">Program-sense fundamentals and a structured preparation plan.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p4-drata">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://drata.com/learn/soc-2/beginners-guide" target="_blank" rel="noopener">SOC 2 Beginner's Guide</a></span><span class="ext">drata.com ↗</span></div>
+        <p class="why">The five Trust Services Criteria in plain English — and why SOC 2 is voluntary, not a law.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p4-sprinto">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://sprinto.com/blog/soc-2-vs-gdpr/" target="_blank" rel="noopener">SOC 2 vs GDPR</a></span><span class="ext">sprinto.com ↗</span></div>
+        <p class="why">Knowing the difference (US assurance framework vs. EU law) signals real maturity.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p4-gdprlocal">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://gdprlocal.com/navigating-compliance-gdpr-and-soc-2-compared/" target="_blank" rel="noopener">GDPR &amp; SOC 2 compared</a></span><span class="ext">gdprlocal.com ↗</span></div>
+        <p class="why">Scope and applicability differences at a glance — a quick reinforcement read.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- PHASE 5 -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="seq">05</span>
+      <h2>Leadership, Risk &amp; Stakeholders</h2>
+      <span class="phase-progress" data-phase="5"></span>
+    </div>
+    <p class="phase-req">Cross-functional leadership · risk mgmt · stakeholder alignment</p>
+    <p class="focus"><b>Goal:</b> practice behavioral answers with STAR. Prepare stories on influence <b>without authority</b>, unblocking a cross-team dependency, catching a risk early, and communicating <b>upward</b>. Know the term RAID (Risks, Assumptions, Issues, Dependencies). Operational-excellence substance comes from the SRE book in Phase 02.</p>
+    <ul class="res">
+      <li class="item" data-id="p5-exponent">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="star">★</span><span class="r-title"><a href="https://www.tryexponent.com/blog/technical-program-manager-interview-questions-and-answers-complete-guide" target="_blank" rel="noopener">Exponent — TPM questions &amp; frameworks</a></span><span class="ext">tryexponent.com ↗</span></div>
+        <p class="why">Real recently-asked leadership, conflict, and stakeholder questions, plus answer frameworks.</p>
+        <div class="tags"><span class="tag">Practice</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p5-prepfully">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://prepfully.com/interview-guides/technical-program-manager-interview-guide" target="_blank" rel="noopener">Prepfully — TPM interview guide</a></span><span class="ext">prepfully.com ↗</span></div>
+        <p class="why">Stage-by-stage breakdown with sample questions (RAID, router vs. switch, and more).</p>
+        <div class="tags"><span class="tag">Practice</span><span class="tag free">Free</span></div></div>
+      </li>
+      <li class="item" data-id="p5-google">
+        <div class="check" role="checkbox" tabindex="0" aria-checked="false"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <div class="r-body"><div class="r-top"><span class="r-title"><a href="https://igotanoffer.com/blogs/tech/google-technical-program-manager-interview" target="_blank" rel="noopener">IGotAnOffer — Google / GCP TPM guide</a></span><span class="ext">igotanoffer.com ↗</span></div>
+        <p class="why">A company-specific process + question set. Swap for your target company's guide if different.</p>
+        <div class="tags"><span class="tag">Reference</span><span class="tag free">Free</span></div></div>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <span>Tick items as you go — progress saves in this browser. Free resources for Senior TPM prep.</span>
+  <button class="reset" id="reset">Reset progress</button>
+</footer>
+
+<script>
+(function(){
+  var KEY = 'tpm-prep-progress-v1';
+  var items = Array.prototype.slice.call(document.querySelectorAll('li.item'));
+  var fill = document.getElementById('fill');
+  var count = document.getElementById('count');
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
+    catch(e){ return {}; }
+  }
+  function save(state){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+  }
+
+  var state = load();
+
+  function render(){
+    var done = 0;
+    var phaseTotals = {}, phaseDone = {};
+    var firstUnchecked = null;
+
+    items.forEach(function(li){
+      var id = li.getAttribute('data-id');
+      var isDone = !!state[id];
+      li.classList.toggle('done', isDone);
+      li.classList.remove('next');
+      var cb = li.querySelector('.check');
+      cb.setAttribute('aria-checked', isDone ? 'true' : 'false');
+      if(isDone) done++;
+      else if(!firstUnchecked) firstUnchecked = li;
+
+      var phase = li.closest('.phase');
+      var p = phase.querySelector('.phase-progress').getAttribute('data-phase');
+      phaseTotals[p] = (phaseTotals[p]||0)+1;
+      if(isDone) phaseDone[p] = (phaseDone[p]||0)+1;
+    });
+
+    if(firstUnchecked) firstUnchecked.classList.add('next');
+
+    var total = items.length;
+    var pct = total ? Math.round(done/total*100) : 0;
+    fill.style.width = pct + '%';
+    count.textContent = done + ' / ' + total;
+
+    document.querySelectorAll('.phase-progress').forEach(function(el){
+      var p = el.getAttribute('data-phase');
+      var d = phaseDone[p]||0, t = phaseTotals[p]||0;
+      el.textContent = d + '/' + t + (d===t && t>0 ? '  ✓' : '');
+    });
+  }
+
+  function toggle(li){
+    var id = li.getAttribute('data-id');
+    if(state[id]) delete state[id]; else state[id] = 1;
+    save(state);
+    render();
+  }
+
+  items.forEach(function(li){
+    var cb = li.querySelector('.check');
+    cb.addEventListener('click', function(){ toggle(li); });
+    cb.addEventListener('keydown', function(e){
+      if(e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggle(li); }
+    });
+  });
+
+  document.getElementById('reset').addEventListener('click', function(){
+    state = {}; save(state); render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

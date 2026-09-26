@@ -8,12 +8,14 @@ repo or is just a link. If it also needs a folder here, add the folder and give 
 `_site.json` marked `"static": true` so the build leaves its HTML alone. See
 PROJECT-CONTEXT.md §9 for the entry shape.
 
-**A learning site**, not shown on the landing page. Follow the rest of this file, then set
-`"listed": false` and `"noindex": true` in its `_site.json`, and add it to `learning/index.html`
-so the hub lists it. Do not add it to `projects.json`.
+**A learning site**, not shown on the landing page. **Create it under `learn/<slug>/`, not
+at the repo root.** Follow the rest of this file, then set `"listed": false` and
+`"noindex": true` in its `_site.json`, and add it to `learn/index.html` so the hub lists it.
+Do not add it to `projects.json`. The build looks two levels deep, so a nested site is found
+automatically; nothing else needs changing.
 
 If a site is static, the build does not generate its pages, so `noindex: true` does nothing
-for it. Put the `robots` meta in its HTML by hand, as TPM and learning both do.
+for it. Put the `robots` meta in its HTML by hand, as TPM and learn both do.
 
 ---
 
@@ -38,8 +40,12 @@ more than a couple of thousand words and will be edited over time. `aigov` is th
 
 ```powershell
 cd C:\Users\ipras\OneDrive\Documents\Claude\iprash.github.io
-mkdir <slug>
+mkdir <slug>              # a project
+mkdir learning\<slug>     # a learning site
 ```
+
+The rest of this file says `<slug>\` for brevity. For a learning site, read that as
+`learning\<slug>\` throughout.
 
 ## 3. Write `_site.json`
 

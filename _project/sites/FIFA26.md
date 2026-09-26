@@ -18,6 +18,13 @@ It used to be its own repo, `github.com/iPrash/FIFA26`, serving `/FIFA26/` as a 
 That is the same arrangement that collided with the user site over `/TPM/` in Sept 2026 and
 forced a repo rebuild. Consolidating removes the second claim on the path.
 
+**How the move actually went.** Unpublishing the old repo's Pages site was not enough. With the
+files committed here and the deployment green, `/FIFA26/` still returned 404 while the landing
+page and `/learn/` served correctly from the same commit, because a repo *named* `FIFA26`
+keeps its claim on that path. Renaming it to `FIFA26-archive` released the path immediately.
+Waiting did not help and archiving would not have. Anyone consolidating the next project in
+should rename that project's repo first.
+
 ## Structure
 
 | File | Role |
@@ -57,6 +64,7 @@ and manifest use relative paths throughout, so the move did not change behaviour
 
 - Screenshot for the landing page card, at `assets/shots/FIFA26.png`. Until then the card shows
   a generated tile.
-- Archive `github.com/iPrash/FIFA26` once `/FIFA26/` is confirmed serving from this repo.
+- `github.com/iPrash/FIFA26` was renamed to `FIFA26-archive` on 25 Sept 2026, which is what
+  made `/FIFA26/` serve from here. Archiving it too is optional tidiness.
 - The icon files were copied in by hand, because binaries moved through the Claude file bridge
   come back with C2PA provenance metadata added and are no longer byte-identical.
