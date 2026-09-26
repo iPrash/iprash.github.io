@@ -238,9 +238,12 @@ def project_card(p):
     """One card. Uses assets/shots/<slug>.png when present, and falls back to a
     generated tile so a project without a screenshot still renders complete."""
     slug = p.get("slug", "")
-    shot = REPO / "assets" / "shots" / f"{slug}.png"
-    if shot.exists():
-        media = f'<img src="assets/shots/{slug}.png" alt="{p["title"]} screenshot" loading="lazy">'
+    # Any common image format, so renaming a file does not silently drop the card
+    # back to its tile. First match wins.
+    shot = next((f"{slug}{ext}" for ext in (".png", ".jpg", ".jpeg", ".webp")
+                 if (REPO / "assets" / "shots" / f"{slug}{ext}").exists()), None)
+    if shot:
+        media = f'<img src="assets/shots/{shot}" alt="{p["title"]} screenshot" loading="lazy">'
     else:
         media = ('<span class="tile" aria-hidden="true">'
                  f'<b>{p.get("glyph", "")}</b></span>')
