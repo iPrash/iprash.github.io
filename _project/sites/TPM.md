@@ -1,7 +1,7 @@
 # TPM — site brief
 
 **URL:** https://iprash.github.io/learn/TPM/
-**Moved:** 25 Sept 2026, from /TPM/. A redirect stub remains at the old path.
+**Moved:** 25 Sept 2026, from /TPM/. The old path 404s; its redirect stub was removed on 26 Sept 2026.
 **Type:** static
 **Created:** before the repo consolidation, Sept 2026
 

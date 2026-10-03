@@ -2,7 +2,7 @@
 
 *Upload to project knowledge. Update when something material changes.*
 
-**Last updated:** 25 September 2026
+**Last updated:** 3 October 2026
 
 ---
 
@@ -41,7 +41,11 @@ The root page is a **project index**. Study material is deliberately not listed 
 
 Study sites were moved under `learn/` on 25 Sept 2026, while there were only three of
 them and few bookmarks to break. New ones go straight there. The root stays for projects.
-Redirect stubs sit at the three old paths; see §10.
+
+The old flat paths (`/TPM/`, `/aigov/`, `/frontier-engineer/`) carried redirect stubs for a
+day, then were deleted on 26 Sept 2026 once the new structure was confirmed live. Those URLs
+now 404. That was deliberate: no meaningful bookmarks existed, and a 404 is a cleaner
+de-index signal for search engines than a redirect to a noindexed page.
 
 Read the site brief before working on a site. Conventions differ between them.
 
@@ -53,12 +57,9 @@ iprash.github.io/
 ├── .gitattributes               * text=auto eol=lf
 ├── .gitignore                   Thumbs.db, desktop.ini, .DS_Store, *.zip
 ├── index.html                   GENERATED project index, from _build/projects.json
-├── assets/shots/                landing page screenshots, <slug>.png, optional
+├── assets/shots/                landing page screenshots, <slug>.png/.jpg/.webp, optional
 ├── FIFA26/                      static single-file PWA, moved in from its own repo
-├── TPM/index.html               redirect stub only → learn/TPM/ (no _site.json)
-├── aigov/index.html             redirect stub only → learn/aigov/
-├── frontier-engineer/index.html redirect stub only → learn/frontier-engineer/
-├── learn/                    every study site lives under here
+├── learn/                       every study site lives under here
 │   ├── _site.json               static, unlisted, noindexed
 │   ├── index.html               hand-written hub, reached from the footer mark
 │   ├── TPM/
@@ -156,10 +157,11 @@ curl.exe -sI https://iprash.github.io/aigov/assets/style.css | Select-Object -Fi
 | — | Bare `curl` in PowerShell is `Invoke-WebRequest` | Use `curl.exe` |
 | `/FIFA26/` returned 404 after consolidating the app into this repo, while the new landing page and `/learn/` both served correctly from the same commit | A project repo **named** `FIFA26` claims `iprash.github.io/FIFA26/` for as long as it exists under that name. Unpublishing its Pages site removed the deployment, which is why the path 404'd rather than serving the old copy, but it did not release the claim | Renamed the repo to `FIFA26-archive`. The path was released immediately. Waiting did not help, and **archiving would not have helped either** |
 | `device_bash` (Claude's shell on this machine) dead: "no Plan9 drive shares mounted" | Windows update KB5124008/KB5124012 (8 Sept 2026) broke Cowork's Plan9 folder-sharing on Windows. Confirmed by Anthropic and Microsoft; no fix shipped yet as of 14 Sept 2026 | No repo-side fix. Workaround in the meantime: build/generate files in Claude's cloud workspace instead of on this machine, then transfer with `device_stage_files` / `device_commit_files`, which still work. Used to build the `frontier-engineer` site. Revert to running `build.py` directly on this machine once Microsoft ships the fix — check status.claude.com |
+| — | **Resolved by 3 Oct 2026:** `device_bash` works again, with `python` and `markdown` available, so `build.py` runs on this machine directly | The stage/commit workaround is no longer needed |
+| Stale empty `.git/index.lock` after Claude ran `git checkout` through `device_bash` (3 Oct 2026) | That shell may create files in the mount but cannot delete them without a permission grant, so git could not remove its own lock. It would have blocked the next `git add` | Lock removed after a delete grant. **Claude does not run git write commands through `device_bash`.** Read-only git there uses `git --no-optional-locks`. Prash commits and pushes |
 
 Repo was deleted and recreated clean in Sept 2026 after the TPM project-site repo and the user
-site repo both tried to serve `/TPM/`. Old `github.com/iPrash/TPM` should be archived once
-`/TPM/` is confirmed serving from this repo.
+site repo both tried to serve `/TPM/`. The old `github.com/iPrash/TPM` repo was deleted on 3 Oct 2026.
 
 ## 7. Deliberate decisions
 
@@ -195,7 +197,7 @@ site repo both tried to serve `/TPM/`. Old `github.com/iPrash/TPM` should be arc
   "slug": "FIFA26",
   "title": "MyFIFA26",
   "url": "FIFA26/",
-  "repo": "https://github.com/iPrash/FIFA26",
+  "repo": "https://github.com/iPrash/iprash.github.io/tree/main/FIFA26",
   "blurb": "One or two sentences.",
   "tags": ["Single file", "No dependencies"],
   "status": "Live",
@@ -207,7 +209,7 @@ site repo both tried to serve `/TPM/`. Old `github.com/iPrash/TPM` should be arc
 
 - `url` is relative when the path is served from iprash.github.io, so an entry does not need
   editing when a project is consolidated into this repo from its own.
-- A card uses `assets/shots/<slug>.png` when that file exists, and falls back to a generated
+- A card uses `assets/shots/<slug>.png` (or `.jpg`, `.jpeg`, `.webp`) when that file exists, and falls back to a generated
   tile built from `glyph` and `accent` when it does not. The check happens at build time.
   Roughly 16:10 suits the card; about 1200px wide is plenty.
 - `listed: false` parks an entry without deleting it.
@@ -215,7 +217,6 @@ site repo both tried to serve `/TPM/`. Old `github.com/iPrash/TPM` should be arc
 
 ## 10. Open items
 
-- Archive `github.com/iPrash/TPM` once `/TPM/` is confirmed working from this repo.
 - `aigov` evidence was last checked 17 Aug 2026 and includes at least one now-passed date.
   See its site brief.
 - `frontier-engineer` added Sept 2026. Its resource links were checked 14 Sept 2026; see its
@@ -224,17 +225,11 @@ site repo both tried to serve `/TPM/`. Old `github.com/iPrash/TPM` should be arc
   pages, and a crawler that cannot fetch a page never sees its noindex, so anything already
   indexed could sit there indefinitely. Let the noindex tags de-index them first, over a few
   weeks, then add a disallow if it still seems worth it.
-- The FIFA26 card shows the fallback tile until a screenshot is added at
-  `assets/shots/FIFA26.png`.
-- **Redirect stubs at `TPM/`, `aigov/` and `frontier-engineer/`** are single `index.html`
-  files, each a meta-refresh to the matching `learn/` path plus its own noindex. They have
-  no `_site.json`, so the build ignores them entirely. They exist only so URLs saved before
-  25 Sept 2026 still land. Delete the three folders once you are confident nothing points at
-  the old paths; nothing else depends on them.
-- Other projects to write cards for when ready: FlippedMath, Language Conversation,
-  Progressive_ACV. Each needs a line of description and a decision on whether it goes public.
-- `github.com/iPrash/FIFA26` was renamed to `FIFA26-archive` on 25 Sept 2026 and can now be
-  archived for tidiness. Archiving is not what fixed the collision; the rename was. See §6.
-- `device_bash` (Claude's shell on this machine) has been down since 8 Sept 2026 pending a
-  Microsoft fix for the Plan9 regression. See §6. Nothing to do here except wait and use the
-  stage/commit workaround for anything that needs a build step.
+- The redirect stubs at the old flat paths were removed on 26 Sept 2026, once the live site
+  was verified. Nothing depends on them. If an old link ever turns up in the wild, the fix is
+  a folder containing one `index.html` with a meta-refresh and no `_site.json`, which the
+  build ignores.
+- Other projects to write cards for when ready: FlippedMath, Progressive_ACV. Language
+  Conversation is in progress as `speak/`: spec being written, nothing built yet. Each needs a line of description and a decision on whether it goes public.
+- `device_bash` (Claude's shell on this machine) was down from 8 Sept 2026 and was working
+  again by 3 Oct 2026. See §6. Claude still does not run git write commands through it.

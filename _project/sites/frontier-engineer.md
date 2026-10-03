@@ -1,7 +1,7 @@
 # frontier-engineer — site brief
 
 **URL:** https://iprash.github.io/learn/frontier-engineer/
-**Moved:** 25 Sept 2026, from /frontier-engineer/. A redirect stub remains at the old path.
+**Moved:** 25 Sept 2026, from /frontier-engineer/. The old path 404s; its redirect stub was removed on 26 Sept 2026.
 **Type:** generated
 **Created:** September 2026
 **Evidence last checked:** 14 September 2026 (resource links only; see Time-sensitive content)

@@ -21,7 +21,7 @@ forced a repo rebuild. Consolidating removes the second claim on the path.
 **How the move actually went.** Unpublishing the old repo's Pages site was not enough. With the
 files committed here and the deployment green, `/FIFA26/` still returned 404 while the landing
 page and `/learn/` served correctly from the same commit, because a repo *named* `FIFA26`
-keeps its claim on that path. Renaming it to `FIFA26-archive` released the path immediately.
+keeps its claim on that path. Renaming it to `FIFA26-archive` released the path immediately. That repo was archived on 3 Oct 2026. It is read-only and keeps the app's git history from before the move, which was not copied here.
 Waiting did not help and archiving would not have. Anyone consolidating the next project in
 should rename that project's repo first.
 
@@ -62,9 +62,5 @@ and manifest use relative paths throughout, so the move did not change behaviour
 
 ## Open items
 
-- Screenshot for the landing page card, at `assets/shots/FIFA26.png`. Until then the card shows
-  a generated tile.
-- `github.com/iPrash/FIFA26` was renamed to `FIFA26-archive` on 25 Sept 2026, which is what
-  made `/FIFA26/` serve from here. Archiving it too is optional tidiness.
 - The icon files were copied in by hand, because binaries moved through the Claude file bridge
   come back with C2PA provenance metadata added and are no longer byte-identical.

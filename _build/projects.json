@@ -5,7 +5,7 @@
       "slug": "FIFA26",
       "title": "MyFIFA26",
       "url": "FIFA26/",
-      "repo": "https://github.com/iPrash/FIFA26",
+      "repo": "https://github.com/iPrash/iprash.github.io/tree/main/FIFA26",
       "blurb": "A what-if analyser for the 2026 World Cup. Group standings, a clinch checker, third-place qualification worked out from FIFA's own Annex C table, and a knockout bracket you can pick your way through.",
       "tags": ["Single file", "No dependencies", "Live ESPN scores"],
       "status": "Live",

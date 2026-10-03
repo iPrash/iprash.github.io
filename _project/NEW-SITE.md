@@ -41,11 +41,11 @@ more than a couple of thousand words and will be edited over time. `aigov` is th
 ```powershell
 cd C:\Users\ipras\OneDrive\Documents\Claude\iprash.github.io
 mkdir <slug>              # a project
-mkdir learning\<slug>     # a learning site
+mkdir learn\<slug>        # a learning site
 ```
 
 The rest of this file says `<slug>\` for brevity. For a learning site, read that as
-`learning\<slug>\` throughout.
+`learn\<slug>\` throughout.
 
 ## 3. Write `_site.json`
 
