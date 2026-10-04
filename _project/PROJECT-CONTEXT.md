@@ -29,6 +29,7 @@ The root page is a **project index**. Study material is deliberately not listed 
 | Slug | URL | Title | Type | Brief |
 |---|---|---|---|---|
 | `FIFA26` | /FIFA26/ | MyFIFA26, World Cup 2026 what-if analyser | Static HTML, PWA | `_project/sites/FIFA26.md` |
+| `speak` | /speak/ | Speak, speaking practice in Hindi, French, Mandarin. **Spec in review, nothing built** | Static HTML + JSON content | `_project/sites/speak.md`, spec `speak-spec.md` |
 
 **Learning sites** (unlisted and noindexed, reached only through /learn/):
 
@@ -230,6 +231,6 @@ site repo both tried to serve `/TPM/`. The old `github.com/iPrash/TPM` repo was 
   a folder containing one `index.html` with a meta-refresh and no `_site.json`, which the
   build ignores.
 - Other projects to write cards for when ready: FlippedMath, Progressive_ACV. Language
-  Conversation is in progress as `speak/`: spec being written, nothing built yet. Each needs a line of description and a decision on whether it goes public.
+  Conversation is in progress as `speak/`: spec in review (`_project/sites/speak-spec.md`), nothing built yet. Each needs a line of description and a decision on whether it goes public.
 - `device_bash` (Claude's shell on this machine) was down from 8 Sept 2026 and was working
   again by 3 Oct 2026. See §6. Claude still does not run git write commands through it.
