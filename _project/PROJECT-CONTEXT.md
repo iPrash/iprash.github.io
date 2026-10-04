@@ -29,7 +29,7 @@ The root page is a **project index**. Study material is deliberately not listed 
 | Slug | URL | Title | Type | Brief |
 |---|---|---|---|---|
 | `FIFA26` | /FIFA26/ | MyFIFA26, World Cup 2026 what-if analyser | Static HTML, PWA | `_project/sites/FIFA26.md` |
-| `speak` | /speak/ | Speak, speaking practice in Hindi, French, Mandarin. **Spec in review, nothing built** | Static HTML + JSON content | `_project/sites/speak.md`, spec `speak-spec.md` |
+| `speak` | /speak/ | Speak, speaking practice in Hindi, French, Mandarin. **M1 built, card parked** (`listed: false`, noindex) | Static HTML + JSON content | `_project/sites/speak.md`, spec `speak-spec.md` |
 
 **Learning sites** (unlisted and noindexed, reached only through /learn/):
 
@@ -60,6 +60,7 @@ iprash.github.io/
 ├── index.html                   GENERATED project index, from _build/projects.json
 ├── assets/shots/                landing page screenshots, <slug>.png/.jpg/.webp, optional
 ├── FIFA26/                      static single-file PWA, moved in from its own repo
+├── speak/                       static app, hand-written: index.html, assets/, content/**.json
 ├── learn/                       every study site lives under here
 │   ├── _site.json               static, unlisted, noindexed
 │   ├── index.html               hand-written hub, reached from the footer mark
@@ -88,6 +89,7 @@ iprash.github.io/
 │                                        localStorage prefix changed to avoid collision
 ├── _build/
 │   ├── build.py
+│   ├── check_speak.py           validates speak/content/** (stdlib only)
 │   ├── projects.json            the portfolio list shown on the landing page
 │   └── templates/landing.html
 └── _project/
@@ -186,7 +188,7 @@ site repo both tried to serve `/TPM/`. The old `github.com/iPrash/TPM` repo was 
   whatever the landing page links to. The noindex tags keep the study sites out of search
   results; they do not restrict access, and nothing here should be treated as if they did.
 - **localStorage keys are namespaced per site** (e.g. aigov's `xyzai.*`, frontier-engineer's
-  `fe.*`). All sites share one origin, so two sites reusing the same key prefix would silently
+  `fe.*`, speak's `sp.v1.*`). All sites share one origin, so two sites reusing the same key prefix would silently
   overwrite each other's reading progress. Pick a short, distinct prefix for every new site.
 
 ## 9. The portfolio list
@@ -231,6 +233,6 @@ site repo both tried to serve `/TPM/`. The old `github.com/iPrash/TPM` repo was 
   a folder containing one `index.html` with a meta-refresh and no `_site.json`, which the
   build ignores.
 - Other projects to write cards for when ready: FlippedMath, Progressive_ACV. Language
-  Conversation is in progress as `speak/`: spec in review (`_project/sites/speak-spec.md`), nothing built yet. Each needs a line of description and a decision on whether it goes public.
+  Conversation is `speak/`: M1 built 4 Oct 2026, card parked until French and Mandarin are verified. Each needs a line of description and a decision on whether it goes public.
 - `device_bash` (Claude's shell on this machine) was down from 8 Sept 2026 and was working
   again by 3 Oct 2026. See §6. Claude still does not run git write commands through it.

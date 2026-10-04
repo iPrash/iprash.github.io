@@ -1,6 +1,6 @@
 # speak — site brief
 
-**URL:** https://iprash.github.io/speak/ (not built yet)
+**URL:** https://iprash.github.io/speak/ (parked: noindex, card unlisted)
 **Type:** static, hand-written app with JSON content. The build does not generate any of it
 **Created:** spec started 3 October 2026
 **Evidence last checked:** n/a. Content is dialogue. Browser speech support noted in the spec as of Oct 2026
@@ -17,13 +17,20 @@ Prash teaches Hindi and is learning French and Mandarin. Beginners rarely get en
 
 ## Status
 
-**Spec in review. Nothing is built.** The spec is `_project/sites/speak-spec.md`. It is the build contract: read it before touching anything in `speak/`.
+**M1 built (4 Oct 2026):** content format, checker, Hindi stages 1–4, French and Mandarin greetings, class mode with the formality switch, script view. Solo mode is M2. All content is `draft`.
 
-## Structure (planned)
+The spec is `_project/sites/speak-spec.md`. It is the build contract: read it before touching anything in `speak/`.
+
+## Structure
 
 | File | Role |
 |---|---|
-| `speak/index.html`, `speak/assets/*` | Hand-written app |
+| `speak/index.html` | Hand-written shell |
+| `speak/assets/content.js` | Hand-written. Loads and resolves content |
+| `speak/assets/speech.js` | Hand-written. Text-to-speech now, recognition and matching in M2 |
+| `speak/assets/app.js` | Hand-written. Router and screens |
+| `speak/assets/style.css` | Hand-written |
+| `speak/_site.json` | `static: true`, `listed: false` |
 | `speak/content/**` | Hand-written JSON: ladder, blueprints, language profiles, realizations |
 | `_build/check_speak.py` | Content validator. Standard library only |
 
@@ -41,6 +48,8 @@ Prash teaches Hindi and is learning French and Mandarin. Beginners rarely get en
 
 ## Open items
 
-- Spec 0.3 (4 Oct 2026) has no open questions. It waits for Prash's sign-off before M1 starts.
+- Next: M2, solo mode. Then M3, French and Mandarin stages 1–4.
+- Prash to review the Hindi script views (print → PDF) and mark verified ones.
 - Hindi romanization is Prash's ASCII scheme (spec §3.3). All Hindi content follows it.
-- Milestones M1 to M4 in the spec.
+- Milestones M2 to M4 in the spec.
+- Local testing: `python -m http.server` in the repo root, then open http://localhost:8000/speak/. The app loads JSON, so it does not run from file://.

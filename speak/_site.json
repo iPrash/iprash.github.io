@@ -1,0 +1,9 @@
+{
+  "slug": "speak",
+  "order": 20,
+  "title": "Speak",
+  "blurb": "Scripted speaking practice in Hindi, French and Mandarin",
+  "static": true,
+  "listed": false,
+  "note": "Hand-written app. Content is JSON under content/, validated by _build/check_speak.py. Static, so the build never touches it. The landing card comes from _build/projects.json. Spec: _project/sites/speak-spec.md."
+}

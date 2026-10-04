@@ -1,12 +1,20 @@
 # Speak — specification
 
 **Status:** DRAFT for Prash's review. Nothing is built.
-**Version:** 0.4, 4 October 2026
+**Version:** 0.5, 4 October 2026
 **Brief:** `_project/sites/speak.md`
 
 This file is the build contract. When the spec and the code disagree, the spec wins, or the spec is changed first.
 
 ### Changes
+
+**0.5** (found while building M1)
+
+- `ladder.json` lists the languages (`"languages": ["hi", "fr", "zh"]`), so a new language needs no code change. The checker compares it with the language folders.
+- A ladder stage may have an empty `scenarios` list. The ladder shows it as "Coming later".
+- Content loading lives in `assets/content.js`, separate from the screens.
+- A site bar on every page, and breadcrumbs with mode links on scenario pages (§4.0).
+- The profile page shows a letter chart: `romanization.chart` (§3.3). The Hindi chart covers every letter in traditional order, plus vowel signs. ऑ is added as **o**.
 
 **0.4**
 
@@ -101,6 +109,7 @@ Every file carries `"schema": 1`. A change that breaks old files increments it.
 ```json
 {
   "schema": 1,
+  "languages": ["hi", "fr", "zh"],
   "stages": [
     { "stage": 1, "level": "A1", "title": "Greetings & self-introduction", "scenarios": ["greetings"] },
     { "stage": 2, "level": "A1", "title": "Personal info", "scenarios": ["where-from"] },
@@ -115,7 +124,7 @@ Every file carries `"schema": 1`. A change that breaks old files increments it.
 }
 ```
 
-A stage holds a list of scenarios, so a second scenario can be added later without renumbering. A language-only scenario (§3.5) is listed in a stage like any other.
+`languages` lists the language folders in display order. A stage holds a list of scenarios, so a second scenario can be added later without renumbering. An empty list shows as "Coming later". A language-only scenario (§3.5) is listed in a stage like any other.
 
 ### 3.2 Blueprint: `scenarios/<id>.json`
 
@@ -152,7 +161,7 @@ Each slot has a `cue`: the English shown when the learner must supply it ("your 
 | `name`, `native` | string | `"Hindi"`, `"हिन्दी"` |
 | `locale` | string | BCP 47 tag for speech: `hi-IN`, `fr-FR`, `zh-CN` |
 | `script` | string | `Devanagari`, `Latin`, `Han (simplified)` |
-| `romanization` | object or null | `{ "name": "...", "show": true, "rules": ["..."] }`. Null for French |
+| `romanization` | object or null | `{ "name": "...", "show": true, "rules": ["..."], "chart": [...] }`. Null for French. `chart` is optional: groups of `{ "title", "en", "wide", "letters": [["क", "ka"], …], "note" }`, shown on the profile page in order. `wide: true` gives a group the full width |
 | `match` | `"words"` or `"chars"` | How answers are compared (§5.2) |
 | `normalize` | array | Extra rules for this language (§5.2) |
 | `numerals` | object | Maps digits to number words, so "2" and "दो" match. Keys `"0"`–`"10"` |
@@ -177,7 +186,7 @@ Every character is on an English keyboard. Long vowels are doubled, and capitals
 | | | | | | |
 |---|---|---|---|---|---|
 | अ a | आ aa | इ i | ई ee | उ u | ऊ oo |
-| ऋ ri | ए e | ऐ ai | ओ o | औ au | |
+| ऋ ri | ए e | ऐ ai | ओ o | औ au | ऑ o |
 
 **Consonants:**
 
@@ -204,6 +213,10 @@ Every character is on an English keyboard. Long vowels are doubled, and capitals
 5. **A nasal vowel** (ँ, or ं after a vowel) adds n. Examples: हूँ → hoon, मैं → main, नहीं → naheen, हैं → hain.
 6. **Visarga** (अः) is h.
 7. **फ and फ़ stay distinct.** फ is aspirated p (pha: फिर → phir). फ़ is f (fa: फ़ोन → fon).
+8. **ऑ (ॉ), the open o of English loanwords, is o**, like ओ: डॉक्टर → DokTar, कॉफ़ी → kofee.
+9. **Chandrabindu (अँ) and anusvara (अं) are both written an** when they stand for a nasal vowel.
+
+The Hindi profile page shows the full chart in this order: vowels, nasals and visarga, vowel signs on क, the five consonant groups (क च ट त प), semivowels, sibilants, conjuncts, and the nukta letters.
 
 Typed answers in solo mode are matched leniently (§5.2), so `mera nam kya hai` matches `meraa naam kyaa hai`.
 
@@ -514,7 +527,13 @@ Routes are hash-based, so they work on GitHub Pages with no server rules:
 | `#hi/greetings/class` | Class mode |
 | `#hi/greetings/solo` | Solo mode |
 | `#hi/greetings/script` | Script view |
-| `#hi/profile` | Language profile: the adaptation checklist, answered, plus the romanization rules |
+| `#hi/profile` | Language profile: the adaptation checklist answered, the levels of "you", the romanization chart and its rules |
+
+### 4.0 Site navigation
+
+- **Site bar, on every page.** It holds the Speak brand (links home), **Home**, one link per language (native name plus English name), and "About <language>" for the current language. The current language is highlighted. The bar is hidden in print.
+- **Switching language keeps your place.** Inside a scenario, a language link opens the same scenario and mode in that language, when that language has it. Otherwise it opens that language's ladder.
+- **Breadcrumbs:** Home / Language / Scenario. On scenario pages, the trail is followed by mode links: **Class · Solo · Script**, with the current mode highlighted.
 
 ### 4.1 Home and ladder
 
@@ -685,6 +704,7 @@ Nothing else. No scores are stored.
 |---|---|---|
 | `speak/index.html` | hand-written | Shell. Has `noindex` while parked |
 | `speak/assets/style.css` | hand-written | System fonts plus Noto Sans Devanagari and Noto Sans SC from Google Fonts, with system fallbacks |
+| `speak/assets/content.js` | hand-written | Loads the JSON and resolves lines for a register and slot values. No DOM code |
 | `speak/assets/app.js` | hand-written | Router, screens |
 | `speak/assets/speech.js` | hand-written | Text-to-speech, recognition, matching (§5). No DOM code, so it can be tested alone |
 | `speak/content/**` | hand-written data | §3 |
