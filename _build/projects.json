@@ -12,19 +12,6 @@
       "glyph": "26",
       "accent": "#1E6B4F",
       "year": "2026"
-    },
-    {
-      "slug": "speak",
-      "title": "Speak",
-      "url": "speak/",
-      "repo": "https://github.com/iPrash/iprash.github.io/tree/main/speak",
-      "blurb": "Scripted speaking practice for beginners in Hindi, French and Mandarin. A native speaker runs each scenario on one shared screen; on your own, the browser plays your partner.",
-      "tags": ["No dependencies", "Web Speech API", "3 languages"],
-      "status": "In progress",
-      "glyph": "Sp",
-      "accent": "#284B8F",
-      "year": "2026",
-      "listed": false
     }
   ]
 }
