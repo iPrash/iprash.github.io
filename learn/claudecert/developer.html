@@ -159,6 +159,7 @@
       <p><strong>Goal.</strong> Understand one Messages API request and response completely.</p>
       <p><strong>Build (60 min).</strong> In <code>cert-lab/01-api/</code>, write <code>basics.py</code>. Send a request with a system prompt and two user turns. Print the full response object, not only the text. Identify <code>stop_reason</code>, <code>usage.input_tokens</code> and <code>usage.output_tokens</code>. Set <code>max_tokens</code> to 20 and watch <code>stop_reason</code> change to <code>max_tokens</code>. Add a stop sequence and watch it change to <code>stop_sequence</code>.</p>
       <p><strong>Read (60 min).</strong> MSO Foundations module (R12), all of it. Keep R24 open for reference.</p>
+      <p><strong>Video backup.</strong> R17, section Accessing Claude with the API.</p>
       <p><strong>Write.</strong> One question on <code>stop_reason</code> values. One on where a system prompt goes in the request. One on what <code>max_tokens</code> controls and what it does not.</p>
       <ul>
       <li>[ ] D4: <code>basics.py</code> prints three different <code>stop_reason</code> values, and I can explain each.</li>
@@ -198,6 +199,7 @@
       <p><strong>Goal.</strong> Send non-text input correctly.</p>
       <p><strong>Build (45 min).</strong> Send an image by base64 and by URL. Ask for a structured description. Send a short PDF as a document block and ask for a table from it. Measure the token cost of each input.</p>
       <p><strong>Read (30 min).</strong> R26 Vision. R24, the section on content blocks.</p>
+      <p><strong>Video backup.</strong> R17, section Features of Claude: Image support and PDF support.</p>
       <p><strong>Write.</strong> One question on image versus document input. One on the cost of large images. One on where in the message to put an image relative to the question.</p>
       <ul>
       <li>[ ] D9: Image and PDF inputs both return correct structured output, with token cost recorded.</li>
@@ -207,6 +209,7 @@
       <p><strong>Goal.</strong> Cut repeated-prefix cost and prove it with numbers.</p>
       <p><strong>Build (45 min).</strong> Put a long, fixed system prompt (over the minimum cacheable length in R27) before a short user question. Add a cache breakpoint. Send the request three times. Record <code>cache_creation_input_tokens</code> and <code>cache_read_input_tokens</code>. Build a small cost model: requests per day, prefix size, hit rate, saving. Then change one word in the prefix and show the cache miss.</p>
       <p><strong>Read (30 min).</strong> R27 Prompt caching, including what invalidates the cache.</p>
+      <p><strong>Video backup.</strong> R17, section Features of Claude: the three prompt caching lessons.</p>
       <p><strong>Write.</strong> One question on what makes a cache miss. One on ordering content so the stable part comes first. One that asks which workload benefits most from caching.</p>
       <ul>
       <li>[ ] D10: A cost-model sheet showing cached versus uncached cost for one realistic workload.</li>
@@ -227,6 +230,7 @@
       <p><strong>Goal.</strong> Improve a prompt by measurement, not by feel.</p>
       <p><strong>Build (45 min).</strong> In <code>cert-lab/02-prompts/</code>, build a support-ticket classifier with five categories. Write 20 labeled test tickets, including 5 ambiguous ones. Score version 1 of the prompt. Then change one thing at a time: clear instructions, XML tags around the ticket, a system-prompt role, and 3 examples that target the ambiguous cases. Score each version.</p>
       <p><strong>Read (40 min).</strong> R12 module 2, Production-Grade Prompting, Agents &amp; Tool Use, first segment.</p>
+      <p><strong>Video backup.</strong> R85 Prompting 101. R17, section Prompt engineering techniques.</p>
       <p><strong>Write.</strong> One question on system versus user placement. One on why examples should target the ambiguous cases. One on input sanitization.</p>
       <ul>
       <li>[ ] D13: A score table: prompt version by accuracy on 20 tickets, with the change that helped most.</li>
@@ -246,6 +250,7 @@
       <p><strong>Goal.</strong> Run the tool-use loop myself before any framework does it for me.</p>
       <p><strong>Build (45 min).</strong> In <code>cert-lab/03-agent/</code>, define three tools for an order-support case: <code>lookup_order</code>, <code>get_policy</code>, <code>issue_refund</code>. Write the loop: send, check <code>stop_reason</code>, run the tool when it is <code>tool_use</code>, return a <code>tool_result</code>, repeat until <code>end_turn</code>. Return <code>is_error: true</code> with a clear message when an order is not found. Add a maximum-turns limit.</p>
       <p><strong>Read (40 min).</strong> R12 module 2, third segment. R43 and R45 for reference.</p>
+      <p><strong>Video backup.</strong> R17, section Tool use with Claude, up to Multi-turn conversations with tools.</p>
       <p><strong>Write.</strong> One question on what ends the loop. One on how to report a tool failure to the model. One on client-side versus server-side tools.</p>
       <ul>
       <li>[ ] D15: The loop handles a two-tool request and a not-found error, and stops at the turn limit.</li>
@@ -264,6 +269,7 @@
       <p><strong>Goal.</strong> Decide when a fixed workflow is better than an agent.</p>
       <p><strong>Build (45 min).</strong> Add a human approval checkpoint before <code>issue_refund</code>. The loop pauses, prints the planned refund, and waits for yes or no. Add a spend budget that stops the agent. Then sketch, in <code>notes.md</code>, the same case as a fixed workflow (classify, look up, apply policy, draft reply) and list what each design is better at.</p>
       <p><strong>Read (40 min).</strong> R12 module 2, last segment. R77 Building effective agents.</p>
+      <p><strong>Video backup.</strong> R84 How We Build Effective Agents, 15 minutes. R17, section Agents and workflows.</p>
       <p><strong>Write.</strong> One question on workflow versus agent. One on where to place a human checkpoint. One on supervisor and subagent roles.</p>
       <ul>
       <li>[ ] D17: The refund pauses for approval, and <code>notes.md</code> compares the two designs.</li>
@@ -273,6 +279,7 @@
       <p><strong>Goal.</strong> Rebuild the agent on the Agent SDK and enforce a rule in code.</p>
       <p><strong>Build (75 min).</strong> Follow R56 to set up the Agent SDK. Rebuild the Day 15 agent with custom tools (R58). Add a PreToolUse hook (R59) that blocks any refund above a limit and returns a reason. Add one subagent (R60) that only drafts the customer reply. Compare the code size and behavior with the hand-written loop.</p>
       <p><strong>Mock (45 min).</strong> 15 questions on Days 4 to 17, timed. Review every miss.</p>
+      <p><strong>Video, Sunday.</strong> R87 Agent SDK workshop, the first 45 minutes. Watch it on Day 19 if the build ran long.</p>
       <p><strong>Write.</strong> One question on a hook versus a prompt instruction for a business rule. One on what a subagent's separate context gives. One on self-hosted versus managed agent deployment.</p>
       <ul>
       <li>[ ] D18: The hook blocks an over-limit refund in a test run, and the mock score is recorded.</li>
@@ -284,6 +291,7 @@
       <p><strong>Goal.</strong> Keep long agent runs inside a useful context.</p>
       <p><strong>Build (45 min).</strong> Make one tool return a large, noisy payload. Run a 10-turn session and watch token use grow. Fix it three ways and compare: prune the tool output to the fields needed, use compaction (R33), and move a sub-task into a subagent so only its summary returns. Then read the quickstart of one framework (LangGraph, Strands or PydanticAI) for 10 minutes. Note how it names the same ideas.</p>
       <p><strong>Read (35 min).</strong> R79 Effective context engineering. R12 module 3, first segment.</p>
+      <p><strong>Video backup.</strong> R86 Prompting for Agents.</p>
       <p><strong>Write.</strong> One question on context drift. One on pruning versus compaction. One on context isolation through subagents.</p>
       <ul>
       <li>[ ] D20: Token use per turn, before and after each fix, in <code>notes.md</code>.</li>
@@ -293,6 +301,7 @@
       <p><strong>Goal.</strong> Expose a capability once and use it from more than one client.</p>
       <p><strong>Build (45 min).</strong> In <code>cert-lab/04-mcp/</code>, build a Python MCP server (R76) with two tools (<code>lookup_order</code>, <code>get_policy</code>), one resource (the refund policy text), and one prompt (a reply template). Run it over stdio. Connect it to Claude Code with a project-scoped <code>.mcp.json</code> (R70). Put the credential in an environment variable, not in the file. Call each primitive from Claude Code.</p>
       <p><strong>Read (35 min).</strong> R12 module 3, second segment. R75 for the three primitives.</p>
+      <p><strong>Video backup.</strong> R88 MCP workshop, the first hour, or R94. R17, section Model Context Protocol.</p>
       <p><strong>Write.</strong> One question on tools versus resources versus prompts. One on stdio versus a network transport. One on keeping secrets out of <code>.mcp.json</code>.</p>
       <ul>
       <li>[ ] D21: Claude Code calls both tools and reads the resource through my server.</li>
@@ -303,6 +312,7 @@
       <p><strong>Goal.</strong> Pick the right extension type for a need, and configure it for a team.</p>
       <p><strong>Build (45 min).</strong> In <code>cert-lab</code>, write a project CLAUDE.md and a personal <code>CLAUDE.local.md</code>. Set shared permissions in <code>.claude/settings.json</code> and a personal override in <code>.claude/settings.local.json</code> (R65). Write one Skill (R68) that formats a release note. Run Claude Code headless with <code>claude -p</code> and JSON output (R71). Then fill in a four-row table: built-in tool, custom tool, Skill, MCP server. One row each: what it is for, and one example need.</p>
       <p><strong>Read (40 min).</strong> R12 module 3, last segment. R64 Memory, the hierarchy section.</p>
+      <p><strong>Video backup.</strong> R91 Introduction to Agent Skills, 30 minutes. R89 Claude Code best practices.</p>
       <p><strong>Write.</strong> One question on which settings file a team shares. One on Skill versus MCP server. One on pinning a model and versioning a prompt.</p>
       <ul>
       <li>[ ] D22: The four-row customization table, and a headless run that returns JSON.</li>
@@ -321,6 +331,7 @@
       <p><strong>Goal.</strong> Define "done" as a test, and find whether a failure is mine or the model's.</p>
       <p><strong>Build (45 min).</strong> Turn the Day 13 test set into an eval script with a pass threshold. Run it against two models and two prompt versions. Store prompts in versioned files and pin the model version in config. Then break the integration on purpose (drop a field before it reaches the prompt) and use logs to show the fault is in my code, not the model.</p>
       <p><strong>Read (70 min).</strong> R12 module 4, second half. R80 Demystifying evals, the grader types section.</p>
+      <p><strong>Video backup.</strong> R17, section Prompt evaluation.</p>
       <p><strong>Write.</strong> One question on code-graded versus model-graded checks. One on isolating integration faults from model faults. One on a regression after a model upgrade.</p>
       <ul>
       <li>[ ] D24: <code>eval.py</code> prints a pass rate per model and prompt version, and the traced fault is written up.</li>

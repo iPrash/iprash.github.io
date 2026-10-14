@@ -43,7 +43,7 @@ The Developer prep course lists nine "recommended" courses before it. I skip mos
 
 | # | Resource | Use |
 |---|---|---|
-| R17 | [Building with the Claude API](https://anthropic.skilljar.com/claude-with-the-anthropic-api) | Reference for API mechanics days |
+| R17 | [Building with the Claude API](https://anthropic.skilljar.com/claude-with-the-anthropic-api) | About 8 hours of video in 11 sections. The video backup for most Developer days. Each day names the section |
 | R18 | [Claude Code in Action](https://anthropic.skilljar.com/claude-code-in-action) | Architect block |
 | R19 | [Introduction to Model Context Protocol](https://anthropic.skilljar.com/introduction-to-model-context-protocol) | MCP server day |
 | R20 | [Model Context Protocol: Advanced Topics](https://anthropic.skilljar.com/model-context-protocol-advanced-topics) | Architect block |
@@ -146,6 +146,28 @@ The Developer prep course lists nine "recommended" courses before it. I skip mos
 | R78 | [Writing effective tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents) | Dev D8 |
 | R79 | [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) | Dev D6 |
 | R80 | [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) | Dev D4 |
+
+## Videos and short courses
+
+Added 14 October 2026. Every video is presented by Anthropic staff. I confirmed each YouTube link against the video's own title and channel on that date. Talks from 2025 predate some current models and features. When a talk and the docs disagree, the docs win. When the docs and the exam guide disagree, the guide wins.
+
+Use a video in place of part of the day's read when the prep course (R12) is thin on a topic, or on Sunday. It does not replace the build.
+
+| # | Resource | Grade | Length | Use |
+|---|---|---|---|---|
+| R84 | [How We Build Effective Agents, Barry Zhang (AI Engineer Summit 2025)](https://www.youtube.com/watch?v=D7_ipDqhtwk) | [P] | 15 min | Day 17. The talk version of R77 |
+| R85 | [Prompting 101 (Code w/ Claude 2025)](https://www.youtube.com/watch?v=ysPbXH0LpIE) | [P] | Talk | Day 13 |
+| R86 | [Prompting for Agents (Code w/ Claude 2025)](https://www.youtube.com/watch?v=XSZP9GhhuAc) | [P] | Talk | Day 20 |
+| R87 | [Claude Agent SDK, full workshop, Thariq Shihipar (AI Engineer Code 2025)](https://www.youtube.com/watch?v=TqC1qOfiVcQ) | [P] | 1 h 52 min | Day 18, first 45 min. The rest in the Architect block |
+| R88 | [Building Agents with MCP, full workshop, Mahesh Murag (AI Engineer Summit 2025)](https://www.youtube.com/watch?v=kQmXtrmQ5Zg) | [P] | 1 h 44 min | Day 21, the first hour |
+| R89 | [Claude Code best practices (Code w/ Claude 2025)](https://www.youtube.com/watch?v=gv0WHhKelSE) | [P] | Talk | Day 22. Again in the Architect block |
+| R90 | [Building headless automation with Claude Code (Code w/ Claude 2025)](https://www.youtube.com/watch?v=dRsjO-88nBs) | [P] | Talk | Architect block, build 5 |
+| R91 | [Introduction to Agent Skills (Claude Academy)](https://anthropic.skilljar.com/introduction-to-agent-skills) | [P] | 6 lessons, about 30 min | Day 22 |
+| R92 | [Introduction to Subagents (Claude Academy)](https://anthropic.skilljar.com/introduction-to-subagents) | [P] | 4 lessons, about 45 min | Architect block |
+| R93 | [The Complete Guide to Building Skills for Claude](https://claude.com/resources/guides/the-complete-guide-to-building-skills-for-claude) | [P] | About 30 min read | Architect block. Skim on Day 22 |
+| R94 | [MCP: Build Rich-Context AI Apps with Anthropic (DeepLearning.AI)](https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic) | [S] | 1 h 38 min | Day 21 alternative to R88. Made with Anthropic. Free to audit |
+| R95 | [Claude Code: A Highly Agentic Coding Assistant (DeepLearning.AI)](https://www.deeplearning.ai/courses/claude-code-a-highly-agentic-coding-assistant) | [S] | About 2 h | Architect block. Taught by Anthropic's head of technical education. Free during the platform beta |
+| R96 | [Code w/ Claude 2026, San Francisco recordings](https://claude.com/code-with-claude/san-francisco) | [P] | 19 sessions | Newer features than the 2025 talks. Browse in the Architect and Professional blocks |
 
 ## Repositories
 

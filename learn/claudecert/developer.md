@@ -54,6 +54,8 @@ Saturday 17 October · long day, 2 hours · Dev D2 API mechanics, D5 LLM fundame
 
 **Read (60 min).** MSO Foundations module (R12), all of it. Keep R24 open for reference.
 
+**Video backup.** R17, section Accessing Claude with the API.
+
 **Write.** One question on `stop_reason` values. One on where a system prompt goes in the request. One on what `max_tokens` controls and what it does not.
 
 - [ ] D4: `basics.py` prints three different `stop_reason` values, and I can explain each.
@@ -118,6 +120,8 @@ Thursday 22 October · Dev D2 API mechanics, application design (8.6%)
 
 **Read (30 min).** R26 Vision. R24, the section on content blocks.
 
+**Video backup.** R17, section Features of Claude: Image support and PDF support.
+
 **Write.** One question on image versus document input. One on the cost of large images. One on where in the message to put an image relative to the question.
 
 - [ ] D9: Image and PDF inputs both return correct structured output, with token cost recorded.
@@ -131,6 +135,8 @@ Friday 23 October · Dev D5 cost and token management (2.8%)
 **Build (45 min).** Put a long, fixed system prompt (over the minimum cacheable length in R27) before a short user question. Add a cache breakpoint. Send the request three times. Record `cache_creation_input_tokens` and `cache_read_input_tokens`. Build a small cost model: requests per day, prefix size, hit rate, saving. Then change one word in the prefix and show the cache miss.
 
 **Read (30 min).** R27 Prompt caching, including what invalidates the cache.
+
+**Video backup.** R17, section Features of Claude: the three prompt caching lessons.
 
 **Write.** One question on what makes a cache miss. One on ordering content so the stable part comes first. One that asks which workload benefits most from caching.
 
@@ -164,6 +170,8 @@ Monday 26 October · Dev D6 prompt engineering (4.6%)
 
 **Read (40 min).** R12 module 2, Production-Grade Prompting, Agents & Tool Use, first segment.
 
+**Video backup.** R85 Prompting 101. R17, section Prompt engineering techniques.
+
 **Write.** One question on system versus user placement. One on why examples should target the ambiguous cases. One on input sanitization.
 
 - [ ] D13: A score table: prompt version by accuracy on 20 tickets, with the change that helped most.
@@ -196,6 +204,8 @@ Wednesday 28 October · Dev D8 tool implementation (4.4%)
 
 **Read (40 min).** R12 module 2, third segment. R43 and R45 for reference.
 
+**Video backup.** R17, section Tool use with Claude, up to Multi-turn conversations with tools.
+
 **Write.** One question on what ends the loop. One on how to report a tool failure to the model. One on client-side versus server-side tools.
 
 - [ ] D15: The loop handles a two-tool request and a not-found error, and stops at the turn limit.
@@ -224,6 +234,8 @@ Friday 30 October · Dev D1 agent architecture (4.5%)
 
 **Read (40 min).** R12 module 2, last segment. R77 Building effective agents.
 
+**Video backup.** R84 How We Build Effective Agents, 15 minutes. R17, section Agents and workflows.
+
 **Write.** One question on workflow versus agent. One on where to place a human checkpoint. One on supervisor and subagent roles.
 
 - [ ] D17: The refund pauses for approval, and `notes.md` compares the two designs.
@@ -237,6 +249,8 @@ Saturday 31 October · long day, 2 hours · Dev D1 agent construction (5.3%), D7
 **Build (75 min).** Follow R56 to set up the Agent SDK. Rebuild the Day 15 agent with custom tools (R58). Add a PreToolUse hook (R59) that blocks any refund above a limit and returns a reason. Add one subagent (R60) that only drafts the customer reply. Compare the code size and behavior with the hand-written loop.
 
 **Mock (45 min).** 15 questions on Days 4 to 17, timed. Review every miss.
+
+**Video, Sunday.** R87 Agent SDK workshop, the first 45 minutes. Watch it on Day 19 if the build ran long.
 
 **Write.** One question on a hook versus a prompt instruction for a business rule. One on what a subagent's separate context gives. One on self-hosted versus managed agent deployment.
 
@@ -256,6 +270,8 @@ Monday 2 November · Dev D6 context engineering (3.8%), D1 patterns and framewor
 
 **Read (35 min).** R79 Effective context engineering. R12 module 3, first segment.
 
+**Video backup.** R86 Prompting for Agents.
+
 **Write.** One question on context drift. One on pruning versus compaction. One on context isolation through subagents.
 
 - [ ] D20: Token use per turn, before and after each fix, in `notes.md`.
@@ -269,6 +285,8 @@ Tuesday 3 November · Dev D8 MCP server development (2.1%)
 **Build (45 min).** In `cert-lab/04-mcp/`, build a Python MCP server (R76) with two tools (`lookup_order`, `get_policy`), one resource (the refund policy text), and one prompt (a reply template). Run it over stdio. Connect it to Claude Code with a project-scoped `.mcp.json` (R70). Put the credential in an environment variable, not in the file. Call each primitive from Claude Code.
 
 **Read (35 min).** R12 module 3, second segment. R75 for the three primitives.
+
+**Video backup.** R88 MCP workshop, the first hour, or R94. R17, section Model Context Protocol.
 
 **Write.** One question on tools versus resources versus prompts. One on stdio versus a network transport. One on keeping secrets out of `.mcp.json`.
 
@@ -287,6 +305,8 @@ Wednesday 4 November · Dev D3 Claude Code (3.1%), D8 agentic customization (4.1
 **Build (45 min).** In `cert-lab`, write a project CLAUDE.md and a personal `CLAUDE.local.md`. Set shared permissions in `.claude/settings.json` and a personal override in `.claude/settings.local.json` (R65). Write one Skill (R68) that formats a release note. Run Claude Code headless with `claude -p` and JSON output (R71). Then fill in a four-row table: built-in tool, custom tool, Skill, MCP server. One row each: what it is for, and one example need.
 
 **Read (40 min).** R12 module 3, last segment. R64 Memory, the hierarchy section.
+
+**Video backup.** R91 Introduction to Agent Skills, 30 minutes. R89 Claude Code best practices.
 
 **Write.** One question on which settings file a team shares. One on Skill versus MCP server. One on pinning a model and versioning a prompt.
 
@@ -315,6 +335,8 @@ Friday 6 November · long day, 2 hours · Dev D4 debugging (2.6%), D2 applicatio
 **Build (45 min).** Turn the Day 13 test set into an eval script with a pass threshold. Run it against two models and two prompt versions. Store prompts in versioned files and pin the model version in config. Then break the integration on purpose (drop a field before it reaches the prompt) and use logs to show the fault is in my code, not the model.
 
 **Read (70 min).** R12 module 4, second half. R80 Demystifying evals, the grader types section.
+
+**Video backup.** R17, section Prompt evaluation.
 
 **Write.** One question on code-graded versus model-graded checks. One on isolating integration faults from model faults. One on a regression after a model upgrade.
 
