@@ -48,11 +48,11 @@
     <main class="doc" data-doc="developer">
       <h1 class="doctitle" id="developer-foundations">Developer Foundations</h1>
       <p class="subtitle">Days 4 to 28 · exam CCDV-F on Tuesday 10 November 2026</p>
-      <p>This block prepares the Claude Certified Developer, Foundations exam: 53 items, 120 minutes, pass at 720 of 1,000. The blueprint is in R1, section 6. Read it before Day 4.</p>
+      <p>This block prepares the Claude Certified Developer, Foundations exam: 53 items, 120 minutes, pass at 720 of 1,000. The blueprint is in <a href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf">R1</a>, section 6. Read it before Day 4.</p>
       <p>Each day has the same shape: a goal, a build, a reading, prompts for the 3 questions I write, and a done-when checkbox. Domain tags show the blueprint weight, so I can see where the points are.</p>
       <h1 id="block-map">Block map</h1>
       <h2 id="where-the-points-are">Where the points are</h2>
-      <p>Weights from R1, version 1.0, July 2026. The right column shows which days cover each domain.</p>
+      <p>Weights from <a href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf">R1</a>, version 1.0, July 2026. The right column shows which days cover each domain.</p>
       <div class="tablewrap"><table>
       <thead>
       <tr>
@@ -115,7 +115,7 @@
       </table></div>
       <p>Two things stand out. D2 and D5 together are half the exam, and a lot of D2 is general software engineering. D3 and D4 together are under 6%, so I do not over-invest in Claude Code here. Claude Code is worth 20% on the Architect exam, and the Architect block covers it in depth.</p>
       <h2 id="the-reading-spine">The reading spine</h2>
-      <p>The Developer prep course (R12) has five modules, about 13 hours in total. The days below place each module next to the build it supports.</p>
+      <p>The Developer prep course (<a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a>) has five modules, about 13 hours in total. The days below place each module next to the build it supports.</p>
       <div class="tablewrap"><table>
       <thead>
       <tr>
@@ -152,14 +152,14 @@
       </tr>
       </tbody>
       </table></div>
-      <p>Docs pages (R23 onward) are for reference during builds. I read the section I need, not the whole page.</p>
+      <p>Docs pages (<a href="https://platform.claude.com/docs/en/get-started">R23</a> onward) are for reference during builds. I read the section I need, not the whole page.</p>
       <h1 id="week-1-api-basics">Week 1 · API basics</h1>
       <h2 id="day-4-first-real-calls">Day 4 · First real calls</h2>
       <p>Saturday 17 October · long day, 2 hours · Dev D2 API mechanics, D5 LLM fundamentals</p>
       <p><strong>Goal.</strong> Understand one Messages API request and response completely.</p>
       <p><strong>Build (60 min).</strong> In <code>cert-lab/01-api/</code>, write <code>basics.py</code>. Send a request with a system prompt and two user turns. Print the full response object, not only the text. Identify <code>stop_reason</code>, <code>usage.input_tokens</code> and <code>usage.output_tokens</code>. Set <code>max_tokens</code> to 20 and watch <code>stop_reason</code> change to <code>max_tokens</code>. Add a stop sequence and watch it change to <code>stop_sequence</code>.</p>
-      <p><strong>Read (60 min).</strong> MSO Foundations module (R12), all of it. Keep R24 open for reference.</p>
-      <p><strong>Video backup.</strong> R17, section Accessing Claude with the API.</p>
+      <p><strong>Read (60 min).</strong> MSO Foundations module (<a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a>), all of it. Keep <a href="https://platform.claude.com/docs/en/build-with-claude/working-with-messages">R24</a> open for reference.</p>
+      <p><strong>Video backup.</strong> <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">R17</a>, section Accessing Claude with the API.</p>
       <p><strong>Write.</strong> One question on <code>stop_reason</code> values. One on where a system prompt goes in the request. One on what <code>max_tokens</code> controls and what it does not.</p>
       <ul>
       <li>[ ] D4: <code>basics.py</code> prints three different <code>stop_reason</code> values, and I can explain each.</li>
@@ -169,8 +169,8 @@
       <h2 id="day-6-tokens-context-and-sampling">Day 6 · Tokens, context and sampling</h2>
       <p>Monday 19 October · Dev D5 LLM fundamentals (5.2%)</p>
       <p><strong>Goal.</strong> Make tokens, context windows and non-determinism concrete.</p>
-      <p><strong>Build (45 min).</strong> Use the token counting endpoint (R29) on three inputs: a short prompt, a 20-page text, and an image. Record the counts. Send the same open-ended prompt five times and diff the outputs. Repeat with a prompt that has one correct answer. Note where variation matters and where it does not.</p>
-      <p><strong>Read (35 min).</strong> R32 Context windows. Then the first part of R39, the sections on being clear and on examples.</p>
+      <p><strong>Build (45 min).</strong> Use the token counting endpoint (<a href="https://platform.claude.com/docs/en/build-with-claude/token-counting">R29</a>) on three inputs: a short prompt, a 20-page text, and an image. Record the counts. Send the same open-ended prompt five times and diff the outputs. Repeat with a prompt that has one correct answer. Note where variation matters and where it does not.</p>
+      <p><strong>Read (35 min).</strong> <a href="https://platform.claude.com/docs/en/build-with-claude/context-windows">R32</a> Context windows. Then the first part of <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">R39</a>, the sections on being clear and on examples.</p>
       <p><strong>Write.</strong> One question on why outputs vary between identical requests. One on what counts against the context window. One on zero-shot versus few-shot.</p>
       <ul>
       <li>[ ] D6: A table in <code>01-api/notes.md</code> with token counts for three inputs and a one-line finding on output variation.</li>
@@ -178,8 +178,8 @@
       <h2 id="day-7-model-tiers-thinking-and-effort">Day 7 · Model tiers, thinking and effort</h2>
       <p>Tuesday 20 October · Dev D5 model selection (2.7%), LLM fundamentals</p>
       <p><strong>Goal.</strong> Choose a model from evidence, not habit.</p>
-      <p><strong>Build (45 min).</strong> Run three tasks on the current Haiku, Sonnet and Opus models (R35): a short classification, a structured summary, and a multi-step reasoning problem. Record latency, tokens and a quality grade for each. Run the reasoning task again with extended thinking on (R30) and with a different effort setting (R31).</p>
-      <p><strong>Read (30 min).</strong> R36 Choosing a model. R37 Model deprecations: note what changes when a model version is retired.</p>
+      <p><strong>Build (45 min).</strong> Run three tasks on the current Haiku, Sonnet and Opus models (<a href="https://platform.claude.com/docs/en/models/overview">R35</a>): a short classification, a structured summary, and a multi-step reasoning problem. Record latency, tokens and a quality grade for each. Run the reasoning task again with extended thinking on (<a href="https://platform.claude.com/docs/en/build-with-claude/extended-thinking">R30</a>) and with a different effort setting (<a href="https://platform.claude.com/docs/en/build-with-claude/effort">R31</a>).</p>
+      <p><strong>Read (30 min).</strong> <a href="https://platform.claude.com/docs/en/about-claude/models/choosing-a-model">R36</a> Choosing a model. <a href="https://platform.claude.com/docs/en/about-claude/model-deprecations">R37</a> Model deprecations: note what changes when a model version is retired.</p>
       <p><strong>Write.</strong> One question that gives a workload and asks for a model tier. One on when extended thinking is worth its cost. One on why pinning a model version matters.</p>
       <ul>
       <li>[ ] D7: A 3 by 3 table (task by model) with latency, cost and quality, and a one-line rule I would apply.</li>
@@ -188,8 +188,8 @@
       <h2 id="day-8-streaming-errors-and-raw-http">Day 8 · Streaming, errors and raw HTTP</h2>
       <p>Wednesday 21 October · Dev D2 API mechanics, D4 debugging, D5 technical fundamentals (6.1%)</p>
       <p><strong>Goal.</strong> Handle the API the way production code must.</p>
-      <p><strong>Build (45 min).</strong> Call the API once with plain HTTP (<code>requests</code> or <code>curl</code>), then with the SDK. Compare what the SDK adds: retries, typed errors, streaming helpers. Stream a long response (R25) and print text as it arrives. Force three errors: a bad API key, an invalid request, and a too-large <code>max_tokens</code>. Write a retry wrapper that retries only errors that a retry can fix.</p>
-      <p><strong>Read (30 min).</strong> R40 API errors. R25 Streaming, the event-types section.</p>
+      <p><strong>Build (45 min).</strong> Call the API once with plain HTTP (<code>requests</code> or <code>curl</code>), then with the SDK. Compare what the SDK adds: retries, typed errors, streaming helpers. Stream a long response (<a href="https://platform.claude.com/docs/en/build-with-claude/streaming">R25</a>) and print text as it arrives. Force three errors: a bad API key, an invalid request, and a too-large <code>max_tokens</code>. Write a retry wrapper that retries only errors that a retry can fix.</p>
+      <p><strong>Read (30 min).</strong> <a href="https://platform.claude.com/docs/en/api/errors">R40</a> API errors. <a href="https://platform.claude.com/docs/en/build-with-claude/streaming">R25</a> Streaming, the event-types section.</p>
       <p><strong>Write.</strong> One question on which HTTP errors to retry. One on what streaming changes for the user and what it does not change for cost. One on SDK versus raw REST.</p>
       <ul>
       <li>[ ] D8: <code>02-errors.py</code> shows each forced error caught by type, with retry only on retryable errors.</li>
@@ -198,8 +198,8 @@
       <p>Thursday 22 October · Dev D2 API mechanics, application design (8.6%)</p>
       <p><strong>Goal.</strong> Send non-text input correctly.</p>
       <p><strong>Build (45 min).</strong> Send an image by base64 and by URL. Ask for a structured description. Send a short PDF as a document block and ask for a table from it. Measure the token cost of each input.</p>
-      <p><strong>Read (30 min).</strong> R26 Vision. R24, the section on content blocks.</p>
-      <p><strong>Video backup.</strong> R17, section Features of Claude: Image support and PDF support.</p>
+      <p><strong>Read (30 min).</strong> <a href="https://platform.claude.com/docs/en/build-with-claude/vision">R26</a> Vision. <a href="https://platform.claude.com/docs/en/build-with-claude/working-with-messages">R24</a>, the section on content blocks.</p>
+      <p><strong>Video backup.</strong> <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">R17</a>, section Features of Claude: Image support and PDF support.</p>
       <p><strong>Write.</strong> One question on image versus document input. One on the cost of large images. One on where in the message to put an image relative to the question.</p>
       <ul>
       <li>[ ] D9: Image and PDF inputs both return correct structured output, with token cost recorded.</li>
@@ -207,9 +207,9 @@
       <h2 id="day-10-prompt-caching-and-the-cost-model">Day 10 · Prompt caching and the cost model</h2>
       <p>Friday 23 October · Dev D5 cost and token management (2.8%)</p>
       <p><strong>Goal.</strong> Cut repeated-prefix cost and prove it with numbers.</p>
-      <p><strong>Build (45 min).</strong> Put a long, fixed system prompt (over the minimum cacheable length in R27) before a short user question. Add a cache breakpoint. Send the request three times. Record <code>cache_creation_input_tokens</code> and <code>cache_read_input_tokens</code>. Build a small cost model: requests per day, prefix size, hit rate, saving. Then change one word in the prefix and show the cache miss.</p>
-      <p><strong>Read (30 min).</strong> R27 Prompt caching, including what invalidates the cache.</p>
-      <p><strong>Video backup.</strong> R17, section Features of Claude: the three prompt caching lessons.</p>
+      <p><strong>Build (45 min).</strong> Put a long, fixed system prompt (over the minimum cacheable length in <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching">R27</a>) before a short user question. Add a cache breakpoint. Send the request three times. Record <code>cache_creation_input_tokens</code> and <code>cache_read_input_tokens</code>. Build a small cost model: requests per day, prefix size, hit rate, saving. Then change one word in the prefix and show the cache miss.</p>
+      <p><strong>Read (30 min).</strong> <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching">R27</a> Prompt caching, including what invalidates the cache.</p>
+      <p><strong>Video backup.</strong> <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">R17</a>, section Features of Claude: the three prompt caching lessons.</p>
       <p><strong>Write.</strong> One question on what makes a cache miss. One on ordering content so the stable part comes first. One that asks which workload benefits most from caching.</p>
       <ul>
       <li>[ ] D10: A cost-model sheet showing cached versus uncached cost for one realistic workload.</li>
@@ -217,7 +217,7 @@
       <h2 id="day-11-batches-and-the-first-mini-mock">Day 11 · Batches and the first mini-mock</h2>
       <p>Saturday 24 October · long day, 2 hours · Dev D2 API mechanics, batch versus realtime</p>
       <p><strong>Goal.</strong> Know when batch beats realtime, and run my first timed drill.</p>
-      <p><strong>Build (60 min).</strong> Submit a batch of 20 requests with unique <code>custom_id</code> values (R28). Include one request that will fail. Poll until the batch ends. Match results to inputs by <code>custom_id</code>, not by order. Resubmit the failed one.</p>
+      <p><strong>Build (60 min).</strong> Submit a batch of 20 requests with unique <code>custom_id</code> values (<a href="https://platform.claude.com/docs/en/build-with-claude/batch-processing">R28</a>). Include one request that will fail. Poll until the batch ends. Match results to inputs by <code>custom_id</code>, not by order. Resubmit the failed one.</p>
       <p><strong>Mock (60 min).</strong> 20 questions from my bank and the Drills page, timed at 2 minutes each. Then review every miss and write down why I missed it.</p>
       <p><strong>Write.</strong> One question on matching batch results. One on a latency-tolerant workload. One on what batches do not support.</p>
       <ul>
@@ -229,8 +229,8 @@
       <p>Monday 26 October · Dev D6 prompt engineering (4.6%)</p>
       <p><strong>Goal.</strong> Improve a prompt by measurement, not by feel.</p>
       <p><strong>Build (45 min).</strong> In <code>cert-lab/02-prompts/</code>, build a support-ticket classifier with five categories. Write 20 labeled test tickets, including 5 ambiguous ones. Score version 1 of the prompt. Then change one thing at a time: clear instructions, XML tags around the ticket, a system-prompt role, and 3 examples that target the ambiguous cases. Score each version.</p>
-      <p><strong>Read (40 min).</strong> R12 module 2, Production-Grade Prompting, Agents &amp; Tool Use, first segment.</p>
-      <p><strong>Video backup.</strong> R85 Prompting 101. R17, section Prompt engineering techniques.</p>
+      <p><strong>Read (40 min).</strong> <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 2, Production-Grade Prompting, Agents &amp; Tool Use, first segment.</p>
+      <p><strong>Video backup.</strong> <a href="https://www.youtube.com/watch?v=ysPbXH0LpIE">R85</a> Prompting 101. <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">R17</a>, section Prompt engineering techniques.</p>
       <p><strong>Write.</strong> One question on system versus user placement. One on why examples should target the ambiguous cases. One on input sanitization.</p>
       <ul>
       <li>[ ] D13: A score table: prompt version by accuracy on 20 tickets, with the change that helped most.</li>
@@ -238,8 +238,8 @@
       <h2 id="day-14-structured-output-and-defensive-parsing">Day 14 · Structured output and defensive parsing</h2>
       <p>Tuesday 27 October · Dev D6 output handling (2.6%)</p>
       <p><strong>Goal.</strong> Get output my code can trust.</p>
-      <p><strong>Build (45 min).</strong> Make the classifier return JSON: category, confidence, and a short reason. First try with instructions only, and count parse failures over 20 runs. Then use structured outputs or strict tool use (R34, R47). Validate with Pydantic. On a validation failure, retry once with the error message included.</p>
-      <p><strong>Read (40 min).</strong> R12 module 2, second segment. R34 for reference.</p>
+      <p><strong>Build (45 min).</strong> Make the classifier return JSON: category, confidence, and a short reason. First try with instructions only, and count parse failures over 20 runs. Then use structured outputs or strict tool use (<a href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs">R34</a>, <a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use">R47</a>). Validate with Pydantic. On a validation failure, retry once with the error message included.</p>
+      <p><strong>Read (40 min).</strong> <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 2, second segment. <a href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs">R34</a> for reference.</p>
       <p><strong>Write.</strong> One question on schema-guaranteed output versus instruction-only JSON. One on what validation cannot catch. One on a confident but wrong answer.</p>
       <ul>
       <li>[ ] D14: Zero parse failures over 20 runs, and a retry path that I have seen fire.</li>
@@ -249,8 +249,8 @@
       <p>Wednesday 28 October · Dev D8 tool implementation (4.4%)</p>
       <p><strong>Goal.</strong> Run the tool-use loop myself before any framework does it for me.</p>
       <p><strong>Build (45 min).</strong> In <code>cert-lab/03-agent/</code>, define three tools for an order-support case: <code>lookup_order</code>, <code>get_policy</code>, <code>issue_refund</code>. Write the loop: send, check <code>stop_reason</code>, run the tool when it is <code>tool_use</code>, return a <code>tool_result</code>, repeat until <code>end_turn</code>. Return <code>is_error: true</code> with a clear message when an order is not found. Add a maximum-turns limit.</p>
-      <p><strong>Read (40 min).</strong> R12 module 2, third segment. R43 and R45 for reference.</p>
-      <p><strong>Video backup.</strong> R17, section Tool use with Claude, up to Multi-turn conversations with tools.</p>
+      <p><strong>Read (40 min).</strong> <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 2, third segment. <a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works">R43</a> and <a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls">R45</a> for reference.</p>
+      <p><strong>Video backup.</strong> <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">R17</a>, section Tool use with Claude, up to Multi-turn conversations with tools.</p>
       <p><strong>Write.</strong> One question on what ends the loop. One on how to report a tool failure to the model. One on client-side versus server-side tools.</p>
       <ul>
       <li>[ ] D15: The loop handles a two-tool request and a not-found error, and stops at the turn limit.</li>
@@ -258,8 +258,8 @@
       <h2 id="day-16-tool-choice-and-tool-descriptions">Day 16 · Tool choice and tool descriptions</h2>
       <p>Thursday 29 October · Dev D8 tool implementation, tool set construction</p>
       <p><strong>Goal.</strong> Control which tool runs, and make the model pick the right one.</p>
-      <p><strong>Build (45 min).</strong> Try <code>tool_choice</code> set to auto, any, a named tool, and none. Note what each does. Add a fourth tool, <code>get_order_status</code>, that overlaps with <code>lookup_order</code>. Send 10 ambiguous requests and count wrong picks. Rewrite both descriptions to separate them clearly. Count again. Ask for two independent lookups in one message and watch for parallel tool calls (R46).</p>
-      <p><strong>Read (40 min).</strong> R12 module 2, fourth segment. R78 Writing effective tools for agents.</p>
+      <p><strong>Build (45 min).</strong> Try <code>tool_choice</code> set to auto, any, a named tool, and none. Note what each does. Add a fourth tool, <code>get_order_status</code>, that overlaps with <code>lookup_order</code>. Send 10 ambiguous requests and count wrong picks. Rewrite both descriptions to separate them clearly. Count again. Ask for two independent lookups in one message and watch for parallel tool calls (<a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use">R46</a>).</p>
+      <p><strong>Read (40 min).</strong> <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 2, fourth segment. <a href="https://www.anthropic.com/engineering/writing-tools-for-agents">R78</a> Writing effective tools for agents.</p>
       <p><strong>Write.</strong> One question on forcing a tool. One on fixing tool confusion. One on splitting versus merging two tools.</p>
       <ul>
       <li>[ ] D16: Wrong-pick count before and after the description rewrite.</li>
@@ -268,8 +268,8 @@
       <p>Friday 30 October · Dev D1 agent architecture (4.5%)</p>
       <p><strong>Goal.</strong> Decide when a fixed workflow is better than an agent.</p>
       <p><strong>Build (45 min).</strong> Add a human approval checkpoint before <code>issue_refund</code>. The loop pauses, prints the planned refund, and waits for yes or no. Add a spend budget that stops the agent. Then sketch, in <code>notes.md</code>, the same case as a fixed workflow (classify, look up, apply policy, draft reply) and list what each design is better at.</p>
-      <p><strong>Read (40 min).</strong> R12 module 2, last segment. R77 Building effective agents.</p>
-      <p><strong>Video backup.</strong> R84 How We Build Effective Agents, 15 minutes. R17, section Agents and workflows.</p>
+      <p><strong>Read (40 min).</strong> <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 2, last segment. <a href="https://www.anthropic.com/engineering/building-effective-agents">R77</a> Building effective agents.</p>
+      <p><strong>Video backup.</strong> <a href="https://www.youtube.com/watch?v=D7_ipDqhtwk">R84</a> How We Build Effective Agents, 15 minutes. <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">R17</a>, section Agents and workflows.</p>
       <p><strong>Write.</strong> One question on workflow versus agent. One on where to place a human checkpoint. One on supervisor and subagent roles.</p>
       <ul>
       <li>[ ] D17: The refund pauses for approval, and <code>notes.md</code> compares the two designs.</li>
@@ -277,9 +277,9 @@
       <h2 id="day-18-the-agent-sdk-and-a-blocking-hook">Day 18 · The Agent SDK and a blocking hook</h2>
       <p>Saturday 31 October · long day, 2 hours · Dev D1 agent construction (5.3%), D7 hooks (1.0%)</p>
       <p><strong>Goal.</strong> Rebuild the agent on the Agent SDK and enforce a rule in code.</p>
-      <p><strong>Build (75 min).</strong> Follow R56 to set up the Agent SDK. Rebuild the Day 15 agent with custom tools (R58). Add a PreToolUse hook (R59) that blocks any refund above a limit and returns a reason. Add one subagent (R60) that only drafts the customer reply. Compare the code size and behavior with the hand-written loop.</p>
+      <p><strong>Build (75 min).</strong> Follow <a href="https://code.claude.com/docs/en/agent-sdk/quickstart">R56</a> to set up the Agent SDK. Rebuild the Day 15 agent with custom tools (<a href="https://code.claude.com/docs/en/agent-sdk/custom-tools">R58</a>). Add a PreToolUse hook (<a href="https://code.claude.com/docs/en/agent-sdk/hooks">R59</a>) that blocks any refund above a limit and returns a reason. Add one subagent (<a href="https://code.claude.com/docs/en/agent-sdk/subagents">R60</a>) that only drafts the customer reply. Compare the code size and behavior with the hand-written loop.</p>
       <p><strong>Mock (45 min).</strong> 15 questions on Days 4 to 17, timed. Review every miss.</p>
-      <p><strong>Video, Sunday.</strong> R87 Agent SDK workshop, the first 45 minutes. Watch it on Day 19 if the build ran long.</p>
+      <p><strong>Video, Sunday.</strong> <a href="https://www.youtube.com/watch?v=TqC1qOfiVcQ">R87</a> Agent SDK workshop, the first 45 minutes. Watch it on Day 19 if the build ran long.</p>
       <p><strong>Write.</strong> One question on a hook versus a prompt instruction for a business rule. One on what a subagent's separate context gives. One on self-hosted versus managed agent deployment.</p>
       <ul>
       <li>[ ] D18: The hook blocks an over-limit refund in a test run, and the mock score is recorded.</li>
@@ -289,9 +289,9 @@
       <h2 id="day-20-context-engineering">Day 20 · Context engineering</h2>
       <p>Monday 2 November · Dev D6 context engineering (3.8%), D1 patterns and frameworks (4.9%)</p>
       <p><strong>Goal.</strong> Keep long agent runs inside a useful context.</p>
-      <p><strong>Build (45 min).</strong> Make one tool return a large, noisy payload. Run a 10-turn session and watch token use grow. Fix it three ways and compare: prune the tool output to the fields needed, use compaction (R33), and move a sub-task into a subagent so only its summary returns. Then read the quickstart of one framework (LangGraph, Strands or PydanticAI) for 10 minutes. Note how it names the same ideas.</p>
-      <p><strong>Read (35 min).</strong> R79 Effective context engineering. R12 module 3, first segment.</p>
-      <p><strong>Video backup.</strong> R86 Prompting for Agents.</p>
+      <p><strong>Build (45 min).</strong> Make one tool return a large, noisy payload. Run a 10-turn session and watch token use grow. Fix it three ways and compare: prune the tool output to the fields needed, use compaction (<a href="https://platform.claude.com/docs/en/build-with-claude/compaction">R33</a>), and move a sub-task into a subagent so only its summary returns. Then read the quickstart of one framework (LangGraph, Strands or PydanticAI) for 10 minutes. Note how it names the same ideas.</p>
+      <p><strong>Read (35 min).</strong> <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">R79</a> Effective context engineering. <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 3, first segment.</p>
+      <p><strong>Video backup.</strong> <a href="https://www.youtube.com/watch?v=XSZP9GhhuAc">R86</a> Prompting for Agents.</p>
       <p><strong>Write.</strong> One question on context drift. One on pruning versus compaction. One on context isolation through subagents.</p>
       <ul>
       <li>[ ] D20: Token use per turn, before and after each fix, in <code>notes.md</code>.</li>
@@ -299,9 +299,9 @@
       <h2 id="day-21-build-an-mcp-server">Day 21 · Build an MCP server</h2>
       <p>Tuesday 3 November · Dev D8 MCP server development (2.1%)</p>
       <p><strong>Goal.</strong> Expose a capability once and use it from more than one client.</p>
-      <p><strong>Build (45 min).</strong> In <code>cert-lab/04-mcp/</code>, build a Python MCP server (R76) with two tools (<code>lookup_order</code>, <code>get_policy</code>), one resource (the refund policy text), and one prompt (a reply template). Run it over stdio. Connect it to Claude Code with a project-scoped <code>.mcp.json</code> (R70). Put the credential in an environment variable, not in the file. Call each primitive from Claude Code.</p>
-      <p><strong>Read (35 min).</strong> R12 module 3, second segment. R75 for the three primitives.</p>
-      <p><strong>Video backup.</strong> R88 MCP workshop, the first hour, or R94. R17, section Model Context Protocol.</p>
+      <p><strong>Build (45 min).</strong> In <code>cert-lab/04-mcp/</code>, build a Python MCP server (<a href="https://modelcontextprotocol.io/docs/develop/build-server">R76</a>) with two tools (<code>lookup_order</code>, <code>get_policy</code>), one resource (the refund policy text), and one prompt (a reply template). Run it over stdio. Connect it to Claude Code with a project-scoped <code>.mcp.json</code> (<a href="https://code.claude.com/docs/en/mcp">R70</a>). Put the credential in an environment variable, not in the file. Call each primitive from Claude Code.</p>
+      <p><strong>Read (35 min).</strong> <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 3, second segment. <a href="https://modelcontextprotocol.io/docs/getting-started/intro">R75</a> for the three primitives.</p>
+      <p><strong>Video backup.</strong> <a href="https://www.youtube.com/watch?v=kQmXtrmQ5Zg">R88</a> MCP workshop, the first hour, or <a href="https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic">R94</a>. <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">R17</a>, section Model Context Protocol.</p>
       <p><strong>Write.</strong> One question on tools versus resources versus prompts. One on stdio versus a network transport. One on keeping secrets out of <code>.mcp.json</code>.</p>
       <ul>
       <li>[ ] D21: Claude Code calls both tools and reads the resource through my server.</li>
@@ -310,9 +310,9 @@
       <h2 id="day-22-claude-code-skills-and-the-customization-choice">Day 22 · Claude Code, Skills and the customization choice</h2>
       <p>Wednesday 4 November · Dev D3 Claude Code (3.1%), D8 agentic customization (4.1%), D2 configuration management (4.1%)</p>
       <p><strong>Goal.</strong> Pick the right extension type for a need, and configure it for a team.</p>
-      <p><strong>Build (45 min).</strong> In <code>cert-lab</code>, write a project CLAUDE.md and a personal <code>CLAUDE.local.md</code>. Set shared permissions in <code>.claude/settings.json</code> and a personal override in <code>.claude/settings.local.json</code> (R65). Write one Skill (R68) that formats a release note. Run Claude Code headless with <code>claude -p</code> and JSON output (R71). Then fill in a four-row table: built-in tool, custom tool, Skill, MCP server. One row each: what it is for, and one example need.</p>
-      <p><strong>Read (40 min).</strong> R12 module 3, last segment. R64 Memory, the hierarchy section.</p>
-      <p><strong>Video backup.</strong> R91 Introduction to Agent Skills, 30 minutes. R89 Claude Code best practices.</p>
+      <p><strong>Build (45 min).</strong> In <code>cert-lab</code>, write a project CLAUDE.md and a personal <code>CLAUDE.local.md</code>. Set shared permissions in <code>.claude/settings.json</code> and a personal override in <code>.claude/settings.local.json</code> (<a href="https://code.claude.com/docs/en/settings">R65</a>). Write one Skill (<a href="https://code.claude.com/docs/en/skills">R68</a>) that formats a release note. Run Claude Code headless with <code>claude -p</code> and JSON output (<a href="https://code.claude.com/docs/en/headless">R71</a>). Then fill in a four-row table: built-in tool, custom tool, Skill, MCP server. One row each: what it is for, and one example need.</p>
+      <p><strong>Read (40 min).</strong> <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 3, last segment. <a href="https://code.claude.com/docs/en/memory">R64</a> Memory, the hierarchy section.</p>
+      <p><strong>Video backup.</strong> <a href="https://anthropic.skilljar.com/introduction-to-agent-skills">R91</a> Introduction to Agent Skills, 30 minutes. <a href="https://www.youtube.com/watch?v=gv0WHhKelSE">R89</a> Claude Code best practices.</p>
       <p><strong>Write.</strong> One question on which settings file a team shares. One on Skill versus MCP server. One on pinning a model and versioning a prompt.</p>
       <ul>
       <li>[ ] D22: The four-row customization table, and a headless run that returns JSON.</li>
@@ -321,7 +321,7 @@
       <p>Thursday 5 November · long day, 2 hours · Dev D7 application security (3.2%), guardrails (2.3%), secrets (1.6%)</p>
       <p><strong>Goal.</strong> Make the Day 18 agent survive a hostile input.</p>
       <p><strong>Build (45 min).</strong> Add a tool that fetches a "customer note". Plant an instruction in one note that tells the agent to refund the full order. Run it and record what happens. Fix it with layers: mark fetched content as untrusted data in the prompt, keep <code>issue_refund</code> behind the hook and the human checkpoint, and give the note-reading subagent no refund tool. Run again. Check that no key appears in logs or in the repo history.</p>
-      <p><strong>Read (70 min).</strong> R12 module 4, first half. R51 and R73 for reference.</p>
+      <p><strong>Read (70 min).</strong> <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 4, first half. <a href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks">R51</a> and <a href="https://code.claude.com/docs/en/security">R73</a> for reference.</p>
       <p><strong>Write.</strong> One question on the most effective injection control. One on least privilege for tools. One on where API keys live in development and in production.</p>
       <ul>
       <li>[ ] D23: Before-and-after log of the injection test, with the planted instruction blocked.</li>
@@ -330,8 +330,8 @@
       <p>Friday 6 November · long day, 2 hours · Dev D4 debugging (2.6%), D2 application design (8.6%)</p>
       <p><strong>Goal.</strong> Define "done" as a test, and find whether a failure is mine or the model's.</p>
       <p><strong>Build (45 min).</strong> Turn the Day 13 test set into an eval script with a pass threshold. Run it against two models and two prompt versions. Store prompts in versioned files and pin the model version in config. Then break the integration on purpose (drop a field before it reaches the prompt) and use logs to show the fault is in my code, not the model.</p>
-      <p><strong>Read (70 min).</strong> R12 module 4, second half. R80 Demystifying evals, the grader types section.</p>
-      <p><strong>Video backup.</strong> R17, section Prompt evaluation.</p>
+      <p><strong>Read (70 min).</strong> <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 4, second half. <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">R80</a> Demystifying evals, the grader types section.</p>
+      <p><strong>Video backup.</strong> <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">R17</a>, section Prompt evaluation.</p>
       <p><strong>Write.</strong> One question on code-graded versus model-graded checks. One on isolating integration faults from model faults. One on a regression after a model upgrade.</p>
       <ul>
       <li>[ ] D24: <code>eval.py</code> prints a pass rate per model and prompt version, and the traced fault is written up.</li>
@@ -349,8 +349,8 @@
       <h2 id="day-27-software-engineering-platforms-and-gaps">Day 27 · Software engineering, platforms and gaps</h2>
       <p>Monday 9 November · Dev D2 requirements, life cycle, software engineering (13.6% together)</p>
       <p><strong>Goal.</strong> Cover the general engineering lines, then close the gaps from Day 25.</p>
-      <p><strong>Build (40 min).</strong> Spend 20 minutes on the weakest domain from Day 25: redo the build step that covers it. Spend 20 minutes on third-party access: read how Claude is called through a cloud platform (R41) and write three lines on what changes (authentication, model IDs, feature parity).</p>
-      <p><strong>Read (50 min).</strong> R12 module 4, any remaining part. R12 module 5, the section on choosing where a workload runs. Then skim R1 domain 2 skill lines on requirements, life cycle and software engineering. For each, write one sentence on how I already do it at work. These lines test general practice, not Claude features.</p>
+      <p><strong>Build (40 min).</strong> Spend 20 minutes on the weakest domain from Day 25: redo the build step that covers it. Spend 20 minutes on third-party access: read how Claude is called through a cloud platform (<a href="https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai">R41</a>) and write three lines on what changes (authentication, model IDs, feature parity).</p>
+      <p><strong>Read (50 min).</strong> <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 4, any remaining part. <a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">R12</a> module 5, the section on choosing where a workload runs. Then skim <a href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf">R1</a> domain 2 skill lines on requirements, life cycle and software engineering. For each, write one sentence on how I already do it at work. These lines test general practice, not Claude features.</p>
       <ul>
       <li>[ ] D27: Weakest domain redone, and one sentence per general engineering skill line.</li>
       </ul>

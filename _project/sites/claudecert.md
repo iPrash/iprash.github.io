@@ -49,6 +49,7 @@ I have long architecture experience and limited hands-on Claude mechanics. That 
 - **No exam content, ever.** Every candidate signs an NDA covering questions, options and scenarios (R1, section 13), and this repo is public. After an exam, do not add, reword or hint at anything seen. Drills are written only from the public blueprints and my builds.
 - Do not copy the sample questions from the exam guides. Link the PDFs.
 - No employer or client names. Discount tiers are described generically.
+- Every reference to a resource is a link. Write `[R24](url)`, with the URL copied from that row of `resources.md`, never a bare `R24`. Check new links resolve before committing. If a resource's URL changes, update `resources.md` and every page that links it.
 - Every fact carries a source and a date. Sources are graded [P] primary or [S] secondary in `resources.md`. Do not upgrade an [S] fact to unmarked fact.
 - Where the docs and the exam guide disagree, the site follows the guide for exam purposes and says so.
 - Lean STE: short sentences, active voice, one idea per sentence. Written in first person.

@@ -1,7 +1,16 @@
 # Resources
 ## Every link the daily plan uses, numbered so a day can say "R24"
 
-All links were opened on 14 October 2026. Official Anthropic sources come first. Partner Academy courses need a sign-in with a company email on a partner domain. Claude Academy courses are public and free.
+All links were opened on 14 October 2026. Official Anthropic sources come first.
+
+Two Anthropic training sites appear below. Both run on the Skilljar platform and need a free Skilljar account, which is separate from a Claude account.
+
+| Site | What it is | Who can use it |
+|---|---|---|
+| [Anthropic Partner Academy](https://anthropic-partners.skilljar.com/) | Training for staff at Claude Partner Network firms. It holds the exam prep courses (R12 to R16), the certification registration links, exam guides and partner webinars | Partner staff only. Sign in with a company email on the partner's domain (R7) |
+| [Claude Academy](https://anthropic.skilljar.com/) | Anthropic's public course catalog: API, Claude Code, MCP, Skills, Subagents and AI Fluency (R17 to R22, R91, R92) | Anyone. Free |
+
+The [Claude Partner Network](https://www.anthropic.com/news/claude-partner-network) is Anthropic's program for consulting and services firms. Partner tier sets the exam discount (R6).
 
 Source grades: **[P]** primary (Anthropic, Pearson). **[S]** credible secondary. Secondary sources are used only where no primary page states the fact.
 
@@ -22,7 +31,7 @@ Source grades: **[P]** primary (Anthropic, Pearson). **[S]** credible secondary.
 | R7 | [Who can take an exam](https://anthropic-partners.skilljar.com/page/certification-eligibility) | [P] | Partner email domain rule |
 | R8 | [Computer and network setup](https://anthropic-partners.skilljar.com/page/computer-and-network-setup) | [P] | Online proctoring checks |
 | R9 | [Pearson VUE: Anthropic program page](https://www.pearsonvue.com/us/en/anthropic.html) | [P] | Scheduling and ID rules |
-| R10 | [Four role-based certifications (Claude blog, 23 July 2026)](https://claude.com/blog/four-role-based-claude-certifications) | [P] | Program announcement |
+| R10 | [Four role-based certifications (Claude blog, 23 July 2026)](https://claude.com/resources/articles/four-role-based-claude-certifications) | [P] | Program announcement |
 | R11 | [Claude certifications explained (Training Camp, 17 Sept 2026)](https://trainingcamp.com/articles/claude-certifications-explained-all-four-anthropic-exams-costs-and-who-can-take-them/) | [S] | Only source for the retired practice exam. Other facts here are confirmed in R1 |
 
 # Prep courses
