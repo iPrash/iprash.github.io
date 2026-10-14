@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Question bank — Claude certification pathway</title>
+<meta name="description" content="Self-written practice questions by exam and blueprint domain. No exam content.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230B5563'/><text y='68' x='50' text-anchor='middle' font-size='52' font-family='monospace' fill='white'>CC</text></svg>">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-in">
+    <a class="brand" href="index.html">
+      <span class="mark">CC</span>
+      <span class="name">Claude certification pathway</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="start.html">Start</a>
+      <a href="developer.html">Developer</a>
+      <a href="drills.html" aria-current="page">Drills</a>
+      <a href="resources.html">Resources</a>
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch theme">&#9790;</button>
+    </nav>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="side">
+      <div class="side-head">
+        <span class="eyebrow">Contents</span>
+        <span class="eyebrow" id="progPct">0%</span>
+      </div>
+      <input class="tocsearch" id="tocSearch" type="search" placeholder="Filter sections…" aria-label="Filter sections">
+      <ul class="toc" id="toc"></ul>
+      <div class="progress-card">
+        <div class="progress-num"><span class="eyebrow">Sections read</span><span id="progNum">0 / 0</span></div>
+        <div class="bar"><i id="progBar"></i></div>
+        <button class="reset" id="resetProg" type="button">Reset progress</button>
+      </div>
+    </aside>
+    <main class="doc" data-doc="drills">
+      <h1 class="doctitle" id="drills">Drills</h1>
+      <p class="subtitle">My question bank, by exam and domain</p>
+      <p>The official practice exam was retired (R11). This page replaces it. Every question here is my own, written from the public blueprints (R1 to R3) and my own builds. None comes from a live exam, and none ever will: the non-disclosure agreement covers all exam content (R1, section 13), and this repo is public.</p>
+      <p><strong>How to use it.</strong> Answer before opening the answer. Each day, add the 3 questions I wrote in the Write block, under the right domain. Match the exam style: one realistic situation, four options, one best answer, and a reason why each wrong option is wrong.</p>
+      <p><strong>Seed questions.</strong> The first questions in each domain were written on 14 October 2026 to start the bank. Facts were checked against the docs on that date.</p>
+      <h1 id="developer-foundations">Developer Foundations</h1>
+      <h2 id="d1-agents-and-workflows">D1 · Agents and workflows</h2>
+      <p><strong>Q1.1</strong> A team needs to process insurance claims through five fixed steps: extract fields, validate, check policy, calculate payout, draft a letter. The steps never change order. Which design fits best?<br />
+      A. An autonomous agent with all five capabilities as tools, deciding its own order<br />
+      B. A fixed workflow that calls the model at each step, with code controlling the order<br />
+      C. A single prompt that does all five steps at once<br />
+      D. Five agents that negotiate with each other</p>
+      <details><summary>Answer</summary>B. When the path is known and fixed, a workflow is cheaper, faster and easier to test than an agent. Agents earn their cost when the steps depend on what is found along the way. A gives up control for no gain. C makes failures hard to locate. D adds coordination cost with no benefit.</details>
+      
+      <p><strong>Q1.2</strong> An agent must never issue a refund above $500 without approval. Testing shows that a strong instruction in the system prompt is followed about 98% of the time. What should the team do?<br />
+      A. Make the instruction more emphatic and repeat it at the end of the prompt<br />
+      B. Switch to a larger model<br />
+      C. Enforce the limit in code, with a hook or a check before the refund tool runs, and route larger refunds to a human<br />
+      D. Log every refund so it can be reviewed later</p>
+      <details><summary>Answer</summary>C. A business rule that must always hold belongs in deterministic code. A prompt raises the rate but cannot guarantee it. A and B are still probabilistic. D detects the problem after the money has moved.</details>
+      
+      <p><strong>Q1.3</strong> A coordinator agent delegates a long codebase search to a subagent. What is the main benefit?<br />
+      A. The subagent shares the coordinator's full context, so nothing is lost<br />
+      B. The search runs in its own context, and only a summary returns, which keeps the coordinator's context small<br />
+      C. Subagents always use a cheaper model<br />
+      D. Subagents cannot make mistakes</p>
+      <details><summary>Answer</summary>B. Context isolation is the point. The subagent can read many files without filling the coordinator's window. A is the opposite of how isolation works. C is a choice, not a rule. D is false.</details>
+      
+      <h2 id="d2-applications-and-integration">D2 · Applications and integration</h2>
+      <p><strong>Q2.1</strong> A developer must process 5,000 support transcripts for a weekly report due in two days. Cost matters most. Which approach fits?<br />
+      A. Send all requests at once through the Messages API with high concurrency<br />
+      B. Use the Message Batches API and match results by <code>custom_id</code><br />
+      C. Stream every response to reduce cost<br />
+      D. Lower <code>max_tokens</code> on each realtime request</p>
+      <details><summary>Answer</summary>B. Batches are built for latency-tolerant volume at a lower price, and results are matched by `custom_id` because order is not guaranteed. A does not lower the per-token price. C changes delivery, not cost. D may truncate answers without solving the batch-versus-realtime question.</details>
+      
+      <p><strong>Q2.2</strong> A batch of 200 requests ends. Twelve results show errors. What is the correct next step?<br />
+      A. Resubmit the whole batch<br />
+      B. Use each failed result's <code>custom_id</code> to find and resubmit only those requests, after fixing the cause<br />
+      C. Assume the results are in the same order as the inputs and resubmit items 189 to 200<br />
+      D. Switch the twelve requests to streaming</p>
+      <details><summary>Answer</summary>B. `custom_id` is the link between request and result. A wastes money on 188 good results. C relies on an ordering that is not guaranteed. D does not address the failure cause.</details>
+      
+      <p><strong>Q2.3</strong> A product moves from a pinned model version to a newer one. Several downstream parsers break. Which practice would have caught this before release?<br />
+      A. Using the model alias that always points to the latest version<br />
+      B. Running the eval suite against the new version as a gate before switching, with the model version pinned in config<br />
+      C. Increasing <code>max_tokens</code><br />
+      D. Removing the system prompt</p>
+      <details><summary>Answer</summary>B. Pin the version, and treat a model change like any dependency upgrade: test it against acceptance criteria first. A is what caused the surprise. C and D are unrelated to the regression.</details>
+      
+      <h2 id="d3-claude-code">D3 · Claude Code</h2>
+      <p><strong>Q3.1</strong> A team wants every developer's Claude Code session to follow the same test conventions. Where should the conventions go?<br />
+      A. Each developer's user-level CLAUDE.md in their home folder<br />
+      B. The project CLAUDE.md committed to the repository<br />
+      C. A personal <code>CLAUDE.local.md</code><br />
+      D. The system prompt of each developer's chat app</p>
+      <details><summary>Answer</summary>B. The project file is shared through version control, so everyone gets it. A and C are personal and not shared. D is unrelated to Claude Code.</details>
+      
+      <p><strong>Q3.2</strong> A CI job must run Claude Code without a person present and pass the result to the next pipeline step. Which feature fits?<br />
+      A. Interactive mode with plan mode on<br />
+      B. Headless mode with <code>-p</code> and JSON output<br />
+      C. A custom slash command typed by the release manager<br />
+      D. A user-scoped MCP server</p>
+      <details><summary>Answer</summary>B. Headless mode runs non-interactively, and JSON output gives the next step something it can parse. A and C need a person. D adds a capability but does not make the run non-interactive.</details>
+      
+      <p><strong>Q3.3</strong> A developer wants personal permission settings that should not affect teammates. Which file should hold them?<br />
+      A. <code>.claude/settings.json</code><br />
+      B. <code>.claude/settings.local.json</code><br />
+      C. The project CLAUDE.md<br />
+      D. <code>.mcp.json</code></p>
+      <details><summary>Answer</summary>B. The local settings file is for personal settings and is not meant to be committed. A is the shared team file. C holds instructions, not permission settings. D configures MCP servers.</details>
+      
+      <h2 id="d4-eval-testing-and-debugging">D4 · Eval, testing and debugging</h2>
+      <p><strong>Q4.1</strong> An extraction feature returns empty values for one field. The model's raw response contains the value. Where is the fault most likely?<br />
+      A. The model is hallucinating<br />
+      B. The integration layer: the parsing or mapping code that reads the response<br />
+      C. The context window is too small<br />
+      D. The temperature is too high</p>
+      <details><summary>Answer</summary>B. If the raw output is correct and the stored result is wrong, the fault is after the model. Trace analysis means checking each layer's input and output to find where the value is lost. A, C and D blame the model for a value it produced.</details>
+      
+      <p><strong>Q4.2</strong> A service receives intermittent overloaded and rate-limit errors from the API. Which recovery strategy fits?<br />
+      A. Fail the user request immediately on every error<br />
+      B. Retry with exponential backoff for these error types, and do not retry invalid-request errors<br />
+      C. Retry every error type forever<br />
+      D. Switch to a different API key on each failure</p>
+      <details><summary>Answer</summary>B. Overload and rate-limit errors are transient, so backoff helps. An invalid request will fail the same way every time, so a retry only wastes calls. A is too brittle. C can loop forever. D may breach usage terms and does not fix overload.</details>
+      
+      <p><strong>Q4.3</strong> A team grades a summarizer on "is the tone appropriate for a customer". Which grading method fits best for this criterion?<br />
+      A. An exact string match against a reference summary<br />
+      B. A model-based grader with a clear rubric, spot-checked against human ratings<br />
+      C. Counting words<br />
+      D. No grading, since tone is subjective</p>
+      <details><summary>Answer</summary>B. Tone is open-ended, so code checks miss it. A rubric-based model grader scales, and human spot checks keep it honest. A and C measure the wrong thing. D leaves the feature untested.</details>
+      
+      <h2 id="d5-model-selection-and-optimization">D5 · Model selection and optimization</h2>
+      <p><strong>Q5.1</strong> A routing service must classify 2 million short messages a day into 6 categories with low latency. Accuracy on a test set is equal across the Haiku and Sonnet tiers. Which choice fits?<br />
+      A. Opus, for safety<br />
+      B. Haiku, since it meets the quality bar at lower cost and latency<br />
+      C. Sonnet, since it is the default<br />
+      D. Alternate between models at random</p>
+      <details><summary>Answer</summary>B. Pick the smallest model that meets the measured quality bar. At this volume, cost and latency dominate. A and C pay for capability the task does not need. D adds variance for no reason.</details>
+      
+      <p><strong>Q5.2</strong> Every request in an application starts with the same 10,000-token policy document, followed by a short question. Which change reduces cost most directly?<br />
+      A. Put the question before the policy document<br />
+      B. Cache the stable policy prefix with prompt caching<br />
+      C. Lower the temperature<br />
+      D. Split the policy into 10 separate requests</p>
+      <details><summary>Answer</summary>B. A repeated, stable prefix is exactly what caching is for. A breaks caching, because the varying part must come after the stable part. C has no effect on cost. D multiplies requests.</details>
+      
+      <p><strong>Q5.3</strong> The same prompt, sent twice, gives two different but valid answers. What explains this?<br />
+      A. A bug in the SDK<br />
+      B. Sampling: the model picks each next token from a probability distribution, so outputs can vary<br />
+      C. The API key changed<br />
+      D. The context window was exceeded</p>
+      <details><summary>Answer</summary>B. Generation is non-deterministic by design. Where consistency matters, constrain the output (structure, examples) and test for it. A, C and D do not explain normal variation.</details>
+      
+      <h2 id="d6-prompt-and-context-engineering">D6 · Prompt and context engineering</h2>
+      <p><strong>Q6.1</strong> A classifier often confuses "billing dispute" with "refund request". Which change is most likely to help?<br />
+      A. Add 2 to 4 examples that sit on the boundary between the two, with the reason for each label<br />
+      B. Add more examples of easy, obvious cases<br />
+      C. Raise <code>max_tokens</code><br />
+      D. Ask the model to be more careful</p>
+      <details><summary>Answer</summary>A. Examples teach most where the model is uncertain, and the reasoning helps it generalize. B spends tokens where it already succeeds. C is unrelated. D gives no new information.</details>
+      
+      <p><strong>Q6.2</strong> An agent runs for 40 turns. Each tool call returns a large JSON payload, and late answers start to ignore early instructions. What is the best first fix?<br />
+      A. Move to a model with a larger context window and change nothing else<br />
+      B. Trim tool results to the fields the task needs, and summarize or compact older turns<br />
+      C. Repeat all instructions in every user message<br />
+      D. Restart the conversation every 5 turns and lose the history</p>
+      <details><summary>Answer</summary>B. Context bloat from verbose tool output is the cause. Remove what is not needed and compact the rest. A delays the problem. C adds more bloat. D throws away state the task needs.</details>
+      
+      <p><strong>Q6.3</strong> Code needs a JSON object with fixed fields from every response. Instructions alone give occasional malformed output. What is the most reliable fix?<br />
+      A. Add "respond only in valid JSON" in capital letters<br />
+      B. Use structured outputs or strict tool use with a JSON schema, then validate in code<br />
+      C. Parse with a regular expression and guess missing fields<br />
+      D. Ask for YAML instead</p>
+      <details><summary>Answer</summary>B. A schema-constrained feature removes syntax failures, and validation in code still catches wrong values. A is still a request, not a guarantee. C hides errors. D moves the problem to another format.</details>
+      
+      <h2 id="d7-security-and-safety">D7 · Security and safety</h2>
+      <p><strong>Q7.1</strong> An agent summarizes customer-uploaded documents and can also send emails. One document contains hidden text telling it to email the full customer list to an outside address. Which control matters most?<br />
+      A. A system-prompt line asking the model to ignore malicious instructions<br />
+      B. Treat document content as untrusted data, and remove or gate the email tool so injected text cannot trigger it<br />
+      C. A higher temperature<br />
+      D. A larger model</p>
+      <details><summary>Answer</summary>B. Separate untrusted content from instructions, and apply least privilege so the dangerous action is not available, or needs approval. A is not an enforceable control. C is irrelevant. D does not remove the attack path.</details>
+      
+      <p><strong>Q7.2</strong> Where should a production service keep its API key?<br />
+      A. In the system prompt<br />
+      B. In the repository, in a config file<br />
+      C. In a secrets manager or environment injected at runtime, with access limited to the service<br />
+      D. In the frontend code, so the browser can call the API directly</p>
+      <details><summary>Answer</summary>C. Secrets belong in a managed store with least-privilege access and rotation. A and D expose the key. B leaks it to everyone with repo access and into history.</details>
+      
+      <p><strong>Q7.3</strong> A coding agent may run shell commands. The team wants to stop destructive commands, such as deleting directories, before they run. What fits best?<br />
+      A. A pre-tool-use hook that inspects the command and denies dangerous patterns<br />
+      B. A note in CLAUDE.md asking the agent not to delete things<br />
+      C. A post-run report of commands executed<br />
+      D. Running the agent only at night</p>
+      <details><summary>Answer</summary>A. A hook runs deterministically before the action and can block it. B is a request the model may not follow. C detects damage after it happens. D changes nothing about the risk.</details>
+      
+      <h2 id="d8-tools-and-mcps">D8 · Tools and MCPs</h2>
+      <p><strong>Q8.1</strong> Three internal apps all need to query the same inventory service through Claude. The capability should be maintained once. Which approach fits?<br />
+      A. Copy the tool definition and handler into each app<br />
+      B. Build an MCP server that exposes the inventory operations, and connect each app to it<br />
+      C. Paste the inventory data into each prompt<br />
+      D. Write a Skill that contains the inventory database</p>
+      <details><summary>Answer</summary>B. An MCP server packages the capability once for many clients. A creates three copies to maintain. C gives stale data and wastes context. D is for reusable instructions and procedures, not live system access.</details>
+      
+      <p><strong>Q8.2</strong> In MCP, a server exposes a read-only product catalog that the client application loads as context. Which primitive fits the catalog?<br />
+      A. A tool<br />
+      B. A resource<br />
+      C. A prompt<br />
+      D. A hook</p>
+      <details><summary>Answer</summary>B. Resources expose content and data. Tools perform actions the model chooses to invoke. Prompts are reusable templates, usually chosen by the user. Hooks are not an MCP primitive.</details>
+      
+      <p><strong>Q8.3</strong> A tool call fails because the order ID does not exist. How should the tool report this to the model?<br />
+      A. Raise an exception and end the agent loop<br />
+      B. Return a tool result marked as an error, with a clear message the model can act on<br />
+      C. Return an empty success result<br />
+      D. Return a made-up order so the conversation continues</p>
+      <details><summary>Answer</summary>B. An error result lets the model explain the problem or ask for a correct ID. A ends the task for a recoverable error. C hides the failure. D creates false data.</details>
+      
+      <h1 id="architect-foundations">Architect Foundations</h1>
+      <p>Added when the Architect block is written, in the week of 2 November.</p>
+      <h1 id="architect-professional">Architect Professional</h1>
+      <p>Added when the Professional block is written, in the week of 23 November.</p>
+    </main>
+  </div>
+</div>
+<footer class="foot"><div class="wrap"><div class="wrapin">
+  <span>A personal study plan. Not affiliated with Anthropic. Contains no exam content.</span>
+  <span><a href="drills.md" download>Download the markdown</a></span>
+</div></div></footer>
+<button class="totop" type="button" aria-label="Back to top">&#8593;</button>
+<script src="assets/app.js"></script>
+</body>
+</html>

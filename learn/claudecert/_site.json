@@ -1,0 +1,50 @@
+{
+  "slug": "claudecert",
+  "order": 4,
+  "title": "Claude certification pathway",
+  "blurb": "Three proctored Claude certification exams in nine weeks: Developer, Architect Foundations, Architect Professional",
+  "glyph": "CC",
+  "brand_mark": "CC",
+  "brand_name": "Claude certification pathway",
+  "home_nav": "Home",
+  "footer": "A personal study plan. Not affiliated with Anthropic. Contains no exam content.",
+  "index_template": "_index_template.html",
+  "index_title": "Claude certification pathway — daily study plan",
+  "index_desc": "A nine-week, 90-minutes-a-day plan for three Claude certification exams, with daily builds, readings and a question bank.",
+  "pages": [
+    {
+      "src": "start.md",
+      "out": "start.html",
+      "id": "start",
+      "nav": "Start",
+      "title": "Start — Claude certification pathway",
+      "desc": "The plan, calendar, daily routine, site rules, and setup days 1 to 3."
+    },
+    {
+      "src": "developer.md",
+      "out": "developer.html",
+      "id": "developer",
+      "nav": "Developer",
+      "title": "Developer Foundations, days 4 to 28 — Claude certification pathway",
+      "desc": "Daily build, read and drill plan for the Claude Certified Developer, Foundations exam."
+    },
+    {
+      "src": "drills.md",
+      "out": "drills.html",
+      "id": "drills",
+      "nav": "Drills",
+      "title": "Question bank — Claude certification pathway",
+      "desc": "Self-written practice questions by exam and blueprint domain. No exam content."
+    },
+    {
+      "src": "resources.md",
+      "out": "resources.html",
+      "id": "resources",
+      "nav": "Resources",
+      "title": "Resources — Claude certification pathway",
+      "desc": "Every link the daily plan uses, numbered, with source grades and check dates."
+    }
+  ],
+  "listed": false,
+  "noindex": true
+}

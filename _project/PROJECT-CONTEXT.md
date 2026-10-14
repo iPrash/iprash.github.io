@@ -2,7 +2,7 @@
 
 *Upload to project knowledge. Update when something material changes.*
 
-**Last updated:** 9 October 2026
+**Last updated:** 14 October 2026
 
 ---
 
@@ -35,6 +35,7 @@ The root page is a **project index**. Study material is deliberately not listed 
 | Folder | URL | Title | Type | Brief |
 |---|---|---|---|---|
 | `learn/` | /learn/ | Hub listing the study sites | Static HTML | this file |
+| `learn/claudecert/` | /learn/claudecert/ | Claude certification pathway | Generated from markdown | `_project/sites/claudecert.md` |
 | `learn/frontier-engineer/` | /learn/frontier-engineer/ | Frontier Engineer: Lead → Principal | Generated from markdown | `_project/sites/frontier-engineer.md` |
 | `learn/aigov/` | /learn/aigov/ | AI governance & multi-model strategy | Generated from markdown | `_project/sites/aigov.md` |
 | `learn/TPM/` | /learn/TPM/ | Senior TPM interview prep | Static HTML | `_project/sites/TPM.md` |
@@ -63,6 +64,13 @@ iprash.github.io/
 ├── learn/                       every study site lives under here
 │   ├── _site.json               static, unlisted, noindexed
 │   ├── index.html               hand-written hub, reached from the footer mark
+│   ├── claudecert/
+│   │   ├── _site.json
+│   │   ├── index.html, start.html, developer.html, drills.html, resources.html   GENERATED
+│   │   ├── start.md, developer.md, drills.md, resources.md                        SOURCE
+│   │   ├── _index_template.html home page structure
+│   │   └── assets/{style.css,app.js}   hand-maintained, copied from frontier-engineer,
+│   │                                    localStorage prefix "cc."
 │   ├── TPM/
 │   │   ├── _site.json           static, no pages list
 │   │   └── index.html           hand-written, robots meta added by hand
@@ -96,7 +104,7 @@ iprash.github.io/
     ├── PROJECT-INSTRUCTIONS.md  full working rules
     ├── PROJECT-CONTEXT.md       this file
     ├── NEW-SITE.md
-    └── sites/{TPM.md,aigov.md,frontier-engineer.md,_TEMPLATE.md}
+    └── sites/{TPM.md,aigov.md,frontier-engineer.md,claudecert.md,_TEMPLATE.md}
 ```
 
 `_build/` and `_project/` are published (harmless — no index.html, nothing links to them) but
@@ -159,7 +167,8 @@ curl.exe -sI https://iprash.github.io/aigov/assets/style.css | Select-Object -Fi
 | `/FIFA26/` returned 404 after consolidating the app into this repo, while the new landing page and `/learn/` both served correctly from the same commit | A project repo **named** `FIFA26` claims `iprash.github.io/FIFA26/` for as long as it exists under that name. Unpublishing its Pages site removed the deployment, which is why the path 404'd rather than serving the old copy, but it did not release the claim | Renamed the repo to `FIFA26-archive`. The path was released immediately. Waiting did not help, and **archiving would not have helped either** |
 | `device_bash` (Claude's shell on this machine) dead: "no Plan9 drive shares mounted" | Windows update KB5124008/KB5124012 (8 Sept 2026) broke Cowork's Plan9 folder-sharing on Windows. Confirmed by Anthropic and Microsoft; no fix shipped yet as of 14 Sept 2026 | No repo-side fix. Workaround in the meantime: build/generate files in Claude's cloud workspace instead of on this machine, then transfer with `device_stage_files` / `device_commit_files`, which still work. Used to build the `frontier-engineer` site. Revert to running `build.py` directly on this machine once Microsoft ships the fix — check status.claude.com |
 | — | **Resolved by 3 Oct 2026:** `device_bash` works again, with `python` and `markdown` available, so `build.py` runs on this machine directly | The stage/commit workaround is no longer needed |
-| Stale empty `.git/index.lock` after Claude ran `git checkout` through `device_bash` (3 Oct 2026) | That shell may create files in the mount but cannot delete them without a permission grant, so git could not remove its own lock. It would have blocked the next `git add` | Lock removed after a delete grant. **Claude does not run git write commands through `device_bash`.** Read-only git there uses `git --no-optional-locks`. Prash commits and pushes |
+| Stale empty `.git/index.lock` after Claude ran `git checkout` through `device_bash` (3 Oct 2026) | That shell may create files in the mount but cannot delete them without a permission grant, so git could not remove its own lock. It would have blocked the next `git add` | Lock removed after a delete grant. Claude then stopped running git write commands through `device_bash`. Superseded on 14 Oct 2026, see next row |
+| — | **Changed 14 Oct 2026:** Prash granted delete permission on the repo folder, which removes the cause of the stale lock. Test: `git add` on a scratch file, then `git rm --cached`; no `index.lock` was left behind | **Claude runs `git add` and `git commit` through `device_bash`. Prash runs `git push`.** Claude never pushes, forces, rebases or amends. The delete grant is per Cowork session, so Claude must hold it before any git write. If a lock is ever left behind, Claude stops and tells Prash, and does not delete files inside `.git` without asking. Read-only git still uses `git --no-optional-locks` |
 
 Repo was deleted and recreated clean in Sept 2026 after the TPM project-site repo and the user
 site repo both tried to serve `/TPM/`. The old `github.com/iPrash/TPM` repo was deleted on 3 Oct 2026.
@@ -186,7 +195,7 @@ site repo both tried to serve `/TPM/`. The old `github.com/iPrash/TPM` repo was 
   whatever the landing page links to. The noindex tags keep the study sites out of search
   results; they do not restrict access, and nothing here should be treated as if they did.
 - **localStorage keys are namespaced per site** (e.g. aigov's `xyzai.*`, frontier-engineer's
-  `fe.*`). All sites share one origin, so two sites reusing the same key prefix would silently
+  `fe.*`, claudecert's `cc.*`). All sites share one origin, so two sites reusing the same key prefix would silently
   overwrite each other's reading progress. Pick a short, distinct prefix for every new site.
 
 ## 9. The portfolio list
@@ -220,6 +229,9 @@ site repo both tried to serve `/TPM/`. The old `github.com/iPrash/TPM` repo was 
 
 - `aigov` evidence was last checked 17 Aug 2026 and includes at least one now-passed date.
   See its site brief.
+- `claudecert` added 14 Oct 2026. Time-boxed: Architect and Professional blocks are written
+  just in time (weeks of 2 Nov and 23 Nov), and the free-exam offer it plans around ends
+  31 Dec 2026. See its site brief.
 - `frontier-engineer` added Sept 2026. Its resource links were checked 14 Sept 2026; see its
   site brief for the re-verification cadence.
 - **No `robots.txt` yet, deliberately.** A disallow would stop crawlers fetching the study
@@ -233,7 +245,8 @@ site repo both tried to serve `/TPM/`. The old `github.com/iPrash/TPM` repo was 
 - Other projects to write cards for when ready: FlippedMath, Progressive_ACV. Language
   Conversation (Speak) moved to the CoachPrash account on 9 Oct 2026; see below. Each needs a line of description and a decision on whether it goes public.
 - `device_bash` (Claude's shell on this machine) was down from 8 Sept 2026 and was working
-  again by 3 Oct 2026. See §6. Claude still does not run git write commands through it.
+  again by 3 Oct 2026. Since 14 Oct 2026 Claude runs `git add` and `git commit` through it,
+  with a delete grant on the repo folder. Prash runs `git push`. See §6.
 - **Speak moved to CoachPrash** on 9 Oct 2026: github.com/CoachPrash/CoachPrash.github.io, live at
   https://coachprash.github.io/speak/. Its spec, brief and checker moved with it. The last commit
   here containing Speak is `555c9fb`. `speak/` now holds only a redirect stub with no `_site.json`,

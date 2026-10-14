@@ -1,0 +1,167 @@
+# Claude certification pathway
+## Three proctored exams in nine weeks, 90 minutes a day
+
+I take three Claude certification exams in this order: Developer Foundations, Architect Foundations, Architect Professional. I skip Associate. The plan uses 90 minutes a day, six days a week, and finishes by 15 December 2026. That date leaves room for one retake per exam before 31 December, when the free-exam offer for top-tier partners ends.
+
+Read this page once. Then work one day at a time from the exam page for the current block.
+
+| Page | What it holds |
+|---|---|
+| Start (this page) | The plan, the calendar, the routine, the rules, and setup days 1 to 3 |
+| [Developer](developer.html) | Days 4 to 28. Developer Foundations exam on Tuesday 10 November |
+| Architect | Days 29 to 46. Written about a week before the block starts |
+| Professional | Days 47 to 62. Written about a week before the block starts |
+| [Drills](drills.html) | My question bank, by exam and domain |
+| [Resources](resources.html) | Every link, numbered. Days refer to them as R1, R2 and so on |
+
+---
+
+# Part 0 · The plan
+
+## 0.1 The four exams
+
+All facts in this table come from the official exam guides, version 1.0, effective July 2026 (R1 to R4), checked 14 October 2026.
+
+| Exam | Code | Items | List fee | Pass | Validity |
+|---|---|---|---|---|---|
+| Associate Foundations | CCAO-F | 60 | $99 | 720 of 1,000 | 12 months |
+| Developer Foundations | CCDV-F | 53 | $125 | 720 of 1,000 | 12 months |
+| Architect Foundations | CCAR-F | 60, from 4 of 6 scenarios | $125 | 720 of 1,000 | 12 months |
+| Architect Professional | CCAR-P | 63 | $175 | 720 of 1,000 | 12 months |
+
+Every exam is 120 minutes, proctored by Pearson, and has no mandatory prerequisite. No notes, books or second monitors are allowed. The score report shows percent correct by domain. Use that report to steer the next block.
+
+Policy facts from the Developer guide (R1, sections 10 to 14), checked 14 October 2026. The other guides use the same policy text:
+
+- Retake waiting periods are 14 days after the first fail, 30 after the second, 90 after the third. The limit is four attempts per exam in 12 months.
+- Cancel or reschedule up to 24 hours before the appointment. Later changes, and no-shows, forfeit the fee.
+- The name on the ID must match the registration exactly. Fix a mismatch through certifications-support@anthropic.com before scheduling.
+- Renewal before expiry is free, through an unproctored assessment on Partner Academy.
+- Every candidate accepts a non-disclosure agreement covering all questions, answer options and scenarios.
+
+Facts from the certification FAQ (R6), checked 14 October 2026:
+
+- Only people at organizations in the Claude Partner Network can register. A personal email address does not work.
+- Select, Preferred and Global Premier partners get 50% off. Global Premier partners pay nothing until 31 December 2026.
+- A retake costs the full fee again.
+
+Fact from a secondary source (R11, 17 September 2026), not found on a primary page: the official practice exam was retired. The only official practice is the few sample questions in each guide. That is why this site has its own question bank.
+
+## 0.2 Why this order
+
+| Step | Reason |
+|---|---|
+| 1 · Developer | The broadest blueprint. Applications and integration is 33%, and much of that is software engineering I already do. It forces me through the API mechanics (streaming, caching, batches, vision) that the Architect exam excludes but assumes. |
+| 2 · Architect Foundations | The same technology, tested at mechanic level: Agent SDK hooks, Claude Code rules and skills, CI flags, extraction pipelines. Claude Code is 3% of Developer and 20% of Architect, so my daily Claude Code use pays off here. |
+| 3 · Architect Professional | Discovery, governance, RAG, evaluation and stakeholder trade-offs. This is the closest exam to my day job, so it needs the least new learning and gains most from the two exams before it. |
+| Associate · skipped | It does not count toward partner tier eligibility (R5). Its content is a subset of Professional domains 5 and 6. Take it in the December buffer only if all three pass first time. |
+
+## 0.3 Calendar
+
+Day 1 is Wednesday 14 October 2026. Sundays are rest days. Saturdays are long days of up to 2 hours.
+
+| Days | Dates | Block | Exam | Earliest retake |
+|---|---|---|---|---|
+| 1 to 3 | 14 to 16 Oct | Setup and baseline | | |
+| 4 to 28 | 17 Oct to 10 Nov | Developer | **Tue 10 Nov** | Tue 24 Nov |
+| 29 to 46 | 11 to 28 Nov | Architect Foundations | **Sat 28 Nov** | Sat 12 Dec |
+| 47 to 62 | 29 Nov to 15 Dec | Architect Professional | **Tue 15 Dec** | Tue 29 Dec |
+| 63 to 79 | 16 to 31 Dec | Buffer: retakes, or Associate | | |
+
+Thanksgiving (26 November) falls inside the Architect block. That is why the Architect exam is on the Saturday after.
+
+If I fail an exam, I book the retake for the earliest date and keep the next block running. The retake prep is the domain report plus my drills for the weak domains, 30 minutes a day on top of the current block.
+
+## 0.4 The daily routine
+
+| Block | Minutes | What |
+|---|---|---|
+| Recall | 10 | Answer 5 questions from my bank, written on earlier days. Mark the ones I miss. |
+| Build | 40 to 45 | The day's artifact. Build first, then read. |
+| Read | 30 to 40 | The course module or docs named for the day, tied to what I just built. |
+| Write | 10 | Write 3 exam-style questions from today's work into the Drills page format. Log gotchas. |
+
+Each week: five build days, one long Saturday (a longer build or a timed mock), and one rest day on Sunday. If a day runs over, I finish the build and drop the read. The read can move to Sunday. The build cannot.
+
+## 0.5 The build spine
+
+All builds live in one private repo called `cert-lab`. Each build maps to blueprint domains.
+
+| # | Build | Block | Domains |
+|---|---|---|---|
+| 1 | API basics: messages, tokens, models, streaming, vision, caching, batches | Developer | Dev D2, D5 |
+| 2 | Prompt lab: a classifier with a test set, few-shot, structured output, validation | Developer | Dev D6 |
+| 3 | Tool-use agent: manual loop, then Agent SDK, with a blocking hook | Developer | Dev D1, D7, D8 |
+| 4 | MCP server, connected to Claude Code | Developer | Dev D8 |
+| 5 | Claude Code team configuration and a headless CI job | Architect | Arch D3 |
+| 6 | Extraction pipeline with batches and human review routing | Architect | Arch D4, D5 |
+| 7 | Multi-agent research system with provenance | Architect | Arch D1, D2, D5 |
+| 8 | RAG with an eval harness, and an architecture decision pack | Professional | Pro D3 to D6 |
+
+API usage is billed separately from a Claude Pro plan. Budget about $20 to $50 in Console credits for all eight builds. Use the smallest model that does the job, and use batches where a task allows it.
+
+## 0.6 Rules for this site
+
+- **No exam content, ever.** This repo is public, and every candidate signs a non-disclosure agreement (R1, section 13). After an exam, I do not add, reword or hint at anything I saw. The Drills page is written from the public blueprints and my builds only.
+- No employer or client names.
+- Do not copy the sample questions from the exam guides. Link to the guides instead.
+- Every fact carries a source and a check date. Re-read the exam guide in the week before each exam, in case the version has changed.
+- When the docs and the exam guide disagree, the exam guide wins for exam purposes. The guides predate some current models and features.
+
+---
+
+# Week 1 · Setup
+
+## Day 1 · Eligibility and registration
+
+Wednesday 14 October. Goal: confirm I can sit the exams for free, and book the first one.
+
+- [ ] D1: Sign in to Partner Academy (R5) with my company email. If it fails, email partner-support@anthropic.com today, because adding a domain takes 7 to 10 days (R7).
+- [ ] D1: Open the Developer Foundations registration. Confirm the fee shows $0 at checkout. If it does not, stop and recheck the tier before paying.
+- [ ] D1: Register for the Developer prep course (R12). It is free.
+- [ ] D1: Book the Developer exam for Tuesday 10 November through Pearson (R9). Choose online or test center. Changes are free until 24 hours before.
+- [ ] D1: Check that my Pearson profile name matches my government ID exactly.
+- [ ] D1: Download all three exam guides (R1 to R3) and read R1 in full.
+
+## Day 2 · Tooling
+
+Thursday 15 October. Goal: a working build environment, so Day 4 starts with code, not setup.
+
+- [ ] D2: Create a Console account and API key (R23). Add credits. Set a monthly spend limit.
+- [ ] D2: Create the private `cert-lab` repo. Add a `.env` for the key and put `.env` in `.gitignore` before the first commit.
+- [ ] D2: Install the Python SDK (`pip install anthropic`) and send one message from a script.
+- [ ] D2: Confirm Claude Code runs in the repo. Run `/init` and read what it writes into CLAUDE.md.
+- [ ] D2: Read the Architect Foundations guide (R2): sections 4 to 6 and the appendix lists of in-scope and out-of-scope topics.
+
+## Day 3 · Baseline
+
+Friday 16 October. Goal: know where I start, by domain, before any study.
+
+- [ ] D3: Answer the sample questions in R1, R2 and R3 cold. No docs. Record my answers before reading the answer key.
+- [ ] D3: Rate myself 1 to 3 on every Developer skill line in R1 section 6 (1 = never done it, 3 = done it in production). Write the ratings into `cert-lab/baseline.md`.
+- [ ] D3: Mark the three lowest-rated Developer skills. Those get extra time when a day touches them.
+- [ ] D3: Read the Professional guide (R3) sections 4 to 6.
+
+---
+
+# Exam day
+
+## Before every exam
+
+- [ ] Exam guide re-read in the week before. Version number checked against the one this site used.
+- [ ] Online proctoring: system test run on the exam computer, on the exam network, at least 2 days before (R8).
+- [ ] Government ID ready. Name matches the Pearson profile.
+- [ ] Desk clear. No second monitor, no phone in reach, no notes.
+- [ ] Light review only on the day before. Recall drills from Drills, no new topics.
+
+## In the exam
+
+Each item states how many answers to select. Read that number first. Scenario items reward design judgment: prefer a programmatic control over a stronger instruction, least privilege over logging, and the managed feature over a hand-built one, unless the scenario rules it out.
+
+Plan for about 135 minutes in the seat, including check-in. Flag and move on after 2 minutes on one item.
+
+## After every exam
+
+- [ ] Record the scaled score and the percent correct per domain in `cert-lab/results.md`. That file is private.
+- [ ] Pass: claim the Credly badge. Fail: book the earliest retake and start 30 minutes a day on the two weakest domains.
+- [ ] Update the next block's day plan with the domain results, before starting it.
