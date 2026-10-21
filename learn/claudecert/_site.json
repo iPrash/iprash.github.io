@@ -10,7 +10,7 @@
   "footer": "A personal study plan. Not affiliated with Anthropic. Contains no exam content.",
   "index_template": "_index_template.html",
   "index_title": "Claude certification pathway — daily study plan",
-  "index_desc": "A nine-week, 90-minutes-a-day plan for three Claude certification exams, with daily builds, readings and a question bank.",
+  "index_desc": "A daily plan for three Claude certification exams: one build and one Anthropic course segment a day, plus a question bank.",
   "pages": [
     {
       "src": "start.md",

@@ -1,7 +1,7 @@
 # Claude certification pathway
-## Three proctored exams in nine weeks, 90 minutes a day
+## Three proctored exams, one Anthropic course and one build a day
 
-I take three Claude certification exams in this order: Developer Foundations, Architect Foundations, Architect Professional. I skip Associate. The plan uses 90 minutes a day, six days a week, and finishes by 15 December 2026. That date leaves room for one retake per exam before 31 December, when the free-exam offer for top-tier partners ends.
+I take three Claude certification exams in this order: Developer Foundations, Architect Foundations, Architect Professional. I skip Associate. The plan runs six days a week. Each day pairs a build with a segment of an Anthropic course, and takes 1.5 to 2.5 hours. The dates show the fastest pace, ending by 15 December 2026. That date leaves room for one retake per exam before 31 December, when the free-exam offer for top-tier partners ends.
 
 Read this page once. Then work one day at a time from the exam page for the current block.
 
@@ -77,11 +77,11 @@ If I fail an exam, I book the retake for the earliest date and keep the next blo
 | Block | Minutes | What |
 |---|---|---|
 | Recall | 10 | Answer 5 questions from my bank, written on earlier days. Mark the ones I miss. |
-| Build | 40 to 45 | The day's artifact. Build first, then read. |
-| Read | 30 to 40 | The course module or docs named for the day, tied to what I just built. |
+| Build | 40 to 45 | The day's artifact. Build first, then learn. |
+| Learn | 40 to 105 | The Anthropic course segment named for the day, tied to what I just built. Docs are reference during the build. |
 | Write | 10 | Write 3 exam-style questions from today's work into the Drills page format. Log gotchas. |
 
-Each week: five build days, one long Saturday (a longer build or a timed mock), and one rest day on Sunday. If a day runs over, I finish the build and drop the read. The read can move to Sunday. The build cannot.
+Each week: five build days, one long Saturday (a longer build or a timed mock), and one rest day on Sunday. If a day runs over, I finish the build and move the Learn step to the next sitting or to Sunday. I do not skip a required course segment. Also items are optional.
 
 ## 0.5 The build spine
 

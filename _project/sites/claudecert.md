@@ -7,7 +7,7 @@
 
 ## What it is
 
-A nine-week, 90-minutes-a-day study plan for three Claude certification exams, taken in this order: Developer Foundations (CCDV-F), Architect Foundations (CCAR-F), Architect Professional (CCAR-P). Each day has one build, one reading, three self-written questions, and a done-when checkbox. Associate (CCAO-F) is skipped unless the December buffer is unused.
+A daily study plan for three Claude certification exams, taken in this order: Developer Foundations (CCDV-F), Architect Foundations (CCAR-F), Architect Professional (CCAR-P). Each day has one build, one Learn step from an Anthropic course, reference docs, three self-written questions, and a done-when checkbox. Associate (CCAO-F) is skipped unless the December buffer is unused.
 
 ## Why it exists
 
@@ -49,6 +49,7 @@ I have long architecture experience and limited hands-on Claude mechanics. That 
 - **No exam content, ever.** Every candidate signs an NDA covering questions, options and scenarios (R1, section 13), and this repo is public. After an exam, do not add, reword or hint at anything seen. Drills are written only from the public blueprints and my builds.
 - Do not copy the sample questions from the exam guides. Link the PDFs.
 - No employer or client names. Discount tiers are described generically.
+- **Anthropic's own courses are the baseline** (since 20 Oct 2026). Every day's Learn step names an Anthropic course segment: the exam prep course (R12, modules R103 to R107) or the Claude Developer path (R97) and its Claude Academy courses. Docs are reference. Third-party material only where Anthropic has nothing. Before writing the Architect or Professional block, inventory that exam's prep course and the matching Anthropic learning path first.
 - Every reference to a resource is a link. Write `[R24](url)`, with the URL copied from that row of `resources.md`, never a bare `R24`. Check new links resolve before committing. If a resource's URL changes, update `resources.md` and every page that links it.
 - Every fact carries a source and a date. Sources are graded [P] primary or [S] secondary in `resources.md`. Do not upgrade an [S] fact to unmarked fact.
 - Where the docs and the exam guide disagree, the site follows the guide for exam purposes and says so.
