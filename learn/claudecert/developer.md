@@ -92,7 +92,7 @@ Saturday 17 October · long day, 2 hours · Dev D2 API mechanics, D5 LLM fundame
 
 **Goal.** Understand one Messages API request and response completely.
 
-**Build (60 min).** In `cert-lab/01-api/`, write `basics.py`. Send a request with a system prompt and two user turns. Print the full response object, not only the text. Identify `stop_reason`, `usage.input_tokens` and `usage.output_tokens`. Set `max_tokens` to 20 and watch `stop_reason` change to `max_tokens`. Add a stop sequence and watch it change to `stop_sequence`.
+**Build (60 min).** In `CertLab/01API/`, write `basics.py`. Send a request with a system prompt and two user turns. Print the full response object, not only the text. Identify `stop_reason`, `usage.input_tokens` and `usage.output_tokens`. Set `max_tokens` to 20 and watch `stop_reason` change to `max_tokens`. Add a stop sequence and watch it change to `stop_sequence`.
 
 **Learn (60 min).** [R103](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/mso-foundations) MSO Foundations, all of it.
 
@@ -124,7 +124,7 @@ Monday 19 October · Dev D5 LLM fundamentals (5.2%)
 
 **Write.** One question on why outputs vary between identical requests. One on what counts against the context window. One on zero-shot versus few-shot.
 
-- [ ] D6: A table in `01-api/notes.md` with token counts for three inputs and a one-line finding on output variation.
+- [ ] D6: A table in `01API/notes.md` with token counts for three inputs and a one-line finding on output variation.
 
 ## Day 7 · Model tiers, thinking and effort
 
@@ -162,7 +162,7 @@ Wednesday 21 October · Dev D2 API mechanics, D4 debugging, D5 technical fundame
 
 **Write.** One question on which HTTP errors to retry. One on what streaming changes for the user and what it does not change for cost. One on SDK versus raw REST, or sync versus async calls.
 
-- [ ] D8: `02-errors.py` shows each forced error caught by type, with retry only on retryable errors.
+- [ ] D8: `errors.py` shows each forced error caught by type, with retry only on retryable errors.
 
 ## Day 9 · Vision and documents
 
@@ -208,7 +208,7 @@ Saturday 24 October · long day, 2 hours · Dev D2 API mechanics, batch versus r
 
 **Write.** One question on matching batch results. One on a latency-tolerant workload. One on what batches do not support.
 
-- [ ] D11: Batch run completes with one failure handled by `custom_id`. Mock score recorded in `cert-lab/results.md`.
+- [ ] D11: Batch run completes with one failure handled by `custom_id`. Mock score recorded in `CertLab/results.md`.
 
 ## Day 12 · Rest
 
@@ -220,7 +220,7 @@ Monday 26 October · Dev D6 prompt engineering (4.6%)
 
 **Goal.** Improve a prompt by measurement, not by feel.
 
-**Build (45 min).** In `cert-lab/02-prompts/`, build a support-ticket classifier with five categories. Write 20 labeled test tickets, including 5 ambiguous ones. Score version 1 of the prompt. Then change one thing at a time: clear instructions, XML tags around the ticket, a system-prompt role, and 3 examples that target the ambiguous cases. Score each version.
+**Build (45 min).** In `CertLab/02Prompts/`, build a support-ticket classifier with five categories. Write 20 labeled test tickets, including 5 ambiguous ones. Score version 1 of the prompt. Then change one thing at a time: clear instructions, XML tags around the ticket, a system-prompt role, and 3 examples that target the ambiguous cases. Score each version.
 
 **Learn (75 min).** [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), first segment. Then [R98](https://academy.claude.com/courses/ai-capabilities-and-limitations), the Steerability section and its exercise.
 
@@ -260,7 +260,7 @@ Wednesday 28 October · Dev D8 tool implementation (4.4%)
 
 **Goal.** Run the tool-use loop myself before any framework does it for me.
 
-**Build (45 min).** In `cert-lab/03-agent/`, define three tools for an order-support case: `lookup_order`, `get_policy`, `issue_refund`. Write the loop: send, check `stop_reason`, run the tool when it is `tool_use`, return a `tool_result`, repeat until `end_turn`. Return `is_error: true` with a clear message when an order is not found. Add a maximum-turns limit.
+**Build (45 min).** In `CertLab/03Agent/`, define three tools for an order-support case: `lookup_order`, `get_policy`, `issue_refund`. Write the loop: send, check `stop_reason`, run the tool when it is `tool_use`, return a `tool_result`, repeat until `end_turn`. Return `is_error: true` with a clear message when an order is not found. Add a maximum-turns limit.
 
 **Learn (60 min).** [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), third segment. Then [R101](https://academy.claude.com/courses/claude-platform-101), the section Teaching your Agent: the agent loop, tool use and thinking.
 
@@ -356,7 +356,7 @@ Tuesday 3 November · Dev D8 MCP server development (2.1%)
 
 **Goal.** Expose a capability once and use it from more than one client.
 
-**Build (45 min).** In `cert-lab/04-mcp/`, build a Python MCP server ([R76](https://modelcontextprotocol.io/docs/develop/build-server)) with two tools (`lookup_order`, `get_policy`), one resource (the refund policy text), and one prompt (a reply template). Run it over stdio. Connect it to Claude Code with a project-scoped `.mcp.json` ([R70](https://code.claude.com/docs/en/mcp)). Put the credential in an environment variable, not in the file. Call each primitive from Claude Code. Then run the same server over Streamable HTTP and note what changes ([R125](https://modelcontextprotocol.io/specification/latest/basic/transports)).
+**Build (45 min).** In `CertLab/04MCP/`, build a Python MCP server ([R76](https://modelcontextprotocol.io/docs/develop/build-server)) with two tools (`lookup_order`, `get_policy`), one resource (the refund policy text), and one prompt (a reply template). Run it over stdio. Connect it to Claude Code with a project-scoped `.mcp.json` ([R70](https://code.claude.com/docs/en/mcp)). Put the credential in an environment variable, not in the file. Call each primitive from Claude Code. Then run the same server over Streamable HTTP and note what changes ([R125](https://modelcontextprotocol.io/specification/latest/basic/transports)).
 
 **Learn (105 min).** [R19](https://academy.claude.com/courses/introduction-to-model-context-protocol) Introduction to Model Context Protocol, 1 hour. It builds a Python server, like today's build. Then [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), second third.
 
@@ -378,7 +378,7 @@ Wednesday 4 November · Dev D3 Claude Code (3.1%), D8 agentic customization (4.1
 
 **Goal.** Pick the right extension type for a need, and configure it for a team.
 
-**Build (75 min).** In `cert-lab`, write a project CLAUDE.md and a personal `CLAUDE.local.md`. Add one path-scoped rule in `.claude/rules/` ([R129](https://code.claude.com/docs/en/claude-directory)). Set shared permissions in `.claude/settings.json` and a personal override in `.claude/settings.local.json` ([R65](https://code.claude.com/docs/en/settings)). Write one Skill ([R68](https://code.claude.com/docs/en/skills)) that formats a release note, and run it as a slash command. Add one custom subagent. Package the Skill and the subagent as a plugin and install it from the local folder ([R130](https://code.claude.com/docs/en/plugins/create), [R131](https://code.claude.com/docs/en/plugins/components)). Try three permission modes, including auto mode ([R128](https://code.claude.com/docs/en/permission-modes)). Name a session, then resume it, and note when to use `/clear` versus `/compact` ([R127](https://code.claude.com/docs/en/sessions)). Run Claude Code headless with `claude -p`, first with JSON output, then with stream-json ([R71](https://code.claude.com/docs/en/headless)).
+**Build (75 min).** In `CertLab`, write a project CLAUDE.md and a personal `CLAUDE.local.md`. Add one path-scoped rule in `.claude/rules/` ([R129](https://code.claude.com/docs/en/claude-directory)). Set shared permissions in `.claude/settings.json` and a personal override in `.claude/settings.local.json` ([R65](https://code.claude.com/docs/en/settings)). Write one Skill ([R68](https://code.claude.com/docs/en/skills)) that formats a release note, and run it as a slash command. Add one custom subagent. Package the Skill and the subagent as a plugin and install it from the local folder ([R130](https://code.claude.com/docs/en/plugins/create), [R131](https://code.claude.com/docs/en/plugins/components)). Try three permission modes, including auto mode ([R128](https://code.claude.com/docs/en/permission-modes)). Name a session, then resume it, and note when to use `/clear` versus `/compact` ([R127](https://code.claude.com/docs/en/sessions)). Run Claude Code headless with `claude -p`, first with JSON output, then with stream-json ([R71](https://code.claude.com/docs/en/headless)).
 
 Then fill in two tables in `notes.md`. First, the four extension types: built-in tool, custom tool, Skill, MCP server. One row each: what it is for, and one example need. Second, where instructions live on each interface: claude.ai project instructions, the Desktop app, Claude Code (CLAUDE.md and rules), the API system prompt, and the Agent SDK ([R126](https://code.claude.com/docs/en/platforms)).
 
@@ -399,7 +399,7 @@ Thursday 5 November · long day, 2 hours · Dev D7 application security (3.2%), 
 
 **Goal.** Make the Day 18 agent survive a hostile input.
 
-**Build (45 min).** Add a tool that fetches a "customer note". Plant an instruction in one note that tells the agent to refund the full order. Run it and record what happens. Fix it with layers: mark fetched content as untrusted data in the prompt, keep `issue_refund` behind the hook and the human checkpoint, and give the note-reading subagent no refund tool. Run again. Add a step that redacts personal data (names, emails, order IDs tied to a person) before anything is logged. Check that no key appears in logs or in the repo history. Then create a separate Console workspace and key for `cert-lab` ([R132](https://platform.claude.com/docs/en/manage-claude/workspaces)), and look at that key's usage in the Usage and Cost API or the Console ([R133](https://platform.claude.com/docs/en/manage-claude/usage-cost-api)).
+**Build (45 min).** Add a tool that fetches a "customer note". Plant an instruction in one note that tells the agent to refund the full order. Run it and record what happens. Fix it with layers: mark fetched content as untrusted data in the prompt, keep `issue_refund` behind the hook and the human checkpoint, and give the note-reading subagent no refund tool. Run again. Add a step that redacts personal data (names, emails, order IDs tied to a person) before anything is logged. Check that no key appears in logs or in the repo history. Then open the `CertLab` workspace from Day 2 ([R132](https://platform.claude.com/docs/en/manage-claude/workspaces)), and look at the `CertLabDev` key's usage in the Usage and Cost API or the Console ([R133](https://platform.claude.com/docs/en/manage-claude/usage-cost-api)).
 
 **Learn (105 min).** [R106](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-engineering-evals-security), first half.
 
@@ -465,4 +465,4 @@ Tuesday 10 November · **Developer Foundations, CCDV-F**
 
 Light recall only: 20 questions from Drills, no new material. Then follow the exam-day checklist on the [Start](start.html) page.
 
-- [ ] D28: Exam taken. Score and domain report recorded in `cert-lab/results.md`.
+- [ ] D28: Exam taken. Score and domain report recorded in `CertLab/results.md`.

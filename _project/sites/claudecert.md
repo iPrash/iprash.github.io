@@ -54,6 +54,7 @@ My employer is a Claude Partner Network member, so I can sit the exam. I have lo
 - Every reference to a resource is a link. Write `[R24](url)`, with the URL copied from that row of `resources.md`, never a bare `R24`. Check new links resolve before committing. If a resource's URL changes, update `resources.md` and every page that links it.
 - Every fact carries a source and a date. Sources are graded [P] primary or [S] secondary in `resources.md`. Do not upgrade an [S] fact to unmarked fact.
 - Where the docs and the exam guide disagree, the site follows the guide for exam purposes and says so.
+- Names I invent for the study setup use CamelCase, with acronyms in capitals: `CertLab` repo and workspace, `CertLabDev` key, folders `01API`, `02Prompts`, `03Agent`, `04MCP`. Python files stay lowercase, per Python convention.
 - Lean STE: short sentences, active voice, one idea per sentence. Written in first person.
 
 ## Time-sensitive content

@@ -52,7 +52,7 @@ Fact from a secondary source ([R11](https://trainingcamp.com/articles/claude-cer
 |---|---|
 | Study the blueprint and self-assess against each objective | Day 3 baseline. The blueprint checklist on the Developer page |
 | Review the official docs for the API, models, prompt engineering, Claude Code, Skills and MCP | The Reference line on every day |
-| Build and operate at least one Claude application with tools, prompt and context engineering, and simple security and evaluation | Builds 1 to 4 in `cert-lab` |
+| Build and operate at least one Claude application with tools, prompt and context engineering, and simple security and evaluation | Builds 1 to 4 in `CertLab` |
 | Practise the developer competencies: prompts, agents and workflows, Claude Code configuration, tokens and cost, guardrails, custom tools and MCP servers | The Build step on every day |
 | Complete the sample questions | Day 3 |
 
@@ -84,7 +84,7 @@ Each week: five build days, one long Saturday (a longer build or a timed mock), 
 
 ## 0.5 The build spine
 
-All builds live in one private repo called `cert-lab`. Each build maps to blueprint domains.
+All builds live in one private repo called `CertLab`. Each build maps to blueprint domains.
 
 | # | Build | Days | Domains |
 |---|---|---|---|
@@ -122,8 +122,8 @@ Wednesday 14 October. Goal: confirm I can sit the exam for free, and book it.
 
 Thursday 15 October. Goal: a working build environment, so Day 4 starts with code, not setup.
 
-- [ ] D2: Create a Console account and API key ([R23](https://platform.claude.com/docs/en/get-started)). Add credits. Set a monthly spend limit.
-- [ ] D2: Create the private `cert-lab` repo. Add a `.env` for the key and put `.env` in `.gitignore` before the first commit.
+- [ ] D2: In the Console ([R23](https://platform.claude.com/docs/en/get-started)), create a `CertLab` workspace with a monthly spend limit, and a `CertLabDev` API key scoped to it ([R132](https://platform.claude.com/docs/en/manage-claude/workspaces)). Credits belong to the organization, not to a key, so add credits only if the balance is low.
+- [ ] D2: Create the private `CertLab` repo. Add a `.env` for the key and put `.env` in `.gitignore` before the first commit.
 - [ ] D2: Install the Python SDK (`pip install anthropic`) and send one message from a script.
 - [ ] D2: Confirm Claude Code runs in the repo. Run `/init` and read what it writes into CLAUDE.md.
 
@@ -132,7 +132,7 @@ Thursday 15 October. Goal: a working build environment, so Day 4 starts with cod
 Friday 16 October. Goal: know where I start, by domain, before any study.
 
 - [ ] D3: Answer the sample questions in [R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf), section 8, cold. No docs. Record my answers before reading the answer key.
-- [ ] D3: Rate myself 1 to 3 on every Developer skill line in [R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf) section 6 (1 = never done it, 3 = done it in production). Write the ratings into `cert-lab/baseline.md`.
+- [ ] D3: Rate myself 1 to 3 on every Developer skill line in [R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf) section 6 (1 = never done it, 3 = done it in production). Write the ratings into `CertLab/baseline.md`.
 - [ ] D3: Mark the three lowest-rated Developer skills. Those get extra time when a day touches them.
 
 ---
@@ -155,5 +155,5 @@ Plan for about 135 minutes in the seat, including check-in. Flag and move on aft
 
 ## After every exam
 
-- [ ] Record the scaled score and the percent correct per domain in `cert-lab/results.md`. That file is private.
+- [ ] Record the scaled score and the percent correct per domain in `CertLab/results.md`. That file is private.
 - [ ] Pass: claim the Credly badge. Fail: book the earliest retake and start 30 minutes a day on the two weakest domains.

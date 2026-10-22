@@ -138,7 +138,7 @@
       </tr>
       <tr>
       <td>Build and operate at least one Claude application with tools, prompt and context engineering, and simple security and evaluation</td>
-      <td>Builds 1 to 4 in <code>cert-lab</code></td>
+      <td>Builds 1 to 4 in <code>CertLab</code></td>
       </tr>
       <tr>
       <td>Practise the developer competencies: prompts, agents and workflows, Claude Code configuration, tokens and cost, guardrails, custom tools and MCP servers</td>
@@ -216,7 +216,7 @@
       </table></div>
       <p>Each week: five build days, one long Saturday (a longer build or a timed mock), and one rest day on Sunday. If a day runs over, I finish the build and move the Learn step to the next sitting or to Sunday. I do not skip a required course segment. Also items are optional.</p>
       <h2 id="05-the-build-spine">0.5 The build spine</h2>
-      <p>All builds live in one private repo called <code>cert-lab</code>. Each build maps to blueprint domains.</p>
+      <p>All builds live in one private repo called <code>CertLab</code>. Each build maps to blueprint domains.</p>
       <div class="tablewrap"><table>
       <thead>
       <tr>
@@ -276,8 +276,8 @@
       <h2 id="day-2-tooling">Day 2 · Tooling</h2>
       <p>Thursday 15 October. Goal: a working build environment, so Day 4 starts with code, not setup.</p>
       <ul>
-      <li>[ ] D2: Create a Console account and API key (<a href="https://platform.claude.com/docs/en/get-started">R23</a>). Add credits. Set a monthly spend limit.</li>
-      <li>[ ] D2: Create the private <code>cert-lab</code> repo. Add a <code>.env</code> for the key and put <code>.env</code> in <code>.gitignore</code> before the first commit.</li>
+      <li>[ ] D2: In the Console (<a href="https://platform.claude.com/docs/en/get-started">R23</a>), create a <code>CertLab</code> workspace with a monthly spend limit, and a <code>CertLabDev</code> API key scoped to it (<a href="https://platform.claude.com/docs/en/manage-claude/workspaces">R132</a>). Credits belong to the organization, not to a key, so add credits only if the balance is low.</li>
+      <li>[ ] D2: Create the private <code>CertLab</code> repo. Add a <code>.env</code> for the key and put <code>.env</code> in <code>.gitignore</code> before the first commit.</li>
       <li>[ ] D2: Install the Python SDK (<code>pip install anthropic</code>) and send one message from a script.</li>
       <li>[ ] D2: Confirm Claude Code runs in the repo. Run <code>/init</code> and read what it writes into CLAUDE.md.</li>
       </ul>
@@ -285,7 +285,7 @@
       <p>Friday 16 October. Goal: know where I start, by domain, before any study.</p>
       <ul>
       <li>[ ] D3: Answer the sample questions in <a href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf">R1</a>, section 8, cold. No docs. Record my answers before reading the answer key.</li>
-      <li>[ ] D3: Rate myself 1 to 3 on every Developer skill line in <a href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf">R1</a> section 6 (1 = never done it, 3 = done it in production). Write the ratings into <code>cert-lab/baseline.md</code>.</li>
+      <li>[ ] D3: Rate myself 1 to 3 on every Developer skill line in <a href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf">R1</a> section 6 (1 = never done it, 3 = done it in production). Write the ratings into <code>CertLab/baseline.md</code>.</li>
       <li>[ ] D3: Mark the three lowest-rated Developer skills. Those get extra time when a day touches them.</li>
       </ul>
       <h1 id="exam-day">Exam day</h1>
@@ -302,7 +302,7 @@
       <p>Plan for about 135 minutes in the seat, including check-in. Flag and move on after 2 minutes on one item.</p>
       <h2 id="after-every-exam">After every exam</h2>
       <ul>
-      <li>[ ] Record the scaled score and the percent correct per domain in <code>cert-lab/results.md</code>. That file is private.</li>
+      <li>[ ] Record the scaled score and the percent correct per domain in <code>CertLab/results.md</code>. That file is private.</li>
       <li>[ ] Pass: claim the Credly badge. Fail: book the earliest retake and start 30 minutes a day on the two weakest domains.</li>
       </ul>
     </main>
