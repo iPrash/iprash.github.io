@@ -229,9 +229,8 @@ site repo both tried to serve `/TPM/`. The old `github.com/iPrash/TPM` repo was 
 
 - `aigov` evidence was last checked 17 Aug 2026 and includes at least one now-passed date.
   See its site brief.
-- `claudecert` added 14 Oct 2026. Time-boxed: Architect and Professional blocks are written
-  just in time (weeks of 2 Nov and 23 Nov), and the free-exam offer it plans around ends
-  31 Dec 2026. See its site brief.
+- `claudecert` added 14 Oct 2026. Since 22 Oct 2026 it covers the Developer exam only; the
+  later-exam plan is parked in its site brief. See the brief for the blueprint coverage rule.
 - `frontier-engineer` added Sept 2026. Its resource links were checked 14 Sept 2026; see its
   site brief for the re-verification cadence.
 - **No `robots.txt` yet, deliberately.** A disallow would stop crawlers fetching the study

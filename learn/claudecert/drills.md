@@ -1,7 +1,7 @@
 # Drills
 ## My question bank, by exam and domain
 
-The official practice exam was retired ([R11](https://trainingcamp.com/articles/claude-certifications-explained-all-four-anthropic-exams-costs-and-who-can-take-them/)). This page replaces it. Every question here is my own, written from the public blueprints ([R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf) to [R3](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf)) and my own builds. None comes from a live exam, and none ever will: the non-disclosure agreement covers all exam content ([R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf), section 13), and this repo is public.
+The official practice exam was retired ([R11](https://trainingcamp.com/articles/claude-certifications-explained-all-four-anthropic-exams-costs-and-who-can-take-them/)). This page replaces it. Every question here is my own, written from the public blueprint ([R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf)) and my own builds. None comes from a live exam, and none ever will: the non-disclosure agreement covers all exam content ([R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf), section 13), and this repo is public.
 
 **How to use it.** Answer before opening the answer. Each day, add the 3 questions I wrote in the Write block, under the right domain. Match the exam style: one realistic situation, four options, one best answer, and a reason why each wrong option is wrong.
 
@@ -218,13 +218,3 @@ C. Return an empty success result
 D. Return a made-up order so the conversation continues
 
 <details><summary>Answer</summary>B. An error result lets the model explain the problem or ask for a correct ID. A ends the task for a recoverable error. C hides the failure. D creates false data.</details>
-
----
-
-# Architect Foundations
-
-Added when the Architect block is written, in the week of 2 November.
-
-# Architect Professional
-
-Added when the Professional block is written, in the week of 23 November.
