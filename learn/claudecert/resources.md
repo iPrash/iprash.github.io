@@ -168,6 +168,7 @@ Policy since 20 October 2026: the prep course (R12) and every course in the Clau
 | R131 | [Plugin components](https://code.claude.com/docs/en/plugins/components) | Dev D2 configuration |
 | R137 | [Review locally with /code-review](https://code.claude.com/docs/en/code-review-local) | Dev D2 software engineering |
 | R138 | [Claude Code GitHub Actions](https://code.claude.com/docs/en/github-actions) | Dev D2 software engineering |
+| R139 | [Installing uv](https://docs.astral.sh/uv/getting-started/installation/) | Setup Day 2 tooling |
 
 ## Model Context Protocol
 

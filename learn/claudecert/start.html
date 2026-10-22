@@ -278,7 +278,7 @@
       <ul>
       <li>[ ] D2: In the Console (<a href="https://platform.claude.com/docs/en/get-started">R23</a>), create a <code>CertLab</code> workspace with a monthly spend limit, and a <code>CertLabDev</code> API key scoped to it (<a href="https://platform.claude.com/docs/en/manage-claude/workspaces">R132</a>). Credits belong to the organization, not to a key, so add credits only if the balance is low.</li>
       <li>[ ] D2: Create the private <code>CertLab</code> repo. Add a <code>.env</code> for the key and put <code>.env</code> in <code>.gitignore</code> before the first commit.</li>
-      <li>[ ] D2: Install the Python SDK (<code>pip install anthropic</code>) and send one message from a script.</li>
+      <li>[ ] D2: Set up Python with uv (<a href="https://docs.astral.sh/uv/getting-started/installation/">R139</a>). In the repo, run <code>uv init --bare</code>, then <code>uv add anthropic python-dotenv</code>. Send one message with <code>uv run python hello.py</code>. uv makes the <code>.venv</code> folder for me, so I never activate it.</li>
       <li>[ ] D2: Confirm Claude Code runs in the repo. Run <code>/init</code> and read what it writes into CLAUDE.md.</li>
       </ul>
       <h2 id="day-3-baseline">Day 3 · Baseline</h2>

@@ -124,7 +124,7 @@ Thursday 15 October. Goal: a working build environment, so Day 4 starts with cod
 
 - [ ] D2: In the Console ([R23](https://platform.claude.com/docs/en/get-started)), create a `CertLab` workspace with a monthly spend limit, and a `CertLabDev` API key scoped to it ([R132](https://platform.claude.com/docs/en/manage-claude/workspaces)). Credits belong to the organization, not to a key, so add credits only if the balance is low.
 - [ ] D2: Create the private `CertLab` repo. Add a `.env` for the key and put `.env` in `.gitignore` before the first commit.
-- [ ] D2: Install the Python SDK (`pip install anthropic`) and send one message from a script.
+- [ ] D2: Set up Python with uv ([R139](https://docs.astral.sh/uv/getting-started/installation/)). In the repo, run `uv init --bare`, then `uv add anthropic python-dotenv`. Send one message with `uv run python hello.py`. uv makes the `.venv` folder for me, so I never activate it.
 - [ ] D2: Confirm Claude Code runs in the repo. Run `/init` and read what it writes into CLAUDE.md.
 
 ## Day 3 · Baseline
