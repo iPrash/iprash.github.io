@@ -4,8 +4,8 @@ Short hand-off file. Read it at the start of a ClaudeCert study session. Update 
 
 ## State (23 Oct 2026)
 
-- Exam: Developer Foundations. Prash gave Dec 5 and Dec 6 at different times. Ask once for the date on his Pearson email. Do NOT change the dates on the site. He may move the exam earlier.
-- Done: Days 1, 2, 3. Day 4 in progress (setup done, build and learning still to do).
+- Exam: Developer Foundations, Saturday 5 Dec 2026 (confirmed by Prash on 23 Oct). The site calendar still shows Tue 10 Nov. Do NOT change the dates on the site. He may move the exam earlier.
+- Done: Days 1, 2, 3. Day 4 in progress (started 23 Oct).
 - CertLab repo: `C:\Users\ipras\workspace\CertLab` (private, GitHub iPrash). Folder is connected when Prash grants it. Delete grant must be requested each session.
 - Focus skills from baseline: Claude API Mechanics, Agent Construction with Claude, Agent Patterns and Frameworks. Domains 7 and 8 are all rated 1 and come next.
 - Open: Console "Last used" on key `CertLabDev` was still empty on 22 Oct. Local check already proves the key was used. Ask once whether it now shows a time.
