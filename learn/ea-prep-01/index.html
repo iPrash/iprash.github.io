@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<title>EA Interview Prep</title>
+<meta name="description" content="Solution Architect interview prep: half-page primers on every technology in the JD, plus a question-by-question study guide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23234E8C'/><text y='68' x='50' text-anchor='middle' font-size='46' font-family='monospace' fill='white'>EA</text></svg>">
+<style>
+:root{
+  --paper:#F6F6F2;--surface:#FFFFFF;--ink:#141B26;--muted:#56606C;--faint:#868F9A;--line:#E3E2DA;
+  --accent:#234E8C;--accent-soft:#E6EDF7;--warn:#9A4A12;--warn-soft:#FBEEE3;--ok:#1F6B4A;--ok-soft:#E3F2EA;
+  --brass:#A87B2A;--code:#EEF0F3;
+  --display:'Space Grotesk',system-ui,sans-serif;--body:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0E1319;--surface:#151C25;--ink:#E5EAF0;--muted:#A0AAB5;--faint:#76818C;--line:#26313D;
+  --accent:#7FA8E8;--accent-soft:#1A2A40;--warn:#F0A56B;--warn-soft:#33241A;--ok:#6CCB9C;--ok-soft:#16302A;
+  --brass:#E1B65E;--code:#1E2733;}}
+:root[data-theme="dark"]{
+  --paper:#0E1319;--surface:#151C25;--ink:#E5EAF0;--muted:#A0AAB5;--faint:#76818C;--line:#26313D;
+  --accent:#7FA8E8;--accent-soft:#1A2A40;--warn:#F0A56B;--warn-soft:#33241A;--ok:#6CCB9C;--ok-soft:#16302A;
+  --brass:#E1B65E;--code:#1E2733;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.86em;background:var(--code);padding:1px 5px;border-radius:4px}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+header.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar-inner{max-width:900px;margin:0 auto;padding:10px 16px;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.bar-inner::-webkit-scrollbar{display:none}
+.bar a{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:8px;white-space:nowrap}
+.bar a:hover{background:var(--accent-soft);color:var(--accent)}
+.bar .prog{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--faint);white-space:nowrap;padding-left:8px}
+.hero{padding:48px 0 28px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin:0 0 12px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,5.5vw,48px);line-height:1.05;letter-spacing:-.02em;margin:0 0 14px}
+.lede{font-size:17px;color:var(--muted);max-width:64ch;margin:0 0 18px}
+h2.part{font-family:var(--display);font-size:clamp(24px,4vw,32px);letter-spacing:-.01em;margin:56px 0 6px}
+.part-sub{color:var(--muted);margin:0 0 22px;max-width:68ch}
+h3{font-family:var(--display);font-weight:600;font-size:21px;margin:0 0 4px;letter-spacing:-.01em}
+h4{font-family:var(--display);font-weight:600;font-size:15px;margin:16px 0 6px;color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 22px 18px;margin:0 0 18px;position:relative}
+.card.done{opacity:.72}
+.card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.card p{margin:8px 0}
+.card ul{margin:6px 0;padding-left:20px}
+.card li{margin:3px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:4px 22px}
+@media (max-width:700px){.grid2{grid-template-columns:1fr}}
+.box{border-radius:10px;padding:10px 14px;margin:12px 0 4px;font-size:15px}
+.box.gotcha{background:var(--warn-soft);border-left:3px solid var(--warn)}
+.box.say{background:var(--ok-soft);border-left:3px solid var(--ok)}
+.box.intent{background:var(--accent-soft);border-left:3px solid var(--accent)}
+.box b.lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:4px}
+.box.gotcha b.lbl{color:var(--warn)}.box.say b.lbl{color:var(--ok)}.box.intent b.lbl{color:var(--accent)}
+.box ul{margin:2px 0;padding-left:18px}
+.src{font-size:12.5px;color:var(--faint);margin-top:12px;border-top:1px dashed var(--line);padding-top:8px}
+.src a{color:var(--faint)}
+.ver{font-family:var(--mono);font-size:10px;background:var(--code);color:var(--brass);padding:1px 5px;border-radius:4px;vertical-align:1px}
+label.tick{position:absolute;top:18px;right:18px;font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;gap:6px;align-items:center;cursor:pointer;user-select:none}
+label.tick input{accent-color:var(--ok);width:16px;height:16px}
+.card h3{padding-right:76px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;margin:10px 0}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.tbl{overflow-x:auto}
+td{overflow-wrap:break-word}
+td:first-child{hyphens:manual}
+@media (max-width:600px){.card{padding:18px 14px 14px}th,td{padding:6px 5px}details.qa .ans{padding:0 12px 12px 14px}label.tick{top:14px;right:12px}}
+details.qa{border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--paper)}
+details.qa>summary{cursor:pointer;padding:10px 14px;font-weight:500;list-style:none;display:flex;gap:10px}
+details.qa>summary::-webkit-details-marker{display:none}
+details.qa>summary::before{content:"+";font-family:var(--mono);color:var(--accent);font-weight:600}
+details.qa[open]>summary::before{content:"−"}
+details.qa .ans{padding:0 16px 12px 34px}
+details.qa .ans p{margin:6px 0}
+.q-time{font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap;padding-top:3px}
+.session{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.session:last-child{border-bottom:none}
+.snum{font-family:var(--mono);font-weight:600;color:#fff;background:var(--ink);border-radius:8px;padding:4px 9px;height:fit-content;font-size:13px}
+:root[data-theme="dark"] .snum{color:var(--paper)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .snum{color:var(--paper)}}
+.session p{margin:4px 0}
+.session .meta{font-family:var(--mono);font-size:12px;color:var(--faint)}
+figure.arch{margin:12px 0;overflow-x:auto}
+figure.arch svg{min-width:640px;width:100%;height:auto;display:block}
+figure.arch figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+.mnemonic{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:.02em}
+footer{padding:40px 0 60px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin:14px 0}
+.toc a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;text-decoration:none;color:var(--ink);font-size:14px}
+.toc a:hover{border-color:var(--accent)}
+.toc a span{display:block;font-family:var(--mono);font-size:11px;color:var(--faint)}
+.toc a.is-done{border-color:var(--ok)}
+.toc a.is-done span::after{content:" · done";color:var(--ok)}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+button.mini{font-family:var(--mono);font-size:12px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+button.mini:hover{border-color:var(--accent)}
+@media print{
+  header.bar,.btnrow,label.tick{display:none}
+  body{background:#fff;color:#000;font-size:12px}
+  .card{break-inside:avoid;border-color:#ccc}
+  details.qa .ans{display:block}
+}
+</style>
+</head>
+<body>
+<header class="bar"><nav class="bar-inner" aria-label="Sections">
+  <a href="#top">Top</a>
+  <a href="#plan">Study plan</a>
+  <a href="#part1">Part 1 · Tech</a>
+  <a href="#part2">Part 2 · Interview</a>
+  <a href="#extra">More questions</a>
+  <a href="#design">System design</a>
+  <a href="#cheat">Cheat sheet</a>
+  <span class="prog" id="prog">0 / 0 done</span>
+</nav></header>
+
+<main class="wrap" id="top">
+<section class="hero">
+  <p class="eyebrow">Solution Architect · Interview prep</p>
+  <h1>Enterprise architect prep</h1>
+  <p class="lede">Do six study sessions this weekend. Part 1 gives one card per technology in the job description. Part 2 takes the questions a Solution Architect panel is likely to ask, explains what each one tests, and gives a model answer. On the morning of the interview, read only the cheat sheet.</p>
+  <div class="box intent"><b class="lbl">What these interviews test</b>
+  Senior architecture interviews often follow one pattern. The panel starts with a scenario, then asks "what else?" until you run out. Then they follow your answer into the next layer: "you scaled Kafka, so what happens to the database?" Be ready for three things:
+  <ul>
+    <li><b>End-to-end thinking.</b> A change in one layer moves the bottleneck to the next layer. Say this before they ask.</li>
+    <li><b>Completeness.</b> Have a checklist ready (the <a href="#q4">6 Cs</a>), so "what else?" never stalls you.</li>
+    <li><b>Options under constraint.</b> When a dependency cannot scale, never stop at "the other team is not ready". Give options, trade-offs and an escalation path.</li>
+  </ul></div>
+  <div class="btnrow">
+    <button class="mini" id="openAll" type="button">Open all answers</button>
+    <button class="mini" id="closeAll" type="button">Close all answers</button>
+    <button class="mini" id="theme" type="button">Toggle dark mode</button>
+    <button class="mini" id="reset" type="button">Reset progress</button>
+  </div>
+</section>
+
+<!-- ============ STUDY PLAN ============ -->
+<section id="plan">
+<h2 class="part">Study plan: six sessions</h2>
+<p class="part-sub">About two hours each. Do them in this order. The order puts your weakest, most-asked areas first. Say the answers out loud. Reading is not enough for scenario-based interviews.</p>
+<div class="card">
+  <div class="session"><span class="snum">S1</span><div>
+    <p><b>Kafka and event-driven patterns.</b> Read cards <a href="#t-kafka">Kafka</a> and <a href="#t-eda">Event-driven patterns</a>. Then say aloud the answers to Q2, Q3, Q6 and Q8a.</p>
+    <p class="meta">Highest weight. Kafka and failure handling are the core of this role.</p>
+  </div></div>
+  <div class="session"><span class="snum">S2</span><div>
+    <p><b>Java, Spring Boot and scaling limits.</b> Read <a href="#t-spring">Java / Spring Boot</a>. Learn the <a href="#q4">6 Cs</a> by heart. Say aloud Q4 and Q5. Do the Little's Law sums in the <a href="#cheat">cheat sheet</a>.</p>
+    <p class="meta">Expect a sustained "what else?" drill here.</p>
+  </div></div>
+  <div class="session"><span class="snum">S3</span><div>
+    <p><b>Cassandra and data.</b> Read <a href="#t-cass">Cassandra</a>. Model one table on paper: "messages by customer, newest first". Answer the Cassandra questions in <a href="#extra">More questions</a>.</p>
+  </div></div>
+  <div class="session"><span class="snum">S4</span><div>
+    <p><b>Azure and Kubernetes.</b> Read <a href="#t-azure">Azure</a>, <a href="#t-k8s">Kubernetes / AKS</a> and <a href="#t-dr">Resilience and DR</a>. Draw the <a href="#design">reference architecture</a> from memory once.</p>
+  </div></div>
+  <div class="session"><span class="snum">S5</span><div>
+    <p><b>Observability, quality and front end.</b> Read <a href="#t-obs">Observability</a>, <a href="#t-qe">Quality engineering</a>, <a href="#t-react">React</a>. Say aloud Q1 and Q8b.</p>
+  </div></div>
+  <div class="session"><span class="snum">S6</span><div>
+    <p><b>Architecture practice, your story and a mock.</b> Read <a href="#t-ea">EA methods</a> and <a href="#t-modern">Modernization</a>. Rehearse your <a href="#stories">three anchor stories</a>: two 30-second pitches and the 2-minute <a href="#q7">AI platform story</a>. Then do the <a href="#design">system design walkthrough</a> aloud in 10 minutes, with a timer.</p>
+  </div></div>
+</div>
+</section>
+
+<!-- ============ PART 1 ============ -->
+<section id="part1">
+<h2 class="part">Part 1 · Technical know-how</h2>
+<p class="part-sub">One card per technology in the job description. Each card: what it is, why it is used, the points to remember, the gotchas, and one line to say in the interview. Version-sensitive facts carry a <span class="ver">ver</span> mark. Evidence checked 23 Oct 2026.</p>
+<nav class="toc" id="toc">
+  <a href="#t-kafka"><span>01 · deep</span>Apache Kafka</a>
+  <a href="#t-eda"><span>02 · deep</span>Event-driven patterns</a>
+  <a href="#t-cass"><span>03 · deep</span>Apache Cassandra</a>
+  <a href="#t-k8s"><span>04 · deep</span>Kubernetes / AKS</a>
+  <a href="#t-azure"><span>05 · deep</span>Microsoft Azure</a>
+  <a href="#t-spring"><span>06</span>Java / Spring Boot</a>
+  <a href="#t-react"><span>07 · deep</span>ReactJS</a>
+  <a href="#t-obs"><span>08</span>Observability, Grafana, SRE</a>
+  <a href="#t-qe"><span>09</span>Quality engineering</a>
+  <a href="#t-sec"><span>10</span>Security and identity</a>
+  <a href="#t-dr"><span>11</span>Resilience and DR</a>
+  <a href="#t-ea"><span>12</span>EA methods: TOGAF, C4, ADR, DDD</a>
+  <a href="#t-modern"><span>13</span>Modernization</a>
+</nav>
+
+<!-- KAFKA -->
+<article class="card" id="t-kafka">
+<span class="tag">01 · Messaging backbone</span>
+<h3>Apache Kafka</h3>
+<p>Kafka is a distributed, append-only commit log. Producers write records to <b>topics</b>. Each topic splits into <b>partitions</b>. Brokers store partitions on disk and replicate them. Consumers read at their own pace and track their position with <b>offsets</b>.</p>
+<p><b>Why use it:</b> it decouples producers from consumers in time and in speed. Data stays on disk after it is read, so you can replay it. It scales horizontally by adding partitions and brokers. It is the default backbone for high-volume event-driven systems.</p>
+<div class="grid2"><div>
+<h4>Core mechanics</h4>
+<ul>
+  <li><b>Partition = unit of order and parallelism.</b> Order is guaranteed only inside one partition.</li>
+  <li><b>Key decides partition:</b> <code>murmur2(key) % partitions</code>. Same key, same partition, same order. A null key spreads records (sticky partitioner).</li>
+  <li><b>Consumer group:</b> each partition goes to exactly one consumer in the group. Consumers above the partition count sit idle.</li>
+  <li><b>Replication:</b> RF=3, <code>min.insync.replicas=2</code>, <code>acks=all</code>. Survives one broker loss with no data loss.</li>
+  <li><b>Retention</b> by time or size. <b>Log compaction</b> keeps the latest value per key (good for state topics).</li>
+</ul></div><div>
+<h4>Delivery semantics</h4>
+<ul>
+  <li><b>At-most-once:</b> commit before processing. Can lose data.</li>
+  <li><b>At-least-once:</b> process, then commit. Can duplicate. This is the normal choice, with idempotent consumers.</li>
+  <li><b>Exactly-once:</b> idempotent producer plus transactions plus <code>isolation.level=read_committed</code>. Holds only for Kafka-to-Kafka. An external database still needs idempotent writes.</li>
+  <li>Idempotent producer is on by default since Kafka 3.0 <span class="ver">ver</span>. It keeps order with up to 5 in-flight requests.</li>
+</ul></div></div>
+<h4>Operations to know</h4>
+<ul>
+  <li><b>Consumer lag</b> is the key health metric. Measure it in <i>seconds</i>, not only in messages.</li>
+  <li><b>Rebalance:</b> if processing takes longer than <code>max.poll.interval.ms</code> (default 5 min), the consumer is removed and its partitions move. Use cooperative-sticky assignment and static membership (<code>group.instance.id</code>) to reduce churn. Kafka 4.0 made the new consumer rebalance protocol (KIP-848) generally available <span class="ver">ver</span>.</li>
+  <li><b>KRaft:</b> Kafka 4.0 (March 2025) removed ZooKeeper. Metadata now lives in a Raft quorum in Kafka <span class="ver">ver</span>.</li>
+  <li><b>Queues for Kafka (share groups, KIP-932):</b> lets many consumers share one partition with per-message acknowledgement. Preview in 4.1 (Sept 2025). Check its status before you mention it <span class="ver">ver</span>.</li>
+  <li><b>Throughput tuning:</b> producer <code>linger.ms</code>, <code>batch.size</code>, <code>compression.type</code> (lz4 or zstd). Consumer <code>max.poll.records</code>, <code>fetch.min.bytes</code>.</li>
+  <li><b>On Azure:</b> Event Hubs has a Kafka-protocol endpoint (Standard tier and above). Other options: Confluent Cloud on Azure, or self-managed with Strimzi on AKS.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>You cannot reduce partitions. Adding partitions changes the key-to-partition mapping, so order breaks for existing keys during the change.</li>
+  <li>Kafka has no built-in DLQ for plain consumers. Spring Kafka and Kafka Connect add one.</li>
+  <li>Retry topics break per-key order.</li>
+  <li>A hot key puts all its load on one partition. More partitions do not help it.</li>
+  <li>Too many partitions per broker slow down failover and use more memory and file handles.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"Kafka gives me ordering per key, durable buffering and replay. I size partitions for peak throughput and maximum consumer parallelism, with headroom, because I cannot shrink them later and growing them remaps keys."</div>
+<p class="src">Sources: <a href="https://kafka.apache.org/documentation/">Apache Kafka documentation</a>; <a href="https://kafka.apache.org/blog">Kafka 4.0 / 4.1 release notes</a>; <a href="https://cwiki.apache.org/confluence/display/KAFKA/Queues+for+Kafka+%28KIP-932%29+-+Preview+Release+Notes">KIP-932 preview notes</a>; <a href="https://learn.microsoft.com/azure/event-hubs/azure-event-hubs-apache-kafka-overview">Event Hubs for Kafka</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- EDA -->
+<article class="card" id="t-eda">
+<span class="tag">02 · Patterns</span>
+<h3>Event-driven architecture patterns</h3>
+<p>Event-driven architecture (EDA) means services communicate by publishing facts ("OrderPlaced") instead of calling each other directly. The JD asks for "event modeling, topic strategy, schema evolution, idempotency, retries, dead-letter handling, replay, and observability". This card covers each one.</p>
+<p><b>Why use it:</b> loose coupling, absorbing traffic spikes (load levelling), independent scaling, and an audit trail you can replay.</p>
+<div class="tbl"><table>
+<tr><th>Concern</th><th>Pattern to name</th><th>Key point</th></tr>
+<tr><td>Event modeling</td><td>Domain event, notification event, event-carried state transfer</td><td>Name events in past tense. Include an event ID, entity ID, version, timestamp, and a correlation ID.</td></tr>
+<tr><td>Topic strategy</td><td>One topic per entity or event family</td><td>Key by the entity whose order matters. Naming convention: <code>domain.entity.event.v1</code>. Set retention per topic.</td></tr>
+<tr><td>Schema evolution</td><td>Schema Registry with Avro or Protobuf</td><td>Set BACKWARD compatibility (default in Confluent Schema Registry): add optional fields only. Breaking change means a new topic version.</td></tr>
+<tr><td>DB write + publish</td><td><b>Transactional outbox</b></td><td>Write the business row and an outbox row in one local transaction. A relay or CDC (Debezium) publishes it. This avoids the dual-write problem.</td></tr>
+<tr><td>Duplicates</td><td><b>Idempotent consumer</b></td><td>Dedup table keyed by event ID, or natural upsert, or version check (ignore if version ≤ stored).</td></tr>
+<tr><td>Transient failures</td><td>Retry with exponential backoff and jitter; circuit breaker</td><td>Blocking retry keeps order. Non-blocking retry topics keep throughput but lose order.</td></tr>
+<tr><td>Poison messages</td><td><b>Dead-letter topic (DLQ)</b></td><td>After N attempts, move the message with error headers. Alert on DLQ depth. Build a redrive tool.</td></tr>
+<tr><td>Replay</td><td>Offset reset; compacted topics; event store</td><td>Replay is safe only if consumers are idempotent.</td></tr>
+<tr><td>Multi-service workflow</td><td><b>Saga</b>: choreography or orchestration</td><td>Each step has a compensating action. Orchestration is easier to see and debug when there are more than 3 or 4 steps.</td></tr>
+<tr><td>Read scaling</td><td>CQRS</td><td>Separate write model from read models built from events. Read models are eventually consistent.</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>A DLQ is for bad messages, not for an outage. If the downstream is down, pause and keep the data in Kafka. Do not flood the DLQ.</li>
+  <li>Retries without jitter cause a retry storm that knocks the recovering service down again.</li>
+  <li>Event sourcing is not the same as EDA. Do not propose it unless audit or temporal queries need it.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I design for at-least-once delivery and make every consumer idempotent. Outbox on the write side, idempotency on the read side, DLQ only for poison messages."</div>
+<p class="src">Sources: <a href="https://microservices.io/patterns/data/transactional-outbox.html">microservices.io: Outbox, Saga, Idempotent consumer</a>; <a href="https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html">Confluent: schema evolution</a>; <a href="https://docs.spring.io/spring-kafka/reference/retrytopic.html">Spring Kafka: non-blocking retries</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- CASSANDRA -->
+<article class="card" id="t-cass">
+<span class="tag">03 · Data</span>
+<h3>Apache Cassandra</h3>
+<p>Cassandra is a distributed, wide-column NoSQL database. It has no leader: every node is equal. Data spreads across a token ring by hashing the partition key. It is built for very high write volume, linear scale-out and multi-datacenter active-active.</p>
+<p><b>Why use it:</b> predictable low-latency writes at scale, no single point of failure, tunable consistency, and built-in multi-region replication. Use it for known access patterns such as time series, messages, events, user activity. Do not use it for ad-hoc queries, joins or multi-row transactions.</p>
+<div class="grid2"><div>
+<h4>Data modeling rules</h4>
+<ul>
+  <li><b>Query first.</b> List access patterns, then design one table per query. Denormalize. No joins.</li>
+  <li><b>Primary key</b> = partition key (where the data lives) + clustering columns (sort order inside the partition).</li>
+  <li>Every query must give the full partition key. <code>ALLOW FILTERING</code> is a design smell.</li>
+  <li><b>Bound partition size.</b> Keep partitions well under 100 MB (aim for about 10 MB). Use time buckets: <code>((customer_id, month), sent_at)</code>.</li>
+  <li>Avoid hot partitions: spread load across many keys.</li>
+</ul></div><div>
+<h4>Consistency and replication</h4>
+<ul>
+  <li><code>NetworkTopologyStrategy</code>, RF=3 per datacenter.</li>
+  <li><b>Strong reads when R + W &gt; RF.</b> With RF=3: QUORUM write (2) + QUORUM read (2) = 4 &gt; 3.</li>
+  <li>Multi-region: use <code>LOCAL_QUORUM</code> to avoid cross-region latency.</li>
+  <li>Repair mechanisms: hinted handoff, read repair, and scheduled anti-entropy repair (<code>nodetool repair</code>, or Reaper).</li>
+  <li>Writes are upserts, so replaying the same write is idempotent. Counters and list appends are not.</li>
+</ul></div></div>
+<h4>Internals that explain performance</h4>
+<ul>
+  <li><b>Write path:</b> commit log + memtable, flushed to immutable SSTables. Writes are cheap.</li>
+  <li><b>Read path:</b> may merge many SSTables (bloom filters help). Reads cost more than writes.</li>
+  <li><b>Compaction strategy:</b> STCS for write-heavy, LCS for read-heavy, TWCS for time series with TTL. Cassandra 5.0 adds Unified Compaction Strategy (UCS) and Storage-Attached Indexes (SAI) <span class="ver">ver</span>.</li>
+  <li><b>Lightweight transactions</b> (<code>IF NOT EXISTS</code>) use Paxos. They cost about 4 round trips. Use sparingly.</li>
+  <li><b>On Azure:</b> Azure Managed Instance for Apache Cassandra (real Cassandra), or Azure Cosmos DB for Apache Cassandra (CQL-compatible API, priced in request units).</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li><b>Tombstones.</b> Deletes and TTL expiry write tombstones. Many tombstones in one read cause slow reads and then failures (default fail threshold is 100,000). Using Cassandra as a queue is the classic anti-pattern.</li>
+  <li>Run repair within <code>gc_grace_seconds</code> (default 10 days), or deleted data can come back.</li>
+  <li>Multi-partition unlogged batches are slower, not faster. Logged batches give atomicity, not speed.</li>
+  <li>Materialized views are experimental. Secondary indexes on high-cardinality columns perform poorly; SAI is better but still not free.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I model Cassandra from the access patterns. Partition key for distribution, clustering key for sort, time buckets to bound partition size, LOCAL_QUORUM for consistency in a multi-region setup, and TWCS with TTL for time series."</div>
+<p class="src">Sources: <a href="https://cassandra.apache.org/doc/latest/cassandra/developing/data-modeling/index.html">Cassandra docs: data modeling</a>; <a href="https://cassandra.apache.org/doc/latest/cassandra/new/index.html">Cassandra 5.0 what's new</a>; <a href="https://learn.microsoft.com/azure/managed-instance-apache-cassandra/introduction">Azure Managed Instance for Apache Cassandra</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- K8S -->
+<article class="card" id="t-k8s">
+<span class="tag">04 · Platform</span>
+<h3>Kubernetes and AKS</h3>
+<p>Kubernetes (K8s) runs containers across a cluster of machines. You declare the desired state in YAML. Controllers keep the actual state equal to it. Azure Kubernetes Service (AKS) is the managed version: Azure runs the control plane, you run the node pools.</p>
+<p><b>Why use it:</b> one standard platform for deploy, scale, self-heal, roll out and roll back, across many teams.</p>
+<div class="grid2"><div>
+<h4>Objects to know</h4>
+<ul>
+  <li><b>Deployment</b> (stateless), <b>StatefulSet</b> (stable identity and disk), DaemonSet, Job/CronJob.</li>
+  <li><b>Service</b>: ClusterIP, NodePort, LoadBalancer. <b>Ingress</b> or <b>Gateway API</b> for HTTP routing.</li>
+  <li><b>ConfigMap</b> and <b>Secret</b>. A Secret is only base64, not encrypted. On AKS use Key Vault with the Secrets Store CSI driver.</li>
+  <li><b>Probes:</b> startup, readiness (take out of traffic), liveness (restart).</li>
+  <li><b>Requests/limits:</b> requests drive scheduling. A CPU limit throttles. A memory limit kills (OOMKilled).</li>
+  <li><b>PodDisruptionBudget</b>, topology spread across zones, anti-affinity.</li>
+  <li>NetworkPolicy, RBAC, ServiceAccount, namespaces.</li>
+</ul></div><div>
+<h4>Scaling</h4>
+<ul>
+  <li><b>HPA</b>: scales pods on CPU, memory or custom metrics.</li>
+  <li><b>KEDA</b> (AKS add-on): scales on events, for example <b>Kafka consumer lag</b>. Set max replicas = partition count.</li>
+  <li><b>Cluster Autoscaler</b> or Node Auto-Provisioning (Karpenter-based) adds nodes. Nodes take minutes, so keep headroom.</li>
+  <li>VPA for right-sizing suggestions. Do not run VPA and HPA on the same metric.</li>
+</ul>
+<h4>AKS specifics</h4>
+<ul>
+  <li>System and user node pools. Spread across availability zones. Use the Standard tier for the uptime SLA.</li>
+  <li>Networking: Azure CNI Overlay is the usual default now. Plain Azure CNI gives each pod a VNet IP, so subnets run out of IPs.</li>
+  <li><b>Workload Identity</b> (federated with Entra ID) replaces the deprecated pod-managed identity.</li>
+  <li>Private cluster, egress through Azure Firewall, GitOps with the Flux extension.</li>
+</ul></div></div>
+<h4>Troubleshooting shortlist</h4>
+<p><code>Pending</code> = no capacity, or taints/affinity. <code>CrashLoopBackOff</code> = app crash; check <code>kubectl logs --previous</code>. <code>ImagePullBackOff</code> = registry or auth. <code>OOMKilled</code> = memory limit. Always start with <code>kubectl describe pod</code> and events.</p>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>A liveness probe that checks the database restarts every pod when the database blips. Check dependencies in readiness only, or not at all.</li>
+  <li>Graceful shutdown: add a <code>preStop</code> sleep and match <code>terminationGracePeriodSeconds</code> (default 30s). Otherwise rolling updates drop requests.</li>
+  <li><b>ingress-nginx was retired in March 2026.</b> Plan for Gateway API, or Application Gateway for Containers on Azure. AKS published its own support timeline for its add-on <span class="ver">ver</span>.</li>
+  <li>Scaling pods multiplies database connections. See Q5.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"On AKS I separate system and user pools across three zones, scale stateless APIs with HPA and Kafka consumers with KEDA on lag, capped at the partition count, and keep secrets in Key Vault through Workload Identity."</div>
+<p class="src">Sources: <a href="https://kubernetes.io/docs/concepts/">Kubernetes concepts</a>; <a href="https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/">Kubernetes blog: ingress-nginx retirement (Nov 2025)</a>; <a href="https://blog.aks.azure.com/2025/11/13/ingress-nginx-update">AKS blog: ingress-nginx update</a>; <a href="https://learn.microsoft.com/azure/aks/best-practices">AKS best practices</a>; <a href="https://keda.sh/docs/latest/scalers/apache-kafka/">KEDA Kafka scaler</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- AZURE -->
+<article class="card" id="t-azure">
+<span class="tag">05 · Cloud</span>
+<h3>Microsoft Azure architecture</h3>
+<p>The JD lists compute, networking, identity, storage, databases, integration, monitoring, resilience and deployment. Know one or two services per area and why you pick them. Frame decisions with the <b>Azure Well-Architected Framework</b>: Reliability, Security, Cost Optimization, Operational Excellence, Performance Efficiency.</p>
+<div class="tbl"><table>
+<tr><th>Area</th><th>Services to name</th><th>Choice note</th></tr>
+<tr><td>Edge</td><td>Front Door (global LB, WAF, CDN), Application Gateway (regional L7, WAF)</td><td>Front Door for multi-region failover. App Gateway or App Gateway for Containers in front of AKS.</td></tr>
+<tr><td>APIs</td><td>API Management</td><td>Auth, throttling, quotas, versioning, developer portal.</td></tr>
+<tr><td>Compute</td><td>AKS, Container Apps, App Service, Functions</td><td>AKS for many services with platform control. Container Apps for simpler workloads (built on K8s and KEDA).</td></tr>
+<tr><td>Network</td><td>Hub-spoke VNets, Private Endpoints, Azure Firewall, NSGs, Private DNS</td><td>No public PaaS endpoints. Egress through the firewall.</td></tr>
+<tr><td>Identity</td><td>Microsoft Entra ID, managed identities, Workload Identity, Entra External ID (customer sign-in)</td><td>No secrets in code. Managed identity everywhere possible.</td></tr>
+<tr><td>Secrets</td><td>Key Vault</td><td>Rotate. Access by managed identity.</td></tr>
+<tr><td>Data</td><td>Managed Instance for Apache Cassandra, Cosmos DB, Azure Database for PostgreSQL, Azure Managed Redis, Blob Storage</td><td>Pick by access pattern and consistency need.</td></tr>
+<tr><td>Integration</td><td>Event Hubs (Kafka endpoint), Service Bus, Event Grid</td><td><b>Service Bus</b> has native DLQ, sessions (ordered per session) and scheduled delivery. <b>Event Hubs</b> is for high-volume streams.</td></tr>
+<tr><td>Observability</td><td>Azure Monitor, Log Analytics, Application Insights (OpenTelemetry), Managed Prometheus, Azure Managed Grafana</td><td>See card 08.</td></tr>
+<tr><td>Delivery</td><td>Bicep or Terraform, GitHub Actions or Azure DevOps, ACR, Flux GitOps</td><td>Everything as code. Policy as code with Azure Policy.</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li><b>SNAT port exhaustion:</b> many outbound connections through a load balancer run out of ports. Fix with NAT Gateway, connection reuse and Private Endpoints. Good "what else?" answer.</li>
+  <li>Every service has quotas and throttling limits (Event Hubs throughput units, Cosmos RUs, Entra token endpoint). Check them in capacity planning.</li>
+  <li>Zone-redundant is not region-redundant. A regional outage needs a second region.</li>
+  <li>Cost: egress between regions and Log Analytics ingestion are common surprise bills.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I frame Azure decisions with the Well-Architected pillars and write the trade-off into an ADR. Typical stack: Front Door and WAF, APIM, private AKS across zones, Event Hubs or Kafka, Cassandra MI, Key Vault, and Azure Monitor with Managed Grafana."</div>
+<p class="src">Sources: <a href="https://learn.microsoft.com/azure/well-architected/">Azure Well-Architected Framework</a>; <a href="https://learn.microsoft.com/azure/architecture/">Azure Architecture Center</a>; <a href="https://learn.microsoft.com/azure/load-balancer/load-balancer-outbound-connections">Azure SNAT and outbound connections</a>; <a href="https://learn.microsoft.com/azure/service-bus-messaging/message-sessions">Service Bus sessions</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- SPRING -->
+<article class="card" id="t-spring">
+<span class="tag">06 · Backend</span>
+<h3>Java and Spring Boot</h3>
+<p>Spring Boot is the standard Java framework for microservices. It gives auto-configuration, starter dependencies, an embedded server and production features through Actuator.</p>
+<p><b>Why use it:</b> large ecosystem (Spring Security, Spring Kafka, Spring Data Cassandra), quick start, and strong operational support. Spring Boot 4.0 (Nov 2025) runs on Spring Framework 7 with a Java 17 baseline. Java 21 and 25 are the current LTS releases <span class="ver">ver</span>.</p>
+<div class="grid2"><div>
+<h4>Points to remember</h4>
+<ul>
+  <li><b>Actuator:</b> health, readiness and liveness groups for K8s probes, metrics through Micrometer to Prometheus.</li>
+  <li><b>Virtual threads</b> (Java 21+, <code>spring.threads.virtual.enabled=true</code>): cheap blocking I/O concurrency. They move the bottleneck to the connection pool.</li>
+  <li><b>HikariCP</b> is the default pool. Default <code>maximumPoolSize</code> is 10. The pool is <b>per JVM instance, per datasource</b>.</li>
+  <li><b>Resilience4j:</b> timeout, retry with backoff, circuit breaker, bulkhead, rate limiter.</li>
+  <li>Tomcat default max threads is 200. Request threads above pool size just wait for a connection.</li>
+</ul></div><div>
+<h4>Service and API design</h4>
+<ul>
+  <li>Boundaries follow DDD bounded contexts. One database per service.</li>
+  <li>REST with OpenAPI. Errors in <code>application/problem+json</code> (RFC 9457). Pagination. Versioning.</li>
+  <li><b>Idempotency key</b> header on POST, so clients can retry safely.</li>
+  <li>No distributed transactions across services. Use local transactions + outbox + saga.</li>
+  <li>Spring Security as an OAuth2 resource server. Validate JWTs from Entra ID.</li>
+</ul></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li><code>@Transactional</code> works through a proxy. A call from inside the same class skips it. By default it rolls back only on unchecked exceptions.</li>
+  <li>Never make a remote call inside a database transaction. It holds the connection while you wait.</li>
+  <li>Bigger pools are not faster. HikariCP guidance starts from <code>cores × 2 + disks</code> on the database side.</li>
+  <li>Set the JVM heap with <code>-XX:MaxRAMPercentage</code> so it respects the container limit.</li>
+  <li>Default HTTP clients may have no timeout. Always set connect and read timeouts.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"Every outbound call gets a timeout, a bounded retry with jitter, and a circuit breaker. Connection pools are sized per pod, and the total across pods must fit the database limit."</div>
+<p class="src">Sources: <a href="https://spring.io/blog">Spring blog: Spring Boot 4.0 release</a>; <a href="https://docs.spring.io/spring-boot/reference/actuator/">Spring Boot Actuator</a>; <a href="https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing">HikariCP: About Pool Sizing</a>; <a href="https://resilience4j.readme.io/docs">Resilience4j</a>; <a href="https://www.rfc-editor.org/rfc/rfc9457">RFC 9457</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- REACT -->
+<article class="card" id="t-react">
+<span class="tag">07 · Front end</span>
+<h3>ReactJS front-end architecture</h3>
+<p>React is a JavaScript library for building user interfaces from components. Data flows one way, from parent to child. React compares a virtual tree and updates only what changed. The JD asks about component design, state, API integration, performance, accessibility and secure journeys.</p>
+<p><b>Why use it:</b> the largest ecosystem, reusable component design systems, and rendering options from client-only to server rendering. React 19 (Dec 2024) added Actions and stable Server Components. React Compiler 1.0 (Oct 2025) memoizes automatically. Create React App is deprecated; start with a framework such as Next.js or with Vite <span class="ver">ver</span>.</p>
+<div class="grid2"><div>
+<h4>Architecture decisions</h4>
+<ul>
+  <li><b>Rendering:</b> CSR (app-like portals behind login), SSR or streaming (fast first paint, SEO), SSG (static content).</li>
+  <li><b>State, by type:</b> local UI state (<code>useState</code>); <b>server state</b> in TanStack Query or SWR (cache, dedupe, retry); global client state in Zustand or Redux Toolkit; URL state for filters.</li>
+  <li><b>Design system:</b> shared accessible component library, Storybook, tokens.</li>
+  <li><b>BFF</b> (backend for frontend): shapes APIs for the UI and keeps tokens on the server.</li>
+  <li>Micro-frontends (Module Federation) only when many teams must deploy separately. They add cost.</li>
+</ul></div><div>
+<h4>Performance and accessibility</h4>
+<ul>
+  <li><b>Core Web Vitals:</b> LCP &lt; 2.5 s, INP &lt; 200 ms (INP replaced FID in March 2024), CLS &lt; 0.1.</li>
+  <li>Code splitting with <code>lazy</code> and <code>Suspense</code>, bundle budgets, list virtualization, image optimization, CDN.</li>
+  <li><b>WCAG 2.2 AA:</b> semantic HTML first, ARIA only when needed, keyboard paths, focus management on route change, colour contrast.</li>
+  <li>Automate checks: axe-core in CI, Lighthouse budgets.</li>
+</ul></div></div>
+<h4>Secure user journeys</h4>
+<ul>
+  <li>OAuth 2.0 Authorization Code flow with PKCE (MSAL for Entra ID / External ID). No implicit flow.</li>
+  <li>Prefer a BFF with HttpOnly, Secure, SameSite cookies over tokens in <code>localStorage</code> (XSS can read it).</li>
+  <li>React escapes output. <code>dangerouslySetInnerHTML</code> is the XSS hole. Add a Content Security Policy.</li>
+  <li>Never trust the client. Authorize every API call on the server.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Putting fast-changing values in one big Context re-renders the whole tree.</li>
+  <li>Most "global state" is really cached server data. Treat it as a cache with invalidation.</li>
+  <li>An SPA route change does not move focus or announce the page to screen readers unless you do it.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"For a customer portal: a framework with SSR for public pages, a shared accessible design system, server state in a query cache, a BFF for auth, and Web Vitals and axe checks as CI quality gates."</div>
+<p class="src">Sources: <a href="https://react.dev/blog/2024/12/05/react-19">React 19 release</a>; <a href="https://react.dev/blog/2025/10/07/react-compiler-1">React Compiler 1.0</a>; <a href="https://react.dev/blog/2025/02/14/sunsetting-create-react-app">Sunsetting CRA</a>; <a href="https://web.dev/articles/vitals">web.dev Core Web Vitals</a>; <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- OBS -->
+<article class="card" id="t-obs">
+<span class="tag">08 · Operations</span>
+<h3>Observability, Grafana and SRE</h3>
+<p>Observability means you can explain any system behaviour from its outputs: <b>metrics</b>, <b>logs</b>, <b>traces</b> (and profiles). Grafana is the dashboard and alerting layer. The Grafana "LGTM" stack is Loki (logs), Grafana, Tempo (traces) and Mimir (Prometheus-compatible metrics). OpenTelemetry (OTel) is the vendor-neutral standard for producing telemetry. Grafana Alloy is Grafana's OTel collector; Grafana Agent reached end of life on 1 Nov 2025 <span class="ver">ver</span>.</p>
+<p><b>Why it matters here:</b> the JD asks for an "SRE mindset" and "data transfer SLAs". You cannot defend an SLA you do not measure end to end.</p>
+<div class="grid2"><div>
+<h4>SRE vocabulary</h4>
+<ul>
+  <li><b>SLI</b>: a measured ratio, e.g. events delivered within 5 s / all events.</li>
+  <li><b>SLO</b>: the target, e.g. 99.9% over 30 days.</li>
+  <li><b>SLA</b>: the contract with penalties. Set the SLO tighter than the SLA.</li>
+  <li><b>Error budget</b>: 99.9% leaves about 43 min per 30 days. Spend it on releases; freeze when it is gone.</li>
+  <li><b>Burn-rate alerts</b>, multi-window: page when 2% of the monthly budget burns in 1 hour (burn rate 14.4).</li>
+</ul></div><div>
+<h4>What to measure</h4>
+<ul>
+  <li><b>RED</b> for services: Rate, Errors, Duration.</li>
+  <li><b>USE</b> for resources: Utilization, Saturation, Errors.</li>
+  <li><b>Golden signals:</b> latency, traffic, errors, saturation.</li>
+  <li>Percentiles (p95, p99) from histograms. Never averages.</li>
+  <li>Kafka: lag in seconds, end-to-end latency from the event's origin timestamp to processed time.</li>
+  <li>Pools: HikariCP active, idle, <b>pending</b> and acquire time.</li>
+</ul></div></div>
+<ul>
+  <li><b>Trace propagation:</b> W3C <code>traceparent</code> header over HTTP, and in Kafka record headers, so a trace crosses the async hop.</li>
+  <li><b>Exemplars</b> link a metric spike to an example trace. Logs carry the trace ID.</li>
+  <li>Alert on symptoms users feel, not on every cause. Every page links to a runbook.</li>
+  <li>Synthetic probes and heartbeat events catch "nothing is flowing" when error counts are zero.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>High-cardinality labels (user ID, order ID) blow up metric storage and cost.</li>
+  <li>Averages hide tail latency. One slow dependency shows only in p99.</li>
+  <li>Head-based trace sampling can drop the rare slow trace. Consider tail-based sampling.</li>
+  <li>Log volume is a cost line. Set retention tiers.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I define SLIs from the customer's view, instrument with OpenTelemetry including across Kafka, build RED dashboards in Grafana, and alert on error-budget burn rate rather than raw thresholds."</div>
+<p class="src">Sources: <a href="https://sre.google/workbook/alerting-on-slos/">Google SRE Workbook: Alerting on SLOs</a>; <a href="https://opentelemetry.io/docs/">OpenTelemetry docs</a>; <a href="https://grafana.com/docs/alloy/latest/">Grafana Alloy docs</a>; <a href="https://learn.microsoft.com/azure/managed-grafana/overview">Azure Managed Grafana</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- QE -->
+<article class="card" id="t-qe">
+<span class="tag">09 · Quality</span>
+<h3>Quality engineering and CI/CD quality gates</h3>
+<p>The JD lists unit, API, contract, integration, performance, security, accessibility, resilience and end-to-end testing inside CI/CD. The architect's job is to choose where each test runs and which results block a release.</p>
+<div class="tbl"><table>
+<tr><th>Test type</th><th>Tools to name</th><th>Runs</th><th>Gate</th></tr>
+<tr><td>Unit</td><td>JUnit 5, Mockito, Jest, React Testing Library</td><td>Every commit</td><td>Pass; coverage on new code (e.g. 80%)</td></tr>
+<tr><td>Static / code quality</td><td>SonarQube, linters</td><td>Every PR</td><td>No new critical issues</td></tr>
+<tr><td>Integration</td><td><b>Testcontainers</b> (real Kafka, Cassandra)</td><td>Every PR</td><td>Pass</td></tr>
+<tr><td>Contract</td><td>Pact, Spring Cloud Contract; Schema Registry compatibility for events</td><td>Every PR, both sides</td><td>"can-i-deploy" check</td></tr>
+<tr><td>API</td><td>REST Assured, Postman/Newman</td><td>Each environment</td><td>Pass</td></tr>
+<tr><td>Security</td><td>SAST, SCA (dependency scan), secret scan, container scan, DAST (OWASP ZAP)</td><td>PR and nightly</td><td>No high or critical findings</td></tr>
+<tr><td>Accessibility</td><td>axe-core, Lighthouse, manual screen-reader pass</td><td>PR and release</td><td>No WCAG AA violations</td></tr>
+<tr><td>Performance</td><td>k6, Gatling, JMeter</td><td>Nightly and pre-release</td><td>p99 and throughput within SLO at 2× peak</td></tr>
+<tr><td>Resilience / chaos</td><td>Azure Chaos Studio, Chaos Mesh, Litmus</td><td>Scheduled game days</td><td>SLO held during fault</td></tr>
+<tr><td>End-to-end</td><td>Playwright, Cypress</td><td>Pre-release, few critical journeys</td><td>Pass</td></tr>
+</table></div>
+<ul>
+  <li><b>Test pyramid:</b> many fast unit tests, fewer integration, very few E2E. Contract tests replace most cross-service E2E tests.</li>
+  <li><b>Production readiness review:</b> SLOs set, dashboards and alerts live, runbooks written, load-tested, DR tested, security sign-off, rollback proven.</li>
+  <li>Progressive delivery: canary or blue-green with automatic rollback on SLO breach. Feature flags separate deploy from release.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Flaky tests destroy trust in the gate. Quarantine and fix them; do not just retry.</li>
+  <li>Large E2E suites are slow and brittle. Keep them for the top journeys.</li>
+  <li>Load tests with unrealistic data (one key, warm cache) give false confidence. Hot keys and cold caches are where systems fail.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I shift testing left with Testcontainers and contract tests, keep E2E to critical journeys, and make security, accessibility and performance budgets automatic gates, not end-of-project phases."</div>
+<p class="src">Sources: <a href="https://martinfowler.com/articles/practical-test-pyramid.html">Fowler: Practical Test Pyramid</a>; <a href="https://docs.pact.io/">Pact docs</a>; <a href="https://testcontainers.com/">Testcontainers</a>; <a href="https://learn.microsoft.com/azure/chaos-studio/chaos-studio-overview">Azure Chaos Studio</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- SECURITY -->
+<article class="card" id="t-sec">
+<span class="tag">10 · Security</span>
+<h3>Security, identity and threat modeling</h3>
+<p>Security is in almost every JD line: "secure user journeys", "identity and access", "threat modeling", partnering with cybersecurity. Base the answer on <b>zero trust</b>: verify every request, give least privilege, assume breach.</p>
+<div class="grid2"><div>
+<h4>Identity</h4>
+<ul>
+  <li><b>OIDC</b> for authentication, <b>OAuth 2.0</b> for authorization. Tokens are JWTs signed by Entra ID.</li>
+  <li>Customer sign-in: Entra External ID (successor to Azure AD B2C for new customers) <span class="ver">ver</span>.</li>
+  <li>Service-to-service: managed identity or client credentials, or mTLS through a service mesh.</li>
+  <li>Validate token audience, issuer, expiry and scopes in every service.</li>
+</ul></div><div>
+<h4>Threat modeling (STRIDE)</h4>
+<ul>
+  <li><b>S</b>poofing → strong authentication</li>
+  <li><b>T</b>ampering → signing, integrity checks</li>
+  <li><b>R</b>epudiation → audit logs</li>
+  <li><b>I</b>nformation disclosure → encryption, least privilege</li>
+  <li><b>D</b>enial of service → rate limits, WAF, autoscale</li>
+  <li><b>E</b>levation of privilege → authorization checks, RBAC</li>
+</ul></div></div>
+<ul>
+  <li>Encrypt in transit (TLS 1.2+) and at rest. Key Vault for keys and secrets. Kafka with TLS and SASL/OAuth plus ACLs.</li>
+  <li>OWASP Top 10 for web, OWASP API Security Top 10 for APIs (broken object-level authorization is number one).</li>
+  <li>Supply chain: signed images, SBOM, dependency scanning, admission policies in AKS (Azure Policy).</li>
+  <li>PII in events: minimize it, or tokenize. Kafka retention and replay make "right to be forgotten" hard.</li>
+</ul>
+<div class="box say"><b class="lbl">Say this</b>"I run a STRIDE threat model on the data-flow diagram at design time, with security in the room, and turn the mitigations into backlog items and pipeline checks."</div>
+<p class="src">Sources: <a href="https://learn.microsoft.com/security/zero-trust/zero-trust-overview">Microsoft Zero Trust</a>; <a href="https://learn.microsoft.com/azure/security/develop/threat-modeling-tool-threats">Microsoft STRIDE</a>; <a href="https://owasp.org/API-Security/">OWASP API Security Top 10</a>; <a href="https://learn.microsoft.com/entra/external-id/">Entra External ID</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- DR -->
+<article class="card" id="t-dr">
+<span class="tag">11 · Reliability</span>
+<h3>Resilience, availability and disaster recovery</h3>
+<p><b>Resilience</b> is staying up through component failures. <b>DR</b> is recovering from the loss of a whole region. Both start with two business numbers: <b>RTO</b> (how long can we be down) and <b>RPO</b> (how much data can we lose).</p>
+<div class="tbl"><table>
+<tr><th>Strategy</th><th>RTO / RPO</th><th>Cost</th><th>Fits</th></tr>
+<tr><td>Backup and restore</td><td>Hours / hours</td><td>Low</td><td>Internal tools</td></tr>
+<tr><td>Pilot light / warm standby</td><td>Minutes to an hour / minutes</td><td>Medium</td><td>Most business systems</td></tr>
+<tr><td>Active-passive (hot)</td><td>Minutes / seconds</td><td>High</td><td>Customer portals</td></tr>
+<tr><td>Active-active</td><td>Near zero / near zero</td><td>Highest; complex</td><td>Tier-0 customer platforms</td></tr>
+</table></div>
+<ul>
+  <li><b>In-region:</b> three availability zones for AKS, Kafka brokers (rack awareness) and Cassandra (one rack per zone).</li>
+  <li><b>Multi-region:</b> Front Door routes traffic. Cassandra replicates natively across DCs (active-active ready). Kafka needs MirrorMaker 2 or Confluent Cluster Linking; consumer offsets need translation on failover.</li>
+  <li><b>Resilience patterns:</b> timeouts, retries with jitter, circuit breaker, bulkhead, rate limiting, load shedding, graceful degradation, queue-based load levelling.</li>
+  <li><b>Prove it:</b> scheduled DR drills and chaos game days. An untested DR plan is a guess.</li>
+  <li>Composite SLA: services in series multiply. 99.95% × 99.95% ≈ 99.90%.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Active-active with writes in both regions needs a conflict strategy (Cassandra uses last-write-wins by timestamp).</li>
+  <li>The failover runbook depends on DNS TTLs, secrets and config being present in region two. These are usually what fails in a drill.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I start DR from RTO and RPO agreed with the business, choose the cheapest pattern that meets them, and prove it with a scheduled drill."</div>
+<p class="src">Sources: <a href="https://learn.microsoft.com/azure/well-architected/reliability/">WAF Reliability pillar</a>; <a href="https://learn.microsoft.com/azure/reliability/availability-zones-overview">Azure availability zones</a>; <a href="https://kafka.apache.org/documentation/#georeplication">Kafka geo-replication (MirrorMaker 2)</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- EA -->
+<article class="card" id="t-ea">
+<span class="tag">12 · Practice</span>
+<h3>Architecture methods: TOGAF, C4, ADRs, DDD</h3>
+<p>The JD asks you to own the target architecture, roadmap, standards and guardrails, and to document decisions. These are the methods to name.</p>
+<div class="grid2"><div>
+<h4>TOGAF (Standard, 10th Edition)</h4>
+<p>The Architecture Development Method (ADM) cycle: Preliminary → A Vision → B Business → C Information Systems (data, application) → D Technology → E Opportunities and Solutions → F Migration Planning → G Implementation Governance → H Change Management. Requirements Management sits in the centre. Use it as a checklist, not as paperwork.</p>
+<h4>C4 model</h4>
+<p>Four zoom levels: <b>Context</b> (system and users), <b>Container</b> (deployable units), <b>Component</b>, <b>Code</b>. Context and Container diagrams cover most reviews.</p>
+</div><div>
+<h4>Architecture Decision Records</h4>
+<p>One short file per decision: Title, Status, Context, Decision, Consequences (and options considered). Store with the code. Superseded, never deleted.</p>
+<h4>Domain-driven design</h4>
+<ul>
+  <li><b>Bounded context</b> = service boundary candidate.</li>
+  <li>Ubiquitous language; aggregates as consistency boundaries.</li>
+  <li>Context map; anti-corruption layer at legacy edges.</li>
+  <li>Event storming to find events and boundaries.</li>
+</ul></div></div>
+<h4>Governance that teams accept</h4>
+<ul>
+  <li><b>Guardrails over gates:</b> golden paths, templates, reference implementations, policy as code.</li>
+  <li>Lightweight design reviews; architecture review board only for cross-cutting or high-risk decisions.</li>
+  <li>Fitness functions: automated checks for architecture rules (dependency rules, latency budgets).</li>
+  <li>Tech debt register with business impact, and a fixed share of capacity each sprint.</li>
+</ul>
+<div class="box say"><b class="lbl">Say this</b>"I use TOGAF for structure, C4 for pictures, ADRs for decisions and DDD for boundaries, and I enforce standards through golden paths and automated checks rather than review meetings."</div>
+<p class="src">Sources: <a href="https://www.opengroup.org/togaf">The Open Group: TOGAF Standard</a>; <a href="https://c4model.com/">c4model.com</a>; <a href="https://adr.github.io/">adr.github.io</a>; <a href="https://martinfowler.com/bliki/BoundedContext.html">Fowler: Bounded Context</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- MODERN -->
+<article class="card" id="t-modern">
+<span class="tag">13 · Modernization</span>
+<h3>Monolith to domain services and events</h3>
+<p>A preferred qualification, and the topic of your resume deep-dive. The rule: modernize incrementally, keep the business running, and measure value at each step.</p>
+<ul>
+  <li><b>Strangler fig:</b> put a routing layer (API gateway) in front of the monolith. Move one capability at a time to a new service. Retire the old code path.</li>
+  <li><b>Anti-corruption layer:</b> translate between the legacy model and the new domain model.</li>
+  <li><b>CDC from the legacy database</b> (Debezium) to publish events without changing legacy code.</li>
+  <li><b>Branch by abstraction</b> and <b>parallel run</b>: run old and new side by side and compare outputs before cutover.</li>
+  <li><b>Characterization (golden master) tests</b> capture current behaviour before you change it. Essential when AI rewrites code.</li>
+  <li>Pick the first slice for value and low coupling, not for technical interest.</li>
+  <li><b>AI-assisted modernization:</b> LLM agents read legacy code, extract business rules, produce documentation and draft target code. MCP (Model Context Protocol, an open standard from Anthropic, Nov 2024) connects agents to tools and data such as repositories, databases and code-analysis servers. Humans review; tests verify.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Big-bang rewrites fail. Say "incremental" and "measurable" early.</li>
+  <li>Splitting services but sharing one database gives you a distributed monolith.</li>
+  <li>AI output is a draft. Verify with tests and expert review; control what code leaves the boundary.</li>
+</ul></div>
+<p class="src">Sources: <a href="https://martinfowler.com/bliki/StranglerFigApplication.html">Fowler: Strangler Fig</a>; <a href="https://learn.microsoft.com/azure/architecture/patterns/strangler-fig">Azure Architecture Center: Strangler Fig</a>; <a href="https://modelcontextprotocol.io/">Model Context Protocol</a>. Checked 23 Oct 2026.</p>
+</article>
+</section>
+
+<!-- ============ PART 2 ============ -->
+<section id="part2">
+<h2 class="part">Part 2 · Interview prep, question by question</h2>
+<p class="part-sub">Questions are grouped by theme, from architecture to scenarios. Read the intent first. Then try to answer aloud before you open the model answer. The answers use "we" and "I" so you can speak them, but replace the examples with your own projects wherever you can.</p>
+
+<div class="card">
+<h3>How to answer scenario questions</h3>
+<ol>
+  <li><b>Lead with the principle in one sentence,</b> then give three concrete points. Stop and offer more: "I can go deeper on any of those." This controls the "what else?" drill.</li>
+  <li><b>Follow the data through every layer</b> without being asked: client → edge → API → Kafka → consumer → database → downstream API.</li>
+  <li><b>Use numbers.</b> "Lag above 30 seconds pages us." "Pool of 10 per pod, 20 pods, 200 connections against a 500 limit."</li>
+  <li><b>Name the trade-off</b> in each option. Architects are judged on trade-offs, not on the right answer.</li>
+  <li><b>Tie back to the SLA.</b> Every answer ends with how it protects the SLA or how you measure it.</li>
+  <li><b>Use a real story</b> for each "have you faced" question. Situation, what you did, result in numbers, what you changed afterwards.</li>
+</ol>
+</div>
+
+<!-- STORY MAP -->
+<article class="card" id="stories">
+<span class="tag">Your experience</span>
+<h3>Three anchor stories</h3>
+<p>Prepare three projects in depth and use them for every "have you…?" and "tell me about…" question. Do not name clients in the interview unless you are cleared to; describe them by industry and scale instead.</p>
+<div class="tbl"><table>
+<tr><th>Story</th><th>One line</th><th>Best for</th></tr>
+<tr><td><a href="#q0"><b>A · Customer-360 integration</b></a></td><td>API-led platform unifying customer data: Kafka, Cassandra, PostgreSQL, cache, downstream billing and payment APIs</td><td>Q2 downstream down, Q5 dependency cannot scale, Q6 retries, Q8a ordering, Cassandra modelling</td></tr>
+<tr><td><a href="#q0b"><b>B · Platform scale modelling</b></a></td><td>Predictive capacity model for a large wealth-management platform; thresholds per layer; scalability roadmap; event-driven integration on AWS</td><td>Q1 SLA, Q3 scaling through layers, Q4 "what else?", capacity planning, stakeholder adoption</td></tr>
+<tr><td><a href="#q7"><b>C · Agentic AI platform</b></a></td><td>Context engine, layered memory and MCP for an enterprise agentic SDLC platform at a global payments company; PCI/PII governance; EKS stability</td><td>Q7 AI modernization, security and governance, Q8b production troubleshooting</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Public page</b>This page names no clients or employers. Keep it that way when you fill in the brackets.</div>
+</article>
+
+<!-- Q0 -->
+<article class="card" id="q0">
+<span class="tag">Anchor story A</span>
+<h3>Customer-360 integration platform</h3>
+<div class="box intent"><b class="lbl">Why this matters</b>Use one project for most "have you faced…" questions. Interviewers follow up on your own work. A project you know in detail survives deep follow-ups; a generic answer does not. This project already contains Kafka, Cassandra, a cache and downstream APIs, so it maps to Q1 to Q8.</div>
+<h4>The facts (from you)</h4>
+<ul>
+  <li>Led a cross-functional architecture team through full delivery of a Customer-360 integration platform.</li>
+  <li>API-led framework unifying data across disparate systems: MuleSoft, Kafka/Confluent, Cassandra, PostgreSQL, on AWS.</li>
+  <li>Four verticals: <b>Calls, Notes, Billing, Payments</b>. Each has its own Experience → Process → System API flow (MuleSoft API-led standard).</li>
+  <li><b>Calls</b> → object cache. <b>Notes</b> → Cassandra. <b>Billing and Payments</b> → other downstream APIs.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Know these numbers</b>Interviewers ask for numbers. Know: users and channels (agents, customer portal?); peak requests or events per second; latency SLA for the 360 view; where Kafka sat (which events, which topics, what key); team size; what PostgreSQL held; one outcome metric (e.g. agent handle time, systems retired, time to add a new channel).</div>
+
+<details class="qa" open><summary><span>30-second pitch</span></summary><div class="ans">
+<p>"I led the architecture for a Customer-360 platform for [client / industry]. The goal was one view of the customer across [N] systems for [agents / customers]. We used an API-led design: experience APIs per channel, process APIs that orchestrate, and system APIs over each system of record. There were four verticals. Calls were served from a cache for speed. Notes were stored in Cassandra for high write volume and fast reads by customer. Billing and Payments called downstream systems owned by other teams. Kafka on Confluent carried [the change events] between them. We handled [X] requests per second at [p95 latency], and the result was [outcome]."</p>
+</div></details>
+
+<h4>Map it to each question</h4>
+<div class="tbl"><table>
+<tr><th>Question</th><th>Use this part of the project</th></tr>
+<tr><td><a href="#q1">Q1</a> SLA tracking</td><td>The 360 view is a fan-out: one experience call becomes several system calls. End-to-end latency = process layer + the slowest vertical. Say how you measured per-layer latency and with which tool [Anypoint Monitoring / Splunk / CloudWatch / Grafana].</td></tr>
+<tr><td><a href="#q2">Q2</a> Downstream down</td><td>Billing and Payments are exactly this scenario. <b>Reads</b> (360 view): return a partial response; show Calls and Notes, mark Billing "temporarily unavailable"; circuit breaker; short cache. <b>Writes</b> (payment): never lose, never double-charge: idempotency key, accept and queue through Kafka, report status.</td></tr>
+<tr><td><a href="#q3">Q3</a> Partitions</td><td>Key = customer ID, so one customer's events stay in order. Know your partition count and consumer count, or give the sizing method.</td></tr>
+<tr><td><a href="#q4">Q4</a>–<a href="#q5">Q5</a> Pools and dependencies</td><td>Pools per Mule worker/replica: PostgreSQL JDBC pool, Cassandra driver connections, HTTP pools to Billing and Payments. Scaling workers multiplies them. Billing and Payments were owned by other teams: use this for "the dependency cannot scale".</td></tr>
+<tr><td><a href="#q6">Q6</a> DLQ</td><td>How failed events or failed downstream calls were handled [DLQ topic / reprocessing / alert].</td></tr>
+<tr><td><a href="#q8">Q8a</a> Ordering</td><td>Notes per customer must appear in order: Kafka key = customer ID, Cassandra clustering column = created time, descending.</td></tr>
+<tr><td>Cassandra model</td><td><code>notes_by_customer ((customer_id[, bucket]), created_at DESC)</code>. Be ready for "what if one customer has a huge number of notes?" → time bucket.</td></tr>
+<tr><td>Cache</td><td>Why Calls went to a cache: high read rate, recent data, tolerance for short staleness. Know the TTL and the invalidation approach (cache-aside or write-through).</td></tr>
+</table></div>
+
+<details class="qa"><summary><span>Likely follow-ups on this project</span></summary><div class="ans">
+<ul>
+  <li><b>The process layer adds a hop. How did you keep latency down?</b> Call the verticals in parallel (scatter-gather), a timeout per vertical, partial responses, caching, and keep process APIs stateless.</li>
+  <li><b>Data from different systems disagrees. Which wins?</b> A system of record per attribute, a master customer ID across systems (identity resolution), and eventual consistency stated in the SLA. Say what you actually did.</li>
+  <li><b>Why three API layers? Isn't that over-engineering?</b> Reuse: system APIs are built once and serve every channel; a new channel needs only a new experience API. The cost is extra hops and more deployables. You would collapse layers where there is only one consumer.</li>
+  <li><b>PII across verticals?</b> Token propagation from the experience layer, field-level authorization and masking (payment data especially), encryption in transit and at rest, audit logs.</li>
+  <li><b>Why Cassandra for Notes and PostgreSQL elsewhere?</b> Notes: append-heavy, read by customer, no joins: Cassandra fits. PostgreSQL: relational data needing transactions or ad-hoc queries [say what it held].</li>
+</ul>
+</div></details>
+
+<details class="qa"><summary><span>"You did this on AWS with MuleSoft. How would you build it on Azure with Spring Boot?"</span></summary><div class="ans">
+<p>Expect this: the JD is Azure, Java and Spring Boot. Show that the architecture carries over and only the products change.</p>
+<div class="tbl"><table>
+<tr><th>Your project</th><th>On an Azure / Spring Boot stack</th></tr>
+<tr><td>Experience APIs</td><td>Azure API Management products per channel, plus a BFF service for the React portal</td></tr>
+<tr><td>Process and System APIs (Mule apps)</td><td>Spring Boot services on AKS</td></tr>
+<tr><td>Mule runtime / CloudHub</td><td>AKS, with HPA and KEDA</td></tr>
+<tr><td>API Manager policies</td><td>APIM policies: JWT validation, rate limit, quota</td></tr>
+<tr><td>DataWeave transforms</td><td>Java mapping code (e.g. MapStruct)</td></tr>
+<tr><td>Scatter-gather</td><td><code>CompletableFuture</code> or virtual threads, with per-call timeouts and Resilience4j</td></tr>
+<tr><td>Object cache</td><td>Azure Managed Redis</td></tr>
+<tr><td>Confluent on AWS</td><td>Confluent Cloud on Azure, or Event Hubs Kafka endpoint</td></tr>
+<tr><td>Cassandra on AWS</td><td>Azure Managed Instance for Apache Cassandra</td></tr>
+<tr><td>PostgreSQL on AWS</td><td>Azure Database for PostgreSQL Flexible Server</td></tr>
+<tr><td>AWS IAM roles</td><td>Entra ID managed identities, Workload Identity</td></tr>
+<tr><td>CloudWatch / Anypoint Monitoring</td><td>Azure Monitor, Managed Prometheus, Managed Grafana, OpenTelemetry</td></tr>
+</table></div>
+<p><b>Line to land:</b> "The patterns are the same: layered APIs, events on Kafka, the right store per access pattern, and resilience at every downstream call. On Azure I'd trade MuleSoft's integration tooling for Spring Boot services on AKS behind APIM. That gives more control and lower licence cost, but the teams have to build more themselves."</p>
+</div></details>
+</article>
+
+<!-- Q0B -->
+<article class="card" id="q0b">
+<span class="tag">Anchor story B</span>
+<h3>Predictive scale modelling for a large wealth-management platform</h3>
+<div class="box intent"><b class="lbl">Why this matters</b>This is your strongest answer to the "how does scaling one layer affect the next?" drill. You did not guess at bottlenecks: you modelled when each layer would hit its limit.</div>
+<h4>The facts (from you)</h4>
+<ul>
+  <li>Owned enterprise architecture for an enterprise-wide platform scalability programme at one of the largest US wealth-management firms (tens of thousands of advisors, a large multi-year transformation).</li>
+  <li>Scope: the advisor platform, trading and order management, data and analytics platforms, and the event-driven integration layer on AWS (Kafka, microservices, Lambda and ECS).</li>
+  <li>Designed a predictive scale-modelling method: regression and rate-of-change modelling on historical volumetrics, forecasting capacity for organic growth and inorganic growth (advisors joining through acquisitions).</li>
+  <li>Turned the model into architecture blueprints and a scalability roadmap with projected capacity thresholds, adopted by engineering teams.</li>
+  <li>Aligned Snowflake and Databricks pipelines as the data foundation for AI/ML workloads. Guided 5–15 architects and engineers across workstreams.</li>
+</ul>
+<details class="qa" open><summary><span>30-second pitch</span></summary><div class="ans">
+<p>"At a large wealth-management firm I owned the architecture for an enterprise scalability programme across the advisor platform, trading, data and the Kafka-based integration layer on AWS. Growth came two ways: steady organic growth, and step changes when acquired firms onboarded thousands of advisors at once. I built a predictive model from historical volumes, using regression and rate-of-change analysis, that projected when each layer would reach its capacity threshold. That became a roadmap ordered by which layer would break first, and engineering teams adopted it. [Outcome: e.g. onboarded N advisors with no capacity incident / avoided $X over-provisioning.]"</p>
+</div></details>
+<details class="qa"><summary><span>How the method works (be ready to explain it)</span></summary><div class="ans">
+<p>Check this against what you actually did, and correct it where it differs.</p>
+<ol>
+  <li><b>Business drivers:</b> advisors, accounts, trades per day, logins.</li>
+  <li><b>Load ratios:</b> system load per driver, e.g. events per advisor per day, API calls per login.</li>
+  <li><b>Trend:</b> regression on history for organic growth; rate-of-change to catch acceleration.</li>
+  <li><b>Step changes:</b> acquisition onboarding waves added as discrete jumps on known dates.</li>
+  <li><b>Peaks:</b> peak-to-average factors (market open, volatile market days, month-end).</li>
+  <li><b>Capacity per component:</b> from load tests and production metrics: Kafka throughput per partition, consumer rate, DB connections and IOPS, API limits.</li>
+  <li><b>Thresholds:</b> a safe utilization ceiling (e.g. 70%) per component, giving a projected breach date for each.</li>
+  <li><b>Roadmap:</b> work ordered by earliest breach date, with lead time for each fix.</li>
+</ol>
+</div></details>
+<details class="qa"><summary><span>Likely follow-ups</span></summary><div class="ans">
+<ul>
+  <li><b>How did you validate the forecast?</b> Backtest: fit on older data, compare with later actuals; review forecast against actuals each quarter. [Your accuracy figure.]</li>
+  <li><b>Markets are spiky. How did the model handle volatility days?</b> Peak factors from the worst historical days, burst headroom, and autoscaling for the parts that can scale fast. The model sets the baseline, autoscaling covers the bursts.</li>
+  <li><b>How did you get teams to adopt it?</b> Showed each team its own breach date, tied it to business events they knew (the next acquisition), and gave them the roadmap item, not just the warning.</li>
+  <li><b>What broke first?</b> [Your answer: which layer, and what you did.] This is your Q3 example.</li>
+  <li><b>How would you do this on Azure?</b> Same method. EKS → AKS, ALB → Application Gateway, Lambda → Functions, ECS → Container Apps, MSK or Confluent → Event Hubs or Confluent Cloud, CloudWatch → Azure Monitor and Managed Grafana.</li>
+</ul>
+</div></details>
+</article>
+
+<!-- Q1 -->
+<article class="card" id="q1">
+<span class="tag">Section 1 · Architecture and observability</span>
+<h3>Q1 · Tracking delays against the SLA</h3>
+<div class="box intent"><b class="lbl">Intent</b>Do you measure latency end to end, per hop, against an SLO, or do you only watch CPU graphs? Can you give a real SLA miss and what you learned?</div>
+<details class="qa"><summary><span>How do you track whether microservices are delayed against the SLA? How do you monitor it?</span></summary><div class="ans">
+<p><b>Principle:</b> "I turn the SLA into an SLI I can measure from the customer's view, then instrument every hop so I can see where the time goes."</p>
+<ul>
+  <li><b>Define the SLI:</b> e.g. "99.9% of messages are delivered to the downstream system within 5 seconds of receipt, measured over 30 days." Set the internal SLO tighter than the contract SLA.</li>
+  <li><b>Stamp time at origin.</b> Each event carries its creation timestamp and a correlation ID. At the end of the pipeline we compute end-to-end latency as a histogram.</li>
+  <li><b>Distributed tracing</b> with OpenTelemetry. The trace context goes in HTTP headers and in Kafka record headers, so one trace shows API time, time waiting in Kafka, processing time and downstream call time.</li>
+  <li><b>Per-hop metrics:</b> RED metrics on each service; Kafka consumer lag in seconds per consumer group; connection pool wait time; downstream latency per dependency.</li>
+  <li><b>Grafana dashboards</b> in layers: an SLO overview (budget remaining), then a pipeline view per hop, then per service drill-down. Exemplars jump from a spike to a trace.</li>
+  <li><b>Alerting on burn rate,</b> not on single thresholds: fast burn pages, slow burn makes a ticket. Plus a heartbeat or synthetic event every minute, so "nothing is flowing" also alerts.</li>
+</ul>
+</div></details>
+<details class="qa"><summary><span>Have you faced challenges meeting the SLA? What did you learn?</span></summary><div class="ans">
+<p>Use one real story. Structure: <b>SLA → what broke → how you found it → fix → what you changed permanently.</b> If you need a pattern to map your own story onto, these are the common real causes:</p>
+<ul>
+  <li><b>Traffic spike</b> (month-end, campaign) grew consumer lag. Consumers were already at partition count. Fix: more partitions planned ahead, consumer batching, KEDA. Learning: load test at 2–3× peak, plan partitions for growth.</li>
+  <li><b>Rebalance storms:</b> slow processing passed <code>max.poll.interval.ms</code>, consumers kept leaving the group, lag exploded. Fix: smaller <code>max.poll.records</code>, static membership, cooperative rebalancing.</li>
+  <li><b>Downstream throttling</b> or database saturation. Fix: rate limit at our side, bulk API, cache, async load levelling.</li>
+  <li><b>We measured the wrong thing.</b> Each service met its own latency target, but end-to-end time did not, because queue wait time was invisible. Fix: origin timestamps and end-to-end SLI. This is a strong learning to state.</li>
+</ul>
+<p><b>Close with:</b> "The main learning: measure the SLA end to end from the customer's view, alert on budget burn, and keep capacity headroom, because one hop's queue time is where SLAs die."</p>
+</div></details>
+</article>
+
+<!-- Q2 -->
+<article class="card" id="q2">
+<span class="tag">Section 2 · Resilience</span>
+<h3>Q2 · Downstream REST interface is unavailable</h3>
+<div class="box intent"><b class="lbl">Intent</b>Will you lose data? The answer needs: durable buffering, decoupled ingestion, retries with backoff, circuit breaking, idempotent replay, and a controlled drain after recovery. Expect a follow-up on which messaging layer you use.</div>
+<details class="qa"><summary><span>Traffic is coming in and the primary REST interface you post to is down. What happens to the data?</span></summary><div class="ans">
+<p><b>Principle:</b> "No data is lost, because we separate accepting data from delivering it. We accept, persist durably, acknowledge, and deliver asynchronously with retries."</p>
+<ol>
+  <li><b>Ingest and persist first.</b> The ingestion API validates the request, writes it to Kafka with <code>acks=all</code> (or to an outbox table in the same transaction as our own data), then returns <code>202 Accepted</code> with a tracking ID.</li>
+  <li><b>Delivery consumer</b> posts to the downstream API with a timeout and bounded retries using exponential backoff and jitter.</li>
+  <li><b>Circuit breaker opens</b> when the error rate passes a threshold. While it is open, the consumer <b>pauses</b> and does not commit offsets. Data waits safely in Kafka within its retention period. We do not send these messages to the DLQ; the messages are fine, the target is down.</li>
+  <li><b>Observability:</b> lag in seconds grows, an alert fires, the on-call engineer sees the open breaker on the dashboard.</li>
+  <li><b>Recovery:</b> the breaker goes half-open, test calls succeed, the consumer resumes. We <b>drain at a controlled rate</b> so we do not knock the recovering service over again.</li>
+  <li><b>Idempotency:</b> every message carries an idempotency key, so retries and replays do not create duplicates downstream.</li>
+</ol>
+<p><b>Follow the edge cases:</b></p>
+<ul>
+  <li><b>If Kafka itself is down:</b> the producer buffers briefly in memory. Beyond that, fall back to a local outbox table, or return <code>503</code> with <code>Retry-After</code> so the client retries with the same idempotency key.</li>
+  <li><b>If the outage is longer than retention:</b> retention is sized to cover the longest credible outage plus drain time. That is a design decision recorded in an ADR.</li>
+  <li><b>If the user needs a synchronous answer:</b> fail fast with a clear message, and degrade gracefully (show cached data, queue the request, notify later).</li>
+  <li><b>SLA impact:</b> during the outage the delivery SLA is at risk. Make it visible: error budget burn, stakeholder comms, and the agreed SLA should exclude dependency outages or define behaviour during them.</li>
+</ul>
+</div></details>
+<details class="qa"><summary><span>So you have a messaging layer. Kafka or something else?</span></summary><div class="ans">
+<p>"Kafka for high-volume streams where we need ordering per key, replay and multiple consumers. On Azure that can be Event Hubs with its Kafka endpoint, Confluent Cloud, or Kafka on AKS. For command-style work queues with per-message DLQ, scheduled retries and sessions, Azure Service Bus is often simpler." Then name what you actually used: "On the Customer-360 platform we used Kafka on Confluent for [which events]."</p>
+</div></details>
+</article>
+
+<!-- Q3 -->
+<article class="card" id="q3">
+<span class="tag">Section 3 · Kafka scaling</span>
+<h3>Q3 · Kafka partitions and scaling through the layers</h3>
+<div class="box intent"><b class="lbl">Intent</b>Do you understand partitions, keys and consumer groups? Then the real test: scaling Kafka consumers pushes load to the next layers. Do you know what that forces downstream? Expect "how does it affect the subsequent layers?" more than once. Most candidates stop at "add consumers".</div>
+<details class="qa"><summary><span>How are partitions decided?</span></summary><div class="ans">
+<p>Two meanings. Answer both.</p>
+<ul>
+  <li><b>Which partition a record goes to:</b> the producer hashes the key (<code>murmur2(key) % partitions</code>). Same key, same partition, so order holds per key. No key means records spread out. A custom partitioner is possible but rare.</li>
+  <li><b>How many partitions a topic gets:</b> from target throughput and parallelism. <code>partitions ≥ max(target throughput ÷ per-partition producer rate, target throughput ÷ per-consumer processing rate)</code>. Then add headroom for 2–3 years of growth, because you cannot reduce partitions and adding them remaps keys.</li>
+  <li>Example: peak 20,000 msg/s; one consumer handles 1,000 msg/s → at least 20 partitions; plan 30–40 for growth.</li>
+</ul>
+</div></details>
+<details class="qa"><summary><span>You started with 10 partitions and traffic outgrows them. What do you do?</span></summary><div class="ans">
+<ol>
+  <li><b>Check where the limit is first.</b> Lag rising but consumers at low CPU means they wait on something downstream. More partitions will not help.</li>
+  <li><b>Make each consumer faster:</b> batch writes, async I/O, fewer round trips, tune <code>max.poll.records</code> and fetch sizes. For parallelism inside one partition while keeping per-key order, use a key-ordered parallel consumer.</li>
+  <li><b>Scale consumers up to the partition count</b> (KEDA on lag).</li>
+  <li><b>Add partitions</b> if still short. For keyed topics this breaks order for keys that move. Options: do it in a low-traffic window after draining lag; or create a new topic with more partitions, switch producers, drain the old topic, then switch consumers.</li>
+  <li><b>Producer side:</b> <code>linger.ms</code>, batching, compression, and check broker capacity (disk, network, partitions per broker).</li>
+</ol>
+</div></details>
+<details class="qa"><summary><span>Do you need more consumers? How does that hit the next layers, and what does it force there?</span></summary><div class="ans">
+<p><b>Principle, say it first:</b> "Scaling one layer moves the bottleneck to the next. The pipeline's capacity is the capacity of its slowest layer, so I plan capacity end to end."</p>
+<p>Going from 10 to 30 consumers means about 3× the load on everything behind them:</p>
+<ul>
+  <li><b>Database:</b> 3× connections (pool × pods) and 3× write rate. Check <code>max_connections</code>, CPU, IOPS, Cassandra node count, hot partitions, compaction backlog.</li>
+  <li><b>Downstream APIs:</b> 3× call rate. Check their rate limits and capacity. They may need to scale, or we must rate-limit ourselves.</li>
+  <li><b>Kubernetes:</b> more pods need node capacity, IPs in the subnet, quota; Cluster Autoscaler takes minutes.</li>
+  <li><b>Next Kafka topic:</b> if consumers produce to another topic, that topic's partitions and its consumers must scale too.</li>
+  <li><b>Shared resources:</b> caches, secrets/token endpoints, SNAT ports, logging volume and cost.</li>
+  <li><b>Consumer group behaviour:</b> more members mean more rebalance disruption.</li>
+</ul>
+<p><b>What it forces:</b> capacity planning with downstream owners, backpressure (consumers slow down when downstream is slow, Kafka absorbs the backlog), rate limits per dependency, and load tests of the whole chain, not one service.</p>
+</div></details>
+</article>
+
+<!-- Q4 -->
+<article class="card" id="q4">
+<span class="tag">Section 4 · Scaling limits</span>
+<h3>Q4 · "What else?" Connections, memory, CPU…</h3>
+<div class="box intent"><b class="lbl">Intent</b>A completeness drill. Expect "what else?" after each factor you name: connections, memory, CPU, external APIs. The goal is a structured, exhaustive view of scaling limits. Have a framework so you can list them in groups.</div>
+<p class="mnemonic">The 6 Cs: Compute · Connections · Concurrency · Capacity downstream · Control · Cluster &amp; Cost</p>
+<div class="tbl"><table>
+<tr><th>Group</th><th>Things to name</th></tr>
+<tr><td><b>Compute</b></td><td>CPU (and CPU throttling from K8s limits), memory (heap and off-heap; OOMKilled), garbage collection pauses, JIT warm-up after scale-out</td></tr>
+<tr><td><b>Connections</b></td><td>DB connection pool, HTTP client pool (max per route), Kafka producer/consumer connections, Redis connections, file descriptors, ephemeral ports, <b>Azure SNAT ports</b>, TLS handshake cost, DNS resolution</td></tr>
+<tr><td><b>Concurrency</b></td><td>Tomcat request threads, executor thread pools, virtual threads, consumer count vs partitions, locks and contention, ordering constraints</td></tr>
+<tr><td><b>Capacity downstream</b></td><td>Database CPU/IOPS/<code>max_connections</code>, Cassandra hot partitions and compaction, downstream API rate limits, Azure service quotas (Event Hubs TUs, Cosmos RUs), Entra token endpoint throttling, cache hit rate and cache stampede</td></tr>
+<tr><td><b>Control</b></td><td>Timeouts, retry storms and retry amplification across layers, circuit breakers, backpressure, rate limiting, load shedding, bulkheads</td></tr>
+<tr><td><b>Cluster &amp; Cost</b></td><td>Node capacity and autoscaler lead time, pod IP/subnet exhaustion, namespace quotas, PDBs, noisy neighbours, image pull time, network bandwidth, broker disk, log and metric volume, licence and cloud cost</td></tr>
+</table></div>
+<details class="qa"><summary><span>At what level is the connection pool set?</span></summary><div class="ans">
+<p>"Per application instance, per datasource. In Kubernetes that means per pod. HikariCP inside each JVM holds its own pool. So total connections to the database = pods × pool size, summed across every service that uses that database. When HPA adds pods, total connections grow automatically, which is the trap."</p>
+<p>Also: a pool may be set per client library (HTTP client max connections per route, Kafka client per broker), and a database-side pooler (PgBouncer, built into Azure Database for PostgreSQL Flexible Server) can multiplex many app connections onto fewer database connections.</p>
+</div></details>
+</article>
+
+<!-- Q5 -->
+<article class="card" id="q5">
+<span class="tag">Section 5 · Pools and dependencies</span>
+<h3>Q5 · Connection pools and dependent services</h3>
+<div class="box intent"><b class="lbl">Intent</b>First: do you know a pool is per instance and that bigger is not better? Second, the key test: you optimised your side but a dependency you do not own cannot scale. Will you give options and lead, or will you stop at "the other team is not ready"?</div>
+<details class="qa"><summary><span>If you double the pool because of load, do you double it on each microservice?</span></summary><div class="ans">
+<p><b>No.</b> Three reasons:</p>
+<ul>
+  <li>The pool is per pod. If load doubled and HPA doubled the pods, total connections already doubled. Doubling each pool too means 4×.</li>
+  <li>Total across all pods and services must stay under the database <code>max_connections</code>, minus headroom for admin, migrations and other apps. Often adding pods means you <b>reduce</b> pool size per pod.</li>
+  <li>More connections do not mean more throughput. Past a point the database thrashes on context switches and locks. Size from need using <b>Little's Law</b>: connections needed = queries per second × average query time. 2,000 q/s × 5 ms = 10 connections busy on average; add headroom for bursts.</li>
+</ul>
+<p>Size each service's pool from its own load. Watch HikariCP <b>pending threads</b> and <b>acquire time</b>: those show real pool starvation.</p>
+</div></details>
+<details class="qa"><summary><span>You are hitting max connections. What else do you ask the DBA? What do you do with it?</span></summary><div class="ans">
+<ul>
+  <li>What is <code>max_connections</code>, and how many are in use, by which app/user?</li>
+  <li>Is the database CPU, memory or IOPS saturated? If yes, more connections make it worse.</li>
+  <li>Which queries are slow, which hold locks, are there long transactions or idle-in-transaction sessions?</li>
+  <li>Can we add read replicas and route reads there? Is a connection pooler (PgBouncer) available?</li>
+  <li>Can we scale up the instance or tier, and what is the cost and lead time?</li>
+  <li>Are indexes and query plans right for the new load? Is partitioning an option?</li>
+</ul>
+<p><b>Then act:</b> fix slow queries and hold connections for less time (no remote calls inside transactions), add caching for hot reads, batch writes, move reads to replicas, introduce a pooler, right-size pools per service, and scale the database only if it is truly saturated after that.</p>
+</div></details>
+<details class="qa"><summary><span>The dependent microservice is not yours and cannot scale to your needs. What are the options?</span></summary><div class="ans">
+<p><b>Principle:</b> "I do not stop at 'they're not ready'. I protect both systems now, give the business options with trade-offs, and work with the owner on a joint plan."</p>
+<p><b>Protect now (on our side):</b></p>
+<ul>
+  <li><b>Rate-limit ourselves</b> to the rate they can take, agreed with them. Bulkhead so their slowness does not consume all our threads.</li>
+  <li><b>Queue-based load levelling:</b> accept at our rate, deliver at theirs. Kafka absorbs peaks. This works if the SLA allows the delay.</li>
+  <li><b>Circuit breaker with fallback:</b> cached response, default value, or "we will notify you".</li>
+  <li><b>Reduce calls:</b> cache responses, coalesce duplicate requests, use bulk or batch endpoints, ask for event push instead of polling.</li>
+  <li><b>Prioritize:</b> shed or defer low-priority traffic; reserve capacity for critical journeys.</li>
+</ul>
+<p><b>Your example:</b> Billing and Payments on the <a href="#q0">Customer-360 platform</a> were downstream APIs owned by other teams. Tell what you did there, using the points below as the frame.</p>
+<p><b>Fix together (with the owner):</b></p>
+<ul>
+  <li>Share our forecast and load-test data. Agree an SLO and a quota between the services.</li>
+  <li>Help them find their bottleneck. Offer engineers or a joint performance test.</li>
+  <li>Discuss longer-term options: a read model built from their events so we do not call them synchronously, or moving the capability.</li>
+</ul>
+<p><b>Escalate with data:</b> if the gap still risks the SLA, record it as a risk with impact and options (and cost of each) and take it to the product owner or architecture forum. It becomes a business decision: accept delay, fund their scaling, or change scope. Record it in an ADR.</p>
+</div></details>
+</article>
+
+<!-- Q6 -->
+<article class="card" id="q6">
+<span class="tag">Section 6 · Retry and replay</span>
+<h3>Q6 · DLQ and retry or replay options</h3>
+<div class="box intent"><b class="lbl">Intent</b>Do you know DLQs, and do you know options beyond "store in a table and retry with a job"? Show a range of patterns and when each fits.</div>
+<details class="qa"><summary><span>Have you used a DLQ? Apart from storing in a table and retrying, what other options are there?</span></summary><div class="ans">
+<p><b>DLQ:</b> after N failed attempts, or immediately for non-retryable errors (bad schema, validation failure), publish the message to a dead-letter topic with headers: original topic, partition, offset, error, stack trace, attempt count. Alert on DLQ depth. Provide a redrive tool to fix and re-publish. In Spring Kafka: <code>DefaultErrorHandler</code> + <code>DeadLetterPublishingRecoverer</code>.</p>
+<p><b>Other options:</b></p>
+<div class="tbl"><table>
+<tr><th>Option</th><th>How</th><th>Trade-off</th></tr>
+<tr><td>Blocking retry in consumer</td><td>Retry with backoff before committing</td><td>Keeps order; stalls the partition</td></tr>
+<tr><td>Non-blocking retry topics</td><td><code>orders-retry-10s</code>, <code>-1m</code>, <code>-10m</code>, then DLT (Spring <code>@RetryableTopic</code>)</td><td>Keeps throughput; breaks per-key order</td></tr>
+<tr><td>Pause and resume</td><td>Circuit breaker pauses the consumer; Kafka holds data</td><td>Best for downstream outages</td></tr>
+<tr><td>Replay from Kafka</td><td>Reset consumer group offsets to a time or offset</td><td>Kafka keeps the log; consumers must be idempotent</td></tr>
+<tr><td>Parking lot topic</td><td>Hold messages for manual review after DLQ triage</td><td>Human step</td></tr>
+<tr><td>Broker-native DLQ</td><td>Azure Service Bus: built-in DLQ, scheduled delivery, max delivery count</td><td>Simpler; not a log, less replay</td></tr>
+<tr><td>Kafka Connect error handling</td><td><code>errors.tolerance=all</code> + <code>errors.deadletterqueue.topic.name</code></td><td>For connector pipelines</td></tr>
+<tr><td>Outbox re-publish</td><td>Re-send from the outbox table by status</td><td>Producer-side recovery</td></tr>
+</table></div>
+<p><b>Ordering caveat (say it):</b> if order matters per key, a failed message must block later messages for the same key. Either use blocking retries, or park all subsequent messages for that key until the failed one is resolved.</p>
+</div></details>
+</article>
+
+<!-- Q7 -->
+<article class="card" id="q7">
+<span class="tag">Section 7 · Experience deep-dive · Anchor story C</span>
+<h3>Q7 · Modernization with AI: the agentic platform</h3>
+<div class="box intent"><b class="lbl">Intent</b>Was this real, and what was <i>your</i> role? Do you understand the AI part in depth (expect "what is that?" on every term you use: MCP, context engine, memory), and did you control the risks? This answer is the strongest credibility signal in the interview.</div>
+<div class="box gotcha"><b class="lbl">Be precise about your claim</b>Your work was the <b>architecture of the platform</b> that agents use to understand and modernize legacy code. If asked "what was the legacy application?", name the application the platform was applied to [fill in]. If the accurate answer is "I architected the platform that the modernization teams used", say that clearly. A stretched claim fails under this kind of probing; a precise one earns trust.</div>
+
+<details class="qa" open><summary><span>Two-minute story</span></summary><div class="ans">
+<ol>
+  <li><b>Context (15 s):</b> "At a global payments company I led the architecture of an enterprise agentic AI platform for the software lifecycle. Its purpose was to give AI agents long-lived, governed knowledge of a large legacy estate, so they could reverse-engineer, document and help modernize it safely." [Legacy application: what it did, technology, age.]</li>
+  <li><b>Why modernize (20 s):</b> "The business rules lived in old code. Documentation was out of date and the experts were few. Every change was slow and risky. And plain LLM tools could not help: they forget between sessions and cannot see a whole codebase."</li>
+  <li><b>My role (15 s):</b> "I was the lead architect for the context engine and memory architecture, the MCP layer, governance and operational readiness. I worked with the platform engineering, security and delivery teams." [Team size.]</li>
+  <li><b>Approach (45 s):</b> "Neutral, version-aware source adapters pull in code, schemas and documents on demand, so an answer always matches the right version of the code. A context engine stores this in layered memory: semantic, episodic, relational, pattern and task memory, with a promotion loop that moves only validated knowledge into long-term memory. We exposed it to external agents through MCP, the open standard for connecting AI agents to tools and data. Governance was in the design from day one: PCI and PII sanitization before anything reaches a model, a policy engine, schema-validated LLM outputs, human approval gates before changes, a full audit trail, telemetry and DR."</li>
+  <li><b>Result (15 s):</b> [Numbers: e.g. time to understand a module, documentation coverage, accepted agent changes, teams onboarded.] "I also resolved deployment and health-check instability across the load balancer, the management API and EKS."</li>
+  <li><b>Learning (10 s):</b> "Context quality matters more than model choice. And governance has to be designed in; you cannot bolt it on to a platform that touches payment data."</li>
+</ol>
+</div></details>
+
+<details class="qa"><summary><span>"What is MCP?"</span></summary><div class="ans">
+<p>"Model Context Protocol is an open standard, introduced by Anthropic in November 2024, for connecting AI applications to tools and data. An MCP <b>server</b> exposes <b>tools</b> (actions the model can call), <b>resources</b> (data it can read) and <b>prompts</b> (templates). The AI application is the <b>client</b>. You build an integration once and any MCP-capable agent can use it. Local servers run over stdio; remote servers use Streamable HTTP with OAuth-based authorization." <span class="ver">ver</span></p>
+<p>"In our platform, the MCP server exposed the context engine: search the code and its business rules, read the dependency graph, recall past decisions. So an external reverse-engineering agent could explore the legacy estate itself, under our policies, instead of engineers pasting code into a chat."</p>
+<p><b>Risks to mention before they ask:</b> prompt injection through tool results, over-permissioned tools, data leaving the boundary. Mitigations: allowlisted tools, least privilege, sanitization, human approval for any write, audit of every call.</p>
+</div></details>
+
+<details class="qa"><summary><span>"What is the memory architecture?" (explain each layer)</span></summary><div class="ans">
+<p>Check these definitions against your design and use your own words.</p>
+<div class="tbl"><table>
+<tr><th>Layer</th><th>Holds</th><th>Answers</th></tr>
+<tr><td>Semantic</td><td>Facts and domain knowledge: business rules, APIs, glossary (vector and structured stores)</td><td>"What is true?"</td></tr>
+<tr><td>Episodic</td><td>Record of past sessions and events: what an agent did, decisions, outcomes</td><td>"What happened before?"</td></tr>
+<tr><td>Relational</td><td>Entities and their links: service calls, table dependencies, ownership (graph)</td><td>"What does this affect?"</td></tr>
+<tr><td>Pattern</td><td>Reusable approaches learned from repeated episodes, e.g. how a legacy construct maps to the target design</td><td>"How do we usually solve this?"</td></tr>
+<tr><td>Task / context</td><td>Working memory for the current task, short-lived and scoped</td><td>"What am I doing now?"</td></tr>
+</table></div>
+<p><b>Promotion loop:</b> knowledge starts in task memory. When it is validated (by a test, a human approval, or repeated use) it is promoted to longer-lived layers. Stale or contradicted items are expired. This stops one bad model output from polluting long-term memory.</p>
+</div></details>
+
+<details class="qa"><summary><span>Likely follow-ups to prepare</span></summary><div class="ans">
+<ul>
+  <li><b>How did you stop card data or PII reaching the model?</b> Detect and redact or tokenize at ingestion and again at prompt time; pattern rules (with Luhn checks for card numbers) plus classifiers; never store raw values; audit.</li>
+  <li><b>How did you handle hallucination?</b> Ground answers in retrieved sources with references; schema-validated outputs; tests on generated code; human approval gates at decision points.</li>
+  <li><b>Why MCP rather than a custom API?</b> Any compliant agent can use it with no custom integration; tool definitions are standard; it decouples the platform from one agent vendor.</li>
+  <li><b>How did you measure whether agents were useful?</b> [Evaluation set of real tasks, acceptance rate at approval gates, time saved.]</li>
+  <li><b>How is memory isolated between teams or tenants?</b> [Your answer: scoping, access control on memory, separate stores.]</li>
+  <li><b>What was the EKS / load balancer health-check problem?</b> [Your root cause.] Common causes to compare against: health check path depends on a downstream, so targets flap; timeouts shorter than startup; readiness and target-group checks disagree; pods killed before deregistration completes.</li>
+  <li><b>How does DR work for a memory store?</b> Replicated stores, backups with tested restore, re-ingestion from sources as the last resort (sources are the system of record).</li>
+  <li><b>What would you do differently?</b> [Your answer.]</li>
+</ul>
+</div></details>
+</article>
+
+<!-- Q8 -->
+<article class="card" id="q8">
+<span class="tag">Section 8 · Technical scenarios</span>
+<h3>Q8 · Technical scenarios: ordering, and a sudden latency spike</h3>
+<div class="box intent"><b class="lbl">Intent</b>(a) Do you know that Kafka orders per partition and how to design for strict ordering, including retries? (b) Do you have a calm, structured triage method: impact first, mitigate, then root cause?</div>
+<details class="qa"><summary><span>8a · Messages must be consumed in sequence. How do you guarantee order with Kafka?</span></summary><div class="ans">
+<p><b>Correct the premise politely:</b> "Kafka does guarantee order inside a partition. So the design question is choosing the right key and keeping order through producing, consuming and failure."</p>
+<ol>
+  <li><b>Key by the entity that needs order</b> (account ID, order ID). All its events go to one partition. Most use cases need per-entity order, not global order.</li>
+  <li><b>Producer:</b> idempotent producer (<code>enable.idempotence=true</code>, <code>acks=all</code>, ≤5 in-flight) so retries do not reorder or duplicate.</li>
+  <li><b>Consumer:</b> process each partition sequentially, or parallelize by key inside the partition (key-ordered parallel consumer). Commit offsets only after processing.</li>
+  <li><b>Failures:</b> no retry topics for ordered streams. Use blocking retry, or park the failed message and all later messages for the same key.</li>
+  <li><b>Defence in depth:</b> put a sequence number or version in each event. The consumer rejects or buffers out-of-order events and ignores older versions. This also covers ordering issues from upstream.</li>
+  <li><b>Global order across all data:</b> only with one partition, which caps throughput at one consumer. Say this trade-off.</li>
+  <li><b>Partition changes:</b> adding partitions moves keys, so order can break during the change. Plan for it.</li>
+</ol>
+<p>Alternative on Azure: Service Bus <b>sessions</b> give ordered processing per session ID.</p>
+</div></details>
+<details class="qa"><summary><span>8b · An API was fine, and suddenly latency spikes. How do you approach it?</span></summary><div class="ans">
+<p><b>Principle:</b> "Impact first, mitigate fast, then find root cause. Restore service before you investigate in depth."</p>
+<ol>
+  <li><b>Scope:</b> all endpoints or one? All pods or one? All users or one tenant/region? p50 too, or only p99? When did it start?</li>
+  <li><b>What changed:</b> deploys, config or feature flags, traffic pattern, dependency releases, infrastructure events (node scale, AKS upgrade), certificate or secret rotation. Most incidents follow a change.</li>
+  <li><b>Follow the traces:</b> pick slow traces and find the slow span: our code, the database, a downstream call, or waiting for a connection or thread.</li>
+  <li><b>Check saturation (USE):</b> CPU throttling, GC pauses, thread pool full, <b>connection pool pending</b>, memory pressure, node noisy neighbour, network/DNS/SNAT.</li>
+  <li><b>Check dependencies:</b> database slow queries and locks; Cassandra tombstones, compaction, hot partition; cache hit rate drop or stampede; downstream API latency; Kafka lag.</li>
+  <li><b>Mitigate:</b> roll back the change, scale out, fail over, shed load, turn off a feature flag, open the circuit to a slow dependency.</li>
+  <li><b>After:</b> blameless postmortem, root cause, add the missing alert or test, track actions to done.</li>
+</ol>
+</div></details>
+</article>
+</section>
+
+<!-- ============ EXTRA QUESTIONS ============ -->
+<section id="extra">
+<h2 class="part">More questions to expect</h2>
+<p class="part-sub">Further questions likely from the job description. Short answers: the points to hit, not a script.</p>
+
+<article class="card" id="x-kafka">
+<span class="tag">Kafka and events</span>
+<h3>Kafka and event-driven</h3>
+<details class="qa"><summary><span>How do you achieve exactly-once processing?</span></summary><div class="ans"><p>Kafka EOS (idempotent producer + transactions + read_committed) covers read-process-write inside Kafka. For external systems, use at-least-once delivery plus idempotent writes (upsert, dedup by event ID, version check). Say "effectively once".</p></div></details>
+<details class="qa"><summary><span>How do you update a database and publish an event reliably?</span></summary><div class="ans"><p>Transactional outbox. Do not dual-write: if the publish fails after the commit, the two disagree. Outbox row in the same local transaction; Debezium CDC or a poller publishes it; consumers dedup.</p></div></details>
+<details class="qa"><summary><span>How do you evolve event schemas without breaking consumers?</span></summary><div class="ans"><p>Schema Registry, Avro or Protobuf, BACKWARD (or FULL) compatibility enforced in CI. Add optional fields with defaults; never rename or remove in place. A breaking change gets a new versioned topic and a migration window with both versions.</p></div></details>
+<details class="qa"><summary><span>Kafka vs Event Hubs vs Service Bus: when each?</span></summary><div class="ans"><p>Kafka/Event Hubs: high-volume streams, replay, many consumers, ordering per partition. Service Bus: transactional commands and work queues with per-message settle, DLQ, sessions, scheduled delivery, duplicate detection. Event Grid: lightweight reactive notifications (resource events, webhooks).</p></div></details>
+<details class="qa"><summary><span>How do you run Kafka across two regions?</span></summary><div class="ans"><p>Usually one cluster per region, stretched over three zones. Replicate with MirrorMaker 2 or Cluster Linking. Decide active-passive (consumers fail over; offsets translated) or active-active (regional topics, aggregate). Producers must tolerate duplicates after failover.</p></div></details>
+<details class="qa"><summary><span>How do you scale consumers automatically?</span></summary><div class="ans"><p>KEDA Kafka scaler on lag threshold, min replicas for warm capacity, max replicas = partition count. Watch rebalance cost; use cooperative rebalancing and static membership.</p></div></details>
+</article>
+
+<article class="card" id="x-cass">
+<span class="tag">Data</span>
+<h3>Cassandra and data</h3>
+<details class="qa"><summary><span>Model "show a customer's last 50 messages, newest first".</span></summary><div class="ans">
+<p><code>CREATE TABLE messages_by_customer (customer_id uuid, bucket text, sent_at timeuuid, message_id uuid, body text, status text, PRIMARY KEY ((customer_id, bucket), sent_at)) WITH CLUSTERING ORDER BY (sent_at DESC) AND default_time_to_live = 7776000;</code></p>
+<p>Partition by customer plus month bucket to bound size. Cluster by time descending so the query is one partition slice with <code>LIMIT 50</code>. TWCS compaction with TTL. A second table, <code>message_by_id</code>, for lookup by ID. Write both (logged batch if atomicity matters).</p>
+</div></details>
+<details class="qa"><summary><span>What consistency level do you use and why?</span></summary><div class="ans"><p>LOCAL_QUORUM for reads and writes with RF=3 per DC: strong in-region consistency, survives one node down, no cross-region latency. ONE for low-value high-volume reads. EACH_QUORUM only if a write must be confirmed in every region.</p></div></details>
+<details class="qa"><summary><span>Reads are getting slow on one table. What do you check?</span></summary><div class="ans"><p>Large partitions, tombstone warnings in logs, SSTables per read, compaction backlog (pending compactions), hot partitions, wrong compaction strategy, GC pauses, queries using ALLOW FILTERING or secondary indexes, consistency level higher than needed.</p></div></details>
+<details class="qa"><summary><span>Why Cassandra rather than Cosmos DB or PostgreSQL?</span></summary><div class="ans"><p>Cassandra: massive write throughput, multi-region active-active, known access patterns, open source and portable (MI on Azure). Cosmos DB: fully managed, multi-model, SLA-backed, but RU cost at high volume. PostgreSQL: relational integrity, ad-hoc queries, transactions; scales up more than out. Choose by access pattern, consistency need, scale and team skills; record in an ADR.</p></div></details>
+</article>
+
+<article class="card" id="x-k8s">
+<span class="tag">Platform</span>
+<h3>Azure and Kubernetes</h3>
+<details class="qa"><summary><span>How do you deploy with zero downtime on AKS?</span></summary><div class="ans"><p>Rolling update with <code>maxUnavailable: 0</code>; readiness probes; graceful shutdown (preStop, grace period, Spring graceful shutdown); PDBs; backward-compatible DB migrations (expand, migrate, contract); canary via Gateway API or a service mesh with automated rollback on SLO breach.</p></div></details>
+<details class="qa"><summary><span>How do you manage secrets and config?</span></summary><div class="ans"><p>Key Vault plus Secrets Store CSI driver, accessed with Workload Identity; no secrets in Git or images; rotation; ConfigMaps for non-secret config; GitOps for config changes with review.</p></div></details>
+<details class="qa"><summary><span>Pods are in CrashLoopBackOff after a release. Steps?</span></summary><div class="ans"><p><code>kubectl describe pod</code> (events, exit code, OOMKilled?), <code>kubectl logs --previous</code>, check config and secrets mounted, liveness probe too aggressive for startup (add a startup probe), dependency missing. Mitigate: roll back first.</p></div></details>
+<details class="qa"><summary><span>Design network security for a customer portal on Azure.</span></summary><div class="ans"><p>Front Door with WAF → private App Gateway for Containers → private AKS; hub-spoke VNets; Private Endpoints for data services; NSGs and K8s NetworkPolicies; egress through Azure Firewall; Entra ID for identity; DDoS protection; no public IPs on workloads.</p></div></details>
+<details class="qa"><summary><span>How do you control cloud cost?</span></summary><div class="ans"><p>Right-size from metrics, autoscale to zero where possible, reservations and savings plans for the baseline, spot node pools for tolerant work, log retention tiers, tagging and showback per team, budget alerts. Treat cost as an NFR in design reviews.</p></div></details>
+</article>
+
+<article class="card" id="x-fe">
+<span class="tag">Front end</span>
+<h3>React portal</h3>
+<details class="qa"><summary><span>Design the front-end architecture for a high-traffic customer portal.</span></summary><div class="ans"><p>Next.js (SSR for public pages, CSR behind login), CDN at the edge, shared accessible design system, TanStack Query for server state, BFF for auth and API shaping, OAuth code + PKCE with HttpOnly cookies, error boundaries, feature flags, Web Vitals RUM in Grafana, axe and Lighthouse budgets in CI.</p></div></details>
+<details class="qa"><summary><span>The portal feels slow. How do you investigate?</span></summary><div class="ans"><p>Real-user Web Vitals by page and device; check LCP (server time, images, render-blocking JS), INP (long tasks, heavy re-renders), CLS. Bundle analysis, waterfall of API calls (move to parallel or BFF aggregation), caching headers, CDN hit rate.</p></div></details>
+<details class="qa"><summary><span>How do you make accessibility part of delivery?</span></summary><div class="ans"><p>WCAG 2.2 AA as an NFR; accessible components in the design system; axe in unit and E2E tests as a gate; manual keyboard and screen-reader checks on key journeys before release; accessibility in the definition of done.</p></div></details>
+</article>
+
+<article class="card" id="x-arch">
+<span class="tag">Architecture leadership</span>
+<h3>Architecture practice and stakeholders</h3>
+<details class="qa"><summary><span>How do you turn business requirements into an architecture?</span></summary><div class="ans"><p>Start from business outcomes and capabilities; capture NFRs as measurable targets (latency, throughput, availability, RTO/RPO, security, cost); identify quality-attribute trade-offs; options analysis; C4 diagrams; ADRs; roadmap in increments that deliver value; validate with a PoC for the riskiest assumption.</p></div></details>
+<details class="qa"><summary><span>How do you get many teams to follow the architecture?</span></summary><div class="ans"><p>Make the right way the easy way: golden-path templates, reference implementations, shared libraries, policy as code, fitness functions in CI. Lightweight design reviews; ADRs open for comment; communities of practice; architects pair with teams. Exceptions are allowed but recorded.</p></div></details>
+<details class="qa"><summary><span>Tell me about a disagreement with a senior stakeholder.</span></summary><div class="ans"><p>STAR. Show you listened for the underlying goal, reframed around data and options with trade-offs, found a decision both could accept (or escalated cleanly), and kept the relationship. End with the outcome.</p></div></details>
+<details class="qa"><summary><span>How do you manage technical debt?</span></summary><div class="ans"><p>Visible debt register with business impact and risk; tie items to SLOs or delivery speed; fixed capacity share (e.g. 15–20%); pay down in the area you are already changing; prevent new debt with guardrails.</p></div></details>
+<details class="qa"><summary><span>A delivery team wants to skip a standard to hit a date. What do you do?</span></summary><div class="ans"><p>Understand the cost of the standard vs the date. If the risk is low and reversible, allow a time-boxed exception with an ADR and a debt item. If it is security or data-loss risk, hold the line and escalate with options (scope cut, extra help, phased release).</p></div></details>
+<details class="qa"><summary><span>How would you capacity-plan for a new high-volume platform?</span></summary><div class="ans"><p>Business volumes → peak rate (with seasonality and growth) → per-layer capacity model (partitions, pods, DB nodes, connections) → load test at 2× peak to validate → headroom target (e.g. run at ≤60% at peak) → review quarterly against actuals.</p></div></details>
+<details class="qa"><summary><span>How do you mentor tech leads?</span></summary><div class="ans"><p>Let them own decisions with ADRs; review the reasoning not just the outcome; pair on hard designs; run design katas; give them the floor in architecture forums.</p></div></details>
+</article>
+
+<article class="card" id="x-ask">
+<span class="tag">Your turn</span>
+<h3>Questions to ask them</h3>
+<ul>
+  <li>What is the biggest architectural risk on the platform today?</li>
+  <li>What are the current data transfer SLAs, and where do you miss them?</li>
+  <li>Kafka today: self-managed, Confluent, or Event Hubs? Cassandra: MI or self-run?</li>
+  <li>How are architecture decisions made and recorded now? Is there an architecture board?</li>
+  <li>How mature are SLOs and observability? Is there an on-call model for the platform?</li>
+  <li>What would success look like in this role after 90 days?</li>
+</ul>
+</article>
+</section>
+
+<!-- ============ SYSTEM DESIGN ============ -->
+<section id="design">
+<h2 class="part">System design walkthrough</h2>
+<p class="part-sub">The JD's headline ask: "design a high or variable volume, event-driven, transactional messaging system with data transfer SLAs". Practise this aloud in 10 minutes.</p>
+<article class="card">
+<h3>Reference architecture</h3>
+<figure class="arch" role="img" aria-label="Reference architecture: portal and partner clients through Front Door and API Management to an ingestion service on AKS, which writes to Kafka; processors consume, write to Cassandra and call downstream APIs through a circuit breaker; retry and dead-letter topics; observability across all.">
+<svg viewBox="0 44 760 286" xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif" font-size="12">
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+  <g style="color:var(--muted)" stroke="currentColor" fill="none" stroke-width="1.4">
+    <line x1="100" y1="80" x2="128" y2="80" marker-end="url(#ar)"/>
+    <line x1="232" y1="80" x2="258" y2="80" marker-end="url(#ar)"/>
+    <line x1="372" y1="80" x2="398" y2="80" marker-end="url(#ar)"/>
+    <line x1="490" y1="80" x2="516" y2="80" marker-end="url(#ar)"/>
+    <line x1="580" y1="104" x2="580" y2="148" marker-end="url(#ar)"/>
+    <line x1="530" y1="180" x2="468" y2="180" marker-end="url(#ar)"/>
+    <line x1="630" y1="180" x2="668" y2="180" marker-end="url(#ar)"/>
+    <line x1="580" y1="212" x2="580" y2="240" marker-end="url(#ar)" stroke-dasharray="4 3"/>
+  </g>
+  <g stroke="var(--line)" stroke-width="1.2">
+    <rect x="10" y="56" width="90" height="48" rx="8" fill="var(--surface)"/>
+    <rect x="130" y="56" width="102" height="48" rx="8" fill="var(--surface)"/>
+    <rect x="260" y="56" width="112" height="48" rx="8" fill="var(--accent-soft)"/>
+    <rect x="400" y="56" width="90" height="48" rx="8" fill="var(--warn-soft)"/>
+    <rect x="518" y="56" width="124" height="48" rx="8" fill="var(--accent-soft)"/>
+    <rect x="530" y="150" width="100" height="62" rx="8" fill="var(--accent-soft)"/>
+    <rect x="330" y="154" width="136" height="52" rx="8" fill="var(--ok-soft)"/>
+    <rect x="670" y="154" width="84" height="52" rx="8" fill="var(--surface)"/>
+    <rect x="500" y="242" width="160" height="40" rx="8" fill="var(--warn-soft)"/>
+    <rect x="10" y="296" width="744" height="28" rx="6" fill="var(--code)"/>
+  </g>
+  <g fill="var(--ink)" text-anchor="middle">
+    <text x="55" y="77" font-weight="600">Clients</text><text x="55" y="93" fill="var(--muted)" font-size="11">React · partners</text>
+    <text x="181" y="77" font-weight="600">Front Door</text><text x="181" y="93" fill="var(--muted)" font-size="11">WAF · APIM</text>
+    <text x="316" y="77" font-weight="600">Ingest API</text><text x="316" y="93" fill="var(--muted)" font-size="11">AKS · 202 + id</text>
+    <text x="445" y="77" font-weight="600">Kafka</text><text x="445" y="93" fill="var(--muted)" font-size="11">key = entity</text>
+    <text x="580" y="77" font-weight="600">Processors</text><text x="580" y="93" fill="var(--muted)" font-size="11">KEDA on lag</text>
+    <text x="580" y="174" font-weight="600">Delivery</text><text x="580" y="190" fill="var(--muted)" font-size="11">breaker · retry</text><text x="580" y="204" fill="var(--muted)" font-size="11">idempotent</text>
+    <text x="398" y="176" font-weight="600">Cassandra</text><text x="398" y="192" fill="var(--muted)" font-size="11">status · LOCAL_QUORUM</text>
+    <text x="712" y="176" font-weight="600">Downstream</text><text x="712" y="192" fill="var(--muted)" font-size="11">REST APIs</text>
+    <text x="580" y="266" font-weight="600">Retry topics → DLT</text>
+    <text x="382" y="314" fill="var(--muted)" font-size="11">OpenTelemetry → Prometheus/Mimir · Loki · Tempo → Grafana: SLO burn, lag in seconds, per-hop p99</text>
+  </g>
+</svg>
+<figcaption>Single region shown, across three zones. Second region: Front Door failover, Cassandra multi-DC, Kafka MirrorMaker 2 or Cluster Linking.</figcaption>
+</figure>
+<h4>Walkthrough order (10 minutes)</h4>
+<ol>
+  <li><b>Clarify (1 min):</b> volume (average, peak, burst), message size, SLA (e.g. 99.9% delivered in 5 s), ordering need, delivery guarantee, retention, regions, RTO/RPO, compliance.</li>
+  <li><b>Ingest (1 min):</b> Front Door + WAF, APIM for auth and throttling, stateless ingest API validates, writes to Kafka (<code>acks=all</code>), returns 202 with a tracking ID. Idempotency key from the client.</li>
+  <li><b>Buffer (1 min):</b> Kafka, RF=3 across zones, key = entity ID for order, partitions sized for peak plus growth, retention covers longest outage plus drain.</li>
+  <li><b>Process (2 min):</b> consumers on AKS scaled by KEDA, process idempotently, record status in Cassandra (status by message ID, messages by customer by time), deliver downstream with timeout, retry, breaker. Pause on outage; retry topics or DLT for poison messages.</li>
+  <li><b>SLA and observability (2 min):</b> origin timestamp, end-to-end latency SLI, lag in seconds, tracing across Kafka, burn-rate alerts, heartbeat events, Grafana SLO dashboard.</li>
+  <li><b>Scale and failure (2 min):</b> walk the 6 Cs, backpressure, downstream rate limits, zone and region failure, DR drills.</li>
+  <li><b>Trade-offs (1 min):</b> ordering vs throughput, consistency vs latency, cost of active-active, Event Hubs vs self-managed Kafka.</li>
+</ol>
+</article>
+</section>
+
+<!-- ============ CHEAT SHEET ============ -->
+<section id="cheat">
+<h2 class="part">Cheat sheet: interview morning</h2>
+<p class="part-sub">Read only this before the call.</p>
+<article class="card">
+<div class="grid2"><div>
+<h4>Numbers</h4>
+<ul>
+  <li>99.9% = ~43 min down per 30 days. 99.95% = ~22 min. 99.99% = ~4.3 min.</li>
+  <li>Series availability multiplies: 99.95% × 99.95% ≈ 99.90%.</li>
+  <li><b>Little's Law:</b> in-flight = rate × time. Connections = q/s × query seconds.</li>
+  <li>Partitions ≥ peak ÷ per-consumer rate, plus growth headroom.</li>
+  <li>Cassandra strong: R + W &gt; RF. RF=3 → QUORUM/QUORUM or LOCAL_QUORUM.</li>
+  <li>Kafka safe write: RF=3, min ISR=2, acks=all, idempotence on.</li>
+  <li>Hikari default pool 10; Tomcat 200 threads; <code>max.poll.interval.ms</code> 5 min; K8s grace 30 s; Cassandra gc_grace 10 days.</li>
+  <li>Web Vitals: LCP 2.5 s, INP 200 ms, CLS 0.1.</li>
+  <li>Burn-rate page: 2% of budget in 1 h = 14.4×.</li>
+</ul></div><div>
+<h4>Lines to land</h4>
+<ul>
+  <li>"Scaling one layer moves the bottleneck to the next."</li>
+  <li>"The pool is per pod. Total = pods × pool, and it must fit the database."</li>
+  <li>"DLQ is for poison messages, not outages. On outage, pause and let Kafka hold the data."</li>
+  <li>"Kafka orders per partition. Key by the entity that needs order."</li>
+  <li>"At-least-once delivery plus idempotent consumers."</li>
+  <li>"Measure the SLA end to end from the customer's view."</li>
+  <li>"Impact first, mitigate, then root cause."</li>
+  <li>"When a dependency cannot scale: protect, level the load, negotiate, escalate with options."</li>
+</ul>
+<h4>The 6 Cs</h4>
+<p>Compute · Connections · Concurrency · Capacity downstream · Control · Cluster &amp; Cost</p>
+</div></div>
+</article>
+</section>
+
+<footer>
+  <p>EA interview prep · Built 23 Oct 2026. Version-sensitive facts marked <span class="ver">ver</span> were checked on that date. Progress is stored in this browser only.</p>
+  <p><a href="../">Back to Learn</a></p>
+</footer>
+<script>
+(function(){
+  var P='ea1.';
+  function get(k){try{return localStorage.getItem(P+k);}catch(e){return null;}}
+  function set(k,v){try{if(v===null)localStorage.removeItem(P+k);else localStorage.setItem(P+k,v);}catch(e){}}
+  var cards=[].slice.call(document.querySelectorAll('article.card[id]'));
+  var prog=document.getElementById('prog');
+  function update(){
+    var d=0;
+    cards.forEach(function(c){
+      var on=get('done.'+c.id)==='1';
+      c.classList.toggle('done',on);
+      if(on)d++;
+      var t=document.querySelector('.toc a[href="#'+c.id+'"]');
+      if(t)t.classList.toggle('is-done',on);
+    });
+    prog.textContent=d+' / '+cards.length+' done';
+  }
+  cards.forEach(function(c){
+    var l=document.createElement('label');l.className='tick';
+    var i=document.createElement('input');i.type='checkbox';i.checked=get('done.'+c.id)==='1';
+    i.setAttribute('aria-label','Mark '+(c.querySelector('h3')||{}).textContent+' done');
+    i.addEventListener('change',function(){set('done.'+c.id,i.checked?'1':null);update();});
+    l.appendChild(i);l.appendChild(document.createTextNode('done'));
+    c.appendChild(l);
+  });
+  update();
+  var qa=function(){return [].slice.call(document.querySelectorAll('details.qa'));};
+  document.getElementById('openAll').onclick=function(){qa().forEach(function(d){d.open=true;});};
+  document.getElementById('closeAll').onclick=function(){qa().forEach(function(d){d.open=false;});};
+  document.getElementById('reset').onclick=function(){cards.forEach(function(c){set('done.'+c.id,null);var i=c.querySelector('label.tick input');if(i)i.checked=false;});update();};
+  var root=document.documentElement;
+  var th=get('theme');if(th)root.setAttribute('data-theme',th);
+  document.getElementById('theme').onclick=function(){
+    var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+    var n=dark?'light':'dark';root.setAttribute('data-theme',n);set('theme',n);
+  };
+  window.addEventListener('beforeprint',function(){qa().forEach(function(d){d.open=true;});});
+})();
+</script>
+</main>
+</body>
+</html>

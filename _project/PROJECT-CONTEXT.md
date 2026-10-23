@@ -2,7 +2,7 @@
 
 *Upload to project knowledge. Update when something material changes.*
 
-**Last updated:** 14 October 2026
+**Last updated:** 23 October 2026
 
 ---
 
@@ -39,6 +39,7 @@ The root page is a **project index**. Study material is deliberately not listed 
 | `learn/frontier-engineer/` | /learn/frontier-engineer/ | Frontier Engineer: Lead → Principal | Generated from markdown | `_project/sites/frontier-engineer.md` |
 | `learn/aigov/` | /learn/aigov/ | AI governance & multi-model strategy | Generated from markdown | `_project/sites/aigov.md` |
 | `learn/TPM/` | /learn/TPM/ | Senior TPM interview prep | Static HTML | `_project/sites/TPM.md` |
+| `learn/ea-prep-01/` | /learn/ea-prep-01/ | Solution Architect interview prep | Static HTML | `_project/sites/ea-prep-01.md` |
 
 Study sites were moved under `learn/` on 25 Sept 2026, while there were only three of
 them and few bookmarks to break. New ones go straight there. The root stays for projects.

@@ -1,0 +1,10 @@
+{
+  "slug": "ea-prep-01",
+  "order": 6,
+  "title": "Solution Architect interview prep",
+  "blurb": "Half-page primers on every technology in the JD, plus a question-by-question interview guide",
+  "static": true,
+  "note": "Hand-written single HTML file. No markdown sources, no pages list, so the build leaves it alone. robots meta added by hand.",
+  "listed": false,
+  "noindex": true
+}
