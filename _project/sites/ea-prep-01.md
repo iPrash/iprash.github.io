@@ -39,6 +39,10 @@ Each Part 1 card ends with a Sources line and a check date. Version-sensitive fa
 
 Checked 23 Oct 2026: Kafka 4.0 (ZooKeeper removed, KIP-848 GA), KIP-932 share groups (preview in 4.1, GA status unverified), ingress-nginx retirement (March 2026), Spring Boot 4.0 (Nov 2025), React 19 and React Compiler 1.0, Grafana Agent EOL (1 Nov 2025), Entra External ID replacing B2C for new customers.
 
+## Domain
+
+Part 1 card 15 frames the target as a generic global logistics and freight company. Keep all domain content generic: no company names, no details that identify the client.
+
 ## Open items
 
-- Anchor stories A (Customer-360), B (scale modelling) and C (agentic AI platform, Q7) are written from his resume with [bracketed] gaps for numbers he must fill. No client or employer names on the page: the repo is public.
+- Anchor stories D (high-volume Kafka/Cassandra pipeline, the lead story), A (Customer-360), B (scale modelling) and C (agentic AI platform, Q7) are written from his resume with [bracketed] gaps for numbers he must fill. No client or employer names on the page: the repo is public.

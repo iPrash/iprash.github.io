@@ -134,6 +134,7 @@ button.mini:hover{border-color:var(--accent)}
   <ul>
     <li><b>End-to-end thinking.</b> A change in one layer moves the bottleneck to the next layer. Say this before they ask.</li>
     <li><b>Completeness.</b> Have a checklist ready (the <a href="#q4">6 Cs</a>), so "what else?" never stalls you.</li>
+    <li><b>Direct answers with numbers.</b> Answer the question in your first sentence. Then give volumes, partition counts, latencies. Panels drop candidates who talk around a question.</li>
     <li><b>Options under constraint.</b> When a dependency cannot scale, never stop at "the other team is not ready". Give options, trade-offs and an escalation path.</li>
   </ul></div>
   <div class="btnrow">
@@ -150,7 +151,7 @@ button.mini:hover{border-color:var(--accent)}
 <p class="part-sub">About two hours each. Do them in this order. The order puts your weakest, most-asked areas first. Say the answers out loud. Reading is not enough for scenario-based interviews.</p>
 <div class="card">
   <div class="session"><span class="snum">S1</span><div>
-    <p><b>Kafka and event-driven patterns.</b> Read cards <a href="#t-kafka">Kafka</a> and <a href="#t-eda">Event-driven patterns</a>. Then say aloud the answers to Q2, Q3, Q6 and Q8a.</p>
+    <p><b>Kafka and event-driven patterns.</b> Read cards <a href="#t-kafka">Kafka</a> and <a href="#t-eda">Event-driven patterns</a>. Then say aloud the answers to <a href="#q9">Q0</a>, Q2, Q3 (with the worked numbers), Q6, <a href="#q10">Q6b</a>, <a href="#q11">Q6c</a>, <a href="#q12">Q6d</a> and Q8a.</p>
     <p class="meta">Highest weight. Kafka and failure handling are the core of this role.</p>
   </div></div>
   <div class="session"><span class="snum">S2</span><div>
@@ -158,16 +159,16 @@ button.mini:hover{border-color:var(--accent)}
     <p class="meta">Expect a sustained "what else?" drill here.</p>
   </div></div>
   <div class="session"><span class="snum">S3</span><div>
-    <p><b>Cassandra and data.</b> Read <a href="#t-cass">Cassandra</a>. Model one table on paper: "messages by customer, newest first". Answer the Cassandra questions in <a href="#extra">More questions</a>.</p>
+    <p><b>Cassandra and data.</b> Read <a href="#t-cass">Cassandra</a>. Read the <a href="#t-logistics">logistics domain primer</a>. Model two tables on paper: "events by shipment" and "shipments by customer, newest first". Answer the Cassandra questions in <a href="#extra">More questions</a>.</p>
   </div></div>
   <div class="session"><span class="snum">S4</span><div>
-    <p><b>Azure and Kubernetes.</b> Read <a href="#t-azure">Azure</a>, <a href="#t-k8s">Kubernetes / AKS</a> and <a href="#t-dr">Resilience and DR</a>. Draw the <a href="#design">reference architecture</a> from memory once.</p>
+    <p><b>Azure and Kubernetes.</b> Read <a href="#t-azure">Azure</a>, <a href="#t-aws">AWS → Azure</a>, <a href="#t-k8s">Kubernetes / AKS</a> and <a href="#t-dr">Resilience and DR</a>. Draw the <a href="#design">reference architecture</a> from memory once.</p>
   </div></div>
   <div class="session"><span class="snum">S5</span><div>
     <p><b>Observability, quality and front end.</b> Read <a href="#t-obs">Observability</a>, <a href="#t-qe">Quality engineering</a>, <a href="#t-react">React</a>. Say aloud Q1 and Q8b.</p>
   </div></div>
   <div class="session"><span class="snum">S6</span><div>
-    <p><b>Architecture practice, your story and a mock.</b> Read <a href="#t-ea">EA methods</a> and <a href="#t-modern">Modernization</a>. Rehearse your <a href="#stories">three anchor stories</a>: two 30-second pitches and the 2-minute <a href="#q7">AI platform story</a>. Then do the <a href="#design">system design walkthrough</a> aloud in 10 minutes, with a timer.</p>
+    <p><b>Architecture practice, your story and a mock.</b> Read <a href="#t-ea">EA methods</a> and <a href="#t-modern">Modernization</a>. Rehearse your <a href="#stories">four anchor stories</a>. Story D (the high-volume pipeline) first: fill its numbers table, then tell it in 2 minutes. Then the 2-minute <a href="#q7">AI platform story</a>. Then do the <a href="#design">system design walkthrough</a> aloud in 10 minutes, with a timer.</p>
   </div></div>
 </div>
 </section>
@@ -190,6 +191,8 @@ button.mini:hover{border-color:var(--accent)}
   <a href="#t-dr"><span>11</span>Resilience and DR</a>
   <a href="#t-ea"><span>12</span>EA methods: TOGAF, C4, ADR, DDD</a>
   <a href="#t-modern"><span>13</span>Modernization</a>
+  <a href="#t-aws"><span>14 · bridge</span>AWS → Azure translation</a>
+  <a href="#t-logistics"><span>15 · domain</span>Logistics event platforms</a>
 </nav>
 
 <!-- KAFKA -->
@@ -291,6 +294,7 @@ button.mini:hover{border-color:var(--accent)}
   <li><b>Read path:</b> may merge many SSTables (bloom filters help). Reads cost more than writes.</li>
   <li><b>Compaction strategy:</b> STCS for write-heavy, LCS for read-heavy, TWCS for time series with TTL. Cassandra 5.0 adds Unified Compaction Strategy (UCS) and Storage-Attached Indexes (SAI) <span class="ver">ver</span>.</li>
   <li><b>Lightweight transactions</b> (<code>IF NOT EXISTS</code>) use Paxos. They cost about 4 round trips. Use sparingly.</li>
+  <li><b>Distributions:</b> DataStax Enterprise (DSE) and Astra DB are commercial Cassandra offerings. IBM completed its acquisition of DataStax in 2025 <span class="ver">ver</span>. Cassandra 5.0 is the current major line as of this check <span class="ver">ver</span>.</li>
   <li><b>On Azure:</b> Azure Managed Instance for Apache Cassandra (real Cassandra), or Azure Cosmos DB for Apache Cassandra (CQL-compatible API, priced in request units).</li>
 </ul>
 <div class="box gotcha"><b class="lbl">Gotchas</b><ul>
@@ -497,7 +501,7 @@ button.mini:hover{border-color:var(--accent)}
 <tr><td>Static / code quality</td><td>SonarQube, linters</td><td>Every PR</td><td>No new critical issues</td></tr>
 <tr><td>Integration</td><td><b>Testcontainers</b> (real Kafka, Cassandra)</td><td>Every PR</td><td>Pass</td></tr>
 <tr><td>Contract</td><td>Pact, Spring Cloud Contract; Schema Registry compatibility for events</td><td>Every PR, both sides</td><td>"can-i-deploy" check</td></tr>
-<tr><td>API</td><td>REST Assured, Postman/Newman</td><td>Each environment</td><td>Pass</td></tr>
+<tr><td>API</td><td><b>Karate</b>, REST Assured, Postman/Newman</td><td>Each environment</td><td>Pass</td></tr>
 <tr><td>Security</td><td>SAST, SCA (dependency scan), secret scan, container scan, DAST (OWASP ZAP)</td><td>PR and nightly</td><td>No high or critical findings</td></tr>
 <tr><td>Accessibility</td><td>axe-core, Lighthouse, manual screen-reader pass</td><td>PR and release</td><td>No WCAG AA violations</td></tr>
 <tr><td>Performance</td><td>k6, Gatling, JMeter</td><td>Nightly and pre-release</td><td>p99 and throughput within SLO at 2× peak</td></tr>
@@ -509,13 +513,28 @@ button.mini:hover{border-color:var(--accent)}
   <li><b>Production readiness review:</b> SLOs set, dashboards and alerts live, runbooks written, load-tested, DR tested, security sign-off, rollback proven.</li>
   <li>Progressive delivery: canary or blue-green with automatic rollback on SLO breach. Feature flags separate deploy from release.</li>
 </ul>
+<h4>BDD, Cucumber and Karate</h4>
+<ul>
+  <li><b>BDD</b> (behaviour-driven development): write acceptance criteria as Given / When / Then scenarios in Gherkin, readable by business and testers.</li>
+  <li><b>Cucumber</b>: runs Gherkin scenarios. Each step needs Java "step definition" glue code.</li>
+  <li><b>Karate</b> (open source, Karate Labs): Gherkin-style syntax built for API testing, with no step definitions to write. HTTP calls, JSON and XML assertions, and data-driven tests are built in. It can also run API mocks (useful as test doubles for partner systems), reuse API tests as performance tests through Gatling, and drive UI tests.</li>
+  <li>When to use which: Karate for API and integration suites owned by engineers; Cucumber where business-readable acceptance tests matter most.</li>
+</ul>
+<h4>Chaos engineering and blast radius</h4>
+<ul>
+  <li><b>Method:</b> define steady state (SLIs), state a hypothesis ("losing one broker does not breach the delivery SLO"), inject a fault, observe, fix what you learn.</li>
+  <li><b>Faults to inject:</b> kill pods and nodes, lose a zone, add latency or errors to a downstream, kill a Kafka broker, slow Cassandra nodes, exhaust a connection pool.</li>
+  <li><b>Keep the blast radius small:</b> start in a non-production environment, then a small slice of production (one service, one zone, canary traffic), with an automatic stop when an SLO alert fires, and run in business hours with people watching.</li>
+  <li><b>Tools:</b> Azure Chaos Studio, Chaos Mesh, LitmusChaos.</li>
+  <li><b>Blast radius by design:</b> bulkheads, cell-based architecture (split customers or regions into independent cells), per-tenant rate limits, and progressive rollout.</li>
+</ul>
 <div class="box gotcha"><b class="lbl">Gotchas</b><ul>
   <li>Flaky tests destroy trust in the gate. Quarantine and fix them; do not just retry.</li>
   <li>Large E2E suites are slow and brittle. Keep them for the top journeys.</li>
   <li>Load tests with unrealistic data (one key, warm cache) give false confidence. Hot keys and cold caches are where systems fail.</li>
 </ul></div>
 <div class="box say"><b class="lbl">Say this</b>"I shift testing left with Testcontainers and contract tests, keep E2E to critical journeys, and make security, accessibility and performance budgets automatic gates, not end-of-project phases."</div>
-<p class="src">Sources: <a href="https://martinfowler.com/articles/practical-test-pyramid.html">Fowler: Practical Test Pyramid</a>; <a href="https://docs.pact.io/">Pact docs</a>; <a href="https://testcontainers.com/">Testcontainers</a>; <a href="https://learn.microsoft.com/azure/chaos-studio/chaos-studio-overview">Azure Chaos Studio</a>. Checked 23 Oct 2026.</p>
+<p class="src">Sources: <a href="https://martinfowler.com/articles/practical-test-pyramid.html">Fowler: Practical Test Pyramid</a>; <a href="https://docs.pact.io/">Pact docs</a>; <a href="https://testcontainers.com/">Testcontainers</a>; <a href="https://learn.microsoft.com/azure/chaos-studio/chaos-studio-overview">Azure Chaos Studio</a>; <a href="https://github.com/karatelabs/karate">Karate (GitHub)</a>; <a href="https://cucumber.io/docs/">Cucumber docs</a>; <a href="https://principlesofchaos.org/">Principles of Chaos Engineering</a>. Checked 23 Oct 2026.</p>
 </article>
 
 <!-- SECURITY -->
@@ -629,6 +648,102 @@ button.mini:hover{border-color:var(--accent)}
 </ul></div>
 <p class="src">Sources: <a href="https://martinfowler.com/bliki/StranglerFigApplication.html">Fowler: Strangler Fig</a>; <a href="https://learn.microsoft.com/azure/architecture/patterns/strangler-fig">Azure Architecture Center: Strangler Fig</a>; <a href="https://modelcontextprotocol.io/">Model Context Protocol</a>. Checked 23 Oct 2026.</p>
 </article>
+
+<!-- AWS -> AZURE -->
+<article class="card" id="t-aws">
+<span class="tag">14 · Bridge</span>
+<h3>AWS → Azure translation</h3>
+<p>If your hands-on depth is AWS, say so plainly, then show that the architecture carries over. The patterns are the same; the service names and a few behaviours differ. Both clouds use a Well-Architected Framework with the same five core pillars (AWS adds Sustainability as a sixth).</p>
+<div class="tbl"><table>
+<tr><th>Area</th><th>AWS</th><th>Azure</th></tr>
+<tr><td>Kubernetes</td><td>EKS</td><td>AKS</td></tr>
+<tr><td>Simple containers</td><td>ECS / Fargate, App Runner</td><td>Container Apps</td></tr>
+<tr><td>Serverless</td><td>Lambda; Step Functions</td><td>Functions; Durable Functions, Logic Apps</td></tr>
+<tr><td>L7 load balancer</td><td>ALB</td><td>Application Gateway; App Gateway for Containers</td></tr>
+<tr><td>L4 load balancer</td><td>NLB</td><td>Azure Load Balancer</td></tr>
+<tr><td>Global edge, CDN, WAF</td><td>CloudFront, AWS WAF, Global Accelerator</td><td>Front Door (with WAF)</td></tr>
+<tr><td>DNS / traffic routing</td><td>Route 53</td><td>Azure DNS, Traffic Manager</td></tr>
+<tr><td>API gateway</td><td>API Gateway</td><td>API Management</td></tr>
+<tr><td>Identity</td><td>IAM roles; IRSA / EKS Pod Identity</td><td>Entra ID, managed identities; Workload Identity</td></tr>
+<tr><td>Secrets and keys</td><td>Secrets Manager, KMS</td><td>Key Vault</td></tr>
+<tr><td>Network</td><td>VPC, security groups, Transit Gateway, PrivateLink</td><td>VNet, NSGs, Virtual WAN / hub-spoke, Private Link</td></tr>
+<tr><td>Object storage</td><td>S3</td><td>Blob Storage / ADLS Gen2</td></tr>
+<tr><td>Relational DB</td><td>RDS, Aurora</td><td>Azure Database for PostgreSQL / MySQL, Azure SQL</td></tr>
+<tr><td>NoSQL</td><td>DynamoDB; Keyspaces (Cassandra API)</td><td>Cosmos DB; Cosmos DB for Cassandra, Managed Instance for Apache Cassandra</td></tr>
+<tr><td>Cache</td><td>ElastiCache</td><td>Azure Managed Redis</td></tr>
+<tr><td>Kafka / streaming</td><td>MSK, Kinesis</td><td>Event Hubs (Kafka endpoint), Confluent Cloud on Azure</td></tr>
+<tr><td>Queues and pub/sub</td><td>SQS, SNS, EventBridge</td><td>Service Bus queues and topics, Event Grid</td></tr>
+<tr><td>Monitoring</td><td>CloudWatch, X-Ray, Managed Prometheus, Managed Grafana</td><td>Azure Monitor, Application Insights, Managed Prometheus, Managed Grafana</td></tr>
+<tr><td>Infrastructure as code</td><td>CloudFormation, CDK</td><td>Bicep / ARM (Terraform on both)</td></tr>
+<tr><td>CI/CD, registry</td><td>CodePipeline, ECR</td><td>Azure DevOps or GitHub Actions, ACR</td></tr>
+<tr><td>Governance</td><td>Organizations, SCPs, Control Tower</td><td>Management groups, Azure Policy, Landing Zones</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Differences that matter</b><ul>
+  <li><b>Hierarchy:</b> Azure has tenant → management groups → subscriptions → resource groups. Policy and RBAC inherit down this tree.</li>
+  <li><b>Identity:</b> Entra ID is the centre of everything, for staff and workloads. Prefer managed identities to keys.</li>
+  <li><b>Event Hubs partitions:</b> you cannot change the partition count on the Standard tier; Premium and Dedicated allow increases <span class="ver">ver</span>. Size up front.</li>
+  <li><b>Availability zones</b> are not in every region; regions also come in pairs for some platform-managed replication.</li>
+  <li><b>Outbound SNAT</b> limits on load balancers: plan NAT Gateway early.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"My deepest hands-on cloud is AWS. The architecture transfers directly: EKS to AKS, ALB to Application Gateway, MSK to Event Hubs or Confluent, IAM roles to managed identities. Where Azure differs, mainly identity, the subscription hierarchy and some service limits, I design for it explicitly."</div>
+<p class="src">Sources: <a href="https://learn.microsoft.com/azure/architecture/aws-professional/">Azure for AWS professionals (service mapping)</a>; <a href="https://learn.microsoft.com/azure/event-hubs/event-hubs-scalability">Event Hubs scalability and partitions</a>; <a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/the-pillars-of-the-framework.html">AWS Well-Architected pillars</a>. Checked 23 Oct 2026.</p>
+</article>
+
+<!-- LOGISTICS -->
+<article class="card" id="t-logistics">
+<span class="tag">15 · Domain</span>
+<h3>Logistics and freight event platforms</h3>
+<p>A global logistics and freight company moves goods by air, ocean, road and rail, and through warehouses. Its core digital need is <b>visibility</b>: where is each shipment, is it on time, and what is it costing. That makes it an event-processing problem with many external sources, very uneven volume, and data that arrives late, twice or out of order.</p>
+<div class="grid2"><div>
+<h4>Event sources (upstream)</h4>
+<ul>
+  <li>Handheld scanners and driver mobile apps (often offline, then sync in bulk)</li>
+  <li>Warehouse management systems (WMS): receipt, put-away, pick, pack, dispatch</li>
+  <li>Transport management systems (TMS): bookings, transport legs, routing</li>
+  <li>Carriers and shipping lines: status updates through APIs or EDI messages (e.g. EDIFACT IFTSTA, ANSI X12 214 and 315)</li>
+  <li>Customer systems: orders and bookings through EDI, APIs or the portal</li>
+  <li>Customs, finance and billing systems</li>
+</ul></div><div>
+<h4>Core entities</h4>
+<ul>
+  <li><b>Booking</b> → <b>shipment</b> → one or more <b>transport legs</b></li>
+  <li><b>Milestone / status event</b>: picked up, departed, arrived, customs cleared, delivered</li>
+  <li>Container, pallet, package; house and master bills of lading or air waybills</li>
+  <li>Reference data: locations (UN/LOCODE), carrier codes, customers</li>
+  <li>Charges and invoices</li>
+</ul></div></div>
+<h4>Architectural considerations</h4>
+<ul>
+  <li><b>Variable volume:</b> peak season, Monday-morning backlogs, a vessel arrival that releases thousands of container events at once, carriers that send batch files every few hours. Design for bursts: Kafka buffers, consumers scale on lag.</li>
+  <li><b>Out-of-order and late events:</b> a delivered scan can arrive before the departed scan when a device was offline. Store every event by event time; derive current status with a state machine that ignores older or impossible transitions.</li>
+  <li><b>Duplicates:</b> carriers resend; devices retry. Dedup on (source, source event ID) and make writes idempotent.</li>
+  <li><b>Missing events:</b> detect gaps (an expected milestone that never came, sequence gaps per source) and reconcile counts per partner per hour.</li>
+  <li><b>Canonical event model:</b> map every source format to one internal schema at the edge (an anti-corruption layer per partner), with the raw payload kept for audit and replay.</li>
+  <li><b>Partner onboarding</b> is constant: adapters per carrier or customer, contract tests, mocks of partner APIs.</li>
+  <li><b>Customer-facing SLA:</b> e.g. a milestone appears in the portal and in customer notifications within N minutes of the scan.</li>
+  <li><b>Global operation:</b> multiple regions (Americas, Europe, Asia), data residency (GDPR for EU customer data), time zones (store UTC and the local offset).</li>
+</ul>
+<h4>A common integration shape in this domain</h4>
+<ol>
+  <li><b>Source systems publish thin events</b> to Kafka, one topic per event type, often per business line (air and ocean, road, customs brokerage): booking, booking request, transport leg, routing, milestone, scan, finance.</li>
+  <li>A <b>split service</b> breaks a composite message (one booking with many legs or containers) into one event per entity.</li>
+  <li>A <b>consumer per event type</b> receives the notification and <b>fetches the full payload</b> from the source's data store or an enterprise message hub (claim-check pattern).</li>
+  <li>It <b>maps and transforms</b> the payload into the canonical model.</li>
+  <li>It <b>enriches</b> it with master-data identifiers (a global customer or party ID, location codes).</li>
+  <li>It <b>publishes</b> to target platforms through an API gateway: a unified shipment API, a finance API, an emissions (CO2) calculation service, and inbound and outbound links to external transport partners.</li>
+</ol>
+<p>Practise the questions this shape raises in <a href="#q12">Q6d</a>.</p>
+<h4>Kafka and Cassandra for this domain</h4>
+<ul>
+  <li><b>Kafka key = shipment ID</b> (or container ID), so events for one shipment stay in order. Watch for hot keys: a consolidated master shipment with very many child events.</li>
+  <li><code>events_by_shipment ((shipment_id), event_time, event_id)</code>: full history, newest or oldest first.</li>
+  <li><code>shipments_by_customer ((customer_id, day), updated_at DESC, shipment_id)</code>: the portal list view, bucketed by day.</li>
+  <li><code>shipment_status ((shipment_id))</code>: latest derived status for fast lookups.</li>
+  <li>TTL on history according to the retention policy; TWCS compaction.</li>
+</ul>
+<div class="box say"><b class="lbl">Say this</b>"In logistics the hard part is not the average volume. It is bursts, late and out-of-order scans, partner duplicates and silent gaps. I design the pipeline so every event is kept, ordering is per shipment, status is derived by event time, and every partner feed is reconciled."</div>
+<p class="src">Sources: <a href="https://unece.org/trade/uncefact/unlocode">UNECE: UN/LOCODE</a>; <a href="https://service.unece.org/trade/untdid/">UN/EDIFACT directories (UNECE)</a>; <a href="https://x12.org/">ASC X12</a>. Checked 23 Oct 2026.</p>
+</article>
 </section>
 
 <!-- ============ PART 2 ============ -->
@@ -639,8 +754,10 @@ button.mini:hover{border-color:var(--accent)}
 <div class="card">
 <h3>How to answer scenario questions</h3>
 <ol>
+  <li><b>Answer the question first.</b> "Yes, I have. 12,000 events per second at peak." Then explain. Never circle. If you do not know, say so and say how you would find out.</li>
   <li><b>Lead with the principle in one sentence,</b> then give three concrete points. Stop and offer more: "I can go deeper on any of those." This controls the "what else?" drill.</li>
   <li><b>Follow the data through every layer</b> without being asked: client → edge → API → Kafka → consumer → database → downstream API.</li>
+  <li><b>Narrate with the golden signals:</b> latency, traffic (throughput), errors, saturation. Throughput sizes the partitions; saturation (CPU, memory, connections) shows where the next limit is.</li>
   <li><b>Use numbers.</b> "Lag above 30 seconds pages us." "Pool of 10 per pod, 20 pods, 200 connections against a 500 limit."</li>
   <li><b>Name the trade-off</b> in each option. Architects are judged on trade-offs, not on the right answer.</li>
   <li><b>Tie back to the SLA.</b> Every answer ends with how it protects the SLA or how you measure it.</li>
@@ -651,15 +768,72 @@ button.mini:hover{border-color:var(--accent)}
 <!-- STORY MAP -->
 <article class="card" id="stories">
 <span class="tag">Your experience</span>
-<h3>Three anchor stories</h3>
-<p>Prepare three projects in depth and use them for every "have you…?" and "tell me about…" question. Do not name clients in the interview unless you are cleared to; describe them by industry and scale instead.</p>
+<h3>Four anchor stories</h3>
+<p>Prepare four projects in depth and use them for every "have you…?" and "tell me about…" question. Do not name clients in the interview unless you are cleared to; describe them by industry and scale instead.</p>
 <div class="tbl"><table>
 <tr><th>Story</th><th>One line</th><th>Best for</th></tr>
+<tr><td><a href="#q0d"><b>D · High-volume event pipeline</b></a></td><td>Several Kafka pipelines into Cassandra, bursts, DLQ. Your most direct match to this role</td><td>Q0 opening question, Q3 partitions, Q6b missed and duplicate messages, Q6c slow consumers, Q8a sequencing</td></tr>
 <tr><td><a href="#q0"><b>A · Customer-360 integration</b></a></td><td>API-led platform unifying customer data: Kafka, Cassandra, PostgreSQL, cache, downstream billing and payment APIs</td><td>Q2 downstream down, Q5 dependency cannot scale, Q6 retries, Q8a ordering, Cassandra modelling</td></tr>
 <tr><td><a href="#q0b"><b>B · Platform scale modelling</b></a></td><td>Predictive capacity model for a large wealth-management platform; thresholds per layer; scalability roadmap; event-driven integration on AWS</td><td>Q1 SLA, Q3 scaling through layers, Q4 "what else?", capacity planning, stakeholder adoption</td></tr>
 <tr><td><a href="#q7"><b>C · Agentic AI platform</b></a></td><td>Context engine, layered memory and MCP for an enterprise agentic SDLC platform at a global payments company; PCI/PII governance; EKS stability</td><td>Q7 AI modernization, security and governance, Q8b production troubleshooting</td></tr>
 </table></div>
 <div class="box gotcha"><b class="lbl">Public page</b>This page names no clients or employers. Keep it that way when you fill in the brackets.</div>
+</article>
+
+<!-- Q0D -->
+<article class="card" id="q0d">
+<span class="tag">Anchor story D · lead with this one</span>
+<h3>High-volume, multi-pipeline event platform (Kafka + Cassandra)</h3>
+<div class="box intent"><b class="lbl">Why this matters</b>This is the closest match to the role's headline: a high and variable volume, event-driven system with Kafka, Cassandra and dead-letter handling. Expect the panel to drill into it for 20 minutes. Prepare a drill-down plan so that you lead them through it, layer by layer, with numbers.</div>
+<h4>The facts (from you)</h4>
+<ul>
+  <li>Large consumer-facing platform. Messages arrived through four pipelines into Kafka, with Cassandra (DataStax) as the store.</li>
+  <li>Problems you handled: messages arriving faster than consumers could process, dead-letter queues for failures.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Fill this table before the interview</b>The panel will ask for these numbers. Recover them from your project notes. If you cannot recover a number, give a range and say it is approximate. Do not invent precision.</div>
+<div class="tbl"><table>
+<tr><th>Drill-down step</th><th>Your answer</th></tr>
+<tr><td>1. What the system did; who used it</td><td>[ ]</td></tr>
+<tr><td>2. The four pipelines: which entity or event each carried</td><td>[ ]</td></tr>
+<tr><td>3. Volume: average, peak, burst events/s; message size; daily total</td><td>[ ]</td></tr>
+<tr><td>4. Topics and partitions per pipeline; <b>partition key and why</b></td><td>[ ]</td></tr>
+<tr><td>5. Sequencing: did order matter? How kept? What happened on a gap?</td><td>[ ]</td></tr>
+<tr><td>6. Consumers: groups, instances, processing rate per instance, how scaled</td><td>[ ]</td></tr>
+<tr><td>7. Cassandra: cluster size, RF, consistency level, main tables and keys</td><td>[ ]</td></tr>
+<tr><td>8. Failure handling: retries, DLQ, replay, idempotency</td><td>[ ]</td></tr>
+<tr><td>9. Monitoring: lag, latency SLA, dashboards, alerts</td><td>[ ]</td></tr>
+<tr><td>10. Two real challenges (bursts, duplicates, missing data, a slow consumer, a hot partition) and the fix</td><td>[ ]</td></tr>
+<tr><td>11. Result: SLA met, incidents reduced, scale reached</td><td>[ ]</td></tr>
+</table></div>
+<details class="qa"><summary><span>Bridge it to logistics</span></summary><div class="ans">
+<p>If the panel cannot relate your domain to theirs, translate it for them in one sentence, then continue: "Our events are like shipment milestones. Each customer account was our ordering key, the way a shipment ID would be for you. Our burst was [your peak event]; yours would be peak season or a vessel arrival." Then use the <a href="#t-logistics">logistics primer</a> to talk about their sources: scanners, carriers, warehouses, customer EDI.</p>
+</div></details>
+</article>
+
+<!-- Q0 OPENING -->
+<article class="card" id="q9">
+<span class="tag">Section 0 · Opening</span>
+<h3>Q0 · "Have you designed a large, variable-volume system?"</h3>
+<div class="box intent"><b class="lbl">Intent</b>A direct question, often the first one. It tests whether you have real experience and can state it plainly with numbers. Everything after it drills into your answer, so your answer sets the agenda.</div>
+<details class="qa"><summary><span>Model structure (90 seconds)</span></summary><div class="ans">
+<ol>
+  <li><b>Answer:</b> "Yes. I designed [system] that processed [average] events per second, with peaks of [peak], through four Kafka pipelines into Cassandra."</li>
+  <li><b>Shape of the volume:</b> what caused the bursts, and how big they were relative to average (e.g. 10×).</li>
+  <li><b>Key design choices, one line each:</b> partition key and why; partition count from peak throughput; consumers scaled on lag; idempotent writes into Cassandra; DLQ for poison messages.</li>
+  <li><b>Two challenges with fixes:</b> pick from bursts outrunning consumers, duplicates, missing messages, a slow consumer, a hot partition.</li>
+  <li><b>How you knew it worked:</b> SLI and lag dashboards; the SLA you met.</li>
+  <li><b>Hand over:</b> "I can go deeper into the partitioning or the failure handling."</li>
+</ol>
+</div></details>
+<details class="qa"><summary><span>Follow-ups this opens</span></summary><div class="ans">
+<ul>
+  <li>Why that partition key? What happens with a hot key?</li>
+  <li>How did you handle sequence and gaps? (<a href="#q8">Q8a</a>, <a href="#q10">Q6b</a>)</li>
+  <li>Traffic goes 10× tomorrow. What breaks first? (<a href="#q3">Q3 worked example</a>)</li>
+  <li>A consumer slows down. How do you know, and what do you do? (<a href="#q11">Q6c</a>)</li>
+  <li>What were the typical problems? Missing messages, duplicates, reconciliation. (<a href="#q10">Q6b</a>)</li>
+</ul>
+</div></details>
 </article>
 
 <!-- Q0 -->
@@ -842,6 +1016,22 @@ button.mini:hover{border-color:var(--accent)}
   <li><b>Producer side:</b> <code>linger.ms</code>, batching, compression, and check broker capacity (disk, network, partitions per broker).</li>
 </ol>
 </div></details>
+<details class="qa"><summary><span>Worked example: designed for 1,000 msg/s on 10 partitions; traffic goes to 10,000 msg/s</span></summary><div class="ans">
+<p>Use numbers. Assume 2 KB messages and one consumer instance handles 150 msg/s.</p>
+<div class="tbl"><table>
+<tr><th>Layer</th><th>Before</th><th>At 10,000 msg/s</th><th>What you do</th></tr>
+<tr><td>Consumers</td><td>10 consumers × 150 = 1,500 msg/s capacity (67% busy)</td><td>Need ≥ 67 consumers; only 10 can work with 10 partitions</td><td>First make each consumer faster (batching, async I/O). Then add partitions</td></tr>
+<tr><td>Backlog if you do nothing</td><td>None</td><td>Grows by 8,500 msg/s ≈ 30 million per hour</td><td>Kafka keeps the data safe, but the SLA is breached within minutes</td></tr>
+<tr><td>Partitions</td><td>10</td><td>≥ 67; choose ~100–120 for growth</td><td>Adding partitions remaps keys: plan the order impact, or migrate to a new topic</td></tr>
+<tr><td>Brokers</td><td>2 MB/s in; 6 MB/s with RF=3</td><td>20 MB/s in; 60 MB/s replicated, plus consumer reads</td><td>Check broker network, disk throughput, partitions per broker</td></tr>
+<tr><td>Disk (7-day retention)</td><td>~1.2 TB × 3 replicas</td><td>~12 TB × 3 replicas ≈ 36 TB</td><td>Add brokers or storage, or shorten retention</td></tr>
+<tr><td>Database</td><td>10 pods × pool 10 = 100 connections</td><td>67+ pods × pool 10 = 670+ connections</td><td>Shrink pool per pod, batch writes, check DB limits (see Q5)</td></tr>
+<tr><td>Cassandra</td><td>1,000 writes/s</td><td>10,000 writes/s (more with multiple tables per event)</td><td>Add nodes; check hot partitions and compaction</td></tr>
+<tr><td>Downstream APIs</td><td>1,000 calls/s</td><td>10,000 calls/s</td><td>Agree limits with owners, rate-limit, cache, batch (see Q5)</td></tr>
+<tr><td>Kubernetes</td><td>10 pods</td><td>67+ pods</td><td>Node capacity, subnet IPs, KEDA max = partitions</td></tr>
+</table></div>
+<p><b>Close:</b> "So a 10× jump is not a Kafka setting. It is a capacity change in every layer. I would model it, load-test it at that level, and roll it out layer by layer, starting with whatever breaks first."</p>
+</div></details>
 <details class="qa"><summary><span>Do you need more consumers? How does that hit the next layers, and what does it force there?</span></summary><div class="ans">
 <p><b>Principle, say it first:</b> "Scaling one layer moves the bottleneck to the next. The pipeline's capacity is the capacity of its slowest layer, so I plan capacity end to end."</p>
 <p>Going from 10 to 30 consumers means about 3× the load on everything behind them:</p>
@@ -944,6 +1134,148 @@ button.mini:hover{border-color:var(--accent)}
 <tr><td>Outbox re-publish</td><td>Re-send from the outbox table by status</td><td>Producer-side recovery</td></tr>
 </table></div>
 <p><b>Ordering caveat (say it):</b> if order matters per key, a failed message must block later messages for the same key. Either use blocking retries, or park all subsequent messages for that key until the failed one is resolved.</p>
+</div></details>
+</article>
+
+<!-- Q6B -->
+<article class="card" id="q10">
+<span class="tag">Section 6 · Data integrity</span>
+<h3>Q6b · Missed messages, duplicates, out-of-order and reconciliation</h3>
+<div class="box intent"><b class="lbl">Intent</b>"What typical problems did you face?" The expected answer names the real ones: lost messages, duplicates, out-of-order events and data that does not reconcile. Then it shows prevention, detection and repair for each.</div>
+<details class="qa"><summary><span>Where can messages go missing, and how do you prevent it?</span></summary><div class="ans">
+<div class="tbl"><table>
+<tr><th>Where loss happens</th><th>Prevention</th></tr>
+<tr><td>Producer fire-and-forget or <code>acks=1</code> with a broker failure</td><td><code>acks=all</code>, <code>min.insync.replicas=2</code>, idempotent producer, handle send errors</td></tr>
+<tr><td>Consumer auto-commits before processing, then crashes</td><td>Commit offsets only after successful processing</td></tr>
+<tr><td>Consumer down longer than retention</td><td>Retention longer than the longest credible outage plus catch-up time; lag alerts</td></tr>
+<tr><td>Messages sent to the DLQ and never looked at</td><td>Alert on DLQ depth; owner and redrive process</td></tr>
+<tr><td>Source never sent it (partner, device offline)</td><td>Gap detection and reconciliation (below)</td></tr>
+<tr><td>Filtering or mapping bug drops records silently</td><td>Count in and out per stage; contract tests</td></tr>
+</table></div>
+</div></details>
+<details class="qa"><summary><span>How do you detect gaps and reconcile?</span></summary><div class="ans">
+<ul>
+  <li><b>Sequence numbers per source</b> (or per entity): a consumer that sees 41 then 43 flags 42 as missing, waits a grace period, then raises it.</li>
+  <li><b>Count reconciliation per window:</b> records sent by the source vs received vs processed vs stored, per partner per hour. Batch EDI files often carry control totals; check them.</li>
+  <li><b>Expected-event checks</b> (domain): a shipment departed but no arrival after its ETA plus tolerance → alert or ask the carrier.</li>
+  <li><b>End-of-day reconciliation job</b> against the source system of record, with a report and automatic re-request.</li>
+  <li><b>Heartbeats</b> per feed, so "the feed is silent" is an alert, not a surprise.</li>
+</ul>
+<p><b>Repair:</b> replay from Kafka offsets; re-process from a raw landing store (keep every raw payload in blob storage); request a resend from the partner. Idempotent consumers make every repair safe.</p>
+</div></details>
+<details class="qa"><summary><span>How do you handle duplicates and out-of-order events?</span></summary><div class="ans">
+<ul>
+  <li><b>Duplicates:</b> assume at-least-once. Dedup on a natural key (source + source event ID) or event ID; upserts in Cassandra are naturally idempotent; side effects (emails, invoices) check a processed-events table first.</li>
+  <li><b>Out of order:</b> keep ordering per key where you can (Kafka key). For events from many sources, order cannot be guaranteed, so use <b>event time</b>, not arrival time. Store every event; derive current state with rules (a version or timestamp check, or a state machine that rejects impossible transitions).</li>
+  <li><b>Late events:</b> accept and re-derive state; decide how late is too late for downstream actions (notifications already sent).</li>
+</ul>
+</div></details>
+</article>
+
+<!-- Q6C -->
+<article class="card" id="q11">
+<span class="tag">Section 6 · Consumer health</span>
+<h3>Q6c · A consumer slows down or hangs</h3>
+<div class="box intent"><b class="lbl">Intent</b>"A consumer is not keeping up with the rate you planned. How do you know, and what happens?" They want proactive detection, a way to tell one stuck partition from a systemic slowdown, and automated handling.</div>
+<details class="qa"><summary><span>How do you know, before customers notice?</span></summary><div class="ans">
+<ul>
+  <li><b>Lag per partition, in seconds</b>, with alerts on level and on growth rate.</li>
+  <li><b>Processing rate per consumer instance</b> vs the planned rate.</li>
+  <li><b>Time since the last committed offset</b> per partition: catches a hung consumer that still looks alive.</li>
+  <li><b>Rebalance count</b> per consumer group: a rebalance loop shows here first.</li>
+  <li><b>Downstream latency and error rate</b> from the consumer's point of view.</li>
+  <li><b>End-to-end latency SLI</b> from event time to stored time.</li>
+</ul>
+</div></details>
+<details class="qa"><summary><span>Diagnosis and action</span></summary><div class="ans">
+<div class="tbl"><table>
+<tr><th>Symptom</th><th>Likely cause</th><th>Action</th></tr>
+<tr><td>Lag on one partition only</td><td>Poison message retried forever, or a hot key</td><td>Move it to the DLQ after N tries; for a hot key, change the key design (or salt it if order allows)</td></tr>
+<tr><td>Lag on all partitions, consumers idle</td><td>Waiting on downstream (DB, API) or pool starvation</td><td>Fix the downstream, circuit breaker and pause, check pool pending</td></tr>
+<tr><td>Lag on all partitions, consumers at full CPU</td><td>Under capacity</td><td>Scale out (up to partition count), optimise processing</td></tr>
+<tr><td>Repeated rebalances</td><td>Processing exceeds <code>max.poll.interval.ms</code>; GC pauses; pods restarting</td><td>Smaller <code>max.poll.records</code>, static membership, cooperative rebalancing, fix memory</td></tr>
+<tr><td>Consumer alive but no progress</td><td>Deadlock or hung thread</td><td>Liveness check on poll-loop progress (not on dependencies), so Kubernetes restarts it</td></tr>
+</table></div>
+<p><b>What happens to the data:</b> nothing is lost while it stays within retention. Partitions owned by a dead consumer move to healthy ones after a rebalance. The risk is the SLA, so the alert has to fire on lag in time, early.</p>
+</div></details>
+</article>
+
+<!-- Q6D -->
+<article class="card" id="q12">
+<span class="tag">Section 6 · Integration pipeline</span>
+<h3>Q6d · Notify, fetch, transform, enrich, publish</h3>
+<div class="box intent"><b class="lbl">Intent</b>The panel may describe its own pipeline: thin events, a split service, consumers that fetch the full payload, map it, enrich it with master data and publish through an API gateway. Then they ask what breaks and how you would improve it. They test whether you see the hidden dependencies: the payload store, the master-data service, the target API, and ordering across topics.</div>
+<p class="mnemonic" style="font-size:16px">Source event → split → consume → fetch payload → map → enrich → publish via API gateway → target</p>
+
+<details class="qa"><summary><span>Why fetch the payload instead of putting it in the event? Trade-offs?</span></summary><div class="ans">
+<p>This is the <b>claim-check</b> (or event-notification) pattern.</p>
+<ul>
+  <li><b>For:</b> small events; large or sensitive payloads stay in the source of truth; consumers always get the latest version; less PII sprayed across topics.</li>
+  <li><b>Against:</b> every event becomes an extra synchronous call, so the payload store is now on the critical path for every consumer. Load on it multiplies with events × consumers. Replay depends on the store still holding that version.</li>
+  <li><b>Race:</b> the event can arrive before the store has committed the data. Fetch returns "not found" or an old version. Handle with a short retry with backoff, and a version number in the event so the consumer knows which version to expect.</li>
+  <li><b>Alternative:</b> event-carried state transfer (full payload in the event, with Schema Registry) removes the fetch. Good for high-volume, medium-sized payloads. A hybrid is common: key fields in the event, full detail by fetch.</li>
+</ul>
+</div></details>
+
+<details class="qa"><summary><span>The payload store (or message hub) is slow or down. What happens?</span></summary><div class="ans">
+<ul>
+  <li>Every consumer type stalls at once: it is a shared dependency with fan-in from all flows.</li>
+  <li>Timeout, retry with jitter, circuit breaker, then <b>pause</b> the consumers. Kafka holds the events; nothing is lost within retention. Do not send them to the DLQ: the events are fine.</li>
+  <li>Alert on lag in seconds per flow, and on fetch latency and error rate.</li>
+  <li>On recovery, drain with a rate limit so the store is not knocked over again. Prioritise flows (milestones the customer sees before low-priority batch flows).</li>
+  <li><b>Design fixes:</b> capacity plan the store for events × consumers; read replicas or a cache for hot reads; bulk fetch APIs; consider carrying more state in the event.</li>
+</ul>
+</div></details>
+
+<details class="qa"><summary><span>Enrichment fails: the master-data service has no mapping for this customer or location yet.</span></summary><div class="ans">
+<ul>
+  <li>This is a <b>data</b> problem, not a poison message. Retrying immediately will not help, and dropping it loses data.</li>
+  <li>Park it in a "pending enrichment" retry topic or table with a delay, and retry on a schedule or when the master-data change event arrives.</li>
+  <li>Set a time limit, then raise it to the data stewardship team, with a dashboard of unmapped references by source.</li>
+  <li>Cache master data locally (refresh by change events, with a TTL) so the enrichment service is not called once per event.</li>
+  <li>Decide with the business whether a partial record (no master ID yet) may be published and corrected later.</li>
+</ul>
+</div></details>
+
+<details class="qa"><summary><span>A milestone arrives before the booking or shipment it belongs to exists in the target.</span></summary><div class="ans">
+<p>Different event types travel on different topics, so there is no ordering between them. Options:</p>
+<ul>
+  <li><b>Park and retry:</b> hold the child event until the parent exists (delay topic, bounded retries, then alert).</li>
+  <li><b>Upsert with placeholder:</b> the target accepts the milestone and creates a skeleton shipment, filled in when the booking arrives. Needs idempotent, order-tolerant target APIs.</li>
+  <li><b>Same key, same topic:</b> put all events for one shipment on one topic keyed by shipment ID, so order holds. Costs a less clean topic design.</li>
+  <li><b>Monitor:</b> count parked events by age; an orphan after N hours is a data-quality incident.</li>
+</ul>
+</div></details>
+
+<details class="qa"><summary><span>What does the split service change about ordering and volume?</span></summary><div class="ans">
+<ul>
+  <li><b>Amplification:</b> one booking with 40 containers becomes 40 events. Size downstream for the split rate, not the source rate.</li>
+  <li><b>Keys:</b> the split service must choose the output key deliberately (shipment or container ID) so related events stay in order.</li>
+  <li><b>Atomicity:</b> if it fails half-way, some children are published and some are not. Use the idempotent producer and transactions, or deterministic child IDs so a re-run is deduplicated.</li>
+</ul>
+</div></details>
+
+<details class="qa"><summary><span>The target API behind the gateway cannot take your peak rate.</span></summary><div class="ans">
+<p>Same answer as <a href="#q5">Q5</a>: agree a rate with the owner, rate-limit the consumers to it, let Kafka absorb the peaks, use bulk endpoints, prioritise customer-visible flows, and escalate with data if the SLA is at risk. Gateway throttling responses (HTTP 429) must trigger backoff, not fast retries.</p>
+</div></details>
+
+<details class="qa"><summary><span>You have a dozen consumers that each fetch, map, enrich and publish. How do you govern that?</span></summary><div class="ans">
+<ul>
+  <li>A <b>reference implementation</b> or shared library for the common steps: fetch with resilience, idempotency, correlation-ID propagation, metrics, DLQ and retry handling. Each consumer writes only its mapping.</li>
+  <li>Mapping rules as versioned, tested artefacts with contract tests against sample payloads from each source.</li>
+  <li>One dashboard per flow with the same panels: rate, lag in seconds, fetch latency, enrichment failures, publish errors, DLQ depth, end-to-end latency.</li>
+  <li>Trace context carried from the source event through split, fetch and publish, so one shipment can be followed across every hop.</li>
+</ul>
+</div></details>
+
+<details class="qa"><summary><span>How would you improve this architecture over time?</span></summary><div class="ans">
+<ul>
+  <li>Move high-volume flows towards event-carried state, to remove the fetch from the hot path.</li>
+  <li>Reduce point-to-point consumers with a canonical shipment event that targets subscribe to.</li>
+  <li>Schema Registry and compatibility checks for every topic.</li>
+  <li>End-to-end SLOs per flow, with burn-rate alerts.</li>
+  <li>Do it incrementally, one flow at a time, with a parallel run and reconciliation before switching.</li>
+</ul>
 </div></details>
 </article>
 
@@ -1066,7 +1398,18 @@ button.mini:hover{border-color:var(--accent)}
 <details class="qa"><summary><span>How do you manage secrets and config?</span></summary><div class="ans"><p>Key Vault plus Secrets Store CSI driver, accessed with Workload Identity; no secrets in Git or images; rotation; ConfigMaps for non-secret config; GitOps for config changes with review.</p></div></details>
 <details class="qa"><summary><span>Pods are in CrashLoopBackOff after a release. Steps?</span></summary><div class="ans"><p><code>kubectl describe pod</code> (events, exit code, OOMKilled?), <code>kubectl logs --previous</code>, check config and secrets mounted, liveness probe too aggressive for startup (add a startup probe), dependency missing. Mitigate: roll back first.</p></div></details>
 <details class="qa"><summary><span>Design network security for a customer portal on Azure.</span></summary><div class="ans"><p>Front Door with WAF → private App Gateway for Containers → private AKS; hub-spoke VNets; Private Endpoints for data services; NSGs and K8s NetworkPolicies; egress through Azure Firewall; Entra ID for identity; DDoS protection; no public IPs on workloads.</p></div></details>
+<details class="qa"><summary><span>How would you introduce chaos engineering without hurting customers?</span></summary><div class="ans"><p>Start from SLOs as the steady state. Begin in a non-production environment, then small production experiments: one service, one zone or canary traffic, with an automatic abort on SLO alert and people watching. Typical first experiments: kill pods, add latency to a downstream, lose a Kafka broker. Fix each finding, then widen. Design limits the blast radius in the first place: bulkheads, cells, per-tenant limits, progressive rollout.</p></div></details>
+<details class="qa"><summary><span>Your cloud background is AWS. How will you handle Azure?</span></summary><div class="ans"><p>Answer honestly and confidently: the architecture principles are cloud-neutral, and you map services one to one (see <a href="#t-aws">AWS → Azure</a>). Name the real differences you would design for: Entra ID and managed identities, the subscription and policy hierarchy, Event Hubs partition limits, SNAT. Mention any Azure certification plan if you have one.</p></div></details>
 <details class="qa"><summary><span>How do you control cloud cost?</span></summary><div class="ans"><p>Right-size from metrics, autoscale to zero where possible, reservations and savings plans for the baseline, spot node pools for tolerant work, log retention tiers, tagging and showback per team, budget alerts. Treat cost as an NFR in design reviews.</p></div></details>
+</article>
+
+<article class="card" id="x-log">
+<span class="tag">Domain</span>
+<h3>Logistics scenarios</h3>
+<details class="qa"><summary><span>Design shipment tracking for a customer portal: milestones from scanners, carriers and warehouses.</span></summary><div class="ans"><p>Partner adapters at the edge (API, EDI, file) map to a canonical event and store the raw payload. Publish to Kafka keyed by shipment ID. A status processor dedups, orders by event time, applies a milestone state machine, and writes <code>events_by_shipment</code>, <code>shipment_status</code> and <code>shipments_by_customer</code> in Cassandra. A notification service sends customer alerts. The portal reads through a BFF and a cache. SLI: milestone visible within N minutes of the scan.</p></div></details>
+<details class="qa"><summary><span>A carrier resends a whole day of status updates. What happens?</span></summary><div class="ans"><p>Nothing visible: dedup on source event ID; idempotent upserts; the state machine ignores older events; notifications check whether they were already sent. Rate-limit the replay so it does not delay live traffic, for example a separate topic or a lower-priority consumer group.</p></div></details>
+<details class="qa"><summary><span>Peak season brings 5× volume for six weeks. How do you prepare?</span></summary><div class="ans"><p>Forecast from last year's peak plus growth; load-test at 2× the forecast; pre-scale partitions and Cassandra nodes before the season (both are slow to change); set autoscaling limits; freeze risky changes; run a game day; agree a war-room and escalation plan.</p></div></details>
+<details class="qa"><summary><span>Scanners go offline in a warehouse and upload 50,000 scans at once when they reconnect.</span></summary><div class="ans"><p>Kafka absorbs the burst; consumers scale on lag. Events carry the scan time, so status derivation stays correct. Watch the SLA for live traffic: if needed, route bulk device syncs to a separate topic or consumer group so they do not delay live events.</p></div></details>
 </article>
 
 <article class="card" id="x-fe">
@@ -1149,6 +1492,8 @@ button.mini:hover{border-color:var(--accent)}
 </svg>
 <figcaption>Single region shown, across three zones. Second region: Front Door failover, Cassandra multi-DC, Kafka MirrorMaker 2 or Cluster Linking.</figcaption>
 </figure>
+<div class="box intent"><b class="lbl">Logistics variant</b>Clients = scanners, driver apps, warehouse systems, carriers, customer EDI and the portal. Ingest = partner adapters that map to a canonical event and keep the raw payload. Kafka key = shipment ID. Processors = dedup, event-time ordering, milestone state machine. Cassandra = events by shipment, status by shipment, shipments by customer. Downstream = customer notifications, billing, customs.</div>
+<div class="box intent"><b class="lbl">Integration variant</b>Many enterprise logistics estates already run a notify-then-fetch pipeline: thin events per type → split → consumer fetches the full payload → map → enrich with master data → publish through an API gateway to target platforms. If the panel describes this, design within it, and talk about the fetch dependency, the enrichment dependency, cross-topic ordering and the target API's rate limits.</div>
 <h4>Walkthrough order (10 minutes)</h4>
 <ol>
   <li><b>Clarify (1 min):</b> volume (average, peak, burst), message size, SLA (e.g. 99.9% delivered in 5 s), ordering need, delivery guarantee, retention, regions, RTO/RPO, compliance.</li>
@@ -1179,6 +1524,7 @@ button.mini:hover{border-color:var(--accent)}
   <li>Hikari default pool 10; Tomcat 200 threads; <code>max.poll.interval.ms</code> 5 min; K8s grace 30 s; Cassandra gc_grace 10 days.</li>
   <li>Web Vitals: LCP 2.5 s, INP 200 ms, CLS 0.1.</li>
   <li>Burn-rate page: 2% of budget in 1 h = 14.4×.</li>
+  <li>10,000 msg/s × 2 KB = 20 MB/s ≈ 1.7 TB/day before replication.</li>
 </ul></div><div>
 <h4>Lines to land</h4>
 <ul>
@@ -1189,6 +1535,8 @@ button.mini:hover{border-color:var(--accent)}
   <li>"At-least-once delivery plus idempotent consumers."</li>
   <li>"Measure the SLA end to end from the customer's view."</li>
   <li>"Impact first, mitigate, then root cause."</li>
+  <li>"Every event is kept; status is derived by event time; every feed is reconciled."</li>
+  <li>"10× traffic is a capacity change in every layer, not a Kafka setting."</li>
   <li>"When a dependency cannot scale: protect, level the load, negotiate, escalate with options."</li>
 </ul>
 <h4>The 6 Cs</h4>
