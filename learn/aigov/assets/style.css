@@ -153,6 +153,7 @@ html[data-theme="dark"] .brand .mark{color:#08171C}
 .doc hr{border:0;border-top:1px solid var(--rule-soft);margin:40px 0}
 .doc a{color:var(--petrol-2);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
 .doc a:hover{color:var(--ink);background:var(--petrol-wash)}
+.doc a.ext::after{content:"\2197";content:"\2197" / "opens in a new tab";font-size:.8em;margin-left:.2em;text-decoration:none;display:inline-block}
 .doc strong{font-weight:600;color:var(--ink)}
 .doc em{font-style:italic}
 .doc code{
