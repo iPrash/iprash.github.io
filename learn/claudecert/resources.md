@@ -9,8 +9,8 @@ Two Anthropic training sites appear below. Both run on the Skilljar platform and
 
 | Site | What it is | Who can use it |
 |---|---|---|
-| [Anthropic Partner Academy](https://anthropic-partners.skilljar.com/) | Training for staff at Claude Partner Network firms. It holds the Developer exam prep course (R12, R103 to R107), the Claude Developer path (R97, R100), the certification registration links, exam guides and partner webinars | Partner staff only. Sign in with a company email on the partner's domain (R7) |
-| [Claude Academy](https://academy.claude.com/) | Anthropic's public course and tutorial catalog: API, Claude Platform, Claude Code, MCP, Skills, Subagents and AI Fluency (R17 to R22, R91, R92, R98, R99, R101, R102, R108 to R113). Its older address, anthropic.skilljar.com, still works | Anyone. Free |
+| [Anthropic Partner Academy](https://anthropic-partners.skilljar.com/) | Training for staff at Claude Partner Network firms. It holds the Developer exam prep course (R12, R103 to R107), the Claude Developer path (R97, R100, R18, R19, R91, R92, R98, R99, R101, R102), the certification registration links, exam guides and partner webinars | Partner staff only. Sign in with a company email on the partner's domain (R7) |
+| [Claude Academy](https://academy.claude.com/) | Anthropic's public course and tutorial catalog: API, Claude Platform, Claude Code, MCP, Skills, Subagents and AI Fluency (R17, R20 to R22, R108 to R113). The Developer path courses also exist here, but the plan links the Partner Academy copy so progress counts for my organisation. Its older address, anthropic.skilljar.com, still works | Anyone. Free |
 
 The [Claude Partner Network](https://www.anthropic.com/news/claude-partner-network) is Anthropic's program for consulting and services firms. Partner tier sets the exam discount (R6).
 
@@ -45,25 +45,27 @@ Source grades: **[P]** primary (Anthropic, Pearson). **[S]** credible secondary.
 | R105 | [Module 3 · Claude Code, MCP & Integration](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration) | 142 min | Days 20 to 22 |
 | R106 | [Module 4 · Production Engineering, Evals & Security](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-engineering-evals-security) | 211 min | Days 23 and 24 |
 | R107 | [Module 5 · Accelerators & IP Contribution](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution) | 155 min | Day 27, optional: the platform-choice section |
-| R97 | [Claude Developer learning path](https://anthropic-partners.skilljar.com/path/claude-developer) | 9 courses | Anthropic's general path for developers. All 9 courses are mapped to days below |
+| R97 | [Claude Developer learning path](https://anthropic-partners.skilljar.com/path/claude-developer) | 9 courses and 1 tutorial | Anthropic's general path for developers. All 10 items are mapped to days below. The tutorial is R111 |
 | R100 | [Claude Platform & Model Foundations](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-model-foundations) | 59 min | Day 7. Partner Academy only |
 
 Policy since 20 October 2026: the prep course (R12) and every course in the Claude Developer path (R97) are part of the plan. R12 also lists recommended courses. I take all of them except Claude 101 (R21) and AI Fluency: Framework & Foundations (R22). Those two teach chat use, and AI Fluency for builders (R99) covers the same framework for developers.
 
 ## Claude Academy (public, free)
 
+R18, R19, R98, R99, R101 and R102 open the same courses in the Claude Developer path on Partner Academy (R97), because that records my progress for my organisation. R91 and R92 do the same.
+
 | # | Resource | Use |
 |---|---|---|
 | R17 | [Building with the Claude API](https://academy.claude.com/courses/building-with-the-claude-api) | 67 lessons, 9 h. Days 8 to 10 and 24 name a section. Other sections are the backup when a module is thin |
-| R18 | [Claude Code in Action](https://academy.claude.com/courses/claude-code-in-action) | 9 lessons, 1 h. In the Developer path. Day 27 |
-| R19 | [Introduction to Model Context Protocol](https://academy.claude.com/courses/introduction-to-model-context-protocol) | 10 lessons, 1 h. In the Developer path. Day 21 |
+| R18 | [Claude Code in Action](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-in-action) | 9 lessons, 1 h. In the Developer path. Day 27 |
+| R19 | [Introduction to Model Context Protocol](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-model-context-protocol) | 10 lessons, 1 h. In the Developer path. Day 21 |
 | R20 | [Model Context Protocol: Advanced Topics](https://academy.claude.com/courses/model-context-protocol-advanced-topics) | 11 lessons, 1.5 h. Day 21, optional: the transport lessons |
 | R21 | [Claude 101](https://academy.claude.com/courses/claude-101) | Skip |
 | R22 | [AI Fluency: Framework & Foundations](https://academy.claude.com/courses/ai-fluency-framework-foundations) | Skip. R99 replaces it |
-| R98 | [AI capabilities and limitations](https://academy.claude.com/courses/ai-capabilities-and-limitations) | 13 lessons, 3.5 h, with exercises. In the Developer path. Days 6, 9, 10, 13 and 14 |
-| R99 | [AI Fluency for builders](https://academy.claude.com/courses/ai-fluency-for-builders) | 9 lessons, 3 h. In the Developer path. Day 27, optional before the exam |
-| R101 | [Claude Platform 101](https://academy.claude.com/courses/claude-platform-101) | 13 lessons, 1.5 h. In the Developer path. Days 4, 7, 15 and 18 |
-| R102 | [Claude Code 101](https://academy.claude.com/courses/claude-code-101) | 12 lessons, 1.5 h. In the Developer path. Day 22 |
+| R98 | [AI capabilities and limitations](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations) | 13 lessons, 3.5 h, with exercises. In the Developer path. Days 6, 9, 10, 13 and 14 |
+| R99 | [AI Fluency for builders](https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders) | 9 lessons, 3 h. In the Developer path. Day 27, optional before the exam |
+| R101 | [Claude Platform 101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101) | 13 lessons, 1.5 h. In the Developer path. Days 4, 7, 15 and 18 |
+| R102 | [Claude Code 101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-101) | 12 lessons, 1.5 h. In the Developer path. Day 22 |
 | R108 | [The AI-native SDLC playbook](https://academy.claude.com/courses/ai-native-sdlc-playbook) | 14 lessons, 1 h of reading. Day 27, for the software engineering lines |
 
 # Documentation
@@ -204,8 +206,8 @@ Use a video in place of part of the day's read when the prep course (R12) is thi
 | R88 | [Building Agents with MCP, full workshop, Mahesh Murag (AI Engineer Summit 2025)](https://www.youtube.com/watch?v=kQmXtrmQ5Zg) | [P] | 1 h 44 min | Day 21, the first hour |
 | R89 | [Claude Code best practices (Code w/ Claude 2025)](https://www.youtube.com/watch?v=gv0WHhKelSE) | [P] | Talk | Day 22 |
 | R90 | [Building headless automation with Claude Code (Code w/ Claude 2025)](https://www.youtube.com/watch?v=dRsjO-88nBs) | [P] | Talk | Day 22 |
-| R91 | [Introduction to agent skills (Claude Academy)](https://academy.claude.com/courses/introduction-to-agent-skills) | [P] | 6 lessons, 1 h | Day 22. In the Developer path |
-| R92 | [Introduction to subagents (Claude Academy)](https://academy.claude.com/courses/introduction-to-subagents) | [P] | 4 lessons, 45 min | Day 20. In the Developer path |
+| R91 | [Introduction to agent skills](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-agent-skills) | [P] | 6 lessons, 1 h | Day 22. In the Developer path |
+| R92 | [Introduction to subagents](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-subagents) | [P] | 4 lessons, 45 min | Day 20. In the Developer path |
 | R93 | [The Complete Guide to Building Skills for Claude](https://claude.com/resources/guides/the-complete-guide-to-building-skills-for-claude) | [P] | About 30 min read | Day 22, optional |
 | R94 | [MCP: Build Rich-Context AI Apps with Anthropic (DeepLearning.AI)](https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic) | [S] | 1 h 38 min | Day 21 alternative to R88. Made with Anthropic. Free to audit |
 

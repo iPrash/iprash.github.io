@@ -67,15 +67,15 @@ Anthropic's own courses are the baseline. Two Anthropic sources set the Learn st
 | [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration) Claude Code, MCP & Integration | Prep course | 142 min | 20 to 22 | Required |
 | [R106](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-engineering-evals-security) Production Engineering, Evals & Security | Prep course | 211 min | 23, 24 | Required |
 | [R107](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution) Accelerators & IP Contribution | Prep course | 155 min | 27 | Optional: the platform-choice section |
-| [R98](https://academy.claude.com/courses/ai-capabilities-and-limitations) AI capabilities and limitations | Developer path | 3.5 h | 6, 9, 10, 13, 14 | Required |
-| [R99](https://academy.claude.com/courses/ai-fluency-for-builders) AI Fluency for builders | Developer path | 3 h | 27 | Optional |
+| [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations) AI capabilities and limitations | Developer path | 3.5 h | 6, 9, 10, 13, 14 | Required |
+| [R99](https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders) AI Fluency for builders | Developer path | 3 h | 27 | Optional |
 | [R100](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-model-foundations) Claude Platform & Model Foundations | Developer path | 59 min | 7 | Required |
-| [R101](https://academy.claude.com/courses/claude-platform-101) Claude Platform 101 | Developer path | 1.5 h | 4, 7, 15, 18 | Required |
-| [R102](https://academy.claude.com/courses/claude-code-101) Claude Code 101 | Developer path | 1.5 h | 22 | Required |
-| [R18](https://academy.claude.com/courses/claude-code-in-action) Claude Code in Action | Developer path | 1 h | 27 | Required |
-| [R19](https://academy.claude.com/courses/introduction-to-model-context-protocol) Introduction to Model Context Protocol | Developer path | 1 h | 21 | Required |
-| [R91](https://academy.claude.com/courses/introduction-to-agent-skills) Introduction to agent skills | Developer path | 1 h | 16 | Required |
-| [R92](https://academy.claude.com/courses/introduction-to-subagents) Introduction to subagents | Developer path | 45 min | 20 | Required |
+| [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101) Claude Platform 101 | Developer path | 1.5 h | 4, 7, 15, 18 | Required |
+| [R102](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-101) Claude Code 101 | Developer path | 1.5 h | 22 | Required |
+| [R18](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-in-action) Claude Code in Action | Developer path | 1 h | 27 | Required |
+| [R19](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-model-context-protocol) Introduction to Model Context Protocol | Developer path | 1 h | 21 | Required |
+| [R91](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-agent-skills) Introduction to agent skills | Developer path | 1 h | 16 | Required |
+| [R92](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-subagents) Introduction to subagents | Developer path | 45 min | 20 | Required |
 | [R17](https://academy.claude.com/courses/building-with-the-claude-api) Building with the Claude API | Prep course recommended | 9 h | 8, 9, 10 required. Other sections as backup | Partly required |
 | [R108](https://academy.claude.com/courses/ai-native-sdlc-playbook) The AI-native SDLC playbook | Claude Academy | 1 h | 27 | Required |
 | [R20](https://academy.claude.com/courses/model-context-protocol-advanced-topics) Model Context Protocol: Advanced Topics | Prep course recommended | 1.5 h | 21 | Optional: the transport lessons |
@@ -96,7 +96,7 @@ Saturday 17 October · long day, 2 hours · Dev D2 API mechanics, D5 LLM fundame
 
 **Learn (60 min).** [R103](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/mso-foundations) MSO Foundations, all of it.
 
-**Also.** [R101](https://academy.claude.com/courses/claude-platform-101) Claude Platform 101, the lesson on the first API call.
+**Also.** [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101) Claude Platform 101, the lesson on the first API call.
 
 **Reference.** [R24](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) Messages API.
 
@@ -116,7 +116,7 @@ Monday 19 October · Dev D5 LLM fundamentals (5.2%)
 
 **Build (45 min).** Use the token counting endpoint ([R29](https://platform.claude.com/docs/en/build-with-claude/token-counting)) on three inputs: a short prompt, a 20-page text, and an image. Record the counts. Send the same open-ended prompt five times and diff the outputs. Repeat with a prompt that has one correct answer. Note where variation matters and where it does not.
 
-**Learn (95 min).** [R98](https://academy.claude.com/courses/ai-capabilities-and-limitations) AI capabilities and limitations: the opening lessons, then the Next Token Prediction section and its exercise.
+**Learn (95 min).** [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations) AI capabilities and limitations: the opening lessons, then the Next Token Prediction section and its exercise.
 
 **Also.** [R109](https://academy.claude.com/tutorials/tokens-and-embeddings) Tokens tutorial, 15 minutes. [R110](https://academy.claude.com/tutorials/parametric-memory-and-context) How context affects performance and cost, 20 minutes.
 
@@ -136,7 +136,7 @@ Tuesday 20 October · Dev D5 model selection (2.7%), LLM fundamentals
 
 **Learn (60 min).** [R100](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-model-foundations) Claude Platform & Model Foundations, 59 minutes.
 
-**Also.** [R101](https://academy.claude.com/courses/claude-platform-101), the lesson on choosing the right model. [R111](https://academy.claude.com/tutorials/choosing-the-right-claude-model) tutorial.
+**Also.** [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101), the lesson on choosing the right model. [R111](https://academy.claude.com/tutorials/choosing-the-right-claude-model) tutorial.
 
 **Reference.** [R36](https://platform.claude.com/docs/en/about-claude/models/choosing-a-model) Choosing a model. [R37](https://platform.claude.com/docs/en/about-claude/model-deprecations) Model deprecations: note what changes when a model version is retired. [R30](https://platform.claude.com/docs/en/build-with-claude/thinking) Thinking, including which models support adaptive thinking. [R31](https://platform.claude.com/docs/en/build-with-claude/effort) Effort. [R114](https://platform.claude.com/docs/en/build-with-claude/fast-mode) Fast mode. [R115](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions) Model IDs and versioning.
 
@@ -172,7 +172,7 @@ Thursday 22 October · Dev D2 API mechanics, application design (8.6%)
 
 **Build (45 min).** Send an image by base64 and by URL. Ask for a structured description. Send a short PDF as a document block and ask for a table from it. Measure the token cost of each input.
 
-**Learn (75 min).** [R17](https://academy.claude.com/courses/building-with-the-claude-api), section Features of Claude: Image support, PDF support, Citations, and Code execution and the Files API. Then [R98](https://academy.claude.com/courses/ai-capabilities-and-limitations), the Working Memory section and its exercise.
+**Learn (75 min).** [R17](https://academy.claude.com/courses/building-with-the-claude-api), section Features of Claude: Image support, PDF support, Citations, and Code execution and the Files API. Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the Working Memory section and its exercise.
 
 **Reference.** [R26](https://platform.claude.com/docs/en/build-with-claude/vision) Vision. [R24](https://platform.claude.com/docs/en/build-with-claude/working-with-messages), the section on content blocks.
 
@@ -188,7 +188,7 @@ Friday 23 October · Dev D5 cost and token management (2.8%)
 
 **Build (45 min).** Put a long, fixed system prompt (over the minimum cacheable length in [R27](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)) before a short user question. Add a cache breakpoint. Send the request three times. Record `cache_creation_input_tokens` and `cache_read_input_tokens`. Build a small cost model: requests per day, prefix size, hit rate, saving. Then change one word in the prefix and show the cache miss.
 
-**Learn (70 min).** [R17](https://academy.claude.com/courses/building-with-the-claude-api), section Features of Claude: Extended thinking and the three prompt caching lessons. Then [R98](https://academy.claude.com/courses/ai-capabilities-and-limitations), the Knowledge section and its exercise.
+**Learn (70 min).** [R17](https://academy.claude.com/courses/building-with-the-claude-api), section Features of Claude: Extended thinking and the three prompt caching lessons. Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the Knowledge section and its exercise.
 
 **Reference.** [R27](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) Prompt caching, including what invalidates the cache.
 
@@ -222,7 +222,7 @@ Monday 26 October · Dev D6 prompt engineering (4.6%)
 
 **Build (45 min).** In `CertLab/02_Prompts/`, build a support-ticket classifier with five categories. Write 20 labeled test tickets, including 5 ambiguous ones. Score version 1 of the prompt. Then change one thing at a time: clear instructions, XML tags around the ticket, a system-prompt role, and 3 examples that target the ambiguous cases. Score each version.
 
-**Learn (75 min).** [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), first segment. Then [R98](https://academy.claude.com/courses/ai-capabilities-and-limitations), the Steerability section and its exercise.
+**Learn (75 min).** [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), first segment. Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the Steerability section and its exercise.
 
 **Also.** [R17](https://academy.claude.com/courses/building-with-the-claude-api), section Prompt engineering techniques. [R85](https://www.youtube.com/watch?v=ysPbXH0LpIE) Prompting 101.
 
@@ -240,7 +240,7 @@ Tuesday 27 October · Dev D6 output handling (2.6%)
 
 **Build (45 min).** Make the classifier return JSON: category, confidence, and a short reason. First try with instructions only, and count parse failures over 20 runs. Then use structured outputs or strict tool use ([R34](https://platform.claude.com/docs/en/build-with-claude/structured-outputs), [R47](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use)). Validate with Pydantic. On a validation failure, retry once with the error message included.
 
-**Learn (90 min).** [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), second segment. Then [R98](https://academy.claude.com/courses/ai-capabilities-and-limitations), the last section, Putting it all together, and the course quiz.
+**Learn (90 min).** [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), second segment. Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the last section, Putting it all together, and the course quiz.
 
 **Also.** [R17](https://academy.claude.com/courses/building-with-the-claude-api), the Structured data lesson.
 
@@ -262,7 +262,7 @@ Wednesday 28 October · Dev D8 tool implementation (4.4%)
 
 **Build (45 min).** In `CertLab/03_Agent/`, define three tools for an order-support case: `lookup_order`, `get_policy`, `issue_refund`. Write the loop: send, check `stop_reason`, run the tool when it is `tool_use`, return a `tool_result`, repeat until `end_turn`. Return `is_error: true` with a clear message when an order is not found. Add a maximum-turns limit.
 
-**Learn (60 min).** [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), third segment. Then [R101](https://academy.claude.com/courses/claude-platform-101), the section Teaching your Agent: the agent loop, tool use and thinking.
+**Learn (60 min).** [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), third segment. Then [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101), the section Teaching your Agent: the agent loop, tool use and thinking.
 
 **Also.** [R17](https://academy.claude.com/courses/building-with-the-claude-api), section Tool use with Claude, up to Multi-turn conversations with tools.
 
@@ -280,7 +280,7 @@ Thursday 29 October · Dev D8 tool implementation, tool set construction
 
 **Build (45 min).** Try `tool_choice` set to auto, any, a named tool, and none. Note what each does. Add a fourth tool, `get_order_status`, that overlaps with `lookup_order`. Send 10 ambiguous requests and count wrong picks. Rewrite both descriptions to separate them clearly. Count again. Ask for two independent lookups in one message and watch for parallel tool calls ([R46](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use)).
 
-**Learn (100 min).** [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), fourth segment. Then [R91](https://academy.claude.com/courses/introduction-to-agent-skills) Introduction to agent skills, 1 hour.
+**Learn (100 min).** [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), fourth segment. Then [R91](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-agent-skills) Introduction to agent skills, 1 hour.
 
 **Also.** [R17](https://academy.claude.com/courses/building-with-the-claude-api), section Tool use with Claude, from Using multiple tools to the end.
 
@@ -318,7 +318,7 @@ Saturday 31 October · long day, 2 hours · Dev D1 agent construction (5.3%), D7
 
 **Mock (45 min).** 15 questions on Days 4 to 17, timed. Review every miss.
 
-**Learn (40 min, or on Day 19).** [R101](https://academy.claude.com/courses/claude-platform-101), the sections Extending your Agent and Managed Agents: built-in tools, Skills, MCP, context management and managed agents. [R112](https://academy.claude.com/tutorials/what-is-claude-managed-agents) tutorial, 4 minutes.
+**Learn (40 min, or on Day 19).** [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101), the sections Extending your Agent and Managed Agents: built-in tools, Skills, MCP, context management and managed agents. [R112](https://academy.claude.com/tutorials/what-is-claude-managed-agents) tutorial, 4 minutes.
 
 **Also.** [R87](https://www.youtube.com/watch?v=TqC1qOfiVcQ) Agent SDK workshop, the first 45 minutes.
 
@@ -340,7 +340,7 @@ Monday 2 November · Dev D6 context engineering (3.8%), D1 patterns and framewor
 
 **Build (45 min).** Make one tool return a large, noisy payload. Run a 10-turn session and watch token use grow. Fix it three ways and compare: prune the tool output to the fields needed, use compaction ([R33](https://platform.claude.com/docs/en/build-with-claude/compaction)), and move a sub-task into a subagent so only its summary returns. Then read the quickstart of one framework (LangGraph, Strands or PydanticAI) for 10 minutes. Note how it names the same ideas.
 
-**Learn (90 min).** [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), first third. Then [R92](https://academy.claude.com/courses/introduction-to-subagents) Introduction to subagents, 45 minutes.
+**Learn (90 min).** [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), first third. Then [R92](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-subagents) Introduction to subagents, 45 minutes.
 
 **Also.** [R86](https://www.youtube.com/watch?v=XSZP9GhhuAc) Prompting for Agents.
 
@@ -358,7 +358,7 @@ Tuesday 3 November · Dev D8 MCP server development (2.1%)
 
 **Build (45 min).** In `CertLab/04_MCP/`, build a Python MCP server ([R76](https://modelcontextprotocol.io/docs/develop/build-server)) with two tools (`lookup_order`, `get_policy`), one resource (the refund policy text), and one prompt (a reply template). Run it over stdio. Connect it to Claude Code with a project-scoped `.mcp.json` ([R70](https://code.claude.com/docs/en/mcp)). Put the credential in an environment variable, not in the file. Call each primitive from Claude Code. Then run the same server over Streamable HTTP and note what changes ([R125](https://modelcontextprotocol.io/specification/latest/basic/transports)).
 
-**Learn (105 min).** [R19](https://academy.claude.com/courses/introduction-to-model-context-protocol) Introduction to Model Context Protocol, 1 hour. It builds a Python server, like today's build. Then [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), second third.
+**Learn (105 min).** [R19](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-model-context-protocol) Introduction to Model Context Protocol, 1 hour. It builds a Python server, like today's build. Then [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), second third.
 
 **Also.** [R20](https://academy.claude.com/courses/model-context-protocol-advanced-topics) MCP Advanced Topics, the transport lessons. [R88](https://www.youtube.com/watch?v=kQmXtrmQ5Zg) MCP workshop, the first hour, or [R94](https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic).
 
@@ -382,7 +382,7 @@ Wednesday 4 November · Dev D3 Claude Code (3.1%), D8 agentic customization (4.1
 
 Then fill in two tables in `notes.md`. First, the four extension types: built-in tool, custom tool, Skill, MCP server. One row each: what it is for, and one example need. Second, where instructions live on each interface: claude.ai project instructions, the Desktop app, Claude Code (CLAUDE.md and rules), the API system prompt, and the Agent SDK ([R126](https://code.claude.com/docs/en/platforms)).
 
-**Learn (135 min, two sittings).** [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), last third. Then [R102](https://academy.claude.com/courses/claude-code-101) Claude Code 101, 1.5 hours.
+**Learn (135 min, two sittings).** [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), last third. Then [R102](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-101) Claude Code 101, 1.5 hours.
 
 **Also.** [R113](https://academy.claude.com/tutorials/what-are-skills) skills tutorials. [R89](https://www.youtube.com/watch?v=gv0WHhKelSE) Claude Code best practices. [R90](https://www.youtube.com/watch?v=dRsjO-88nBs) headless automation. [R93](https://claude.com/resources/guides/the-complete-guide-to-building-skills-for-claude) Skills guide.
 
@@ -451,9 +451,9 @@ Monday 9 November · Dev D2 requirements, life cycle, software engineering (13.6
 
 **Build (60 min).** Spend 20 minutes on the weakest domain from Day 25: redo the build step that covers it. Spend 25 minutes on software engineering in a Claude workflow: on a new branch, refactor the Day 15 agent loop into a module with one test, run `/code-review` on the branch ([R137](https://code.claude.com/docs/en/code-review-local)), fix what it finds and commit. Read how Claude reviews pull requests in GitHub Actions ([R138](https://code.claude.com/docs/en/github-actions)). Spend 15 minutes on third-party access: read how Claude is called through a cloud platform ([R41](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)) and write three lines on what changes (authentication, model IDs, feature parity).
 
-**Learn (120 min).** [R18](https://academy.claude.com/courses/claude-code-in-action) Claude Code in Action, 1 hour: verification, permission modes, headless runs, GitHub Actions, code review and plugins. Then [R108](https://academy.claude.com/courses/ai-native-sdlc-playbook) The AI-native SDLC playbook, 1 hour: requirements, life cycle and review in a team that uses Claude. Then skim [R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf) domain 2 skill lines on requirements, life cycle and software engineering. For each, write one sentence on how I already do it at work. These lines test general practice, not Claude features.
+**Learn (120 min).** [R18](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-in-action) Claude Code in Action, 1 hour: verification, permission modes, headless runs, GitHub Actions, code review and plugins. Then [R108](https://academy.claude.com/courses/ai-native-sdlc-playbook) The AI-native SDLC playbook, 1 hour: requirements, life cycle and review in a team that uses Claude. Then skim [R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf) domain 2 skill lines on requirements, life cycle and software engineering. For each, write one sentence on how I already do it at work. These lines test general practice, not Claude features.
 
-**Also.** [R107](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution), the section on choosing where a workload runs. [R99](https://academy.claude.com/courses/ai-fluency-for-builders) AI Fluency for builders, the lessons on acceptance tests and discernment. Take the rest of [R99](https://academy.claude.com/courses/ai-fluency-for-builders) after the exam.
+**Also.** [R107](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution), the section on choosing where a workload runs. [R99](https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders) AI Fluency for builders, the lessons on acceptance tests and discernment. Take the rest of [R99](https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders) after the exam.
 
 **Reference.** [R41](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai) Claude on Vertex AI. [R137](https://code.claude.com/docs/en/code-review-local) Local code review. [R138](https://code.claude.com/docs/en/github-actions) Claude Code GitHub Actions.
 
