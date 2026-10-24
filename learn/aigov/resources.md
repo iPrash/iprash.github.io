@@ -40,29 +40,29 @@ Set one rule for the sprint: for every claim you plan to use in a client deliver
 
 **Do not build the consumption baseline before you have read all of section 1.**
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| OpenAI API reference — overview | [P] | https://developers.openai.com/api/reference/overview |
-| Admin APIs guide — users, projects, keys, spend limits, audit logs, model permissions | [P] | https://developers.openai.com/api/docs/guides/admin-apis — the mechanics of entitlement analysis and guardrails |
-| Costs endpoint reference (`/v1/organization/costs`) | [P] | https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/usage/methods/costs — note grouping by project and line item |
-| OpenAI Cookbook — using the Usage and Cost APIs | [P] | https://cookbook.openai.com/examples/completions_usage_api — working code you can adapt in an afternoon |
-| Flexible pricing for Enterprise, Edu and Business plans | [P] | https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans — the shared credit pool model that underpins your allocation design |
-| Manage usage limits and overages (Enterprise / Edu) | [P] | https://help.openai.com/en/articles/20001001-manage-usage-limits-and-overages-in-chatgpt-enterprise-and-edu — group limits, user overrides, monthly migration |
-| Managing credits and spend controls (Business) | [P] | https://help.openai.com/en/articles/20001155-managing-credits-and-spend-controls-in-chatgpt-business |
-| Codex rate card | [P] | https://help.openai.com/en/articles/20001106-codex-rate-card — token-aligned credit rates; model retirement notices |
-| Using Codex with your ChatGPT plan | [P] | https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan |
-| Announcement — enterprise usage analytics and spend controls (June 2026) | [P] | https://openai.com/index/chatgpt-enterprise-spend-controls/ |
-| OpenAI Service Credit Terms | [P] | https://openai.com/policies/service-credit-terms/ — read before you negotiate rollover |
-| OpenAI enterprise privacy commitments | [P] | https://openai.com/enterprise-privacy/ — the baseline your data redlines start from |
-| API pricing | [P] | https://openai.com/api/pricing/ and https://platform.openai.com/docs/pricing |
+| [OpenAI API reference — overview](<https://developers.openai.com/api/reference/overview>) | [P] |  |
+| [Admin APIs guide — users, projects, keys, spend limits, audit logs, model permissions](<https://developers.openai.com/api/docs/guides/admin-apis>) | [P] | the mechanics of entitlement analysis and guardrails |
+| [Costs endpoint reference (`/v1/organization/costs`)](<https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/usage/methods/costs>) | [P] | note grouping by project and line item |
+| [OpenAI Cookbook — using the Usage and Cost APIs](<https://cookbook.openai.com/examples/completions_usage_api>) | [P] | working code you can adapt in an afternoon |
+| [Flexible pricing for Enterprise, Edu and Business plans](<https://help.openai.com/en/articles/11487671-flexible-pricing-for-the-enterprise-edu-and-business-plans>) | [P] | the shared credit pool model that underpins your allocation design |
+| [Manage usage limits and overages (Enterprise / Edu)](<https://help.openai.com/en/articles/20001001-manage-usage-limits-and-overages-in-chatgpt-enterprise-and-edu>) | [P] | group limits, user overrides, monthly migration |
+| [Managing credits and spend controls (Business)](<https://help.openai.com/en/articles/20001155-managing-credits-and-spend-controls-in-chatgpt-business>) | [P] |  |
+| [Codex rate card](<https://help.openai.com/en/articles/20001106-codex-rate-card>) | [P] | token-aligned credit rates; model retirement notices |
+| [Using Codex with your ChatGPT plan](<https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan>) | [P] |  |
+| [Announcement — enterprise usage analytics and spend controls (June 2026)](<https://openai.com/index/chatgpt-enterprise-spend-controls/>) | [P] |  |
+| [OpenAI Service Credit Terms](<https://openai.com/policies/service-credit-terms/>) | [P] | read before you negotiate rollover |
+| [OpenAI enterprise privacy commitments](<https://openai.com/enterprise-privacy/>) | [P] | the baseline your data redlines start from |
+| [API pricing](<https://openai.com/api/pricing/>) | [P] | Also the [platform pricing docs](<https://platform.openai.com/docs/pricing>) |
 
 **Negotiation-specific (buyer-side, commercially motivated — read critically):**
 
 | Resource | Grade | Note |
 |---|---|---|
-| Redress Compliance — OpenAI enterprise procurement negotiation playbook | [C] | https://redresscompliance.com/openai-enterprise-procurement-negotiation-playbook — useful on consumption-forecast error and commit structure |
-| Redress Compliance — enterprise guide to negotiating OpenAI contracts | [C] | https://redresscompliance.com/the-enterprise-guide-to-negotiating-openai-contracts.html — clause-level checklists |
-| Redress Compliance — enterprise AI credits pricing compared (2026) | [C] | https://redresscompliance.com/enterprise-ai-credits-pricing-compared-pillar-2026 — normalising credit currencies across vendors |
+| [Redress Compliance — OpenAI enterprise procurement negotiation playbook](<https://redresscompliance.com/openai-enterprise-procurement-negotiation-playbook>) | [C] | useful on consumption-forecast error and commit structure |
+| [Redress Compliance — enterprise guide to negotiating OpenAI contracts](<https://redresscompliance.com/the-enterprise-guide-to-negotiating-openai-contracts.html>) | [C] | clause-level checklists |
+| [Redress Compliance — enterprise AI credits pricing compared (2026)](<https://redresscompliance.com/enterprise-ai-credits-pricing-compared-pillar-2026>) | [C] | normalising credit currencies across vendors |
 
 These three are advisory-firm marketing. The clause checklists are genuinely useful. The percentages are not evidence. Use the structure, source the numbers yourself.
 
@@ -70,14 +70,14 @@ These three are advisory-firm marketing. The clause checklists are genuinely use
 
 # 2. GitHub Copilot — the Workstream 2 counterparty
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| GitHub blog — Copilot moving to usage-based billing (effective 1 June 2026) | [P] | https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/ — the single most important document for the multi-model cost argument |
-| Copilot plans and pricing | [P] | https://github.com/features/copilot/plans |
-| Copilot billing concepts | [P] | https://docs.github.com/en/copilot/concepts/billing/copilot-requests |
-| Managing request allowances and budgets | [P] | https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/manage-and-track-spending/manage-request-allowances |
-| Copilot documentation root (metrics, admin, policies) | [P] | https://docs.github.com/en/copilot |
-| CloudZero — what teams actually pay for Copilot in 2026 | [S] | https://www.cloudzero.com/blog/github-copilot-cost/ — good on the credit-model transition |
+| [GitHub blog — Copilot moving to usage-based billing (effective 1 June 2026)](<https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/>) | [P] | the single most important document for the multi-model cost argument |
+| [Copilot plans and pricing](<https://github.com/features/copilot/plans>) | [P] |  |
+| [Copilot billing concepts](<https://docs.github.com/en/copilot/concepts/billing/copilot-requests>) | [P] |  |
+| [Managing request allowances and budgets](<https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/manage-and-track-spending/manage-request-allowances>) | [P] |  |
+| [Copilot documentation root (metrics, admin, policies)](<https://docs.github.com/en/copilot>) | [P] |  |
+| [CloudZero — what teams actually pay for Copilot in 2026](<https://www.cloudzero.com/blog/github-copilot-cost/>) | [S] | good on the credit-model transition |
 
 **Action:** export XYZ's historic Copilot billing and metrics data in week 0. See playbook §2.8.
 
@@ -85,32 +85,32 @@ These three are advisory-firm marketing. The clause checklists are genuinely use
 
 # 3. AWS Bedrock and alternative access routes
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| Amazon Bedrock pricing | [P] | https://aws.amazon.com/bedrock/pricing/ — on-demand, batch, provisioned throughput; the only rate card you should quote |
-| Amazon Bedrock documentation | [P] | https://docs.aws.amazon.com/bedrock/ — model availability by region, cross-region inference, guardrails, knowledge bases, agents |
-| Bedrock data protection and privacy | [P] | https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html — the core of the residency argument |
-| AWS Well-Architected — generative AI guidance | [P] | https://aws.amazon.com/architecture/well-architected/ — navigate to the generative AI lens |
-| Azure OpenAI Service documentation | [P] | https://learn.microsoft.com/azure/ai-services/openai/ — the third access route; check if XYZ has Azure commitments that AI spend could draw down |
-| Microsoft Cloud Adoption Framework — AI scenario | [P] | https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/ai/ — operating-model guidance, useful even in a non-Azure estate |
-| Anthropic documentation | [P] | https://docs.claude.com — for the secondary-model position |
-| CloudZero — Bedrock pricing analysis | [S] | https://www.cloudzero.com/blog/amazon-bedrock-pricing/ — good on adjacent charges that break estimates |
-| Artificial Analysis | [S] | https://artificialanalysis.ai/ — independent, continuously updated model comparison on quality, price, latency and throughput. The fastest route to a defensible route-comparison table. |
-| LMArena | [S] | https://lmarena.ai/ — comparative preference data; use as one input, never alone |
-| Stanford HELM | [P] | https://crfm.stanford.edu/helm/ — rigorous, slower-moving benchmark suite |
+| [Amazon Bedrock pricing](<https://aws.amazon.com/bedrock/pricing/>) | [P] | on-demand, batch, provisioned throughput; the only rate card you should quote |
+| [Amazon Bedrock documentation](<https://docs.aws.amazon.com/bedrock/>) | [P] | model availability by region, cross-region inference, guardrails, knowledge bases, agents |
+| [Bedrock data protection and privacy](<https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html>) | [P] | the core of the residency argument |
+| [AWS Well-Architected — generative AI guidance](<https://aws.amazon.com/architecture/well-architected/>) | [P] | navigate to the generative AI lens |
+| [Azure OpenAI Service documentation](<https://learn.microsoft.com/azure/ai-services/openai/>) | [P] | the third access route; check if XYZ has Azure commitments that AI spend could draw down |
+| [Microsoft Cloud Adoption Framework — AI scenario](<https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/ai/>) | [P] | operating-model guidance, useful even in a non-Azure estate |
+| [Anthropic documentation](<https://docs.claude.com>) | [P] | for the secondary-model position |
+| [CloudZero — Bedrock pricing analysis](<https://www.cloudzero.com/blog/amazon-bedrock-pricing/>) | [S] | good on adjacent charges that break estimates |
+| [Artificial Analysis](<https://artificialanalysis.ai/>) | [S] | independent, continuously updated model comparison on quality, price, latency and throughput. The fastest route to a defensible route-comparison table. |
+| [LMArena](<https://lmarena.ai/>) | [S] | comparative preference data; use as one input, never alone |
+| [Stanford HELM](<https://crfm.stanford.edu/helm/>) | [P] | rigorous, slower-moving benchmark suite |
 
 ---
 
 # 4. FinOps, cost governance and unit economics
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| FinOps Framework | [P] | https://www.finops.org/framework/ — domains, capabilities, personas, maturity |
-| FinOps Framework 2026 update | [P] | https://www.finops.org/insights/2026-finops-framework/ — Scopes, Technology Categories, Executive Strategy Alignment |
-| FinOps for AI — working group overview | [P] | https://www.finops.org/wg/finops-for-ai-overview/ — token economics, KPIs, crawl/walk/run, AI scope mapping. Read this before designing the governance framework. |
-| State of FinOps 2026 data | [P] | https://data.finops.org/ — 98% of FinOps practices now manage AI spend; use for the "this is standard practice" argument |
-| FOCUS — FinOps Open Cost and Usage Specification | [P] | https://focus.finops.org/ — the normalisation schema for multi-provider cost data. Adopt its field names in your truth layer and the client inherits an industry-standard model. |
-| FinOps Foundation asset library and KPI list | [P] | https://www.finops.org/ — templates for showback, allocation and unit economics |
+| [FinOps Framework](<https://www.finops.org/framework/>) | [P] | domains, capabilities, personas, maturity |
+| [FinOps Framework 2026 update](<https://www.finops.org/insights/2026-finops-framework/>) | [P] | Scopes, Technology Categories, Executive Strategy Alignment |
+| [FinOps for AI — working group overview](<https://www.finops.org/wg/finops-for-ai-overview/>) | [P] | token economics, KPIs, crawl/walk/run, AI scope mapping. Read this before designing the governance framework. |
+| [State of FinOps 2026 data](<https://data.finops.org/>) | [P] | 98% of FinOps practices now manage AI spend; use for the "this is standard practice" argument |
+| [FOCUS — FinOps Open Cost and Usage Specification](<https://focus.finops.org/>) | [P] | the normalisation schema for multi-provider cost data. Adopt its field names in your truth layer and the client inherits an industry-standard model. |
+| [FinOps Foundation asset library and KPI list](<https://www.finops.org/>) | [P] | templates for showback, allocation and unit economics |
 
 **Key idea to carry into the framework design:** the 2026 framework explicitly says an innovation-focused AI scope should tolerate more waste and run at a faster cadence than steady-state scopes. Design two different control regimes, not one.
 
@@ -120,35 +120,35 @@ These three are advisory-firm marketing. The clause checklists are genuinely use
 
 ## 5.1 EU AI Act
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| Regulation (EU) 2024/1689 — AI Act, consolidated text | [P] | https://eur-lex.europa.eu/eli/reg/2024/1689/oj — read Articles 4, 5 and 50 in full |
+| [Regulation (EU) 2024/1689 — AI Act, consolidated text](<https://eur-lex.europa.eu/eli/reg/2024/1689/oj>) | [P] | read Articles 4, 5 and 50 in full |
 | Regulation (EU) 2026/1744 — Digital Omnibus on AI | [P] | Search EUR-Lex for 2026/1744. Published 24 July 2026, in force 27 July 2026. |
-| AI Act Explorer | [S] | https://artificialintelligenceact.eu/ — navigable article-by-article version with timelines |
-| European Commission — AI Office and AI Act policy | [P] | https://digital-strategy.ec.europa.eu/en/policies/ai-office |
-| Gibson Dunn — Omnibus analysis | [S] | https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/ — clear on what moved and what did not |
-| Cloud Security Alliance — research note on the high-risk deferral | [S] | https://labs.cloudsecurityalliance.org/research/csa-research-note-eu-ai-act-high-risk-deadline-omnibus-20260/ |
-| CEN-CENELEC JTC 21 | [P] | https://www.cencenelec.eu/areas-of-work/cen-cenelec-topics/artificial-intelligence/ — the harmonised standards that will define conformity |
+| [AI Act Explorer](<https://artificialintelligenceact.eu/>) | [S] | navigable article-by-article version with timelines |
+| [European Commission — AI Office and AI Act policy](<https://digital-strategy.ec.europa.eu/en/policies/ai-office>) | [P] |  |
+| [Gibson Dunn — Omnibus analysis](<https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/>) | [S] | clear on what moved and what did not |
+| [Cloud Security Alliance — research note on the high-risk deferral](<https://labs.cloudsecurityalliance.org/research/csa-research-note-eu-ai-act-high-risk-deadline-omnibus-20260/>) | [S] |  |
+| [CEN-CENELEC JTC 21](<https://www.cencenelec.eu/areas-of-work/cen-cenelec-topics/artificial-intelligence/>) | [P] | the harmonised standards that will define conformity |
 
 ## 5.2 Management systems and risk frameworks
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| ISO/IEC 42001:2023 — AI management systems | [P] | https://www.iso.org — search "ISO/IEC 42001". The certifiable management-system spine for the CoE. Also ask every shortlisted vendor whether they hold it. |
-| ISO/IEC 23894 — AI risk management guidance | [P] | https://www.iso.org — complements 42001 |
-| NIST AI Risk Management Framework | [P] | https://www.nist.gov/itl/ai-risk-management-framework — Govern, Map, Measure, Manage |
-| NIST Generative AI Profile (NIST AI 600-1) | [P] | https://airc.nist.gov/ — GenAI-specific control mapping. The most directly usable control catalogue source for your framework. |
-| NIST AI Resource Center — playbook and crosswalks | [P] | https://airc.nist.gov/ — crosswalks between NIST, ISO and EU AI Act save weeks |
-| UK ICO — AI and data protection guidance | [P] | https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/artificial-intelligence/ — practical on DPIAs and employee monitoring |
-| EDPB opinions and guidelines | [P] | https://www.edpb.europa.eu/ — including AI-model-related opinions |
-| OECD AI Policy Observatory | [P] | https://oecd.ai/ — multi-jurisdiction tracking for XYZ's operating footprint |
+| [ISO/IEC 42001:2023 — AI management systems](<https://www.iso.org>) | [P] | search "ISO/IEC 42001". The certifiable management-system spine for the CoE. Also ask every shortlisted vendor whether they hold it. |
+| [ISO/IEC 23894 — AI risk management guidance](<https://www.iso.org>) | [P] | complements 42001 |
+| [NIST AI Risk Management Framework](<https://www.nist.gov/itl/ai-risk-management-framework>) | [P] | Govern, Map, Measure, Manage |
+| [NIST Generative AI Profile (NIST AI 600-1)](<https://airc.nist.gov/>) | [P] | GenAI-specific control mapping. The most directly usable control catalogue source for your framework. |
+| [NIST AI Resource Center — playbook and crosswalks](<https://airc.nist.gov/>) | [P] | crosswalks between NIST, ISO and EU AI Act save weeks |
+| [UK ICO — AI and data protection guidance](<https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/artificial-intelligence/>) | [P] | practical on DPIAs and employee monitoring |
+| [EDPB opinions and guidelines](<https://www.edpb.europa.eu/>) | [P] | including AI-model-related opinions |
+| [OECD AI Policy Observatory](<https://oecd.ai/>) | [P] | multi-jurisdiction tracking for XYZ's operating footprint |
 
 ## 5.3 Content provenance and disclosure
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| C2PA — Coalition for Content Provenance and Authenticity | [P] | https://c2pa.org/ — the technical standard behind AI content disclosure |
-| Content Authenticity Initiative | [P] | https://contentauthenticity.org/ — implementation guidance and tooling |
+| [C2PA — Coalition for Content Provenance and Authenticity](<https://c2pa.org/>) | [P] | the technical standard behind AI content disclosure |
+| [Content Authenticity Initiative](<https://contentauthenticity.org/>) | [P] | implementation guidance and tooling |
 
 For a fashion brand generating campaign imagery, sections 5.1 and 5.3 together are the compliance core. Article 50 applies now.
 
@@ -156,27 +156,27 @@ For a fashion brand generating campaign imagery, sections 5.1 and 5.3 together a
 
 # 6. Security for GenAI and agents
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| OWASP GenAI Security Project (incl. Top 10 for LLM Applications) | [P] | https://genai.owasp.org/ — the standard engineering checklist; also covers agentic threats and mitigations |
-| MITRE ATLAS | [P] | https://atlas.mitre.org/ — adversary tactics and techniques against AI systems |
-| Cloud Security Alliance — AI research | [P] | https://cloudsecurityalliance.org/research/topics/artificial-intelligence — AI controls matrix and audit material |
-| Model Context Protocol specification | [P] | https://modelcontextprotocol.io/ — read before approving any MCP server; it is a supply-chain surface |
-| AI Incident Database | [S] | https://incidentdatabase.ai/ — real failure modes. Use two or three to make risk tiering concrete for executives. |
-| NCSC guidance on secure AI system development | [P] | https://www.ncsc.gov.uk/ — search "secure AI system development" |
+| [OWASP GenAI Security Project (incl. Top 10 for LLM Applications)](<https://genai.owasp.org/>) | [P] | the standard engineering checklist; also covers agentic threats and mitigations |
+| [MITRE ATLAS](<https://atlas.mitre.org/>) | [P] | adversary tactics and techniques against AI systems |
+| [Cloud Security Alliance — AI research](<https://cloudsecurityalliance.org/research/topics/artificial-intelligence>) | [P] | AI controls matrix and audit material |
+| [Model Context Protocol specification](<https://modelcontextprotocol.io/>) | [P] | read before approving any MCP server; it is a supply-chain surface |
+| [AI Incident Database](<https://incidentdatabase.ai/>) | [S] | real failure modes. Use two or three to make risk tiering concrete for executives. |
+| [NCSC guidance on secure AI system development](<https://www.ncsc.gov.uk/>) | [P] | search "secure AI system development" |
 
 ---
 
 # 7. Measuring engineering impact (Workstream 2 evidence base)
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| DORA — research and reports | [P] | https://dora.dev/ — the four delivery metrics and the annual research including AI-specific findings |
-| SPACE framework — original paper | [P] | https://queue.acm.org/detail.cfm?id=3454124 — Satisfaction, Performance, Activity, Communication, Efficiency. The framework for the developer-experience lens. |
-| DX — DORA metrics in the AI era | [S] | https://getdx.com/blog/dora-metrics/ — how the metrics distort under AI adoption |
-| Faros AI — the AI productivity paradox | [S] | https://www.faros.ai/blog/key-takeaways-from-the-dora-report-2025 — individual output up sharply, organisational delivery flat |
-| METR — developer productivity research | [P] | https://metr.org/ — includes the finding that developers systematically misestimate their own AI-assisted speed. Cite this when sentiment and telemetry disagree. |
-| Public-sector Copilot pilot using DORA and SPACE | [P] | https://arxiv.org/pdf/2409.17434 — a rare published evaluation design you can adapt directly for the trial post-mortem |
+| [DORA — research and reports](<https://dora.dev/>) | [P] | the four delivery metrics and the annual research including AI-specific findings |
+| [SPACE framework — original paper](<https://queue.acm.org/detail.cfm?id=3454124>) | [P] | Satisfaction, Performance, Activity, Communication, Efficiency. The framework for the developer-experience lens. |
+| [DX — DORA metrics in the AI era](<https://getdx.com/blog/dora-metrics/>) | [S] | how the metrics distort under AI adoption |
+| [Faros AI — the AI productivity paradox](<https://www.faros.ai/blog/key-takeaways-from-the-dora-report-2025>) | [S] | individual output up sharply, organisational delivery flat |
+| [METR — developer productivity research](<https://metr.org/>) | [P] | includes the finding that developers systematically misestimate their own AI-assisted speed. Cite this when sentiment and telemetry disagree. |
+| [Public-sector Copilot pilot using DORA and SPACE](<https://arxiv.org/pdf/2409.17434>) | [P] | a rare published evaluation design you can adapt directly for the trial post-mortem |
 
 **Use these to protect yourself.** When someone quotes a single productivity percentage at you, this section is why you ask which metric, at which level, over what period.
 
@@ -186,47 +186,47 @@ For a fashion brand generating campaign imagery, sections 5.1 and 5.3 together a
 
 ## 8.1 Gateways
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| LiteLLM documentation | [P] | https://docs.litellm.ai/ — virtual keys, per-team budgets, provider coverage. The open-source reference implementation. |
-| LiteLLM repository | [P] | https://github.com/BerriAI/litellm |
-| Portkey documentation | [P] | https://portkey.ai/docs — managed gateway with caching and guardrails |
-| Kong AI Gateway | [P] | https://konghq.com/products/kong-ai-gateway — if XYZ already runs Kong |
-| TrueFoundry — 2026 AI gateway landscape comparison | [C] | https://www.truefoundry.com/blog/a-definitive-guide-to-ai-gateways-in-2026-competitive-landscape-comparison — vendor-authored; useful for the criteria list, not the ranking |
+| [LiteLLM documentation](<https://docs.litellm.ai/>) | [P] | virtual keys, per-team budgets, provider coverage. The open-source reference implementation. |
+| [LiteLLM repository](<https://github.com/BerriAI/litellm>) | [P] |  |
+| [Portkey documentation](<https://portkey.ai/docs>) | [P] | managed gateway with caching and guardrails |
+| [Kong AI Gateway](<https://konghq.com/products/kong-ai-gateway>) | [P] | if XYZ already runs Kong |
+| [TrueFoundry — 2026 AI gateway landscape comparison](<https://www.truefoundry.com/blog/a-definitive-guide-to-ai-gateways-in-2026-competitive-landscape-comparison>) | [C] | vendor-authored; useful for the criteria list, not the ranking |
 
 ## 8.2 Evaluation
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| OpenAI Evals | [P] | https://github.com/openai/evals |
-| promptfoo | [P] | https://www.promptfoo.dev/ — the fastest way to stand up a comparison harness across models |
-| Ragas | [P] | https://docs.ragas.io/ — retrieval-augmented generation evaluation |
-| LangSmith | [P] | https://docs.smith.langchain.com/ — tracing and evaluation |
+| [OpenAI Evals](<https://github.com/openai/evals>) | [P] |  |
+| [promptfoo](<https://www.promptfoo.dev/>) | [P] | the fastest way to stand up a comparison harness across models |
+| [Ragas](<https://docs.ragas.io/>) | [P] | retrieval-augmented generation evaluation |
+| [LangSmith](<https://docs.smith.langchain.com/>) | [P] | tracing and evaluation |
 
 Build the eval sets during the engagement and hand them over. They are the asset that lets XYZ re-decide when the next model ships.
 
 ## 8.3 Observability and cost attribution
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| Langfuse | [P] | https://langfuse.com/docs — open-source LLM observability with cost tracking |
-| Helicone | [P] | https://www.helicone.ai/ — lightweight proxy-based observability |
-| OpenTelemetry GenAI semantic conventions | [P] | https://opentelemetry.io/ — search "gen-ai semantic conventions". Adopt these attribute names so telemetry stays portable. |
+| [Langfuse](<https://langfuse.com/docs>) | [P] | open-source LLM observability with cost tracking |
+| [Helicone](<https://www.helicone.ai/>) | [P] | lightweight proxy-based observability |
+| [OpenTelemetry GenAI semantic conventions](<https://opentelemetry.io/>) | [P] | search "gen-ai semantic conventions". Adopt these attribute names so telemetry stays portable. |
 
 ---
 
 # 9. Building and running the CoE
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| Microsoft Cloud Adoption Framework — AI adoption and governance | [P] | https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/ai/ — the most complete free operating-model reference |
-| AWS Cloud Adoption Framework for AI, ML and generative AI | [P] | https://aws.amazon.com/cloud-adoption-framework/ — perspectives, capabilities, maturity |
-| Google Cloud AI Adoption Framework | [P] | https://cloud.google.com/ — search "AI adoption framework" |
-| MIT Sloan Management Review — AI and business strategy | [S] | https://sloanreview.mit.edu/big-ideas/artificial-intelligence-business-strategy/ — governance and organisational research rather than vendor material |
-| McKinsey — State of AI | [S] | https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai — adoption benchmarks for the "are we behind?" question |
-| Harvard Program on Negotiation | [S] | https://www.pon.harvard.edu/ — BATNA, anchoring, concession structure. Read before drafting the negotiation brief. |
-| ClarityArc — AI CoE design (2026) | [C] | https://www.clarityarc.com/insights/ai-centre-of-excellence-design — practical on the 90/180-day sequencing and the acceleration-versus-blocking tension |
-| Trantor — building an AI CoE (2026) | [C] | https://www.trantorinc.com/blog/how-to-build-an-ai-center-of-excellence-team-budget-and-kpis — charter contents and operating-model trade-offs |
+| [Microsoft Cloud Adoption Framework — AI adoption and governance](<https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/ai/>) | [P] | the most complete free operating-model reference |
+| [AWS Cloud Adoption Framework for AI, ML and generative AI](<https://aws.amazon.com/cloud-adoption-framework/>) | [P] | perspectives, capabilities, maturity |
+| [Google Cloud AI Adoption Framework](<https://cloud.google.com/>) | [P] | search "AI adoption framework" |
+| [MIT Sloan Management Review — AI and business strategy](<https://sloanreview.mit.edu/big-ideas/artificial-intelligence-business-strategy/>) | [S] | governance and organisational research rather than vendor material |
+| [McKinsey — State of AI](<https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai>) | [S] | adoption benchmarks for the "are we behind?" question |
+| [Harvard Program on Negotiation](<https://www.pon.harvard.edu/>) | [S] | BATNA, anchoring, concession structure. Read before drafting the negotiation brief. |
+| [ClarityArc — AI CoE design (2026)](<https://www.clarityarc.com/insights/ai-centre-of-excellence-design>) | [C] | practical on the 90/180-day sequencing and the acceleration-versus-blocking tension |
+| [Trantor — building an AI CoE (2026)](<https://www.trantorinc.com/blog/how-to-build-an-ai-center-of-excellence-team-budget-and-kpis>) | [C] | charter contents and operating-model trade-offs |
 
 The last two are consultancy content. Use them for structure and checklists. The charter you write should be XYZ's, built from Part 6 of the playbook.
 
@@ -234,14 +234,14 @@ The last two are consultancy content. Use them for structure and checklists. The
 
 # 10. Retail, fashion and the client's market
 
-| Resource | Grade | Why |
+| Resource | Grade | Note |
 |---|---|---|
-| McKinsey — State of Fashion (with Business of Fashion) | [S] | https://www.mckinsey.com/industries/retail/our-insights/state-of-fashion — the annual reference every fashion executive has read. Know what it says about AI this year. |
-| Business of Fashion — technology coverage | [S] | https://www.businessoffashion.com/ |
-| Vogue Business — technology | [S] | https://www.voguebusiness.com/technology — practical coverage of brand-side AI deployments including synthetic imagery and model likeness |
-| National Retail Federation | [S] | https://nrf.com/ — retail technology adoption research and the annual Big Show agenda as a landscape signal |
+| [McKinsey — State of Fashion (with Business of Fashion)](<https://www.mckinsey.com/industries/retail/our-insights/state-of-fashion>) | [S] | the annual reference every fashion executive has read. Know what it says about AI this year. |
+| [Business of Fashion — technology coverage](<https://www.businessoffashion.com/>) | [S] |  |
+| [Vogue Business — technology](<https://www.voguebusiness.com/technology>) | [S] | practical coverage of brand-side AI deployments including synthetic imagery and model likeness |
+| [National Retail Federation](<https://nrf.com/>) | [S] | retail technology adoption research and the annual Big Show agenda as a landscape signal |
 | Adobe / Salesforce / Shopify commerce insight reports | [S] | Vendor research, but the traffic and conversion data on AI-referred shopping is not available elsewhere |
-| EU Ecodesign for Sustainable Products Regulation and Digital Product Passport | [P] | https://commission.europa.eu/ — search "ecodesign sustainable products regulation". Relevant because generated product data becomes regulated product data. |
+| [EU Ecodesign for Sustainable Products Regulation and Digital Product Passport](<https://commission.europa.eu/>) | [P] | search "ecodesign sustainable products regulation". Relevant because generated product data becomes regulated product data. |
 
 **Watch-out for the landscape map:** the fashion GenAI vendor space contains many thin application layers over a small number of foundation models. Apply the model-dependency criterion in playbook §5.2 to every vendor you score.
 
