@@ -128,8 +128,10 @@ DOCPAGE = """{head}
 </html>"""
 
 
-def md_to_html(path):
-    """Markdown to HTML, with the structural fixes the stylesheet expects."""
+def md_to_html(path, new_tab=False):
+    """Markdown to HTML, with the structural fixes the stylesheet expects.
+
+    new_tab: open external (http/https) links in a new tab and mark them class="ext"."""
     html = markdown.markdown(
         path.read_text(encoding="utf-8"),
         extensions=["tables", "fenced_code", "sane_lists", "attr_list", "toc", "nl2br"],
@@ -144,6 +146,9 @@ def md_to_html(path):
     html = re.sub(r"(?s)(?<=</h1>)\s*<h2 id=\"[^\"]+\">(.*?)</h2>",
                   lambda m: '\n<p class="subtitle">' + m.group(1) + "</p>", html, count=1)
     html = re.sub(r"<hr />\s*(?=<h1 id=)", "", html)
+    if new_tab:
+        html = re.sub(r'<a href="(https?://[^"]+)"',
+                      r'<a class="ext" href="\1" target="_blank" rel="noopener noreferrer"', html)
     return html
 
 
@@ -202,7 +207,7 @@ def build_site(cfg):
         src = site / p["src"]
         if not src.exists():
             sys.exit(f"  Missing source: {src}")
-        body = "\n".join("      " + line for line in md_to_html(src).split("\n"))
+        body = "\n".join("      " + line for line in md_to_html(src, cfg.get("external_links_new_tab", False)).split("\n"))
         write(site / p["out"], DOCPAGE.format(
             head=head(p["title"], p["desc"], glyph=cfg.get("glyph", "AI"),
                       noindex=cfg.get("noindex", False)),
