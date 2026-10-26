@@ -45,6 +45,12 @@ Checked 23 Oct 2026: Kafka 4.0 (ZooKeeper removed, KIP-848 GA), KIP-932 share gr
 
 Part 1 card 15 frames the target as a generic global logistics and freight company. Keep all domain content generic: no company names, no details that identify the client.
 
+
+
+## Story D provenance tags
+
+Story D (card `q0d`) is the same project as story A, seen through the Kafka and Cassandra lens. Its numbers are reconstructions for a provider with about 10 million accounts, because the real figures are not remembered. Every line carries a tag: YOURS (from Prash's own project notes), EST (estimate) or IF TRUE (plausible scenario, to use only if it happened). Prash must replace EST numbers with real ones where he can. Do not remove the tags or present EST values as fact.
+
 ## Open items
 
 - Anchor stories D (high-volume Kafka/Cassandra pipeline, the lead story), A (Customer-360), B (scale modelling) and C (agentic AI platform, Q7) are written from his resume with [bracketed] gaps for numbers he must fill. No client or employer names on the page: the repo is public.
