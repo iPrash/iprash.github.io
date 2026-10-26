@@ -67,6 +67,11 @@ h4{font-family:var(--display);font-weight:600;font-size:15px;margin:16px 0 6px;c
 .ver{font-family:var(--mono);font-size:10px;background:var(--code);color:var(--brass);padding:1px 5px;border-radius:4px;vertical-align:1px}
 label.tick{position:absolute;top:18px;right:18px;font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;gap:6px;align-items:center;cursor:pointer;user-select:none}
 label.tick input{accent-color:var(--ok);width:16px;height:16px}
+.card-foot-row{display:flex;justify-content:flex-end;margin-top:14px}
+label.card-foot{display:inline-flex;gap:8px;align-items:center;cursor:pointer;user-select:none;font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 14px 7px 11px}
+label.card-foot:hover{border-color:var(--ok);color:var(--ok)}
+label.card-foot input{accent-color:var(--ok);width:16px;height:16px;margin:0}
+.card.done label.card-foot{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
 .card h3{padding-right:76px}
 table{border-collapse:collapse;width:100%;font-size:14.5px;margin:10px 0}
 th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
@@ -111,7 +116,7 @@ abbr:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-rad
 #abbr-tip b{font-family:var(--mono);font-size:12px}
 @media print{#abbr-tip{display:none}abbr{text-decoration:none}}
 @media print{
-  header.bar,.btnrow,label.tick{display:none}
+  header.bar,.btnrow,label.tick,.card-foot-row{display:none}
   body{background:#fff;color:#000;font-size:12px}
   .card{break-inside:avoid;border-color:#ccc}
   details.qa .ans{display:block}
@@ -1562,30 +1567,39 @@ abbr:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-rad
   function set(k,v){try{if(v===null)localStorage.removeItem(P+k);else localStorage.setItem(P+k,v);}catch(e){}}
   var cards=[].slice.call(document.querySelectorAll('article.card[id]'));
   var prog=document.getElementById('prog');
+  var state={};cards.forEach(function(c){state[c.id]=get('done.'+c.id)==='1';});
   function update(){
     var d=0;
     cards.forEach(function(c){
-      var on=get('done.'+c.id)==='1';
+      var on=!!state[c.id];
       c.classList.toggle('done',on);
       if(on)d++;
+      [].forEach.call(c.querySelectorAll('input.done-box'),function(i){i.checked=on;});
+      var f=c.querySelector('.card-foot span');if(f)f.textContent=on?'Done':'Mark done';
       var t=document.querySelector('.toc a[href="#'+c.id+'"]');
       if(t)t.classList.toggle('is-done',on);
     });
     prog.textContent=d+' / '+cards.length+' done';
   }
-  cards.forEach(function(c){
-    var l=document.createElement('label');l.className='tick';
-    var i=document.createElement('input');i.type='checkbox';i.checked=get('done.'+c.id)==='1';
+  function box(c,cls,text){
+    var l=document.createElement('label');l.className=cls;
+    var i=document.createElement('input');i.type='checkbox';i.className='done-box';
     i.setAttribute('aria-label','Mark '+(c.querySelector('h3')||{}).textContent+' done');
-    i.addEventListener('change',function(){set('done.'+c.id,i.checked?'1':null);update();});
-    l.appendChild(i);l.appendChild(document.createTextNode('done'));
-    c.appendChild(l);
+    i.addEventListener('change',function(){state[c.id]=i.checked;set('done.'+c.id,i.checked?'1':null);update();});
+    var t=document.createElement('span');t.textContent=text;
+    l.appendChild(i);l.appendChild(t);return l;
+  }
+  cards.forEach(function(c){
+    c.appendChild(box(c,'tick','done'));
+    var f=document.createElement('div');f.className='card-foot-row';
+    f.appendChild(box(c,'card-foot','Mark done'));
+    c.appendChild(f);
   });
   update();
   var qa=function(){return [].slice.call(document.querySelectorAll('details.qa'));};
   document.getElementById('openAll').onclick=function(){qa().forEach(function(d){d.open=true;});};
   document.getElementById('closeAll').onclick=function(){qa().forEach(function(d){d.open=false;});};
-  document.getElementById('reset').onclick=function(){cards.forEach(function(c){set('done.'+c.id,null);var i=c.querySelector('label.tick input');if(i)i.checked=false;});update();};
+  document.getElementById('reset').onclick=function(){cards.forEach(function(c){state[c.id]=false;set('done.'+c.id,null);});update();};
   var root=document.documentElement;
   var th=get('theme');if(th)root.setAttribute('data-theme',th);
   document.getElementById('theme').onclick=function(){
