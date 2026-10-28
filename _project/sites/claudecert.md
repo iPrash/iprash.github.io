@@ -8,7 +8,7 @@
 
 ## What it is
 
-A daily study plan for one exam: Claude Certified Developer, Foundations (CCDV-F). Each day has one build, one Learn step from an Anthropic course, reference docs, three self-written questions, and a done-when checkbox. The Developer page has a blueprint checklist: one checkbox per skill line in R1, section 6, with the days that cover it.
+A daily study plan for one exam: Claude Certified Developer, Foundations (CCDV-F). Each day has one build, one Learn step from an Anthropic course, reference docs, three drill questions (Claude asks, I answer cold, Claude corrects, then adds the multiple-choice version to `drills.md`), and a done-when checkbox. The Developer page has a blueprint checklist: one checkbox per skill line in R1, section 6, with the days that cover it.
 
 ## Why it exists
 

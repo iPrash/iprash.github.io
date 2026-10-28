@@ -78,7 +78,7 @@ If I fail, I book the earliest retake. Then I spend 30 minutes a day on the two 
 | Recall | 10 | Answer 5 questions from my bank, written on earlier days. Mark the ones I miss. |
 | Build | 40 to 45 | The day's artifact. Build first, then learn. |
 | Learn | 40 to 105 | The Anthropic course segment named for the day, tied to what I just built. Docs are reference during the build. |
-| Write | 10 | Write 3 exam-style questions from today's work into the Drills page format. Log gotchas. |
+| Drill | 10 | Claude asks 3 questions on today's work, with no options. I answer cold. Claude marks and corrects my answers, then adds the multiple-choice versions to Drills. Log gotchas. |
 
 Each week: five build days, one long Saturday (a longer build or a timed mock), and one rest day on Sunday. If a day runs over, I finish the build and move the Learn step to the next sitting or to Sunday. I do not skip a required course segment. Also items are optional.
 

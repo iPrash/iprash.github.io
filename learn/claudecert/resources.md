@@ -52,16 +52,16 @@ Policy since 20 October 2026: the prep course (R12) and every course in the Clau
 
 ## Claude Academy (public, free)
 
-R18, R19, R98, R99, R101 and R102 open the same courses in the Claude Developer path on Partner Academy (R97), because that records my progress for my organisation. R91 and R92 do the same.
+Every course with a Partner Academy copy links there, because that records my progress for my organisation. R18, R19, R98, R99, R101 and R102 open the Claude Developer path copy (R97), and so do R91 and R92. R17, R20, R21 and R22 open the Partner Academy catalog copy. R17 is listed there as Building with the Claude API, at a different address. Checked 28 October 2026. Only R108 and the tutorials (R109 to R113) have no Partner Academy copy, so they stay on Claude Academy. The Developer path itself links R111 to Claude Academy.
 
 | # | Resource | Use |
 |---|---|---|
-| R17 | [Building with the Claude API](https://academy.claude.com/courses/building-with-the-claude-api) | 67 lessons, 9 h. Days 8 to 10 and 24 name a section. Other sections are the backup when a module is thin |
+| R17 | [Building with the Claude API](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api) | 67 lessons, 9 h. Days 8 to 10 and 24 name a section. Other sections are the backup when a module is thin |
 | R18 | [Claude Code in Action](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-in-action) | 9 lessons, 1 h. In the Developer path. Day 27 |
 | R19 | [Introduction to Model Context Protocol](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-model-context-protocol) | 10 lessons, 1 h. In the Developer path. Day 21 |
-| R20 | [Model Context Protocol: Advanced Topics](https://academy.claude.com/courses/model-context-protocol-advanced-topics) | 11 lessons, 1.5 h. Day 21, optional: the transport lessons |
-| R21 | [Claude 101](https://academy.claude.com/courses/claude-101) | Skip |
-| R22 | [AI Fluency: Framework & Foundations](https://academy.claude.com/courses/ai-fluency-framework-foundations) | Skip. R99 replaces it |
+| R20 | [Model Context Protocol: Advanced Topics](https://anthropic-partners.skilljar.com/model-context-protocol-advanced-topics) | 11 lessons, 1.5 h. Day 21, optional: the transport lessons |
+| R21 | [Claude 101](https://anthropic-partners.skilljar.com/claude-101) | Skip |
+| R22 | [AI Fluency: Framework & Foundations](https://anthropic-partners.skilljar.com/ai-fluency-framework-foundations) | Skip. R99 replaces it |
 | R98 | [AI capabilities and limitations](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations) | 13 lessons, 3.5 h, with exercises. In the Developer path. Days 6, 9, 10, 13 and 14 |
 | R99 | [AI Fluency for builders](https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders) | 9 lessons, 3 h. In the Developer path. Day 27, optional before the exam |
 | R101 | [Claude Platform 101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101) | 13 lessons, 1.5 h. In the Developer path. Days 4, 7, 15 and 18 |
