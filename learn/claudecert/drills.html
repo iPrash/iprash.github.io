@@ -49,7 +49,7 @@
       <h1 class="doctitle" id="drills">Drills</h1>
       <p class="subtitle">My question bank, by exam and domain</p>
       <p>The official practice exam was retired (<a class="ext" href="https://trainingcamp.com/articles/claude-certifications-explained-all-four-anthropic-exams-costs-and-who-can-take-them/" target="_blank" rel="noopener noreferrer">R11</a>). This page replaces it. Every question here is my own, written from the public blueprint (<a class="ext" href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf" target="_blank" rel="noopener noreferrer">R1</a>) and my own builds. None comes from a live exam, and none ever will: the non-disclosure agreement covers all exam content (<a class="ext" href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf" target="_blank" rel="noopener noreferrer">R1</a>, section 13), and this repo is public.</p>
-      <p><strong>How to use it.</strong> Answer before opening the answer. Each day, add the 3 questions I wrote in the Write block, under the right domain. Match the exam style: one realistic situation, four options, one best answer, and a reason why each wrong option is wrong.</p>
+      <p><strong>How to use it.</strong> Answer before opening the answer. Each day, 3 questions go in under the right domain. From Day 4, Claude drafts the options and I answer each cold before opening the answer. Match the exam style: one realistic situation, four options, one best answer, and a reason why each wrong option is wrong.</p>
       <p><strong>Seed questions.</strong> The first questions in each domain were written on 14 October 2026 to start the bank. Facts were checked against the docs on that date.</p>
       <h1 id="developer-foundations">Developer Foundations</h1>
       <h2 id="d1-agents-and-workflows">D1 · Agents and workflows</h2>
@@ -95,6 +95,20 @@
       C. Increasing <code>max_tokens</code><br />
       D. Removing the system prompt</p>
       <details><summary>Answer</summary>B. Pin the version, and treat a model change like any dependency upgrade: test it against acceptance criteria first. A is what caused the surprise. C and D are unrelated to the regression.</details>
+      
+      <p><strong>Q2.4</strong> A service asks Claude for a JSON summary of a contract and feeds the text straight into <code>json.loads</code>. In testing, a few responses crash the parser with an error about unexpected end of data. The HTTP status is 200 on every call. Which check belongs in the code?<br />
+      A. Treat any HTTP 200 as a complete response and wrap the parser in a try/except that returns an empty summary<br />
+      B. Read <code>stop_reason</code> before parsing. Treat <code>max_tokens</code> as a truncated response, and retry with a higher limit or report an error instead of parsing<br />
+      C. Add a stop sequence of <code>}</code> so the JSON always ends cleanly<br />
+      D. Switch the system prompt to say "never stop early"</p>
+      <details><summary>Answer</summary>B. `stop_reason` says why generation ended: `end_turn` (finished by itself), `max_tokens` (hit the limit and was cut off), `stop_sequence` (matched one of your sequences), `tool_use` (Claude wants a tool run), `pause_turn` (a server-tool loop paused), `refusal` (Claude declined) and `model_context_window_exceeded` (the context window filled). A cut-off JSON document is the classic `max_tokens` case. A hides the problem and returns wrong data. C stops generation at the first `}`, which would cut nested JSON in the middle. D cannot raise a token limit that the request sets.</details>
+      
+      <p><strong>Q2.5</strong> A developer moves a chat prompt to the Messages API. The prompt starts "You are a support agent for Acme. Never discuss pricing." It must apply to the whole conversation. Where does it go?<br />
+      A. In the top-level <code>system</code> parameter of the request, separate from the <code>messages</code> list<br />
+      B. As the first entry in <code>messages</code>, with <code>role</code> set to <code>"system"</code><br />
+      C. In the first user message, prefixed with "SYSTEM:"<br />
+      D. As an assistant message at the start of <code>messages</code></p>
+      <details><summary>Answer</summary>A. The system prompt is its own request field, next to `messages`. B does not work as the first entry, because roles in `messages` are `user` and `assistant`. C can appear to work, but it mixes your standing instructions with the user's turn and is not the designed place. D puts the instruction on Claude's side of the conversation, where it is read as something Claude already said, not as a rule it follows.</details>
       
       <h2 id="d3-claude-code">D3 · Claude Code</h2>
       <p><strong>Q3.1</strong> A team wants every developer's Claude Code session to follow the same test conventions. Where should the conventions go?<br />
@@ -161,6 +175,13 @@
       C. The API key changed<br />
       D. The context window was exceeded</p>
       <details><summary>Answer</summary>B. Generation is non-deterministic by design. Where consistency matters, constrain the output (structure, examples) and test for it. A, C and D do not explain normal variation.</details>
+      
+      <p><strong>Q5.4</strong> An app sets <code>max_tokens</code> to 300 to keep answers short and has adaptive thinking enabled. Some responses come back with <code>stop_reason</code> set to <code>max_tokens</code> and no text block at all, only a thinking block. What explains this, and what is the right response?<br />
+      A. <code>max_tokens</code> limits only the visible text, so the model failed. Send the same request again<br />
+      B. Thinking tokens count against <code>max_tokens</code> together with the text. Thinking used the whole budget before any text was written. Raise the limit and treat <code>max_tokens</code> as a case the code must handle<br />
+      C. A safety classifier blocked the response. Rewrite the prompt<br />
+      D. The system prompt is too long. Shorten it to free up output budget</p>
+      <details><summary>Answer</summary>B. `max_tokens` caps the output as a whole, and thinking is part of the output. The usage object reports the split in `output_tokens_details.thinking_tokens`. A is wrong about what is counted, and thinking length varies, so a retry might pass once and fail the next time. C would show `refusal` as the stop reason. D is wrong because the system prompt counts as input, and `max_tokens` limits output only. Note also that `max_tokens` is a ceiling and not a target: it does not make Claude write shorter answers, it only cuts the output off.</details>
       
       <h2 id="d6-prompt-and-context-engineering">D6 · Prompt and context engineering</h2>
       <p><strong>Q6.1</strong> A classifier often confuses "billing dispute" with "refund request". Which change is most likely to help?<br />

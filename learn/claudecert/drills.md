@@ -3,7 +3,7 @@
 
 The official practice exam was retired ([R11](https://trainingcamp.com/articles/claude-certifications-explained-all-four-anthropic-exams-costs-and-who-can-take-them/)). This page replaces it. Every question here is my own, written from the public blueprint ([R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf)) and my own builds. None comes from a live exam, and none ever will: the non-disclosure agreement covers all exam content ([R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf), section 13), and this repo is public.
 
-**How to use it.** Answer before opening the answer. Each day, add the 3 questions I wrote in the Write block, under the right domain. Match the exam style: one realistic situation, four options, one best answer, and a reason why each wrong option is wrong.
+**How to use it.** Answer before opening the answer. Each day, 3 questions go in under the right domain. From Day 4, Claude drafts the options and I answer each cold before opening the answer. Match the exam style: one realistic situation, four options, one best answer, and a reason why each wrong option is wrong.
 
 **Seed questions.** The first questions in each domain were written on 14 October 2026 to start the bank. Facts were checked against the docs on that date.
 
@@ -62,6 +62,22 @@ C. Increasing `max_tokens`
 D. Removing the system prompt
 
 <details><summary>Answer</summary>B. Pin the version, and treat a model change like any dependency upgrade: test it against acceptance criteria first. A is what caused the surprise. C and D are unrelated to the regression.</details>
+
+**Q2.4** A service asks Claude for a JSON summary of a contract and feeds the text straight into `json.loads`. In testing, a few responses crash the parser with an error about unexpected end of data. The HTTP status is 200 on every call. Which check belongs in the code?
+A. Treat any HTTP 200 as a complete response and wrap the parser in a try/except that returns an empty summary
+B. Read `stop_reason` before parsing. Treat `max_tokens` as a truncated response, and retry with a higher limit or report an error instead of parsing
+C. Add a stop sequence of `}` so the JSON always ends cleanly
+D. Switch the system prompt to say "never stop early"
+
+<details><summary>Answer</summary>B. `stop_reason` says why generation ended: `end_turn` (finished by itself), `max_tokens` (hit the limit and was cut off), `stop_sequence` (matched one of your sequences), `tool_use` (Claude wants a tool run), `pause_turn` (a server-tool loop paused), `refusal` (Claude declined) and `model_context_window_exceeded` (the context window filled). A cut-off JSON document is the classic `max_tokens` case. A hides the problem and returns wrong data. C stops generation at the first `}`, which would cut nested JSON in the middle. D cannot raise a token limit that the request sets.</details>
+
+**Q2.5** A developer moves a chat prompt to the Messages API. The prompt starts "You are a support agent for Acme. Never discuss pricing." It must apply to the whole conversation. Where does it go?
+A. In the top-level `system` parameter of the request, separate from the `messages` list
+B. As the first entry in `messages`, with `role` set to `"system"`
+C. In the first user message, prefixed with "SYSTEM:"
+D. As an assistant message at the start of `messages`
+
+<details><summary>Answer</summary>A. The system prompt is its own request field, next to `messages`. B does not work as the first entry, because roles in `messages` are `user` and `assistant`. C can appear to work, but it mixes your standing instructions with the user's turn and is not the designed place. D puts the instruction on Claude's side of the conversation, where it is read as something Claude already said, not as a rule it follows.</details>
 
 ## D3 · Claude Code
 
@@ -140,6 +156,14 @@ C. The API key changed
 D. The context window was exceeded
 
 <details><summary>Answer</summary>B. Generation is non-deterministic by design. Where consistency matters, constrain the output (structure, examples) and test for it. A, C and D do not explain normal variation.</details>
+
+**Q5.4** An app sets `max_tokens` to 300 to keep answers short and has adaptive thinking enabled. Some responses come back with `stop_reason` set to `max_tokens` and no text block at all, only a thinking block. What explains this, and what is the right response?
+A. `max_tokens` limits only the visible text, so the model failed. Send the same request again
+B. Thinking tokens count against `max_tokens` together with the text. Thinking used the whole budget before any text was written. Raise the limit and treat `max_tokens` as a case the code must handle
+C. A safety classifier blocked the response. Rewrite the prompt
+D. The system prompt is too long. Shorten it to free up output budget
+
+<details><summary>Answer</summary>B. `max_tokens` caps the output as a whole, and thinking is part of the output. The usage object reports the split in `output_tokens_details.thinking_tokens`. A is wrong about what is counted, and thinking length varies, so a retry might pass once and fail the next time. C would show `refusal` as the stop reason. D is wrong because the system prompt counts as input, and `max_tokens` limits output only. Note also that `max_tokens` is a ceiling and not a target: it does not make Claude write shorter answers, it only cuts the output off.</details>
 
 ## D6 · Prompt and context engineering
 
