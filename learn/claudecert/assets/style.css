@@ -152,6 +152,8 @@ html[data-theme="dark"] .brand .mark{color:#08171C}
 .doc ul,.doc ol{margin:0 0 16px;padding-left:22px}
 .doc li{margin:0 0 7px}
 .doc li::marker{color:var(--petrol)}
+.doc p:has(+ul),.doc p:has(+ol){margin-bottom:6px}
+.doc p:has(+ul)>strong:only-child{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--petrol-2)}
 .doc hr{border:0;border-top:1px solid var(--rule-soft);margin:40px 0}
 .doc a{color:var(--petrol-2);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
 .doc a:hover{color:var(--ink);background:var(--petrol-wash)}
