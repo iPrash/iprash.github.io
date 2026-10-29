@@ -128,7 +128,51 @@ DOCPAGE = """{head}
 </html>"""
 
 
-def md_to_html(path, new_tab=False):
+def load_link_tips(site, spec):
+    """Map each URL in a resource table to a tooltip. spec = {"table": "x.md", "tips": "x.json"}.
+    The table rows look like: | R29 | [Title](url) | ... | and the JSON maps "R29" to a one-line description."""
+    import json
+    table = (site / spec["table"]).read_text(encoding="utf-8").split("\n")
+    tips = json.loads((site / spec["tips"]).read_text(encoding="utf-8"))
+    out, missing = {}, []
+    for line in table:
+        m = re.match(r"^\| (R\d+) \|(.*)$", line)
+        if not m:
+            continue
+        rid, rest = m.groups()
+        links = re.findall(r"\[((?:[^\[\]]|\[[^\]]*\])*)\]\(<?([^)>\s]+)>?\)", rest)
+        if rid not in tips:
+            missing.append(rid)
+            continue
+        first = links[0][0] if links else rid
+        for text, url in links:
+            out.setdefault(url, (rid, text, first, tips[rid]))
+    for key, tip in tips.items():   # a key that is a URL gives a tooltip to a link outside the table
+        if key.startswith("http"):
+            out.setdefault(key, ("", "", "", tip))
+    if missing:
+        print("  warning: no tooltip text for " + ", ".join(missing))
+    return out
+
+
+def add_link_tips(html, tips):
+    import html as H
+    def one(m):
+        url = H.unescape(m.group(1))
+        hit = tips.get(url)
+        if not hit:
+            return m.group(0)
+        rid, text, first, tip = hit
+        plain = re.sub(r"<[^>]+>", "", m.group(3)).strip()
+        if not rid:
+            label = f"{plain} \u2014 {tip}"
+        else:
+            label = f"{rid} \u2014 {tip}" if plain == text and plain == first else f"{first if plain.startswith('R') else plain} ({rid}) \u2014 {tip}"
+        return m.group(0).replace('<a class="ext"', '<a class="ext" title="' + H.escape(label, quote=True) + '"', 1)
+    return re.sub(r'<a class="ext" href="([^"]+)"( target="_blank" rel="noopener noreferrer")>(.*?)</a>', one, html)
+
+
+def md_to_html(path, new_tab=False, tips=None):
     """Markdown to HTML, with the structural fixes the stylesheet expects.
 
     new_tab: open external (http/https) links in a new tab and mark them class="ext"."""
@@ -149,6 +193,8 @@ def md_to_html(path, new_tab=False):
     if new_tab:
         html = re.sub(r'<a href="(https?://[^"]+)"',
                       r'<a class="ext" href="\1" target="_blank" rel="noopener noreferrer"', html)
+        if tips:
+            html = add_link_tips(html, tips)
     return html
 
 
@@ -202,12 +248,13 @@ def build_site(cfg):
         return
     print(f"[{cfg['_path']}]")
     footer = cfg.get("footer", "")
+    tips = load_link_tips(site, cfg["link_tips"]) if cfg.get("link_tips") else None
 
     for p in pages:
         src = site / p["src"]
         if not src.exists():
             sys.exit(f"  Missing source: {src}")
-        body = "\n".join("      " + line for line in md_to_html(src, cfg.get("external_links_new_tab", False)).split("\n"))
+        body = "\n".join("      " + line for line in md_to_html(src, cfg.get("external_links_new_tab", False), tips).split("\n"))
         write(site / p["out"], DOCPAGE.format(
             head=head(p["title"], p["desc"], glyph=cfg.get("glyph", "AI"),
                       noindex=cfg.get("noindex", False)),
