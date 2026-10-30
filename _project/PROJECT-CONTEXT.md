@@ -42,6 +42,8 @@ The root page is a **project index**. Study material is deliberately not listed 
 | `learn/ea-prep-01/` | /learn/ea-prep-01/ | Solution Architect interview prep | Static HTML | `_project/sites/ea-prep-01.md` |
 | `learn/ea-prep-02-aws/` | /learn/ea-prep-02-aws/ | AWS Enterprise Architect interview prep | Static HTML | `_project/sites/ea-prep-02-aws.md` |
 
+**Hub order (`learn/index.html`):** `claudecert` is pinned first. Every other site follows newest first, so a new site goes directly under `claudecert`, never at the bottom or next to a related site.
+
 Study sites were moved under `learn/` on 25 Sept 2026, while there were only three of
 them and few bookmarks to break. New ones go straight there. The root stays for projects.
 
