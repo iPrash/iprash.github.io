@@ -11,7 +11,7 @@ AWS Enterprise Architect interview prep, built without a job description. It cov
 
 ## Why it exists
 
-Prash worked with AWS on earlier projects but has been away from it. The site refreshes fundamentals, replaces stale service names with current ones, and prepares him for an EA panel. The slug names the technology so it is clear at a glance. ea-prep-03-mule (MuleSoft and M365) is built in a separate session.
+Prash worked with AWS on earlier projects but has been away from it. The site refreshes fundamentals, replaces stale service names with current ones, and prepares him for an EA panel. The slug names the technology so it is clear at a glance. The next site, ea-prep-03-intg, covers an integration architecture assessment (Dynamics 365 and MuleSoft). The planned ea-prep-03-mule was replaced by it.
 
 ## Structure
 
@@ -53,4 +53,4 @@ AWS publishes service availability updates about every quarter. Check for a new 
 
 - Prash fills the story frame (`#stories`) with real facts from projects that ran on AWS.
 - Re-check the What changed tables the week before the interview.
-- While ea-prep-03-mule is being built in another Cowork session, only one session commits at a time. Both write to the same `.git`.
+- When two Cowork sessions work on this repo, only one commits at a time. Both write to the same `.git`.

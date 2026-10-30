@@ -1,0 +1,10 @@
+{
+  "slug": "ea-prep-03-intg",
+  "order": 8,
+  "title": "Integration assessment EA interview prep",
+  "blurb": "Independent review of a CRM, CPQ, OMS and ERP chain on Dynamics 365 and MuleSoft: method, integration risks, platform limits, templates and interview questions",
+  "static": true,
+  "note": "Hand-written single HTML file. No markdown sources, no pages list, so the build leaves it alone. robots meta added by hand.",
+  "listed": false,
+  "noindex": true
+}

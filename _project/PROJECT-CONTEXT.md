@@ -2,7 +2,7 @@
 
 *Upload to project knowledge. Update when something material changes.*
 
-**Last updated:** 29 October 2026
+**Last updated:** 30 October 2026
 
 ---
 
@@ -41,6 +41,7 @@ The root page is a **project index**. Study material is deliberately not listed 
 | `learn/TPM/` | /learn/TPM/ | Senior TPM interview prep | Static HTML | `_project/sites/TPM.md` |
 | `learn/ea-prep-01/` | /learn/ea-prep-01/ | Solution Architect interview prep | Static HTML | `_project/sites/ea-prep-01.md` |
 | `learn/ea-prep-02-aws/` | /learn/ea-prep-02-aws/ | AWS Enterprise Architect interview prep | Static HTML | `_project/sites/ea-prep-02-aws.md` |
+| `learn/ea-prep-03-intg/` | /learn/ea-prep-03-intg/ | Integration assessment EA interview prep | Static HTML | `_project/sites/ea-prep-03-intg.md` |
 
 **Hub order (`learn/index.html`):** `claudecert` is pinned first. Every other site follows newest first, so a new site goes directly under `claudecert`, never at the bottom or next to a related site.
 
@@ -233,7 +234,7 @@ site repo both tried to serve `/TPM/`. The old `github.com/iPrash/TPM` repo was 
 
 - `aigov` evidence was last checked 17 Aug 2026 and includes at least one now-passed date.
   See its site brief.
-- `ea-prep-02-aws` added 29 Oct 2026. `ea-prep-03-mule` is planned in a separate Cowork session. **While two sessions work on this repo, only one commits at a time**, because both write to the same `.git`.
+- `ea-prep-02-aws` added 29 Oct 2026. `ea-prep-03-intg` added 30 Oct 2026; it replaces the planned `ea-prep-03-mule`, which was never built. **While two sessions work on this repo, only one commits at a time**, because both write to the same `.git`.
 - `claudecert` added 14 Oct 2026. Since 22 Oct 2026 it covers the Developer exam only; the
   later-exam plan is parked in its site brief. See the brief for the blueprint coverage rule.
 - `frontier-engineer` added Sept 2026. Its resource links were checked 14 Sept 2026; see its
