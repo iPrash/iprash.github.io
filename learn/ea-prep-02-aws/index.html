@@ -28,16 +28,17 @@
   --accent:#7FA8E8;--accent-soft:#1A2A40;--warn:#F0A56B;--warn-soft:#33241A;--ok:#6CCB9C;--ok-soft:#16302A;
   --brass:#E1B65E;--code:#1E2733;}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:var(--accent)}
 a[target="_blank"]::after{content:"\2197";content:"\2197" / "opens in a new tab";font-size:.8em;margin-left:.2em;text-decoration:none;display:inline-block}
 code{font-family:var(--mono);font-size:.86em;background:var(--code);padding:1px 5px;border-radius:4px}
 .wrap{max-width:900px;margin:0 auto;padding:0 16px}
 header.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.bar-inner{max-width:900px;margin:0 auto;padding:10px 16px;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none}
-.bar-inner::-webkit-scrollbar{display:none}
-.bar a{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:8px;white-space:nowrap}
+.bar-inner{max-width:900px;margin:0 auto;padding:6px 16px;display:flex;flex-direction:column;gap:2px}
+.bar-row{display:flex;gap:4px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.bar-row::-webkit-scrollbar{display:none}
+.bar a{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--muted);padding:5px 9px;border-radius:8px;white-space:nowrap}
 .bar a:hover{background:var(--accent-soft);color:var(--accent)}
 .bar .prog{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--faint);white-space:nowrap;padding-left:8px}
 .hero{padding:48px 0 28px;border-bottom:1px solid var(--line)}
@@ -139,18 +140,22 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 </head>
 <body>
 <header class="bar"><nav class="bar-inner" aria-label="Sections">
+  <div class="bar-row">
   <a href="#top">Top</a>
   <a href="#plan">Study plan</a>
   <a href="#check">Self-check</a>
   <a href="#core">Core refresh</a>
   <a href="#patterns">Patterns</a>
   <a href="#changed">What changed</a>
+  </div>
+  <div class="bar-row">
   <a href="#disc">Disciplines</a>
   <a href="#interview">Interview</a>
   <a href="#design">System design</a>
   <a href="#res">Free resources</a>
   <a href="#cheat">Cheat sheet</a>
   <span class="prog" id="prog">0 / 0 done</span>
+  </div>
 </nav></header>
 
 <main class="wrap" id="top">
