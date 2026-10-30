@@ -8,7 +8,7 @@ repo or is just a link. If it also needs a folder here, add the folder and give 
 `_site.json` marked `"static": true` so the build leaves its HTML alone. See
 PROJECT-CONTEXT.md §9 for the entry shape.
 
-**A learning site**, not shown on the landing page. **Create it under `learn/<slug>/`, not
+**A learning site**, not shown on the landing page. For an interview prep site, start the session with the prompt in `_project/PREP-SITE-PROMPT.md`. **Create it under `learn/<slug>/`, not
 at the repo root.** Follow the rest of this file, then set `"listed": false` and
 `"noindex": true` in its `_site.json`, and add it to `learn/index.html` so the hub lists it. Put the new row directly under the pinned `claudecert` row: the hub lists sites newest first.
 Do not add it to `projects.json`. The build looks two levels deep, so a nested site is found

@@ -26,6 +26,7 @@ Together these are about 12KB. Read them properly rather than skimming.
 | Working on a specific site's content | `_project/sites/<slug>.md` — **always, before editing anything in that folder**. Briefs are named by slug even though study sites now live at `learn/<slug>/` |
 | Continuing the ClaudeCert study plan | `_project/claudecert-progress.md`, then the Day in `learn/claudecert/` |
 | Adding a new site | `_project/NEW-SITE.md` |
+| Starting a new interview prep site (a prompt for a fresh session) | `_project/PREP-SITE-PROMPT.md`, then `_project/NEW-SITE.md` |
 | Changing the build, or debugging it | `_build/build.py` |
 | Changing a site's styling or interactive behaviour | that site's `assets/style.css` and `assets/app.js` |
 | Changing a site's home page structure | that site's `_index_template.html` |
