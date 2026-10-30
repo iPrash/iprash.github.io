@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<title>AWS EA Prep</title>
+<meta name="description" content="AWS Enterprise Architect interview prep: twelve deployment patterns, what changed in 2024-26, interview questions and free resources.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23B5651D'/><text y='68' x='50' text-anchor='middle' font-size='34' font-family='monospace' fill='white'>AWS</text></svg>">
+<style>
+:root{
+  --paper:#F6F6F2;--surface:#FFFFFF;--ink:#141B26;--muted:#56606C;--faint:#868F9A;--line:#E3E2DA;
+  --accent:#234E8C;--accent-soft:#E6EDF7;--warn:#9A4A12;--warn-soft:#FBEEE3;--ok:#1F6B4A;--ok-soft:#E3F2EA;
+  --brass:#A87B2A;--code:#EEF0F3;
+  --display:'Space Grotesk',system-ui,sans-serif;--body:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0E1319;--surface:#151C25;--ink:#E5EAF0;--muted:#A0AAB5;--faint:#76818C;--line:#26313D;
+  --accent:#7FA8E8;--accent-soft:#1A2A40;--warn:#F0A56B;--warn-soft:#33241A;--ok:#6CCB9C;--ok-soft:#16302A;
+  --brass:#E1B65E;--code:#1E2733;}}
+:root[data-theme="dark"]{
+  --paper:#0E1319;--surface:#151C25;--ink:#E5EAF0;--muted:#A0AAB5;--faint:#76818C;--line:#26313D;
+  --accent:#7FA8E8;--accent-soft:#1A2A40;--warn:#F0A56B;--warn-soft:#33241A;--ok:#6CCB9C;--ok-soft:#16302A;
+  --brass:#E1B65E;--code:#1E2733;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+a[target="_blank"]::after{content:"\2197";content:"\2197" / "opens in a new tab";font-size:.8em;margin-left:.2em;text-decoration:none;display:inline-block}
+code{font-family:var(--mono);font-size:.86em;background:var(--code);padding:1px 5px;border-radius:4px}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+header.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar-inner{max-width:900px;margin:0 auto;padding:10px 16px;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.bar-inner::-webkit-scrollbar{display:none}
+.bar a{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:8px;white-space:nowrap}
+.bar a:hover{background:var(--accent-soft);color:var(--accent)}
+.bar .prog{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--faint);white-space:nowrap;padding-left:8px}
+.hero{padding:48px 0 28px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin:0 0 12px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,5.5vw,48px);line-height:1.05;letter-spacing:-.02em;margin:0 0 14px}
+.lede{font-size:17px;color:var(--muted);max-width:64ch;margin:0 0 18px}
+h2.part{font-family:var(--display);font-size:clamp(24px,4vw,32px);letter-spacing:-.01em;margin:56px 0 6px}
+.part-sub{color:var(--muted);margin:0 0 22px;max-width:68ch}
+h3{font-family:var(--display);font-weight:600;font-size:21px;margin:0 0 4px;letter-spacing:-.01em}
+h4{font-family:var(--display);font-weight:600;font-size:15px;margin:16px 0 6px;color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 22px 18px;margin:0 0 18px;position:relative}
+.card.done{opacity:.72}
+.card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.card p{margin:8px 0}
+.card ul{margin:6px 0;padding-left:20px}
+.card li{margin:3px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:4px 22px}
+@media (max-width:700px){.grid2{grid-template-columns:1fr}}
+.box{border-radius:10px;padding:10px 14px;margin:12px 0 4px;font-size:15px}
+.box.gotcha{background:var(--warn-soft);border-left:3px solid var(--warn)}
+.box.say{background:var(--ok-soft);border-left:3px solid var(--ok)}
+.box.intent{background:var(--accent-soft);border-left:3px solid var(--accent)}
+.box b.lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:4px}
+.box.gotcha b.lbl{color:var(--warn)}.box.say b.lbl{color:var(--ok)}.box.intent b.lbl{color:var(--accent)}
+.box ul{margin:2px 0;padding-left:18px}
+.src{font-size:12.5px;color:var(--faint);margin-top:12px;border-top:1px dashed var(--line);padding-top:8px}
+.src a{color:var(--faint)}
+.ver{font-family:var(--mono);font-size:10px;background:var(--code);color:var(--brass);padding:1px 5px;border-radius:4px;vertical-align:1px}
+label.tick{position:absolute;top:18px;right:18px;font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;gap:6px;align-items:center;cursor:pointer;user-select:none}
+label.tick input{accent-color:var(--ok);width:16px;height:16px}
+.card-foot-row{display:flex;justify-content:flex-end;margin-top:14px}
+label.card-foot{display:inline-flex;gap:8px;align-items:center;cursor:pointer;user-select:none;font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 14px 7px 11px}
+label.card-foot:hover{border-color:var(--ok);color:var(--ok)}
+label.card-foot input{accent-color:var(--ok);width:16px;height:16px;margin:0}
+.card.done label.card-foot{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+.card h3{padding-right:76px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;margin:10px 0}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.tbl{overflow-x:auto}
+td{overflow-wrap:break-word}
+td:first-child{hyphens:manual}
+@media (max-width:600px){.card{padding:18px 14px 14px}th,td{padding:6px 5px}details.qa .ans{padding:0 12px 12px 14px}label.tick{top:14px;right:12px}}
+details.qa{border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--paper)}
+details.qa>summary{cursor:pointer;padding:10px 14px;font-weight:500;list-style:none;display:flex;gap:10px}
+details.qa>summary::-webkit-details-marker{display:none}
+details.qa>summary::before{content:"+";font-family:var(--mono);color:var(--accent);font-weight:600}
+details.qa[open]>summary::before{content:"−"}
+details.qa .ans{padding:0 16px 12px 34px}
+details.qa .ans p{margin:6px 0}
+.q-time{font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap;padding-top:3px}
+.session{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.session:last-child{border-bottom:none}
+.snum{font-family:var(--mono);font-weight:600;color:#fff;background:var(--ink);border-radius:8px;padding:4px 9px;height:fit-content;font-size:13px}
+:root[data-theme="dark"] .snum{color:var(--paper)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .snum{color:var(--paper)}}
+.session p{margin:4px 0}
+.session .meta{font-family:var(--mono);font-size:12px;color:var(--faint)}
+figure.arch{margin:12px 0;overflow-x:auto}
+figure.arch svg{min-width:640px;width:100%;height:auto;display:block}
+figure.arch figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+.mnemonic{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:.02em}
+footer{padding:40px 0 60px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin:14px 0}
+.toc a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;text-decoration:none;color:var(--ink);font-size:14px}
+.toc a:hover{border-color:var(--accent)}
+.toc a span{display:block;font-family:var(--mono);font-size:11px;color:var(--faint)}
+.toc a.is-done{border-color:var(--ok)}
+.toc a.is-done span::after{content:" · done";color:var(--ok)}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+button.mini{font-family:var(--mono);font-size:12px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+button.mini:hover{border-color:var(--accent)}
+abbr[title],abbr[data-def]{text-decoration:underline dotted;text-decoration-color:var(--faint);text-underline-offset:3px;cursor:help;border:0}
+abbr:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-radius:2px}
+#abbr-tip{position:fixed;z-index:50;max-width:min(320px,calc(100vw - 16px));background:var(--ink);color:var(--paper);font-size:13px;line-height:1.45;padding:8px 11px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.25);pointer-events:none;opacity:0;transition:opacity .12s}
+#abbr-tip.on{opacity:1}
+#abbr-tip b{font-family:var(--mono);font-size:12px}
+@media print{#abbr-tip{display:none}abbr{text-decoration:none}}
+.prov{font-family:var(--mono);font-size:10px;letter-spacing:.06em;padding:1px 6px;border-radius:4px;vertical-align:1px;white-space:nowrap;font-weight:600}
+.prov.y{background:var(--ok-soft);color:var(--ok)}.prov.e{background:var(--accent-soft);color:var(--accent)}.prov.m{background:var(--warn-soft);color:var(--warn)}
+pre{overflow-x:auto;background:var(--code);padding:10px 12px;border-radius:8px;font-size:12.5px;line-height:1.45;margin:10px 0}
+pre code{background:none;padding:0;font-size:inherit}
+@media print{
+  header.bar,.btnrow,label.tick,.card-foot-row{display:none}
+  body{background:#fff;color:#000;font-size:12px}
+  .card{break-inside:avoid;border-color:#ccc}
+  details.qa .ans{display:block}
+}
+
+svg.d rect{fill:var(--surface);stroke:var(--line);stroke-width:1.2}
+svg.d rect.ou{fill:var(--accent-soft);stroke:var(--accent)}
+svg.d rect.band{fill:var(--ok-soft);stroke:var(--ok)}
+svg.d line{stroke:var(--faint);stroke-width:1.4}
+svg.d line.thick{stroke:var(--accent);stroke-width:2.4}
+svg.d text{fill:var(--ink);font-family:var(--body);text-anchor:middle}
+svg.d text.t{font-size:13px;font-weight:600;font-family:var(--display)}
+svg.d text.s{font-size:11px;fill:var(--muted)}
+</style>
+</head>
+<body>
+<header class="bar"><nav class="bar-inner" aria-label="Sections">
+  <a href="#top">Top</a>
+  <a href="#plan">Study plan</a>
+  <a href="#check">Self-check</a>
+  <a href="#core">Core refresh</a>
+  <a href="#patterns">Patterns</a>
+  <a href="#changed">What changed</a>
+  <a href="#disc">Disciplines</a>
+  <a href="#interview">Interview</a>
+  <a href="#design">System design</a>
+  <a href="#res">Free resources</a>
+  <a href="#cheat">Cheat sheet</a>
+  <span class="prog" id="prog">0 / 0 done</span>
+</nav></header>
+
+<main class="wrap" id="top">
+<section class="hero">
+  <p class="eyebrow"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Enterprise Architect · Interview prep</p>
+  <h1>AWS deployment patterns, refreshed</h1>
+  <p class="lede">Do seven sessions, about 12 hours in total. The site is built around the twelve deployment patterns that <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> architecture interviews ask about most. Each pattern card gives the shape, the services, the decisions, what changed in 2024–26, and free material to go deeper. On the morning of the interview, read only the cheat sheet.</p>
+  <div class="box intent"><b class="lbl">What an <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> <abbr title="Enterprise Architecture: aligning business strategy and technology across the organisation.">EA</abbr> panel tests</b>
+  An enterprise architect panel spends less time on service features and more time on the layer above them. Be ready for four things:
+  <ul>
+    <li><b>The multi-account foundation.</b> How you organise accounts, identity, guardrails and networks before the first workload lands. This is the most common <abbr title="Enterprise Architecture: aligning business strategy and technology across the organisation.">EA</abbr> question on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>.</li>
+    <li><b>Trade-offs by pillar.</b> Every answer names the Well-Architected pillar it serves and what it costs in another pillar.</li>
+    <li><b>Current vocabulary.</b> Naming a retired service (CodeStar, App Mesh, QLDB, Migration Hub) tells the panel you have been away. The <a href="#changed">What changed</a> section fixes this.</li>
+    <li><b>Programme thinking.</b> Migration waves, a landing zone as a product, <abbr title="Cloud financial operations: engineering, finance and business sharing ownership of cloud spend.">FinOps</abbr>, and how a partner delivers this at scale.</li>
+  </ul></div>
+  <div class="btnrow">
+    <button class="mini" id="openAll" type="button">Open all answers</button>
+    <button class="mini" id="closeAll" type="button">Close all answers</button>
+    <button class="mini" id="theme" type="button">Toggle dark mode</button>
+    <button class="mini" id="reset" type="button">Reset progress</button>
+  </div>
+</section>
+
+<!-- ============ STUDY PLAN ============ -->
+<section id="plan">
+<h2 class="part">Study plan: seven sessions</h2>
+<p class="part-sub">About 12 hours. Do them in this order. Say the answers out loud. For each pattern, draw the diagram from memory once before you read the card.</p>
+<div class="card">
+  <div class="session"><span class="snum">S0</span><div>
+    <p><b>Triage (30 min).</b> Do the <a href="#check">self-check</a>. Each question you miss points to a card. Mark the cards you already know as done, so the progress counter shows what is left.</p>
+  </div></div>
+  <div class="session"><span class="snum">S1</span><div>
+    <p><b>Core refresh (1.5 h).</b> Read the three <a href="#core">core cards</a>: compute, data, network and identity. Then answer the <a href="#x-core">core questions</a> out loud.</p>
+    <p class="meta">Goal: pick the right service in one sentence, with the reason.</p>
+  </div></div>
+  <div class="session"><span class="snum">S2</span><div>
+    <p><b>The enterprise foundation (2 h).</b> Patterns <a href="#p-lz">01 Landing zone</a> and <a href="#p-net">02 Network and hybrid</a>, then <a href="#p-sec">12 Security baseline</a>. Draw the account structure and the hub-and-spoke network on paper. Answer <a href="#q1">Q1</a>–<a href="#q4">Q4</a>.</p>
+    <p class="meta">Highest weight for an <abbr title="Enterprise Architecture: aligning business strategy and technology across the organisation.">EA</abbr> role. Expect most of the interview here.</p>
+  </div></div>
+  <div class="session"><span class="snum">S3</span><div>
+    <p><b>Application patterns (2 h).</b> Patterns <a href="#p-3tier">03</a> to <a href="#p-eda">06</a>: three-tier, serverless, containers, event-driven. Answer <a href="#q5">Q5</a>–<a href="#q8">Q8</a>.</p>
+  </div></div>
+  <div class="session"><span class="snum">S4</span><div>
+    <p><b>Data, resilience, migration and <abbr title="Generative AI: models that produce text, images or code.">GenAI</abbr> (2 h).</b> Patterns <a href="#p-data">07</a> to <a href="#p-genai">10</a>. Read the <a href="#changed">What changed</a> tables twice. Answer <a href="#q9">Q9</a>–<a href="#q13">Q13</a>.</p>
+    <p class="meta">The <abbr title="Generative AI: models that produce text, images or code.">GenAI</abbr> card is where your agentic <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> platform work becomes the strongest part of your answer.</p>
+  </div></div>
+  <div class="session"><span class="snum">S5</span><div>
+    <p><b>Build (2 h).</b> Do one lab from the <a href="#res-labs">labs list</a>. Use a partner sandbox or a workshop event account, not your own card. Then read <a href="#p-cicd">11 <abbr title="Continuous Integration: every change is merged often and built and tested automatically.">CI</abbr>/CD and <abbr title="Infrastructure as Code: defining infrastructure in version-controlled files.">IaC</abbr></a> and the <a href="#disc">Well-Architected and <abbr title="Cloud financial operations: engineering, finance and business sharing ownership of cloud spend.">FinOps</abbr></a> cards.</p>
+    <p class="meta">You retain mechanics by building. One deployed stack is worth more than three more cards.</p>
+  </div></div>
+  <div class="session"><span class="snum">S6</span><div>
+    <p><b>Interview rehearsal (2 h).</b> Fill the gaps in your <a href="#stories"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> story frame</a>. Do the <a href="#design">system design walkthrough</a> against a timer: 35 minutes, out loud, on a blank page. Finish with the <a href="#x-ask">questions to ask them</a>.</p>
+  </div></div>
+</div>
+</section>
+
+<!-- ============ SELF-CHECK ============ -->
+<section id="check">
+<h2 class="part">Self-check: fifteen questions</h2>
+<p class="part-sub">Answer each one aloud in under 30 seconds before you open it. A miss sends you to the card named in the answer.</p>
+<article class="card" id="c-check">
+<span class="tag">S0 · Triage</span>
+<h3>Where are the gaps?</h3>
+<details class="qa"><summary>1. What is the difference between an SCP and an RCP?</summary><div class="ans"><p>An <abbr title="Service Control Policy: an Organizations policy that caps what IAM principals in member accounts can do. It never grants.">SCP</abbr> limits what principals in your organisation can do. An <abbr title="Resource Control Policy: an Organizations policy (Nov 2024) that caps what can be done to resources, by anyone.">RCP</abbr> limits what can be done to your resources, by anyone, including principals outside the organisation. Together they build a data perimeter. Card <a href="#p-lz">01</a>.</p></div></details>
+<details class="qa"><summary>2. You need 40 VPCs across 3 Regions to talk to each other and to on-premises. What do you use?</summary><div class="ans"><p>Transit Gateway per Region with peering, or Cloud WAN if you want one global policy and segments. Direct Connect to on-premises through a Direct Connect gateway. Card <a href="#p-net">02</a>.</p></div></details>
+<details class="qa"><summary>3. Name the four DR strategies, cheapest first.</summary><div class="ans"><p>Backup and restore, pilot light, warm standby, multi-site active/active. Card <a href="#p-dr">08</a>.</p></div></details>
+<details class="qa"><summary>4. What replaced IAM users for human access?</summary><div class="ans"><p><abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> Identity Center with federation to the corporate <abbr title="Identity Provider: the system that authenticates users, such as Entra ID or Okta.">IdP</abbr>, and short-lived role credentials. <abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> users stay only for rare machine cases that cannot use roles. Card <a href="#core-net">core: network and identity</a>.</p></div></details>
+<details class="qa"><summary>5. When would you pick ECS over EKS?</summary><div class="ans"><p>When the team does not need the Kubernetes <abbr title="Application Programming Interface.">API</abbr> or its ecosystem. <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> has less to operate and is deeply tied into <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>. Pick <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> for portability, a Kubernetes skill base, or tooling such as Argo <abbr title="Continuous Delivery: every change that passes the pipeline can go to production.">CD</abbr> and Karpenter. Card <a href="#p-cont">05</a>.</p></div></details>
+<details class="qa"><summary>6. A team wants to start a new project on Migration Hub. What do you tell them?</summary><div class="ans"><p>Migration Hub closed to new customers on 7 Nov 2025. Use <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform for assessment and planning, and Application Migration Service for rehosting. Card <a href="#p-mig">09</a>.</p></div></details>
+<details class="qa"><summary>7. What are the 7 Rs?</summary><div class="ans"><p>Retire, retain, rehost, relocate, repurchase, replatform, refactor. Card <a href="#p-mig">09</a>.</p></div></details>
+<details class="qa"><summary>8. What is the Lambda maximum run time, and what do you do when a workflow runs longer?</summary><div class="ans"><p>15 minutes. For longer work use Step Functions, or Lambda durable functions (Dec 2025), which checkpoint and can wait up to a year without paying for idle time. Card <a href="#p-sls">04</a>.</p></div></details>
+<details class="qa"><summary>9. SQS, SNS, EventBridge, Kinesis, MSK: which one for "many consumers, replay, strict order per key"?</summary><div class="ans"><p><abbr title="Amazon Managed Streaming for Apache Kafka.">MSK</abbr> (Kafka) or Kinesis Data Streams. Both keep order per partition or shard and allow replay. <abbr title="Simple Queue Service: managed message queues.">SQS</abbr> and <abbr title="Simple Notification Service: managed pub/sub topics.">SNS</abbr> do not replay. EventBridge has archive and replay, but no ordering guarantee. Card <a href="#p-eda">06</a>.</p></div></details>
+<details class="qa"><summary>10. Name the six Well-Architected pillars.</summary><div class="ans"><p>Operational excellence, security, reliability, performance efficiency, cost optimisation, sustainability. Card <a href="#d-wa">Well-Architected</a>.</p></div></details>
+<details class="qa"><summary>11. What is AgentCore, and what does it replace?</summary><div class="ans"><p>Bedrock AgentCore (GA Oct 2025) is a managed set of services to run <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> agents in production: runtime, memory, gateway, identity, observability, policy. It works with any framework and model. The older Bedrock Agents became "Agents Classic" and closed to new customers on 30 Jul 2026. Card <a href="#p-genai">10</a>.</p></div></details>
+<details class="qa"><summary>12. A Region fails. What do you need to have in place already for a 15-minute RTO?</summary><div class="ans"><p>Warm standby or active/active in a second Region. Data replicated asynchronously (Aurora Global Database, DynamoDB global tables, S3 replication). A tested, scripted failover: <abbr title="Amazon Application Recovery Controller: tools to plan and run failover across AZs and Regions.">ARC</abbr> Region switch or Route 53 controls. Infrastructure as code for the second Region. Card <a href="#p-dr">08</a>.</p></div></details>
+<details class="qa"><summary>13. What is the fastest way to cut the EC2 bill without changing code?</summary><div class="ans"><p>Rightsize, then commit with Savings Plans, then move suitable workloads to Graviton. Schedule non-production to stop at night. Card <a href="#d-cost"><abbr title="Cloud financial operations: engineering, finance and business sharing ownership of cloud spend.">FinOps</abbr></a>.</p></div></details>
+<details class="qa"><summary>14. Where do you store vectors for RAG on AWS today?</summary><div class="ans"><p>Options: S3 Vectors (GA Dec 2025, lowest cost, large scale), OpenSearch Service, Aurora PostgreSQL with pgvector. Or let Bedrock Managed Knowledge Base (GA Jun 2026) run the whole pipeline. Card <a href="#p-genai">10</a>.</p></div></details>
+<details class="qa"><summary>15. CDK, CloudFormation or Terraform for a 300-account estate?</summary><div class="ans"><p>All three work. Terraform if the estate is multi-cloud or the team already uses it. <abbr title="AWS Cloud Development Kit: defines infrastructure in TypeScript, Python, Java and other languages.">CDK</abbr> if teams write code and stay on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>. CloudFormation StackSets for org-wide baselines. Pick one per layer and write it down as an <abbr title="Architecture Decision Record: a short document that records one decision, its context and consequences.">ADR</abbr>. Card <a href="#p-cicd">11</a>.</p></div></details>
+</article>
+</section>
+
+<!-- ============ CORE ============ -->
+<section id="core">
+<h2 class="part">Core refresh</h2>
+<p class="part-sub">Three cards. Each is a decision table: when you see this need, pick this service, for this reason. You know most of it already. Read for the rows that surprise you. Evidence checked 29 Oct 2026.</p>
+
+<article class="card" id="core-compute">
+<span class="tag">Core · 1 of 3</span>
+<h3>Compute: where code runs</h3>
+<p>Pick the least infrastructure that meets the need. Move down the table only when a requirement forces you to.</p>
+<div class="tbl"><table>
+<tr><th>Need</th><th>Pick</th><th>Why</th></tr>
+<tr><td>Event-driven, short tasks, spiky traffic</td><td>Lambda</td><td>No servers, pay per request, scales to zero. Limit: 15 min per run, 10 GB memory.</td></tr>
+<tr><td>Steady high-volume functions where Lambda cost hurts</td><td>Lambda Managed Instances <span class="ver">ver</span></td><td>Lambda programming model on <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> capacity you choose, with <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> pricing and Savings Plans. Nov 2025.</td></tr>
+<tr><td>Containers, simple web service, no cluster skills</td><td><abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> Express Mode on Fargate <span class="ver">ver</span></td><td>One command gives a service with load balancer, scaling and <abbr title="HTTP over TLS: encrypted web traffic.">HTTPS</abbr>. Nov 2025. The closest <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> option now that App Runner is closed to new customers.</td></tr>
+<tr><td>Containers, AWS-only, team wants low operations</td><td><abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> on Fargate</td><td>No nodes to patch. Deep <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> integration.</td></tr>
+<tr><td>Containers, needs Kubernetes <abbr title="Application Programming Interface.">API</abbr> or portability</td><td><abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr>, usually in Auto Mode <span class="ver">ver</span></td><td>Auto Mode (Dec 2024) manages nodes, scaling, storage and load balancing for you.</td></tr>
+<tr><td>Lift-and-shift, licensed software, special <abbr title="Operating System.">OS</abbr> or <abbr title="Graphics Processing Unit: used for AI training and inference.">GPU</abbr></td><td><abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> with Auto Scaling</td><td>Full control. You own patching and scaling policies.</td></tr>
+<tr><td>Batch and <abbr title="High-Performance Computing.">HPC</abbr></td><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Batch, ParallelCluster</td><td>Queue-based. Use Spot for interruptible work.</td></tr>
+<tr><td>Data residency, on-premises latency</td><td>Outposts, Local Zones</td><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> hardware in your data centre, or <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> edge sites near users.</td></tr>
+</table></div>
+<div class="grid2"><div>
+<h4>Points to remember</h4>
+<ul>
+  <li><b>Graviton</b> (Arm) gives the best price-performance for most Linux workloads. Graviton5 was announced Dec 2025 <span class="ver">ver</span>.</li>
+  <li><b>Purchase options:</b> On-Demand, Savings Plans (1 or 3 years), Spot (up to 90% off, can be interrupted with 2 minutes' notice).</li>
+  <li><b>Nitro</b> is the hypervisor and hardware base for all current instances.</li>
+</ul></div><div>
+<h4>Gotchas</h4>
+<ul>
+  <li>Lambda in a <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> needs a <abbr title="Network Address Translation: lets private resources start outbound internet connections.">NAT</abbr> gateway or <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> endpoints to reach <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> services or the internet.</li>
+  <li>Cold starts matter for Java. SnapStart reduces them.</li>
+  <li>Fargate has no <abbr title="Graphics Processing Unit: used for AI training and inference.">GPU</abbr> support. Use <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> capacity for <abbr title="Graphics Processing Unit: used for AI training and inference.">GPU</abbr> containers.</li>
+</ul></div></div>
+<div class="box say"><b class="lbl">Say this</b>"I start serverless and move toward containers or <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> only when a constraint forces it: run time, cost at steady load, a licence, or a team skill. Each step down adds operations work, so I want the reason written down."</div>
+<p class="src">Sources: <a href="https://aws.amazon.com/about-aws/whats-new/2025/11/aws-lambda-managed-instances/" target="_blank" rel="noopener noreferrer">Lambda Managed Instances</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2025/11/announcing-amazon-ecs-express-mode/" target="_blank" rel="noopener noreferrer"><abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> Express Mode</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2024/12/amazon-eks-auto-mode/" target="_blank" rel="noopener noreferrer"><abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Auto Mode</a>; <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html" target="_blank" rel="noopener noreferrer">Lambda quotas</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<article class="card" id="core-data">
+<span class="tag">Core · 2 of 3</span>
+<h3>Storage and databases: where data lives</h3>
+<p>Choose by access pattern first, then by scale and consistency. "Purpose-built databases" is the <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> phrase for this.</p>
+<div class="tbl"><table>
+<tr><th>Need</th><th>Pick</th><th>Why</th></tr>
+<tr><td>Objects, data lake, backups</td><td>S3</td><td>11 nines durability. Storage classes from Standard to Glacier Deep Archive. Intelligent-Tiering when access is unknown.</td></tr>
+<tr><td>Analytics tables on S3</td><td>S3 Tables <span class="ver">ver</span></td><td>Managed Apache Iceberg tables with automatic compaction. Dec 2024.</td></tr>
+<tr><td>Vectors for <abbr title="Retrieval-Augmented Generation: the model answers from documents retrieved at query time.">RAG</abbr> at large scale and low cost</td><td>S3 Vectors <span class="ver">ver</span></td><td>GA Dec 2025. Up to 2 billion vectors per index.</td></tr>
+<tr><td>Block storage for one instance</td><td><abbr title="Elastic Block Store: block volumes attached to EC2 instances.">EBS</abbr></td><td>gp3 is the default. io2 for high <abbr title="Input/Output Operations Per Second: a storage performance measure.">IOPS</abbr>.</td></tr>
+<tr><td>Shared file system</td><td><abbr title="Elastic File System: a managed NFS file system.">EFS</abbr> (Linux), <abbr title="Amazon FSx: managed file systems such as Windows File Server, NetApp ONTAP and Lustre.">FSx</abbr> (Windows, ONTAP, Lustre)</td><td><abbr title="Amazon FSx: managed file systems such as Windows File Server, NetApp ONTAP and Lustre.">FSx</abbr> for ONTAP now also exposes data through S3 <abbr title="Application Programming Interfaces.">APIs</abbr> <span class="ver">ver</span>.</td></tr>
+<tr><td>Relational, existing engine</td><td><abbr title="Relational Database Service: managed relational databases.">RDS</abbr></td><td>Managed PostgreSQL, MySQL, MariaDB, Oracle, SQL Server, Db2.</td></tr>
+<tr><td>Relational, high scale, fast failover</td><td>Aurora (PostgreSQL or MySQL)</td><td>Storage replicated 6 ways across 3 <abbr title="Availability Zones: separate data centres in a Region, with independent power and network.">AZs</abbr>. Up to 15 read replicas. Global Database across Regions.</td></tr>
+<tr><td>Relational, active-active across Regions</td><td>Aurora DSQL <span class="ver">ver</span></td><td>Serverless, distributed, PostgreSQL-compatible. GA May 2025. Check its feature gaps against your app.</td></tr>
+<tr><td>Key-value, any scale, single-digit ms</td><td>DynamoDB</td><td>Serverless. Global tables for multi-Region. Design by access pattern.</td></tr>
+<tr><td>Cache</td><td>ElastiCache (Valkey, Redis OSS, Memcached)</td><td>Valkey is the lower-cost default for new caches.</td></tr>
+<tr><td>Search and log analytics</td><td>OpenSearch Service</td><td>Also a vector store. Replaces CloudSearch for new work.</td></tr>
+<tr><td>Graph, documents, time series</td><td>Neptune, DocumentDB, Timestream for InfluxDB</td><td>Timestream for LiveAnalytics closed to new customers Jun 2025.</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>DynamoDB rewards design up front. Ad hoc queries and joins are expensive. Know your access patterns first.</li>
+  <li>Aurora Global Database replication is asynchronous, usually under a second. <abbr title="Recovery Point Objective: the most data loss that is acceptable, measured in time.">RPO</abbr> is not zero.</li>
+  <li>QLDB is gone (31 Jul 2025). For a ledger, <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> pointed customers to Aurora PostgreSQL <span class="ver">ver</span>.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I pick the database per bounded context and per access pattern. One shared relational database for a whole estate is usually the first thing I break up in a modernisation."</div>
+<p class="src">Sources: <a href="https://aws.amazon.com/about-aws/whats-new/2024/12/amazon-s3-tables-apache-iceberg-tables-analytics-workloads" target="_blank" rel="noopener noreferrer">S3 Tables</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2025/05/amazon-aurora-dsql-generally-available" target="_blank" rel="noopener noreferrer">Aurora DSQL GA</a>; <a href="https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025" target="_blank" rel="noopener noreferrer">re:Invent 2025 top announcements</a> (S3 Vectors, <abbr title="Amazon FSx: managed file systems such as Windows File Server, NetApp ONTAP and Lustre.">FSx</abbr> ONTAP S3 access); <a href="https://docs.aws.amazon.com/whitepapers/latest/aws-overview/database.html" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> overview: databases</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<article class="card" id="core-net">
+<span class="tag">Core · 3 of 3</span>
+<h3>Network and identity basics</h3>
+<div class="grid2"><div>
+<h4>Network</h4>
+<ul>
+  <li><b>Region</b> → <b>Availability Zones</b> (separate data centres, low-latency links). Spread every tier across at least 2 <abbr title="Availability Zones: separate data centres in a Region, with independent power and network.">AZs</abbr>, 3 for quorum systems.</li>
+  <li><b><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr></b>: your private network in one Region. <b>Subnets</b> live in one <abbr title="Availability Zone: one or more separate data centres in a Region, with independent power and network.">AZ</abbr>. Public subnets route to an internet gateway. Private subnets go out through a <abbr title="Network Address Translation: lets private resources start outbound internet connections.">NAT</abbr> gateway.</li>
+  <li><b>Security groups</b> are stateful, per instance or interface. <b>Network ACLs</b> are stateless, per subnet. Security groups do most of the work.</li>
+  <li><b><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> endpoints</b>: gateway endpoints for S3 and DynamoDB (free), interface endpoints (PrivateLink) for other services. They keep traffic off the internet and cut <abbr title="Network Address Translation: lets private resources start outbound internet connections.">NAT</abbr> cost.</li>
+  <li><b>Route 53</b> for <abbr title="Domain Name System: turns names into IP addresses.">DNS</abbr>, with health checks and routing policies: failover, latency, weighted, geolocation.</li>
+  <li><b>CloudFront</b> for the edge, with <abbr title="Web Application Firewall: filters HTTP traffic at the edge or load balancer.">WAF</abbr> and Shield in front.</li>
+</ul></div><div>
+<h4>Identity</h4>
+<ul>
+  <li><b>Humans</b>: <abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> Identity Center, federated to Entra ID or Okta, with permission sets mapped to roles in each account. No long-lived keys.</li>
+  <li><b>Workloads</b>: <abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> roles. <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> instance profiles, <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> task roles, <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Pod Identity, Lambda execution roles.</li>
+  <li><b>Policy evaluation</b>: an explicit deny wins. Otherwise an action needs an allow, and nothing above it (<abbr title="Service Control Policy: an Organizations policy that caps what IAM principals in member accounts can do. It never grants.">SCP</abbr>, <abbr title="Resource Control Policy: an Organizations policy (Nov 2024) that caps what can be done to resources, by anyone.">RCP</abbr>, permission boundary, session policy) can block it.</li>
+  <li><b>Cross-account</b>: a role in the target account with a trust policy. Or resource policies, which <abbr title="Resource Control Policies: Organizations policies (Nov 2024) that cap what can be done to resources, by anyone.">RCPs</abbr> can now limit.</li>
+  <li><b>Customer identity</b>: Cognito user pools.</li>
+</ul></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li><abbr title="Network Address Translation: lets private resources start outbound internet connections.">NAT</abbr> gateway data charges are a common cost surprise. Add <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> endpoints for S3, DynamoDB and <abbr title="Elastic Container Registry: AWS’s container image registry.">ECR</abbr> first.</li>
+  <li>Overlapping <abbr title="Classless Inter-Domain Routing: an IP address range, such as 10.0.0.0/16.">CIDR</abbr> ranges block peering and Transit Gateway routing later. Plan IP space centrally with <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> <abbr title="IP Address Management: VPC IPAM plans and tracks IP ranges across accounts.">IPAM</abbr> from day one.</li>
+  <li>Simple AD closed to new customers on 30 Jul 2026. Use <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Managed Microsoft AD or AD Connector <span class="ver">ver</span>.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"Identity is the new perimeter. People come in through Identity Center with short-lived credentials, workloads use roles, and org-level guardrails cap what any policy can grant."</div>
+<p class="src">Sources: <a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html" target="_blank" rel="noopener noreferrer">Amazon <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> user guide</a>; <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html" target="_blank" rel="noopener noreferrer"><abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> policy evaluation logic</a>; <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html" target="_blank" rel="noopener noreferrer"><abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> Identity Center</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2026/06/aws-service-availability/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> service availability, Jun 2026</a>. Checked 29 Oct 2026.</p>
+</article>
+</section>
+
+<!-- ============ PATTERNS ============ -->
+<section id="patterns">
+<h2 class="part">Deployment patterns</h2>
+<p class="part-sub">Twelve patterns. Each card gives the shape, when to use it, the decisions that matter, what changed in 2024–26, and free material to go deeper. Version-sensitive facts carry a <span class="ver">ver</span> mark. Evidence checked 29 Oct 2026.</p>
+<nav class="toc" id="toc">
+  <a href="#p-lz"><span>01 · deep</span>Multi-account landing zone</a>
+  <a href="#p-net"><span>02 · deep</span>Network and hybrid</a>
+  <a href="#p-3tier"><span>03</span>Three-tier web app</a>
+  <a href="#p-sls"><span>04</span>Serverless API</a>
+  <a href="#p-cont"><span>05</span>Containers: ECS and EKS</a>
+  <a href="#p-eda"><span>06</span>Event-driven</a>
+  <a href="#p-data"><span>07</span>Data lake and lakehouse</a>
+  <a href="#p-dr"><span>08 · deep</span>Multi-Region resilience and DR</a>
+  <a href="#p-mig"><span>09 · deep</span>Migration at scale</a>
+  <a href="#p-genai"><span>10 · deep</span>GenAI: RAG and agents</a>
+  <a href="#p-cicd"><span>11</span>CI/CD and IaC</a>
+  <a href="#p-sec"><span>12</span>Security and observability baseline</a>
+</nav>
+
+<!-- 01 LANDING ZONE -->
+<article class="card" id="p-lz">
+<span class="tag">01 · Foundation</span>
+<h3>Multi-account landing zone</h3>
+<p>A landing zone is the pre-built, governed multi-account environment that every workload lands in. Accounts are the strongest isolation boundary on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>, for security, quotas and billing. An enterprise runs tens to thousands of them, grouped in organisational units (<abbr title="Organizational Units: groups of accounts in AWS Organizations. Policies attach to them.">OUs</abbr>), with guardrails set once at the top.</p>
+<figure class="arch"><svg viewBox="0 0 760 300" class="d" role="img" aria-label="AWS Organizations tree: management account at the top, Security, Infrastructure, Workloads and Sandbox OUs below, each with example accounts.">
+  <rect x="250" y="12" width="260" height="46" rx="8"/><text x="380" y="32" class="t">Management account</text><text x="380" y="48" class="s">Organizations · billing · Control Tower</text>
+  <line x1="380" y1="58" x2="380" y2="84"/><line x1="95" y1="84" x2="665" y2="84"/>
+  <line x1="95" y1="84" x2="95" y2="104"/><line x1="285" y1="84" x2="285" y2="104"/><line x1="475" y1="84" x2="475" y2="104"/><line x1="665" y1="84" x2="665" y2="104"/>
+  <rect x="20" y="104" width="150" height="34" rx="8" class="ou"/><text x="95" y="126" class="t">Security OU</text>
+  <rect x="210" y="104" width="150" height="34" rx="8" class="ou"/><text x="285" y="126" class="t">Infrastructure OU</text>
+  <rect x="400" y="104" width="150" height="34" rx="8" class="ou"/><text x="475" y="126" class="t">Workloads OU</text>
+  <rect x="590" y="104" width="150" height="34" rx="8" class="ou"/><text x="665" y="126" class="t">Sandbox OU</text>
+  <rect x="20" y="152" width="150" height="58" rx="8"/><text x="95" y="172" class="s">Log archive</text><text x="95" y="188" class="s">Security tooling</text><text x="95" y="204" class="s">(audit, GuardDuty admin)</text>
+  <rect x="210" y="152" width="150" height="58" rx="8"/><text x="285" y="172" class="s">Network hub</text><text x="285" y="188" class="s">Shared services</text><text x="285" y="204" class="s">(TGW, DNS, IPAM)</text>
+  <rect x="400" y="152" width="150" height="58" rx="8"/><text x="475" y="172" class="s">Prod OU · Non-prod OU</text><text x="475" y="188" class="s">one account per app</text><text x="475" y="204" class="s">per environment</text>
+  <rect x="590" y="152" width="150" height="58" rx="8"/><text x="665" y="172" class="s">Developer sandboxes</text><text x="665" y="188" class="s">budget caps,</text><text x="665" y="204" class="s">no network to prod</text>
+  <rect x="20" y="236" width="720" height="50" rx="8" class="band"/><text x="380" y="257" class="t">Guardrails applied from the top</text><text x="380" y="275" class="s">SCPs · RCPs · declarative policies · Config rules · Identity Center permission sets</text>
+</svg><figcaption>A common OU layout, after AWS's "Organizing your AWS environment" guidance. Workloads split by environment so guardrails can differ for production.</figcaption></figure>
+<div class="grid2"><div>
+<h4>Building blocks</h4>
+<ul>
+  <li><b><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Organizations</b>: the account tree, consolidated billing, and policies.</li>
+  <li><b>Control Tower</b>: sets up and governs the landing zone. Account Factory vends new accounts. It applies controls (preventive, detective, proactive).</li>
+  <li><b>Landing Zone Accelerator (<abbr title="Landing Zone Accelerator: an AWS solution that deploys a compliance-aligned multi-account baseline from config files.">LZA</abbr>)</b>: an <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> solution that deploys a larger, compliance-aligned baseline on top of Control Tower from configuration files. Common in regulated industries.</li>
+  <li><b>Account Factory for Terraform (<abbr title="Account Factory for Terraform: Control Tower account vending through a Terraform pipeline.">AFT</abbr>)</b>: account vending through a Terraform pipeline.</li>
+  <li><b><abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> Identity Center</b>: one sign-in, permission sets per <abbr title="Organizational Unit: a group of accounts in AWS Organizations. Policies attach to it.">OU</abbr> or account.</li>
+</ul></div><div>
+<h4>Policy types</h4>
+<ul>
+  <li><b><abbr title="Service Control Policy: an Organizations policy that caps what IAM principals in member accounts can do. It never grants.">SCP</abbr></b>: maximum permissions for <abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> principals in member accounts. Example: deny leaving the org, deny unapproved Regions.</li>
+  <li><b><abbr title="Resource Control Policy: an Organizations policy (Nov 2024) that caps what can be done to resources, by anyone.">RCP</abbr></b> <span class="ver">ver</span>: maximum permissions on resources (S3, <abbr title="Key Management Service: creates and controls encryption keys.">KMS</abbr>, STS, <abbr title="Simple Queue Service: managed message queues.">SQS</abbr>, Secrets Manager and more). Example: no one outside the org reads our buckets. Nov 2024.</li>
+  <li><b>Declarative policies</b> <span class="ver">ver</span>: set a service configuration across the org, such as "block public <abbr title="Amazon Machine Image: the template an EC2 instance boots from.">AMI</abbr> sharing". Dec 2024.</li>
+  <li><b>Centralised root access</b> <span class="ver">ver</span>: remove root credentials from member accounts and run privileged tasks from the management account. Nov 2024.</li>
+  <li>Tag policies, backup policies and <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> opt-out policies.</li>
+</ul></div></div>
+<h4>Changed 2024–26</h4>
+<ul>
+  <li><b>Control Tower landing zone 4.0</b> (17 Nov 2025) <span class="ver">ver</span>: a controls-only option. Config, CloudTrail, security roles and Backup integrations became optional, and a Security <abbr title="Organizational Unit: a group of accounts in AWS Organizations. Policies attach to it.">OU</abbr> is no longer required. You can now adopt Control Tower governance on an existing estate without its full baseline.</li>
+  <li><b>Automatic account enrolment</b> (Oct 2025): moving an account into an <abbr title="Organizational Unit: a group of accounts in AWS Organizations. Policies attach to it.">OU</abbr> applies that <abbr title="Organizational Unit: a group of accounts in AWS Organizations. Policies attach to it.">OU</abbr>'s baselines and controls.</li>
+  <li><b>Fewer drift events</b> (Aug 2025): <abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr> attached outside the console no longer cause drift.</li>
+  <li>The Controls Library is now the <b>Control Catalog</b>, with mappings to frameworks such as <abbr title="Payment Card Industry Data Security Standard.">PCI</abbr> DSS 4.0.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li><abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr> do not affect the management account. Keep workloads out of it.</li>
+  <li><abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr> and <abbr title="Resource Control Policies: Organizations policies (Nov 2024) that cap what can be done to resources, by anyone.">RCPs</abbr> never grant. They only cap. Teams still need <abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> policies.</li>
+  <li>Test <abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr> on a sandbox <abbr title="Organizational Unit: a group of accounts in AWS Organizations. Policies attach to it.">OU</abbr> first. A bad deny at the root can lock out every account.</li>
+  <li>Treat the landing zone as a product with an owner, a backlog and versions. A one-off project decays.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I treat the account as the unit of isolation and the landing zone as a platform product. Control Tower or <abbr title="Landing Zone Accelerator: an AWS solution that deploys a compliance-aligned multi-account baseline from config files.">LZA</abbr> gives the baseline, <abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr> and <abbr title="Resource Control Policies: Organizations policies (Nov 2024) that cap what can be done to resources, by anyone.">RCPs</abbr> together give a data perimeter, and account vending through a pipeline means a new team gets a compliant account in hours instead of weeks."</div>
+<p class="src">Go deeper (free): <a href="https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/organizing-your-aws-environment.html" target="_blank" rel="noopener noreferrer">Organizing your <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> environment (whitepaper)</a>; <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Security Reference Architecture</a>; <a href="https://catalog.workshops.aws/control-tower/en-US" target="_blank" rel="noopener noreferrer">Control Tower workshop</a>.<br>Sources: <a href="https://aws.amazon.com/about-aws/whats-new/2024/11/resource-control-policies-restrict-access-aws-resources" target="_blank" rel="noopener noreferrer"><abbr title="Resource Control Policies: Organizations policies (Nov 2024) that cap what can be done to resources, by anyone.">RCPs</abbr> announcement</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2024/12/aws-declarative-policies" target="_blank" rel="noopener noreferrer">declarative policies</a>; <a href="https://docs.aws.amazon.com/controltower/latest/userguide/2025-all.html" target="_blank" rel="noopener noreferrer">Control Tower release notes 2025–present</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 02 NETWORK -->
+<article class="card" id="p-net">
+<span class="tag">02 · Foundation</span>
+<h3>Network topology and hybrid connectivity</h3>
+<p>Enterprises run a central network account. It owns the hub, the links to on-premises, shared egress and inspection, and <abbr title="Domain Name System: turns names into IP addresses.">DNS</abbr>. Workload <abbr title="Virtual Private Clouds: isolated private networks, each in one AWS Region.">VPCs</abbr> attach as spokes. The choice is how the hub is built.</p>
+<figure class="arch"><svg viewBox="0 0 760 270" class="d" role="img" aria-label="Hub and spoke: on-premises connects through Direct Connect to a Transit Gateway in the network account; inspection VPC and egress VPC attach to it; workload VPCs for prod, non-prod and shared services attach as spokes.">
+  <rect x="14" y="96" width="130" height="70" rx="8" class="ou"/><text x="79" y="124" class="t">On-premises</text><text x="79" y="142" class="s">data centre</text>
+  <line x1="144" y1="131" x2="268" y2="131" class="thick"/><text x="206" y="120" class="s">Direct Connect</text><text x="206" y="152" class="s">+ VPN backup</text>
+  <rect x="268" y="96" width="180" height="70" rx="8" class="band"/><text x="358" y="124" class="t">Transit Gateway</text><text x="358" y="142" class="s">route tables = segments</text>
+  <rect x="268" y="12" width="85" height="50" rx="8"/><text x="310" y="34" class="s">Inspection</text><text x="310" y="50" class="s">Network FW</text>
+  <rect x="363" y="12" width="85" height="50" rx="8"/><text x="405" y="34" class="s">Egress</text><text x="405" y="50" class="s">NAT</text>
+  <line x1="310" y1="62" x2="310" y2="96"/><line x1="405" y1="62" x2="405" y2="96"/>
+  <line x1="448" y1="131" x2="520" y2="131"/><line x1="520" y1="40" x2="520" y2="230"/>
+  <line x1="520" y1="40" x2="560" y2="40"/><line x1="520" y1="100" x2="560" y2="100"/><line x1="520" y1="160" x2="560" y2="160"/><line x1="520" y1="230" x2="560" y2="230"/>
+  <rect x="560" y="18" width="186" height="44" rx="8"/><text x="653" y="45" class="s">Prod VPCs (many accounts)</text>
+  <rect x="560" y="78" width="186" height="44" rx="8"/><text x="653" y="105" class="s">Non-prod VPCs</text>
+  <rect x="560" y="138" width="186" height="44" rx="8"/><text x="653" y="165" class="s">Shared services VPC</text>
+  <rect x="560" y="208" width="186" height="44" rx="8"/><text x="653" y="235" class="s">Other Regions: TGW peering</text>
+  <text x="358" y="200" class="s">Route 53 Resolver endpoints for hybrid DNS</text>
+  <text x="358" y="220" class="s">VPC IPAM for non-overlapping CIDRs</text>
+</svg><figcaption>Hub-and-spoke with central inspection and egress. Prod and non-prod are separate route domains, so they cannot reach each other.</figcaption></figure>
+<div class="tbl"><table>
+<tr><th>Option</th><th>Use when</th><th>Note</th></tr>
+<tr><td><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> peering</td><td>A few <abbr title="Virtual Private Clouds: isolated private networks, each in one AWS Region.">VPCs</abbr>, high volume between two of them</td><td>Not transitive. No extra charge per GB beyond normal data transfer. Does not scale to many <abbr title="Virtual Private Clouds: isolated private networks, each in one AWS Region.">VPCs</abbr>.</td></tr>
+<tr><td>Transit Gateway</td><td>Tens to thousands of <abbr title="Virtual Private Clouds: isolated private networks, each in one AWS Region.">VPCs</abbr> in a Region, plus on-premises</td><td>Regional hub. Route tables segment traffic. Peer <abbr title="Transit Gateways: regional network hubs that connect many VPCs and on-premises links.">TGWs</abbr> across Regions.</td></tr>
+<tr><td>Cloud WAN</td><td>Global network across many Regions and sites, run as one policy</td><td>Central policy document defines segments. <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> builds and runs the TGW-like core for you.</td></tr>
+<tr><td>PrivateLink</td><td>Expose one service to many consumers without joining the networks</td><td>One-way, by service. Overlapping <abbr title="Classless Inter-Domain Routing ranges: IP address ranges, such as 10.0.0.0/16.">CIDRs</abbr> do not matter. Also how <abbr title="Software as a Service.">SaaS</abbr> vendors connect.</td></tr>
+<tr><td><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> Lattice</td><td>Service-to-service traffic across accounts and <abbr title="Virtual Private Clouds: isolated private networks, each in one AWS Region.">VPCs</abbr>, with auth policies</td><td>Application-layer (<abbr title="Hypertext Transfer Protocol.">HTTP</abbr>, gRPC, TCP) network. Replaces mesh-style designs. App Mesh ended 30 Sep 2026 <span class="ver">ver</span>.</td></tr>
+<tr><td>Site-to-Site VPN</td><td>Quick start, or backup to Direct Connect</td><td>Runs over the internet. About 1.25 Gbps per tunnel.</td></tr>
+<tr><td>Direct Connect</td><td>Steady, high-volume, low-jitter link to on-premises</td><td>Dedicated or hosted links. Two locations for resilience. Use a Direct Connect gateway to reach many Regions.</td></tr>
+</table></div>
+<h4>Changed 2024–26</h4>
+<ul>
+  <li><b><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> encryption controls</b> (Nov 2025) <span class="ver">ver</span>: audit, then enforce, that all traffic in a <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> is encrypted in transit. Declarative controls added Jul 2026.</li>
+  <li><b><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> Block Public Access</b> (Nov 2024) <span class="ver">ver</span>: one setting that blocks internet traffic to and from <abbr title="Virtual Private Clouds: isolated private networks, each in one AWS Region.">VPCs</abbr> in a Region, with exclusions.</li>
+  <li><b>Route 53 Global Resolver</b> (preview, Dec 2025): anycast <abbr title="Domain Name System: turns names into IP addresses.">DNS</abbr> for public and private names across hybrid sites.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Transit Gateway charges per attachment hour and per GB processed. Very chatty <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> pairs can be cheaper on peering.</li>
+  <li>Central egress saves <abbr title="Network Address Translation: lets private resources start outbound internet connections.">NAT</abbr> gateways but adds a hop and a shared failure domain. Deploy it in every <abbr title="Availability Zone: one or more separate data centres in a Region, with independent power and network.">AZ</abbr>.</li>
+  <li>Hybrid <abbr title="Domain Name System: turns names into IP addresses.">DNS</abbr> is where projects stall. Plan Resolver inbound and outbound endpoints and the forwarding rules early.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"Network is a shared platform in its own account. I segment by route table, inspect north-south and east-west traffic at one place, and use PrivateLink or Lattice when teams need one service and no wider network access."</div>
+<p class="src">Go deeper (free): <a href="https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/welcome.html" target="_blank" rel="noopener noreferrer">Building a scalable and secure multi-VPC network (whitepaper)</a>; <a href="https://docs.aws.amazon.com/whitepapers/latest/hybrid-connectivity/hybrid-connectivity.html" target="_blank" rel="noopener noreferrer">Hybrid connectivity (whitepaper)</a>.<br>Sources: <a href="https://aws.amazon.com/about-aws/whats-new/2025/11/aws-vpc-encryption-controls" target="_blank" rel="noopener noreferrer"><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> encryption controls</a>; <a href="https://docs.aws.amazon.com/vpc-lattice/latest/ug/what-is-vpc-lattice.html" target="_blank" rel="noopener noreferrer"><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> Lattice user guide</a>; <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html" target="_blank" rel="noopener noreferrer"><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> Block Public Access</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 03 THREE-TIER -->
+<article class="card" id="p-3tier">
+<span class="tag">03 · Application</span>
+<h3>Three-tier web application</h3>
+<p>The classic shape, and still the most common target for a replatform. Web, application and data tiers, each spread across <abbr title="Availability Zones: separate data centres in a Region, with independent power and network.">AZs</abbr>.</p>
+<pre><code>Users → Route 53 → CloudFront + WAF → ALB (public subnets, 3 AZs)
+      → app tier: ECS/Fargate or EC2 Auto Scaling (private subnets)
+      → ElastiCache → Aurora (writer + readers, Multi-AZ)
+      Static assets → S3 (origin access control)</code></pre>
+<div class="grid2"><div>
+<h4>Key decisions</h4>
+<ul>
+  <li><b>Session state</b> out of the app tier, into ElastiCache or DynamoDB, so instances stay disposable.</li>
+  <li><b>Scaling signal</b>: target tracking on request count per target or <abbr title="Central Processing Unit.">CPU</abbr>. Scale the database separately with read replicas or Aurora Serverless v2.</li>
+  <li><b>Secrets</b> in Secrets Manager with rotation. No credentials in images.</li>
+  <li><b>Deploys</b>: blue/green or rolling with health checks behind the <abbr title="Application Load Balancer: a layer 7 (HTTP) load balancer.">ALB</abbr>.</li>
+</ul></div><div>
+<h4>Reliability levers</h4>
+<ul>
+  <li>Multi-AZ everything. An <abbr title="Availability Zone: one or more separate data centres in a Region, with independent power and network.">AZ</abbr> loss must cause no outage.</li>
+  <li><abbr title="Application Load Balancer: a layer 7 (HTTP) load balancer.">ALB</abbr> health checks remove bad targets. Auto Scaling replaces them.</li>
+  <li>Aurora failover is usually under 30 seconds. <abbr title="Relational Database Service: managed relational databases.">RDS</abbr> Proxy keeps connection pools stable through it.</li>
+  <li>Use timeouts, retries with backoff and jitter, and circuit breakers between tiers.</li>
+</ul></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Connection storms from many app instances can exhaust the database. <abbr title="Relational Database Service: managed relational databases.">RDS</abbr> Proxy fixes this.</li>
+  <li>Cross-AZ data transfer is charged. Chatty tiers in different <abbr title="Availability Zones: separate data centres in a Region, with independent power and network.">AZs</abbr> add up.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"Stateless app tier, state in managed services, every tier across three <abbr title="Availability Zones: separate data centres in a Region, with independent power and network.">AZs</abbr>. That gives AZ-level resilience without a second Region. Multi-Region is a separate business decision about <abbr title="Recovery Time Objective: the longest acceptable time to restore service.">RTO</abbr> and cost."</div>
+<p class="src">Go deeper (free): <a href="https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html" target="_blank" rel="noopener noreferrer">Reliability pillar</a>; <a href="https://aws.amazon.com/builders-library/" target="_blank" rel="noopener noreferrer">Amazon Builders' Library</a> (timeouts, retries, backoff, static stability). Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 04 SERVERLESS -->
+<article class="card" id="p-sls">
+<span class="tag">04 · Application</span>
+<h3>Serverless <abbr title="Application Programming Interface.">API</abbr> and workflows</h3>
+<pre><code>Client → API Gateway (REST or HTTP API) or Lambda function URL
+       → Lambda → DynamoDB
+       Long or multi-step work → Step Functions, or Lambda durable functions
+       Async fan-out → EventBridge / SQS → Lambda
+       Auth → Cognito or a Lambda authorizer</code></pre>
+<div class="grid2"><div>
+<h4>Key decisions</h4>
+<ul>
+  <li><b><abbr title="Hypertext Transfer Protocol.">HTTP</abbr> <abbr title="Application Programming Interface.">API</abbr> vs REST <abbr title="Application Programming Interface.">API</abbr></b>: <abbr title="Hypertext Transfer Protocol.">HTTP</abbr> <abbr title="Application Programming Interface.">API</abbr> is cheaper and faster. REST <abbr title="Application Programming Interface.">API</abbr> adds usage plans, <abbr title="Application Programming Interface.">API</abbr> keys, request validation and private <abbr title="Application Programming Interfaces.">APIs</abbr>.</li>
+  <li><b>Orchestration</b>: Step Functions for visual, auditable workflows with many service integrations. Lambda durable functions <span class="ver">ver</span> (Dec 2025) for workflows written as ordinary code, with checkpoints and waits of up to one year without idle cost.</li>
+  <li><b>Concurrency</b>: reserved concurrency protects downstream systems. Provisioned concurrency removes cold starts.</li>
+  <li><b>Steady heavy load</b>: Lambda Managed Instances <span class="ver">ver</span> runs the same functions on <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> capacity at <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> prices.</li>
+</ul></div><div>
+<h4>Gotchas</h4>
+<ul>
+  <li><abbr title="Application Programming Interface.">API</abbr> Gateway has a 29-second default integration timeout. Long work goes async.</li>
+  <li>Lambda scales faster than most databases. Use <abbr title="Simple Queue Service: managed message queues.">SQS</abbr> as a buffer, or <abbr title="Relational Database Service: managed relational databases.">RDS</abbr> Proxy.</li>
+  <li>Retries happen. Make handlers idempotent (Powertools for <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Lambda has an idempotency utility).</li>
+  <li>Observability needs structured logs, X-Ray or OpenTelemetry traces and metrics from the first day.</li>
+</ul></div></div>
+<div class="box say"><b class="lbl">Say this</b>"Serverless removes servers. I still design for idempotency, back-pressure and limits, and I watch unit cost, because at steady high load containers or Managed Instances can be cheaper."</div>
+<p class="src">Go deeper (free): <a href="https://serverlessland.com/" target="_blank" rel="noopener noreferrer">Serverless Land</a> (patterns you can deploy); <a href="https://docs.powertools.aws.dev/lambda/python/latest/" target="_blank" rel="noopener noreferrer">Powertools for <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Lambda</a>.<br>Sources: <a href="https://aws.amazon.com/about-aws/whats-new/2025/12/lambda-durable-multi-step-applications-ai-workflows/" target="_blank" rel="noopener noreferrer">Lambda durable functions</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2025/11/aws-lambda-managed-instances/" target="_blank" rel="noopener noreferrer">Lambda Managed Instances</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 05 CONTAINERS -->
+<article class="card" id="p-cont">
+<span class="tag">05 · Application</span>
+<h3>Containers: <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> and <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr></h3>
+<div class="tbl"><table>
+<tr><th></th><th><abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr></th><th><abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr></th></tr>
+<tr><td>Control plane</td><td>AWS-native, no charge</td><td>Kubernetes, charged per cluster hour</td></tr>
+<tr><td>Data plane</td><td>Fargate, <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr>, or Managed Instances <span class="ver">ver</span></td><td>Auto Mode, managed node groups, Karpenter, Fargate, hybrid nodes</td></tr>
+<tr><td>Easiest start</td><td>Express Mode <span class="ver">ver</span> (Nov 2025)</td><td>Auto Mode <span class="ver">ver</span> (Dec 2024)</td></tr>
+<tr><td>Service-to-service</td><td>Service Connect</td><td><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> Lattice, or a mesh such as Istio</td></tr>
+<tr><td>Pick when</td><td>AWS-only, small platform team, fast delivery</td><td>Kubernetes skills, portability, <abbr title="Cloud Native Computing Foundation: the home of Kubernetes and related open-source projects.">CNCF</abbr> tools, many teams on one platform</td></tr>
+</table></div>
+<div class="grid2"><div>
+<h4>Key decisions</h4>
+<ul>
+  <li><b>Cluster tenancy</b>: one cluster per team or a shared platform with namespaces. Shared needs strong quotas, network policies and a platform team.</li>
+  <li><b>Workload identity</b>: <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> task roles. <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Pod Identity, the simpler successor to <abbr title="IAM Roles for Service Accounts: the older way to give EKS pods AWS permissions.">IRSA</abbr>.</li>
+  <li><b>Delivery</b>: GitOps with Argo <abbr title="Continuous Delivery: every change that passes the pipeline can go to production.">CD</abbr> or Flux on <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr>. <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Capabilities (Dec 2025) <span class="ver">ver</span> offers managed Argo <abbr title="Continuous Delivery: every change that passes the pipeline can go to production.">CD</abbr> and cloud resource management.</li>
+  <li><b>Images</b>: <abbr title="Elastic Container Registry: AWS’s container image registry.">ECR</abbr> with scanning (Inspector) and signing.</li>
+</ul></div><div>
+<h4>Changed 2024–26</h4>
+<ul>
+  <li><abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Auto Mode removes most node management.</li>
+  <li><abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> Express Mode covers the App Runner use case. App Runner closed to new customers on 30 Apr 2026.</li>
+  <li>App Mesh ended 30 Sep 2026. Move to Service Connect (<abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr>) or <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> Lattice.</li>
+  <li><abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> faster auto scaling with 20-second metrics (Jun 2026) <span class="ver">ver</span>.</li>
+</ul></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li><abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> version upgrades come about three times a year. Standard support lasts 14 months, then extended support costs more per cluster hour.</li>
+  <li>Pod density is bound by IPs per node with the <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> <abbr title="Container Network Interface: the plugin that gives Kubernetes pods their network. On EKS, pods get VPC IPs.">CNI</abbr>. Plan subnet size, or use prefix delegation.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I default to <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> on Fargate unless the organisation has a reason to want Kubernetes. If it does, <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Auto Mode and a platform team with golden paths, because Kubernetes without a platform team turns into one cluster per snowflake."</div>
+<p class="src">Go deeper (free): <a href="https://www.eksworkshop.com/" target="_blank" rel="noopener noreferrer"><abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Workshop</a>; <a href="https://docs.aws.amazon.com/eks/latest/best-practices/introduction.html" target="_blank" rel="noopener noreferrer"><abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Best Practices Guide</a>; <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/express-service-overview.html" target="_blank" rel="noopener noreferrer"><abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> Express Mode docs</a>.<br>Sources: <a href="https://docs.aws.amazon.com/apprunner/latest/dg/apprunner-availability-change.html" target="_blank" rel="noopener noreferrer">App Runner availability change</a>; <a href="https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html" target="_blank" rel="noopener noreferrer"><abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Kubernetes versions</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 06 EVENT-DRIVEN -->
+<article class="card" id="p-eda">
+<span class="tag">06 · Integration</span>
+<h3>Event-driven and messaging</h3>
+<p>The question is always which service. Match on four things: fan-out, ordering, replay and throughput.</p>
+<div class="tbl"><table>
+<tr><th>Service</th><th>Model</th><th>Order</th><th>Replay</th><th>Use for</th></tr>
+<tr><td><abbr title="Simple Queue Service: managed message queues.">SQS</abbr> Standard</td><td>Queue</td><td>Best effort</td><td>No</td><td>Decoupling and buffering work. Nearly unlimited throughput.</td></tr>
+<tr><td><abbr title="Simple Queue Service: managed message queues.">SQS</abbr> <abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr></td><td>Queue</td><td>Per message group</td><td>No</td><td>Ordered commands, exactly-once processing in a 5-minute dedup window.</td></tr>
+<tr><td><abbr title="Simple Notification Service: managed pub/sub topics.">SNS</abbr></td><td>Pub/sub push</td><td><abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr> topics only</td><td>No</td><td>Fan-out to queues, Lambda, <abbr title="Hypertext Transfer Protocol.">HTTP</abbr>, email, SMS.</td></tr>
+<tr><td>EventBridge</td><td>Event bus with rules</td><td>No</td><td>Archive and replay</td><td>Routing domain events across accounts and <abbr title="Software as a Service.">SaaS</abbr>. Schema registry. Pipes and Scheduler.</td></tr>
+<tr><td>Kinesis Data Streams</td><td>Stream</td><td>Per shard</td><td>Up to 365 days</td><td>Clickstream and telemetry, AWS-native.</td></tr>
+<tr><td><abbr title="Amazon Managed Streaming for Apache Kafka.">MSK</abbr> (Kafka)</td><td>Stream</td><td>Per partition</td><td>By retention</td><td>Kafka ecosystem, high throughput, existing Kafka skills. <abbr title="Amazon Managed Streaming for Apache Kafka.">MSK</abbr> Serverless and <abbr title="Amazon Managed Streaming for Apache Kafka.">MSK</abbr> Connect.</td></tr>
+<tr><td>Amazon MQ</td><td>Broker</td><td>Per queue</td><td>No</td><td>Lift-and-shift of ActiveMQ or RabbitMQ apps.</td></tr>
+</table></div>
+<div class="grid2"><div>
+<h4>Patterns</h4>
+<ul>
+  <li><b>Fan-out</b>: <abbr title="Simple Notification Service: managed pub/sub topics.">SNS</abbr> → many <abbr title="Simple Queue Service: managed message queues.">SQS</abbr> queues, or EventBridge rules.</li>
+  <li><b>Transactional outbox</b>: write the event with the data, then publish. DynamoDB Streams or a <abbr title="Change Data Capture: streaming each database change as an event.">CDC</abbr> tool reads the outbox.</li>
+  <li><b>Saga</b>: Step Functions for orchestration, events for choreography.</li>
+  <li><b>Stream processing</b>: Managed Service for Apache Flink. Kinesis Data Analytics for SQL ended 27 Jan 2026.</li>
+</ul></div><div>
+<h4>Gotchas</h4>
+<ul>
+  <li>Every option is at-least-once somewhere. Consumers must be idempotent.</li>
+  <li>Give every queue a dead-letter queue and an alarm on its depth.</li>
+  <li>EventBridge is not a stream. Do not use it where order or high replay volume matters.</li>
+</ul></div></div>
+<div class="box say"><b class="lbl">Say this</b>"Queues for work, topics or EventBridge for notifications, streams for ordered history. I choose by the consumer's needs. Between <abbr title="Amazon Managed Streaming for Apache Kafka.">MSK</abbr> and Kinesis, the trade-off is the Kafka ecosystem against operational simplicity."</div>
+<p>Your Kafka work carries over directly: <abbr title="Amazon Managed Streaming for Apache Kafka.">MSK</abbr> is Kafka, so partitions, consumer groups and lag behave the same.</p>
+<p class="src">Go deeper (free): <a href="https://serverlessland.com/event-driven-architecture/intro" target="_blank" rel="noopener noreferrer">Serverless Land: event-driven architecture</a>; <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/modernization-integrating-microservices/welcome.html" target="_blank" rel="noopener noreferrer">Integrating microservices with <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> messaging (prescriptive guidance)</a>. Kafka depth: ea-prep-01, <a href="../ea-prep-01/#t-kafka">Kafka card</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 07 DATA -->
+<article class="card" id="p-data">
+<span class="tag">07 · Data</span>
+<h3>Data lake and lakehouse</h3>
+<pre><code>Sources → ingest: DMS (CDC), Kinesis / Firehose, MSK, AppFlow, Glue
+        → S3 raw → S3 curated (Iceberg tables, often S3 Tables)
+        → catalog: Glue Data Catalog · governance: Lake Formation
+        → query: Athena, Redshift, EMR, SageMaker Unified Studio
+        → consume: QuickSight dashboards, ML, RAG</code></pre>
+<div class="grid2"><div>
+<h4>Key decisions</h4>
+<ul>
+  <li><b>Open table format</b>: Apache Iceberg is now the <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> default. S3 Tables <span class="ver">ver</span> (Dec 2024) manages compaction and snapshots for you, with replication and Intelligent-Tiering added Dec 2025.</li>
+  <li><b>Governance</b>: Lake Formation for fine-grained access (row and column). Data mesh: producers own data products, a central catalog shares them.</li>
+  <li><b>Warehouse vs lake query</b>: Redshift Serverless for <abbr title="Business Intelligence: reporting and dashboards.">BI</abbr> concurrency. Athena for ad hoc SQL on S3.</li>
+  <li><b>Zero-ETL</b> integrations from Aurora, <abbr title="Relational Database Service: managed relational databases.">RDS</abbr> and DynamoDB into Redshift remove many pipelines.</li>
+</ul></div><div>
+<h4>Changed 2024–26</h4>
+<ul>
+  <li>SageMaker Unified Studio brings data, analytics and <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> work into one place.</li>
+  <li>S3 Select and Glacier Select closed to new customers (Jul 2024). Use Athena.</li>
+  <li>Lake Formation Governed Tables ended 31 Dec 2024. Use Iceberg.</li>
+  <li>S3 annotations (Jun 2026) <span class="ver">ver</span>: attach queryable context to objects for <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> agents.</li>
+</ul></div></div>
+<div class="box say"><b class="lbl">Say this</b>"S3 and Iceberg as the single copy, many engines on top, and governance in Lake Formation. That avoids a separate copy per tool and keeps the data ready for <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> use cases."</div>
+<p class="src">Go deeper (free): <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-aws-data/aws-architecture.html" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> modern data architecture (prescriptive guidance)</a>; <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables.html" target="_blank" rel="noopener noreferrer">S3 Tables user guide</a>.<br>Sources: <a href="https://aws.amazon.com/about-aws/whats-new/2024/12/amazon-s3-tables-apache-iceberg-tables-analytics-workloads" target="_blank" rel="noopener noreferrer">S3 Tables launch</a>; <a href="https://aws.amazon.com/blogs/aws/top-announcements-of-the-aws-summit-in-new-york-2026/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Summit New York 2026</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 08 DR -->
+<article class="card" id="p-dr">
+<span class="tag">08 · Resilience</span>
+<h3>Multi-Region resilience and disaster recovery</h3>
+<p>Start from the business: <abbr title="Recovery Time Objective: the longest acceptable time to restore service.">RTO</abbr> (how long down) and <abbr title="Recovery Point Objective: the most data loss that is acceptable, measured in time.">RPO</abbr> (how much data lost) per application tier. The strategy follows from those two numbers. Multi-AZ handles most failures. Multi-Region handles Region-wide events and regulatory needs, and costs much more.</p>
+<figure class="arch"><svg viewBox="0 0 760 150" class="d" role="img" aria-label="Four DR strategies on a scale from low cost and hours of RTO to high cost and near-zero RTO: backup and restore, pilot light, warm standby, multi-site active-active.">
+  <line x1="30" y1="120" x2="730" y2="120" class="thick"/>
+  <text x="30" y="142" class="s" style="text-anchor:start">Lower cost · RTO hours</text><text x="730" y="142" class="s" style="text-anchor:end">Higher cost · RTO near zero</text>
+  <rect x="30" y="20" width="160" height="80" rx="8"/><text x="110" y="44" class="t">Backup &amp; restore</text><text x="110" y="62" class="s">RPO/RTO: hours</text><text x="110" y="80" class="s">AWS Backup, copies</text>
+  <rect x="210" y="20" width="160" height="80" rx="8"/><text x="290" y="44" class="t">Pilot light</text><text x="290" y="62" class="s">RPO/RTO: 10s of min</text><text x="290" y="80" class="s">data live, compute off</text>
+  <rect x="390" y="20" width="160" height="80" rx="8"/><text x="470" y="44" class="t">Warm standby</text><text x="470" y="62" class="s">RPO s · RTO minutes</text><text x="470" y="80" class="s">scaled-down full stack</text>
+  <rect x="570" y="20" width="160" height="80" rx="8" class="band"/><text x="650" y="44" class="t">Multi-site active/active</text><text x="650" y="62" class="s">RPO ~0 · RTO ~0</text><text x="650" y="80" class="s">both Regions serve</text>
+</svg><figcaption>The four strategies from the AWS DR whitepaper. Ranges are typical, not guarantees.</figcaption></figure>
+<div class="grid2"><div>
+<h4>Building blocks</h4>
+<ul>
+  <li><b>Data</b>: Aurora Global Database, DynamoDB global tables, S3 Cross-Region Replication, <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Backup cross-Region copy.</li>
+  <li><b>Traffic</b>: Route 53 failover records, Global Accelerator.</li>
+  <li><b>Orchestration</b>: <abbr title="Amazon Application Recovery Controller: tools to plan and run failover across AZs and Regions.">ARC</abbr> Region switch <span class="ver">ver</span> (Aug 2025) runs a tested, ordered failover plan. Aurora scaling and Lambda event-source blocks were added in 2026.</li>
+  <li><b>Servers</b>: Elastic Disaster Recovery (<abbr title="AWS Elastic Disaster Recovery: continuous block-level replication of servers to AWS.">DRS</abbr>) for block-level replication of servers.</li>
+  <li><b>Testing</b>: <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Fault Injection Service for game days.</li>
+</ul></div><div>
+<h4>Design principles</h4>
+<ul>
+  <li><b>Static stability</b>: the standby works without calling the failed Region.</li>
+  <li><b>Use the data plane, not the control plane</b>, during failover. Control planes are less available.</li>
+  <li><b>Cell-based architecture</b> limits blast radius inside a Region.</li>
+  <li>A plan you have not rehearsed is a hope. Test failover on a schedule.</li>
+</ul></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Active/active needs an answer for write conflicts. DynamoDB global tables use last-writer-wins. Aurora DSQL gives strong consistency across Regions at a latency cost.</li>
+  <li>Quotas, <abbr title="Amazon Machine Images: templates EC2 instances boot from.">AMIs</abbr>, secrets and <abbr title="Key Management Service: creates and controls encryption keys.">KMS</abbr> keys must already exist in the second Region.</li>
+  <li>The <abbr title="Amazon Application Recovery Controller: tools to plan and run failover across AZs and Regions.">ARC</abbr> Readiness Check feature closed to new customers in Apr 2026 <span class="ver">ver</span>.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I tier applications by <abbr title="Recovery Time Objective: the longest acceptable time to restore service.">RTO</abbr> and <abbr title="Recovery Point Objective: the most data loss that is acceptable, measured in time.">RPO</abbr> with the business, then fund the strategy per tier. Most get multi-AZ plus backup and restore. Only the few that earn it get warm standby or active/active, and every tier gets a tested runbook."</div>
+<p class="src">Go deeper (free): <a href="https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html" target="_blank" rel="noopener noreferrer">Disaster recovery of workloads on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> (whitepaper)</a>; <a href="https://docs.aws.amazon.com/whitepapers/latest/aws-multi-region-fundamentals/aws-multi-region-fundamentals.html" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> multi-Region fundamentals</a>; <a href="https://aws.amazon.com/builders-library/static-stability-using-availability-zones/" target="_blank" rel="noopener noreferrer">Static stability (Builders' Library)</a>.<br>Sources: <a href="https://aws.amazon.com/blogs/aws/introducing-amazon-application-recovery-controller-region-switch-a-multi-region-application-recovery-service" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Application Recovery Controller: tools to plan and run failover across AZs and Regions.">ARC</abbr> Region switch</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2026/03/aws-service-availability" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> service availability, Mar 2026</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 09 MIGRATION -->
+<article class="card" id="p-mig">
+<span class="tag">09 · Programme</span>
+<h3>Migration and modernisation at scale</h3>
+<p>Large migrations follow three phases: <b>assess</b> (business case, discovery), <b>mobilise</b> (landing zone, skills, pilot waves), <b>migrate and modernise</b> (waves of applications). The <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Migration Acceleration Program (<abbr title="Migration Acceleration Program: AWS’s funded methodology for large migrations, delivered with partners.">MAP</abbr>) funds and structures this through partners.</p>
+<div class="tbl"><table>
+<tr><th>R</th><th>Meaning</th><th>Typical <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> tool</th></tr>
+<tr><td>Retire</td><td>Switch it off</td><td>Discovery data shows no use</td></tr>
+<tr><td>Retain</td><td>Leave it for now</td><td>Revisit in a later wave</td></tr>
+<tr><td>Rehost</td><td>Lift and shift</td><td>Application Migration Service (<abbr title="AWS Application Migration Service: block-level replication for lift-and-shift (rehost) migrations.">MGN</abbr>)</td></tr>
+<tr><td>Relocate</td><td>Move the hypervisor estate</td><td>VMware Cloud on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>, or Amazon <abbr title="Amazon Elastic VMware Service: runs VMware Cloud Foundation on EC2 bare-metal instances.">EVS</abbr> (VMware on <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr>) <span class="ver">ver</span></td></tr>
+<tr><td>Repurchase</td><td>Move to <abbr title="Software as a Service.">SaaS</abbr></td><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Marketplace</td></tr>
+<tr><td>Replatform</td><td>Small changes for managed services</td><td><abbr title="Database Migration Service: migrates databases and streams changes (CDC).">DMS</abbr> to <abbr title="Relational Database Service: managed relational databases.">RDS</abbr>/Aurora, containers on <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr></td></tr>
+<tr><td>Refactor</td><td>Re-architect for cloud native</td><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform for code; microservices, serverless</td></tr>
+</table></div>
+<h4>Changed 2024–26</h4>
+<ul>
+  <li><b><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform</b> (May 2025) <span class="ver">ver</span>: agentic <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> service for migration and modernisation. Covers VMware, .NET, mainframe, and since Dec 2025 full Windows stacks and custom transformations across repositories. Continuous modernisation scanning is in preview (Jun 2026).</li>
+  <li><b>Migration Hub</b> closed to new customers on 7 Nov 2025. <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> names <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform as the replacement for strategy recommendations, <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> recommendations, journeys and orchestration.</li>
+  <li>Application Discovery Service, the .NET Modernization Tools, and the Mainframe Modernization managed runtime moved to maintenance in late 2025.</li>
+  <li>Server Migration Service ended in 2023. <abbr title="AWS Application Migration Service: block-level replication for lift-and-shift (rehost) migrations.">MGN</abbr> is the rehost tool.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Dependencies sink waves. Group applications by dependency and data gravity, not by org chart.</li>
+  <li>Rehost first, modernise later, works only if "later" is funded. Put the second step in the business case.</li>
+  <li>Licensing (Oracle, SQL Server, Windows) can swing the business case. Check bring-your-own-licence rules early.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I run migration as a programme: a business case, a landing zone ready first, a pilot wave to build the factory, then waves sized to the team. I pick an R per application from the discovery data, and I use <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> tooling such as <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform to cut the cost of the refactor waves."</div>
+<p class="src">Go deeper (free): <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html" target="_blank" rel="noopener noreferrer">Migration strategies (7 Rs)</a>; <a href="https://docs.aws.amazon.com/transform/latest/userguide/what-is-service.html" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform user guide</a>; <a href="https://aws.amazon.com/migration-acceleration-program/" target="_blank" rel="noopener noreferrer"><abbr title="Migration Acceleration Program: AWS’s funded methodology for large migrations, delivered with partners.">MAP</abbr> overview</a>.<br>Sources: <a href="https://docs.aws.amazon.com/migrationhub/latest/ug/migrationhub-availability-change.html" target="_blank" rel="noopener noreferrer">Migration Hub availability change</a>; <a href="https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025" target="_blank" rel="noopener noreferrer">re:Invent 2025 top announcements</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 10 GENAI -->
+<article class="card" id="p-genai">
+<span class="tag">10 · <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr></span>
+<h3><abbr title="Generative AI: models that produce text, images or code.">GenAI</abbr> on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>: <abbr title="Retrieval-Augmented Generation: the model answers from documents retrieved at query time.">RAG</abbr> and agents</h3>
+<p>This is the area that changed most since 2024, and the one where your agentic <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> platform work gives you the strongest answers. Know the layers and which <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> service sits at each.</p>
+<div class="tbl"><table>
+<tr><th>Layer</th><th><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> service</th><th>Notes</th></tr>
+<tr><td>Models</td><td>Amazon Bedrock</td><td>Anthropic Claude, Amazon Nova 2, Meta, Mistral and open-weight models through one <abbr title="Application Programming Interface.">API</abbr>. OpenAI models in limited preview (Apr 2026) <span class="ver">ver</span>.</td></tr>
+<tr><td>Retrieval (<abbr title="Retrieval-Augmented Generation: the model answers from documents retrieved at query time.">RAG</abbr>)</td><td>Bedrock Managed Knowledge Base <span class="ver">ver</span></td><td>GA 17 Jun 2026. Connectors, parsing, chunking and multi-step retrieval as a managed pipeline. Replaces Kendra for new work.</td></tr>
+<tr><td>Vector store</td><td>S3 Vectors, OpenSearch, Aurora pgvector</td><td>S3 Vectors for cost at scale, OpenSearch for hybrid search and low latency.</td></tr>
+<tr><td>Agent runtime</td><td>Bedrock AgentCore <span class="ver">ver</span></td><td>GA Oct 2025. Runtime, Memory, Gateway (turns <abbr title="Application Programming Interfaces.">APIs</abbr> into <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> tools), Identity, Browser, Code Interpreter, Observability, Policy. Any framework (Strands, LangGraph, CrewAI) and any model. AgentCore harness, GA Jun 2026, builds agents from configuration.</td></tr>
+<tr><td>Safety</td><td>Bedrock Guardrails</td><td>Content filters, denied topics, <abbr title="Personally Identifiable Information: data that can identify a person.">PII</abbr> redaction, contextual grounding checks.</td></tr>
+<tr><td>Business users</td><td>Amazon Quick <span class="ver">ver</span></td><td>Agentic workspace (Oct 2025) that includes QuickSight. Replaces Q Business, which closed to new customers on 30 Jul 2026.</td></tr>
+<tr><td>Developers</td><td>Kiro <span class="ver">ver</span></td><td>Spec-driven agentic IDE. Q Developer IDE plugins end support on 30 Apr 2027, with Kiro as the named replacement.</td></tr>
+<tr><td>Custom models</td><td>SageMaker <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr>, Bedrock fine-tuning, Nova Forge</td><td>Only when prompting and <abbr title="Retrieval-Augmented Generation: the model answers from documents retrieved at query time.">RAG</abbr> are not enough.</td></tr>
+</table></div>
+<div class="grid2"><div>
+<h4>Enterprise decisions</h4>
+<ul>
+  <li><b>Data boundary</b>: Bedrock does not use your prompts to train models. Use PrivateLink endpoints and <abbr title="Key Management Service: creates and controls encryption keys.">KMS</abbr> keys.</li>
+  <li><b>Model choice</b> by task, cost and latency, with an evaluation set. Route between models.</li>
+  <li><b>Agent governance</b>: identity per agent, least-privilege tools, human approval for actions with consequences, full traces.</li>
+  <li><b>Cost</b>: tokens dominate. Use prompt caching, batch inference and smaller models where quality allows.</li>
+</ul></div><div>
+<h4>Retired or renamed</h4>
+<ul>
+  <li>CodeWhisperer → Q Developer (2024) → Kiro.</li>
+  <li>Bedrock Agents → "Agents Classic", closed to new customers 30 Jul 2026 → AgentCore.</li>
+  <li>Kendra → closed to new customers 30 Jul 2026 → Bedrock Managed Knowledge Base.</li>
+  <li>Q Business → Amazon Quick.</li>
+  <li>Several SageMaker <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> features (Clarify, Model Monitor, Ground Truth and others) moved to maintenance in Jul 2026. Core training and inference are not affected.</li>
+</ul></div></div>
+<div class="box say"><b class="lbl">Say this</b>"On <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> I would build the agent platform on AgentCore: runtime isolation per session, Gateway to expose enterprise <abbr title="Application Programming Interfaces.">APIs</abbr> as <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> tools, Identity for delegated access, and Observability for traces. Guardrails and an evaluation harness sit in the release path. That is the same shape as the platform I delivered: context, memory, tool interoperability and governed, human-in-the-loop actions."</div>
+<p class="src">Go deeper (free): <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" target="_blank" rel="noopener noreferrer">AgentCore developer guide</a>; <a href="https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lens.html" target="_blank" rel="noopener noreferrer">Well-Architected Generative <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> Lens</a>; <a href="https://strandsagents.com/" target="_blank" rel="noopener noreferrer">Strands Agents</a> (open source).<br>Sources: <a href="https://aws.amazon.com/about-aws/whats-new/2025/10/amazon-bedrock-agentcore-available" target="_blank" rel="noopener noreferrer">AgentCore GA</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2026/06/amazon-bedrock-managed-knowledge-base/" target="_blank" rel="noopener noreferrer">Bedrock Managed Knowledge Base GA</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2026/06/aws-service-availability/" target="_blank" rel="noopener noreferrer">service availability, Jun 2026</a>; <a href="https://aws.amazon.com/blogs/aws/top-announcements-of-the-whats-next-with-aws-2026/" target="_blank" rel="noopener noreferrer">What's Next with <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>, Apr 2026</a>; <a href="https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/q-developer-ide-end-of-support.html" target="_blank" rel="noopener noreferrer">Q Developer IDE end of support</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 11 CICD -->
+<article class="card" id="p-cicd">
+<span class="tag">11 · Delivery</span>
+<h3><abbr title="Continuous Integration: every change is merged often and built and tested automatically.">CI</abbr>/CD and infrastructure as code</h3>
+<div class="tbl"><table>
+<tr><th>Tool</th><th>Strength</th><th>Pick when</th></tr>
+<tr><td>CloudFormation</td><td>Native, StackSets across accounts and Regions</td><td>Org-wide baselines, Control Tower customisations</td></tr>
+<tr><td><abbr title="AWS Cloud Development Kit: defines infrastructure in TypeScript, Python, Java and other languages.">CDK</abbr></td><td>Real languages (TypeScript, Python, Java), reusable constructs</td><td>Application teams on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> only</td></tr>
+<tr><td>Terraform / OpenTofu</td><td>Multi-cloud, large module ecosystem</td><td>Existing Terraform estate, <abbr title="Account Factory for Terraform: Control Tower account vending through a Terraform pipeline.">AFT</abbr> for account vending</td></tr>
+<tr><td><abbr title="Serverless Application Model: short-form CloudFormation for serverless apps.">SAM</abbr></td><td>Short syntax for serverless</td><td>Lambda-heavy services</td></tr>
+</table></div>
+<div class="grid2"><div>
+<h4>Pipeline shape</h4>
+<ul>
+  <li>Source (GitHub, GitLab or CodeCommit) → build and test (CodeBuild or GitHub Actions) → security scans → deploy to non-prod → approval → prod.</li>
+  <li>Deploy across accounts with roles assumed by the pipeline. Use <abbr title="OpenID Connect: an identity layer on OAuth 2.0, used to federate CI pipelines into AWS roles.">OIDC</abbr> federation for GitHub Actions, never stored keys.</li>
+  <li>Progressive delivery: CodeDeploy blue/green or canary for <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> and Lambda, Argo Rollouts on <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr>.</li>
+  <li>Policy as code: CloudFormation Guard, Config rules, Control Tower proactive controls.</li>
+</ul></div><div>
+<h4>Changed 2024–26</h4>
+<ul>
+  <li><b>CodeCommit</b> closed to new customers in Jul 2024, then returned to full GA on 24 Nov 2025. Both statements are true at different dates. Most enterprises use GitHub or GitLab anyway.</li>
+  <li><b>CodeCatalyst</b> moved to maintenance in Nov 2025. <b>CodeStar</b> and <b>Cloud9</b> were shut or closed in Jul 2024.</li>
+  <li><b>Proton</b> ends 7 Oct 2026. Use Service Catalog, or an internal developer portal such as Backstage.</li>
+  <li><b>OpsWorks</b> ended May 2024. Use Systems Manager or <abbr title="Infrastructure as Code: defining infrastructure in version-controlled files.">IaC</abbr>.</li>
+</ul></div></div>
+<div class="box say"><b class="lbl">Say this</b>"Everything through code and a pipeline, including the landing zone. One <abbr title="Infrastructure as Code: defining infrastructure in version-controlled files.">IaC</abbr> tool per layer, chosen once and written in an <abbr title="Architecture Decision Record: a short document that records one decision, its context and consequences.">ADR</abbr>. The pipeline holds the guardrails, so teams move fast inside safe limits."</div>
+<p class="src">Go deeper (free): <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/choose-iac-tool/introduction.html" target="_blank" rel="noopener noreferrer">Choosing an <abbr title="Infrastructure as Code: defining infrastructure in version-controlled files.">IaC</abbr> tool (prescriptive guidance)</a>; <a href="https://cdkworkshop.com/" target="_blank" rel="noopener noreferrer"><abbr title="AWS Cloud Development Kit: defines infrastructure in TypeScript, Python, Java and other languages.">CDK</abbr> Workshop</a>.<br>Sources: <a href="https://aws.amazon.com/blogs/devops/aws-codecommit-returns-to-general-availability" target="_blank" rel="noopener noreferrer">CodeCommit returns to GA</a>; <a href="https://dev.classmethod.jp/en/articles/aws-service-lifecycle-summary-20260630/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> lifecycle summary to 30 Jun 2026 (secondary)</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<!-- 12 SECURITY -->
+<article class="card" id="p-sec">
+<span class="tag">12 · Foundation</span>
+<h3>Security and observability baseline</h3>
+<p>Every account gets the same baseline on day one, set from the org level with delegated administrators in the security tooling account.</p>
+<div class="grid2"><div>
+<h4>Security baseline</h4>
+<ul>
+  <li><b>CloudTrail</b> org trail to the log archive account. Immutable with S3 Object Lock.</li>
+  <li><b>Config</b> recording in every account and Region, with conformance packs.</li>
+  <li><b>GuardDuty</b> for threat detection. Extended Threat Detection finds multi-stage attacks, now across <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> and <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> too <span class="ver">ver</span>.</li>
+  <li><b>Security Hub</b> <span class="ver">ver</span>: the new version (GA Dec 2025) correlates signals and ranks risk in near real time. The older product is now Security Hub <abbr title="Cloud Security Posture Management: checks cloud configuration against security standards.">CSPM</abbr>.</li>
+  <li><b>Inspector</b> for vulnerability scanning of <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr>, <abbr title="Elastic Container Registry: AWS’s container image registry.">ECR</abbr> and Lambda. Inspector Classic ended 20 May 2026.</li>
+  <li><b>Macie</b> for sensitive data in S3. <b><abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> Access Analyzer</b> for external and unused access.</li>
+  <li><b><abbr title="Key Management Service: creates and controls encryption keys.">KMS</abbr></b> keys, Secrets Manager, <abbr title="AWS Certificate Manager: issues and renews TLS certificates.">ACM</abbr>. <abbr title="Web Application Firewall: filters HTTP traffic at the edge or load balancer.">WAF</abbr> and Shield at the edge. <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> <abbr title="Web Application Firewall: filters HTTP traffic at the edge or load balancer.">WAF</abbr> Classic ends 7 Oct 2026.</li>
+</ul></div><div>
+<h4>Observability baseline</h4>
+<ul>
+  <li><b>CloudWatch</b>: metrics, logs, alarms, dashboards. Cross-account observability into a central monitoring account.</li>
+  <li><b>Traces</b>: X-Ray or OpenTelemetry (<abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Distro for OpenTelemetry). Application Signals for <abbr title="Service Level Objectives: targets for reliability, such as 99.9% of requests under 300 ms.">SLOs</abbr>.</li>
+  <li><b>Managed Prometheus and Grafana</b> for container estates.</li>
+  <li>CloudWatch unified data management (Dec 2025) normalises operations, security and compliance data with <abbr title="Open Cybersecurity Schema Framework: an open standard schema for security data.">OCSF</abbr> and Iceberg <span class="ver">ver</span>.</li>
+  <li>CloudTrail Lake closed to new customers on 31 May 2026. Query trails in S3 with Athena instead, or use CloudWatch.</li>
+</ul></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Enable services in every Region, including ones you do not use. Attackers do use them. Or deny unused Regions with an <abbr title="Service Control Policy: an Organizations policy that caps what IAM principals in member accounts can do. It never grants.">SCP</abbr>.</li>
+  <li>Findings without owners are noise. Route them by account tag to the owning team.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"Detective controls are on in every account from the moment it is vended, centralised into a security account, with findings routed to owners. Preventive controls sit in <abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr> and <abbr title="Resource Control Policies: Organizations policies (Nov 2024) that cap what can be done to resources, by anyone.">RCPs</abbr>. Proactive controls sit in the pipeline."</div>
+<p class="src">Go deeper (free): <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Security Reference Architecture</a>; <a href="https://aws-observability.github.io/observability-best-practices/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Observability Best Practices</a>.<br>Sources: <a href="https://aws.amazon.com/about-aws/whats-new/2025/12/security-hub-near-real-time-risk-analytics/" target="_blank" rel="noopener noreferrer">Security Hub GA</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2026/03/aws-service-availability" target="_blank" rel="noopener noreferrer">service availability, Mar 2026</a>. Checked 29 Oct 2026.</p>
+</article>
+</section>
+
+<!-- ============ WHAT CHANGED ============ -->
+<section id="changed">
+<h2 class="part">What changed, 2024–2026</h2>
+<p class="part-sub">Two tables. The first lists services you might name from memory that are now retired, closed to new customers, or renamed. The second lists the new defaults. "Maintenance" means existing customers keep using the service but new customers cannot start and no new features come. Checked against <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> lifecycle pages on 29 Oct 2026.</p>
+
+<article class="card" id="c-retired">
+<span class="tag">Do not propose these for new work</span>
+<h3>Retired, closing or renamed</h3>
+<div class="tbl"><table>
+<tr><th>Service</th><th>Status</th><th>Say instead</th></tr>
+<tr><td>Migration Hub</td><td>Closed to new customers 7 Nov 2025</td><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform, plus <abbr title="AWS Application Migration Service: block-level replication for lift-and-shift (rehost) migrations.">MGN</abbr> for rehost</td></tr>
+<tr><td>App Mesh</td><td>Ended 30 Sep 2026</td><td><abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> Service Connect, <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> Lattice</td></tr>
+<tr><td>App Runner</td><td>Maintenance from 30 Apr 2026</td><td><abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> Express Mode</td></tr>
+<tr><td>Proton</td><td>Ends 7 Oct 2026</td><td>Service Catalog, Backstage, <abbr title="Infrastructure as Code: defining infrastructure in version-controlled files.">IaC</abbr> modules</td></tr>
+<tr><td>CodeStar, Cloud9</td><td>Shut / closed Jul 2024</td><td>IDE toolkits, CloudShell, Kiro</td></tr>
+<tr><td>CodeCatalyst</td><td>Maintenance Nov 2025</td><td>GitHub or GitLab with CodeBuild/CodePipeline</td></tr>
+<tr><td>CodeCommit</td><td>Closed Jul 2024, <b>back to GA 24 Nov 2025</b></td><td>Fine to use again</td></tr>
+<tr><td>OpsWorks</td><td>Ended May 2024</td><td>Systems Manager, <abbr title="Infrastructure as Code: defining infrastructure in version-controlled files.">IaC</abbr></td></tr>
+<tr><td>QLDB</td><td>Ended 31 Jul 2025</td><td>Aurora PostgreSQL with an audit design</td></tr>
+<tr><td>CloudSearch</td><td>Closed Jul 2024</td><td>OpenSearch Service</td></tr>
+<tr><td>S3 Select, Glacier Select</td><td>Closed Jul 2024</td><td>Athena</td></tr>
+<tr><td>S3 Object Lambda</td><td>Maintenance Nov 2025</td><td>Process in Lambda or at the edge</td></tr>
+<tr><td>Kinesis Data Analytics for SQL</td><td>Ended 27 Jan 2026</td><td>Managed Service for Apache Flink</td></tr>
+<tr><td>Timestream for LiveAnalytics</td><td>Maintenance Jun 2025</td><td>Timestream for InfluxDB</td></tr>
+<tr><td>Snowball Edge, Snowmobile</td><td>Snowmobile ended 2024. Snowball Edge devices closed to new customers Oct 2025</td><td>Online transfer: DataSync, Direct Connect</td></tr>
+<tr><td>Inspector Classic</td><td>Ended 20 May 2026</td><td>Amazon Inspector</td></tr>
+<tr><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> <abbr title="Web Application Firewall: filters HTTP traffic at the edge or load balancer.">WAF</abbr> Classic</td><td>Ends 7 Oct 2026</td><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> <abbr title="Web Application Firewall: filters HTTP traffic at the edge or load balancer.">WAF</abbr></td></tr>
+<tr><td>CloudTrail Lake</td><td>Closed to new customers 31 May 2026</td><td>CloudTrail to S3 with Athena, or CloudWatch</td></tr>
+<tr><td>Audit Manager</td><td>Maintenance from 30 Apr 2026</td><td>Config conformance packs, Security Hub, partner <abbr title="Governance, Risk and Compliance.">GRC</abbr> tools</td></tr>
+<tr><td>Systems Manager Incident Manager, Change Manager</td><td>Maintenance Nov 2025</td><td><abbr title="IT Service Management: tools and processes for incidents, changes and requests.">ITSM</abbr> tool (for example ServiceNow) with Systems Manager automation</td></tr>
+<tr><td>Simple AD</td><td>Maintenance 30 Jul 2026</td><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Managed Microsoft AD, AD Connector</td></tr>
+<tr><td>Kendra</td><td>Maintenance 30 Jul 2026</td><td>Bedrock Managed Knowledge Base</td></tr>
+<tr><td>Bedrock Agents</td><td>Renamed Agents Classic, maintenance 30 Jul 2026</td><td>Bedrock AgentCore</td></tr>
+<tr><td>Q Business</td><td>Maintenance 30 Jul 2026</td><td>Amazon Quick</td></tr>
+<tr><td>CodeWhisperer, Q Developer IDE plugins</td><td>CodeWhisperer became Q Developer (2024). IDE plugins end 30 Apr 2027</td><td>Kiro</td></tr>
+<tr><td>Security Hub (original)</td><td>Renamed Security Hub <abbr title="Cloud Security Posture Management: checks cloud configuration against security standards.">CSPM</abbr></td><td>"Security Hub" now means the Dec 2025 version</td></tr>
+<tr><td>Pinpoint</td><td>Ends 30 Oct 2026</td><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> End User Messaging, Amazon Connect <span class="ver">ver</span></td></tr>
+<tr><td>WorkDocs</td><td>Ended 25 Apr 2025</td><td>Any enterprise file platform</td></tr>
+<tr><td>myApplications, Service Catalog AppRegistry</td><td>Maintenance 30 Jul 2026</td><td>Tags and a <abbr title="Configuration Management Database: a record of IT assets and how they relate.">CMDB</abbr></td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Watch the cadence</b><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> now publishes "service availability updates" in batches, about every quarter (May 2025, Oct 2025, Nov 2025, Mar 2026, Jun 2026). Check the latest batch the week before the interview. A new one may have appeared since 29 Oct 2026.</div>
+<p class="src">Sources [P]: <a href="https://aws.amazon.com/about-aws/whats-new/2026/06/aws-service-availability/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> service availability updates, Jun 2026</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2026/03/aws-service-availability" target="_blank" rel="noopener noreferrer">Mar 2026</a>; <a href="https://aws.amazon.com/about-aws/whats-new/2025/05/aws-service-changes" target="_blank" rel="noopener noreferrer">May 2025</a>; <a href="https://docs.aws.amazon.com/migrationhub/latest/ug/migrationhub-availability-change.html" target="_blank" rel="noopener noreferrer">Migration Hub change</a>; <a href="https://aws.amazon.com/blogs/devops/aws-codecommit-returns-to-general-availability" target="_blank" rel="noopener noreferrer">CodeCommit GA return</a>. Consolidated list [S]: <a href="https://dev.classmethod.jp/en/articles/aws-service-lifecycle-summary-20260630/" target="_blank" rel="noopener noreferrer">Classmethod lifecycle summary, 30 Jun 2026</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<article class="card" id="c-new">
+<span class="tag">The current defaults</span>
+<h3>New since 2024: what to use now</h3>
+<div class="tbl"><table>
+<tr><th>Area</th><th>New</th><th>Date</th><th>Why it matters</th></tr>
+<tr><td>Governance</td><td>Resource control policies</td><td>Nov 2024</td><td>Org-wide cap on resource access. Completes the data perimeter with <abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr>.</td></tr>
+<tr><td>Governance</td><td>Centralised root access</td><td>Nov 2024</td><td>No root passwords in member accounts.</td></tr>
+<tr><td>Governance</td><td>Declarative policies</td><td>Dec 2024</td><td>Enforce service settings (for example, no public <abbr title="Amazon Machine Image: the template an EC2 instance boots from.">AMI</abbr> sharing) across the org.</td></tr>
+<tr><td>Governance</td><td>Control Tower landing zone 4.0</td><td>Nov 2025</td><td>Controls-only adoption. Integrations optional.</td></tr>
+<tr><td>Network</td><td><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> Block Public Access</td><td>Nov 2024</td><td>One switch to block internet paths.</td></tr>
+<tr><td>Network</td><td><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> encryption controls</td><td>Nov 2025</td><td>Prove and enforce encryption in transit.</td></tr>
+<tr><td>Compute</td><td><abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Auto Mode</td><td>Dec 2024</td><td>Kubernetes without node management.</td></tr>
+<tr><td>Compute</td><td><abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> Express Mode</td><td>Nov 2025</td><td>Simple container services. Covers App Runner's job.</td></tr>
+<tr><td>Compute</td><td>Lambda Managed Instances</td><td>Nov 2025</td><td>Lambda on <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> pricing for steady load.</td></tr>
+<tr><td>Compute</td><td>Lambda durable functions</td><td>Dec 2025</td><td>Long, checkpointed workflows in code.</td></tr>
+<tr><td>Compute</td><td>Graviton5</td><td>Dec 2025</td><td>Next step in Arm price-performance.</td></tr>
+<tr><td>Data</td><td>S3 Tables</td><td>Dec 2024</td><td>Managed Iceberg. The lakehouse default.</td></tr>
+<tr><td>Data</td><td>Aurora DSQL</td><td>May 2025</td><td>Serverless, active-active, distributed SQL.</td></tr>
+<tr><td>Data</td><td>S3 Vectors</td><td>GA Dec 2025</td><td>Low-cost vector storage at large scale.</td></tr>
+<tr><td>Cost</td><td>Database Savings Plans</td><td>Dec 2025</td><td>One commitment across database services.</td></tr>
+<tr><td>Resilience</td><td><abbr title="Amazon Application Recovery Controller: tools to plan and run failover across AZs and Regions.">ARC</abbr> Region switch</td><td>Aug 2025</td><td>Orchestrated, rehearsed Region failover.</td></tr>
+<tr><td>Security</td><td>Security Hub (new)</td><td>GA Dec 2025</td><td>Correlated, risk-ranked findings.</td></tr>
+<tr><td>Security</td><td>GuardDuty Extended Threat Detection</td><td>2025</td><td>Multi-stage attack sequences.</td></tr>
+<tr><td>Migration</td><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform</td><td>May 2025, extended Dec 2025</td><td>Agentic migration and modernisation.</td></tr>
+<tr><td><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr></td><td>Bedrock AgentCore</td><td>GA Oct 2025</td><td>Production agent platform.</td></tr>
+<tr><td><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr></td><td>Bedrock Managed Knowledge Base</td><td>GA Jun 2026</td><td>Managed <abbr title="Retrieval-Augmented Generation: the model answers from documents retrieved at query time.">RAG</abbr>.</td></tr>
+<tr><td><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr></td><td>Amazon Quick</td><td>Oct 2025</td><td>Agentic workspace for business users.</td></tr>
+<tr><td><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr></td><td>Kiro</td><td>2025</td><td>Spec-driven agentic IDE.</td></tr>
+<tr><td>Ops (preview)</td><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> DevOps Agent, <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Security Agent</td><td>Dec 2025</td><td><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> agents for incident response and security review. Mention as preview only.</td></tr>
+</table></div>
+<p class="src">Sources [P]: <a href="https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025" target="_blank" rel="noopener noreferrer">re:Invent 2025 top announcements</a>; <a href="https://aws.amazon.com/blogs/aws/top-announcements-of-the-aws-summit-in-new-york-2026/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Summit New York 2026</a>; individual launch pages linked on each pattern card. Checked 29 Oct 2026.</p>
+</article>
+</section>
+
+<!-- ============ DISCIPLINES ============ -->
+<section id="disc">
+<h2 class="part">Architecture disciplines</h2>
+<p class="part-sub">Two cards that run through every pattern.</p>
+
+<article class="card" id="d-wa">
+<span class="tag">Discipline · 1 of 2</span>
+<h3>Well-Architected Framework</h3>
+<p><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>'s shared language for trade-offs. Six pillars, each with design principles and review questions. A Well-Architected Review is a structured conversation with a team, run in the free Well-Architected Tool. It produces a list of high- and medium-risk issues and an improvement plan.</p>
+<div class="tbl"><table>
+<tr><th>Pillar</th><th>Key question</th><th>Typical levers</th></tr>
+<tr><td>Operational excellence</td><td>Can we run and improve it?</td><td><abbr title="Infrastructure as Code: defining infrastructure in version-controlled files.">IaC</abbr>, runbooks, observability, small reversible changes</td></tr>
+<tr><td>Security</td><td>Who can do what, and would we know?</td><td>Identity, guardrails, encryption, detection, incident response</td></tr>
+<tr><td>Reliability</td><td>Does it recover by itself?</td><td>Multi-AZ, quotas, backups, tested <abbr title="Disaster Recovery: restoring service after losing a whole site or Region.">DR</abbr>, static stability</td></tr>
+<tr><td>Performance efficiency</td><td>Right resource for the job?</td><td>Managed services, Graviton, caching, benchmarks</td></tr>
+<tr><td>Cost optimisation</td><td>Value per dollar?</td><td>Rightsizing, commitments, Spot, unit cost, ownership</td></tr>
+<tr><td>Sustainability</td><td>Least resource for the outcome?</td><td>Utilisation, efficient hardware, data lifecycle</td></tr>
+</table></div>
+<p><b>Lenses</b> add questions for a workload type. Know these: Generative <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr>, Serverless, <abbr title="Software as a Service.">SaaS</abbr>, Financial Services, Container Build, Data Analytics, Migration.</p>
+<div class="box say"><b class="lbl">Say this</b>"I use Well-Architected as the trade-off language with teams. A design review names the pillar each choice serves and what it costs in another, for example warm standby buys reliability at a cost."</div>
+<p class="src">Go deeper (free): <a href="https://aws.amazon.com/architecture/well-architected/" target="_blank" rel="noopener noreferrer">Well-Architected Framework</a>; <a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html" target="_blank" rel="noopener noreferrer">framework document</a>; <a href="https://aws.amazon.com/well-architected-tool/" target="_blank" rel="noopener noreferrer">Well-Architected Tool</a>. Checked 29 Oct 2026.</p>
+</article>
+
+<article class="card" id="d-cost">
+<span class="tag">Discipline · 2 of 2</span>
+<h3>Cost and <abbr title="Cloud financial operations: engineering, finance and business sharing ownership of cloud spend.">FinOps</abbr></h3>
+<div class="grid2"><div>
+<h4>Visibility and ownership</h4>
+<ul>
+  <li>Account per workload gives cost ownership for free. Add cost allocation tags for shared accounts.</li>
+  <li>Cost Explorer, Cost and Usage Report 2.0 (data exports, with <abbr title="FinOps Open Cost and Usage Specification: an open format for cloud billing data.">FOCUS</abbr> format), Budgets with alerts, Cost Anomaly Detection.</li>
+  <li><b>Cost Optimization Hub</b> gathers rightsizing, idle and commitment advice across accounts.</li>
+  <li>Measure <b>unit cost</b> (cost per order, per customer), not only the total bill.</li>
+</ul></div><div>
+<h4>Levers, in order</h4>
+<ul>
+  <li>Turn off what is idle. Schedule non-prod.</li>
+  <li>Rightsize with Compute Optimizer.</li>
+  <li>Commit: Compute Savings Plans, <abbr title="Elastic Compute Cloud: virtual servers on AWS.">EC2</abbr> Instance Savings Plans, Database Savings Plans <span class="ver">ver</span> (Dec 2025), Reserved Instances for some services.</li>
+  <li>Spot for fault-tolerant work.</li>
+  <li>Graviton. S3 lifecycle and Intelligent-Tiering. Gateway endpoints to cut <abbr title="Network Address Translation: lets private resources start outbound internet connections.">NAT</abbr> data charges.</li>
+</ul></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Data transfer (cross-AZ, cross-Region, <abbr title="Network Address Translation: lets private resources start outbound internet connections.">NAT</abbr>, internet egress) is the hidden line. Draw it on the diagram.</li>
+  <li>Commitments bought before rightsizing lock in waste.</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"I run <abbr title="Cloud financial operations: engineering, finance and business sharing ownership of cloud spend.">FinOps</abbr> as an operating model. Engineering owns its spend through account-level visibility and unit cost, finance owns commitments centrally, and architecture makes cost a design input."</div>
+<p class="src">Go deeper (free): <a href="https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html" target="_blank" rel="noopener noreferrer">Cost optimisation pillar</a>; <a href="https://aws.amazon.com/aws-cost-management/cost-optimization-hub/" target="_blank" rel="noopener noreferrer">Cost Optimization Hub</a>; <a href="https://www.finops.org/framework/" target="_blank" rel="noopener noreferrer"><abbr title="Cloud financial operations: engineering, finance and business sharing ownership of cloud spend.">FinOps</abbr> Framework</a>. Checked 29 Oct 2026.</p>
+</article>
+</section>
+
+<!-- ============ INTERVIEW ============ -->
+<section id="interview">
+<h2 class="part">Interview prep, question by question</h2>
+<p class="part-sub">Each question shows what the panel is testing and a model answer to adapt. Answer first in one sentence, then structure, then a number or an example. Two minutes per answer.</p>
+
+<div class="card">
+<h3>How to structure an <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> architecture answer</h3>
+<p class="mnemonic">Requirements → Foundation → Pattern → Pillars → Operate</p>
+<ul>
+  <li><b>Requirements</b>: users, volume, <abbr title="Recovery Time Objective: the longest acceptable time to restore service.">RTO</abbr>/RPO, compliance, data residency, budget. Ask two clarifying questions before you draw.</li>
+  <li><b>Foundation</b>: which accounts, which network, which identity. One sentence, because the landing zone already exists or comes first.</li>
+  <li><b>Pattern</b>: name it (three-tier, serverless, event-driven) and draw it.</li>
+  <li><b>Pillars</b>: walk two or three pillars and name the trade-off.</li>
+  <li><b>Operate</b>: how it is deployed, observed, secured and paid for after go-live.</li>
+</ul>
+</div>
+
+<article class="card" id="stories">
+<span class="tag">Fill before S6</span>
+<h3>Your <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> story frame</h3>
+<p>Panels ask "tell me about an <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> platform you designed". Your strongest stories are in ea-prep-01 (<a href="../ea-prep-01/#stories">anchor stories</a>). Retell one of them through <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>. Fill the [brackets] with real facts only. If a project did not run on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>, say so and use the translation: "we ran this on [platform]. On <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> I would use [service], because [reason]." That is an honest and strong answer for an architect.</p>
+<div class="tbl"><table>
+<tr><th>Slot</th><th>Your answer</th></tr>
+<tr><td>Context</td><td>[industry, scale: users, transactions, data volume]</td></tr>
+<tr><td><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> footprint</td><td>[accounts, Regions, main services you used]</td></tr>
+<tr><td>Your decision</td><td>[one decision you owned, the options and why you chose]</td></tr>
+<tr><td>Trade-off</td><td>[what it cost: money, latency, complexity]</td></tr>
+<tr><td>Result</td><td>[a number: cost cut, uptime, time to deliver]</td></tr>
+<tr><td>What you would change now</td><td>[a 2024–26 service that would make it simpler, from <a href="#c-new">the new defaults</a>]</td></tr>
+</table></div>
+<p>The last row is the strongest one. It shows you know the history and the current state.</p>
+</article>
+
+<article class="card" id="q1">
+<span class="tag">Foundation</span>
+<h3>Q1 · "How would you set up <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> for a large enterprise starting from scratch?"</h3>
+<div class="box intent"><b class="lbl">What they test</b>Whether you start with governance and accounts, or jump straight to services.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"I start with the landing zone, before any workload. Five parts:</p>
+<ul>
+  <li><b>Accounts</b>: <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Organizations with <abbr title="Organizational Units: groups of accounts in AWS Organizations. Policies attach to them.">OUs</abbr> for security, infrastructure, workloads split by prod and non-prod, and sandbox. One account per application per environment.</li>
+  <li><b>Identity</b>: <abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> Identity Center federated to the corporate <abbr title="Identity Provider: the system that authenticates users, such as Entra ID or Okta.">IdP</abbr>, permission sets per role, no <abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> users for people.</li>
+  <li><b>Guardrails</b>: Control Tower, or Landing Zone Accelerator in a regulated industry. <abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr> to deny unapproved Regions and protect the baseline. <abbr title="Resource Control Policies: Organizations policies (Nov 2024) that cap what can be done to resources, by anyone.">RCPs</abbr> for a data perimeter. Centralised root access.</li>
+  <li><b>Network</b>: a network account with Transit Gateway or Cloud WAN, central inspection and egress, Direct Connect, <abbr title="IP Address Management: VPC IPAM plans and tracks IP ranges across accounts.">IPAM</abbr>.</li>
+  <li><b>Security and logging</b>: org CloudTrail to a log archive account, Config, GuardDuty, Security Hub with a delegated admin.</li>
+</ul>
+<p>Then account vending through a pipeline, so a team gets a compliant account in hours. I run the landing zone as a product with an owner and a backlog."</p>
+</div></details>
+</article>
+
+<article class="card" id="q2">
+<span class="tag">Foundation</span>
+<h3>Q2 · "How do you stop data leaving the organisation?"</h3>
+<div class="box intent"><b class="lbl">What they test</b>Data perimeter thinking, and whether you know <abbr title="Resource Control Policies: Organizations policies (Nov 2024) that cap what can be done to resources, by anyone.">RCPs</abbr>.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"With a data perimeter on three conditions: only trusted identities, only trusted resources, only expected networks.</p>
+<ul>
+  <li><abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr> stop our principals from using resources outside the org (<code>aws:ResourceOrgID</code>).</li>
+  <li><abbr title="Resource Control Policies: Organizations policies (Nov 2024) that cap what can be done to resources, by anyone.">RCPs</abbr> stop principals outside the org from reaching our resources (<code>aws:PrincipalOrgID</code>), whatever a bucket policy says.</li>
+  <li><abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> endpoint policies and <code>aws:SourceVpce</code> conditions keep access on expected networks.</li>
+  <li>Plus Block Public Access for S3 and <abbr title="Virtual Private Clouds: isolated private networks, each in one AWS Region.">VPCs</abbr>, Macie to find sensitive data, and <abbr title="Key Management Service: creates and controls encryption keys.">KMS</abbr> key policies.</li>
+</ul>
+<p>Exceptions, such as a partner integration, are explicit and reviewed."</p>
+</div></details>
+</article>
+
+<article class="card" id="q3">
+<span class="tag">Network</span>
+<h3>Q3 · "Connect 200 <abbr title="Virtual Private Clouds: isolated private networks, each in one AWS Region.">VPCs</abbr> and three data centres. Prod must never reach non-prod."</h3>
+<div class="box intent"><b class="lbl">What they test</b>Transit Gateway segmentation, hybrid <abbr title="Domain Name System: turns names into IP addresses.">DNS</abbr>, scale limits.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"A Transit Gateway per Region in the network account, shared through <abbr title="Resource Access Manager: shares resources such as Transit Gateways across accounts.">RAM</abbr>. Separate <abbr title="Transit Gateway: a regional network hub that connects many VPCs and on-premises links.">TGW</abbr> route tables for prod, non-prod and shared services. Prod and non-prod each propagate only to shared services and on-premises, never to each other. Direct Connect from two locations into a Direct Connect gateway, with VPN as backup. Route 53 Resolver endpoints for hybrid <abbr title="Domain Name System: turns names into IP addresses.">DNS</abbr>. <abbr title="IP Address Management: VPC IPAM plans and tracks IP ranges across accounts.">IPAM</abbr> so no <abbr title="Classless Inter-Domain Routing ranges: IP address ranges, such as 10.0.0.0/16.">CIDRs</abbr> overlap. If the estate spans many Regions, I would look at Cloud WAN, where the segments are one policy document instead of many route tables. For service-level access across segments, PrivateLink or <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> Lattice, so I do not open whole networks."</p>
+</div></details>
+</article>
+
+<article class="card" id="q4">
+<span class="tag">Security</span>
+<h3>Q4 · "A developer's access key leaks on GitHub. Walk me through it."</h3>
+<div class="box intent"><b class="lbl">What they test</b>Incident response, and whether your design prevents it.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"Contain: deactivate the key, attach a deny-all policy to the user, revoke active sessions. Investigate: CloudTrail for every call with that key, GuardDuty findings, new resources or <abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> changes. Recover: remove what the attacker created, rotate anything it could read. Then fix the cause: people should not have long-lived keys at all. Identity Center with short-lived credentials, <abbr title="OpenID Connect: an identity layer on OAuth 2.0, used to federate CI pipelines into AWS roles.">OIDC</abbr> for <abbr title="Continuous Integration: every change is merged often and built and tested automatically.">CI</abbr> pipelines, an <abbr title="Service Control Policy: an Organizations policy that caps what IAM principals in member accounts can do. It never grants.">SCP</abbr> that denies creating access keys except for an approved path, and secret scanning in the repository."</p>
+</div></details>
+</article>
+
+<article class="card" id="q5">
+<span class="tag">Application</span>
+<h3>Q5 · "Design a web application for 1 million users with spiky traffic."</h3>
+<div class="box intent"><b class="lbl">What they test</b>Elasticity, caching, the database bottleneck.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"Clarify read/write ratio and peak. Then: CloudFront in front, with static content from S3 and caching for read-heavy <abbr title="Application Programming Interfaces.">APIs</abbr>. <abbr title="Web Application Firewall: filters HTTP traffic at the edge or load balancer.">WAF</abbr> on CloudFront. <abbr title="Application Load Balancer: a layer 7 (HTTP) load balancer.">ALB</abbr> to a stateless app tier on <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> Fargate across three <abbr title="Availability Zones: separate data centres in a Region, with independent power and network.">AZs</abbr>, scaling on request count. ElastiCache for sessions and hot reads. Aurora with read replicas, or DynamoDB if access patterns are simple key lookups. <abbr title="Relational Database Service: managed relational databases.">RDS</abbr> Proxy to absorb connection spikes. Write spikes go through <abbr title="Simple Queue Service: managed message queues.">SQS</abbr> so the database sees a steady rate. I would load test to find the next bottleneck, because moving one limit always exposes the next one."</p>
+</div></details>
+</article>
+
+<article class="card" id="q6">
+<span class="tag">Application</span>
+<h3>Q6 · "Serverless or containers for a new platform?"</h3>
+<div class="box intent"><b class="lbl">What they test</b>Balanced judgement, cost at scale, team fit.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"It depends on three things: traffic shape, run time and team. Spiky, event-driven, short tasks: Lambda, because cost tracks use and there is nothing to patch. Steady high load or long-running services: containers on Fargate, or Lambda Managed Instances if the team wants to keep the Lambda model. Many teams on a shared platform with a Kubernetes skill base: <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> in Auto Mode. Most enterprises end up with both, so the platform team should give a paved road for each."</p>
+</div></details>
+</article>
+
+<article class="card" id="q7">
+<span class="tag">Application</span>
+<h3>Q7 · "Kubernetes on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>: what would your platform look like?"</h3>
+<div class="box intent"><b class="lbl">What they test</b>Platform engineering and multi-tenancy.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"<abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> in Auto Mode, a small number of clusters per environment, owned by a platform team. Namespaces per team with resource quotas, network policies and Pod Identity. GitOps with Argo <abbr title="Continuous Delivery: every change that passes the pipeline can go to production.">CD</abbr>. Images from <abbr title="Elastic Container Registry: AWS’s container image registry.">ECR</abbr> with scanning and signing, admission policies with Kyverno or <abbr title="Open Policy Agent: a general policy engine.">OPA</abbr> Gatekeeper. Observability through Managed Prometheus, Grafana and CloudWatch Container Insights. A version upgrade calendar, because <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> standard support is 14 months. Golden-path templates so a team gets a service with <abbr title="Continuous Integration: every change is merged often and built and tested automatically.">CI</abbr>/CD, dashboards and alarms from one request."</p>
+</div></details>
+</article>
+
+<article class="card" id="q8">
+<span class="tag">Integration</span>
+<h3>Q8 · "<abbr title="Simple Queue Service: managed message queues.">SQS</abbr>, <abbr title="Simple Notification Service: managed pub/sub topics.">SNS</abbr>, EventBridge, Kinesis or <abbr title="Amazon Managed Streaming for Apache Kafka.">MSK</abbr>? Choose for an order platform."</h3>
+<div class="box intent"><b class="lbl">What they test</b>Precise service selection, ordering and replay.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"Order events per order must stay in order and be replayable for new consumers, so the order event stream is <abbr title="Amazon Managed Streaming for Apache Kafka.">MSK</abbr> or Kinesis, keyed by order ID. Domain events that other teams subscribe to, such as 'order shipped', go on EventBridge, because routing rules across accounts are simple there. Work queues behind each service are <abbr title="Simple Queue Service: managed message queues.">SQS</abbr> with <abbr title="Dead-Letter Queues: where messages go after they fail processing too many times.">DLQs</abbr>. Every consumer is idempotent, and I use the transactional outbox so the database write and the event cannot diverge."</p>
+</div></details>
+</article>
+
+<article class="card" id="q9">
+<span class="tag">Data</span>
+<h3>Q9 · "Build a modern data platform on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>."</h3>
+<div class="box intent"><b class="lbl">What they test</b>Lakehouse awareness, governance, <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> readiness.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"S3 as the storage layer with Apache Iceberg tables, using S3 Tables for managed maintenance. Ingest with <abbr title="Database Migration Service: migrates databases and streams changes (CDC).">DMS</abbr> for <abbr title="Change Data Capture: streaming each database change as an event.">CDC</abbr> from databases, Firehose or <abbr title="Amazon Managed Streaming for Apache Kafka.">MSK</abbr> for streams. Glue Data Catalog and Lake Formation for governance, with domain teams owning data products in their own accounts. Athena for ad hoc, Redshift Serverless for <abbr title="Business Intelligence: reporting and dashboards.">BI</abbr>, zero-ETL from operational databases where it fits. The same governed data feeds <abbr title="Retrieval-Augmented Generation: the model answers from documents retrieved at query time.">RAG</abbr> through Bedrock Knowledge Bases, so <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> does not create another copy."</p>
+</div></details>
+</article>
+
+<article class="card" id="q10">
+<span class="tag">Resilience</span>
+<h3>Q10 · "The business wants zero downtime. What do you say?"</h3>
+<div class="box intent"><b class="lbl">What they test</b>Pushing back with numbers and options.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"I turn 'zero' into <abbr title="Recovery Time Objective: the longest acceptable time to restore service.">RTO</abbr> and <abbr title="Recovery Point Objective: the most data loss that is acceptable, measured in time.">RPO</abbr> numbers per business capability, and show the cost of each step. Multi-AZ gives very high availability for a modest cost and covers most failures. Warm standby in a second Region gives an <abbr title="Recovery Time Objective: the longest acceptable time to restore service.">RTO</abbr> of minutes for perhaps 1.3 to 2 times the cost. Active/active gives near-zero <abbr title="Recovery Time Objective: the longest acceptable time to restore service.">RTO</abbr> but needs an answer for write conflicts and costs the most. I then fund the expensive tiers only for the capabilities that earn them, and test failover with <abbr title="Amazon Application Recovery Controller: tools to plan and run failover across AZs and Regions.">ARC</abbr> Region switch on a schedule."</p>
+</div></details>
+</article>
+
+<article class="card" id="q11">
+<span class="tag">Migration</span>
+<h3>Q11 · "Plan the migration of 800 applications from two data centres in 18 months."</h3>
+<div class="box intent"><b class="lbl">What they test</b>Programme structure, tooling, risk.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"Assess: discovery data and a portfolio assessment with <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform, a business case, <abbr title="Migration Acceleration Program: AWS’s funded methodology for large migrations, delivered with partners.">MAP</abbr> funding. Mobilise in the first 3 to 4 months: landing zone, Direct Connect, a migration factory team, and a pilot wave of 10 to 20 low-risk applications. Then waves of 40 to 60 applications grouped by dependency. Most rehost with <abbr title="AWS Application Migration Service: block-level replication for lift-and-shift (rehost) migrations.">MGN</abbr> or replatform databases with <abbr title="Database Migration Service: migrates databases and streams changes (CDC).">DMS</abbr>. A smaller set gets refactored, with <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform to speed up code work. Retire 10 to 20 percent from the discovery data. I track velocity per wave and adjust. The data centre exit date drives the plan, so the riskiest dependencies go early."</p>
+</div></details>
+</article>
+
+<article class="card" id="q12">
+<span class="tag"><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr></span>
+<h3>Q12 · "How would you build an enterprise agent platform on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>?"</h3>
+<div class="box intent"><b class="lbl">What they test</b>Current <abbr title="Generative AI: models that produce text, images or code.">GenAI</abbr> services and governance. Your strongest area.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"Bedrock for models, with routing by task and cost. AgentCore for the runtime: isolated sessions, Memory for short- and long-term context, Gateway to expose enterprise <abbr title="Application Programming Interfaces.">APIs</abbr> as <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> tools, Identity for delegated user access, Observability for traces. Bedrock Managed Knowledge Base or our own pipeline with S3 Vectors for retrieval. Guardrails for content and <abbr title="Personally Identifiable Information: data that can identify a person.">PII</abbr>. An evaluation harness in the release pipeline. Human approval for actions that change money or customer data. One account per agent domain in the landing zone, with <abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr> to keep model access to approved models and Regions. I built this shape before: [your platform, in two sentences]."</p>
+</div></details>
+</article>
+
+<article class="card" id="q13">
+<span class="tag">Cost</span>
+<h3>Q13 · "Our <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> bill grew 40% this year. Where do you look?"</h3>
+<div class="box intent"><b class="lbl">What they test</b><abbr title="Cloud financial operations: engineering, finance and business sharing ownership of cloud spend.">FinOps</abbr> practice and a method. A list of tips scores low.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"First, is it growth or waste? I check unit cost: if cost per transaction is flat, the business grew. Then the top five services and accounts in Cost Explorer, and the anomaly history. Usual findings: idle non-prod, oversized instances, missing Savings Plans coverage, <abbr title="Network Address Translation: lets private resources start outbound internet connections.">NAT</abbr> and cross-AZ data transfer, old snapshots and logs without lifecycle rules. Quick wins in weeks, then a <abbr title="Cloud financial operations: engineering, finance and business sharing ownership of cloud spend.">FinOps</abbr> operating model so it does not return: account-level ownership, budgets, a monthly review with engineering."</p>
+</div></details>
+</article>
+</section>
+
+<!-- ============ MORE QUESTIONS ============ -->
+<section id="extra">
+<h2 class="part">More questions to expect</h2>
+<p class="part-sub">Short prompts. Answer each in under a minute.</p>
+
+<article class="card" id="x-core">
+<span class="tag">Core</span>
+<h3>Core services</h3>
+<ul>
+  <li>Security group vs network ACL? (stateful per interface vs stateless per subnet)</li>
+  <li>How does an instance in a private subnet reach S3 without a <abbr title="Network Address Translation: lets private resources start outbound internet connections.">NAT</abbr> gateway? (gateway endpoint)</li>
+  <li>When DynamoDB over Aurora? (known key access patterns, massive scale, serverless)</li>
+  <li>What is an <abbr title="Availability Zone: one or more separate data centres in a Region, with independent power and network.">AZ</abbr>, and why three? (separate facilities; quorum and capacity after one loss)</li>
+  <li>How do you give an <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> pod <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> permissions? (Pod Identity)</li>
+  <li>S3 storage classes and lifecycle: design for 7-year retention. (Standard → IA → Glacier, Object Lock for compliance)</li>
+</ul>
+</article>
+
+<article class="card" id="x-ea">
+<span class="tag">Enterprise</span>
+<h3>Enterprise architecture and governance</h3>
+<ul>
+  <li>How do you keep 50 teams consistent without becoming a bottleneck? (paved roads, guardrails as code, <abbr title="Architecture Decision Records: short documents that each record one decision, its context and consequences.">ADRs</abbr>, an architecture review for exceptions only)</li>
+  <li>Multi-cloud: when is it worth it? (regulation, M&amp;A, specific services; otherwise the cost is skills and lowest-common-denominator design)</li>
+  <li>How do you handle data residency for EU customers? (Region choice, <abbr title="Service Control Policy: an Organizations policy that caps what IAM principals in member accounts can do. It never grants.">SCP</abbr> Region deny, the <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> European Sovereign Cloud for stricter needs <span class="ver">ver</span>)</li>
+  <li>How do you measure the success of a cloud platform? (lead time for a new account or service, adoption, unit cost, incidents)</li>
+  <li>What would you put in the first 90 days in this role?</li>
+</ul>
+</article>
+
+<article class="card" id="x-ask">
+<span class="tag">Your turn</span>
+<h3>Questions to ask them</h3>
+<ul>
+  <li>Where is the <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> estate today: landing zone in place, or still being built? Control Tower, <abbr title="Landing Zone Accelerator: an AWS solution that deploys a compliance-aligned multi-account baseline from config files.">LZA</abbr> or custom?</li>
+  <li>What share of the work is migration, and what share is new build or modernisation?</li>
+  <li>How are <abbr title="Generative AI: models that produce text, images or code.">GenAI</abbr> workloads governed today, and is AgentCore or Bedrock in use?</li>
+  <li>Who owns the platform: a central team, or each business unit?</li>
+  <li>How does the architect role work with delivery teams: design authority, embedded, or advisory?</li>
+</ul>
+</article>
+</section>
+
+<!-- ============ DESIGN ============ -->
+<section id="design">
+<h2 class="part">System design walkthrough</h2>
+<p class="part-sub">A generic prompt that covers most patterns at once. Practise it in 35 minutes on a blank page, out loud.</p>
+<article class="card" id="d-walk">
+<span class="tag">Practice prompt</span>
+<h3>"Design a customer-facing digital platform for a regulated enterprise, on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>"</h3>
+<p><b>Assume</b>: 5 million customers, web and mobile, peaks at 10 times normal load, <abbr title="Recovery Time Objective: the longest acceptable time to restore service.">RTO</abbr> 15 minutes and <abbr title="Recovery Point Objective: the most data loss that is acceptable, measured in time.">RPO</abbr> 1 minute for core journeys, <abbr title="Personally Identifiable Information: data that can identify a person.">PII</abbr> in scope, an existing data centre to integrate with, and an <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> assistant on the roadmap.</p>
+<figure class="arch"><svg viewBox="0 0 760 360" class="d" role="img" aria-label="Reference design: users through Route 53, CloudFront and WAF to API Gateway and ALB in a workload account; services on ECS Fargate and Lambda; Aurora Global Database, DynamoDB global tables and ElastiCache; EventBridge and MSK for events; data account with S3 Iceberg lakehouse; AI account with Bedrock and AgentCore; network account with Transit Gateway and Direct Connect to the data centre; security and log archive accounts; second Region on warm standby.">
+  <rect x="300" y="8" width="160" height="30" rx="8" class="ou"/><text x="380" y="28" class="t">Web and mobile users</text>
+  <line x1="380" y1="38" x2="380" y2="54"/>
+  <rect x="220" y="54" width="320" height="30" rx="8"/><text x="380" y="74" class="s">Route 53 · CloudFront + WAF + Shield · Cognito</text>
+  <line x1="380" y1="84" x2="380" y2="100"/>
+  <rect x="20" y="100" width="500" height="160" rx="10" class="band"/><text x="34" y="118" class="s" style="text-anchor:start">Workload account (prod) · Region A · 3 AZs</text>
+  <rect x="36" y="128" width="150" height="40" rx="8"/><text x="111" y="146" class="s">API Gateway + ALB</text><text x="111" y="160" class="s">entry points</text>
+  <rect x="200" y="128" width="150" height="40" rx="8"/><text x="275" y="146" class="s">ECS Fargate services</text><text x="275" y="160" class="s">+ Lambda for async</text>
+  <rect x="364" y="128" width="140" height="40" rx="8"/><text x="434" y="146" class="s">EventBridge · MSK</text><text x="434" y="160" class="s">SQS + DLQs</text>
+  <rect x="36" y="186" width="150" height="56" rx="8"/><text x="111" y="206" class="s">Aurora PostgreSQL</text><text x="111" y="222" class="s">Global Database</text><text x="111" y="236" class="s">+ RDS Proxy</text>
+  <rect x="200" y="186" width="150" height="56" rx="8"/><text x="275" y="206" class="s">DynamoDB</text><text x="275" y="222" class="s">global tables</text><text x="275" y="236" class="s">ElastiCache (Valkey)</text>
+  <rect x="364" y="186" width="140" height="56" rx="8"/><text x="434" y="206" class="s">Secrets Manager</text><text x="434" y="222" class="s">KMS · CloudWatch</text><text x="434" y="236" class="s">X-Ray / OTel</text>
+  <line x1="186" y1="148" x2="200" y2="148"/><line x1="350" y1="148" x2="364" y2="148"/>
+  <rect x="540" y="100" width="200" height="74" rx="10"/><text x="640" y="122" class="t">Data account</text><text x="640" y="140" class="s">S3 + Iceberg (S3 Tables)</text><text x="640" y="156" class="s">Glue · Lake Formation · Athena</text>
+  <rect x="540" y="186" width="200" height="74" rx="10"/><text x="640" y="208" class="t">AI account</text><text x="640" y="226" class="s">Bedrock · AgentCore</text><text x="640" y="242" class="s">Knowledge Base · Guardrails</text>
+  <line x1="520" y1="160" x2="540" y2="140"/><line x1="520" y1="210" x2="540" y2="222"/>
+  <rect x="20" y="276" width="300" height="70" rx="10"/><text x="170" y="298" class="t">Network account</text><text x="170" y="316" class="s">Transit Gateway · inspection · egress</text><text x="170" y="332" class="s">Direct Connect → data centre</text>
+  <rect x="336" y="276" width="190" height="70" rx="10"/><text x="431" y="298" class="t">Security + log archive</text><text x="431" y="316" class="s">CloudTrail · Config · GuardDuty</text><text x="431" y="332" class="s">Security Hub</text>
+  <rect x="540" y="276" width="200" height="70" rx="10" class="ou"/><text x="640" y="298" class="t">Region B: warm standby</text><text x="640" y="316" class="s">same IaC, scaled down</text><text x="640" y="332" class="s">ARC Region switch</text>
+  <line x1="270" y1="260" x2="270" y2="276"/><line x1="431" y1="260" x2="431" y2="276"/>
+</svg><figcaption>One possible answer. Each box is a decision you should be able to defend.</figcaption></figure>
+<h4>Walk it in this order (35 min)</h4>
+<div class="tbl"><table>
+<tr><th>Min</th><th>Step</th><th>Say</th></tr>
+<tr><td>0–4</td><td>Clarify</td><td>Read/write mix, peak, which journeys are core, residency, compliance (<abbr title="Payment Card Industry Data Security Standard.">PCI</abbr>? <abbr title="US Health Insurance Portability and Accountability Act.">HIPAA</abbr>?).</td></tr>
+<tr><td>4–8</td><td>Foundation</td><td>Landing zone accounts as drawn. Identity Center. <abbr title="Service Control Policies: Organizations policies that cap what IAM principals in member accounts can do. They never grant.">SCPs</abbr> and <abbr title="Resource Control Policies: Organizations policies (Nov 2024) that cap what can be done to resources, by anyone.">RCPs</abbr>.</td></tr>
+<tr><td>8–16</td><td>Request path</td><td>Edge, <abbr title="Application Programming Interface.">API</abbr>, services, data stores. Why <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> here, why DynamoDB for some data, why Aurora for the rest.</td></tr>
+<tr><td>16–21</td><td>Events and integration</td><td>EventBridge for domain events, <abbr title="Amazon Managed Streaming for Apache Kafka.">MSK</abbr> where order and replay matter, Direct Connect plus PrivateLink to the data centre.</td></tr>
+<tr><td>21–26</td><td>Resilience</td><td>Multi-AZ, then Region B on warm standby to meet <abbr title="Recovery Time Objective: the longest acceptable time to restore service.">RTO</abbr> 15 / <abbr title="Recovery Point Objective: the most data loss that is acceptable, measured in time.">RPO</abbr> 1. Aurora Global and DynamoDB global tables. <abbr title="Amazon Application Recovery Controller: tools to plan and run failover across AZs and Regions.">ARC</abbr> Region switch, rehearsed quarterly.</td></tr>
+<tr><td>26–30</td><td>Security and data</td><td><abbr title="Personally Identifiable Information: data that can identify a person.">PII</abbr> encrypted with <abbr title="Key Management Service: creates and controls encryption keys.">KMS</abbr>, Macie, data lake with Lake Formation, audit trail.</td></tr>
+<tr><td>30–33</td><td><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> assistant</td><td>AgentCore in its own account, Knowledge Base over curated data, Guardrails, tools through Gateway with least privilege.</td></tr>
+<tr><td>33–35</td><td>Operate and cost</td><td><abbr title="Infrastructure as Code: defining infrastructure in version-controlled files.">IaC</abbr> and pipelines, <abbr title="Service Level Objectives: targets for reliability, such as 99.9% of requests under 300 ms.">SLOs</abbr> and alarms, Savings Plans after the first 3 months of data, unit cost per customer.</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Follow-ups to expect</b><ul>
+  <li>"Region A fails during a deploy. What happens?" (Static stability, deploy one Region at a time.)</li>
+  <li>"Peak is 50 times, not 10." (Queue writes, pre-warm, scale tests, DynamoDB on-demand.)</li>
+  <li>"Cut the cost by 30%." (Drop Region B to pilot light for non-core journeys, Graviton, commitments.)</li>
+</ul></div>
+</article>
+</section>
+
+<!-- ============ RESOURCES ============ -->
+<section id="res">
+<h2 class="part">Free resources</h2>
+<p class="part-sub">All free. Links checked 29 Oct 2026. Partner portals need your company sign-in, so their content is not linked one by one here.</p>
+
+<article class="card" id="res-docs">
+<span class="tag">Read</span>
+<h3>Documents and guides</h3>
+<ul>
+  <li><a href="https://aws.amazon.com/architecture/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Architecture Center</a>: reference architectures and diagrams by industry and pattern.</li>
+  <li><a href="https://aws.amazon.com/architecture/well-architected/" target="_blank" rel="noopener noreferrer">Well-Architected Framework and lenses</a>.</li>
+  <li><a href="https://aws.amazon.com/prescriptive-guidance/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Prescriptive Guidance</a>: strategies, guides and patterns, written for migration and modernisation projects.</li>
+  <li><a href="https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/organizing-your-aws-environment.html" target="_blank" rel="noopener noreferrer">Organizing your <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> environment</a> and the <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html" target="_blank" rel="noopener noreferrer">Security Reference Architecture</a>. Read these two first.</li>
+  <li><a href="https://aws.amazon.com/builders-library/" target="_blank" rel="noopener noreferrer">Amazon Builders' Library</a>: how Amazon builds for resilience. Good material for follow-up questions.</li>
+  <li><a href="https://aws.amazon.com/about-aws/whats-new/" target="_blank" rel="noopener noreferrer">What's New with <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr></a>: check the week before the interview.</li>
+</ul>
+</article>
+
+<article class="card" id="res-video">
+<span class="tag">Watch</span>
+<h3>Videos</h3>
+<ul>
+  <li><a href="https://www.youtube.com/@AWSEventsChannel" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Events on YouTube</a>: re:Invent 2025 sessions. Search for these session types: the <abbr title="Chief Executive Officer.">CEO</abbr> keynote, "Building a multi-account strategy", "Amazon Bedrock AgentCore deep dive", "Advanced <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> design".</li>
+  <li><a href="https://www.youtube.com/@amazonwebservices" target="_blank" rel="noopener noreferrer">Amazon Web Services on YouTube</a>: the "This is My Architecture" series shows real customer designs in 5 to 10 minutes each.</li>
+  <li><a href="https://skillbuilder.aws/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Skill Builder</a>: free on-demand courses. Start with "Architecting on <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr>" learning-plan content and "<abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Well-Architected" courses where they are free.</li>
+</ul>
+</article>
+
+<article class="card" id="res-labs">
+<span class="tag">Build</span>
+<h3>Labs for session S5</h3>
+<p>Pick one. Use a workshop event account or a partner sandbox, so nothing bills your own card. If you use your own account, set a budget alarm first and delete the stack the same day.</p>
+<div class="tbl"><table>
+<tr><th>Lab</th><th>Time</th><th>Covers</th></tr>
+<tr><td><a href="https://serverlessland.com/patterns" target="_blank" rel="noopener noreferrer">Serverless Land pattern</a>: <abbr title="Application Programming Interface.">API</abbr> Gateway → Lambda → DynamoDB with <abbr title="AWS Cloud Development Kit: defines infrastructure in TypeScript, Python, Java and other languages.">CDK</abbr> or <abbr title="Serverless Application Model: short-form CloudFormation for serverless apps.">SAM</abbr></td><td>1 h</td><td>Patterns 04, 11</td></tr>
+<tr><td><a href="https://www.eksworkshop.com/" target="_blank" rel="noopener noreferrer"><abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> Workshop</a>: fundamentals and Auto Mode modules</td><td>2 h</td><td>Pattern 05</td></tr>
+<tr><td><a href="https://catalog.workshops.aws/control-tower/en-US" target="_blank" rel="noopener noreferrer">Control Tower workshop</a></td><td>2 h</td><td>Pattern 01. Best done in a sandbox org.</td></tr>
+<tr><td><a href="https://catalog.workshops.aws/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Workshops catalog</a>: search "AgentCore" or "Bedrock agents"</td><td>2 h</td><td>Pattern 10</td></tr>
+<tr><td><a href="https://cdkworkshop.com/" target="_blank" rel="noopener noreferrer"><abbr title="AWS Cloud Development Kit: defines infrastructure in TypeScript, Python, Java and other languages.">CDK</abbr> Workshop</a></td><td>1.5 h</td><td>Pattern 11</td></tr>
+</table></div>
+</article>
+
+<article class="card" id="res-partner">
+<span class="tag">Partner access</span>
+<h3>Partner and internal portals</h3>
+<p>As an employee of an <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> partner, you can usually get more than the free tier:</p>
+<ul>
+  <li><a href="https://partnercentral.awspartner.com/" target="_blank" rel="noopener noreferrer"><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Partner Central</a>: sign in with your company email. It links to partner training, the partner learning plans in Skill Builder, and accreditations such as "<abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Partner: Technical Accredited". Partner Central is now also reachable from the <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> console (Dec 2025).</li>
+  <li>Partner Skill Builder access often includes labs and <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Jam events, which give you real <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> accounts for the lab session.</li>
+  <li>Your company's <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> practice: ask for its reference landing zone, migration factory method, and a recent anonymised case study. These give you the "how we deliver" language that a partner's panel expects.</li>
+</ul>
+<p class="src">Access depends on your company's partner tier and programme enrolment. Confirm in Partner Central.</p>
+</article>
+</section>
+
+<!-- ============ CHEAT SHEET ============ -->
+<section id="cheat">
+<h2 class="part">Cheat sheet: interview morning</h2>
+<article class="card" id="cheat-card">
+<span class="tag">Read this only</span>
+<h3>One page</h3>
+<div class="grid2"><div>
+<h4>Answer frame</h4>
+<p class="mnemonic">Requirements → Foundation → Pattern → Pillars → Operate</p>
+<h4>Foundation in one breath</h4>
+<p>Organizations with <abbr title="Organizational Units: groups of accounts in AWS Organizations. Policies attach to them.">OUs</abbr> · Control Tower or <abbr title="Landing Zone Accelerator: an AWS solution that deploys a compliance-aligned multi-account baseline from config files.">LZA</abbr> · Identity Center · <abbr title="Service Control Policy: an Organizations policy that caps what IAM principals in member accounts can do. It never grants.">SCP</abbr> + <abbr title="Resource Control Policy: an Organizations policy (Nov 2024) that caps what can be done to resources, by anyone.">RCP</abbr> data perimeter · network account with <abbr title="Transit Gateway: a regional network hub that connects many VPCs and on-premises links.">TGW</abbr> / Cloud WAN · org CloudTrail, Config, GuardDuty, Security Hub · account vending pipeline.</p>
+<h4><abbr title="Disaster Recovery: restoring service after losing a whole site or Region.">DR</abbr> ladder</h4>
+<p>Backup &amp; restore (hours) → pilot light (tens of minutes) → warm standby (minutes) → active/active (near zero). Pick per tier by <abbr title="Recovery Time Objective: the longest acceptable time to restore service.">RTO</abbr>/RPO.</p>
+<h4>7 Rs</h4>
+<p>Retire · Retain · Rehost · Relocate · Repurchase · Replatform · Refactor.</p>
+</div><div>
+<h4>Six pillars</h4>
+<p>Operational excellence · Security · Reliability · Performance efficiency · Cost optimisation · Sustainability.</p>
+<h4>Do not say → say</h4>
+<ul>
+  <li>Migration Hub → <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> Transform</li>
+  <li>App Mesh → Service Connect / <abbr title="Virtual Private Cloud: your isolated private network in one AWS Region.">VPC</abbr> Lattice</li>
+  <li>App Runner → <abbr title="Elastic Container Service: AWS’s own container orchestrator.">ECS</abbr> Express Mode</li>
+  <li>Bedrock Agents → AgentCore</li>
+  <li>Kendra → Bedrock Managed Knowledge Base</li>
+  <li>Q Business → Amazon Quick</li>
+  <li>CodeWhisperer / Q Developer IDE → Kiro</li>
+  <li>QLDB → Aurora PostgreSQL</li>
+  <li><abbr title="Identity and Access Management: AWS’s service for users, roles and permission policies.">IAM</abbr> users for people → Identity Center</li>
+</ul>
+<h4>Numbers</h4>
+<p>Lambda 15 min · <abbr title="Application Programming Interface.">API</abbr> Gateway 29 s default timeout · <abbr title="Simple Queue Service: managed message queues.">SQS</abbr> <abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr> dedup 5 min · Kinesis retention up to 365 days · <abbr title="Elastic Kubernetes Service: AWS’s managed Kubernetes.">EKS</abbr> standard support 14 months · Spot notice 2 min.</p>
+</div></div>
+</article>
+</section>
+
+<footer>
+  <p><abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> <abbr title="Enterprise Architecture: aligning business strategy and technology across the organisation.">EA</abbr> interview prep · Built 29 Oct 2026. Version-sensitive facts marked <span class="ver">ver</span> were checked on that date. Evidence grades: [P] primary <abbr title="Amazon Web Services: Amazon’s public cloud platform.">AWS</abbr> source, [S] credible secondary. Progress is stored in this browser only.</p>
+  <p><a href="../">Back to Learn</a></p>
+</footer>
+
+<script>
+(function(){
+  var P='ea2.';
+  function get(k){try{return localStorage.getItem(P+k);}catch(e){return null;}}
+  function set(k,v){try{if(v===null)localStorage.removeItem(P+k);else localStorage.setItem(P+k,v);}catch(e){}}
+  var cards=[].slice.call(document.querySelectorAll('article.card[id]'));
+  var prog=document.getElementById('prog');
+  var state={};cards.forEach(function(c){state[c.id]=get('done.'+c.id)==='1';});
+  function update(){
+    var d=0;
+    cards.forEach(function(c){
+      var on=!!state[c.id];
+      c.classList.toggle('done',on);
+      if(on)d++;
+      [].forEach.call(c.querySelectorAll('input.done-box'),function(i){i.checked=on;});
+      var f=c.querySelector('.card-foot span');if(f)f.textContent=on?'Done':'Mark done';
+      var t=document.querySelector('.toc a[href="#'+c.id+'"]');
+      if(t)t.classList.toggle('is-done',on);
+    });
+    prog.textContent=d+' / '+cards.length+' done';
+  }
+  function box(c,cls,text){
+    var l=document.createElement('label');l.className=cls;
+    var i=document.createElement('input');i.type='checkbox';i.className='done-box';
+    i.setAttribute('aria-label','Mark '+(c.querySelector('h3')||{}).textContent+' done');
+    i.addEventListener('change',function(){state[c.id]=i.checked;set('done.'+c.id,i.checked?'1':null);update();});
+    var t=document.createElement('span');t.textContent=text;
+    l.appendChild(i);l.appendChild(t);return l;
+  }
+  cards.forEach(function(c){
+    c.appendChild(box(c,'tick','done'));
+    var f=document.createElement('div');f.className='card-foot-row';
+    f.appendChild(box(c,'card-foot','Mark done'));
+    c.appendChild(f);
+  });
+  update();
+  var qa=function(){return [].slice.call(document.querySelectorAll('details.qa'));};
+  document.getElementById('openAll').onclick=function(){qa().forEach(function(d){d.open=true;});};
+  document.getElementById('closeAll').onclick=function(){qa().forEach(function(d){d.open=false;});};
+  document.getElementById('reset').onclick=function(){cards.forEach(function(c){state[c.id]=false;set('done.'+c.id,null);});update();};
+  var root=document.documentElement;
+  var th=get('theme');if(th)root.setAttribute('data-theme',th);
+  document.getElementById('theme').onclick=function(){
+    var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+    var n=dark?'light':'dark';root.setAttribute('data-theme',n);set('theme',n);
+  };
+  window.addEventListener('beforeprint',function(){qa().forEach(function(d){d.open=true;});});
+})();
+
+(function(){
+  var tip=document.createElement('div');tip.id='abbr-tip';tip.setAttribute('role','tooltip');document.body.appendChild(tip);
+  var cur=null;
+  [].forEach.call(document.querySelectorAll('abbr[title]'),function(a){
+    a.setAttribute('data-def',a.getAttribute('title'));a.removeAttribute('title');
+    a.setAttribute('aria-label',a.textContent+': '+a.getAttribute('data-def'));a.tabIndex=0;
+  });
+  function show(a){
+    cur=a;tip.innerHTML='';var b=document.createElement('b');b.textContent=a.textContent+' ';
+    tip.appendChild(b);tip.appendChild(document.createTextNode(a.getAttribute('data-def')));
+    tip.classList.add('on');
+    var r=a.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
+    var x=Math.max(8,Math.min(r.left+r.width/2-w/2,innerWidth-w-8));
+    var y=r.top-h-8;if(y<60)y=r.bottom+8;
+    tip.style.left=x+'px';tip.style.top=y+'px';
+  }
+  function hide(){cur=null;tip.classList.remove('on');}
+  document.addEventListener('pointerover',function(e){if(e.pointerType!=='mouse')return;var a=e.target.closest&&e.target.closest('abbr[data-def]');if(a)show(a);});
+  document.addEventListener('pointerout',function(e){if(e.pointerType!=='mouse')return;var a=e.target.closest&&e.target.closest('abbr[data-def]');if(a&&!a.contains(e.relatedTarget))hide();});
+  var ptr=0;document.addEventListener('pointerdown',function(){ptr=Date.now();},true);
+  document.addEventListener('focusin',function(e){if(Date.now()-ptr<800)return;if(e.target.matches&&e.target.matches('abbr[data-def]'))show(e.target);});
+  document.addEventListener('focusout',function(e){if(e.target.matches&&e.target.matches('abbr[data-def]'))hide();});
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('abbr[data-def]');if(a){if(cur===a){if(!matchMedia('(hover: hover)').matches)hide();}else{show(a);}}else if(cur){hide();}});
+  addEventListener('scroll',function(){if(cur)hide();},{passive:true});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')hide();});
+})();
+</script>
+</main>
+</body>
+</html>

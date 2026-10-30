@@ -1,0 +1,10 @@
+{
+  "slug": "ea-prep-02-aws",
+  "order": 7,
+  "title": "AWS Enterprise Architect interview prep",
+  "blurb": "Twelve AWS deployment patterns, what changed in 2024-26, interview questions and free resources",
+  "static": true,
+  "note": "Hand-written single HTML file. No markdown sources, no pages list, so the build leaves it alone. robots meta added by hand.",
+  "listed": false,
+  "noindex": true
+}
