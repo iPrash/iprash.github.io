@@ -126,3 +126,7 @@ Three-hour priority order if time collapses: §3.7 negotiation brief → §4.0�
 - Nothing re-verified since 17 Aug 2026. A quarterly check against the primary sources in the
   resource library is about the right cadence.
 - Considered and not done: search across both documents, cross-device progress sync.
+
+## Acronym tooltips
+
+Acronyms: wrapped at build time from `_build/glossary.json` plus `_glossary.json` (PIM, ID). Tooltip script at the end of `assets/app.js`. Rule in PROJECT-INSTRUCTIONS.md.

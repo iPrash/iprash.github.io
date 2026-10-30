@@ -1,0 +1,8 @@
+{
+ "_about": "frontier-engineer overrides for _build/glossary.json.",
+ "terms": {
+  "L1": "Principal level 1: works at portfolio, programme or business-unit scope.",
+  "L2": "Principal level 2: works at company-wide, multi-business scope with external influence.",
+  "L1s": "Principal level 1 people: work at portfolio, programme or business-unit scope."
+ }
+}

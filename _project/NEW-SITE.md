@@ -131,13 +131,25 @@ Markdown conventions the build understands:
   Use `nl2br` deliberately where stacked short lines are wanted, as aigov does for its
   document header block and source-grading legend.
 
+**Acronym tooltips (learning sites, mandatory).** Every acronym occurrence needs a tooltip. See the rule in PROJECT-INSTRUCTIONS.md.
+
+- Generated site: append the tooltip CSS and script block to the site's `assets/style.css` and `assets/app.js`. Copy them from `learn/aigov/assets/`, the blocks marked "Acronym tooltips". The build then wraps every acronym from `_build/glossary.json`.
+- Static site: copy the tooltip CSS and the `abbr-tip` script from the newest ea-prep page, then run `python _build/build.py --acronyms-fix`.
+- New acronyms: add them to `_build/glossary.json` as "Expansion: one-line description." A meaning that only applies to this site goes in `<slug>/_glossary.json`.
+
 ## 5. Build and check
 
 ```powershell
 python _build\build.py --check
 ```
 
-Read what it says it would change. Nothing outside your new folder and the root `index.html`
+Then run the acronym audit. It must end with "All acronyms have tooltips."
+
+```powershell
+python _build\build.py --acronyms
+```
+
+Read what the check says it would change. Nothing outside your new folder and the root `index.html`
 should be listed. Then:
 
 ```powershell

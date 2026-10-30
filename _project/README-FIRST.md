@@ -28,6 +28,7 @@ Together these are about 12KB. Read them properly rather than skimming.
 | Adding a new site | `_project/NEW-SITE.md` |
 | Starting a new interview prep site (a prompt for a fresh session) | `_project/PREP-SITE-PROMPT.md`, then `_project/NEW-SITE.md` |
 | Changing the build, or debugging it | `_build/build.py` |
+| Adding or fixing an acronym tooltip | `_build/glossary.json`, then the acronym rule in `PROJECT-INSTRUCTIONS.md` |
 | Changing a site's styling or interactive behaviour | that site's `assets/style.css` and `assets/app.js` |
 | Changing a site's home page structure | that site's `_index_template.html` |
 | Deploy, git or GitHub Pages trouble | `PROJECT-CONTEXT.md` §5 and §6 — the problem may already be solved there |

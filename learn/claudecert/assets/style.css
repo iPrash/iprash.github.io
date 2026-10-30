@@ -374,3 +374,11 @@ footer.foot .wrapin{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-b
 .doc details summary{cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--petrol)}
 .doc details[open] summary{margin-bottom:.4rem}
 @media print{.doc details{display:block}.doc details summary{display:none}}
+
+/* Acronym tooltips: every <abbr title> becomes a hover and tap tooltip. Rule: _project/PROJECT-INSTRUCTIONS.md */
+abbr[title],abbr[data-def]{text-decoration:underline dotted;text-decoration-color:var(--rule);text-underline-offset:3px;cursor:help;border:0}
+abbr:focus-visible{outline:2px solid var(--petrol);outline-offset:1px;border-radius:2px}
+#abbr-tip{position:fixed;z-index:50;max-width:min(320px,calc(100vw - 16px));background:var(--ink);color:var(--paper);font-size:13px;line-height:1.45;padding:8px 11px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.25);pointer-events:none;opacity:0;transition:opacity .12s}
+#abbr-tip.on{opacity:1}
+#abbr-tip b{font-family:monospace;font-size:12px}
+@media print{#abbr-tip{display:none}abbr{text-decoration:none}}

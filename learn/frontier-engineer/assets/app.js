@@ -198,3 +198,31 @@
     el.textContent = (v ? v : '0') + '% read';
   });
 })();
+
+/* Acronym tooltips: turns <abbr title> into hover and tap tooltips. Same script as the ea-prep sites. */
+(function(){
+  var tip=document.createElement('div');tip.id='abbr-tip';tip.setAttribute('role','tooltip');document.body.appendChild(tip);
+  var cur=null;
+  [].forEach.call(document.querySelectorAll('abbr[title]'),function(a){
+    a.setAttribute('data-def',a.getAttribute('title'));a.removeAttribute('title');
+    a.setAttribute('aria-label',a.textContent+': '+a.getAttribute('data-def'));a.tabIndex=0;
+  });
+  function show(a){
+    cur=a;tip.innerHTML='';var b=document.createElement('b');b.textContent=a.textContent+' ';
+    tip.appendChild(b);tip.appendChild(document.createTextNode(a.getAttribute('data-def')));
+    tip.classList.add('on');
+    var r=a.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
+    var x=Math.max(8,Math.min(r.left+r.width/2-w/2,innerWidth-w-8));
+    var y=r.top-h-8;if(y<60)y=r.bottom+8;
+    tip.style.left=x+'px';tip.style.top=y+'px';
+  }
+  function hide(){cur=null;tip.classList.remove('on');}
+  document.addEventListener('pointerover',function(e){if(e.pointerType!=='mouse')return;var a=e.target.closest&&e.target.closest('abbr[data-def]');if(a)show(a);});
+  document.addEventListener('pointerout',function(e){if(e.pointerType!=='mouse')return;var a=e.target.closest&&e.target.closest('abbr[data-def]');if(a&&!a.contains(e.relatedTarget))hide();});
+  var ptr=0;document.addEventListener('pointerdown',function(){ptr=Date.now();},true);
+  document.addEventListener('focusin',function(e){if(Date.now()-ptr<800)return;if(e.target.matches&&e.target.matches('abbr[data-def]'))show(e.target);});
+  document.addEventListener('focusout',function(e){if(e.target.matches&&e.target.matches('abbr[data-def]'))hide();});
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('abbr[data-def]');if(a){if(cur===a){if(!matchMedia('(hover: hover)').matches)hide();}else{show(a);}}else if(cur){hide();}});
+  addEventListener('scroll',function(){if(cur)hide();},{passive:true});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')hide();});
+})();

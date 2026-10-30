@@ -102,6 +102,7 @@ iprash.github.io/
 ├── _build/
 │   ├── build.py
 │   ├── projects.json            the portfolio list shown on the landing page
+│   ├── glossary.json            acronym definitions; build.py wraps them on learning sites
 │   └── templates/landing.html
 └── _project/
     ├── README-FIRST.md          entry point — Claude reads this first
@@ -137,6 +138,8 @@ python _build/build.py             everything
 python _build/build.py aigov       one site
 python _build/build.py --landing   landing page only
 python _build/build.py --check     report changes, write nothing
+python _build/build.py --acronyms  audit acronym tooltips on every learning site
+python _build/build.py --acronyms-fix  wrap acronyms in static learning pages
 ```
 
 Output is LF regardless of platform. The script prints `unchanged` for files it did not need

@@ -57,7 +57,7 @@ Give me: the card list with ids; a study plan in sessions with hours (estimate t
 - Never invent numbers for my stories. Use [brackets].
 
 ## 6. Phase 3: build rules
-- Static, hand-written, single index.html, about 150–200 KB. Write it in section fragments, then assemble. Wrap EVERY acronym occurrence, repeats included, with an expansion and a one-line description, including in tables, table headers and link text. Skip only code, pre, svg, nav, summary, h1, figcaption and buttons.
+- Static, hand-written, single index.html, about 150–200 KB. Write it in section fragments, then assemble. Wrap EVERY acronym occurrence, repeats included, with an expansion and a one-line description, including in tables, table headers and link text. Skip only code, pre, svg, nav, summary, h1, figcaption and button. Add new terms to _build/glossary.json, run `python _build/build.py --acronyms-fix`, and confirm `--acronyms` reports "All acronyms have tooltips."s.
 - The repo is public. No client, employer or interview names anywhere.
 - Writing: Simplified Technical English, Zinsser's four principles, no em-dash asides, no "not X but Y" phrasing.
 - Required sections: study plan in sessions, self-check, technology or pattern cards, What changed, interview questions with "What they test" and model answers, a story frame, a system design or scenario walkthrough, free resources and labs, questions to ask them, a one-page cheat sheet. [ADD ROLE-SPECIFIC SECTIONS, E.G. DELIVERABLE TEMPLATES]

@@ -73,7 +73,7 @@
       <tr>
       <td>D2 Applications and Integration</td>
       <td>33.1%</td>
-      <td>Application design 8.6%, software engineering 7.4%, API mechanics 6.8%</td>
+      <td>Application design 8.6%, software engineering 7.4%, <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> mechanics 6.8%</td>
       <td>4, 7 to 11, 14, 22 to 24, 27</td>
       </tr>
       <tr>
@@ -91,7 +91,7 @@
       <tr>
       <td>D5 Model Selection and Optimization</td>
       <td>16.8%</td>
-      <td>Technical fundamentals 6.1%, LLM fundamentals 5.2%</td>
+      <td>Technical fundamentals 6.1%, <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> fundamentals 5.2%</td>
       <td>4, 6 to 11, 13, 24</td>
       </tr>
       <tr>
@@ -107,7 +107,7 @@
       <td>17, 18, 21 to 23</td>
       </tr>
       <tr>
-      <td>D8 Tools and MCPs</td>
+      <td>D8 Tools and <abbr title="Model Context Protocol servers: services that expose tools and data to AI applications.">MCPs</abbr></td>
       <td>10.6%</td>
       <td>Tool implementation 4.4%, agentic customization 4.1%</td>
       <td>15, 16, 17, 21, 22</td>
@@ -118,31 +118,31 @@
       <h2 id="blueprint-checklist">Blueprint checklist</h2>
       <p>One line per skill in <a class="ext" title="Developer Foundations exam guide (PDF, v1.0, July 2026) (R1) — Official blueprint: the eight domains, skill weights and sample questions for the Developer Foundations exam." href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf" target="_blank" rel="noopener noreferrer">R1</a>, section 6, with its weight and the days that cover it. Checked against the blueprint on 22 October 2026. I tick a line when I can explain the skill and have built it. Before the exam, every line should be ticked.</p>
       <ul>
-      <li>[ ] BP 1.1 Agent architecture (4.5%): workflow versus agent, manager and supervisor hierarchies, subagents · days 17, 18, 20</li>
-      <li>[ ] BP 1.2 Agent construction (5.3%): Agent SDK, custom loops and harnesses, self-hosted versus Anthropic-hosted, hooks · days 15, 18</li>
-      <li>[ ] BP 1.3 Agent patterns and frameworks (4.9%): tool-use loops, subagents, memory, context management, LangGraph, Strands, PydanticAI · days 15, 17, 20</li>
-      <li>[ ] BP 2.1 Understanding requirements (3.4%) · day 27</li>
-      <li>[ ] BP 2.2 Systems life cycle (2.8%) · day 27</li>
-      <li>[ ] BP 2.3 Claude API mechanics (6.8%): messages, tools, streaming, vision, thinking, caching, third-party vendors, batch versus realtime · days 4, 7 to 11, 27</li>
-      <li>[ ] BP 2.4 Software engineering foundations (7.4%): REST, JSON, async, version control, SDLC, code review, refactoring · days 8, 24, 27</li>
-      <li>[ ] BP 2.5 Claude application design (8.6%): instructions across interfaces, content boundaries, schema design, session hygiene, plugins · days 7, 14, 22, 23</li>
-      <li>[ ] BP 2.6 Configuration management (4.1%): CLAUDE.md, settings.json, model version pinning, prompt versioning, plugin dependencies · days 22, 24</li>
-      <li>[ ] BP 3.1 Claude Code operation (3.1%): rules, Skills, commands, agents, memory, sessions, slash commands, headless and streaming modes, auto mode, CLAUDE.md hierarchy, settings.json · days 22, 27</li>
-      <li>[ ] BP 4.1 Debugging and error handling (2.6%): error types, recovery strategy, trace analysis, integration versus model faults · days 8, 24</li>
-      <li>[ ] BP 5.1 LLM fundamentals (5.2%): tokens, context windows, sampling, non-determinism, fast mode, thinking, effort, zero-shot to multi-shot · days 6, 7, 9, 10, 13</li>
-      <li>[ ] BP 5.2 Technical fundamentals (6.1%): SDKs that wrap REST APIs, websockets · day 8</li>
-      <li>[ ] BP 5.3 Model selection and trade-offs (2.7%): Opus, Sonnet, Haiku, quality, latency, cost, breaking changes between releases · days 7, 24</li>
-      <li>[ ] BP 5.4 Cost and token management (2.8%): usage tracking, cost models, prompt caching · days 6, 10, 11</li>
-      <li>[ ] BP 6.1 Context engineering (3.8%): window management, drift and bloat, pruning, compaction, isolation through subagents · day 20</li>
-      <li>[ ] BP 6.2 Prompt engineering (4.6%): clarity, few-shot, system versus user placement, output constraints, iteration, input sanitization · day 13</li>
-      <li>[ ] BP 6.3 Output handling (2.6%): structured output, validation, defensive parsing, skepticism toward confident output · day 14</li>
-      <li>[ ] BP 7.1 AI application security (3.2%): prompt injection, jailbreaks, untrusted input, data leakage, PII · day 23</li>
-      <li>[ ] BP 7.2 Guardrails and safe deployment (2.3%): guardrail layering, least privilege · days 17, 23</li>
-      <li>[ ] BP 7.3 Claude hooks (1.0%) · days 18, 22</li>
-      <li>[ ] BP 7.4 Identity, secrets and key management (1.6%): keys across environments, access approval, access monitoring · days 2, 21, 23</li>
-      <li>[ ] BP 8.1 Tool implementation (4.4%): tool descriptions, error handling, client-side versus server-side tools, approval patterns · days 15, 16, 17</li>
-      <li>[ ] BP 8.2 MCP server development (2.1%): tools, resources, prompts, stdio and network transports, client versus server · day 21</li>
-      <li>[ ] BP 8.3 Agentic customization (4.1%): built-in tools versus custom tools versus Skills versus MCP · days 16, 22</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 1.1 Agent architecture (4.5%): workflow versus agent, manager and supervisor hierarchies, subagents · days 17, 18, 20</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 1.2 Agent construction (5.3%): Agent <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr>, custom loops and harnesses, self-hosted versus Anthropic-hosted, hooks · days 15, 18</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 1.3 Agent patterns and frameworks (4.9%): tool-use loops, subagents, memory, context management, LangGraph, Strands, PydanticAI · days 15, 17, 20</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 2.1 Understanding requirements (3.4%) · day 27</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 2.2 Systems life cycle (2.8%) · day 27</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 2.3 Claude <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> mechanics (6.8%): messages, tools, streaming, vision, thinking, caching, third-party vendors, batch versus realtime · days 4, 7 to 11, 27</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 2.4 Software engineering foundations (7.4%): <abbr title="Representational State Transfer: an HTTP API style built around resources.">REST</abbr>, <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr>, async, version control, <abbr title="Software Development Life Cycle: plan, build, test, release, operate.">SDLC</abbr>, code review, refactoring · days 8, 24, 27</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 2.5 Claude application design (8.6%): instructions across interfaces, content boundaries, schema design, session hygiene, plugins · days 7, 14, 22, 23</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 2.6 Configuration management (4.1%): CLAUDE.md, settings.json, model version pinning, prompt versioning, plugin dependencies · days 22, 24</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 3.1 Claude Code operation (3.1%): rules, Skills, commands, agents, memory, sessions, slash commands, headless and streaming modes, auto mode, CLAUDE.md hierarchy, settings.json · days 22, 27</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 4.1 Debugging and error handling (2.6%): error types, recovery strategy, trace analysis, integration versus model faults · days 8, 24</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 5.1 <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> fundamentals (5.2%): tokens, context windows, sampling, non-determinism, fast mode, thinking, effort, zero-shot to multi-shot · days 6, 7, 9, 10, 13</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 5.2 Technical fundamentals (6.1%): <abbr title="Software Development Kits: libraries and tools for building against a platform.">SDKs</abbr> that wrap <abbr title="Representational State Transfer: an HTTP API style built around resources.">REST</abbr> <abbr title="Application Programming Interfaces: defined contracts that one program uses to call another.">APIs</abbr>, websockets · day 8</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 5.3 Model selection and trade-offs (2.7%): Opus, Sonnet, Haiku, quality, latency, cost, breaking changes between releases · days 7, 24</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 5.4 Cost and token management (2.8%): usage tracking, cost models, prompt caching · days 6, 10, 11</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 6.1 Context engineering (3.8%): window management, drift and bloat, pruning, compaction, isolation through subagents · day 20</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 6.2 Prompt engineering (4.6%): clarity, few-shot, system versus user placement, output constraints, iteration, input sanitization · day 13</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 6.3 Output handling (2.6%): structured output, validation, defensive parsing, skepticism toward confident output · day 14</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 7.1 <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> application security (3.2%): prompt injection, jailbreaks, untrusted input, data leakage, <abbr title="Personally Identifiable Information: data that can identify a person.">PII</abbr> · day 23</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 7.2 Guardrails and safe deployment (2.3%): guardrail layering, least privilege · days 17, 23</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 7.3 Claude hooks (1.0%) · days 18, 22</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 7.4 Identity, secrets and key management (1.6%): keys across environments, access approval, access monitoring · days 2, 21, 23</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 8.1 Tool implementation (4.4%): tool descriptions, error handling, client-side versus server-side tools, approval patterns · days 15, 16, 17</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 8.2 <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server development (2.1%): tools, resources, prompts, stdio and network transports, client versus server · day 21</li>
+      <li>[ ] <abbr title="Blueprint: a numbered item in the exam blueprint.">BP</abbr> 8.3 Agentic customization (4.1%): built-in tools versus custom tools versus Skills versus <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> · days 16, 22</li>
       </ul>
       <h2 id="the-reading-spine">The reading spine</h2>
       <p>Anthropic's own courses are the baseline. Two Anthropic sources set the Learn step for every day: the exam prep course (<a class="ext" title="Developer Foundations prep course (R12) — The exam-specific prep course: five modules, 774 minutes in total." href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations" target="_blank" rel="noopener noreferrer">R12</a>, modules <a class="ext" title="Module 1 · MSO Foundations (R103) — Exam prep course, module 1 (57 minutes)." href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/mso-foundations" target="_blank" rel="noopener noreferrer">R103</a> to <a class="ext" title="Module 5 · Accelerators &amp; IP Contribution (R107) — Exam prep course, module 5: accelerators and IP contribution (155 minutes). Optional." href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution" target="_blank" rel="noopener noreferrer">R107</a>) and the Claude Developer learning path (<a class="ext" title="Claude Developer learning path (R97) — Anthropic&#x27;s learning path for developers: nine courses and one tutorial." href="https://anthropic-partners.skilljar.com/path/claude-developer" target="_blank" rel="noopener noreferrer">R97</a>). Enrol in both before Day 4. Docs pages are reference during the build. I read the section I need, not the whole page.</p>
@@ -172,7 +172,7 @@
       <td>Required</td>
       </tr>
       <tr>
-      <td><a class="ext" title="Module 3 · Claude Code, MCP &amp; Integration (R105) — Exam prep course, module 3: Claude Code, MCP and integration (142 minutes)." href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration" target="_blank" rel="noopener noreferrer">R105</a> Claude Code, MCP &amp; Integration</td>
+      <td><a class="ext" title="Module 3 · Claude Code, MCP &amp; Integration (R105) — Exam prep course, module 3: Claude Code, MCP and integration (142 minutes)." href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration" target="_blank" rel="noopener noreferrer">R105</a> Claude Code, <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> &amp; Integration</td>
       <td>Prep course</td>
       <td>142 min</td>
       <td>20 to 22</td>
@@ -186,21 +186,21 @@
       <td>Required</td>
       </tr>
       <tr>
-      <td><a class="ext" title="Module 5 · Accelerators &amp; IP Contribution (R107) — Exam prep course, module 5: accelerators and IP contribution (155 minutes). Optional." href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution" target="_blank" rel="noopener noreferrer">R107</a> Accelerators &amp; IP Contribution</td>
+      <td><a class="ext" title="Module 5 · Accelerators &amp; IP Contribution (R107) — Exam prep course, module 5: accelerators and IP contribution (155 minutes). Optional." href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution" target="_blank" rel="noopener noreferrer">R107</a> Accelerators &amp; <abbr title="Internet Protocol: the addressing scheme for networked machines; here, an IP address.">IP</abbr> Contribution</td>
       <td>Prep course</td>
       <td>155 min</td>
       <td>27</td>
       <td>Optional: the platform-choice section</td>
       </tr>
       <tr>
-      <td><a class="ext" title="AI capabilities and limitations (R98) — Course on why the model behaves as it does: prediction, knowledge, working memory, steerability and context limits." href="https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations" target="_blank" rel="noopener noreferrer">R98</a> AI capabilities and limitations</td>
+      <td><a class="ext" title="AI capabilities and limitations (R98) — Course on why the model behaves as it does: prediction, knowledge, working memory, steerability and context limits." href="https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations" target="_blank" rel="noopener noreferrer">R98</a> <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> capabilities and limitations</td>
       <td>Developer path</td>
       <td>3.5 h</td>
       <td>6, 9, 10, 13, 14</td>
       <td>Required</td>
       </tr>
       <tr>
-      <td><a class="ext" title="AI Fluency for builders (R99) — Course on the judgement calls a builder makes: delegation, description, discernment and diligence." href="https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders" target="_blank" rel="noopener noreferrer">R99</a> AI Fluency for builders</td>
+      <td><a class="ext" title="AI Fluency for builders (R99) — Course on the judgement calls a builder makes: delegation, description, discernment and diligence." href="https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders" target="_blank" rel="noopener noreferrer">R99</a> <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> Fluency for builders</td>
       <td>Developer path</td>
       <td>3 h</td>
       <td>27</td>
@@ -256,14 +256,14 @@
       <td>Required</td>
       </tr>
       <tr>
-      <td><a class="ext" title="Building with the Claude API (R17) — Full course on building with the Claude API: 67 lessons, about 9 hours." href="https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api" target="_blank" rel="noopener noreferrer">R17</a> Building with the Claude API</td>
+      <td><a class="ext" title="Building with the Claude API (R17) — Full course on building with the Claude API: 67 lessons, about 9 hours." href="https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api" target="_blank" rel="noopener noreferrer">R17</a> Building with the Claude <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr></td>
       <td>Prep course recommended</td>
       <td>9 h</td>
       <td>8, 9, 10 required. Other sections as backup</td>
       <td>Partly required</td>
       </tr>
       <tr>
-      <td><a class="ext" title="The AI-native SDLC playbook (R108) — Course on the AI-native software development life cycle, about 1 hour of reading." href="https://academy.claude.com/courses/ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">R108</a> The AI-native SDLC playbook</td>
+      <td><a class="ext" title="The AI-native SDLC playbook (R108) — Course on the AI-native software development life cycle, about 1 hour of reading." href="https://academy.claude.com/courses/ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">R108</a> The AI-native <abbr title="Software Development Life Cycle: plan, build, test, release, operate.">SDLC</abbr> playbook</td>
       <td>Claude Academy</td>
       <td>1 h</td>
       <td>27</td>
@@ -281,8 +281,8 @@
       <p>The required courses total about 25 hours. With the builds, a day now holds 1.5 to 2.5 hours. At 90 minutes a sitting, some days take two sittings. The dates under each day show the fastest pace, not a deadline.</p>
       <h1 id="week-1-api-basics">Week 1 · API basics</h1>
       <h2 id="day-4-first-real-calls">Day 4 · First real calls</h2>
-      <p>Saturday 17 October · long day, 2 hours · Dev D2 API mechanics, D5 LLM fundamentals</p>
-      <p><strong>Goal.</strong> Understand one Messages API request and response completely.</p>
+      <p>Saturday 17 October · long day, 2 hours · Dev D2 <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> mechanics, D5 <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> fundamentals</p>
+      <p><strong>Goal.</strong> Understand one Messages <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> request and response completely.</p>
       <p><strong>Build · 60 min</strong></p>
       <ul>
       <li>In <code>CertLab/01_API/</code>, write <code>basics.py</code>.</li>
@@ -298,11 +298,11 @@
       </ul>
       <p><strong>Also</strong></p>
       <ul>
-      <li><a class="ext" title="Claude Platform 101 (R101) — Course from the first API call to the agent loop, tool use, thinking, skills, MCP, context and managed agents." href="https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101" target="_blank" rel="noopener noreferrer">R101</a> Claude Platform 101, the lesson on the first API call.</li>
+      <li><a class="ext" title="Claude Platform 101 (R101) — Course from the first API call to the agent loop, tool use, thinking, skills, MCP, context and managed agents." href="https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101" target="_blank" rel="noopener noreferrer">R101</a> Claude Platform 101, the lesson on the first <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> call.</li>
       </ul>
       <p><strong>Reference</strong></p>
       <ul>
-      <li><a class="ext" title="Working with the Messages API (R24) — How to build requests and read responses with the Messages API: roles, system prompt, multi-turn conversations, stop reasons." href="https://platform.claude.com/docs/en/build-with-claude/working-with-messages" target="_blank" rel="noopener noreferrer">R24</a> Messages API.</li>
+      <li><a class="ext" title="Working with the Messages API (R24) — How to build requests and read responses with the Messages API: roles, system prompt, multi-turn conversations, stop reasons." href="https://platform.claude.com/docs/en/build-with-claude/working-with-messages" target="_blank" rel="noopener noreferrer">R24</a> Messages <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>.</li>
       </ul>
       <p><strong>Drill</strong></p>
       <ul>
@@ -317,7 +317,7 @@
       <h2 id="day-5-rest">Day 5 · Rest</h2>
       <p>Sunday 18 October. No study. If a read from this week ran over, it can move here.</p>
       <h2 id="day-6-tokens-context-and-sampling">Day 6 · Tokens, context and sampling</h2>
-      <p>Monday 19 October · Dev D5 LLM fundamentals (5.2%)</p>
+      <p>Monday 19 October · Dev D5 <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> fundamentals (5.2%)</p>
       <p><strong>Goal.</strong> Make tokens, context windows and non-determinism concrete.</p>
       <p><strong>Build · 45 min</strong></p>
       <ul>
@@ -329,7 +329,7 @@
       </ul>
       <p><strong>Learn · 95 min</strong></p>
       <ul>
-      <li><a class="ext" title="AI capabilities and limitations (R98) — Course on why the model behaves as it does: prediction, knowledge, working memory, steerability and context limits." href="https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations" target="_blank" rel="noopener noreferrer">R98</a> AI capabilities and limitations: the opening lessons, then the Next Token Prediction section and its exercise.</li>
+      <li><a class="ext" title="AI capabilities and limitations (R98) — Course on why the model behaves as it does: prediction, knowledge, working memory, steerability and context limits." href="https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations" target="_blank" rel="noopener noreferrer">R98</a> <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> capabilities and limitations: the opening lessons, then the Next Token Prediction section and its exercise.</li>
       </ul>
       <p><strong>Also</strong></p>
       <ul>
@@ -353,7 +353,7 @@
       <li>[ ] D6: A table in <code>01_API/notes.md</code> with token counts for three inputs and a one-line finding on output variation.</li>
       </ul>
       <h2 id="day-7-model-tiers-thinking-and-effort">Day 7 · Model tiers, thinking and effort</h2>
-      <p>Tuesday 20 October · Dev D5 model selection (2.7%), LLM fundamentals</p>
+      <p>Tuesday 20 October · Dev D5 model selection (2.7%), <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> fundamentals</p>
       <p><strong>Goal.</strong> Choose a model from evidence, not habit.</p>
       <p><strong>Build · 45 min</strong></p>
       <ul>
@@ -361,7 +361,7 @@
       <li>Record latency, tokens and a quality grade for each.</li>
       <li>Run the reasoning task again with adaptive thinking (<a class="ext" title="Thinking: adaptive and extended (R30) — Thinking: how adaptive and extended thinking work and how to enable them." href="https://platform.claude.com/docs/en/build-with-claude/thinking" target="_blank" rel="noopener noreferrer">R30</a>) and at two effort settings (<a class="ext" title="Effort (R31) — The effort setting: trade response quality against speed and token spend." href="https://platform.claude.com/docs/en/build-with-claude/effort" target="_blank" rel="noopener noreferrer">R31</a>).</li>
       <li>Try fast mode (<a class="ext" title="Fast mode (R114) — Fast mode: what it is and when to use it." href="https://platform.claude.com/docs/en/build-with-claude/fast-mode" target="_blank" rel="noopener noreferrer">R114</a>) on one task if the model supports it, and record the change in speed and price.</li>
-      <li>Note the exact model ID I used and whether it is an alias or a pinned snapshot (<a class="ext" title="Model IDs and versioning (R115) — How model IDs and versions work, and why to pin them." href="https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions" target="_blank" rel="noopener noreferrer">R115</a>).</li>
+      <li>Note the exact model <abbr title="Identifier: a value that names one record or thing.">ID</abbr> I used and whether it is an alias or a pinned snapshot (<a class="ext" title="Model IDs and versioning (R115) — How model IDs and versions work, and why to pin them." href="https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions" target="_blank" rel="noopener noreferrer">R115</a>).</li>
       </ul>
       <p><strong>Learn · 60 min</strong></p>
       <ul>
@@ -379,7 +379,7 @@
       <li><a class="ext" title="Thinking: adaptive and extended (R30) — Thinking: how adaptive and extended thinking work and how to enable them." href="https://platform.claude.com/docs/en/build-with-claude/thinking" target="_blank" rel="noopener noreferrer">R30</a> Thinking, including which models support adaptive thinking.</li>
       <li><a class="ext" title="Effort (R31) — The effort setting: trade response quality against speed and token spend." href="https://platform.claude.com/docs/en/build-with-claude/effort" target="_blank" rel="noopener noreferrer">R31</a> Effort.</li>
       <li><a class="ext" title="Fast mode (R114) — Fast mode: what it is and when to use it." href="https://platform.claude.com/docs/en/build-with-claude/fast-mode" target="_blank" rel="noopener noreferrer">R114</a> Fast mode.</li>
-      <li><a class="ext" title="Model IDs and versioning (R115) — How model IDs and versions work, and why to pin them." href="https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions" target="_blank" rel="noopener noreferrer">R115</a> Model IDs and versioning.</li>
+      <li><a class="ext" title="Model IDs and versioning (R115) — How model IDs and versions work, and why to pin them." href="https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions" target="_blank" rel="noopener noreferrer">R115</a> Model <abbr title="Identifiers: values that name one record or thing each.">IDs</abbr> and versioning.</li>
       </ul>
       <p><strong>Drill</strong></p>
       <ul>
@@ -392,54 +392,54 @@
       <li>[ ] D7: A 3 by 3 table (task by model) with latency, cost and quality, and a one-line rule I would apply.</li>
       </ul>
       <h1 id="week-2-production-mechanics">Week 2 · Production mechanics</h1>
-      <h2 id="day-8-streaming-errors-and-raw-http">Day 8 · Streaming, errors and raw HTTP</h2>
-      <p>Wednesday 21 October · Dev D2 API mechanics, D4 debugging, D5 technical fundamentals (6.1%)</p>
-      <p><strong>Goal.</strong> Handle the API the way production code must.</p>
+      <h2 id="day-8-streaming-errors-and-raw-http">Day 8 · Streaming, errors and raw <abbr title="Hypertext Transfer Protocol: the request and response protocol of the web.">HTTP</abbr></h2>
+      <p>Wednesday 21 October · Dev D2 <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> mechanics, D4 debugging, D5 technical fundamentals (6.1%)</p>
+      <p><strong>Goal.</strong> Handle the <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> the way production code must.</p>
       <p><strong>Build · 45 min</strong></p>
       <ul>
-      <li>Call the API once with plain HTTP (<code>requests</code> or <code>curl</code>), then with the SDK.</li>
-      <li>Compare what the SDK adds: retries, typed errors, streaming helpers.</li>
+      <li>Call the <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> once with plain <abbr title="Hypertext Transfer Protocol: the request and response protocol of the web.">HTTP</abbr> (<code>requests</code> or <code>curl</code>), then with the <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr>.</li>
+      <li>Compare what the <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr> adds: retries, typed errors, streaming helpers.</li>
       <li>Stream a long response (<a class="ext" title="Streaming (R25) — Streaming responses as they are generated, and how to handle the events." href="https://platform.claude.com/docs/en/build-with-claude/streaming" target="_blank" rel="noopener noreferrer">R25</a>) and print text as it arrives.</li>
-      <li>Force three errors: a bad API key, an invalid request, and a too-large <code>max_tokens</code>.</li>
+      <li>Force three errors: a bad <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> key, an invalid request, and a too-large <code>max_tokens</code>.</li>
       <li>Write a retry wrapper that retries only errors that a retry can fix, including 429 rate-limit errors (<a class="ext" title="Rate limits (R117) — Rate limits: how they work and how to handle hitting them." href="https://platform.claude.com/docs/en/api/rate-limits" target="_blank" rel="noopener noreferrer">R117</a>).</li>
       <li>Then switch to the async client (<a class="ext" title="Python SDK: sync and async clients (R116) — Python SDK: synchronous and asynchronous clients." href="https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python" target="_blank" rel="noopener noreferrer">R116</a>) and run three requests at the same time.</li>
-      <li>Note that the API streams over server-sent events, and read how a websocket differs (<a class="ext" title="WebSockets API (MDN, [S]) (R118) — MDN guide to the WebSockets API: persistent two-way connections between client and server." href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" target="_blank" rel="noopener noreferrer">R118</a>).</li>
+      <li>Note that the <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> streams over server-sent events, and read how a websocket differs (<a class="ext" title="WebSockets API (MDN, [S]) (R118) — MDN guide to the WebSockets API: persistent two-way connections between client and server." href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" target="_blank" rel="noopener noreferrer">R118</a>).</li>
       </ul>
       <p><strong>Learn · 60 min</strong></p>
       <ul>
-      <li><a class="ext" title="Building with the Claude API (R17) — Full course on building with the Claude API: 67 lessons, about 9 hours." href="https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api" target="_blank" rel="noopener noreferrer">R17</a>, section Accessing Claude with the API: requests, multi-turn, system prompts, temperature, streaming and structured data.</li>
+      <li><a class="ext" title="Building with the Claude API (R17) — Full course on building with the Claude API: 67 lessons, about 9 hours." href="https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api" target="_blank" rel="noopener noreferrer">R17</a>, section Accessing Claude with the <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>: requests, multi-turn, system prompts, temperature, streaming and structured data.</li>
       </ul>
       <p><strong>Reference</strong></p>
       <ul>
-      <li><a class="ext" title="API errors (R40) — API error types and what each one means." href="https://platform.claude.com/docs/en/api/errors" target="_blank" rel="noopener noreferrer">R40</a> API errors.</li>
+      <li><a class="ext" title="API errors (R40) — API error types and what each one means." href="https://platform.claude.com/docs/en/api/errors" target="_blank" rel="noopener noreferrer">R40</a> <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> errors.</li>
       <li><a class="ext" title="Streaming (R25) — Streaming responses as they are generated, and how to handle the events." href="https://platform.claude.com/docs/en/build-with-claude/streaming" target="_blank" rel="noopener noreferrer">R25</a> Streaming, the event-types section.</li>
-      <li><a class="ext" title="Python SDK: sync and async clients (R116) — Python SDK: synchronous and asynchronous clients." href="https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python" target="_blank" rel="noopener noreferrer">R116</a> Python SDK, sync and async clients.</li>
+      <li><a class="ext" title="Python SDK: sync and async clients (R116) — Python SDK: synchronous and asynchronous clients." href="https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python" target="_blank" rel="noopener noreferrer">R116</a> Python <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr>, sync and async clients.</li>
       <li><a class="ext" title="Rate limits (R117) — Rate limits: how they work and how to handle hitting them." href="https://platform.claude.com/docs/en/api/rate-limits" target="_blank" rel="noopener noreferrer">R117</a> Rate limits.</li>
       <li><a class="ext" title="WebSockets API (MDN, [S]) (R118) — MDN guide to the WebSockets API: persistent two-way connections between client and server." href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" target="_blank" rel="noopener noreferrer">R118</a> WebSockets, for the comparison only.</li>
       </ul>
       <p><strong>Drill</strong></p>
       <ul>
-      <li>One question on which HTTP errors to retry.</li>
+      <li>One question on which <abbr title="Hypertext Transfer Protocol: the request and response protocol of the web.">HTTP</abbr> errors to retry.</li>
       <li>One on what streaming changes for the user and what it does not change for cost.</li>
-      <li>One on SDK versus raw REST, or sync versus async calls.</li>
+      <li>One on <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr> versus raw <abbr title="Representational State Transfer: an HTTP API style built around resources.">REST</abbr>, or sync versus async calls.</li>
       </ul>
       <p><strong>Done when</strong></p>
       <ul>
       <li>[ ] D8: <code>errors.py</code> shows each forced error caught by type, with retry only on retryable errors.</li>
       </ul>
       <h2 id="day-9-vision-and-documents">Day 9 · Vision and documents</h2>
-      <p>Thursday 22 October · Dev D2 API mechanics, application design (8.6%)</p>
+      <p>Thursday 22 October · Dev D2 <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> mechanics, application design (8.6%)</p>
       <p><strong>Goal.</strong> Send non-text input correctly.</p>
       <p><strong>Build · 45 min</strong></p>
       <ul>
-      <li>Send an image by base64 and by URL.</li>
+      <li>Send an image by base64 and by <abbr title="Uniform Resource Locator: a web address.">URL</abbr>.</li>
       <li>Ask for a structured description.</li>
-      <li>Send a short PDF as a document block and ask for a table from it.</li>
+      <li>Send a short <abbr title="Portable Document Format: a fixed-layout document file. Here, the bill image.">PDF</abbr> as a document block and ask for a table from it.</li>
       <li>Measure the token cost of each input.</li>
       </ul>
       <p><strong>Learn · 75 min</strong></p>
       <ul>
-      <li><a class="ext" title="Building with the Claude API (R17) — Full course on building with the Claude API: 67 lessons, about 9 hours." href="https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api" target="_blank" rel="noopener noreferrer">R17</a>, section Features of Claude: Image support, PDF support, Citations, and Code execution and the Files API.</li>
+      <li><a class="ext" title="Building with the Claude API (R17) — Full course on building with the Claude API: 67 lessons, about 9 hours." href="https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api" target="_blank" rel="noopener noreferrer">R17</a>, section Features of Claude: Image support, <abbr title="Portable Document Format: a fixed-layout document file. Here, the bill image.">PDF</abbr> support, Citations, and Code execution and the Files <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>.</li>
       <li>Then <a class="ext" title="AI capabilities and limitations (R98) — Course on why the model behaves as it does: prediction, knowledge, working memory, steerability and context limits." href="https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations" target="_blank" rel="noopener noreferrer">R98</a>, the Working Memory section and its exercise.</li>
       </ul>
       <p><strong>Reference</strong></p>
@@ -455,7 +455,7 @@
       </ul>
       <p><strong>Done when</strong></p>
       <ul>
-      <li>[ ] D9: Image and PDF inputs both return correct structured output, with token cost recorded.</li>
+      <li>[ ] D9: Image and <abbr title="Portable Document Format: a fixed-layout document file. Here, the bill image.">PDF</abbr> inputs both return correct structured output, with token cost recorded.</li>
       </ul>
       <h2 id="day-10-prompt-caching-and-the-cost-model">Day 10 · Prompt caching and the cost model</h2>
       <p>Friday 23 October · Dev D5 cost and token management (2.8%)</p>
@@ -489,7 +489,7 @@
       <li>[ ] D10: A cost-model sheet showing cached versus uncached cost for one realistic workload.</li>
       </ul>
       <h2 id="day-11-batches-and-the-first-mini-mock">Day 11 · Batches and the first mini-mock</h2>
-      <p>Saturday 24 October · long day, 2 hours · Dev D2 API mechanics, batch versus realtime</p>
+      <p>Saturday 24 October · long day, 2 hours · Dev D2 <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> mechanics, batch versus realtime</p>
       <p><strong>Goal.</strong> Know when batch beats realtime, and run my first timed drill.</p>
       <p><strong>Build · 60 min</strong></p>
       <ul>
@@ -524,7 +524,7 @@
       <li>In <code>CertLab/02_Prompts/</code>, build a support-ticket classifier with five categories.</li>
       <li>Write 20 labeled test tickets, including 5 ambiguous ones.</li>
       <li>Score version 1 of the prompt.</li>
-      <li>Then change one thing at a time: clear instructions, XML tags around the ticket, a system-prompt role, and 3 examples that target the ambiguous cases.</li>
+      <li>Then change one thing at a time: clear instructions, <abbr title="Extensible Markup Language: a tagged text format for data.">XML</abbr> tags around the ticket, a system-prompt role, and 3 examples that target the ambiguous cases.</li>
       <li>Score each version.</li>
       </ul>
       <p><strong>Learn · 75 min</strong></p>
@@ -556,7 +556,7 @@
       <p><strong>Goal.</strong> Get output my code can trust.</p>
       <p><strong>Build · 45 min</strong></p>
       <ul>
-      <li>Make the classifier return JSON: category, confidence, and a short reason.</li>
+      <li>Make the classifier return <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr>: category, confidence, and a short reason.</li>
       <li>First try with instructions only, and count parse failures over 20 runs.</li>
       <li>Then use structured outputs or strict tool use (<a class="ext" title="Structured outputs (R34) — Structured outputs: constrain responses to a JSON schema." href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs" target="_blank" rel="noopener noreferrer">R34</a>, <a class="ext" title="Strict tool use (R47) — Strict tool use: make tool inputs match your schema." href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use" target="_blank" rel="noopener noreferrer">R47</a>).</li>
       <li>Validate with Pydantic.</li>
@@ -578,7 +578,7 @@
       </ul>
       <p><strong>Drill</strong></p>
       <ul>
-      <li>One question on schema-guaranteed output versus instruction-only JSON.</li>
+      <li>One question on schema-guaranteed output versus instruction-only <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr>.</li>
       <li>One on what validation cannot catch.</li>
       <li>One on a confident but wrong answer.</li>
       </ul>
@@ -647,13 +647,13 @@
       <ul>
       <li><a class="ext" title="Writing effective tools for agents (R78) — Anthropic&#x27;s guidance on designing tools that agents use well." href="https://www.anthropic.com/engineering/writing-tools-for-agents" target="_blank" rel="noopener noreferrer">R78</a> Writing effective tools for agents.</li>
       <li><a class="ext" title="Parallel tool use (R46) — Parallel tool use: several tool calls in one response." href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use" target="_blank" rel="noopener noreferrer">R46</a> Parallel tool use.</li>
-      <li><a class="ext" title="Extend Claude Code: when to use each feature (R119) — How to choose between CLAUDE.md, skills, subagents, hooks, MCP and plugins in Claude Code." href="https://code.claude.com/docs/en/features-overview" target="_blank" rel="noopener noreferrer">R119</a> Extend Claude Code, the comparison of Skills, subagents, hooks, MCP and plugins.</li>
+      <li><a class="ext" title="Extend Claude Code: when to use each feature (R119) — How to choose between CLAUDE.md, skills, subagents, hooks, MCP and plugins in Claude Code." href="https://code.claude.com/docs/en/features-overview" target="_blank" rel="noopener noreferrer">R119</a> Extend Claude Code, the comparison of Skills, subagents, hooks, <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> and plugins.</li>
       </ul>
       <p><strong>Drill</strong></p>
       <ul>
       <li>One question on forcing a tool.</li>
       <li>One on fixing tool confusion.</li>
-      <li>One on splitting versus merging two tools, or on built-in tool versus custom tool versus Skill versus MCP server.</li>
+      <li>One on splitting versus merging two tools, or on built-in tool versus custom tool versus Skill versus <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server.</li>
       </ul>
       <p><strong>Done when</strong></p>
       <ul>
@@ -692,12 +692,12 @@
       <ul>
       <li>[ ] D17: The refund pauses for approval, and <code>notes.md</code> compares the two designs.</li>
       </ul>
-      <h2 id="day-18-the-agent-sdk-and-a-blocking-hook">Day 18 · The Agent SDK and a blocking hook</h2>
+      <h2 id="day-18-the-agent-sdk-and-a-blocking-hook">Day 18 · The Agent <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr> and a blocking hook</h2>
       <p>Saturday 31 October · long day, 2 hours · Dev D1 agent construction (5.3%), D7 hooks (1.0%)</p>
-      <p><strong>Goal.</strong> Rebuild the agent on the Agent SDK and enforce a rule in code.</p>
+      <p><strong>Goal.</strong> Rebuild the agent on the Agent <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr> and enforce a rule in code.</p>
       <p><strong>Build · 75 min</strong></p>
       <ul>
-      <li>Follow <a class="ext" title="Quickstart (R56) — Agent SDK quickstart: your first working agent." href="https://code.claude.com/docs/en/agent-sdk/quickstart" target="_blank" rel="noopener noreferrer">R56</a> to set up the Agent SDK.</li>
+      <li>Follow <a class="ext" title="Quickstart (R56) — Agent SDK quickstart: your first working agent." href="https://code.claude.com/docs/en/agent-sdk/quickstart" target="_blank" rel="noopener noreferrer">R56</a> to set up the Agent <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr>.</li>
       <li>Rebuild the Day 15 agent with custom tools (<a class="ext" title="Custom tools (R58) — Custom tools in the Agent SDK: define your own and expose them to the agent." href="https://code.claude.com/docs/en/agent-sdk/custom-tools" target="_blank" rel="noopener noreferrer">R58</a>).</li>
       <li>Add a PreToolUse hook (<a class="ext" title="Hooks (R59) — Hooks in the Agent SDK: run your own code at set points in the agent loop." href="https://code.claude.com/docs/en/agent-sdk/hooks" target="_blank" rel="noopener noreferrer">R59</a>) that blocks any refund above a limit and returns a reason.</li>
       <li>Add one subagent (<a class="ext" title="Subagents (R60) — Subagents in the Agent SDK: delegate work to agents with their own context." href="https://code.claude.com/docs/en/agent-sdk/subagents" target="_blank" rel="noopener noreferrer">R60</a>) that only drafts the customer reply.</li>
@@ -710,12 +710,12 @@
       </ul>
       <p><strong>Learn · 40 min, or on Day 19</strong></p>
       <ul>
-      <li><a class="ext" title="Claude Platform 101 (R101) — Course from the first API call to the agent loop, tool use, thinking, skills, MCP, context and managed agents." href="https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101" target="_blank" rel="noopener noreferrer">R101</a>, the sections Extending your Agent and Managed Agents: built-in tools, Skills, MCP, context management and managed agents.</li>
+      <li><a class="ext" title="Claude Platform 101 (R101) — Course from the first API call to the agent loop, tool use, thinking, skills, MCP, context and managed agents." href="https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101" target="_blank" rel="noopener noreferrer">R101</a>, the sections Extending your Agent and Managed Agents: built-in tools, Skills, <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr>, context management and managed agents.</li>
       <li><a class="ext" title="What is Claude Managed Agents? (R112) — Four-minute tutorial introducing Claude Managed Agents." href="https://academy.claude.com/tutorials/what-is-claude-managed-agents" target="_blank" rel="noopener noreferrer">R112</a> tutorial, 4 minutes.</li>
       </ul>
       <p><strong>Also</strong></p>
       <ul>
-      <li><a class="ext" title="Claude Agent SDK, full workshop, Thariq Shihipar (AI Engineer Code 2025) (R87) — Workshop on the Claude Agent SDK, 1 h 52 min. The plan uses the first 45 minutes." href="https://www.youtube.com/watch?v=TqC1qOfiVcQ" target="_blank" rel="noopener noreferrer">R87</a> Agent SDK workshop, the first 45 minutes.</li>
+      <li><a class="ext" title="Claude Agent SDK, full workshop, Thariq Shihipar (AI Engineer Code 2025) (R87) — Workshop on the Claude Agent SDK, 1 h 52 min. The plan uses the first 45 minutes." href="https://www.youtube.com/watch?v=TqC1qOfiVcQ" target="_blank" rel="noopener noreferrer">R87</a> Agent <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr> workshop, the first 45 minutes.</li>
       </ul>
       <p><strong>Reference</strong></p>
       <ul>
@@ -776,17 +776,17 @@
       <ul>
       <li>[ ] D20: Token use per turn, before and after each fix, in <code>notes.md</code>.</li>
       </ul>
-      <h2 id="day-21-build-an-mcp-server">Day 21 · Build an MCP server</h2>
-      <p>Tuesday 3 November · Dev D8 MCP server development (2.1%)</p>
+      <h2 id="day-21-build-an-mcp-server">Day 21 · Build an <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server</h2>
+      <p>Tuesday 3 November · Dev D8 <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server development (2.1%)</p>
       <p><strong>Goal.</strong> Expose a capability once and use it from more than one client.</p>
       <p><strong>Build · 45 min</strong></p>
       <ul>
-      <li>In <code>CertLab/04_MCP/</code>, build a Python MCP server (<a class="ext" title="Build an MCP server (R76) — Tutorial: build an MCP server." href="https://modelcontextprotocol.io/docs/develop/build-server" target="_blank" rel="noopener noreferrer">R76</a>) with two tools (<code>lookup_order</code>, <code>get_policy</code>), one resource (the refund policy text), and one prompt (a reply template).</li>
+      <li>In <code>CertLab/04_MCP/</code>, build a Python <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server (<a class="ext" title="Build an MCP server (R76) — Tutorial: build an MCP server." href="https://modelcontextprotocol.io/docs/develop/build-server" target="_blank" rel="noopener noreferrer">R76</a>) with two tools (<code>lookup_order</code>, <code>get_policy</code>), one resource (the refund policy text), and one prompt (a reply template).</li>
       <li>Run it over stdio.</li>
       <li>Connect it to Claude Code with a project-scoped <code>.mcp.json</code> (<a class="ext" title="MCP in Claude Code (R70) — Connecting MCP servers to Claude Code." href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener noreferrer">R70</a>).</li>
       <li>Put the credential in an environment variable, not in the file.</li>
       <li>Call each primitive from Claude Code.</li>
-      <li>Then run the same server over Streamable HTTP and note what changes (<a class="ext" title="MCP transports (specification) (R125) — MCP transports specification: how clients and servers communicate (stdio and HTTP)." href="https://modelcontextprotocol.io/specification/latest/basic/transports" target="_blank" rel="noopener noreferrer">R125</a>).</li>
+      <li>Then run the same server over Streamable <abbr title="Hypertext Transfer Protocol: the request and response protocol of the web.">HTTP</abbr> and note what changes (<a class="ext" title="MCP transports (specification) (R125) — MCP transports specification: how clients and servers communicate (stdio and HTTP)." href="https://modelcontextprotocol.io/specification/latest/basic/transports" target="_blank" rel="noopener noreferrer">R125</a>).</li>
       </ul>
       <p><strong>Learn · 105 min</strong></p>
       <ul>
@@ -796,15 +796,15 @@
       </ul>
       <p><strong>Also</strong></p>
       <ul>
-      <li><a class="ext" title="Model Context Protocol: Advanced Topics (R20) — Follow-on MCP course on advanced topics, including transports." href="https://anthropic-partners.skilljar.com/model-context-protocol-advanced-topics" target="_blank" rel="noopener noreferrer">R20</a> MCP Advanced Topics, the transport lessons.</li>
-      <li><a class="ext" title="Building Agents with MCP, full workshop, Mahesh Murag (AI Engineer Summit 2025) (R88) — Workshop on building agents with MCP, 1 h 44 min. The plan uses the first hour." href="https://www.youtube.com/watch?v=kQmXtrmQ5Zg" target="_blank" rel="noopener noreferrer">R88</a> MCP workshop, the first hour, or <a class="ext" title="MCP: Build Rich-Context AI Apps with Anthropic (DeepLearning.AI) (R94) — DeepLearning.AI short course on MCP, made with Anthropic. About 1 h 38 min." href="https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic" target="_blank" rel="noopener noreferrer">R94</a>.</li>
+      <li><a class="ext" title="Model Context Protocol: Advanced Topics (R20) — Follow-on MCP course on advanced topics, including transports." href="https://anthropic-partners.skilljar.com/model-context-protocol-advanced-topics" target="_blank" rel="noopener noreferrer">R20</a> <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> Advanced Topics, the transport lessons.</li>
+      <li><a class="ext" title="Building Agents with MCP, full workshop, Mahesh Murag (AI Engineer Summit 2025) (R88) — Workshop on building agents with MCP, 1 h 44 min. The plan uses the first hour." href="https://www.youtube.com/watch?v=kQmXtrmQ5Zg" target="_blank" rel="noopener noreferrer">R88</a> <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> workshop, the first hour, or <a class="ext" title="MCP: Build Rich-Context AI Apps with Anthropic (DeepLearning.AI) (R94) — DeepLearning.AI short course on MCP, made with Anthropic. About 1 h 38 min." href="https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic" target="_blank" rel="noopener noreferrer">R94</a>.</li>
       </ul>
       <p><strong>Reference</strong></p>
       <ul>
-      <li><a class="ext" title="Build an MCP server (R76) — Tutorial: build an MCP server." href="https://modelcontextprotocol.io/docs/develop/build-server" target="_blank" rel="noopener noreferrer">R76</a> Build an MCP server.</li>
+      <li><a class="ext" title="Build an MCP server (R76) — Tutorial: build an MCP server." href="https://modelcontextprotocol.io/docs/develop/build-server" target="_blank" rel="noopener noreferrer">R76</a> Build an <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server.</li>
       <li><a class="ext" title="MCP introduction (R75) — Introduction to the Model Context Protocol: what it is and why it exists." href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank" rel="noopener noreferrer">R75</a> for the three primitives.</li>
-      <li><a class="ext" title="MCP in Claude Code (R70) — Connecting MCP servers to Claude Code." href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener noreferrer">R70</a> MCP in Claude Code.</li>
-      <li><a class="ext" title="MCP transports (specification) (R125) — MCP transports specification: how clients and servers communicate (stdio and HTTP)." href="https://modelcontextprotocol.io/specification/latest/basic/transports" target="_blank" rel="noopener noreferrer">R125</a> MCP transports.</li>
+      <li><a class="ext" title="MCP in Claude Code (R70) — Connecting MCP servers to Claude Code." href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener noreferrer">R70</a> <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> in Claude Code.</li>
+      <li><a class="ext" title="MCP transports (specification) (R125) — MCP transports specification: how clients and servers communicate (stdio and HTTP)." href="https://modelcontextprotocol.io/specification/latest/basic/transports" target="_blank" rel="noopener noreferrer">R125</a> <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> transports.</li>
       </ul>
       <p><strong>Drill</strong></p>
       <ul>
@@ -830,9 +830,9 @@
       <li>Package the Skill and the subagent as a plugin and install it from the local folder (<a class="ext" title="Create a plugin (R130) — How to create a Claude Code plugin." href="https://code.claude.com/docs/en/plugins/create" target="_blank" rel="noopener noreferrer">R130</a>, <a class="ext" title="Plugin components (R131) — Plugin components: what a plugin can contain." href="https://code.claude.com/docs/en/plugins/components" target="_blank" rel="noopener noreferrer">R131</a>).</li>
       <li>Try three permission modes, including auto mode (<a class="ext" title="Permission modes, including auto mode (R128) — Permission modes in Claude Code, including auto mode." href="https://code.claude.com/docs/en/permission-modes" target="_blank" rel="noopener noreferrer">R128</a>).</li>
       <li>Name a session, then resume it, and note when to use <code>/clear</code> versus <code>/compact</code> (<a class="ext" title="Manage sessions (R127) — Managing Claude Code sessions: resume, continue and clear." href="https://code.claude.com/docs/en/sessions" target="_blank" rel="noopener noreferrer">R127</a>).</li>
-      <li>Run Claude Code headless with <code>claude -p</code>, first with JSON output, then with stream-json (<a class="ext" title="Headless mode (R71) — Headless mode: run Claude Code from scripts and CI without the interactive interface." href="https://code.claude.com/docs/en/headless" target="_blank" rel="noopener noreferrer">R71</a>).</li>
+      <li>Run Claude Code headless with <code>claude -p</code>, first with <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> output, then with stream-json (<a class="ext" title="Headless mode (R71) — Headless mode: run Claude Code from scripts and CI without the interactive interface." href="https://code.claude.com/docs/en/headless" target="_blank" rel="noopener noreferrer">R71</a>).</li>
       </ul>
-      <p>Then fill in two tables in <code>notes.md</code>. First, the four extension types: built-in tool, custom tool, Skill, MCP server. One row each: what it is for, and one example need. Second, where instructions live on each interface: claude.ai project instructions, the Desktop app, Claude Code (CLAUDE.md and rules), the API system prompt, and the Agent SDK (<a class="ext" title="Platforms and integrations (R126) — Where and how you can run Claude Code." href="https://code.claude.com/docs/en/platforms" target="_blank" rel="noopener noreferrer">R126</a>).</p>
+      <p>Then fill in two tables in <code>notes.md</code>. First, the four extension types: built-in tool, custom tool, Skill, <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server. One row each: what it is for, and one example need. Second, where instructions live on each interface: claude.ai project instructions, the Desktop app, Claude Code (CLAUDE.md and rules), the <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> system prompt, and the Agent <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr> (<a class="ext" title="Platforms and integrations (R126) — Where and how you can run Claude Code." href="https://code.claude.com/docs/en/platforms" target="_blank" rel="noopener noreferrer">R126</a>).</p>
       <p><strong>Learn · 135 min, two sittings</strong></p>
       <ul>
       <li><a class="ext" title="Module 3 · Claude Code, MCP &amp; Integration (R105) — Exam prep course, module 3: Claude Code, MCP and integration (142 minutes)." href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration" target="_blank" rel="noopener noreferrer">R105</a>, last third.</li>
@@ -866,7 +866,7 @@
       </ul>
       <p><strong>Done when</strong></p>
       <ul>
-      <li>[ ] D22: The four-row customization table, and a headless run that returns JSON.</li>
+      <li>[ ] D22: The four-row customization table, and a headless run that returns <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr>.</li>
       <li>[ ] D22: The plugin installs from a local folder, and both tables are in <code>notes.md</code>.</li>
       </ul>
       <h2 id="day-23-security">Day 23 · Security</h2>
@@ -879,9 +879,9 @@
       <li>Run it and record what happens.</li>
       <li>Fix it with layers: mark fetched content as untrusted data in the prompt, keep <code>issue_refund</code> behind the hook and the human checkpoint, and give the note-reading subagent no refund tool.</li>
       <li>Run again.</li>
-      <li>Add a step that redacts personal data (names, emails, order IDs tied to a person) before anything is logged.</li>
+      <li>Add a step that redacts personal data (names, emails, order <abbr title="Identifiers: values that name one record or thing each.">IDs</abbr> tied to a person) before anything is logged.</li>
       <li>Check that no key appears in logs or in the repo history.</li>
-      <li>Then open the <code>CertLab</code> workspace from Day 2 (<a class="ext" title="Workspaces (R132) — Workspaces: separate keys, spend limits and access inside one organization." href="https://platform.claude.com/docs/en/manage-claude/workspaces" target="_blank" rel="noopener noreferrer">R132</a>), and look at the <code>CertLabDev</code> key's usage in the Usage and Cost API or the Console (<a class="ext" title="Usage and Cost API (R133) — Usage and Cost API: query token usage and spend programmatically." href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api" target="_blank" rel="noopener noreferrer">R133</a>).</li>
+      <li>Then open the <code>CertLab</code> workspace from Day 2 (<a class="ext" title="Workspaces (R132) — Workspaces: separate keys, spend limits and access inside one organization." href="https://platform.claude.com/docs/en/manage-claude/workspaces" target="_blank" rel="noopener noreferrer">R132</a>), and look at the <code>CertLabDev</code> key's usage in the Usage and Cost <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> or the Console (<a class="ext" title="Usage and Cost API (R133) — Usage and Cost API: query token usage and spend programmatically." href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api" target="_blank" rel="noopener noreferrer">R133</a>).</li>
       </ul>
       <p><strong>Learn · 105 min</strong></p>
       <ul>
@@ -892,15 +892,15 @@
       <li><a class="ext" title="Mitigate jailbreaks (R51) — Techniques to make jailbreaks less likely to succeed." href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks" target="_blank" rel="noopener noreferrer">R51</a> Mitigate jailbreaks.</li>
       <li><a class="ext" title="Security (R73) — Claude Code security: how it protects your machine and what to check." href="https://code.claude.com/docs/en/security" target="_blank" rel="noopener noreferrer">R73</a> Claude Code security.</li>
       <li><a class="ext" title="Workspaces (R132) — Workspaces: separate keys, spend limits and access inside one organization." href="https://platform.claude.com/docs/en/manage-claude/workspaces" target="_blank" rel="noopener noreferrer">R132</a> Workspaces.</li>
-      <li><a class="ext" title="Usage and Cost API (R133) — Usage and Cost API: query token usage and spend programmatically." href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api" target="_blank" rel="noopener noreferrer">R133</a> Usage and Cost API.</li>
-      <li><a class="ext" title="API and data retention (R134) — API and data retention: how long Anthropic keeps your data." href="https://platform.claude.com/docs/en/manage-claude/api-and-data-retention" target="_blank" rel="noopener noreferrer">R134</a> API and data retention.</li>
-      <li><a class="ext" title="OWASP Top 10 for LLM applications ([S]) (R135) — OWASP&#x27;s top ten risks for LLM applications, including prompt injection and sensitive data disclosure." href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener noreferrer">R135</a> OWASP Top 10 for LLM applications.</li>
+      <li><a class="ext" title="Usage and Cost API (R133) — Usage and Cost API: query token usage and spend programmatically." href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api" target="_blank" rel="noopener noreferrer">R133</a> Usage and Cost <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>.</li>
+      <li><a class="ext" title="API and data retention (R134) — API and data retention: how long Anthropic keeps your data." href="https://platform.claude.com/docs/en/manage-claude/api-and-data-retention" target="_blank" rel="noopener noreferrer">R134</a> <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> and data retention.</li>
+      <li><a class="ext" title="OWASP Top 10 for LLM applications ([S]) (R135) — OWASP&#x27;s top ten risks for LLM applications, including prompt injection and sensitive data disclosure." href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener noreferrer">R135</a> <abbr title="Open Worldwide Application Security Project: a nonprofit that publishes security guidance such as the Top 10.">OWASP</abbr> Top 10 for <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> applications.</li>
       </ul>
       <p><strong>Drill</strong></p>
       <ul>
       <li>One question on the most effective injection control.</li>
       <li>One on least privilege for tools.</li>
-      <li>One on where API keys live in development and in production, and how to see who used one.</li>
+      <li>One on where <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> keys live in development and in production, and how to see who used one.</li>
       </ul>
       <p><strong>Done when</strong></p>
       <ul>
@@ -928,8 +928,8 @@
       <ul>
       <li><a class="ext" title="Demystifying evals for AI agents (R80) — Anthropic&#x27;s guide to building evaluations for AI agents." href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer">R80</a> Demystifying evals, the grader types section.</li>
       <li><a class="ext" title="Define success and develop tests (R49) — Define success criteria and build tests before tuning a prompt." href="https://platform.claude.com/docs/en/test-and-evaluate/develop-tests" target="_blank" rel="noopener noreferrer">R49</a> Define success and develop tests.</li>
-      <li><a class="ext" title="Model IDs and versioning (R115) — How model IDs and versions work, and why to pin them." href="https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions" target="_blank" rel="noopener noreferrer">R115</a> Model IDs and versioning.</li>
-      <li><a class="ext" title="OpenTelemetry for the Claude API (R136) — OpenTelemetry for the Claude API: export traces and metrics for analysis." href="https://platform.claude.com/docs/en/manage-claude/opentelemetry" target="_blank" rel="noopener noreferrer">R136</a> OpenTelemetry for the Claude API.</li>
+      <li><a class="ext" title="Model IDs and versioning (R115) — How model IDs and versions work, and why to pin them." href="https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions" target="_blank" rel="noopener noreferrer">R115</a> Model <abbr title="Identifiers: values that name one record or thing each.">IDs</abbr> and versioning.</li>
+      <li><a class="ext" title="OpenTelemetry for the Claude API (R136) — OpenTelemetry for the Claude API: export traces and metrics for analysis." href="https://platform.claude.com/docs/en/manage-claude/opentelemetry" target="_blank" rel="noopener noreferrer">R136</a> OpenTelemetry for the Claude <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>.</li>
       </ul>
       <p><strong>Drill</strong></p>
       <ul>
@@ -969,12 +969,12 @@
       <li>Spend 20 minutes on the weakest domain from Day 25: redo the build step that covers it.</li>
       <li>Spend 25 minutes on software engineering in a Claude workflow: on a new branch, refactor the Day 15 agent loop into a module with one test, run <code>/code-review</code> on the branch (<a class="ext" title="Review locally with /code-review (R137) — Reviewing code locally with the /code-review command." href="https://code.claude.com/docs/en/code-review-local" target="_blank" rel="noopener noreferrer">R137</a>), fix what it finds and commit.</li>
       <li>Read how Claude reviews pull requests in GitHub Actions (<a class="ext" title="Claude Code GitHub Actions (R138) — Running Claude Code in GitHub Actions." href="https://code.claude.com/docs/en/github-actions" target="_blank" rel="noopener noreferrer">R138</a>).</li>
-      <li>Spend 15 minutes on third-party access: read how Claude is called through a cloud platform (<a class="ext" title="Claude on Vertex AI (R41) — Using Claude through Google Cloud&#x27;s Vertex AI." href="https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai" target="_blank" rel="noopener noreferrer">R41</a>) and write three lines on what changes (authentication, model IDs, feature parity).</li>
+      <li>Spend 15 minutes on third-party access: read how Claude is called through a cloud platform (<a class="ext" title="Claude on Vertex AI (R41) — Using Claude through Google Cloud&#x27;s Vertex AI." href="https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai" target="_blank" rel="noopener noreferrer">R41</a>) and write three lines on what changes (authentication, model <abbr title="Identifiers: values that name one record or thing each.">IDs</abbr>, feature parity).</li>
       </ul>
       <p><strong>Learn · 120 min</strong></p>
       <ul>
       <li><a class="ext" title="Claude Code in Action (R18) — Course on longer Claude Code sessions: steering, verification, permission modes, hooks, headless runs and GitHub Actions." href="https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-in-action" target="_blank" rel="noopener noreferrer">R18</a> Claude Code in Action, 1 hour: verification, permission modes, headless runs, GitHub Actions, code review and plugins.</li>
-      <li>Then <a class="ext" title="The AI-native SDLC playbook (R108) — Course on the AI-native software development life cycle, about 1 hour of reading." href="https://academy.claude.com/courses/ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">R108</a> The AI-native SDLC playbook, 1 hour: requirements, life cycle and review in a team that uses Claude.</li>
+      <li>Then <a class="ext" title="The AI-native SDLC playbook (R108) — Course on the AI-native software development life cycle, about 1 hour of reading." href="https://academy.claude.com/courses/ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">R108</a> The AI-native <abbr title="Software Development Life Cycle: plan, build, test, release, operate.">SDLC</abbr> playbook, 1 hour: requirements, life cycle and review in a team that uses Claude.</li>
       <li>Then skim <a class="ext" title="Developer Foundations exam guide (PDF, v1.0, July 2026) (R1) — Official blueprint: the eight domains, skill weights and sample questions for the Developer Foundations exam." href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf" target="_blank" rel="noopener noreferrer">R1</a> domain 2 skill lines on requirements, life cycle and software engineering.</li>
       <li>For each, write one sentence on how I already do it at work.</li>
       <li>These lines test general practice, not Claude features.</li>
@@ -982,12 +982,12 @@
       <p><strong>Also</strong></p>
       <ul>
       <li><a class="ext" title="Module 5 · Accelerators &amp; IP Contribution (R107) — Exam prep course, module 5: accelerators and IP contribution (155 minutes). Optional." href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution" target="_blank" rel="noopener noreferrer">R107</a>, the section on choosing where a workload runs.</li>
-      <li><a class="ext" title="AI Fluency for builders (R99) — Course on the judgement calls a builder makes: delegation, description, discernment and diligence." href="https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders" target="_blank" rel="noopener noreferrer">R99</a> AI Fluency for builders, the lessons on acceptance tests and discernment.</li>
+      <li><a class="ext" title="AI Fluency for builders (R99) — Course on the judgement calls a builder makes: delegation, description, discernment and diligence." href="https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders" target="_blank" rel="noopener noreferrer">R99</a> <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> Fluency for builders, the lessons on acceptance tests and discernment.</li>
       <li>Take the rest of <a class="ext" title="AI Fluency for builders (R99) — Course on the judgement calls a builder makes: delegation, description, discernment and diligence." href="https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders" target="_blank" rel="noopener noreferrer">R99</a> after the exam.</li>
       </ul>
       <p><strong>Reference</strong></p>
       <ul>
-      <li><a class="ext" title="Claude on Vertex AI (R41) — Using Claude through Google Cloud&#x27;s Vertex AI." href="https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai" target="_blank" rel="noopener noreferrer">R41</a> Claude on Vertex AI.</li>
+      <li><a class="ext" title="Claude on Vertex AI (R41) — Using Claude through Google Cloud&#x27;s Vertex AI." href="https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai" target="_blank" rel="noopener noreferrer">R41</a> Claude on Vertex <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr>.</li>
       <li><a class="ext" title="Review locally with /code-review (R137) — Reviewing code locally with the /code-review command." href="https://code.claude.com/docs/en/code-review-local" target="_blank" rel="noopener noreferrer">R137</a> Local code review.</li>
       <li><a class="ext" title="Claude Code GitHub Actions (R138) — Running Claude Code in GitHub Actions." href="https://code.claude.com/docs/en/github-actions" target="_blank" rel="noopener noreferrer">R138</a> Claude Code GitHub Actions.</li>
       </ul>

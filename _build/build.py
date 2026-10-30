@@ -27,6 +27,14 @@ Usage:
     python _build/build.py aigov        build one site
     python _build/build.py --landing    landing page only
     python _build/build.py --check      report what would change, write nothing
+    python _build/build.py --acronyms   audit every learning site for acronyms without a tooltip
+    python _build/build.py --acronyms-fix   wrap acronyms in hand-written (static) learning pages
+
+Acronym rule: on learning sites (learn/), every acronym occurrence gets an
+<abbr title="Expansion: one-line description."> tooltip. Generated pages are
+wrapped at build time from _build/glossary.json, plus an optional
+<site>/_glossary.json. Each site's tooltip script turns the titles into
+hover and tap tooltips.
 """
 import json
 import re
@@ -198,6 +206,128 @@ def md_to_html(path, new_tab=False, tips=None):
     return html
 
 
+# ---------------------------------------------------------------- acronyms
+
+ABBR_SKIP = {"code", "pre", "svg", "nav", "summary", "h1", "figcaption", "button",
+             "script", "style", "title", "head", "abbr", "header", "textarea", "select"}
+ABBR_VOID = {"br", "input", "meta", "link", "img", "hr", "line", "rect", "path",
+             "circle", "wbr", "polyline", "polygon", "ellipse", "source"}
+# A capitalised token: two or more capitals, an optional ampersand pair (P&L),
+# digits allowed, an optional plural s. Mixed-case product names (DynamoDB) do
+# not match, because they have lower-case letters inside.
+ACRO_TOKEN = re.compile(r"(?<![\w&;#.\-])([A-Z][A-Z0-9]*&amp;[A-Z]+|[A-Z][A-Z0-9]+s?)(?![\w\-])")
+
+
+def load_glossary(site_dir=None):
+    """Global glossary, overlaid with the site's own _glossary.json if present."""
+    import html as H
+    terms, ignore = {}, set()
+    for path in [HERE / "glossary.json"] + ([site_dir / "_glossary.json"] if site_dir else []):
+        if path.exists():
+            data = json.loads(path.read_text(encoding="utf-8"))
+            terms.update(data.get("terms", {}))
+            ignore.update(data.get("_ignore", []))
+    # keys as they appear in HTML text (L&D is written L&amp;D)
+    return {H.escape(k, quote=False): v for k, v in terms.items()}, ignore
+
+
+def _abbr_split(html):
+    """Yield (is_tag, chunk, inside_skip) over the body of a page."""
+    stack = []
+    for tok in re.split(r"(<!--.*?-->|<[^>]+>)", html, flags=re.S):
+        if tok.startswith("<"):
+            m = re.match(r"<\s*(/?)\s*([a-zA-Z0-9]+)", tok)
+            if m and not tok.startswith("<!"):
+                close, name = m.group(1), m.group(2).lower()
+                if close:
+                    if name in ABBR_SKIP:
+                        while stack and stack.pop() != name:
+                            pass
+                elif name in ABBR_SKIP and name not in ABBR_VOID and not tok.endswith("/>"):
+                    stack.append(name)
+            yield True, tok, bool(stack)
+        else:
+            yield False, tok, bool(stack)
+
+
+def wrap_acronyms(page, terms, ignore, own_first=True):
+    """Wrap every glossary acronym in text outside the skip tags.
+    Returns (new_page, missing) where missing counts capitalised tokens that
+    have no glossary entry and are not on the ignore list."""
+    import html as H
+    import collections
+    i = page.find("<body")
+    if i < 0:
+        return page, collections.Counter()
+    head_part, body = page[:i], page[i:]
+    if own_first:   # a hand-written page keeps its own wording for a term
+        own = {}
+        for m in re.finditer(r'<abbr title="([^"]*)">([^<]*)</abbr>', body):
+            own.setdefault(m.group(2), H.unescape(m.group(1)))
+        terms = {**terms, **own}
+    keys = sorted(terms, key=len, reverse=True)
+    pat = re.compile(r"(?<![\w&;#.\-])(" + "|".join(re.escape(k) for k in keys) + r")(?![\w\-])") if keys else None
+    missing = collections.Counter()
+    out = []
+    for is_tag, chunk, skip in _abbr_split(body):
+        if is_tag or skip or not chunk.strip():
+            out.append(chunk)
+            continue
+        if pat:
+            chunk = pat.sub(lambda m: '<abbr title="%s">%s</abbr>' % (
+                H.escape(terms[m.group(1)], quote=True), m.group(1)), chunk)
+        for piece in re.split(r"<abbr[^>]*>[^<]*</abbr>", chunk):
+            for m in ACRO_TOKEN.finditer(piece):
+                w = H.unescape(m.group(1))
+                # one capital plus digits (Q1, R17, D2) is a label, not an acronym
+                if w not in ignore and sum(c.isupper() for c in w) >= 2:
+                    missing[w] += 1
+        out.append(chunk)
+    return head_part + "".join(out), missing
+
+
+def is_learning(cfg):
+    return cfg["_path"].split("/")[0] == "learn"
+
+
+def report_missing(label, missing):
+    if missing:
+        print(f"  ACRONYMS without a glossary entry in {label}: "
+              + ", ".join(f"{k} ({v})" for k, v in missing.most_common())
+              + "\n    Add them to _build/glossary.json (or _ignore if they are not acronyms).")
+
+
+def acronyms_mode(sites, fix):
+    """Audit (and with fix, wrap) every HTML page of every learning site.
+    Generated pages are only audited here; the normal build wraps them."""
+    import collections
+    total = 0
+    for cfg in sites:
+        if not is_learning(cfg):
+            continue
+        site = cfg["_dir"]
+        terms, ignore = load_glossary(site)
+        generated = {p["out"] for p in cfg.get("pages", [])} | ({"index.html"} if cfg.get("index_template") else set())
+        for page in sorted(site.glob("*.html")):
+            if page.name.startswith("_"):
+                continue
+            text = page.read_text(encoding="utf-8")
+            new, missing = wrap_acronyms(text, terms, ignore)
+            unwrapped = len(re.findall(r"<abbr ", new)) - len(re.findall(r"<abbr ", text))
+            rel = page.relative_to(REPO).as_posix()
+            kind = "generated" if page.name in generated else "static"
+            print(f"  {rel:45} {kind:9} wrappable now: {unwrapped:4}   no entry: {sum(missing.values())}")
+            report_missing(rel, missing)
+            total += unwrapped + sum(missing.values())
+            if fix and kind == "static" and unwrapped:
+                write(page, new)
+    print()
+    print("All acronyms have tooltips." if total == 0 else
+          f"{total} acronym occurrence(s) need attention. "
+          + ("Static pages were wrapped; run the normal build for generated ones." if fix else
+             "Run --acronyms-fix for static pages and a normal build for generated ones."))
+
+
 CHANGED = []
 CHECK_ONLY = False
 
@@ -249,17 +379,28 @@ def build_site(cfg):
     print(f"[{cfg['_path']}]")
     footer = cfg.get("footer", "")
     tips = load_link_tips(site, cfg["link_tips"]) if cfg.get("link_tips") else None
+    import collections
+    learning = is_learning(cfg)
+    terms, ignore = load_glossary(site) if learning else ({}, set())
+    missing_all = collections.Counter()
+
+    def acro(html):
+        if not learning:
+            return html
+        html, missing = wrap_acronyms(html, terms, ignore, own_first=False)
+        missing_all.update(missing)
+        return html
 
     for p in pages:
         src = site / p["src"]
         if not src.exists():
             sys.exit(f"  Missing source: {src}")
         body = "\n".join("      " + line for line in md_to_html(src, cfg.get("external_links_new_tab", False), tips).split("\n"))
-        write(site / p["out"], DOCPAGE.format(
+        write(site / p["out"], acro(DOCPAGE.format(
             head=head(p["title"], p["desc"], glyph=cfg.get("glyph", "AI"),
                       noindex=cfg.get("noindex", False)),
             nav=nav(cfg, p["out"]),
-            docid=p["id"], body=body, md=p["src"], footer=footer))
+            docid=p["id"], body=body, md=p["src"], footer=footer)))
 
     tpl_name = cfg.get("index_template")
     if tpl_name:
@@ -273,7 +414,8 @@ def build_site(cfg):
         out = out.replace("{{NAV}}", nav(cfg, "index.html"))
         out = out.replace("{{FOOTER}}", footer)
         out = out.replace("{{EVIDENCE}}", cfg.get("evidence_date", ""))
-        write(site / "index.html", out)
+        write(site / "index.html", acro(out))
+    report_missing(cfg["_path"], missing_all)
 
 
 def load_projects():
@@ -337,6 +479,11 @@ def main():
     CHECK_ONLY = "--check" in args
     args = [a for a in args if not a.startswith("--")]
     landing_only = "--landing" in sys.argv[1:]
+    if "--acronyms" in sys.argv[1:] or "--acronyms-fix" in sys.argv[1:]:
+        CHECK_ONLY = CHECK_ONLY and "--acronyms-fix" not in sys.argv[1:]
+        print("Acronym audit" + (" and fix (static pages)" if "--acronyms-fix" in sys.argv[1:] else "") + "\n")
+        acronyms_mode(load_sites(), "--acronyms-fix" in sys.argv[1:])
+        return
 
     sites = load_sites()
     if not sites:

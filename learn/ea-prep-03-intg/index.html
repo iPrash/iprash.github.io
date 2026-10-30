@@ -191,13 +191,13 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
     <p><b>Triage (30 min).</b> Do the <a href="#check">self-check</a>. Each miss points to a card. Mark the cards you already know as done.</p>
   </div></div>
   <div class="session"><span class="snum">S1</span><div>
-    <p><b>Method I: frame the review (2 h).</b> Cards <a href="#a-scope">scope</a>, <a href="#a-method"><abbr title="Architecture Tradeoff Analysis Method: the SEI method to evaluate an architecture against quality goals.">ATAM</abbr></a>, <a href="#a-c4">C4</a> and <a href="#a-evidence">evidence</a>. Then the <a href="#t-2wk">first-two-weeks plan</a>. Answer <a href="#q1">Q1</a>–<a href="#q3">Q3</a>.</p>
+    <p><b>Method I: frame the review (2 h).</b> Cards <a href="#a-scope">scope</a>, <a href="#a-method"><abbr title="Architecture Tradeoff Analysis Method: the SEI method to evaluate an architecture against quality goals.">ATAM</abbr></a>, <a href="#a-c4"><abbr title="C4 model: Context, Containers, Components and Code diagrams, by Simon Brown.">C4</abbr></a> and <a href="#a-evidence">evidence</a>. Then the <a href="#t-2wk">first-two-weeks plan</a>. Answer <a href="#q1">Q1</a>–<a href="#q3">Q3</a>.</p>
     <p class="meta">Highest weight. Practise Q1 until you can say it in two minutes without notes.</p>
   </div></div>
   <div class="session"><span class="snum">S2</span><div>
     <p><b>Method II: findings to read-out (2 h).</b> Cards <a href="#a-perf">performance baseline</a>, <a href="#a-validate">validate findings</a>, <a href="#a-risk">risk</a>, <a href="#a-recs">recommendations</a> and <a href="#a-readout">read-out</a>. Then the templates: <a href="#t-report">report</a>, <a href="#t-matrix">matrix</a>, <a href="#t-risk">risk register</a>, <a href="#t-3060">30-60 plan</a>. Answer <a href="#q4">Q4</a>–<a href="#q6">Q6</a>.</p>
   </div></div>
-  <div class="session"><span class="snum">S3</span><div>
+  <div class="session"><span class="snum"><abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></span><div>
     <p><b>Quote-to-cash integration risks (1.5 h).</b> The nine <a href="#integ">integration cards</a>. Answer <a href="#q7">Q7</a>–<a href="#q9">Q9</a>.</p>
     <p class="meta">You know most of this from your Customer-360 work. Read for the Dynamics-specific rows.</p>
   </div></div>
@@ -218,7 +218,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <div class="tbl"><table>
   <tr><th>Day</th><th>Sessions</th><th>Hours</th></tr>
   <tr><td>1</td><td>S0, S1</td><td>2.5</td></tr>
-  <tr><td>2</td><td>S2, S3</td><td>3.5</td></tr>
+  <tr><td>2</td><td>S2, <abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></td><td>3.5</td></tr>
   <tr><td>3</td><td>S4</td><td>2.5</td></tr>
   <tr><td>4</td><td>S5, S6</td><td>3</td></tr>
   <tr><td>5 or interview eve</td><td>S7, cheat sheet</td><td>1.5</td></tr>
@@ -239,7 +239,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <details class="qa"><summary>3. 400,000 sales order lines a night into Finance and Operations. OData or something else?</summary><div class="ans"><p>Something else. Microsoft's guidance is to use the batch data <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> (recurring integrations or the data management package <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>) above a few hundred thousand records. <abbr title="Open Data Protocol: a REST-based standard for querying and updating data over HTTP.">OData</abbr> suits real-time, low-volume calls. Card <a href="#pl-fo">Finance and Operations</a>.</p></div></details>
 <details class="qa"><summary>4. What happens when a dual-write transaction runs longer than 2 minutes?</summary><div class="ans"><p>It is rolled back on both sides. The timer covers Finance and Operations logic, the Dataverse write and any plug-ins on that table. Card <a href="#pl-dw">dual-write</a>.</p></div></details>
 <details class="qa"><summary>5. Name the six parts of a quality-attribute scenario.</summary><div class="ans"><p>Source, stimulus, artefact, environment, response, response measure. Card <a href="#a-method"><abbr title="Architecture Tradeoff Analysis Method: the SEI method to evaluate an architecture against quality goals.">ATAM</abbr></a>.</p></div></details>
-<details class="qa"><summary>6. Which two C4 levels do you draw for a current-state review?</summary><div class="ans"><p>System context and containers. Add one dynamic view of the quote-to-order flow, with volumes and sync or async marked on each arrow. Card <a href="#a-c4">C4</a>.</p></div></details>
+<details class="qa"><summary>6. Which two C4 levels do you draw for a current-state review?</summary><div class="ans"><p>System context and containers. Add one dynamic view of the quote-to-order flow, with volumes and sync or async marked on each arrow. Card <a href="#a-c4"><abbr title="C4 model: Context, Containers, Components and Code diagrams, by Simon Brown.">C4</abbr></a>.</p></div></details>
 <details class="qa"><summary>7. Five systems in a synchronous chain, each 99.9% available. What is the chain's availability?</summary><div class="ans"><p>About 99.5%. Availability multiplies along a synchronous chain: 0.999 to the power 5. Latency adds. Card <a href="#i-sync">chained calls</a>.</p></div></details>
 <details class="qa"><summary>8. Three layers each try a failed call 3 times. How many calls reach the last system?</summary><div class="ans"><p>Up to 27 for one user action. That is a retry storm. Retry at one layer only, with backoff, jitter and a retry budget. Card <a href="#i-retry">retries</a>.</p></div></details>
 <details class="qa"><summary>9. How do you stop a retried "create order" from making two orders?</summary><div class="ans"><p>An idempotency key, such as quote number plus revision, checked by the receiver. In Dataverse use an alternate key with upsert. In MuleSoft use the Idempotent Message Validator with an object store. Card <a href="#i-idem">idempotency</a>.</p></div></details>
@@ -384,7 +384,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <li>Unclear record ownership is a common root cause of duplicates and sync loops. Ask "who is the master for price?" early.</li>
 </ul></div>
 <div class="box say"><b class="lbl">Say this</b>"I draw the current state in <abbr title="C4 model: Context, Containers, Components and Code diagrams, by Simon Brown.">C4</abbr>: context and containers, plus one dynamic view of quote to order. I build it from configuration and telemetry, then compare with the team's diagram. Every arrow carries sync or async, volume, timeout and retry settings."</div>
-<p class="src">Go deeper (free): <a href="https://c4model.com/" target="_blank" rel="noopener noreferrer">The C4 model</a>; <a href="https://c4model.com/diagrams/dynamic" target="_blank" rel="noopener noreferrer">C4 dynamic diagram</a>.<br>Sources: [P] c4model.com (Simon Brown). Checked 30 Oct 2026.</p>
+<p class="src">Go deeper (free): <a href="https://c4model.com/" target="_blank" rel="noopener noreferrer">The <abbr title="C4 model: Context, Containers, Components and Code diagrams, by Simon Brown.">C4</abbr> model</a>; <a href="https://c4model.com/diagrams/dynamic" target="_blank" rel="noopener noreferrer"><abbr title="C4 model: Context, Containers, Components and Code diagrams, by Simon Brown.">C4</abbr> dynamic diagram</a>.<br>Sources: [P] c4model.com (Simon Brown). Checked 30 Oct 2026.</p>
 </article>
 
 <article class="card" id="a-evidence">
@@ -981,7 +981,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <h4>Reading 2: one <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> product or an internal name</h4>
 <ul>
   <li>"<abbr title="In this role description, probably Unified Service Desk (a deprecated Dynamics agent desktop), or a name for the CPQ. See card C5.">USD</abbr>" may be the client's internal name for a <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr>, or a product abbreviation.</li>
-  <li>Then everything in <a href="#pl-cpq">C4 <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr></a> applies.</li>
+  <li>Then everything in <a href="#pl-cpq"><abbr title="C4 model: Context, Containers, Components and Code diagrams, by Simon Brown.">C4</abbr> <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr></a> applies.</li>
   <li>Ask: product, version, hosting, who supports it, and how it connects to <abbr title="Customer Relationship Management: the system for accounts, opportunities, quotes and service cases.">CRM</abbr> and the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>.</li>
 </ul></div></div>
 <div class="box intent"><b class="lbl">If it is Unified Service Desk</b>It is an architecture risk in its own right. A deprecated desktop with hosted controls and phone integration needs a migration plan before 2028. It also adds client-side load: agents may have many <abbr title="Customer Relationship Management: the system for accounts, opportunities, quotes and service cases.">CRM</abbr> sessions open in one desktop. Put the migration in the risk register and the roadmap.</div>
@@ -1646,7 +1646,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <li><a href="https://learn.microsoft.com/en-us/power-platform/well-architected/" target="_blank" rel="noopener noreferrer">Power Platform Well-Architected</a>.</li>
   <li><a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/" target="_blank" rel="noopener noreferrer">Azure Architecture Center: cloud design patterns</a>: retry, circuit breaker, queue-based load levelling, saga.</li>
   <li><a href="https://docs.mulesoft.com/general/" target="_blank" rel="noopener noreferrer">MuleSoft documentation</a>.</li>
-  <li><a href="https://c4model.com/" target="_blank" rel="noopener noreferrer">The C4 model</a>.</li>
+  <li><a href="https://c4model.com/" target="_blank" rel="noopener noreferrer">The <abbr title="C4 model: Context, Containers, Components and Code diagrams, by Simon Brown.">C4</abbr> model</a>.</li>
 </ul>
 <p class="src">All free. Checked 30 Oct 2026.</p>
 </article>
@@ -1708,7 +1708,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <li>Dataverse: 6,000 requests · 20 min execution · 52 concurrent · per user per web server · 5 min</li>
   <li>Plug-in timeout 2 min · ExecuteMultiple 1,000</li>
   <li>Dual-write: 2 min · 1,000 records per transaction</li>
-  <li>D365 Enterprise user: 40,000 requests a day</li>
+  <li><abbr title="Dynamics 365: Microsoft’s suite of CRM and ERP business applications.">D365</abbr> Enterprise user: 40,000 requests a day</li>
   <li><abbr title="Finance and Operations: the shared platform under Dynamics 365 Finance and Supply Chain Management.">F&amp;O</abbr>: <abbr title="Open Data Protocol: a REST-based standard for querying and updating data over HTTP.">OData</abbr> for low volume; batch data <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> above a few hundred thousand records</li>
   <li>5 hops at 99.9% ≈ 99.5% · 3 layers × 3 retries = 27 calls</li>
   <li>Little's law: concurrency = throughput × latency</li>

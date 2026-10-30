@@ -31,6 +31,8 @@ Which files are generated, which are hand-written, and anything unusual about th
 
 Any conventions specific to this site: evidence grading, tone, structure, terminology.
 
+Acronyms: every occurrence has a tooltip (rule in PROJECT-INSTRUCTIONS.md). Note any site-specific terms kept in `_glossary.json`.
+
 ## Time-sensitive content
 
 Facts with a shelf life, and when they were last verified. Delete the section if not applicable.

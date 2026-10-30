@@ -114,3 +114,7 @@ without notice. Re-check the whole list roughly twice a year.
 - The roadmap reflects the job descriptions as of 14 September 2026. If they change materially,
   update the private copy in the claude.ai Project first, then re-check this site's structure
   against it.
+
+## Acronym tooltips
+
+Acronyms: wrapped at build time from `_build/glossary.json` plus `_glossary.json` (L1, L2). Tooltip script at the end of `assets/app.js`. Rule in PROJECT-INSTRUCTIONS.md.

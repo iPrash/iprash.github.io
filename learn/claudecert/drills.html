@@ -76,8 +76,8 @@
       
       <h2 id="d2-applications-and-integration">D2 · Applications and integration</h2>
       <p><strong>Q2.1</strong> A developer must process 5,000 support transcripts for a weekly report due in two days. Cost matters most. Which approach fits?<br />
-      A. Send all requests at once through the Messages API with high concurrency<br />
-      B. Use the Message Batches API and match results by <code>custom_id</code><br />
+      A. Send all requests at once through the Messages <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> with high concurrency<br />
+      B. Use the Message Batches <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> and match results by <code>custom_id</code><br />
       C. Stream every response to reduce cost<br />
       D. Lower <code>max_tokens</code> on each realtime request</p>
       <details><summary>Answer</summary>B. Batches are built for latency-tolerant volume at a lower price, and results are matched by `custom_id` because order is not guaranteed. A does not lower the per-token price. C changes delivery, not cost. D may truncate answers without solving the batch-versus-realtime question.</details>
@@ -96,14 +96,14 @@
       D. Removing the system prompt</p>
       <details><summary>Answer</summary>B. Pin the version, and treat a model change like any dependency upgrade: test it against acceptance criteria first. A is what caused the surprise. C and D are unrelated to the regression.</details>
       
-      <p><strong>Q2.4</strong> A service asks Claude for a JSON summary of a contract and feeds the text straight into <code>json.loads</code>. In testing, a few responses crash the parser with an error about unexpected end of data. The HTTP status is 200 on every call. Which check belongs in the code?<br />
-      A. Treat any HTTP 200 as a complete response and wrap the parser in a try/except that returns an empty summary<br />
+      <p><strong>Q2.4</strong> A service asks Claude for a <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> summary of a contract and feeds the text straight into <code>json.loads</code>. In testing, a few responses crash the parser with an error about unexpected end of data. The <abbr title="Hypertext Transfer Protocol: the request and response protocol of the web.">HTTP</abbr> status is 200 on every call. Which check belongs in the code?<br />
+      A. Treat any <abbr title="Hypertext Transfer Protocol: the request and response protocol of the web.">HTTP</abbr> 200 as a complete response and wrap the parser in a try/except that returns an empty summary<br />
       B. Read <code>stop_reason</code> before parsing. Treat <code>max_tokens</code> as a truncated response, and retry with a higher limit or report an error instead of parsing<br />
-      C. Add a stop sequence of <code>}</code> so the JSON always ends cleanly<br />
+      C. Add a stop sequence of <code>}</code> so the <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> always ends cleanly<br />
       D. Switch the system prompt to say "never stop early"</p>
-      <details><summary>Answer</summary>B. `stop_reason` says why generation ended: `end_turn` (finished by itself), `max_tokens` (hit the limit and was cut off), `stop_sequence` (matched one of your sequences), `tool_use` (Claude wants a tool run), `pause_turn` (a server-tool loop paused), `refusal` (Claude declined) and `model_context_window_exceeded` (the context window filled). A cut-off JSON document is the classic `max_tokens` case. A hides the problem and returns wrong data. C stops generation at the first `}`, which would cut nested JSON in the middle. D cannot raise a token limit that the request sets.</details>
+      <details><summary>Answer</summary>B. `stop_reason` says why generation ended: `end_turn` (finished by itself), `max_tokens` (hit the limit and was cut off), `stop_sequence` (matched one of your sequences), `tool_use` (Claude wants a tool run), `pause_turn` (a server-tool loop paused), `refusal` (Claude declined) and `model_context_window_exceeded` (the context window filled). A cut-off <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> document is the classic `max_tokens` case. A hides the problem and returns wrong data. C stops generation at the first `}`, which would cut nested <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> in the middle. D cannot raise a token limit that the request sets.</details>
       
-      <p><strong>Q2.5</strong> A developer moves a chat prompt to the Messages API. The prompt starts "You are a support agent for Acme. Never discuss pricing." It must apply to the whole conversation. Where does it go?<br />
+      <p><strong>Q2.5</strong> A developer moves a chat prompt to the Messages <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>. The prompt starts "You are a support agent for Acme. Never discuss pricing." It must apply to the whole conversation. Where does it go?<br />
       A. In the top-level <code>system</code> parameter of the request, separate from the <code>messages</code> list<br />
       B. As the first entry in <code>messages</code>, with <code>role</code> set to <code>"system"</code><br />
       C. In the first user message, prefixed with "SYSTEM:"<br />
@@ -118,19 +118,19 @@
       D. The system prompt of each developer's chat app</p>
       <details><summary>Answer</summary>B. The project file is shared through version control, so everyone gets it. A and C are personal and not shared. D is unrelated to Claude Code.</details>
       
-      <p><strong>Q3.2</strong> A CI job must run Claude Code without a person present and pass the result to the next pipeline step. Which feature fits?<br />
+      <p><strong>Q3.2</strong> A <abbr title="Continuous Integration: every change is merged often and built and tested automatically.">CI</abbr> job must run Claude Code without a person present and pass the result to the next pipeline step. Which feature fits?<br />
       A. Interactive mode with plan mode on<br />
-      B. Headless mode with <code>-p</code> and JSON output<br />
+      B. Headless mode with <code>-p</code> and <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> output<br />
       C. A custom slash command typed by the release manager<br />
-      D. A user-scoped MCP server</p>
-      <details><summary>Answer</summary>B. Headless mode runs non-interactively, and JSON output gives the next step something it can parse. A and C need a person. D adds a capability but does not make the run non-interactive.</details>
+      D. A user-scoped <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server</p>
+      <details><summary>Answer</summary>B. Headless mode runs non-interactively, and <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> output gives the next step something it can parse. A and C need a person. D adds a capability but does not make the run non-interactive.</details>
       
       <p><strong>Q3.3</strong> A developer wants personal permission settings that should not affect teammates. Which file should hold them?<br />
       A. <code>.claude/settings.json</code><br />
       B. <code>.claude/settings.local.json</code><br />
       C. The project CLAUDE.md<br />
       D. <code>.mcp.json</code></p>
-      <details><summary>Answer</summary>B. The local settings file is for personal settings and is not meant to be committed. A is the shared team file. C holds instructions, not permission settings. D configures MCP servers.</details>
+      <details><summary>Answer</summary>B. The local settings file is for personal settings and is not meant to be committed. A is the shared team file. C holds instructions, not permission settings. D configures <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> servers.</details>
       
       <h2 id="d4-eval-testing-and-debugging">D4 · Eval, testing and debugging</h2>
       <p><strong>Q4.1</strong> An extraction feature returns empty values for one field. The model's raw response contains the value. Where is the fault most likely?<br />
@@ -140,11 +140,11 @@
       D. The temperature is too high</p>
       <details><summary>Answer</summary>B. If the raw output is correct and the stored result is wrong, the fault is after the model. Trace analysis means checking each layer's input and output to find where the value is lost. A, C and D blame the model for a value it produced.</details>
       
-      <p><strong>Q4.2</strong> A service receives intermittent overloaded and rate-limit errors from the API. Which recovery strategy fits?<br />
+      <p><strong>Q4.2</strong> A service receives intermittent overloaded and rate-limit errors from the <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>. Which recovery strategy fits?<br />
       A. Fail the user request immediately on every error<br />
       B. Retry with exponential backoff for these error types, and do not retry invalid-request errors<br />
       C. Retry every error type forever<br />
-      D. Switch to a different API key on each failure</p>
+      D. Switch to a different <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> key on each failure</p>
       <details><summary>Answer</summary>B. Overload and rate-limit errors are transient, so backoff helps. An invalid request will fail the same way every time, so a retry only wastes calls. A is too brittle. C can loop forever. D may breach usage terms and does not fix overload.</details>
       
       <p><strong>Q4.3</strong> A team grades a summarizer on "is the tone appropriate for a customer". Which grading method fits best for this criterion?<br />
@@ -170,9 +170,9 @@
       <details><summary>Answer</summary>B. A repeated, stable prefix is exactly what caching is for. A breaks caching, because the varying part must come after the stable part. C has no effect on cost. D multiplies requests.</details>
       
       <p><strong>Q5.3</strong> The same prompt, sent twice, gives two different but valid answers. What explains this?<br />
-      A. A bug in the SDK<br />
+      A. A bug in the <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr><br />
       B. Sampling: the model picks each next token from a probability distribution, so outputs can vary<br />
-      C. The API key changed<br />
+      C. The <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> key changed<br />
       D. The context window was exceeded</p>
       <details><summary>Answer</summary>B. Generation is non-deterministic by design. Where consistency matters, constrain the output (structure, examples) and test for it. A, C and D do not explain normal variation.</details>
       
@@ -191,18 +191,18 @@
       D. Ask the model to be more careful</p>
       <details><summary>Answer</summary>A. Examples teach most where the model is uncertain, and the reasoning helps it generalize. B spends tokens where it already succeeds. C is unrelated. D gives no new information.</details>
       
-      <p><strong>Q6.2</strong> An agent runs for 40 turns. Each tool call returns a large JSON payload, and late answers start to ignore early instructions. What is the best first fix?<br />
+      <p><strong>Q6.2</strong> An agent runs for 40 turns. Each tool call returns a large <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> payload, and late answers start to ignore early instructions. What is the best first fix?<br />
       A. Move to a model with a larger context window and change nothing else<br />
       B. Trim tool results to the fields the task needs, and summarize or compact older turns<br />
       C. Repeat all instructions in every user message<br />
       D. Restart the conversation every 5 turns and lose the history</p>
       <details><summary>Answer</summary>B. Context bloat from verbose tool output is the cause. Remove what is not needed and compact the rest. A delays the problem. C adds more bloat. D throws away state the task needs.</details>
       
-      <p><strong>Q6.3</strong> Code needs a JSON object with fixed fields from every response. Instructions alone give occasional malformed output. What is the most reliable fix?<br />
-      A. Add "respond only in valid JSON" in capital letters<br />
-      B. Use structured outputs or strict tool use with a JSON schema, then validate in code<br />
+      <p><strong>Q6.3</strong> Code needs a <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> object with fixed fields from every response. Instructions alone give occasional malformed output. What is the most reliable fix?<br />
+      A. Add "respond only in valid <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr>" in capital letters<br />
+      B. Use structured outputs or strict tool use with a <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> schema, then validate in code<br />
       C. Parse with a regular expression and guess missing fields<br />
-      D. Ask for YAML instead</p>
+      D. Ask for <abbr title="YAML Ain’t Markup Language: a human-readable configuration format.">YAML</abbr> instead</p>
       <details><summary>Answer</summary>B. A schema-constrained feature removes syntax failures, and validation in code still catches wrong values. A is still a request, not a guarantee. C hides errors. D moves the problem to another format.</details>
       
       <h2 id="d7-security-and-safety">D7 · Security and safety</h2>
@@ -213,11 +213,11 @@
       D. A larger model</p>
       <details><summary>Answer</summary>B. Separate untrusted content from instructions, and apply least privilege so the dangerous action is not available, or needs approval. A is not an enforceable control. C is irrelevant. D does not remove the attack path.</details>
       
-      <p><strong>Q7.2</strong> Where should a production service keep its API key?<br />
+      <p><strong>Q7.2</strong> Where should a production service keep its <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> key?<br />
       A. In the system prompt<br />
       B. In the repository, in a config file<br />
       C. In a secrets manager or environment injected at runtime, with access limited to the service<br />
-      D. In the frontend code, so the browser can call the API directly</p>
+      D. In the frontend code, so the browser can call the <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> directly</p>
       <details><summary>Answer</summary>C. Secrets belong in a managed store with least-privilege access and rotation. A and D expose the key. B leaks it to everyone with repo access and into history.</details>
       
       <p><strong>Q7.3</strong> A coding agent may run shell commands. The team wants to stop destructive commands, such as deleting directories, before they run. What fits best?<br />
@@ -227,27 +227,27 @@
       D. Running the agent only at night</p>
       <details><summary>Answer</summary>A. A hook runs deterministically before the action and can block it. B is a request the model may not follow. C detects damage after it happens. D changes nothing about the risk.</details>
       
-      <h2 id="d8-tools-and-mcps">D8 · Tools and MCPs</h2>
+      <h2 id="d8-tools-and-mcps">D8 · Tools and <abbr title="Model Context Protocol servers: services that expose tools and data to AI applications.">MCPs</abbr></h2>
       <p><strong>Q8.1</strong> Three internal apps all need to query the same inventory service through Claude. The capability should be maintained once. Which approach fits?<br />
       A. Copy the tool definition and handler into each app<br />
-      B. Build an MCP server that exposes the inventory operations, and connect each app to it<br />
+      B. Build an <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server that exposes the inventory operations, and connect each app to it<br />
       C. Paste the inventory data into each prompt<br />
       D. Write a Skill that contains the inventory database</p>
-      <details><summary>Answer</summary>B. An MCP server packages the capability once for many clients. A creates three copies to maintain. C gives stale data and wastes context. D is for reusable instructions and procedures, not live system access.</details>
+      <details><summary>Answer</summary>B. An <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server packages the capability once for many clients. A creates three copies to maintain. C gives stale data and wastes context. D is for reusable instructions and procedures, not live system access.</details>
       
-      <p><strong>Q8.2</strong> In MCP, a server exposes a read-only product catalog that the client application loads as context. Which primitive fits the catalog?<br />
+      <p><strong>Q8.2</strong> In <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr>, a server exposes a read-only product catalog that the client application loads as context. Which primitive fits the catalog?<br />
       A. A tool<br />
       B. A resource<br />
       C. A prompt<br />
       D. A hook</p>
-      <details><summary>Answer</summary>B. Resources expose content and data. Tools perform actions the model chooses to invoke. Prompts are reusable templates, usually chosen by the user. Hooks are not an MCP primitive.</details>
+      <details><summary>Answer</summary>B. Resources expose content and data. Tools perform actions the model chooses to invoke. Prompts are reusable templates, usually chosen by the user. Hooks are not an <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> primitive.</details>
       
-      <p><strong>Q8.3</strong> A tool call fails because the order ID does not exist. How should the tool report this to the model?<br />
+      <p><strong>Q8.3</strong> A tool call fails because the order <abbr title="Identifier: a value that names one record or thing.">ID</abbr> does not exist. How should the tool report this to the model?<br />
       A. Raise an exception and end the agent loop<br />
       B. Return a tool result marked as an error, with a clear message the model can act on<br />
       C. Return an empty success result<br />
       D. Return a made-up order so the conversation continues</p>
-      <details><summary>Answer</summary>B. An error result lets the model explain the problem or ask for a correct ID. A ends the task for a recoverable error. C hides the failure. D creates false data.</details>
+      <details><summary>Answer</summary>B. An error result lets the model explain the problem or ask for a correct <abbr title="Identifier: a value that names one record or thing.">ID</abbr>. A ends the task for a recoverable error. C hides the failure. D creates false data.</details>
     </main>
   </div>
 </div>

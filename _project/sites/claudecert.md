@@ -95,3 +95,7 @@ Not on the site. Kept here so nothing is lost. Unpark only when Prash asks.
 | R16 | [Claude Code partner badge](https://anthropic-partners.skilljar.com/path/partner-badge-claude-code) | about 25 h | Not a certification. Useful after December |
 | R95 | [Claude Code: A Highly Agentic Coding Assistant (DeepLearning.AI)](https://www.deeplearning.ai/courses/claude-code-a-highly-agentic-coding-assistant) | [S] | About 2 h | Architect block. Taught by Anthropic's head of technical education. Free during the platform beta |
 | R96 | [Code w/ Claude 2026, San Francisco recordings](https://claude.com/code-with-claude/san-francisco) | [P] | 19 sessions | Newer features than the 2025 talks. Browse in the Architect and Professional blocks |
+
+## Acronym tooltips
+
+Acronyms: wrapped at build time from `_build/glossary.json`. Tooltip script at the end of `assets/app.js`. Rule in PROJECT-INSTRUCTIONS.md.

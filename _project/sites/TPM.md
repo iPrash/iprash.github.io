@@ -42,3 +42,7 @@ the landing page.
 - `index_old.html` was a pre-consolidation draft, superseded by the current
   `index.html` (53 insertions / 25 deletions newer). Removed Sept 2026,
   recoverable from git at c0eb9a6.
+
+## Acronym tooltips
+
+Acronyms: wrapped by hand with `build.py --acronyms-fix` (30 Oct 2026). Tooltip script inline before `</body>`. Rerun the fix after edits. Rule in PROJECT-INSTRUCTIONS.md.

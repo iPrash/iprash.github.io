@@ -1,0 +1,7 @@
+{
+ "_about": "aigov overrides for _build/glossary.json.",
+ "terms": {
+  "PIM": "Product Information Management: the system that holds product data for catalogues and sales channels.",
+  "ID": "Identifier: a value that names one record or thing; in Entra ID, an identity."
+ }
+}
