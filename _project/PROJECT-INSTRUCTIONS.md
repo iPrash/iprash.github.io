@@ -91,6 +91,8 @@ areas where prices, product names and regulatory dates go stale within months. E
 records when its evidence was last checked. When we touch a section containing a figure, say
 whether it needs re-verification rather than quietly leaving it.
 
+**Every acronym gets a tooltip, every time it appears.** On learning sites, wrap each occurrence, repeats included, in `<abbr title="Expansion: one-line description.">`. Wrap acronyms in body text, tables, table headers and link text. Leave text inside `<code>`, `<pre>`, `<svg>`, `<nav>`, `<summary>`, `<h1>`, `<figcaption>` and buttons unwrapped. Product names in mixed case (DynamoDB, PostgreSQL) and provenance tags (YOURS, EST, IF TRUE) are not acronyms. Before committing, run an audit for unwrapped capitalised tokens and fix any it finds.
+
 **Preserve evidence grading** where a site uses it — [P] primary, [S] credible secondary,
 [C] commentary. Do not upgrade a [C] claim to unmarked fact.
 

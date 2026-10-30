@@ -24,7 +24,7 @@ Prash has deep MuleSoft and integration experience and light Dynamics 365 experi
 
 **Everything here is hand-written.** Edit `index.html` directly.
 
-The page was assembled in Claude's cloud workspace from section fragments, with a script that copied the ea-prep-02-aws shell (CSS, JS) and wrapped acronyms in `<abbr title>` tags from a glossary. The script is not in the repo. Treat `index.html` as the source now. When adding content, wrap new acronyms by hand in the same form. Text inside `<code>`, `<pre>`, `<svg>`, `<nav>`, `<summary>`, `<h1>`, `<figcaption>`, `<th>`, links and buttons is deliberately left unwrapped.
+The page was assembled in Claude's cloud workspace from section fragments, with a script that copied the ea-prep-02-aws shell (CSS, JS) and wrapped acronyms in `<abbr title>` tags from a glossary. The script is not in the repo. Treat `index.html` as the source now. When adding content, wrap new acronyms by hand in the same form. Every occurrence is wrapped, including table headers and link text (fixed 30 Oct 2026). Text inside `<code>`, `<pre>`, `<svg>`, `<nav>`, `<summary>`, `<h1>`, `<figcaption>` and buttons is deliberately left unwrapped. See the acronym rule in PROJECT-INSTRUCTIONS.
 
 The `<meta name="robots" content="noindex,nofollow">` is hand-maintained. Put it back if the file is replaced.
 

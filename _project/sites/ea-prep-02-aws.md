@@ -24,7 +24,7 @@ Prash worked with AWS on earlier projects but has been away from it. The site re
 
 **Everything here is hand-written.** Edit `index.html` directly.
 
-The page was first assembled in Claude's cloud workspace from section fragments with a script that also wrapped acronyms in `<abbr title>` tags from a glossary. The script is not in the repo. Treat `index.html` as the source now. When adding content, wrap new acronyms by hand in the same form. Text inside `<code>`, `<pre>`, `<svg>`, `<nav>`, `<summary>`, `<h1>`, `<figcaption>` and buttons is deliberately left unwrapped.
+The page was first assembled in Claude's cloud workspace from section fragments with a script that also wrapped acronyms in `<abbr title>` tags from a glossary. The script is not in the repo. Treat `index.html` as the source now. When adding content, wrap new acronyms by hand in the same form. Text inside `<code>`, `<pre>`, `<svg>`, `<nav>`, `<summary>`, `<h1>`, `<figcaption>` and buttons is deliberately left unwrapped. On 30 Oct 2026, 76 missed occurrences were wrapped (GA, IDE, SQL, WAN, QLDB and others). See the acronym rule in PROJECT-INSTRUCTIONS.
 
 The `<meta name="robots" content="noindex,nofollow">` is hand-maintained. Put it back if the file is replaced.
 

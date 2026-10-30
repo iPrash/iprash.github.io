@@ -28,7 +28,7 @@ The `<meta name="robots" content="noindex,nofollow">` is hand-maintained. Put it
 
 Progress ticks use localStorage keys prefixed `ea1.`, keyed by each card's `id` (`t-*`, `q*`, `x-*`). Renaming an id resets that tick and breaks the in-page links.
 
-**Acronyms are wrapped in `<abbr title="Expansion: one-line definition.">`** (about 750 on the page, applied in Oct 2026). A small script at the end of `index.html` turns them into hover and tap tooltips. When adding content, wrap new acronyms the same way. Text inside `<code>`, `<svg>`, `<nav>` and buttons is deliberately left unwrapped. "Entra ID" is not wrapped (product name).
+**Acronyms are wrapped in `<abbr title="Expansion: one-line definition.">`** (about 850 on the page; 16 missed occurrences added 30 Oct 2026). A small script at the end of `index.html` turns them into hover and tap tooltips. When adding content, wrap new acronyms the same way. Text inside `<code>`, `<svg>`, `<nav>` and buttons is deliberately left unwrapped. "Entra ID" is not wrapped (product name).
 
 ## Content standards
 
