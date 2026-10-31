@@ -11,7 +11,7 @@ Short hand-off file. Read it at the start of a ClaudeCert study session. Update 
 ## State (28 Oct 2026)
 
 - Exam: Developer Foundations, Saturday 5 Dec 2026 (confirmed by Prash on 23 Oct). The site calendar still shows Tue 10 Nov. Do NOT change the dates on the site (they show the fastest pace; he is about a week behind and that is fine). He may move the exam earlier.
-- Done: Days 1 to 5 (Day 5 was rest; Prash also took extra rest days for an interview). `01_API/basics.py` committed (a3f73cc). Prash saw `max_tokens`, `end_turn`, `stop_sequence`, and that thinking tokens count against `max_tokens`. Day 4 drills added to the bank (Q2.4, Q2.5, Q5.4). Next is Day 6.
+- Done: Days 1 to 6 (Day 5 was rest; Prash also took extra rest days for an interview). Day 6 finished 30 Oct. `01_API/basics.py` committed (a3f73cc). Prash saw `max_tokens`, `end_turn`, `stop_sequence`, and that thinking tokens count against `max_tokens`. Day 4 drills added to the bank (Q2.4, Q2.5, Q5.4). Day 6 files: `01_API/tokens.py`, `variation.py`, `notes.md` (commit ddc6071 in CertLab). Day 6 drills added (Q4.4, Q5.5, Q6.4). Next is Day 7.
 - CertLab repo: `C:\Users\ipras\workspace\CertLab` (private, GitHub iPrash). Folder is connected when Prash grants it. Delete grant must be requested each session.
 - Focus skills from baseline: Claude API Mechanics, Agent Construction with Claude, Agent Patterns and Frameworks. Domains 7 and 8 are all rated 1 and come next.
 - Closed: Console "Last used" on `CertLabDev` showed 28 Oct 2026. Do not ask again.
@@ -30,6 +30,8 @@ Short hand-off file. Read it at the start of a ClaudeCert study session. Update 
 - Every course with a Partner Academy (Skilljar) copy links there so progress records for his organisation. Path courses use `/path/claude-developer/...`; R17, R20, R21, R22 use the catalog copy (R17 = `/claude-with-the-anthropic-api`). Only R108 and the tutorials R109 to R113 stay on Claude Academy (no partner copy; checked 28 Oct).
 - Day 4 lessons: `stop_reason` has seven documented values; `output_tokens` includes thinking (`output_tokens_details.thinking_tokens`); `max_tokens` caps thinking plus text; the matched stop sequence is in `msg.stop_sequence` and is not in the text.
 
+- Day 6 lessons: token counting is free and returns a number only; text costs about 2.8 characters per token on Haiku 5.5 (count with the exact model); image cost follows pixel size, not file size; identical requests vary in wording, so test facts, never exact strings; the context window holds input plus the reply (thinking included).
+
 ## Next
 
-- Day 6: tokens, context and sampling. Start with Recall (5 bank questions), then the Build. Run the Drill procedure at the end. Wait for his output after every command.
+- Day 7: model tiers, thinking and effort. Start with Recall (5 bank questions, include Q5.5 and Q4.4), then the Build. Run the Drill procedure at the end. Wait for his output after every command.

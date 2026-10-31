@@ -131,6 +131,14 @@ D. No grading, since tone is subjective
 
 <details><summary>Answer</summary>B. Tone is open-ended, so code checks miss it. A rubric-based model grader scales, and human spot checks keep it honest. A and C measure the wrong thing. D leaves the feature untested.</details>
 
+**Q4.4** A test asserts that the model's answer to "What is the currency of Thailand?" equals one stored string. The test passes on some runs and fails on others, and every answer is correct. What is the best fix?
+A. Re-run the failed tests until they pass
+B. Check the parts that matter, for example that the answer names the Thai baht, or grade with a model and a rubric, instead of matching the whole string
+C. Raise `max_tokens` so the answer is complete
+D. Remove the test, because model output cannot be tested
+
+<details><summary>Answer</summary>B. The fact is stable but the wording is not, because each token is sampled. Test the facts or the criteria, not the exact text. A hides a flaky test and teaches nothing. C is unrelated when the answers are already complete. D gives up on testing, and tests that check the right things work fine.</details>
+
 ## D5 · Model selection and optimization
 
 **Q5.1** A routing service must classify 2 million short messages a day into 6 categories with low latency. Accuracy on a test set is equal across the Haiku and Sonnet tiers. Which choice fits?
@@ -165,6 +173,14 @@ D. The system prompt is too long. Shorten it to free up output budget
 
 <details><summary>Answer</summary>B. `max_tokens` caps the output as a whole, and thinking is part of the output. The usage object reports the split in `output_tokens_details.thinking_tokens`. A is wrong about what is counted, and thinking length varies, so a retry might pass once and fail the next time. C would show `refusal` as the stop reason. D is wrong because the system prompt counts as input, and `max_tokens` limits output only. Note also that `max_tokens` is a ceiling and not a target: it does not make Claude write shorter answers, it only cuts the output off.</details>
 
+**Q5.5** A request has a 20,000-token system prompt, tool definitions, 30 earlier turns that include one large tool result, and an image. It sets `max_tokens` to 4,000 and enables thinking. What counts against the context window?
+A. Only the system prompt and the latest user message
+B. All the input (system prompt, tool definitions, earlier turns, tool results, the image) plus the tokens the model generates, thinking included
+C. Only the input, because output is counted separately and never limited by the window
+D. Everything except images and tool definitions, which are billed separately
+
+<details><summary>Answer</summary>B. The window holds the whole conversation: everything sent plus the reply. `max_tokens` is a ceiling on the reply, not content, but the reply still needs room in the window. See R32 for how the two limits interact. A leaves out most of the input. C is wrong because output fills the same window. D is wrong because images and tool definitions are input tokens.</details>
+
 ## D6 · Prompt and context engineering
 
 **Q6.1** A classifier often confuses "billing dispute" with "refund request". Which change is most likely to help?
@@ -190,6 +206,14 @@ C. Parse with a regular expression and guess missing fields
 D. Ask for YAML instead
 
 <details><summary>Answer</summary>B. A schema-constrained feature removes syntax failures, and validation in code still catches wrong values. A is still a request, not a guarantee. C hides errors. D moves the problem to another format.</details>
+
+**Q6.4** A summarizer prompt describes a house report layout in a paragraph of rules, but outputs keep drifting from the layout. Which change fits best?
+A. Add two complete example outputs in the exact layout, and keep the rules short
+B. Repeat the rules in capital letters
+C. Raise `max_tokens`
+D. Move to a larger model and leave the prompt unchanged
+
+<details><summary>Answer</summary>A. Few-shot examples show a format better than rules describe it. Each example adds input tokens to every request, so use as few as work. B repeats the same words without adding information. C does not change the format. D may help a little, but it costs more and does not fix the cause.</details>
 
 ## D7 · Security and safety
 
