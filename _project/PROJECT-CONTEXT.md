@@ -12,7 +12,7 @@
 |---|---|
 | Repo | github.com/iPrash/iprash.github.io |
 | Live | https://iprash.github.io/ |
-| Local | `C:\Users\ipras\OneDrive\Documents\Claude\iprash.github.io` |
+| Local | `C:\Users\ipras\workspace\iprash.github.io` |
 | Branch | `main` |
 | Pages source | Deploy from a branch → main → / (root) |
 | Jekyll | Disabled via `.nojekyll` |
@@ -148,7 +148,7 @@ to rewrite, so a clean run on untouched content should report almost everything 
 ## 5. Publish
 
 ```powershell
-cd C:\Users\ipras\OneDrive\Documents\Claude\iprash.github.io
+cd C:\Users\ipras\workspace\iprash.github.io
 python _build\build.py
 git add -A
 git commit -m "..."

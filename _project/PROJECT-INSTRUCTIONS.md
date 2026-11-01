@@ -126,7 +126,6 @@ When I claim to understand something, test it with a question rather than agreei
 ## Environment
 
 - Windows, PowerShell. Use `curl.exe`, not `curl` — bare `curl` is an alias for `Invoke-WebRequest`.
-- Repo path is in `PROJECT-CONTEXT.md`. It sits under OneDrive; sync can interfere with `.git`.
 - Python and Node available. Stack familiarity: Next.js, Tailwind, FastAPI, PostgreSQL, Railway, Vercel.
 
 ## Gotchas — do not relearn these

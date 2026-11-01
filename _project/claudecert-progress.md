@@ -5,7 +5,7 @@ Short hand-off file. Read it at the start of a ClaudeCert study session. Update 
 ## Start of a session
 
 1. Read `_project/README-FIRST.md`, this file, then the Day block Prash names in `learn/claudecert/developer.md` (or `start.md` for Days 1 to 3).
-2. Ask for folder access if not connected: the site repo (`C:\Users\ipras\OneDrive\Documents\Claude\iprash.github.io`) and CertLab (`C:\Users\ipras\workspace\CertLab`). Test deletes (`touch _rmtest; rm _rmtest`) before any commit; request the delete grant if it fails.
+2. Ask for folder access if not connected: the site repo (`C:\Users\ipras\workspace\iprash.github.io`) and CertLab (`C:\Users\ipras\workspace\CertLab`). Test deletes (`touch _rmtest; rm _rmtest`) before any commit; request the delete grant if it fails.
 3. Before editing a hand-written file (TPM, ea-prep-01), check `git log -3 -- <file>` to see whether another chat changed it.
 
 ## State (28 Oct 2026)

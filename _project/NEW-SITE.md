@@ -39,7 +39,7 @@ more than a couple of thousand words and will be edited over time. `aigov` is th
 ## 2. Create the folder
 
 ```powershell
-cd C:\Users\ipras\OneDrive\Documents\Claude\iprash.github.io
+C:\Users\ipras\workspace\iprash.github.io
 mkdir <slug>              # a project
 mkdir learn\<slug>        # a learning site
 ```
