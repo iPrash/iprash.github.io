@@ -3,7 +3,7 @@
 
 This block prepares the Claude Certified Developer, Foundations exam: 53 items, 120 minutes, pass at 720 of 1,000. The blueprint is in [R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf), section 6. Read it before Day 4.
 
-Each day has the same shape: a goal, a build, a Learn step from an Anthropic course, reference docs, the topics for 3 drill questions, and a done-when checkbox. Every action bullet has its own checkbox, so I can see where I stopped. Ticks are saved in this browser only. Also lists optional Anthropic material for a weak area. Domain tags show the blueprint weight, so I can see where the points are.
+Each day has the same shape: a goal, a build, a Learn step from an Anthropic course, reference docs, the topics for 3 drill questions, and a done-when checkbox. Every action and reference bullet has its own checkbox, so I can see where I stopped. Ticks are saved in this browser only. Also lists optional Anthropic material for a weak area. Domain tags show the blueprint weight, so I can see where the points are.
 
 **Drill.** Claude asks me each question with no options. I answer cold, with no docs. Claude marks my answer and corrects it. Only after that does Claude add the multiple-choice version to Drills.
 
@@ -113,7 +113,7 @@ Saturday 17 October · long day, 2 hours · Dev D2 API mechanics, D5 LLM fundame
 
 **Reference**
 
-- [R24](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) Messages API.
+- [ ] D4: Reference: [R24](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) Messages API.
 
 **Drill**
 
@@ -154,9 +154,9 @@ Monday 19 October · Dev D5 LLM fundamentals (5.2%)
 
 **Reference**
 
-- [R32](https://platform.claude.com/docs/en/build-with-claude/context-windows) Context windows.
-- [R29](https://platform.claude.com/docs/en/build-with-claude/token-counting) Token counting.
-- The first part of [R39](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices), the sections on being clear and on examples.
+- [ ] D6: Reference: [R32](https://platform.claude.com/docs/en/build-with-claude/context-windows) Context windows.
+- [ ] D6: Reference: [R29](https://platform.claude.com/docs/en/build-with-claude/token-counting) Token counting.
+- [ ] D6: Reference: The first part of [R39](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices), the sections on being clear and on examples.
 
 **Drill**
 
@@ -193,12 +193,12 @@ Tuesday 20 October · Dev D5 model selection (2.7%), LLM fundamentals
 
 **Reference**
 
-- [R36](https://platform.claude.com/docs/en/about-claude/models/choosing-a-model) Choosing a model.
-- [R37](https://platform.claude.com/docs/en/about-claude/model-deprecations) Model deprecations: note what changes when a model version is retired.
-- [R30](https://platform.claude.com/docs/en/build-with-claude/thinking) Thinking, including which models support adaptive thinking.
-- [R31](https://platform.claude.com/docs/en/build-with-claude/effort) Effort.
-- [R114](https://platform.claude.com/docs/en/build-with-claude/fast-mode) Fast mode.
-- [R115](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions) Model IDs and versioning.
+- [ ] D7: Reference: [R36](https://platform.claude.com/docs/en/about-claude/models/choosing-a-model) Choosing a model.
+- [ ] D7: Reference: [R37](https://platform.claude.com/docs/en/about-claude/model-deprecations) Model deprecations: note what changes when a model version is retired.
+- [ ] D7: Reference: [R30](https://platform.claude.com/docs/en/build-with-claude/thinking) Thinking, including which models support adaptive thinking.
+- [ ] D7: Reference: [R31](https://platform.claude.com/docs/en/build-with-claude/effort) Effort.
+- [ ] D7: Reference: [R114](https://platform.claude.com/docs/en/build-with-claude/fast-mode) Fast mode.
+- [ ] D7: Reference: [R115](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions) Model IDs and versioning.
 
 **Drill**
 
@@ -236,11 +236,11 @@ Wednesday 21 October · Dev D2 API mechanics, D4 debugging, D5 technical fundame
 
 **Reference**
 
-- [R40](https://platform.claude.com/docs/en/api/errors) API errors.
-- [R25](https://platform.claude.com/docs/en/build-with-claude/streaming) Streaming, the event-types section.
-- [R116](https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python) Python SDK, sync and async clients.
-- [R117](https://platform.claude.com/docs/en/api/rate-limits) Rate limits.
-- [R118](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) WebSockets, for the comparison only.
+- [ ] D8: Reference: [R40](https://platform.claude.com/docs/en/api/errors) API errors.
+- [ ] D8: Reference: [R25](https://platform.claude.com/docs/en/build-with-claude/streaming) Streaming, the event-types section.
+- [ ] D8: Reference: [R116](https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python) Python SDK, sync and async clients.
+- [ ] D8: Reference: [R117](https://platform.claude.com/docs/en/api/rate-limits) Rate limits.
+- [ ] D8: Reference: [R118](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) WebSockets, for the comparison only.
 
 **Drill**
 
@@ -272,8 +272,8 @@ Thursday 22 October · Dev D2 API mechanics, application design (8.6%)
 
 **Reference**
 
-- [R26](https://platform.claude.com/docs/en/build-with-claude/vision) Vision.
-- [R24](https://platform.claude.com/docs/en/build-with-claude/working-with-messages), the section on content blocks.
+- [ ] D9: Reference: [R26](https://platform.claude.com/docs/en/build-with-claude/vision) Vision.
+- [ ] D9: Reference: [R24](https://platform.claude.com/docs/en/build-with-claude/working-with-messages), the section on content blocks.
 
 **Drill**
 
@@ -307,7 +307,7 @@ Friday 23 October · Dev D5 cost and token management (2.8%)
 
 **Reference**
 
-- [R27](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) Prompt caching, including what invalidates the cache.
+- [ ] D10: Reference: [R27](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) Prompt caching, including what invalidates the cache.
 
 **Drill**
 
@@ -378,7 +378,7 @@ Monday 26 October · Dev D6 prompt engineering (4.6%)
 
 **Reference**
 
-- [R39](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) Prompting best practices.
+- [ ] D13: Reference: [R39](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) Prompting best practices.
 
 **Drill**
 
@@ -415,8 +415,8 @@ Tuesday 27 October · Dev D6 output handling (2.6%)
 
 **Reference**
 
-- [R34](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) Structured outputs.
-- [R47](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use) Strict tool use.
+- [ ] D14: Reference: [R34](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) Structured outputs.
+- [ ] D14: Reference: [R47](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use) Strict tool use.
 
 **Drill**
 
@@ -456,8 +456,8 @@ Wednesday 28 October · Dev D8 tool implementation (4.4%)
 
 **Reference**
 
-- [R43](https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works) How tool use works.
-- [R45](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls) Handle tool calls.
+- [ ] D15: Reference: [R43](https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works) How tool use works.
+- [ ] D15: Reference: [R45](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls) Handle tool calls.
 
 **Drill**
 
@@ -496,9 +496,9 @@ Thursday 29 October · Dev D8 tool implementation, tool set construction
 
 **Reference**
 
-- [R78](https://www.anthropic.com/engineering/writing-tools-for-agents) Writing effective tools for agents.
-- [R46](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use) Parallel tool use.
-- [R119](https://code.claude.com/docs/en/features-overview) Extend Claude Code, the comparison of Skills, subagents, hooks, MCP and plugins.
+- [ ] D16: Reference: [R78](https://www.anthropic.com/engineering/writing-tools-for-agents) Writing effective tools for agents.
+- [ ] D16: Reference: [R46](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use) Parallel tool use.
+- [ ] D16: Reference: [R119](https://code.claude.com/docs/en/features-overview) Extend Claude Code, the comparison of Skills, subagents, hooks, MCP and plugins.
 
 **Drill**
 
@@ -534,7 +534,7 @@ Friday 30 October · Dev D1 agent architecture (4.5%)
 
 **Reference**
 
-- [R77](https://www.anthropic.com/engineering/building-effective-agents) Building effective agents.
+- [ ] D17: Reference: [R77](https://www.anthropic.com/engineering/building-effective-agents) Building effective agents.
 
 **Drill**
 
@@ -576,13 +576,13 @@ Saturday 31 October · long day, 2 hours · Dev D1 agent construction (5.3%), D7
 
 **Reference**
 
-- [R56](https://code.claude.com/docs/en/agent-sdk/quickstart) Quickstart.
-- [R58](https://code.claude.com/docs/en/agent-sdk/custom-tools) Custom tools.
-- [R59](https://code.claude.com/docs/en/agent-sdk/hooks) Hooks.
-- [R60](https://code.claude.com/docs/en/agent-sdk/subagents) Subagents.
-- [R120](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner) Tool runner.
-- [R121](https://platform.claude.com/docs/en/managed-agents/overview) Managed Agents overview.
-- [R122](https://platform.claude.com/docs/en/managed-agents/choosing-an-environment) Choose an agent environment: Anthropic-hosted versus self-hosted.
+- [ ] D18: Reference: [R56](https://code.claude.com/docs/en/agent-sdk/quickstart) Quickstart.
+- [ ] D18: Reference: [R58](https://code.claude.com/docs/en/agent-sdk/custom-tools) Custom tools.
+- [ ] D18: Reference: [R59](https://code.claude.com/docs/en/agent-sdk/hooks) Hooks.
+- [ ] D18: Reference: [R60](https://code.claude.com/docs/en/agent-sdk/subagents) Subagents.
+- [ ] D18: Reference: [R120](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner) Tool runner.
+- [ ] D18: Reference: [R121](https://platform.claude.com/docs/en/managed-agents/overview) Managed Agents overview.
+- [ ] D18: Reference: [R122](https://platform.claude.com/docs/en/managed-agents/choosing-an-environment) Choose an agent environment: Anthropic-hosted versus self-hosted.
 
 **Drill**
 
@@ -623,10 +623,10 @@ Monday 2 November · Dev D6 context engineering (3.8%), D1 patterns and framewor
 
 **Reference**
 
-- [R79](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) Effective context engineering.
-- [R33](https://platform.claude.com/docs/en/build-with-claude/compaction) Compaction.
-- [R123](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool) Memory tool.
-- [R124](https://platform.claude.com/docs/en/build-with-claude/context-editing) Context editing.
+- [ ] D20: Reference: [R79](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) Effective context engineering.
+- [ ] D20: Reference: [R33](https://platform.claude.com/docs/en/build-with-claude/compaction) Compaction.
+- [ ] D20: Reference: [R123](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool) Memory tool.
+- [ ] D20: Reference: [R124](https://platform.claude.com/docs/en/build-with-claude/context-editing) Context editing.
 
 **Drill**
 
@@ -666,10 +666,10 @@ Tuesday 3 November · Dev D8 MCP server development (2.1%)
 
 **Reference**
 
-- [R76](https://modelcontextprotocol.io/docs/develop/build-server) Build an MCP server.
-- [R75](https://modelcontextprotocol.io/docs/getting-started/intro) for the three primitives.
-- [R70](https://code.claude.com/docs/en/mcp) MCP in Claude Code.
-- [R125](https://modelcontextprotocol.io/specification/latest/basic/transports) MCP transports.
+- [ ] D21: Reference: [R76](https://modelcontextprotocol.io/docs/develop/build-server) Build an MCP server.
+- [ ] D21: Reference: [R75](https://modelcontextprotocol.io/docs/getting-started/intro) for the three primitives.
+- [ ] D21: Reference: [R70](https://code.claude.com/docs/en/mcp) MCP in Claude Code.
+- [ ] D21: Reference: [R125](https://modelcontextprotocol.io/specification/latest/basic/transports) MCP transports.
 
 **Drill**
 
@@ -719,16 +719,16 @@ Then fill in two tables in `notes.md`. First, the four extension types: built-in
 
 **Reference**
 
-- [R64](https://code.claude.com/docs/en/memory) Memory, the hierarchy section.
-- [R65](https://code.claude.com/docs/en/settings) Settings.
-- [R68](https://code.claude.com/docs/en/skills) Skills.
-- [R71](https://code.claude.com/docs/en/headless) Headless mode.
-- [R126](https://code.claude.com/docs/en/platforms) Platforms and integrations.
-- [R127](https://code.claude.com/docs/en/sessions) Sessions.
-- [R128](https://code.claude.com/docs/en/permission-modes) Permission modes.
-- [R129](https://code.claude.com/docs/en/claude-directory) The .claude directory.
-- [R130](https://code.claude.com/docs/en/plugins/create) Create a plugin.
-- [R131](https://code.claude.com/docs/en/plugins/components) Plugin components.
+- [ ] D22: Reference: [R64](https://code.claude.com/docs/en/memory) Memory, the hierarchy section.
+- [ ] D22: Reference: [R65](https://code.claude.com/docs/en/settings) Settings.
+- [ ] D22: Reference: [R68](https://code.claude.com/docs/en/skills) Skills.
+- [ ] D22: Reference: [R71](https://code.claude.com/docs/en/headless) Headless mode.
+- [ ] D22: Reference: [R126](https://code.claude.com/docs/en/platforms) Platforms and integrations.
+- [ ] D22: Reference: [R127](https://code.claude.com/docs/en/sessions) Sessions.
+- [ ] D22: Reference: [R128](https://code.claude.com/docs/en/permission-modes) Permission modes.
+- [ ] D22: Reference: [R129](https://code.claude.com/docs/en/claude-directory) The .claude directory.
+- [ ] D22: Reference: [R130](https://code.claude.com/docs/en/plugins/create) Create a plugin.
+- [ ] D22: Reference: [R131](https://code.claude.com/docs/en/plugins/components) Plugin components.
 
 **Drill**
 
@@ -764,12 +764,12 @@ Thursday 5 November · long day, 2 hours · Dev D7 application security (3.2%), 
 
 **Reference**
 
-- [R51](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks) Mitigate jailbreaks.
-- [R73](https://code.claude.com/docs/en/security) Claude Code security.
-- [R132](https://platform.claude.com/docs/en/manage-claude/workspaces) Workspaces.
-- [R133](https://platform.claude.com/docs/en/manage-claude/usage-cost-api) Usage and Cost API.
-- [R134](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention) API and data retention.
-- [R135](https://genai.owasp.org/llm-top-10/) OWASP Top 10 for LLM applications.
+- [ ] D23: Reference: [R51](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks) Mitigate jailbreaks.
+- [ ] D23: Reference: [R73](https://code.claude.com/docs/en/security) Claude Code security.
+- [ ] D23: Reference: [R132](https://platform.claude.com/docs/en/manage-claude/workspaces) Workspaces.
+- [ ] D23: Reference: [R133](https://platform.claude.com/docs/en/manage-claude/usage-cost-api) Usage and Cost API.
+- [ ] D23: Reference: [R134](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention) API and data retention.
+- [ ] D23: Reference: [R135](https://genai.owasp.org/llm-top-10/) OWASP Top 10 for LLM applications.
 
 **Drill**
 
@@ -804,10 +804,10 @@ Friday 6 November · long day, 2 hours · Dev D4 debugging (2.6%), D2 applicatio
 
 **Reference**
 
-- [R80](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) Demystifying evals, the grader types section.
-- [R49](https://platform.claude.com/docs/en/test-and-evaluate/develop-tests) Define success and develop tests.
-- [R115](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions) Model IDs and versioning.
-- [R136](https://platform.claude.com/docs/en/manage-claude/opentelemetry) OpenTelemetry for the Claude API.
+- [ ] D24: Reference: [R80](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) Demystifying evals, the grader types section.
+- [ ] D24: Reference: [R49](https://platform.claude.com/docs/en/test-and-evaluate/develop-tests) Define success and develop tests.
+- [ ] D24: Reference: [R115](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions) Model IDs and versioning.
+- [ ] D24: Reference: [R136](https://platform.claude.com/docs/en/manage-claude/opentelemetry) OpenTelemetry for the Claude API.
 
 **Drill**
 
@@ -873,9 +873,9 @@ Monday 9 November · Dev D2 requirements, life cycle, software engineering (13.6
 
 **Reference**
 
-- [R41](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai) Claude on Vertex AI.
-- [R137](https://code.claude.com/docs/en/code-review-local) Local code review.
-- [R138](https://code.claude.com/docs/en/github-actions) Claude Code GitHub Actions.
+- [ ] D27: Reference: [R41](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai) Claude on Vertex AI.
+- [ ] D27: Reference: [R137](https://code.claude.com/docs/en/code-review-local) Local code review.
+- [ ] D27: Reference: [R138](https://code.claude.com/docs/en/github-actions) Claude Code GitHub Actions.
 
 **Done when**
 
