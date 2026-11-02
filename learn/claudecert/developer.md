@@ -3,7 +3,7 @@
 
 This block prepares the Claude Certified Developer, Foundations exam: 53 items, 120 minutes, pass at 720 of 1,000. The blueprint is in [R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf), section 6. Read it before Day 4.
 
-Each day has the same shape: a goal, a build, a Learn step from an Anthropic course, reference docs, the topics for 3 drill questions, and a done-when checkbox. Also lists optional Anthropic material for a weak area. Domain tags show the blueprint weight, so I can see where the points are.
+Each day has the same shape: a goal, a build, a Learn step from an Anthropic course, reference docs, the topics for 3 drill questions, and a done-when checkbox. Every action bullet has its own checkbox, so I can see where I stopped. Ticks are saved in this browser only. Also lists optional Anthropic material for a weak area. Domain tags show the blueprint weight, so I can see where the points are.
 
 **Drill.** Claude asks me each question with no options. I answer cold, with no docs. Claude marks my answer and corrects it. Only after that does Claude add the multiple-choice version to Drills.
 
@@ -96,20 +96,20 @@ Saturday 17 October · long day, 2 hours · Dev D2 API mechanics, D5 LLM fundame
 
 **Build · 60 min**
 
-- In `CertLab/01_API/`, write `basics.py`.
-- Send a request with a system prompt and two user turns.
-- Print the full response object, not only the text.
-- Identify `stop_reason`, `usage.input_tokens` and `usage.output_tokens`.
-- Set `max_tokens` to 20 and watch `stop_reason` change to `max_tokens`.
-- Add a stop sequence and watch it change to `stop_sequence`.
+- [ ] D4: In `CertLab/01_API/`, write `basics.py`.
+- [ ] D4: Send a request with a system prompt and two user turns.
+- [ ] D4: Print the full response object, not only the text.
+- [ ] D4: Identify `stop_reason`, `usage.input_tokens` and `usage.output_tokens`.
+- [ ] D4: Set `max_tokens` to 20 and watch `stop_reason` change to `max_tokens`.
+- [ ] D4: Add a stop sequence and watch it change to `stop_sequence`.
 
 **Learn · 60 min**
 
-- [R103](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/mso-foundations) MSO Foundations, all of it.
+- [ ] D4: [R103](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/mso-foundations) MSO Foundations, all of it.
 
 **Also**
 
-- [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101) Claude Platform 101, the lesson on the first API call.
+- [ ] D4: [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101) Claude Platform 101, the lesson on the first API call.
 
 **Reference**
 
@@ -117,9 +117,9 @@ Saturday 17 October · long day, 2 hours · Dev D2 API mechanics, D5 LLM fundame
 
 **Drill**
 
-- One question on `stop_reason` values.
-- One on where a system prompt goes in the request.
-- One on what `max_tokens` controls and what it does not.
+- [ ] D4: Drill: One question on `stop_reason` values.
+- [ ] D4: Drill: One on where a system prompt goes in the request.
+- [ ] D4: Drill: One on what `max_tokens` controls and what it does not.
 
 **Done when**
 
@@ -137,20 +137,20 @@ Monday 19 October · Dev D5 LLM fundamentals (5.2%)
 
 **Build · 45 min**
 
-- Use the token counting endpoint ([R29](https://platform.claude.com/docs/en/build-with-claude/token-counting)) on three inputs: a short prompt, a 20-page text, and an image.
-- Record the counts.
-- Send the same open-ended prompt five times and diff the outputs.
-- Repeat with a prompt that has one correct answer.
-- Note where variation matters and where it does not.
+- [ ] D6: Use the token counting endpoint ([R29](https://platform.claude.com/docs/en/build-with-claude/token-counting)) on three inputs: a short prompt, a 20-page text, and an image.
+- [ ] D6: Record the counts.
+- [ ] D6: Send the same open-ended prompt five times and diff the outputs.
+- [ ] D6: Repeat with a prompt that has one correct answer.
+- [ ] D6: Note where variation matters and where it does not.
 
 **Learn · 95 min**
 
-- [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations) AI capabilities and limitations: the opening lessons, then the Next Token Prediction section and its exercise.
+- [ ] D6: [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations) AI capabilities and limitations: the opening lessons, then the Next Token Prediction section and its exercise.
 
 **Also**
 
-- [R109](https://academy.claude.com/tutorials/tokens-and-embeddings) Tokens tutorial, 15 minutes.
-- [R110](https://academy.claude.com/tutorials/parametric-memory-and-context) How context affects performance and cost, 20 minutes.
+- [ ] D6: [R109](https://academy.claude.com/tutorials/tokens-and-embeddings) Tokens tutorial, 15 minutes.
+- [ ] D6: [R110](https://academy.claude.com/tutorials/parametric-memory-and-context) How context affects performance and cost, 20 minutes.
 
 **Reference**
 
@@ -160,9 +160,9 @@ Monday 19 October · Dev D5 LLM fundamentals (5.2%)
 
 **Drill**
 
-- One question on why outputs vary between identical requests.
-- One on what counts against the context window.
-- One on zero-shot versus few-shot.
+- [ ] D6: Drill: One question on why outputs vary between identical requests.
+- [ ] D6: Drill: One on what counts against the context window.
+- [ ] D6: Drill: One on zero-shot versus few-shot.
 
 **Done when**
 
@@ -176,20 +176,20 @@ Tuesday 20 October · Dev D5 model selection (2.7%), LLM fundamentals
 
 **Build · 45 min**
 
-- Run three tasks on the current Haiku, Sonnet and Opus models ([R35](https://platform.claude.com/docs/en/models/overview)): a short classification, a structured summary, and a multi-step reasoning problem.
-- Record latency, tokens and a quality grade for each.
-- Run the reasoning task again with adaptive thinking ([R30](https://platform.claude.com/docs/en/build-with-claude/thinking)) and at two effort settings ([R31](https://platform.claude.com/docs/en/build-with-claude/effort)).
-- Try fast mode ([R114](https://platform.claude.com/docs/en/build-with-claude/fast-mode)) on one task if the model supports it, and record the change in speed and price.
-- Note the exact model ID I used and whether it is an alias or a pinned snapshot ([R115](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions)).
+- [ ] D7: Run three tasks on the current Haiku, Sonnet and Opus models ([R35](https://platform.claude.com/docs/en/models/overview)): a short classification, a structured summary, and a multi-step reasoning problem.
+- [ ] D7: Record latency, tokens and a quality grade for each.
+- [ ] D7: Run the reasoning task again with adaptive thinking ([R30](https://platform.claude.com/docs/en/build-with-claude/thinking)) and at two effort settings ([R31](https://platform.claude.com/docs/en/build-with-claude/effort)).
+- [ ] D7: Try fast mode ([R114](https://platform.claude.com/docs/en/build-with-claude/fast-mode)) on one task if the model supports it, and record the change in speed and price.
+- [ ] D7: Note the exact model ID I used and whether it is an alias or a pinned snapshot ([R115](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions)).
 
 **Learn · 60 min**
 
-- [R100](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-model-foundations) Claude Platform & Model Foundations, 59 minutes.
+- [ ] D7: [R100](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-model-foundations) Claude Platform & Model Foundations, 59 minutes.
 
 **Also**
 
-- [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101), the lesson on choosing the right model.
-- [R111](https://academy.claude.com/tutorials/choosing-the-right-claude-model) tutorial.
+- [ ] D7: [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101), the lesson on choosing the right model.
+- [ ] D7: [R111](https://academy.claude.com/tutorials/choosing-the-right-claude-model) tutorial.
 
 **Reference**
 
@@ -202,9 +202,9 @@ Tuesday 20 October · Dev D5 model selection (2.7%), LLM fundamentals
 
 **Drill**
 
-- One question that gives a workload and asks for a model tier.
-- One on when thinking and higher effort are worth their cost, and when fast mode is.
-- One on why pinning a model version matters.
+- [ ] D7: Drill: One question that gives a workload and asks for a model tier.
+- [ ] D7: Drill: One on when thinking and higher effort are worth their cost, and when fast mode is.
+- [ ] D7: Drill: One on why pinning a model version matters.
 
 **Done when**
 
@@ -222,17 +222,17 @@ Wednesday 21 October · Dev D2 API mechanics, D4 debugging, D5 technical fundame
 
 **Build · 45 min**
 
-- Call the API once with plain HTTP (`requests` or `curl`), then with the SDK.
-- Compare what the SDK adds: retries, typed errors, streaming helpers.
-- Stream a long response ([R25](https://platform.claude.com/docs/en/build-with-claude/streaming)) and print text as it arrives.
-- Force three errors: a bad API key, an invalid request, and a too-large `max_tokens`.
-- Write a retry wrapper that retries only errors that a retry can fix, including 429 rate-limit errors ([R117](https://platform.claude.com/docs/en/api/rate-limits)).
-- Then switch to the async client ([R116](https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python)) and run three requests at the same time.
-- Note that the API streams over server-sent events, and read how a websocket differs ([R118](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)).
+- [ ] D8: Call the API once with plain HTTP (`requests` or `curl`), then with the SDK.
+- [ ] D8: Compare what the SDK adds: retries, typed errors, streaming helpers.
+- [ ] D8: Stream a long response ([R25](https://platform.claude.com/docs/en/build-with-claude/streaming)) and print text as it arrives.
+- [ ] D8: Force three errors: a bad API key, an invalid request, and a too-large `max_tokens`.
+- [ ] D8: Write a retry wrapper that retries only errors that a retry can fix, including 429 rate-limit errors ([R117](https://platform.claude.com/docs/en/api/rate-limits)).
+- [ ] D8: Then switch to the async client ([R116](https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python)) and run three requests at the same time.
+- [ ] D8: Note that the API streams over server-sent events, and read how a websocket differs ([R118](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)).
 
 **Learn · 60 min**
 
-- [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Accessing Claude with the API: requests, multi-turn, system prompts, temperature, streaming and structured data.
+- [ ] D8: [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Accessing Claude with the API: requests, multi-turn, system prompts, temperature, streaming and structured data.
 
 **Reference**
 
@@ -244,9 +244,9 @@ Wednesday 21 October · Dev D2 API mechanics, D4 debugging, D5 technical fundame
 
 **Drill**
 
-- One question on which HTTP errors to retry.
-- One on what streaming changes for the user and what it does not change for cost.
-- One on SDK versus raw REST, or sync versus async calls.
+- [ ] D8: Drill: One question on which HTTP errors to retry.
+- [ ] D8: Drill: One on what streaming changes for the user and what it does not change for cost.
+- [ ] D8: Drill: One on SDK versus raw REST, or sync versus async calls.
 
 **Done when**
 
@@ -260,15 +260,15 @@ Thursday 22 October · Dev D2 API mechanics, application design (8.6%)
 
 **Build · 45 min**
 
-- Send an image by base64 and by URL.
-- Ask for a structured description.
-- Send a short PDF as a document block and ask for a table from it.
-- Measure the token cost of each input.
+- [ ] D9: Send an image by base64 and by URL.
+- [ ] D9: Ask for a structured description.
+- [ ] D9: Send a short PDF as a document block and ask for a table from it.
+- [ ] D9: Measure the token cost of each input.
 
 **Learn · 75 min**
 
-- [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Features of Claude: Image support, PDF support, Citations, and Code execution and the Files API.
-- Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the Working Memory section and its exercise.
+- [ ] D9: [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Features of Claude: Image support, PDF support, Citations, and Code execution and the Files API.
+- [ ] D9: Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the Working Memory section and its exercise.
 
 **Reference**
 
@@ -277,9 +277,9 @@ Thursday 22 October · Dev D2 API mechanics, application design (8.6%)
 
 **Drill**
 
-- One question on image versus document input.
-- One on the cost of large images.
-- One on where in the message to put an image relative to the question.
+- [ ] D9: Drill: One question on image versus document input.
+- [ ] D9: Drill: One on the cost of large images.
+- [ ] D9: Drill: One on where in the message to put an image relative to the question.
 
 **Done when**
 
@@ -293,17 +293,17 @@ Friday 23 October · Dev D5 cost and token management (2.8%)
 
 **Build · 45 min**
 
-- Put a long, fixed system prompt (over the minimum cacheable length in [R27](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)) before a short user question.
-- Add a cache breakpoint.
-- Send the request three times.
-- Record `cache_creation_input_tokens` and `cache_read_input_tokens`.
-- Build a small cost model: requests per day, prefix size, hit rate, saving.
-- Then change one word in the prefix and show the cache miss.
+- [ ] D10: Put a long, fixed system prompt (over the minimum cacheable length in [R27](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)) before a short user question.
+- [ ] D10: Add a cache breakpoint.
+- [ ] D10: Send the request three times.
+- [ ] D10: Record `cache_creation_input_tokens` and `cache_read_input_tokens`.
+- [ ] D10: Build a small cost model: requests per day, prefix size, hit rate, saving.
+- [ ] D10: Then change one word in the prefix and show the cache miss.
 
 **Learn · 70 min**
 
-- [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Features of Claude: Extended thinking and the three prompt caching lessons.
-- Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the Knowledge section and its exercise.
+- [ ] D10: [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Features of Claude: Extended thinking and the three prompt caching lessons.
+- [ ] D10: Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the Knowledge section and its exercise.
 
 **Reference**
 
@@ -311,9 +311,9 @@ Friday 23 October · Dev D5 cost and token management (2.8%)
 
 **Drill**
 
-- One question on what makes a cache miss.
-- One on ordering content so the stable part comes first.
-- One that asks which workload benefits most from caching.
+- [ ] D10: Drill: One question on what makes a cache miss.
+- [ ] D10: Drill: One on ordering content so the stable part comes first.
+- [ ] D10: Drill: One that asks which workload benefits most from caching.
 
 **Done when**
 
@@ -327,22 +327,22 @@ Saturday 24 October · long day, 2 hours · Dev D2 API mechanics, batch versus r
 
 **Build · 60 min**
 
-- Submit a batch of 20 requests with unique `custom_id` values ([R28](https://platform.claude.com/docs/en/build-with-claude/batch-processing)).
-- Include one request that will fail.
-- Poll until the batch ends.
-- Match results to inputs by `custom_id`, not by order.
-- Resubmit the failed one.
+- [ ] D11: Submit a batch of 20 requests with unique `custom_id` values ([R28](https://platform.claude.com/docs/en/build-with-claude/batch-processing)).
+- [ ] D11: Include one request that will fail.
+- [ ] D11: Poll until the batch ends.
+- [ ] D11: Match results to inputs by `custom_id`, not by order.
+- [ ] D11: Resubmit the failed one.
 
 **Mock · 60 min**
 
-- 20 questions from my bank and the Drills page, timed at 2 minutes each.
-- Then review every miss and write down why I missed it.
+- [ ] D11: 20 questions from my bank and the Drills page, timed at 2 minutes each.
+- [ ] D11: Then review every miss and write down why I missed it.
 
 **Drill**
 
-- One question on matching batch results.
-- One on a latency-tolerant workload.
-- One on what batches do not support.
+- [ ] D11: Drill: One question on matching batch results.
+- [ ] D11: Drill: One on a latency-tolerant workload.
+- [ ] D11: Drill: One on what batches do not support.
 
 **Done when**
 
@@ -360,21 +360,21 @@ Monday 26 October · Dev D6 prompt engineering (4.6%)
 
 **Build · 45 min**
 
-- In `CertLab/02_Prompts/`, build a support-ticket classifier with five categories.
-- Write 20 labeled test tickets, including 5 ambiguous ones.
-- Score version 1 of the prompt.
-- Then change one thing at a time: clear instructions, XML tags around the ticket, a system-prompt role, and 3 examples that target the ambiguous cases.
-- Score each version.
+- [ ] D13: In `CertLab/02_Prompts/`, build a support-ticket classifier with five categories.
+- [ ] D13: Write 20 labeled test tickets, including 5 ambiguous ones.
+- [ ] D13: Score version 1 of the prompt.
+- [ ] D13: Then change one thing at a time: clear instructions, XML tags around the ticket, a system-prompt role, and 3 examples that target the ambiguous cases.
+- [ ] D13: Score each version.
 
 **Learn · 75 min**
 
-- [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), first segment.
-- Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the Steerability section and its exercise.
+- [ ] D13: [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), first segment.
+- [ ] D13: Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the Steerability section and its exercise.
 
 **Also**
 
-- [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Prompt engineering techniques.
-- [R85](https://www.youtube.com/watch?v=ysPbXH0LpIE) Prompting 101.
+- [ ] D13: [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Prompt engineering techniques.
+- [ ] D13: [R85](https://www.youtube.com/watch?v=ysPbXH0LpIE) Prompting 101.
 
 **Reference**
 
@@ -382,9 +382,9 @@ Monday 26 October · Dev D6 prompt engineering (4.6%)
 
 **Drill**
 
-- One question on system versus user placement.
-- One on why examples should target the ambiguous cases.
-- One on input sanitization.
+- [ ] D13: Drill: One question on system versus user placement.
+- [ ] D13: Drill: One on why examples should target the ambiguous cases.
+- [ ] D13: Drill: One on input sanitization.
 
 **Done when**
 
@@ -398,20 +398,20 @@ Tuesday 27 October · Dev D6 output handling (2.6%)
 
 **Build · 45 min**
 
-- Make the classifier return JSON: category, confidence, and a short reason.
-- First try with instructions only, and count parse failures over 20 runs.
-- Then use structured outputs or strict tool use ([R34](https://platform.claude.com/docs/en/build-with-claude/structured-outputs), [R47](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use)).
-- Validate with Pydantic.
-- On a validation failure, retry once with the error message included.
+- [ ] D14: Make the classifier return JSON: category, confidence, and a short reason.
+- [ ] D14: First try with instructions only, and count parse failures over 20 runs.
+- [ ] D14: Then use structured outputs or strict tool use ([R34](https://platform.claude.com/docs/en/build-with-claude/structured-outputs), [R47](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use)).
+- [ ] D14: Validate with Pydantic.
+- [ ] D14: On a validation failure, retry once with the error message included.
 
 **Learn · 90 min**
 
-- [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), second segment.
-- Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the last section, Putting it all together, and the course quiz.
+- [ ] D14: [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), second segment.
+- [ ] D14: Then [R98](https://anthropic-partners.skilljar.com/path/claude-developer/ai-capabilities-and-limitations), the last section, Putting it all together, and the course quiz.
 
 **Also**
 
-- [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), the Structured data lesson.
+- [ ] D14: [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), the Structured data lesson.
 
 **Reference**
 
@@ -420,9 +420,9 @@ Tuesday 27 October · Dev D6 output handling (2.6%)
 
 **Drill**
 
-- One question on schema-guaranteed output versus instruction-only JSON.
-- One on what validation cannot catch.
-- One on a confident but wrong answer.
+- [ ] D14: Drill: One question on schema-guaranteed output versus instruction-only JSON.
+- [ ] D14: Drill: One on what validation cannot catch.
+- [ ] D14: Drill: One on a confident but wrong answer.
 
 **Done when**
 
@@ -440,19 +440,19 @@ Wednesday 28 October · Dev D8 tool implementation (4.4%)
 
 **Build · 45 min**
 
-- In `CertLab/03_Agent/`, define three tools for an order-support case: `lookup_order`, `get_policy`, `issue_refund`.
-- Write the loop: send, check `stop_reason`, run the tool when it is `tool_use`, return a `tool_result`, repeat until `end_turn`.
-- Return `is_error: true` with a clear message when an order is not found.
-- Add a maximum-turns limit.
+- [ ] D15: In `CertLab/03_Agent/`, define three tools for an order-support case: `lookup_order`, `get_policy`, `issue_refund`.
+- [ ] D15: Write the loop: send, check `stop_reason`, run the tool when it is `tool_use`, return a `tool_result`, repeat until `end_turn`.
+- [ ] D15: Return `is_error: true` with a clear message when an order is not found.
+- [ ] D15: Add a maximum-turns limit.
 
 **Learn · 60 min**
 
-- [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), third segment.
-- Then [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101), the section Teaching your Agent: the agent loop, tool use and thinking.
+- [ ] D15: [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), third segment.
+- [ ] D15: Then [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101), the section Teaching your Agent: the agent loop, tool use and thinking.
 
 **Also**
 
-- [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Tool use with Claude, up to Multi-turn conversations with tools.
+- [ ] D15: [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Tool use with Claude, up to Multi-turn conversations with tools.
 
 **Reference**
 
@@ -461,9 +461,9 @@ Wednesday 28 October · Dev D8 tool implementation (4.4%)
 
 **Drill**
 
-- One question on what ends the loop.
-- One on how to report a tool failure to the model.
-- One on client-side versus server-side tools.
+- [ ] D15: Drill: One question on what ends the loop.
+- [ ] D15: Drill: One on how to report a tool failure to the model.
+- [ ] D15: Drill: One on client-side versus server-side tools.
 
 **Done when**
 
@@ -477,22 +477,22 @@ Thursday 29 October · Dev D8 tool implementation, tool set construction
 
 **Build · 45 min**
 
-- Try `tool_choice` set to auto, any, a named tool, and none.
-- Note what each does.
-- Add a fourth tool, `get_order_status`, that overlaps with `lookup_order`.
-- Send 10 ambiguous requests and count wrong picks.
-- Rewrite both descriptions to separate them clearly.
-- Count again.
-- Ask for two independent lookups in one message and watch for parallel tool calls ([R46](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use)).
+- [ ] D16: Try `tool_choice` set to auto, any, a named tool, and none.
+- [ ] D16: Note what each does.
+- [ ] D16: Add a fourth tool, `get_order_status`, that overlaps with `lookup_order`.
+- [ ] D16: Send 10 ambiguous requests and count wrong picks.
+- [ ] D16: Rewrite both descriptions to separate them clearly.
+- [ ] D16: Count again.
+- [ ] D16: Ask for two independent lookups in one message and watch for parallel tool calls ([R46](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use)).
 
 **Learn · 100 min**
 
-- [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), fourth segment.
-- Then [R91](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-agent-skills) Introduction to agent skills, 1 hour.
+- [ ] D16: [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), fourth segment.
+- [ ] D16: Then [R91](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-agent-skills) Introduction to agent skills, 1 hour.
 
 **Also**
 
-- [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Tool use with Claude, from Using multiple tools to the end.
+- [ ] D16: [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Tool use with Claude, from Using multiple tools to the end.
 
 **Reference**
 
@@ -502,9 +502,9 @@ Thursday 29 October · Dev D8 tool implementation, tool set construction
 
 **Drill**
 
-- One question on forcing a tool.
-- One on fixing tool confusion.
-- One on splitting versus merging two tools, or on built-in tool versus custom tool versus Skill versus MCP server.
+- [ ] D16: Drill: One question on forcing a tool.
+- [ ] D16: Drill: One on fixing tool confusion.
+- [ ] D16: Drill: One on splitting versus merging two tools, or on built-in tool versus custom tool versus Skill versus MCP server.
 
 **Done when**
 
@@ -518,19 +518,19 @@ Friday 30 October · Dev D1 agent architecture (4.5%)
 
 **Build · 45 min**
 
-- Add a human approval checkpoint before `issue_refund`.
-- The loop pauses, prints the planned refund, and waits for yes or no.
-- Add a spend budget that stops the agent.
-- Then sketch, in `notes.md`, the same case as a fixed workflow (classify, look up, apply policy, draft reply) and list what each design is better at.
+- [ ] D17: Add a human approval checkpoint before `issue_refund`.
+- [ ] D17: The loop pauses, prints the planned refund, and waits for yes or no.
+- [ ] D17: Add a spend budget that stops the agent.
+- [ ] D17: Then sketch, in `notes.md`, the same case as a fixed workflow (classify, look up, apply policy, draft reply) and list what each design is better at.
 
 **Learn · 55 min**
 
-- [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), last segment.
-- Then [R84](https://www.youtube.com/watch?v=D7_ipDqhtwk) How We Build Effective Agents, 15 minutes.
+- [ ] D17: [R104](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-grade-prompting-agents-tool-use), last segment.
+- [ ] D17: Then [R84](https://www.youtube.com/watch?v=D7_ipDqhtwk) How We Build Effective Agents, 15 minutes.
 
 **Also**
 
-- [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Agents and workflows.
+- [ ] D17: [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Agents and workflows.
 
 **Reference**
 
@@ -538,9 +538,9 @@ Friday 30 October · Dev D1 agent architecture (4.5%)
 
 **Drill**
 
-- One question on workflow versus agent.
-- One on where to place a human checkpoint.
-- One on supervisor and subagent roles.
+- [ ] D17: Drill: One question on workflow versus agent.
+- [ ] D17: Drill: One on where to place a human checkpoint.
+- [ ] D17: Drill: One on supervisor and subagent roles.
 
 **Done when**
 
@@ -554,25 +554,25 @@ Saturday 31 October · long day, 2 hours · Dev D1 agent construction (5.3%), D7
 
 **Build · 75 min**
 
-- Follow [R56](https://code.claude.com/docs/en/agent-sdk/quickstart) to set up the Agent SDK.
-- Rebuild the Day 15 agent with custom tools ([R58](https://code.claude.com/docs/en/agent-sdk/custom-tools)).
-- Add a PreToolUse hook ([R59](https://code.claude.com/docs/en/agent-sdk/hooks)) that blocks any refund above a limit and returns a reason.
-- Add one subagent ([R60](https://code.claude.com/docs/en/agent-sdk/subagents)) that only drafts the customer reply.
-- Compare the code size and behavior with the hand-written loop.
+- [ ] D18: Follow [R56](https://code.claude.com/docs/en/agent-sdk/quickstart) to set up the Agent SDK.
+- [ ] D18: Rebuild the Day 15 agent with custom tools ([R58](https://code.claude.com/docs/en/agent-sdk/custom-tools)).
+- [ ] D18: Add a PreToolUse hook ([R59](https://code.claude.com/docs/en/agent-sdk/hooks)) that blocks any refund above a limit and returns a reason.
+- [ ] D18: Add one subagent ([R60](https://code.claude.com/docs/en/agent-sdk/subagents)) that only drafts the customer reply.
+- [ ] D18: Compare the code size and behavior with the hand-written loop.
 
 **Mock · 45 min**
 
-- 15 questions on Days 4 to 17, timed.
-- Review every miss.
+- [ ] D18: 15 questions on Days 4 to 17, timed.
+- [ ] D18: Review every miss.
 
 **Learn · 40 min, or on Day 19**
 
-- [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101), the sections Extending your Agent and Managed Agents: built-in tools, Skills, MCP, context management and managed agents.
-- [R112](https://academy.claude.com/tutorials/what-is-claude-managed-agents) tutorial, 4 minutes.
+- [ ] D18: [R101](https://anthropic-partners.skilljar.com/path/claude-developer/claude-platform-101), the sections Extending your Agent and Managed Agents: built-in tools, Skills, MCP, context management and managed agents.
+- [ ] D18: [R112](https://academy.claude.com/tutorials/what-is-claude-managed-agents) tutorial, 4 minutes.
 
 **Also**
 
-- [R87](https://www.youtube.com/watch?v=TqC1qOfiVcQ) Agent SDK workshop, the first 45 minutes.
+- [ ] D18: [R87](https://www.youtube.com/watch?v=TqC1qOfiVcQ) Agent SDK workshop, the first 45 minutes.
 
 **Reference**
 
@@ -586,9 +586,9 @@ Saturday 31 October · long day, 2 hours · Dev D1 agent construction (5.3%), D7
 
 **Drill**
 
-- One question on a hook versus a prompt instruction for a business rule.
-- One on what a subagent's separate context gives.
-- One on self-hosted versus managed agent deployment.
+- [ ] D18: Drill: One question on a hook versus a prompt instruction for a business rule.
+- [ ] D18: Drill: One on what a subagent's separate context gives.
+- [ ] D18: Drill: One on self-hosted versus managed agent deployment.
 
 **Done when**
 
@@ -606,20 +606,20 @@ Monday 2 November · Dev D6 context engineering (3.8%), D1 patterns and framewor
 
 **Build · 45 min**
 
-- Make one tool return a large, noisy payload.
-- Run a 10-turn session and watch token use grow.
-- Fix it three ways and compare: prune the tool output to the fields needed, use compaction ([R33](https://platform.claude.com/docs/en/build-with-claude/compaction)), and move a sub-task into a subagent so only its summary returns.
-- Then read the quickstart of one framework (LangGraph, Strands or PydanticAI) for 10 minutes.
-- Note how it names the same ideas.
+- [ ] D20: Make one tool return a large, noisy payload.
+- [ ] D20: Run a 10-turn session and watch token use grow.
+- [ ] D20: Fix it three ways and compare: prune the tool output to the fields needed, use compaction ([R33](https://platform.claude.com/docs/en/build-with-claude/compaction)), and move a sub-task into a subagent so only its summary returns.
+- [ ] D20: Then read the quickstart of one framework (LangGraph, Strands or PydanticAI) for 10 minutes.
+- [ ] D20: Note how it names the same ideas.
 
 **Learn · 90 min**
 
-- [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), first third.
-- Then [R92](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-subagents) Introduction to subagents, 45 minutes.
+- [ ] D20: [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), first third.
+- [ ] D20: Then [R92](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-subagents) Introduction to subagents, 45 minutes.
 
 **Also**
 
-- [R86](https://www.youtube.com/watch?v=XSZP9GhhuAc) Prompting for Agents.
+- [ ] D20: [R86](https://www.youtube.com/watch?v=XSZP9GhhuAc) Prompting for Agents.
 
 **Reference**
 
@@ -630,9 +630,9 @@ Monday 2 November · Dev D6 context engineering (3.8%), D1 patterns and framewor
 
 **Drill**
 
-- One question on context drift.
-- One on pruning versus compaction versus the memory tool.
-- One on context isolation through subagents.
+- [ ] D20: Drill: One question on context drift.
+- [ ] D20: Drill: One on pruning versus compaction versus the memory tool.
+- [ ] D20: Drill: One on context isolation through subagents.
 
 **Done when**
 
@@ -646,23 +646,23 @@ Tuesday 3 November · Dev D8 MCP server development (2.1%)
 
 **Build · 45 min**
 
-- In `CertLab/04_MCP/`, build a Python MCP server ([R76](https://modelcontextprotocol.io/docs/develop/build-server)) with two tools (`lookup_order`, `get_policy`), one resource (the refund policy text), and one prompt (a reply template).
-- Run it over stdio.
-- Connect it to Claude Code with a project-scoped `.mcp.json` ([R70](https://code.claude.com/docs/en/mcp)).
-- Put the credential in an environment variable, not in the file.
-- Call each primitive from Claude Code.
-- Then run the same server over Streamable HTTP and note what changes ([R125](https://modelcontextprotocol.io/specification/latest/basic/transports)).
+- [ ] D21: In `CertLab/04_MCP/`, build a Python MCP server ([R76](https://modelcontextprotocol.io/docs/develop/build-server)) with two tools (`lookup_order`, `get_policy`), one resource (the refund policy text), and one prompt (a reply template).
+- [ ] D21: Run it over stdio.
+- [ ] D21: Connect it to Claude Code with a project-scoped `.mcp.json` ([R70](https://code.claude.com/docs/en/mcp)).
+- [ ] D21: Put the credential in an environment variable, not in the file.
+- [ ] D21: Call each primitive from Claude Code.
+- [ ] D21: Then run the same server over Streamable HTTP and note what changes ([R125](https://modelcontextprotocol.io/specification/latest/basic/transports)).
 
 **Learn · 105 min**
 
-- [R19](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-model-context-protocol) Introduction to Model Context Protocol, 1 hour.
-- It builds a Python server, like today's build.
-- Then [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), second third.
+- [ ] D21: [R19](https://anthropic-partners.skilljar.com/path/claude-developer/introduction-to-model-context-protocol) Introduction to Model Context Protocol, 1 hour.
+- [ ] D21: It builds a Python server, like today's build.
+- [ ] D21: Then [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), second third.
 
 **Also**
 
-- [R20](https://anthropic-partners.skilljar.com/model-context-protocol-advanced-topics) MCP Advanced Topics, the transport lessons.
-- [R88](https://www.youtube.com/watch?v=kQmXtrmQ5Zg) MCP workshop, the first hour, or [R94](https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic).
+- [ ] D21: [R20](https://anthropic-partners.skilljar.com/model-context-protocol-advanced-topics) MCP Advanced Topics, the transport lessons.
+- [ ] D21: [R88](https://www.youtube.com/watch?v=kQmXtrmQ5Zg) MCP workshop, the first hour, or [R94](https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic).
 
 **Reference**
 
@@ -673,9 +673,9 @@ Tuesday 3 November · Dev D8 MCP server development (2.1%)
 
 **Drill**
 
-- One question on tools versus resources versus prompts.
-- One on stdio versus a network transport.
-- One on keeping secrets out of `.mcp.json`.
+- [ ] D21: Drill: One question on tools versus resources versus prompts.
+- [ ] D21: Drill: One on stdio versus a network transport.
+- [ ] D21: Drill: One on keeping secrets out of `.mcp.json`.
 
 **Done when**
 
@@ -693,29 +693,29 @@ Wednesday 4 November · Dev D3 Claude Code (3.1%), D8 agentic customization (4.1
 
 **Build · 75 min**
 
-- In `CertLab`, write a project CLAUDE.md and a personal `CLAUDE.local.md`.
-- Add one path-scoped rule in `.claude/rules/` ([R129](https://code.claude.com/docs/en/claude-directory)).
-- Set shared permissions in `.claude/settings.json` and a personal override in `.claude/settings.local.json` ([R65](https://code.claude.com/docs/en/settings)).
-- Write one Skill ([R68](https://code.claude.com/docs/en/skills)) that formats a release note, and run it as a slash command.
-- Add one custom subagent.
-- Package the Skill and the subagent as a plugin and install it from the local folder ([R130](https://code.claude.com/docs/en/plugins/create), [R131](https://code.claude.com/docs/en/plugins/components)).
-- Try three permission modes, including auto mode ([R128](https://code.claude.com/docs/en/permission-modes)).
-- Name a session, then resume it, and note when to use `/clear` versus `/compact` ([R127](https://code.claude.com/docs/en/sessions)).
-- Run Claude Code headless with `claude -p`, first with JSON output, then with stream-json ([R71](https://code.claude.com/docs/en/headless)).
+- [ ] D22: In `CertLab`, write a project CLAUDE.md and a personal `CLAUDE.local.md`.
+- [ ] D22: Add one path-scoped rule in `.claude/rules/` ([R129](https://code.claude.com/docs/en/claude-directory)).
+- [ ] D22: Set shared permissions in `.claude/settings.json` and a personal override in `.claude/settings.local.json` ([R65](https://code.claude.com/docs/en/settings)).
+- [ ] D22: Write one Skill ([R68](https://code.claude.com/docs/en/skills)) that formats a release note, and run it as a slash command.
+- [ ] D22: Add one custom subagent.
+- [ ] D22: Package the Skill and the subagent as a plugin and install it from the local folder ([R130](https://code.claude.com/docs/en/plugins/create), [R131](https://code.claude.com/docs/en/plugins/components)).
+- [ ] D22: Try three permission modes, including auto mode ([R128](https://code.claude.com/docs/en/permission-modes)).
+- [ ] D22: Name a session, then resume it, and note when to use `/clear` versus `/compact` ([R127](https://code.claude.com/docs/en/sessions)).
+- [ ] D22: Run Claude Code headless with `claude -p`, first with JSON output, then with stream-json ([R71](https://code.claude.com/docs/en/headless)).
 
 Then fill in two tables in `notes.md`. First, the four extension types: built-in tool, custom tool, Skill, MCP server. One row each: what it is for, and one example need. Second, where instructions live on each interface: claude.ai project instructions, the Desktop app, Claude Code (CLAUDE.md and rules), the API system prompt, and the Agent SDK ([R126](https://code.claude.com/docs/en/platforms)).
 
 **Learn · 135 min, two sittings**
 
-- [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), last third.
-- Then [R102](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-101) Claude Code 101, 1.5 hours.
+- [ ] D22: [R105](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration), last third.
+- [ ] D22: Then [R102](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-101) Claude Code 101, 1.5 hours.
 
 **Also**
 
-- [R113](https://academy.claude.com/tutorials/what-are-skills) skills tutorials.
-- [R89](https://www.youtube.com/watch?v=gv0WHhKelSE) Claude Code best practices.
-- [R90](https://www.youtube.com/watch?v=dRsjO-88nBs) headless automation.
-- [R93](https://claude.com/resources/guides/the-complete-guide-to-building-skills-for-claude) Skills guide.
+- [ ] D22: [R113](https://academy.claude.com/tutorials/what-are-skills) skills tutorials.
+- [ ] D22: [R89](https://www.youtube.com/watch?v=gv0WHhKelSE) Claude Code best practices.
+- [ ] D22: [R90](https://www.youtube.com/watch?v=dRsjO-88nBs) headless automation.
+- [ ] D22: [R93](https://claude.com/resources/guides/the-complete-guide-to-building-skills-for-claude) Skills guide.
 
 **Reference**
 
@@ -732,9 +732,9 @@ Then fill in two tables in `notes.md`. First, the four extension types: built-in
 
 **Drill**
 
-- One question on which settings file a team shares.
-- One on where an instruction belongs: CLAUDE.md, a rule, a Skill or a hook.
-- One on session hygiene in a long session.
+- [ ] D22: Drill: One question on which settings file a team shares.
+- [ ] D22: Drill: One on where an instruction belongs: CLAUDE.md, a rule, a Skill or a hook.
+- [ ] D22: Drill: One on session hygiene in a long session.
 
 **Done when**
 
@@ -749,18 +749,18 @@ Thursday 5 November · long day, 2 hours · Dev D7 application security (3.2%), 
 
 **Build · 45 min**
 
-- Add a tool that fetches a "customer note".
-- Plant an instruction in one note that tells the agent to refund the full order.
-- Run it and record what happens.
-- Fix it with layers: mark fetched content as untrusted data in the prompt, keep `issue_refund` behind the hook and the human checkpoint, and give the note-reading subagent no refund tool.
-- Run again.
-- Add a step that redacts personal data (names, emails, order IDs tied to a person) before anything is logged.
-- Check that no key appears in logs or in the repo history.
-- Then open the `CertLab` workspace from Day 2 ([R132](https://platform.claude.com/docs/en/manage-claude/workspaces)), and look at the `CertLabDev` key's usage in the Usage and Cost API or the Console ([R133](https://platform.claude.com/docs/en/manage-claude/usage-cost-api)).
+- [ ] D23: Add a tool that fetches a "customer note".
+- [ ] D23: Plant an instruction in one note that tells the agent to refund the full order.
+- [ ] D23: Run it and record what happens.
+- [ ] D23: Fix it with layers: mark fetched content as untrusted data in the prompt, keep `issue_refund` behind the hook and the human checkpoint, and give the note-reading subagent no refund tool.
+- [ ] D23: Run again.
+- [ ] D23: Add a step that redacts personal data (names, emails, order IDs tied to a person) before anything is logged.
+- [ ] D23: Check that no key appears in logs or in the repo history.
+- [ ] D23: Then open the `CertLab` workspace from Day 2 ([R132](https://platform.claude.com/docs/en/manage-claude/workspaces)), and look at the `CertLabDev` key's usage in the Usage and Cost API or the Console ([R133](https://platform.claude.com/docs/en/manage-claude/usage-cost-api)).
 
 **Learn · 105 min**
 
-- [R106](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-engineering-evals-security), first half.
+- [ ] D23: [R106](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-engineering-evals-security), first half.
 
 **Reference**
 
@@ -773,9 +773,9 @@ Thursday 5 November · long day, 2 hours · Dev D7 application security (3.2%), 
 
 **Drill**
 
-- One question on the most effective injection control.
-- One on least privilege for tools.
-- One on where API keys live in development and in production, and how to see who used one.
+- [ ] D23: Drill: One question on the most effective injection control.
+- [ ] D23: Drill: One on least privilege for tools.
+- [ ] D23: Drill: One on where API keys live in development and in production, and how to see who used one.
 
 **Done when**
 
@@ -789,18 +789,18 @@ Friday 6 November · long day, 2 hours · Dev D4 debugging (2.6%), D2 applicatio
 
 **Build · 45 min**
 
-- Turn the Day 13 test set into an eval script with a pass threshold.
-- Run it against two models and two prompt versions.
-- Store prompts in versioned files and pin the model version in config.
-- Then break the integration on purpose (drop a field before it reaches the prompt) and use logs or traces to show the fault is in my code, not the model.
+- [ ] D24: Turn the Day 13 test set into an eval script with a pass threshold.
+- [ ] D24: Run it against two models and two prompt versions.
+- [ ] D24: Store prompts in versioned files and pin the model version in config.
+- [ ] D24: Then break the integration on purpose (drop a field before it reaches the prompt) and use logs or traces to show the fault is in my code, not the model.
 
 **Learn · 105 min**
 
-- [R106](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-engineering-evals-security), second half.
+- [ ] D24: [R106](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/production-engineering-evals-security), second half.
 
 **Also**
 
-- [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Prompt evaluation.
+- [ ] D24: [R17](https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api), section Prompt evaluation.
 
 **Reference**
 
@@ -811,9 +811,9 @@ Friday 6 November · long day, 2 hours · Dev D4 debugging (2.6%), D2 applicatio
 
 **Drill**
 
-- One question on code-graded versus model-graded checks.
-- One on isolating integration faults from model faults.
-- One on a regression after a model upgrade.
+- [ ] D24: Drill: One question on code-graded versus model-graded checks.
+- [ ] D24: Drill: One on isolating integration faults from model faults.
+- [ ] D24: Drill: One on a regression after a model upgrade.
 
 **Done when**
 
@@ -827,14 +827,14 @@ Saturday 7 November · long day, 2 hours
 
 **Mock · 100 min**
 
-- 50 questions from my bank and the Drills page, weighted roughly by blueprint: about 16 from D2, 8 from D5, 7 from D1, 6 from D6, 5 from D8, 4 from D7, and 2 each from D3 and D4.
-- Timed.
-- No docs.
+- [ ] D25: 50 questions from my bank and the Drills page, weighted roughly by blueprint: about 16 from D2, 8 from D5, 7 from D1, 6 from D6, 5 from D8, 4 from D7, and 2 each from D3 and D4.
+- [ ] D25: Timed.
+- [ ] D25: No docs.
 
 **Review · 20 min**
 
-- Score by domain.
-- List the two weakest domains and the three skill lines behind them.
+- [ ] D25: Score by domain.
+- [ ] D25: List the two weakest domains and the three skill lines behind them.
 
 **Done when**
 
@@ -852,24 +852,24 @@ Monday 9 November · Dev D2 requirements, life cycle, software engineering (13.6
 
 **Build · 60 min**
 
-- Spend 20 minutes on the weakest domain from Day 25: redo the build step that covers it.
-- Spend 25 minutes on software engineering in a Claude workflow: on a new branch, refactor the Day 15 agent loop into a module with one test, run `/code-review` on the branch ([R137](https://code.claude.com/docs/en/code-review-local)), fix what it finds and commit.
-- Read how Claude reviews pull requests in GitHub Actions ([R138](https://code.claude.com/docs/en/github-actions)).
-- Spend 15 minutes on third-party access: read how Claude is called through a cloud platform ([R41](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)) and write three lines on what changes (authentication, model IDs, feature parity).
+- [ ] D27: Spend 20 minutes on the weakest domain from Day 25: redo the build step that covers it.
+- [ ] D27: Spend 25 minutes on software engineering in a Claude workflow: on a new branch, refactor the Day 15 agent loop into a module with one test, run `/code-review` on the branch ([R137](https://code.claude.com/docs/en/code-review-local)), fix what it finds and commit.
+- [ ] D27: Read how Claude reviews pull requests in GitHub Actions ([R138](https://code.claude.com/docs/en/github-actions)).
+- [ ] D27: Spend 15 minutes on third-party access: read how Claude is called through a cloud platform ([R41](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)) and write three lines on what changes (authentication, model IDs, feature parity).
 
 **Learn · 120 min**
 
-- [R18](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-in-action) Claude Code in Action, 1 hour: verification, permission modes, headless runs, GitHub Actions, code review and plugins.
-- Then [R108](https://academy.claude.com/courses/ai-native-sdlc-playbook) The AI-native SDLC playbook, 1 hour: requirements, life cycle and review in a team that uses Claude.
-- Then skim [R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf) domain 2 skill lines on requirements, life cycle and software engineering.
-- For each, write one sentence on how I already do it at work.
-- These lines test general practice, not Claude features.
+- [ ] D27: [R18](https://anthropic-partners.skilljar.com/path/claude-developer/claude-code-in-action) Claude Code in Action, 1 hour: verification, permission modes, headless runs, GitHub Actions, code review and plugins.
+- [ ] D27: Then [R108](https://academy.claude.com/courses/ai-native-sdlc-playbook) The AI-native SDLC playbook, 1 hour: requirements, life cycle and review in a team that uses Claude.
+- [ ] D27: Then skim [R1](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542875%2FClaude+Certified+Developer+%E2%80%93+Foundations+Exam+Guide.pdf) domain 2 skill lines on requirements, life cycle and software engineering.
+- [ ] D27: For each, write one sentence on how I already do it at work.
+- [ ] D27: These lines test general practice, not Claude features.
 
 **Also**
 
-- [R107](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution), the section on choosing where a workload runs.
-- [R99](https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders) AI Fluency for builders, the lessons on acceptance tests and discernment.
-- Take the rest of [R99](https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders) after the exam.
+- [ ] D27: [R107](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution), the section on choosing where a workload runs.
+- [ ] D27: [R99](https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders) AI Fluency for builders, the lessons on acceptance tests and discernment.
+- [ ] D27: Take the rest of [R99](https://anthropic-partners.skilljar.com/path/claude-developer/ai-fluency-for-builders) after the exam.
 
 **Reference**
 

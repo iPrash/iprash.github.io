@@ -39,6 +39,8 @@ My employer is a Claude Partner Network member, so I can sit the exam. I have lo
 
 **Checkbox IDs come from the first 90 characters of the item text.** Identical text means a shared tick. Every daily checkbox therefore starts with its day number (`D14:`). Keep that prefix on new items. Blueprint checklist items start with `BP` and the skill number (`BP 2.5`).
 
+**Every action bullet gets a checkbox** (since 2 Nov 2026). Under Build, Learn, Also, Mock, Review and Drill, each bullet is `- [ ] D14: text`. Drill bullets read `- [ ] D14: Drill: text`. Reference bullets are look-up material and have none. Never reword an existing checkbox, because its saved tick follows its first 90 characters. Check new items for duplicate first-90-character heads.
+
 **One line per paragraph,** because the build runs `nl2br`. The one deliberate exception is in `drills.md`: a question stem and its four options are consecutive lines in one paragraph, so each option renders on its own line.
 
 **Answer reveals** in `drills.md` are raw `<details><summary>Answer</summary>…</details>` on a single line, separated from the question by a blank line. Markdown inside them is not processed, so keep them plain text.
