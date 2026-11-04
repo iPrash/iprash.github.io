@@ -7,11 +7,15 @@
 
 ## What it is
 
-Interview prep for an Enterprise Architect role that runs an independent review of a quote-to-cash landscape: Dynamics 365 CRM and ERP, a CPQ, an OMS, MuleSoft and other middleware. Sections: eight-session study plan (about 13 hours, with a 10-hour core path), a 15-question self-check, nine assessment-method cards (A), nine integration-risk cards (B), eight platform cards (C), "What changed 2024–2026" tables for Dynamics 365, Power Platform and MuleSoft, five deliverable templates (D), three client-behaviour cards (E), two anchor stories, fourteen interview questions, extra questions, an assessment walkthrough case, free resources and a cheat sheet.
+Interview prep for an Enterprise Architect role reviewing a quote-to-cash landscape: Dynamics 365 Sales with a custom CPQ app, MuleSoft and Azure Functions, an IBM order management system, Oracle ERP and an Oracle warehouse system. Rebuilt on 4 Nov 2026 after two internal briefings showed the real problem: **order status drifting out of sync** across asynchronous systems (edits during picking, cancels that ship anyway, credit left held).
+
+Structure: a five-session study plan to the interview, a 12-question self-check, part P (the problem as described), part S (solution options: ownership handoff, shared state model, requested states, versioning, ordering and idempotency, reliable delivery, reconciliation, decision matrix, roadmap), part F (positioning: gap statement, Salesforce-to-Dynamics terms, supply chain vocabulary, RACI), then the original assessment method (A), integration risks (B), platform cards (C: IBM OMS, Oracle, Dataverse, CPQ, "USD", MuleSoft, Azure), What changed, seven templates (D) including a cross-system status map and an allowed-actions matrix, client behaviour (E), 14 interview questions, a 30-minute walkthrough, resources and a cheat sheet.
+
+Every card carries a **Core** or **Extra** badge. Core cards are what the interview needs; Extra cards are background.
 
 ## Why it exists
 
-Prash has deep MuleSoft and integration experience and light Dynamics 365 experience. The site weights the assessment method highest, then the Dynamics limits that cause real symptoms. It replaces the planned `ea-prep-03-mule`, which was never built.
+Prash has deep MuleSoft and integration experience, no hands-on Dynamics 365, ERP or supply chain experience. The page positions him as the cross-system architect working with the client's Dynamics specialists, and prepares him to discuss the order-sync problem credibly.
 
 ## Structure
 
@@ -28,19 +32,19 @@ The page was assembled in Claude's cloud workspace from section fragments, with 
 
 The `<meta name="robots" content="noindex,nofollow">` is hand-maintained. Put it back if the file is replaced.
 
-Progress ticks use localStorage keys prefixed `ea3.`, keyed by each card's `id` (`c-check`, `a-*`, `i-*`, `pl-*`, `c-d365`, `c-pp`, `c-mule`, `t-*`, `b-*`, `stories`, `s-scale`, `s-c360`, `q1`–`q14`, `x-*`, `d-walk`, `res-*`, `cheat-card`). Renaming an id resets that tick and breaks in-page links.
+Progress ticks use localStorage keys prefixed `ea3.`, keyed by each card's `id` (`c-check`, `pr-*`, `sol-*`, `f-*`, `a-*`, `i-*`, `pl-*`, `c-d365`, `c-pp`, `c-mule`, `t-*`, `b-*`, `stories`, `s-scale`, `s-c360`, `q1`–`q14`, `x-*`, `d-walk`, `res-*`, `cheat-card`). The 4 Nov 2026 rebuild removed `pl-fo` and `pl-dw` and reused other ids with new content. Renaming an id resets that tick and breaks in-page links.
 
 Diagrams are inline SVG with class `d` and the `rect.ou`, `rect.band`, `text.t`, `text.s` classes, so they follow dark mode.
 
 ## Content standards
 
-**The repo is public.** No client, employer or interview names. The role description is paraphrased in general terms only.
+**The repo is public.** No client, employer, person or location names, and nothing from the briefings that identifies the client. The client is "a large distributor of physical products". Product families (Dynamics 365, MuleSoft, IBM order management, Oracle) are named; nothing else. Before each commit, search the page for the client, employer, staffing-group and people names Prash has mentioned, and confirm zero hits. Briefing facts carry a BRIEFING tag.
 
-Story cards use provenance tags: YOURS (from Prash's notes or statements), IF TRUE (plausible framing, use only if it happened). [Brackets] mark facts only Prash can supply. Never fill them with invented numbers.
+Story cards use provenance tags: YOURS (from Prash's notes or statements), IF TRUE (plausible framing, use only if it happened). Problem cards use BRIEFING (from the internal briefings). [Brackets] mark facts only Prash can supply. Never fill them with invented numbers.
 
 Each card ends with "Go deeper (free)" links and a Sources line with a check date. Version-sensitive facts carry a `ver` mark. Sources are graded [P] primary and [S] credible secondary.
 
-All 77 external links returned HTTP 200 on 30 Oct 2026. The English CloudHub 1.0/2.0 comparison page on docs.mulesoft.com now 404s; the site links `cloudhub-2/ch2-features` instead.
+On 4 Nov 2026, 58 of 60 external links returned HTTP 200. The two ibm.com links return 403 to automated checks from Claude's workspace (bot blocking); their content was read through a fetch tool the same day.
 
 ## Time-sensitive content
 
@@ -57,7 +61,8 @@ Checked 30 Oct 2026:
 
 ## Open items
 
-- "USD CPQ" in the role is ambiguous: Unified Service Desk or a CPQ name. The site covers both and lists it as a question to ask. Update card C5 once known.
-- ERP assumed to be Dynamics 365 Finance and Supply Chain. Update if the client runs another ERP.
-- Prash fills the [brackets] in `#s-scale` and `#s-c360` with real facts.
-- Re-check the What changed tables the week before the interview.
+- Confirm in the interview: "USD" is the client's name for its Dynamics CPQ app (card C5 now treats this as resolved).
+- Oracle flavour (Fusion Cloud or E-Business Suite) unknown; card C2 covers both.
+- IBM order management product and version unknown; card C1 assumes Sterling Order Management, marked `ver`.
+- Prash fills the [brackets] in `#s-c360` and `#s-scale` with real facts.
+- The section fragments and assembly script live in Claude's cloud workspace only. Treat `index.html` as the source.

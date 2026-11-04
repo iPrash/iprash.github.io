@@ -6,6 +6,7 @@
   "AND",
   "AZURE",
   "BACKWARD",
+  "BRIEFING",
   "CLAUDE",
   "CX",
   "EST",
@@ -392,6 +393,10 @@
   "ZAP": "Zed Attack Proxy: OWASP’s open-source tool for dynamic security testing.",
   "S3": "Simple Storage Service: Amazon’s object storage service.",
   "D365": "Dynamics 365: Microsoft’s suite of CRM and ERP business applications.",
-  "CLI": "Command-Line Interface: a tool you drive by typing commands."
+  "CLI": "Command-Line Interface: a tool you drive by typing commands.",
+  "ATP": "Available to Promise: stock that can still be promised to new orders after existing commitments.",
+  "RMA": "Return Merchandise Authorisation: approval for a customer to send goods back for credit or refund.",
+  "PCF": "Power Apps Component Framework: custom UI controls for Dynamics 365 and Power Apps forms.",
+  "ASN": "Advance Ship Notice: a message that tells the receiver what is being shipped and when."
  }
 }
