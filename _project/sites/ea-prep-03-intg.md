@@ -13,6 +13,21 @@ Structure: a five-session study plan to the interview, a 12-question self-check,
 
 Every card carries a **Core** or **Extra** badge. Core cards are what the interview needs; Extra cards are background.
 
+**Updated 12 Nov 2026** after a further technical briefing:
+- New part G (`g-screen`): how to run the internal screen.
+- New card S0 (`sol-status`): what the team already has.
+- Confirm-then-commit for cancel and sequenced status updates are marked "Team has it".
+- USD confirmed as Unified Service Desk.
+- Ownership reframed as one owner of the status per stage, with Dynamics keeping its right to request changes.
+- Allowed-actions tables corrected.
+- Q15 (interim workaround) and Q16 (timeline) added.
+- The walkthrough is now the missing-status-update case.
+- The page makes no claims about the client's documentation or diagrams. Keep it that way.
+
+Badges: `.impl` ("Team has it") marks ideas already in place at the client.
+
+Acronyms: `_glossary.json` overrides USD and MQ and excludes S3, which is a card label here. The C4 card label sits in `<span data-noabbr>`.
+
 ## Why it exists
 
 Prash has deep MuleSoft and integration experience, no hands-on Dynamics 365, ERP or supply chain experience. The page positions him as the cross-system architect working with the client's Dynamics specialists, and prepares him to discuss the order-sync problem credibly.

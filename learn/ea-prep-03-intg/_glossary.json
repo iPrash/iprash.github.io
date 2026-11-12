@@ -1,7 +1,10 @@
 {
  "_about": "ea-prep-03-intg overrides for _build/glossary.json.",
  "terms": {
-  "USD": "The client's name for its CPQ ordering app in Dynamics 365. (Also the acronym of Unified Service Desk, an older Dynamics agent desktop.)",
+  "USD": "Unified Service Desk: a Dynamics 365 desktop that hosts the client's CPQ app. Deprecated by Microsoft from April 2026.",
   "MQ": "Message Queue. Here, Anypoint MQ: MuleSoft's managed queue service with standard and FIFO queues."
- }
+ },
+ "_exclude": [
+  "S3"
+ ]
 }

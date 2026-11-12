@@ -227,6 +227,10 @@ def load_glossary(site_dir=None):
             data = json.loads(path.read_text(encoding="utf-8"))
             terms.update(data.get("terms", {}))
             ignore.update(data.get("_ignore", []))
+            # a site can drop a shared term that means something else there (S3 as a card label)
+            for k in data.get("_exclude", []):
+                terms.pop(k, None)
+                ignore.add(k)
     # keys as they appear in HTML text (L&D is written L&amp;D)
     return {H.escape(k, quote=False): v for k, v in terms.items()}, ignore
 
@@ -243,8 +247,8 @@ def _abbr_split(html):
                     if name in ABBR_SKIP:
                         while stack and stack.pop() != name:
                             pass
-                elif name in ABBR_SKIP and name not in ABBR_VOID and not tok.endswith("/>"):
-                    stack.append(name)
+                elif (name in ABBR_SKIP or "data-noabbr" in tok) and name not in ABBR_VOID and not tok.endswith("/>"):
+                    stack.append(name)   # data-noabbr: never wrap inside this element
             yield True, tok, bool(stack)
         else:
             yield False, tok, bool(stack)

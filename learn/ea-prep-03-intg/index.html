@@ -140,6 +140,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 .core,.extra{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:1px 6px;border-radius:4px;font-weight:600}
 .core{background:var(--ok-soft);color:var(--ok)}
 .extra{background:var(--code);color:var(--faint)}
+.impl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:1px 6px;border-radius:4px;font-weight:600;background:var(--warn-soft);color:var(--warn)}
 .meta{font-size:13px;color:var(--faint)}
 </style>
 </head>
@@ -148,7 +149,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <div class="bar-row">
   <a href="#top">Top</a>
   <a href="#plan">Plan</a>
-  <a href="#check">Self-check</a>
+  <a href="#screen">First call</a>
   <a href="#problem">Problem</a>
   <a href="#solution">Solution</a>
   <a href="#position">You</a>
@@ -175,12 +176,12 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <p class="lede">The client is a large distributor of physical products. Sales reps quote and order in Dynamics 365. MuleSoft and Azure Functions carry the order to an <abbr title="International Business Machines: the US technology company.">IBM</abbr> order management system, then to Oracle <abbr title="Enterprise Resource Planning: the system for finance, supply chain, orders and invoicing.">ERP</abbr> and the warehouse. Status flows back the same way. The real problem is <b>order status that drifts out of sync</b>: users change or cancel orders the warehouse is already working on. Your job is to review the current design, test the team's ideas, and recommend a way forward that the other systems can accept.</p>
   <div class="box intent"><b class="lbl">What the client wants from you</b>
   <ul>
-    <li><b>An end-to-end view.</b> Nobody owns the whole order lifecycle across Dynamics, MuleSoft, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, Oracle and the warehouse. There are no current architecture diagrams.</li>
+    <li><b>An end-to-end view.</b> Nobody owns the whole order lifecycle across Dynamics, MuleSoft, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, Oracle and the warehouse. Sync problems can sit at any hop.</li>
     <li><b>A fix for status mismatches.</b> Not tuning. A change to how the systems agree on order state, without making everything synchronous.</li>
     <li><b>Leadership communication.</b> The client's leadership and lead architect own the decisions. You review, advise and present.</li>
     <li><b>Teamwork with the specialists.</b> A Dynamics team of 7–8 people knows the product. You bring the cross-system design.</li>
   </ul></div>
-  <div class="box gotcha"><b class="lbl">How to use this page by Friday</b>Cards tagged <span class="core">Core</span> are what you need for the interview. Cards tagged <span class="extra">Extra</span> are background. Follow the study plan in order and skip Extra cards if time runs out.</div>
+  <div class="box gotcha"><b class="lbl">Where things stand</b>Two conversations. First an <b>internal screen</b> with a non-architect who judges your overall understanding and breadth (<a href="#g-screen">G1</a>). Then the <b>client's architect or delivery director</b>, possibly a week later. Cards tagged <span class="core">Core</span> are what you need; <span class="extra">Extra</span> cards are background. Cards marked <span class="impl">Team has it</span> describe ideas the team has already put in place.</div>
   <div class="btnrow">
     <button class="mini" id="openAll" type="button">Open all answers</button>
     <button class="mini" id="closeAll" type="button">Close all answers</button>
@@ -191,28 +192,63 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 
 <!-- ============ STUDY PLAN ============ -->
 <section id="plan">
-<h2 class="part">Study plan: ready by Friday morning</h2>
-<p class="part-sub">Five sessions, about 7 hours. Sessions 1–3 carry the interview. Say every answer out loud.</p>
+<h2 class="part">Study plan: two stages</h2>
+<p class="part-sub">Stage 1 is short and high level. Stage 2 goes deeper for the client. Say every answer out loud.</p>
 <div class="card">
   <div class="session"><span class="snum">S1</span><div>
-    <p><b>Tuesday evening · The problem (1.5 h).</b> Read part P: <a href="#pr-land">landscape</a>, <a href="#pr-flows">flows</a>, <a href="#pr-scen">failure scenarios</a>, <a href="#pr-tried">what was tried</a>, <a href="#pr-root">root causes</a>. Then the <a href="#f-xlate">Salesforce to Dynamics translation</a> and the <a href="#f-scm">supply chain words</a>.</p>
-    <p class="meta">Goal: explain their problem back to them in two minutes, in their words.</p>
+    <p><b>Before the internal screen (45 min).</b> Read <a href="#g-screen">G1 The first conversation</a> twice. Then <a href="#sol-status">S0 Where the team already is</a>, <a href="#f-gap">F1 gap statement</a> and <a href="#sol-road">S9 roadmap</a>. Say <a href="#q1">Q1</a>, <a href="#q2">Q2</a> and <a href="#q15">Q15</a> out loud.</p>
+    <p class="meta">Goal: a calm, high-level, 5-minute story. No scenario deep-dives unless asked.</p>
   </div></div>
   <div class="session"><span class="snum">S2</span><div>
-    <p><b>Wednesday · The solution options (2 h).</b> Read part S, all nine cards. Draw the <a href="#sol-own">ownership handoff</a> and the <a href="#sol-intent">cancel-requested flow</a> from memory. Learn the <a href="#sol-matrix">decision matrix</a> by heart.</p>
-    <p class="meta">This is your strongest ground. It answers "why not make everything synchronous?"</p>
+    <p><b>The problem (1 h).</b> Part P: <a href="#pr-land">landscape</a>, <a href="#pr-flows">flows</a>, <a href="#pr-scen">scenarios</a>, <a href="#pr-tried">what the team has done</a>, <a href="#pr-root">hypotheses</a>. Then <a href="#f-xlate">Salesforce to Dynamics</a> and <a href="#f-scm">supply chain words</a>.</p>
   </div></div>
-  <div class="session"><span class="snum"><abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></span><div>
-    <p><b>Wednesday · Positioning you (1.5 h).</b> <a href="#f-gap">Gap statement</a>, <a href="#f-team">operating model</a>, <a href="#stories">stories</a>. Answer <a href="#q1">Q1</a>–<a href="#q7">Q7</a> out loud.</p>
+  <div class="session"><span class="snum">S3</span><div>
+    <p><b>The solution options (1.5 h).</b> Part S. Draw the <a href="#sol-own">ownership handoff</a> from memory. Learn the <a href="#sol-matrix">decision matrix</a>.</p>
   </div></div>
   <div class="session"><span class="snum">S4</span><div>
-    <p><b>Thursday morning · Method and deliverables (1 h).</b> Cards <a href="#a-scope">A1</a>, <a href="#a-evidence">A4</a>, <a href="#a-validate">A6</a>, <a href="#a-readout">A9</a>. Templates <a href="#t-statemap">status map</a>, <a href="#t-actions">allowed actions</a>, <a href="#t-2wk">first two weeks</a>. Answer <a href="#q8">Q8</a>–<a href="#q14">Q14</a>.</p>
+    <p><b>Before the client call (1.5 h).</b> <a href="#f-team">Operating model</a>, <a href="#stories">stories</a>, templates <a href="#t-statemap">status map</a> and <a href="#t-actions">allowed actions</a>, then <a href="#q3">Q3</a>–<a href="#q16">Q16</a>.</p>
   </div></div>
   <div class="session"><span class="snum">S5</span><div>
-    <p><b>Thursday evening or Friday morning · Mock (1 h).</b> The <a href="#design">walkthrough</a> on a blank page in 30 minutes. Then the <a href="#x-ask">questions to ask</a> and the <a href="#cheat">cheat sheet</a>.</p>
+    <p><b>Mock (45 min).</b> The <a href="#design">walkthrough</a> in 30 minutes, the <a href="#x-ask">questions to ask</a>, the <a href="#cheat">cheat sheet</a>.</p>
   </div></div>
-  <div class="box gotcha"><b class="lbl">If you have spare time</b>Read the Extra cards in this order: <a href="#pl-oms"><abbr title="International Business Machines: the US technology company.">IBM</abbr> <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr></a>, <a href="#pl-oracle">Oracle</a>, <a href="#pl-dv">Dataverse</a>, <a href="#pl-mule">MuleSoft</a>, then part B. Skip What changed unless asked about versions.</div>
+  <div class="box gotcha"><b class="lbl">If you have spare time</b>Read the Extra cards in this order: <a href="#pl-oms"><abbr title="International Business Machines: the US technology company.">IBM</abbr> <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr></a>, <a href="#pl-oracle">Oracle</a>, <a href="#pl-dv">Dataverse</a>, <a href="#pl-usd"><abbr title="Unified Service Desk: a Dynamics 365 desktop that hosts the client&#x27;s CPQ app. Deprecated by Microsoft from April 2026.">USD</abbr></a>, <a href="#pl-mule">MuleSoft</a>, then part B.</div>
 </div>
+</section>
+
+<!-- ============ FIRST CONVERSATION ============ -->
+<section id="screen">
+<h2 class="part">G. The first conversation</h2>
+<p class="part-sub">An internal screen before the client meets you. The interviewer is not an architect and not a Dynamics specialist. He wants to see that you understand the problem, see the broad picture, and can lead the work.</p>
+<article class="card" id="g-screen">
+<span class="tag"><span class="core">Core</span> · G1</span>
+<h3>How to run the internal screen</h3>
+<h4>A five-minute shape</h4>
+<ol>
+  <li><b>Play back the problem</b> (1 min): order status drifts between Dynamics, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, Oracle and the warehouse, because updates are asynchronous and can arrive late or not at all. It can happen at any hop, Dynamics included.</li>
+  <li><b>Your fit</b> (1 min): the gap in one sentence, then your strengths: end-to-end flows, asynchronous integration, CPQ-style ordering, independent assessment, leadership communication (<a href="#f-gap">F1</a>).</li>
+  <li><b>Headline hypotheses</b> (1 min): no single owner of the status at each stage; changes committed before confirmation; rejections and late updates not handled as events; no shared model of states and allowed actions. "From what I've heard. I need to see the system before I call anything a root cause."</li>
+  <li><b>What the team has already done</b> (30 s): confirm-then-commit for cancel, sequence numbers and event time on updates (<a href="#sol-status">S0</a>).</li>
+  <li><b>How you'd run it</b> (1.5 min): interviews and workshops with each team, trace real orders, baseline mismatches, first recommendations in 4–6 weeks. Interim hard stops for the worst cases, then strengthen the patterns, then evolve ownership (<a href="#sol-road">S9</a>).</li>
+</ol>
+<div class="grid2"><div>
+<h4>Do</h4>
+<ul>
+  <li>Stay high level. Offer to go deeper: "Would it help if I walked through an example?"</li>
+  <li>Call them hypotheses and options.</li>
+  <li>Show breadth: "There may be causes nobody has mentioned yet."</li>
+  <li>Use a few Dynamics and <abbr title="Customer Relationship Management: the system for accounts, opportunities, quotes and service cases.">CRM</abbr> terms correctly (<a href="#f-xlate">F2</a>).</li>
+  <li>Credit the team for what they have already fixed.</li>
+</ul></div><div>
+<h4>Don't</h4>
+<ul>
+  <li>Walk through scenarios step by step unless asked.</li>
+  <li>Present a final solution before seeing the system.</li>
+  <li>Comment on the state of their documentation or diagrams.</li>
+  <li>Name anyone from the internal calls.</li>
+  <li>Promise a fixed timeline. Explain how you would arrive at one.</li>
+</ul></div></div>
+<div class="box say"><b class="lbl">Say this</b>"From what I've heard, this is a synchronisation problem across several systems. Dynamics itself is fine. I haven't seen the system yet, so I'd treat what I have as hypotheses. With the Dynamics team and the downstream teams, I'd map the lifecycle, test the options, and bring first recommendations in four to six weeks, with interim workarounds for the worst cases."</div>
+</article>
 </section>
 
 <!-- ============ SELF-CHECK ============ -->
@@ -223,16 +259,16 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <span class="tag"><span class="core">Core</span> · Triage</span>
 <h3>Can you explain it?</h3>
 <details class="qa"><summary>1. In one sentence, what is the client's problem?</summary><div class="ans"><p>Order state is committed in Dynamics first and then sent downstream asynchronously, so each system can hold a different status and users can change or cancel orders that the warehouse has already started. Card <a href="#pr-root">P5</a>.</p></div></details>
-<details class="qa"><summary>2. Which system should own the order after it is submitted?</summary><div class="ans"><p>The order management system. Dynamics owns the quote and the order until submit, then shows the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>'s view. Card <a href="#sol-own">S1</a>.</p></div></details>
+<details class="qa"><summary>2. Who should own the order's status after submit?</summary><div class="ans"><p>One system per stage: the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> during allocation, then Oracle and the warehouse while they process it. Dynamics can still request changes, as the business requires, but the current owner decides. Card <a href="#sol-own">S1</a>.</p></div></details>
 <details class="qa"><summary>3. Why not make every change synchronous?</summary><div class="ans"><p>The user would wait for the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, Oracle and the warehouse on every action, and one slow system would block sales. Use a confirmation step only for risky actions, such as cancel and quantity change after allocation. Card <a href="#sol-matrix">S8</a>.</p></div></details>
-<details class="qa"><summary>4. What is a "cancel requested" state?</summary><div class="ans"><p>The user's cancel is recorded as a request. The order shows "cancel requested" until the system that owns the order confirms or rejects it. Card <a href="#sol-intent"><abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></a>.</p></div></details>
-<details class="qa"><summary>5. Oracle rejects a cancel because the order is picked. What must happen next?</summary><div class="ans"><p>The rejection must flow back as an event. Dynamics and the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> undo their cancel, show "cancel rejected, shipping", and alert the rep. Today the rejection is lost. Card <a href="#sol-intent"><abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></a>.</p></div></details>
+<details class="qa"><summary>4. How does the team handle cancel today?</summary><div class="ans"><p>Confirm-then-commit: Dynamics sends the cancel, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> validates and answers within about 5–10 seconds, and only then is the cancel committed. A failure is shown to the user at once. It is used only for cancel. Card <a href="#sol-status">S0</a>.</p></div></details>
+<details class="qa"><summary>5. Where else can status drift, apart from Dynamics?</summary><div class="ans"><p>At every hop: Dynamics and the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and procurement or the warehouse, the warehouse and Oracle. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> itself can be behind Oracle. Card <a href="#pr-root">P5</a>.</p></div></details>
 <details class="qa"><summary>6. How do you stop a stale screen from overwriting newer data?</summary><div class="ans"><p>Optimistic concurrency: every update carries the version it was based on. Dataverse supports this with ETags and If-Match, which return 412 when the record changed. Card <a href="#sol-occ">S4</a>.</p></div></details>
-<details class="qa"><summary>7. A "picked" event arrives after a "shipped" event. What do you do?</summary><div class="ans"><p>Ignore it. Status may only move forward in the lifecycle. Use a sequence number or event time per order. Card <a href="#sol-order">S5</a>.</p></div></details>
+<details class="qa"><summary>7. A "picked" event arrives after a "shipped" event. What happens today?</summary><div class="ans"><p>The team already uses sequence numbers and event time. The late update is not applied and is logged as a failure. The open question is why it arrived late. Card <a href="#sol-order">S5</a>.</p></div></details>
 <details class="qa"><summary>8. What is the quick win for the first 30 days?</summary><div class="ans"><p>A daily reconciliation of order status across Dynamics, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Oracle, with a list of mismatched and stuck orders. It sizes the problem and finds the worst cases. Card <a href="#sol-recon">S7</a>.</p></div></details>
 <details class="qa"><summary>9. What is a backorder?</summary><div class="ans"><p>A quantity that cannot ship now because stock is short or damaged. It stays open to ship later, or is cancelled. Card <a href="#f-scm">F3</a>.</p></div></details>
 <details class="qa"><summary>10. Salesforce Apex trigger: what is it called in Dynamics?</summary><div class="ans"><p>A plug-in: server code that runs on a table event. Card <a href="#f-xlate">F2</a>.</p></div></details>
-<details class="qa"><summary>11. What happens when a Dataverse webhook endpoint returns 500?</summary><div class="ans"><p>It fails without a retry. Only 502, 503 and 504 get one retry. An asynchronous webhook records the failure in a system job, and nothing replays it. Card <a href="#sol-reliable">S6</a>.</p></div></details>
+<details class="qa"><summary>11. What happens today when an update fails in transit?</summary><div class="ans"><p>The Azure Function retries three times, then gives up. There is no dead-letter queue and no replay. Replay would also need care: an old update must not overwrite a newer one. Card <a href="#sol-reliable">S6</a>.</p></div></details>
 <details class="qa"><summary>12. Who decides on the target design?</summary><div class="ans"><p>The client's leadership and lead architect. You review, recommend and present options with trade-offs. Card <a href="#f-team">F4</a>.</p></div></details>
 </article>
 </section>
@@ -251,11 +287,11 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <article class="card" id="pr-land">
 <span class="tag"><span class="core">Core</span> · P1</span>
 <h3>The landscape</h3>
-<p>Dynamics 365 Sales is the front end. Reps build quotes and orders in a <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> app inside it, which the client calls "<abbr title="The client&#x27;s name for its CPQ ordering app in Dynamics 365. (Also the acronym of Unified Service Desk, an older Dynamics agent desktop.)">USD</abbr>". Product, price and stock data are not in Dynamics. MuleSoft fetches them from other systems. After submit, the order goes to an <abbr title="International Business Machines: the US technology company.">IBM</abbr> order management system, then to Oracle <abbr title="Enterprise Resource Planning: the system for finance, supply chain, orders and invoicing.">ERP</abbr> and an Oracle warehouse system. Updates flow back the same way.</p>
+<p>Dynamics 365 Sales is the front end. Reps work mostly on orders, less on quotes, in a <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> app that runs inside Unified Service Desk ("<abbr title="Unified Service Desk: a Dynamics 365 desktop that hosts the client&#x27;s CPQ app. Deprecated by Microsoft from April 2026.">USD</abbr>"). Product, price and stock data are not in Dynamics. MuleSoft fetches them from other systems. After submit, the order goes to an <abbr title="International Business Machines: the US technology company.">IBM</abbr> order management system, then to Oracle <abbr title="Enterprise Resource Planning: the system for finance, supply chain, orders and invoicing.">ERP</abbr> and an Oracle warehouse system. Updates flow back the same way.</p>
 <figure class="arch"><svg viewBox="0 0 760 330" class="d" role="img" aria-label="Landscape: sales reps use Dynamics 365 Sales with a CPQ app. Browser JavaScript calls MuleSoft for product search, pricing engine and inventory. On submit, a webhook triggers an Azure Function that calls MuleSoft, which sends the order to the IBM order management system, then Oracle ERP and the Oracle warehouse system. Status updates return from warehouse to Oracle to OMS to MuleSoft to Dynamics.">
   <rect x="10" y="20" width="110" height="44" rx="8" class="ou"/><text x="65" y="40" class="t">Sales reps</text><text x="65" y="56" class="s">many locations</text>
   <line x1="120" y1="42" x2="150" y2="42" class="thick"/>
-  <rect x="150" y="10" width="190" height="66" rx="8"/><text x="245" y="32" class="t">Dynamics 365 Sales</text><text x="245" y="48" class="s">CPQ app ("USD"): quote,</text><text x="245" y="62" class="s">order, invoice view</text>
+  <rect x="150" y="10" width="190" height="66" rx="8"/><text x="245" y="32" class="t">Dynamics 365 Sales</text><text x="245" y="48" class="s">CPQ app in USD: orders,</text><text x="245" y="62" class="s">quotes, invoice view</text>
   <line x1="245" y1="76" x2="245" y2="112"/><text x="300" y="98" class="s">browser JavaScript</text>
   <rect x="150" y="112" width="190" height="40" rx="8"/><text x="245" y="137" class="t">Webhook → Azure Function</text>
   <rect x="380" y="10" width="140" height="142" rx="8" class="band"/><text x="450" y="34" class="t">MuleSoft</text><text x="450" y="58" class="s">product search</text><text x="450" y="76" class="s">pricing request</text><text x="450" y="94" class="s">inventory (parallel)</text><text x="450" y="116" class="s">order submit</text><text x="450" y="134" class="s">status updates back</text>
@@ -273,27 +309,28 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <text x="265" y="234" class="s">Dynamics owns the order only until submit. Pick, ship, invoice happen downstream.</text>
   <text x="265" y="254" class="s">Integrations are asynchronous. Dynamics commits first, then sends the update.</text>
   <text x="265" y="274" class="s">Statuses come back late or out of step. API downtime makes it worse.</text>
-  <text x="265" y="294" class="s">No current architecture diagram. Designs live in Jira epics and features.</text>
-</svg><figcaption>Drawn from the briefings. Confirm each box and arrow in week 1. How MuleSoft talks to the OMS and how the OMS talks to Oracle are not yet known.</figcaption></figure>
+  <text x="265" y="294" class="s">Drift can happen at every hop: Dynamics–OMS, OMS–warehouse, warehouse–Oracle.</text>
+</svg><figcaption>Drawn from the briefings. MuleSoft talks to the OMS and Oracle over queues (product not yet known). Confirm each box and arrow in week 1.</figcaption></figure>
 <ul>
   <li><span class="prov y">BRIEFING</span> Dynamics 365 Sales with <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr>: quote, sales order and invoice. Rollout is phased, a few locations at a time.</li>
   <li><span class="prov y">BRIEFING</span> MuleSoft is the middleware. Azure Functions and browser JavaScript are the Dynamics side of each integration.</li>
-  <li><span class="prov y">BRIEFING</span> <abbr title="International Business Machines: the US technology company.">IBM</abbr> order management, Oracle <abbr title="Enterprise Resource Planning: the system for finance, supply chain, orders and invoicing.">ERP</abbr> and an Oracle warehouse system downstream. Other downstream apps exist.</li>
-  <li>[Oracle flavour: Fusion Cloud or E-Business Suite] · [<abbr title="International Business Machines: the US technology company.">IBM</abbr> product and version] · [volume: orders a day, lines per order] · [how often mismatches happen]</li>
+  <li><span class="prov y">BRIEFING</span> <abbr title="International Business Machines: the US technology company.">IBM</abbr> order management, Oracle <abbr title="Enterprise Resource Planning: the system for finance, supply chain, orders and invoicing.">ERP</abbr>, an Oracle warehouse system and a procurement system downstream. MuleSoft reaches them over queues.</li>
+  <li><span class="prov y">BRIEFING</span> Sync gaps are not only in Dynamics. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> can be behind Oracle, and the warehouse behind procurement.</li>
+  <li>[Oracle flavour: Fusion Cloud or E-Business Suite] · [<abbr title="International Business Machines: the US technology company.">IBM</abbr> product and version] · [queue product] · [volume: orders a day, lines per order] · [how often mismatches happen]</li>
 </ul>
-<div class="box say"><b class="lbl">Say this</b>"As I understand it, Dynamics owns the order until submit, then the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, Oracle and the warehouse take over. All of that is asynchronous, and Dynamics commits its own change before anyone downstream agrees. So the systems drift apart, and users can act on a status that is no longer true. Is that a fair summary?"</div>
+<div class="box say"><b class="lbl">Say this</b>"As I understand it, Dynamics owns the order until submit, then the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, Oracle and the warehouse take over. All of that is asynchronous, and Dynamics commits its own change before anyone downstream agrees. So the systems drift apart, and users can act on a status that is no longer true. It can happen between any two systems. Is that a fair summary?"</div>
 </article>
 
 <article class="card" id="pr-flows">
 <span class="tag"><span class="core">Core</span> · P2</span>
 <h3>Three flows</h3>
 <div class="tbl"><table>
-<tr><th>Flow</th><th>How it works today</th><th>Risk to note</th></tr>
-<tr><td><b>1. Build the quote</b></td><td>Browser JavaScript calls MuleSoft for product search. The rep picks products. A second call gets the price from an in-house pricing engine. MuleSoft fetches inventory in parallel and combines the results.</td><td>Business logic in the browser. No retry or queue if a call fails. Price and stock are a snapshot.</td></tr>
-<tr><td><b>2. Submit the order</b></td><td>Submit triggers a webhook. The webhook calls an Azure Function, which calls a MuleSoft <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>. MuleSoft sends the order to the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> validates it and returns an acknowledgement. Dynamics uses the acknowledgement as a status update.</td><td>Dynamics has already committed. If any hop is down, the order waits or is lost. Webhooks retry only once, and only for 502, 503 or 504.</td></tr>
-<tr><td><b>3. Status back</b></td><td>The warehouse and Oracle update the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> sends updates through MuleSoft to Dynamics: allocated, picked, backordered, shipped, invoiced.</td><td>Late and possibly out of order. A rep acts on what Dynamics shows, which may be stale.</td></tr>
+<tr><th>Flow</th><th>How it works today</th><th>Sync risk</th></tr>
+<tr><td><b>1. Build the quote</b></td><td>Browser JavaScript calls MuleSoft for product search. The rep picks products. A second call gets the price from an in-house pricing engine. MuleSoft fetches inventory in parallel and combines the results.</td><td><b>Low.</b> Real-time calls; the user waits for live answers. Only <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> downtime hurts.</td></tr>
+<tr><td><b>2. Submit the order</b></td><td>Submit triggers a webhook, which calls an Azure Function, which calls a MuleSoft <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>. MuleSoft sends the order to the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> over a queue. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> validates it and returns an acknowledgement, which Dynamics uses as a status update.</td><td><b>Low to medium.</b> A lost order is rare, and the team re-sends missing orders by hand. Nothing downstream has started, so no mismatch.</td></tr>
+<tr><td><b>3. Status back</b></td><td>The warehouse and Oracle update the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> sends updates through MuleSoft to Dynamics: allocated, picked, backordered, shipped, invoiced.</td><td><b>High. This is the main problem.</b> A late or missed update leaves Dynamics showing "allocated" while the order ships.</td></tr>
 </table></div>
-<div class="box gotcha"><b class="lbl">Ask, do not assume</b>You do not yet know how MuleSoft sends messages to the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Oracle: synchronous <abbr title="Hypertext Transfer Protocol: the request and response protocol of the web.">HTTP</abbr>, a queue, or files. Ask. It decides whether messages can be lost or reordered.</div>
+<div class="box gotcha"><b class="lbl">Still to find out</b>MuleSoft uses queues to the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Oracle. Which queue product, and whether it has dead-letter queues, is not yet known.</div>
 <p class="src">Sources: internal briefing; [P] <a href="https://learn.microsoft.com/en-us/power-apps/developer/data-platform/use-webhooks" target="_blank" rel="noopener noreferrer">Dataverse webhooks: 60-second timeout, one retry for 502, 503 and 504 only</a>. Checked 4 Nov 2026.</p>
 </article>
 
@@ -301,6 +338,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <span class="tag"><span class="core">Core</span> · P3</span>
 <h3>The failure scenarios</h3>
 <h4>Scenario 1: change during picking, with a backorder in flight</h4>
+<p>The core remaining problem. The same race can also happen between the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Oracle.</p>
 <figure class="arch"><svg viewBox="0 0 760 250" class="d" role="img" aria-label="Sequence: the rep submits 10 units; the OMS allocates and releases to the warehouse. The warehouse picks 9, one is damaged, and a backorder update starts flowing back. Before it arrives, the rep changes the order in Dynamics, which still shows allocated. The change is committed and sent. The backorder update then arrives and the systems disagree.">
   <rect x="20" y="8" width="150" height="30" rx="6" class="ou"/><text x="95" y="28" class="t">Dynamics</text>
   <rect x="215" y="8" width="150" height="30" rx="6" class="band"/><text x="290" y="28" class="t">MuleSoft</text>
@@ -314,7 +352,8 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <line x1="485" y1="178" x2="95" y2="178"/><text x="290" y="172" class="s h">4. Backorder update arrives after the edit</text>
   <rect x="20" y="196" width="725" height="40" rx="6" class="ou"/><text x="382" y="221" class="s">Result: each system holds a different version of the order. Nobody rejected the edit, because the status Dynamics checked was stale.</text>
 </svg><figcaption>A race condition. The edit was allowed because Dynamics checked its own copy of the status.</figcaption></figure>
-<h4>Scenario 2: cancel during processing</h4>
+<h4>Scenario 2: cancel during processing <span class="impl">Team has it</span></h4>
+<div class="box intent"><b class="lbl">Already addressed for cancel</b><span class="prov y">BRIEFING</span> The team now confirms before it commits a cancel. Dynamics sends the cancel, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> validates it and answers within about 5–10 seconds, and only then is the cancel committed. A rejection is shown to the user at once. Keep the diagram: it explains why the fix was needed, and the same shape of problem remains for status updates.</div>
 <figure class="arch"><svg viewBox="0 0 760 270" class="d" role="img" aria-label="Sequence: Dynamics and the OMS show allocated, but Oracle has already started processing. The rep cancels; Dynamics commits the cancel and the OMS accepts it because its status allows cancel. Oracle rejects the cancel because the order is in process and ships it. Nobody undoes the cancel in Dynamics and the OMS. The customer receives goods, a return is needed, and credit stays consumed.">
   <rect x="20" y="8" width="150" height="30" rx="6" class="ou"/><text x="95" y="28" class="t">Dynamics</text>
   <rect x="215" y="8" width="150" height="30" rx="6" class="band"/><text x="290" y="28" class="t">MuleSoft</text>
@@ -330,55 +369,51 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <rect x="20" y="206" width="725" height="50" rx="6" class="ou"/><text x="382" y="226" class="s">Result: Dynamics and the OMS say "cancelled". The goods ship. A return and refund follow.</text><text x="382" y="244" class="s">The customer's credit stays consumed, so a new order can be blocked.</text>
 </svg><figcaption>Two problems in one: a stale status allowed the cancel, and the rejection did not undo it.</figcaption></figure>
 <h4>Scenario 3: side effects</h4>
-<p>A wrongly "cancelled" order still holds the customer's credit. The rep cannot place a new order. Returns, refunds and manual clean-up follow. These are the costs to put in front of leadership.</p>
+<p>Before the fix, a wrongly "cancelled" order still held the customer's credit. The same costs still follow any status that is wrong: blocked new orders, returns, refunds and manual clean-up. These are the costs to put in front of leadership.</p>
 <div class="box say"><b class="lbl">Say this</b>"I see two different failures. First, a user acts on a stale status, because Dynamics checks its own copy. Second, when a downstream system says no, that 'no' does not undo what the upstream systems already did. The fixes are different, so I would treat them separately."</div>
 </article>
 
 <article class="card" id="pr-tried">
 <span class="tag"><span class="core">Core</span> · P4</span>
-<h3>What the team has tried</h3>
-<p><span class="prov y">BRIEFING</span> For some actions, such as cancel, the team changed the order of events. Dynamics sends the cancel request first, waits for the downstream acknowledgement, and only then commits the cancel. It works. The business does not accept it everywhere, because users wait longer and some screens become slow.</p>
-<div class="grid2"><div>
-<h4>What it gets right</h4>
-<ul>
-  <li>The system that knows the true state decides.</li>
-  <li>No local commit that has to be undone later.</li>
-  <li>It is the right pattern for high-risk actions.</li>
-</ul></div><div>
-<h4>Why it does not generalise</h4>
-<ul>
-  <li>The user waits for the slowest downstream system.</li>
-  <li>If a system is down, the user is blocked.</li>
-  <li>Every system must answer fast, which changes their contracts too.</li>
-  <li>Many changes are low risk and do not need it.</li>
-</ul></div></div>
-<div class="box intent"><b class="lbl">Your position</b>Agree with the pattern and its limits. The missing piece is a rule for <em>where</em> to use it: a decision matrix by action and order state (<a href="#sol-matrix">S8</a>), plus a non-blocking version for when the user should not wait (<a href="#sol-intent"><abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></a>). This turns a one-off fix into a design standard.</div>
-<div class="box say"><b class="lbl">Say this</b>"Confirm-then-commit is the right pattern for cancel. The question is where else to use it. I would build a simple matrix of action by order state, decide per cell, and give the user a 'requested' status when they should not have to wait."</div>
+<h3>What the team has already done</h3>
+<div class="tbl"><table>
+<tr><th>Area</th><th>Today</th><th>What is still open</th></tr>
+<tr><td>Cancel</td><td><span class="prov y">BRIEFING</span> Confirm-then-commit, synchronous. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> answers within about 5–10 seconds. Failure shown at once</td><td>Does the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> check with Oracle before it confirms, when the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> itself may be behind?</td></tr>
+<tr><td>Other changes</td><td><span class="prov y">BRIEFING</span> Allowed per stage; confirm-then-commit is not used. It cannot be generalised without slowing the business</td><td>Which pattern for which action (<a href="#sol-matrix">S8</a>)</td></tr>
+<tr><td>Status ordering</td><td><span class="prov y">BRIEFING</span> Sequence numbers and event time per order. A late update is not applied; it is logged as a failure</td><td>Why do updates arrive late or not at all? Who acts on the logged failures?</td></tr>
+<tr><td>Failed delivery</td><td><span class="prov y">BRIEFING</span> The Azure Function retries three times, then gives up. No dead-letter queue, no replay</td><td>Durable delivery with safe replay (<a href="#sol-reliable">S6</a>)</td></tr>
+<tr><td>Missing orders at submit</td><td><span class="prov y">BRIEFING</span> Rare. Missing orders are found and re-sent by hand</td><td>Could reconciliation find them automatically?</td></tr>
+</table></div>
+<div class="box intent"><b class="lbl">Your position</b>The team has the right instincts and has fixed the worst case. The remaining work is to apply the same thinking consistently: a rule for which pattern to use where, a shared model of states and allowed actions, and reliable status updates across every hop.</div>
+<div class="box say"><b class="lbl">Say this</b>"You've already fixed cancel with confirm-then-commit, and you sequence the status updates. That's the right direction. What I'd look at next is why updates arrive late or go missing, and a consistent rule for the other changes, without slowing users down."</div>
 </article>
 
 <article class="card" id="pr-root">
 <span class="tag"><span class="core">Core</span> · P5</span>
-<h3>Root causes, as hypotheses to test</h3>
-<p>These are hypotheses from the briefings. In the review, each one needs evidence before it becomes a finding.</p>
+<h3>Hypotheses to test</h3>
+<p>These come from the briefings. The team's technical lead judged the picture about 70–80% right. In the review, each one needs evidence before it becomes a finding.</p>
+<div class="box gotcha"><b class="lbl">Not root causes yet</b>Do not call these root causes before you have seen the system. Say "from what I've heard" and "I would test". Add that there may be causes nobody has mentioned.</div>
 <div class="tbl"><table>
 <tr><th>#</th><th>Hypothesis</th><th>Evidence to look for</th></tr>
 <tr><td>H1</td><td><b>No single owner of order state</b> after submit. Each system keeps its own status and acts on it.</td><td>Status fields in each system; which system's status gates each user action</td></tr>
-<tr><td>H2</td><td><b>Commit before confirm.</b> Dynamics commits, then informs downstream.</td><td>Plug-in and webhook registrations; Azure Function code</td></tr>
+<tr><td>H2</td><td><b>Commit before confirm.</b> Dynamics commits, then informs downstream. <span class="impl">Fixed for cancel</span></td><td>Plug-in and webhook registrations; Azure Function code</td></tr>
 <tr><td>H3</td><td><b>Actions gated on a stale copy</b> of status in Dynamics.</td><td>Form rules and plug-ins that enable edit and cancel</td></tr>
 <tr><td>H4</td><td><b>Rejections are not first-class events.</b> A downstream "no" does not reverse upstream changes.</td><td>Error handling in MuleSoft and the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> for rejected changes</td></tr>
-<tr><td>H5</td><td><b>No ordering or versioning</b> on status updates. Late messages overwrite newer state.</td><td>Message headers; whether updates carry a sequence or timestamp</td></tr>
-<tr><td>H6</td><td><b>Fire-and-forget delivery.</b> When a hop is down, updates are delayed or lost.</td><td>Webhook mode, Function retries, MuleSoft queues and <abbr title="Dead-Letter Queues: where messages go after they fail processing too many times.">DLQs</abbr></td></tr>
+<tr><td>H5</td><td><b>Late or missing status updates.</b> Sequence numbers and event time are in place, so late updates are rejected. The question is why they are late, and what happens after the rejection. <span class="impl">Ordering in place</span></td><td>Failure logs, queue depth and message age per hop</td></tr>
+<tr><td>H6</td><td><b>No durable retry.</b> The Function retries three times, then gives up, with no dead-letter queue or replay.</td><td>Function configuration, queue settings, failure counts</td></tr>
 <tr><td>H7</td><td><b>No shared state model.</b> Nobody has written down the order states across systems and the actions allowed in each.</td><td>Ask for it. If it does not exist, it is deliverable number one</td></tr>
 <tr><td>H8</td><td><b>No reconciliation.</b> Users find the mismatches. The system does not.</td><td>Reports, monitoring, support tickets</td></tr>
+<tr><td>H9</td><td><b>Drift between downstream systems.</b> The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> can be behind Oracle, and the warehouse behind procurement. Dynamics only shows the last copy.</td><td>Compare status for the same orders in each system</td></tr>
 </table></div>
-<div class="box say"><b class="lbl">Say this</b>"From what I have heard, I would start with eight hypotheses, and the first one matters most: after submit, no single system owns the truth about the order. I would test each one against configuration and logs before calling it a finding."</div>
+<div class="box say"><b class="lbl">Say this</b>"From what I've heard, I'd start with a handful of hypotheses. The first matters most: at each stage, it isn't clear which system owns the truth about the order. I'd test each one against the system before calling it a finding, and I'd expect to find things nobody has mentioned yet."</div>
 </article>
 </section>
 <!-- ============ SOLUTION ============ -->
 <section id="solution">
 <h2 class="part">S. Solution options for order sync</h2>
-<p class="part-sub">Nine cards. These are well-known distributed-systems patterns applied to their order lifecycle. Present them as options to test with the team and the other systems. The client's architect decides.</p>
+<p class="part-sub">Ten cards. These are well-known distributed-systems patterns applied to their order lifecycle. Some the team already uses. Present the rest as options to test with the team and the other systems. The client's architect decides.</p>
 <nav class="toc">
+  <a href="#sol-status"><span>S0</span>Where the team already is</a>
   <a href="#sol-own"><span>S1</span>Ownership handoff</a>
   <a href="#sol-sm"><span>S2</span>Shared state model</a>
   <a href="#sol-intent"><span>S3</span>Requested states</a>
@@ -390,58 +425,74 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <a href="#sol-road"><span>S9</span>Roadmap</a>
 </nav>
 
+<article class="card" id="sol-status">
+<span class="tag"><span class="core">Core</span> · S0</span>
+<h3>Where the team already is</h3>
+<p>Use this card to show you thought about each pattern and know what the team has done. Credit them first, then point to what is open.</p>
+<div class="tbl"><table>
+<tr><th>Pattern</th><th>Status at the client</th><th>Card</th></tr>
+<tr><td>Confirm-then-commit for cancel</td><td><span class="impl">Team has it</span> Synchronous, 5–10 seconds, failure shown at once</td><td><a href="#sol-intent">S3</a></td></tr>
+<tr><td>Ordered status updates</td><td><span class="impl">Team has it</span> Sequence number and event time; late updates logged as failures</td><td><a href="#sol-order">S5</a></td></tr>
+<tr><td>Allowed actions per stage</td><td><b>Partly.</b> Rules exist (no cancel after pick; ship-method changes allowed while picking). Not yet one shared table across systems</td><td><a href="#sol-sm">S2</a></td></tr>
+<tr><td>Retries</td><td><b>Partly.</b> Three retries in the Azure Function, then stop</td><td><a href="#sol-reliable">S6</a></td></tr>
+<tr><td>One owner of status per stage</td><td><b>Open.</b> Each system keeps and acts on its own status</td><td><a href="#sol-own">S1</a></td></tr>
+<tr><td>Version check on change requests</td><td><b>Unknown.</b> Ask</td><td><a href="#sol-occ">S4</a></td></tr>
+<tr><td>Dead-letter queue and safe replay</td><td><b>Open</b></td><td><a href="#sol-reliable">S6</a></td></tr>
+<tr><td>Reconciliation across systems</td><td><b>Open.</b> Missing orders are found by hand</td><td><a href="#sol-recon">S7</a></td></tr>
+</table></div>
+<div class="box say"><b class="lbl">Say this</b>"I came to confirm-then-commit for cancel on my own, and I hear you've already done it, which is great. Ordering is in place too. The open areas I'd look at are ownership per stage, reliable delivery with safe replay, and reconciliation."</div>
+</article>
+
 <article class="card" id="sol-own">
 <span class="tag"><span class="core">Core</span> · S1</span>
-<h3>One owner per lifecycle phase</h3>
-<p>At any moment, exactly one system is the authority for an order's state. Ownership passes along the lifecycle. Other systems show a copy and ask the owner before acting.</p>
-<figure class="arch"><svg viewBox="0 0 760 190" class="d" role="img" aria-label="Ownership handoff: Dynamics owns the quote and draft order until submit. From submit the OMS owns order state. Oracle and the warehouse own execution details such as pick, ship and invoice and report them to the OMS. Dynamics shows a read-only copy after submit and sends change requests to the OMS.">
+<h3>One owner of the status at each stage</h3>
+<p>At any moment, one system is the authority for the order's <em>status</em>: the system doing the work at that stage. Ownership moves along the lifecycle. Other systems, including Dynamics, can still <em>request</em> changes, because the business needs that. The current owner decides whether a change is allowed.</p>
+<figure class="arch"><svg viewBox="0 0 760 200" class="d" role="img" aria-label="Status ownership moves along the lifecycle: Dynamics owns the quote and draft order until submit; the OMS owns status while it validates and allocates; Oracle and the warehouse own status while they release, pick, pack and ship. Dynamics keeps the right to request changes after submit, and the current owner decides.">
   <rect x="10" y="20" width="230" height="56" rx="8" class="ou"/><text x="125" y="42" class="t">Dynamics owns</text><text x="125" y="60" class="s">quote, configuration, draft order</text>
-  <rect x="260" y="20" width="240" height="56" rx="8" class="band"/><text x="380" y="42" class="t">OMS owns order state</text><text x="380" y="60" class="s">from submit to closed</text>
-  <rect x="520" y="20" width="230" height="56" rx="8"/><text x="635" y="42" class="t">Oracle and warehouse own</text><text x="635" y="60" class="s">pick, pack, ship, invoice detail</text>
-  <line x1="240" y1="48" x2="260" y2="48" class="thick"/><text x="250" y="96" class="s">submit</text>
-  <line x1="520" y1="48" x2="500" y2="48"/>
-  <text x="635" y="96" class="s">report events to the OMS</text>
-  <rect x="10" y="116" width="740" height="60" rx="8"/>
-  <text x="380" y="138" class="t">After submit, Dynamics shows the OMS's status and sends only requests</text>
-  <text x="380" y="160" class="s">Edit and cancel buttons follow the OMS's state and its allowed-actions rules</text>
-</svg><figcaption>The OMS as the post-submit authority is the natural choice, because it already orchestrates fulfilment. Confirm with the client's architect.</figcaption></figure>
+  <rect x="260" y="20" width="230" height="56" rx="8" class="band"/><text x="375" y="42" class="t">OMS owns the status</text><text x="375" y="60" class="s">validate, allocate</text>
+  <rect x="510" y="20" width="240" height="56" rx="8" class="band"/><text x="630" y="42" class="t">Oracle and warehouse own it</text><text x="630" y="60" class="s">release, pick, pack, ship, invoice</text>
+  <line x1="240" y1="48" x2="260" y2="48" class="thick"/><line x1="490" y1="48" x2="510" y2="48" class="thick"/>
+  <text x="250" y="96" class="s">submit</text><text x="500" y="96" class="s">release</text>
+  <rect x="10" y="116" width="740" height="70" rx="8"/>
+  <text x="380" y="138" class="t">After submit, Dynamics keeps its maintenance rights as requests</text>
+  <text x="380" y="158" class="s">The current owner applies its rules and answers yes or no</text>
+  <text x="380" y="176" class="s">Every system shows the owner's status</text>
+</svg><figcaption>Ownership of the status moves. The right to ask for a change stays with Dynamics.</figcaption></figure>
 <ul>
-  <li><b>Why the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>:</b> it already orchestrates fulfilment, and <abbr title="International Business Machines: the US technology company.">IBM</abbr>'s product has per-status modification rules that say which changes are allowed in which status.</li>
-  <li><b>What changes for Dynamics:</b> after submit, it stops committing state changes on its own. It shows the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> status and sends change requests (see <a href="#sol-intent"><abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></a>).</li>
-  <li><b>What changes for the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>:</b> it must hear from Oracle quickly enough that its own status is trustworthy, or it must ask Oracle before it accepts risky changes.</li>
+  <li><b>Not a lock on Dynamics.</b> The business wants reps to keep changing orders after submit, for example switching delivery to customer pickup while the order is being picked. That stays. The change goes to the current owner for a yes or no.</li>
+  <li><b>The owner must be fresh.</b> If the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> is behind Oracle, its answer can be wrong. So either status flows quickly from Oracle to the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, or the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> checks with Oracle for risky changes.</li>
+  <li><b>Rules exist downstream.</b> <abbr title="International Business Machines: the US technology company.">IBM</abbr>'s order management has per-status modification rules, and Oracle has processing constraints.</li>
 </ul>
-<div class="box gotcha"><b class="lbl">The catch in scenario 2</b>In the cancel case, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> also said "allocated" while Oracle was already processing. So an ownership rule is not enough on its own. The owner's status must be fresh, or the owner must confirm with Oracle before accepting a cancel.</div>
-<div class="box say"><b class="lbl">Say this</b>"The first design decision is ownership. Before submit, Dynamics owns the order. After submit, one system, probably the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, is the truth, and Dynamics shows its view and sends requests. Without that rule, every other fix is a patch."</div>
-<p class="src">Sources: [P] <a href="https://www.ibm.com/docs/SS6PEW_10.0.0/configuration/c_DefiningModificationRules.html" target="_blank" rel="noopener noreferrer"><abbr title="International Business Machines: the US technology company.">IBM</abbr> Sterling Order Management: defining modification rules</a>. Checked 4 Nov 2026.</p>
+<div class="box say"><b class="lbl">Say this</b>"I don't mean Dynamics loses control after submit. I mean at each stage one system is the truth about status, and the others ask it before they act. Dynamics keeps its maintenance rights; the change just gets a yes or no from whoever is doing the work at that point."</div>
+<p class="src">Sources: [P] <a href="https://www.ibm.com/docs/SS6PEW_10.0.0/configuration/c_DefiningModificationRules.html" target="_blank" rel="noopener noreferrer"><abbr title="International Business Machines: the US technology company.">IBM</abbr> Sterling Order Management: defining modification rules</a>. Checked 12 Nov 2026.</p>
 </article>
 
 <article class="card" id="sol-sm">
 <span class="tag"><span class="core">Core</span> · S2</span>
 <h3>A shared order state model with allowed actions</h3>
-<p>Write down one set of order states that every system maps to. For each state, list which user actions are allowed and which system must agree. Today this knowledge is spread across Jira and people's heads.</p>
+<p>Write down one set of order states that every system maps to. For each state, list which user actions are allowed and which system must agree. The rules exist today, but in several systems and in people's heads.</p>
 <div class="tbl"><table>
-<tr><th>Shared state</th><th>Edit quantity</th><th>Add line</th><th>Cancel</th><th>Who decides</th></tr>
+<tr><th>Shared state</th><th>Edit quantity</th><th>Change ship method or ship-to</th><th>Cancel</th><th>Who decides</th></tr>
 <tr><td>Draft</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Dynamics</td></tr>
-<tr><td>Submitted</td><td>Request</td><td>Request</td><td>Request</td><td><abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr></td></tr>
-<tr><td>Allocated</td><td>Request</td><td>Request</td><td>Request, confirm with Oracle</td><td><abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, then Oracle</td></tr>
-<tr><td>Released to warehouse</td><td>No</td><td>New order</td><td>Request, confirm with Oracle</td><td>Oracle</td></tr>
-<tr><td>Picked or backordered</td><td>No</td><td>New order</td><td>Backordered quantity only</td><td>Oracle</td></tr>
+<tr><td>Submitted</td><td>Request</td><td>Request</td><td>Confirm first</td><td><abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr></td></tr>
+<tr><td>Allocated</td><td>Request</td><td>Request</td><td>Confirm first</td><td><abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, checking Oracle</td></tr>
+<tr><td>Released, picking or packed</td><td>No</td><td>Request (e.g. switch to customer pickup)</td><td>No</td><td>Oracle and warehouse</td></tr>
 <tr><td>Shipped</td><td>No</td><td>No</td><td>No. Return</td><td>n/a</td></tr>
 </table></div>
-<p class="meta">Illustration only. The real table comes from the business and from the rules already configured in the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Oracle.</p>
+<p class="meta">Illustration, partly from the briefing: cancel is blocked after picking, and ship-method changes are allowed while picking or packed. The real table comes from the business and the rules in the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Oracle.</p>
 <ul>
   <li>Oracle already blocks these: once a line is pick confirmed, its default rules stop cancel, delete and split, and many shipping fields.</li>
   <li><abbr title="International Business Machines: the US technology company.">IBM</abbr>'s order management has the same idea: each change type is allowed or disallowed per status, and cancel works only within a status range.</li>
-  <li>So the rules exist downstream. The gap is that Dynamics does not use them before it lets the user act.</li>
+  <li>So the rules exist in several places. The gap is one shared table that every system enforces the same way.</li>
 </ul>
 <div class="box say"><b class="lbl">Say this</b>"Oracle and the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> already have rules for what can change in each status. Dynamics doesn't see them. I would build one shared state model with an allowed-actions table, agree it with the business and each system owner, and make Dynamics enforce the same table."</div>
 <p class="src">Sources: [P] <a href="https://docs.oracle.com/cd/E26401_01/doc.122/e48842/T373258T377250.htm" target="_blank" rel="noopener noreferrer">Oracle E-Business Suite Order Management: shipping and change constraints</a>; [P] <a href="https://docs.oracle.com/en/cloud/saas/supply-chain-and-manufacturing/25d/faiom/processing-constraints.html" target="_blank" rel="noopener noreferrer">Oracle Fusion Order Management: processing constraints</a>; [P] <a href="https://www.ibm.com/docs/SS6PEW_10.0.0/configuration/c_DefiningModificationRules.html" target="_blank" rel="noopener noreferrer"><abbr title="International Business Machines: the US technology company.">IBM</abbr> modification rules</a>. Checked 4 Nov 2026.</p>
 </article>
 
 <article class="card" id="sol-intent">
-<span class="tag"><span class="core">Core</span> · <abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></span>
-<h3>Requested states: record the intent, then confirm</h3>
-<p>A non-blocking version of confirm-then-commit. The user's action is saved at once as a <em>request</em>. The order shows "cancel requested" or "change requested". The owner system confirms or rejects. The user does not wait on screen, and nothing is committed until the owner agrees.</p>
+<span class="tag"><span class="core">Core</span> · S3</span>
+<h3>Confirm first, or record the request <span class="impl">Team has it for cancel</span></h3>
+<p><span class="prov y">BRIEFING</span> For cancel, the team already confirms first: a synchronous call, answered in about 5–10 seconds. That is the right choice when the answer is fast. The pattern below is the non-blocking version, for changes where the answer can take longer. The user's action is saved at once as a <em>request</em>. The order shows "cancel requested" or "change requested". The owner system confirms or rejects. The user does not wait on screen, and nothing is committed until the owner agrees.</p>
 <figure class="arch"><svg viewBox="0 0 760 200" class="d" role="img" aria-label="Cancel requested flow: the rep clicks cancel; Dynamics saves cancel requested and sends a request. The OMS checks its rules and asks Oracle if needed. If confirmed, all systems show cancelled and credit is released. If rejected, Dynamics shows cancel rejected, shipping, and the rep is alerted.">
   <rect x="10" y="70" width="120" height="50" rx="8" class="ou"/><text x="70" y="92" class="t">Rep: cancel</text><text x="70" y="108" class="s">no wait on screen</text>
   <line x1="130" y1="95" x2="160" y2="95" class="thick"/>
@@ -452,7 +503,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <rect x="540" y="20" width="210" height="50" rx="8"/><text x="645" y="42" class="t">Confirmed</text><text x="645" y="58" class="s">all show cancelled · credit released</text>
   <rect x="540" y="125" width="210" height="50" rx="8" class="ou"/><text x="645" y="147" class="t">Rejected</text><text x="645" y="163" class="s">"cancel rejected, shipping" · alert rep</text>
   <text x="380" y="192" class="s">The rejection is an event like any other. It updates every system, so nothing stays falsely cancelled.</text>
-</svg><figcaption>The same shape works for "change requested". Both need a timeout rule: what the screen shows if no answer arrives.</figcaption></figure>
+</svg><figcaption>Your design for cancel, reached independently. The team chose the synchronous form because the answer comes back in seconds. Keep the non-blocking form for slower changes.</figcaption></figure>
 <div class="grid2"><div>
 <h4>Why it fits this client</h4>
 <ul>
@@ -466,8 +517,8 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <li><b>Timeout:</b> if no answer within [N] minutes, alert support.</li>
   <li><b>Compensation:</b> a rejected change must undo any partial updates (a saga).</li>
 </ul></div></div>
-<div class="box intent"><b class="lbl">Answer to the earlier objection</b>In the briefing, an online-retailer style "cancel request accepted, we will confirm" was pushed back because of payments and credit. The requested-state pattern answers that: credit is released only when the cancel is confirmed, so finance never acts on an unconfirmed cancel.</div>
-<div class="box say"><b class="lbl">Say this</b>"I would not make the user wait. Save the cancel as a request, show 'cancel requested', and let the owner confirm or reject. Credit is released only on confirmation. And a rejection updates every system, so we never ship an order that Dynamics says is cancelled."</div>
+<div class="box intent"><b class="lbl">Credit</b>Release credit only on a confirmed cancel. With confirm-then-commit that is automatic: nothing is cancelled until the owner says yes.</div>
+<div class="box say"><b class="lbl">Say this</b>"For cancel you've already got it right: confirm first, then commit, and it's fast enough to do synchronously. For slower changes I'd use the same idea without the wait: record a request, show it as pending, and let the owner confirm or reject."</div>
 <p class="src">Go deeper (free): <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/async-request-reply" target="_blank" rel="noopener noreferrer">Asynchronous request-reply pattern</a>; <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/saga" target="_blank" rel="noopener noreferrer">Saga pattern</a>; <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction" target="_blank" rel="noopener noreferrer">Compensating transaction pattern</a>.<br>Sources: [P] Azure Architecture Center; [P] <a href="https://docs.oracle.com/en/cloud/saas/supply-chain-and-manufacturing/26a/faiom/guidelines-for-setting-up-credit-check.html" target="_blank" rel="noopener noreferrer">Oracle Fusion credit check guidelines</a> (how credit is consumed and rechecked; release on cancel is not documented there, so confirm it with the client). Checked 4 Nov 2026.</p>
 </article>
 
@@ -486,11 +537,12 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 
 <article class="card" id="sol-order">
 <span class="tag"><span class="core">Core</span> · S5</span>
-<h3>Event ordering and idempotency</h3>
+<h3>Event ordering and idempotency <span class="impl">Ordering in place</span></h3>
+<p><span class="prov y">BRIEFING</span> The team already uses sequence numbers and event time per order. A late update, such as "picked" after "shipped", is not applied and is logged as a failure. The open question is why updates arrive late, and who acts on the failure log.</p>
 <div class="grid2"><div>
 <h4>Ordering</h4>
 <ul>
-  <li><b>Status only moves forward.</b> Ignore a "picked" update that arrives after "shipped".</li>
+  <li><b>Status only moves forward.</b> A "picked" update after "shipped" is not applied (in place).</li>
   <li>Each update carries a sequence number or event time per order.</li>
   <li>Keep updates for one order in order: one queue partition or message group per order.</li>
   <li>Anypoint <abbr title="Message Queue. Here, Anypoint MQ: MuleSoft&#x27;s managed queue service with standard and FIFO queues.">MQ</abbr> <abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr> queues keep order within a message group (for example, the order number).</li>
@@ -506,22 +558,23 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <li>Anypoint <abbr title="Message Queue. Here, Anypoint MQ: MuleSoft&#x27;s managed queue service with standard and FIFO queues.">MQ</abbr> <abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr>: once a message moves to a dead-letter queue, strict order in that group is no longer guaranteed.</li>
   <li><abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr> queues are capped at 300 transactions a second. Fine for status updates; check at peak.</li>
 </ul></div>
-<div class="box say"><b class="lbl">Say this</b>"Status updates need two guarantees: they never go backwards, and duplicates do no harm. A sequence number per order, a forward-only rule at the receiver, and idempotent consumers. MuleSoft has both tools: <abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr> message groups and the idempotent validator."</div>
+<div class="box say"><b class="lbl">Say this</b>"You already sequence the updates, so they never go backwards. The next questions are why some arrive late, and whether duplicates are also harmless. Then the failure log becomes a work queue someone owns."</div>
 <p class="src">Sources: [P] <a href="https://docs.mulesoft.com/mq/mq-queues" target="_blank" rel="noopener noreferrer">Anypoint <abbr title="Message Queue. Here, Anypoint MQ: MuleSoft&#x27;s managed queue service with standard and FIFO queues.">MQ</abbr> queues: <abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr>, message groups, limits</a>; [P] <a href="https://docs.mulesoft.com/mule-runtime/latest/idempotent-message-validator" target="_blank" rel="noopener noreferrer">Idempotent Message Validator</a>. Checked 4 Nov 2026.</p>
 </article>
 
 <article class="card" id="sol-reliable">
 <span class="tag"><span class="core">Core</span> · S6</span>
 <h3>Reliable delivery: no fire-and-forget</h3>
-<p>Today a webhook calls an Azure Function, which calls MuleSoft. If a hop is down, the update can be lost. A Dataverse webhook times out after 60 seconds and retries once, only for 502, 503 or 504. An asynchronous webhook records the failure in a system job, and nothing replays it.</p>
+<p><span class="prov y">BRIEFING</span> Today the Azure Function retries three times, then gives up. There is no dead-letter queue and no replay. For background: A Dataverse webhook times out after 60 seconds and retries once, only for 502, 503 or 504. An asynchronous webhook records the failure in a system job, and nothing replays it.</p>
 <div class="tbl"><table>
 <tr><th>Option</th><th>How</th><th>Gain</th></tr>
 <tr><td>Queue first</td><td>Dataverse posts to Azure Service Bus (a built-in service endpoint) or MuleSoft takes the event onto Anypoint <abbr title="Message Queue. Here, Anypoint MQ: MuleSoft&#x27;s managed queue service with standard and FIFO queues.">MQ</abbr></td><td>Durable. Consumers can be down without loss</td></tr>
 <tr><td>Outbox</td><td>Write the outgoing event in the same transaction as the change; a relay publishes it</td><td>No "committed but never sent"</td></tr>
 <tr><td><abbr title="Dead-Letter Queue: a holding queue for messages that cannot be processed.">DLQ</abbr> and replay</td><td>Failed messages go to a dead-letter queue with an owner and a replay tool</td><td>Failures are visible and fixable</td></tr>
+<tr><td>Sequence-aware replay</td><td>Before replaying an old update, check its sequence number against the order's current one. Skip it if a newer update has been applied</td><td>Replay never undoes newer changes</td></tr>
 <tr><td>Monitoring</td><td>Alert on failed system jobs, <abbr title="Dead-Letter Queue: a holding queue for messages that cannot be processed.">DLQ</abbr> depth and message age</td><td>Problems found before users find them</td></tr>
 </table></div>
-<div class="box say"><b class="lbl">Say this</b>"A webhook straight into a Function is fire-and-forget. I would put a durable queue at the first hop, with a dead-letter queue, an owner and a replay tool. Then an outage delays updates. It no longer loses them."</div>
+<div class="box say"><b class="lbl">Say this</b>"Three retries and then nothing means some updates are simply lost. I'd add a dead-letter queue with an owner and a replay tool. And as you pointed out, replay must check the sequence number, so an old update never undoes a newer one."</div>
 <p class="src">Sources: [P] <a href="https://learn.microsoft.com/en-us/power-apps/developer/data-platform/use-webhooks" target="_blank" rel="noopener noreferrer">Dataverse: use webhooks</a>; [P] <a href="https://learn.microsoft.com/en-us/power-apps/developer/data-platform/register-web-hook" target="_blank" rel="noopener noreferrer">Register a webhook (sync and async modes)</a>; [P] <a href="https://learn.microsoft.com/en-us/power-apps/developer/data-platform/azure-integration" target="_blank" rel="noopener noreferrer">Dataverse and Azure integration</a>; [P] <a href="https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-outbox-cosmos" target="_blank" rel="noopener noreferrer">Transactional outbox pattern</a>. Checked 4 Nov 2026.</p>
 </article>
 
@@ -534,6 +587,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <li><b>It finds the worst cases first.</b> The list shows which transitions break most.</li>
   <li><b>It proves the later fixes work.</b> The mismatch count is the success measure.</li>
   <li><b>It needs no change to the order flow.</b> It can run in weeks 2–4 of the review.</li>
+  <li><b>It replaces manual hunting.</b> Today missing orders are found by hand and re-sent.</li>
 </ul>
 <div class="box say"><b class="lbl">Say this</b>"Before any redesign, I would want a daily reconciliation across the three systems. It tells us how big the problem is, where it breaks, and later whether the fix worked. It is cheap and it changes nothing in the live flow."</div>
 </article>
@@ -546,25 +600,28 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <tr><th>Action</th><th>Risk if wrong</th><th>Pattern</th></tr>
 <tr><td>Product search, price, stock lookup</td><td>Low: a refresh fixes it</td><td>Synchronous read, short timeout, cache</td></tr>
 <tr><td>Edit before submit</td><td>None: Dynamics owns it</td><td>Local commit</td></tr>
-<tr><td>Submit order</td><td>Medium</td><td>Durable queue, idempotent, acknowledgement updates status</td></tr>
+<tr><td>Submit order</td><td>Low to medium: rare loss, re-sent by hand</td><td>Queue, idempotent, acknowledgement updates status; reconciliation finds misses</td></tr>
 <tr><td>Change after submit, before release</td><td>Medium</td><td>Change requested + version check</td></tr>
-<tr><td>Cancel after allocation</td><td>High: goods ship, credit held</td><td>Cancel requested, owner confirms with Oracle</td></tr>
-<tr><td>Change or cancel after pick</td><td>High</td><td>Blocked in the <abbr title="User Interface: the screens and controls a person uses.">UI</abbr>, per the allowed-actions table</td></tr>
-<tr><td>Status updates back</td><td>Medium</td><td>Async, ordered per order, forward-only, idempotent</td></tr>
+<tr><td>Cancel before pick</td><td>High: goods ship, credit held</td><td>Confirm then commit, synchronous (in place)</td></tr>
+<tr><td>Change ship method while picking or packed</td><td>Medium</td><td>Request; warehouse confirms</td></tr>
+<tr><td>Cancel or quantity change after pick</td><td>High</td><td>Blocked (in place for cancel)</td></tr>
+<tr><td>Status updates back</td><td>High: the main problem</td><td>Async, ordered (in place), plus <abbr title="Dead-Letter Queue: a holding queue for messages that cannot be processed.">DLQ</abbr>, safe replay, reconciliation</td></tr>
 </table></div>
 <div class="box say"><b class="lbl">Say this</b>"Not everything needs the same treatment. Lookups stay fast and synchronous. Low-risk changes stay asynchronous. Only the high-risk actions, like cancel after allocation, need a confirmation from the owner, and even then the user doesn't wait on screen."</div>
 </article>
 
 <article class="card" id="sol-road">
 <span class="tag"><span class="core">Core</span> · S9</span>
-<h3>Roadmap for the sync problem</h3>
+<h3>Roadmap: interim, strengthen, evolve</h3>
+<p>There is no fixed timeline. Expect two questions: "how long?" and "what is the interim workaround?". Answer both. Stabilising is already a continuous activity for the team, so lead with strengthen and evolve.</p>
 <div class="tbl"><table>
 <tr><th>Horizon</th><th>Work</th><th>Measure</th></tr>
-<tr><td><b>Stabilise</b> (0–30 days)</td><td>Daily reconciliation and exceptions list. Correlation <abbr title="Identifier: a value that names one record or thing.">ID</abbr> through every hop. Alerts on failed webhooks and <abbr title="Dead-Letter Queues: where messages go after they fail processing too many times.">DLQs</abbr>. Block cancel in Dynamics once Oracle reports pick, using the current status feed.</td><td>Mismatch count known and falling</td></tr>
-<tr><td><b>Strengthen</b> (30–90 days)</td><td>Shared state model and allowed-actions table agreed. Cancel-requested flow with rejection events. Version check on change requests. Durable queue at the first hop.</td><td>No cancelled-but-shipped orders</td></tr>
-<tr><td><b>Evolve</b> (90 days+)</td><td><abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> as the single post-submit authority. Forward-only, ordered status events. Move browser-side integration logic to MuleSoft experience <abbr title="Application Programming Interfaces: defined contracts that one program uses to call another.">APIs</abbr>.</td><td>Mismatches below an agreed level</td></tr>
+<tr><td><b>Review</b> (weeks 1–6)</td><td>Interviews and workshops with each team, trace real orders, baseline mismatch rate and lag, validate the team's ideas. First recommendations and read-out in 4–6 weeks.</td><td>Agreed findings and options</td></tr>
+<tr><td><b>Interim</b> (during the review)</td><td>Hard stops for the worst cases, such as no quantity change after the warehouse has released. Daily reconciliation and an exceptions list. Alerts on failed updates.</td><td>Mismatch count known and falling</td></tr>
+<tr><td><b>Strengthen</b> (next ~90 days)</td><td>Re-pattern the worst flows: shared state model and allowed-actions table, owner answers change requests, dead-letter queue with safe replay, version checks.</td><td>Fewer mismatches; no orders stuck without an alert</td></tr>
+<tr><td><b>Evolve</b></td><td>Settle ownership of status per stage across all systems. Likely configuration and process changes more than new platforms.</td><td>Mismatches below an agreed level</td></tr>
 </table></div>
-<div class="box say"><b class="lbl">Say this</b>"First make the problem visible and stop the worst case. Then agree the state model and add requested states and version checks. Then settle ownership for good. Each step has a measure, so leadership can see it working."</div>
+<div class="box say"><b class="lbl">Say this</b>"First recommendations in four to six weeks. While we work, some hard stops and a daily reconciliation keep the worst cases under control. Then we strengthen the flows that break most, and settle ownership for good. I'd justify each timeline with the evidence, and every step has a measure leadership can see."</div>
 </article>
 </section>
 <!-- ============ POSITIONING ============ -->
@@ -619,7 +676,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <tr><td><abbr title="Representational State Transfer: an HTTP API style built around resources.">REST</abbr> <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr></td><td>Dataverse Web <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> (<abbr title="Open Data Protocol: a REST-based standard for querying and updating data over HTTP.">OData</abbr>)</td></tr>
 <tr><td>Governor limits</td><td>Service protection <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> limits (429)</td></tr>
 <tr><td>Profile, permission set</td><td>Security role</td></tr>
-<tr><td>Salesforce <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr></td><td>A partner <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> product, or a custom <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> app (here: "<abbr title="The client&#x27;s name for its CPQ ordering app in Dynamics 365. (Also the acronym of Unified Service Desk, an older Dynamics agent desktop.)">USD</abbr>")</td></tr>
+<tr><td>Salesforce <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr></td><td>A partner <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> product, or a custom <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> app (here: "<abbr title="Unified Service Desk: a Dynamics 365 desktop that hosts the client&#x27;s CPQ app. Deprecated by Microsoft from April 2026.">USD</abbr>")</td></tr>
 <tr><td>AppExchange</td><td>AppSource</td></tr>
 </table></div>
 <div class="box say"><b class="lbl">Say this</b>"In Salesforce terms, this is a trigger and callout problem. In Dynamics terms: what runs in the plug-ins, the form scripts and the webhooks, and what they assume about status."</div>
@@ -826,7 +883,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <li><b><abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> and <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr></b>: <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> calls per quote line. Pricing recalculation triggers. Order state machine and status sync frequency.</li>
   <li><b>Operations</b>: top 20 incidents of the last 90 days. Mean time to detect. Who gets the alert.</li>
 </ul></div></div>
-<div class="box intent"><b class="lbl">No documentation here</b>The briefing said designs live in Jira epics and features, with no current architecture diagram. So rebuild the current state from three sources: Jira history for each integration, configuration (plug-ins, webhooks, Functions, Mule flows), and logs for real orders. Trace five real orders end to end, including one cancelled-but-shipped order. The resulting map is your first deliverable, and it has value on its own.</div>
+<div class="box intent"><b class="lbl">How to build the picture</b>Ask for the existing architecture diagrams and the design history for each integration. The team can also produce <abbr title="C4 model: Context, Containers, Components and Code diagrams, by Simon Brown.">C4</abbr> views on request, and can bring several application teams together for a workshop. Add configuration (plug-ins, webhooks, Functions, Mule flows) and logs for real orders. Trace five real orders end to end. The resulting map is your first deliverable.</div>
 <div class="box gotcha"><b class="lbl">Gotchas</b><ul>
   <li>On Error Continue makes a failed Mule flow return success. Search for it early. It hides lost orders.</li>
   <li>A plug-in without filtering attributes runs on every update of that table, including updates from integrations.</li>
@@ -839,7 +896,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <article class="card" id="a-perf">
 <span class="tag"><span class="extra">Extra</span> · A5 · Measure</span>
 <h3>Baseline: mismatch rate, status lag and latency</h3>
-<p>For this client the main baseline is consistency: how many orders are out of sync, and how long a status takes to travel from the warehouse back to Dynamics (status lag). Latency still matters for the quote screens. Measure both, end to end, at normal load and at peak.</p>
+<p><span class="prov y">BRIEFING</span> The client has a dedicated performance team that handles priority performance issues, and <abbr title="Quality Assurance: the practice of testing that work meets its standard.">QA</abbr> or pre-production environments for load tests. Work with them. For this client the main baseline is consistency: how many orders are out of sync, and how long a status takes to travel from the warehouse back to Dynamics (status lag). Latency still matters for the quote screens. Measure both, end to end, at normal load and at peak.</p>
 <figure class="arch"><svg viewBox="0 0 760 200" class="d" role="img" aria-label="Latency budget bar for quote submit, total 12 seconds at P95: CRM plug-ins 2 seconds, CPQ pricing 5 seconds, MuleSoft 1 second, ERP credit check 3 seconds, other 1 second. A target line at 5 seconds shows the gap.">
   <text x="20" y="24" class="t" style="text-anchor:start">Quote submit · P95 · illustrative numbers</text>
   <rect x="20" y="40" width="120" height="44" rx="4"/><text x="80" y="60" class="t">CRM</text><text x="80" y="76" class="s">plug-ins 2 s</text>
@@ -1239,7 +1296,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <a href="#pl-oracle"><span>C2</span>Oracle ERP and warehouse</a>
   <a href="#pl-dv"><span>C3</span>Dynamics 365 and Dataverse</a>
   <a href="#pl-cpq"><span>C4</span>The CPQ app</a>
-  <a href="#pl-usd"><span>C5</span>"USD"</a>
+  <a href="#pl-usd"><span>C5</span>USD (Unified Service Desk)</a>
   <a href="#pl-mule"><span>C6</span>MuleSoft</a>
   <a href="#pl-azure"><span>C7</span>Azure Functions and Service Bus</a>
 </nav>
@@ -1266,6 +1323,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <li>Which modification rules are configured for cancel and quantity change?</li>
   <li>Can the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> carry a version number and a correlation <abbr title="Identifier: a value that names one record or thing.">ID</abbr> on every message?</li>
 </ul></div></div>
+<div class="box intent"><b class="lbl">From the briefing</b>The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> itself can fall out of step with Oracle and the procurement and warehouse systems. So when the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> answers a change request, its own status may be stale. Ask whether it checks with Oracle for risky changes.</div>
 <div class="box gotcha"><b class="lbl">The key point</b><abbr title="International Business Machines: the US technology company.">IBM</abbr>'s own guidance warns to "contemplate business and system integration implications" before allowing a normally disallowed change. In scenario 2, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> allowed a cancel based on its own status, which was behind Oracle's. The rules are only as good as the status they read.</div>
 <div class="box say"><b class="lbl">Say this</b>"The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> already has modification rules per status, so the business logic for what can change exists. The questions are whether its status is fresh enough, whether Dynamics uses the same rules, and what happens when Oracle disagrees."</div>
 <p class="src">Sources: [P] <a href="https://www.ibm.com/docs/SS6PEW_10.0.0/configuration/c_DefiningModificationRules.html" target="_blank" rel="noopener noreferrer"><abbr title="International Business Machines: the US technology company.">IBM</abbr>: defining modification rules</a>; [P] <a href="https://www.ibm.com/docs/SSGTJF/buc/omsi_canceling_orders.html" target="_blank" rel="noopener noreferrer"><abbr title="International Business Machines: the US technology company.">IBM</abbr>: canceling orders</a>. Checked 4 Nov 2026. ibm.com blocks automated link checks; the pages open in a browser.</p>
@@ -1305,9 +1363,9 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 </article>
 
 <article class="card" id="pl-cpq">
-<span class="tag"><span class="extra">Extra</span> · <abbr title="C4 model: Context, Containers, Components and Code diagrams, by Simon Brown.">C4</abbr> · Configure, price, quote</span>
+<span class="tag"><span class="extra">Extra</span> · <span data-noabbr>C4</span> · Configure, price, quote</span>
 <h3>The <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> app inside Dynamics</h3>
-<p><abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> means configure, price, quote. Here it is a custom app built in Dynamics 365 Sales. There is no separate <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> product. Product, price and stock data come from other systems through MuleSoft.</p>
+<p><abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> means configure, price, quote. Here it is a custom app in Dynamics 365 Sales, running inside Unified Service Desk. There is no separate <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> product. Reps use it mostly for orders, less for quotes. Product, price and stock data come from other systems through MuleSoft.</p>
 <ul>
   <li><b>Configure:</b> product search returns items; the rep builds the quote.</li>
   <li><b>Price:</b> an in-house pricing engine returns prices for the location, warehouse and customer.</li>
@@ -1322,12 +1380,17 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 </article>
 
 <article class="card" id="pl-usd">
-<span class="tag"><span class="extra">Extra</span> · C5 · Resolved question</span>
-<h3>"<abbr title="The client&#x27;s name for its CPQ ordering app in Dynamics 365. (Also the acronym of Unified Service Desk, an older Dynamics agent desktop.)">USD</abbr>": the client's name for the <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> app</h3>
-<p>The briefing used "<abbr title="The client&#x27;s name for its CPQ ordering app in Dynamics 365. (Also the acronym of Unified Service Desk, an older Dynamics agent desktop.)">USD</abbr>" and "<abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr>" for the same thing: orders are "placed from <abbr title="The client&#x27;s name for its CPQ ordering app in Dynamics 365. (Also the acronym of Unified Service Desk, an older Dynamics agent desktop.)">USD</abbr> or from <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr>". So "<abbr title="The client&#x27;s name for its CPQ ordering app in Dynamics 365. (Also the acronym of Unified Service Desk, an older Dynamics agent desktop.)">USD</abbr> <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr>" in the role description is most likely the client's own name for its Dynamics ordering app. Confirm it with one question.</p>
-<p>The other reading was Unified Service Desk, an older Dynamics agent desktop. Microsoft deprecated it from 1 Apr 2026. If it does turn out to be in use, add its migration to the risk register.</p>
-<div class="box say"><b class="lbl">Say this</b>"I understand <abbr title="The client&#x27;s name for its CPQ ordering app in Dynamics 365. (Also the acronym of Unified Service Desk, an older Dynamics agent desktop.)">USD</abbr> is your name for the ordering app in Dynamics. Is that right?"</div>
-<p class="src">Sources: internal briefing; [P] <a href="https://learn.microsoft.com/en-us/dynamics365/customer-service/deprecations-customer-service" target="_blank" rel="noopener noreferrer">Customer Service deprecations</a>. Checked 4 Nov 2026.</p>
+<span class="tag"><span class="extra">Extra</span> · C5 · Confirmed</span>
+<h3>"<abbr title="Unified Service Desk: a Dynamics 365 desktop that hosts the client&#x27;s CPQ app. Deprecated by Microsoft from April 2026.">USD</abbr>" is Unified Service Desk</h3>
+<p><span class="prov y">BRIEFING</span> The technical lead confirmed it: <abbr title="Unified Service Desk: a Dynamics 365 desktop that hosts the client&#x27;s CPQ app. Deprecated by Microsoft from April 2026.">USD</abbr> is Unified Service Desk, and the <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> app runs inside it. In conversation, "the <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr>" or "<abbr title="Unified Service Desk: a Dynamics 365 desktop that hosts the client&#x27;s CPQ app. Deprecated by Microsoft from April 2026.">USD</abbr>" both work.</p>
+<ul>
+  <li><b>What it is:</b> a Windows desktop for agents and reps. It hosts Dynamics pages, other apps and integrations in one shell. Its configuration lives in Dataverse.</li>
+  <li><b>Status:</b> Microsoft deprecated it from 1 Apr 2026 and points customers to the Copilot Service workspace <span class="ver">ver</span>. Trade press reports end of support on 30 Jun 2028 [S] <span class="ver">ver</span>.</li>
+  <li><b>Why it matters:</b> any long-term design for the ordering screens should allow for moving off <abbr title="Unified Service Desk: a Dynamics 365 desktop that hosts the client&#x27;s CPQ app. Deprecated by Microsoft from April 2026.">USD</abbr> before 2028.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Do not lead with this</b>It is a roadmap watch item for the "evolve" stage. Raise it only if asked about the long term, and frame it as something to plan for.</div>
+<div class="box say"><b class="lbl">Say this, only if the long term comes up</b>"Since <abbr title="Unified Service Desk: a Dynamics 365 desktop that hosts the client&#x27;s CPQ app. Deprecated by Microsoft from April 2026.">USD</abbr> is on Microsoft's deprecation path, I'd make sure anything we change in the ordering screens doesn't make a later move harder."</div>
+<p class="src">Sources: internal briefing; [P] <a href="https://learn.microsoft.com/en-us/dynamics365/customer-service/deprecations-customer-service" target="_blank" rel="noopener noreferrer">Customer Service deprecations</a>; [S] <a href="https://cxtoday.com/microsoft-to-shutdown-its-dynamics-365-unified-service-desk-usd" target="_blank" rel="noopener noreferrer">CX Today on the Unified Service Desk dates</a>. Checked 12 Nov 2026.</p>
 </article>
 
 <article class="card" id="pl-mule">
@@ -1353,7 +1416,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <div class="grid2"><div>
 <h4>Review checklist</h4>
 <ul>
-  <li>How order submit and status updates travel: <abbr title="Hypertext Transfer Protocol: the request and response protocol of the web.">HTTP</abbr>, Anypoint <abbr title="Message Queue. Here, Anypoint MQ: MuleSoft&#x27;s managed queue service with standard and FIFO queues.">MQ</abbr>, or files.</li>
+  <li>Which queue product carries order submit and status updates, and whether it has dead-letter queues.</li>
   <li>Are status updates ordered per order (<abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr> message groups)?</li>
   <li>Idempotent Message Validator with a persistent object store.</li>
   <li>What the flows do when the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> or Oracle rejects a change.</li>
@@ -1478,13 +1541,13 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <h3>Allowed-actions matrix</h3>
 <p>One row per user action, one column per shared state. Each cell says: allowed, request (needs owner confirmation), or blocked. Agree it with the business, then check it against the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> modification rules and Oracle processing constraints.</p>
 <div class="tbl"><table>
-<tr><th>Action</th><th>Submitted</th><th>Allocated</th><th>Released</th><th>Picked</th><th>Shipped</th></tr>
+<tr><th>Action</th><th>Submitted</th><th>Allocated</th><th>Released</th><th>Picking or packed</th><th>Shipped</th></tr>
 <tr><td>Change quantity</td><td>Request</td><td>Request</td><td>Blocked</td><td>Blocked</td><td>Blocked</td></tr>
 <tr><td>Add line</td><td>Request</td><td>Request</td><td>New order</td><td>New order</td><td>New order</td></tr>
-<tr><td>Change ship-to</td><td>Request</td><td>Request</td><td>Request</td><td>Blocked</td><td>Blocked</td></tr>
-<tr><td>Cancel</td><td>Request</td><td>Request</td><td>Request</td><td>Backorder only</td><td>Return</td></tr>
+<tr><td>Change ship method or ship-to</td><td>Request</td><td>Request</td><td>Request</td><td>Request (e.g. customer pickup)</td><td>Blocked</td></tr>
+<tr><td>Cancel</td><td>Confirm first</td><td>Confirm first</td><td>Confirm first</td><td>Blocked</td><td>Return</td></tr>
 </table></div>
-<p class="meta">Illustration only. See <a href="#sol-sm">S2</a> for why the downstream rules already exist.</p>
+<p class="meta">Illustration, partly from the briefing (cancel blocked after picking; ship-method changes allowed while picking or packed). See <a href="#sol-sm">S2</a>.</p>
 </article>
 
 <article class="card" id="t-report">
@@ -1536,8 +1599,8 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <h3>The first two weeks</h3>
 <div class="tbl"><table>
 <tr><th>Days</th><th>Activity</th><th>Output</th></tr>
-<tr><td>1–2</td><td>Meet the sponsor. Agree the charter and independence terms. Send the access and artefact list</td><td>Signed charter, access requests with owners</td></tr>
-<tr><td>2–3</td><td>Read the team's findings and proposed resolution. Read design docs, volumetrics and the last 90 days of incidents</td><td>Initial hypothesis list</td></tr>
+<tr><td>1–2</td><td>Meet the sponsor. Agree the charter and independence terms. Access and test accounts usually arrive within about two days</td><td>Signed charter, access requests with owners</td></tr>
+<tr><td>2–3</td><td>Read the team's findings and proposed resolution. Read existing architecture diagrams, design history, volumetrics and the last 90 days of incidents</td><td>Initial hypothesis list</td></tr>
 <tr><td>3–5</td><td>Interviews: architects, <abbr title="Customer Relationship Management: the system for accounts, opportunities, quotes and service cases.">CRM</abbr> and <abbr title="Enterprise Resource Planning: the system for finance, supply chain, orders and invoicing.">ERP</abbr> leads, MuleSoft, <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr>, <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, support, two users</td><td>Interview notes, scenario candidates</td></tr>
 <tr><td>4–6</td><td>Read configuration: plug-ins, form scripts, webhooks, Azure Functions, Mule apps</td><td>Draft <abbr title="C4 model: Context, Containers, Components and Code diagrams, by Simon Brown.">C4</abbr> context and container views</td></tr>
 <tr><td>6–8</td><td>Utility tree workshop with business and architects</td><td>Ranked quality-attribute scenarios</td></tr>
@@ -1612,7 +1675,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <!-- ============ INTERVIEW ============ -->
 <section id="interview">
 <h2 class="part">Interview prep, question by question</h2>
-<p class="part-sub">Q1–Q7 are Core. Answer in one sentence first, then the structure, then an example. Two minutes per answer. Expect the panel to probe your Dynamics and supply chain gap early; <a href="#q2">Q2</a> handles it.</p>
+<p class="part-sub">Q1–Q7, Q15 and Q16 are Core. In the internal screen, keep answers short and high level; go deeper only when asked. Answer in one sentence first, then the structure, then an example. Two minutes per answer. Expect the panel to probe your Dynamics and supply chain gap early; <a href="#q2">Q2</a> handles it.</p>
 
 <div class="card">
 <h3>How to structure an answer</h3>
@@ -1627,7 +1690,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 </div>
 
 <article class="card" id="stories">
-<span class="tag"><span class="core">Core</span> · Fill before <abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></span>
+<span class="tag"><span class="core">Core</span> · Fill before S3</span>
 <h3>Your stories for this role</h3>
 <p>Lead with story A. It is the closest match: a <abbr title="Customer Relationship Management: the system for accounts, opportunities, quotes and service cases.">CRM</abbr> front end, MuleSoft layers, several back ends and asynchronous failure handling. Use story B when they ask about assessments. Describe clients by industry and scale, never by name.</p>
 <div class="tbl"><table>
@@ -1669,9 +1732,9 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <article class="card" id="q1">
 <span class="tag"><span class="core">Core</span> · Problem</span>
 <h3>Q1 · "What is your understanding of our problem?"</h3>
-<div class="box intent"><b class="lbl">What they test</b>Whether you listened, and whether you can frame it at leadership level.</div>
+<div class="box intent"><b class="lbl">What they test</b>Whether you listened, and whether you can frame it at leadership level. Stay high level.</div>
 <details class="qa"><summary>Model answer</summary><div class="ans">
-<p>"Dynamics owns the order until submit. After that, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, Oracle and the warehouse do the work, and status flows back asynchronously. Dynamics commits a user's change first and then tells the others, and it decides what a user may do based on its own copy of the status. So two things go wrong. A user changes or cancels an order the warehouse is already working on, because Dynamics hasn't heard yet. And when Oracle rejects a cancel, nothing undoes the cancel upstream, so the order ships, the customer's credit stays held, and a return follows. At heart it's a design question: who owns order state. The product is fine."</p>
+<p>"Reps take orders in Dynamics, in the <abbr title="Configure, Price, Quote: software that builds valid product configurations, prices them and produces quotes.">CPQ</abbr> running in <abbr title="Unified Service Desk: a Dynamics 365 desktop that hosts the client&#x27;s CPQ app. Deprecated by Microsoft from April 2026.">USD</abbr>. After submit, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, Oracle and the warehouse do the work, and status flows back asynchronously through MuleSoft. When an update arrives late or not at all, systems disagree about where the order is. Dynamics can show 'allocated' while the order is already shipping, and reps act on that. And it isn't only Dynamics: the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> can be behind Oracle too. You've already fixed the worst case, cancel, with confirm-then-commit. What's left is making status reliable across every hop, and a consistent rule for the other changes. From what I've heard, it's a synchronisation and process problem. The product is fine. I'd want to see the system before I call anything a root cause."</p>
 </div></details>
 </article>
 
@@ -1687,15 +1750,15 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <article class="card" id="q3">
 <span class="tag"><span class="core">Core</span> · Approach</span>
 <h3>Q3 · "How would you approach this in your first two weeks?"</h3>
-<div class="box intent"><b class="lbl">What they test</b>A practical plan, given that there is no current architecture documentation.</div>
+<div class="box intent"><b class="lbl">What they test</b>A practical plan that respects the team's time.</div>
 <details class="qa"><summary>Model answer</summary><div class="ans">
 <ul>
-  <li><b>Days 1–2</b>: agree scope and decision ownership with your architect and leadership. Get read access to Jira, configuration and logs.</li>
+  <li><b>Days 1–2</b>: agree scope and decision ownership with your architect and leadership. Access and test accounts, which usually take about two days.</li>
   <li><b>Days 2–5</b>: talk to the Dynamics, MuleSoft, <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Oracle teams, support, and two or three reps. Trace five real orders end to end, including a cancelled-but-shipped one.</li>
-  <li><b>Days 5–8</b>: draw the current state, the cross-system status map, and the allowed-actions table as it works today.</li>
+  <li><b>Days 5–8</b>: start from your existing architecture diagrams, then build the cross-system status map and the allowed-actions table as they work today. Workshops with several teams where useful.</li>
   <li><b>Days 8–10</b>: start a daily reconciliation to size the problem. Present a first view: the root causes I can already evidence, the options, and what I still need to test.</li>
 </ul>
-<p>"The status map alone usually changes the conversation, because it's the first time everyone sees the same picture."</p>
+<p>"The status map usually changes the conversation, because everyone sees the same picture of each stage. First recommendations would follow in four to six weeks."</p>
 </div></details>
 </article>
 
@@ -1704,22 +1767,16 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <h3>Q4 · "Why not make everything synchronous?"</h3>
 <div class="box intent"><b class="lbl">What they test</b>That you understand the trade-off the team already hit.</div>
 <details class="qa"><summary>Model answer</summary><div class="ans">
-<p>"Because the user would wait for the slowest system on every action, and when one system is down, sales stop. Your team found the same thing: confirm-then-commit works for cancel, and the business won't accept it everywhere. So I'd decide per action and per state. Lookups stay synchronous and fast. Low-risk changes stay asynchronous. High-risk actions, like cancel after allocation, need the owner's confirmation, but the user doesn't wait on screen: the order shows 'cancel requested' until the owner answers."</p>
+<p>"You've shown where it works: cancel, confirmed in five to ten seconds before you commit. That's the right call when the answer is fast and the risk is high. Doing it for every action would make reps wait on the slowest system, and one outage would stop sales. So I'd decide per action and per stage. Lookups stay live. Low-risk changes stay asynchronous. High-risk ones get a confirmation from whichever system owns the order at that stage, synchronously if it's fast, as a pending request if it isn't."</p>
 </div></details>
 </article>
 
 <article class="card" id="q5">
-<span class="tag"><span class="core">Core</span> · Scenario</span>
+<span class="tag"><span class="core">Core</span> · Scenario <span class="impl">Team has it</span></span>
 <h3>Q5 · "How would you stop cancelled orders from shipping?"</h3>
-<div class="box intent"><b class="lbl">What they test</b>Whether you see both halves: the stale check, and the lost rejection.</div>
+<div class="box intent"><b class="lbl">What they test</b>Whether you know it is fixed, and whether you see what is left.</div>
 <details class="qa"><summary>Model answer</summary><div class="ans">
-<ul>
-  <li><b>Stop the attempt</b>: Dynamics enables cancel only from the owner's status and the allowed-actions table. It stops using its own copy.</li>
-  <li><b>Record a request first</b>: "cancel requested". The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> confirms with Oracle when the order is past allocation.</li>
-  <li><b>Make "no" an event</b>: Oracle already rejects a cancel after pick confirm. That rejection must flow back and set "cancel rejected, shipping" in the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Dynamics, with an alert to the rep.</li>
-  <li><b>Credit</b>: release the customer's credit only on a confirmed cancel.</li>
-  <li><b>Measure</b>: a daily count of cancelled-but-shipped orders, which should go to zero.</li>
-</ul>
+<p>"I understand you've already fixed this with confirm-then-commit, which is exactly the pattern I'd have suggested: send the cancel, let the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> validate, commit only on yes, and show a no to the rep at once. Credit then only moves on a real cancel. Two things I'd still check: whether the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> confirms against Oracle's latest status when the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> itself is behind, and whether the same thinking should apply to other high-risk changes."</p>
 </div></details>
 </article>
 
@@ -1750,10 +1807,10 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 </article>
 
 <article class="card" id="q9">
-<span class="tag"><span class="extra">Extra</span> · Ordering</span>
+<span class="tag"><span class="extra">Extra</span> · Ordering <span class="impl">Team has it</span></span>
 <h3>Q9 · "How do you stop a status going backwards, or being applied twice?"</h3>
 <details class="qa"><summary>Model answer</summary><div class="ans">
-<p>"Every status update carries a sequence number or event time per order. Receivers apply only forward moves in the lifecycle and ignore older ones. Messages for one order travel in order, for example in an Anypoint <abbr title="Message Queue. Here, Anypoint MQ: MuleSoft&#x27;s managed queue service with standard and FIFO queues.">MQ</abbr> <abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr> message group keyed on the order number. Every message has a unique <abbr title="Identifier: a value that names one record or thing.">ID</abbr>, and consumers ignore duplicates."</p>
+<p>"You already use sequence numbers and event time, and late updates are logged as failures, which is right. I'd look at two things next: why updates arrive late in the first place, per hop, and who works the failure log. Plus duplicates: every message should carry a unique <abbr title="Identifier: a value that names one record or thing.">ID</abbr> so a retry or replay does no harm."</p>
 </div></details>
 </article>
 
@@ -1761,7 +1818,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <span class="tag"><span class="extra">Extra</span> · Ownership</span>
 <h3>Q10 · "Which system should own the order?"</h3>
 <details class="qa"><summary>Model answer</summary><div class="ans">
-<p>"One owner per phase. Dynamics until submit. After submit, most likely the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, because it already orchestrates fulfilment and has modification rules per status. Oracle and the warehouse own the execution facts and report them to the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>. The condition is that the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>'s status is fresh, or that it confirms with Oracle before accepting a risky change. I'd confirm this with your architect before assuming it."</p>
+<p>"One owner of the status per stage, and it moves. Dynamics while the order is being built. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> while it validates and allocates. Oracle and the warehouse while they release, pick and ship. Dynamics keeps its maintenance rights after submit, because the business needs them, but a change becomes a request that the current owner answers. The condition is that the owner's status is fresh. I'd confirm the details with your architect."</p>
 </div></details>
 </article>
 
@@ -1781,9 +1838,9 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 
 <article class="card" id="q12">
 <span class="tag"><span class="extra">Extra</span> · Prior work</span>
-<h3>Q12 · "We already tried confirm-then-commit. What is different about your approach?"</h3>
+<h3>Q12 · "We already did confirm-then-commit for cancel. What would you add?"</h3>
 <details class="qa"><summary>Model answer</summary><div class="ans">
-<p>"Nothing is wrong with it; it's the right pattern for cancel. What I'd add is a rule for where to use it, a decision matrix by action and state, and a non-blocking version, the 'requested' state, so users don't wait. Plus the parts it doesn't cover: rejections as events, version checks, ordered and idempotent status updates, and reconciliation."</p>
+<p>"Nothing is wrong with it; it's the right pattern for cancel. I'd add a rule for where else to use it, by action and stage, a non-blocking version for changes that take longer to confirm, reliable delivery with safe replay for status updates, and reconciliation so mismatches are found by the system before reps find them."</p>
 </div></details>
 </article>
 
@@ -1792,6 +1849,29 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <h3>Q13 · "How would you work with our architect and the Dynamics team?"</h3>
 <details class="qa"><summary>Model answer</summary><div class="ans">
 <p>"Your architect owns the design and makes the call. I bring the end-to-end map and tested options. The Dynamics team tells me what's feasible in the product, and the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Oracle teams do the same for theirs. Where we disagree, I put both views and the evidence in front of your architect. I'd rather be useful than right."</p>
+</div></details>
+</article>
+
+<article class="card" id="q15">
+<span class="tag"><span class="core">Core</span> · Interim</span>
+<h3>Q15 · "What is the interim workaround while the long-term fix is built?"</h3>
+<div class="box intent"><b class="lbl">What they test</b>That you can protect the business now, while the long-term fix is built.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<ul>
+  <li><b>Hard stops</b> for the riskiest actions once the warehouse has the order, in line with the rules you already have.</li>
+  <li><b>A daily reconciliation</b> across Dynamics, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Oracle, with an exceptions list someone works each morning.</li>
+  <li><b>Alerts</b> when an update fails after its retries, so nothing is lost silently.</li>
+</ul>
+<p>"None of these change the order flow, so they're quick and low risk. They also give us the numbers to judge the long-term fix."</p>
+</div></details>
+</article>
+
+<article class="card" id="q16">
+<span class="tag"><span class="core">Core</span> · Timeline</span>
+<h3>Q16 · "How long will this take?"</h3>
+<div class="box intent"><b class="lbl">What they test</b>Realism. There is no fixed timeline; they want a justified one.</div>
+<details class="qa"><summary>Model answer</summary><div class="ans">
+<p>"First recommendations in four to six weeks: interviews and workshops, tracing real orders, a baseline, and validating the options with each team. Interim measures run alongside. The strengthening work after that depends on what we find. If it's mostly configuration and process, which is how it sounds, I'd expect around 90 days for the worst flows. I'd put a number on it only once I've seen the system, and back it with the evidence."</p>
 </div></details>
 </article>
 
@@ -1828,14 +1908,13 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <span class="tag"><span class="core">Core</span> · Your turn</span>
 <h3>Questions to ask them</h3>
 <ul>
-  <li>Is "<abbr title="The client&#x27;s name for its CPQ ordering app in Dynamics 365. (Also the acronym of Unified Service Desk, an older Dynamics agent desktop.)">USD</abbr>" your name for the ordering app in Dynamics?</li>
-  <li>Which Oracle: Fusion Cloud or E-Business Suite? Which <abbr title="International Business Machines: the US technology company.">IBM</abbr> order management product and version?</li>
-  <li>After submit, which system do you treat as the truth for order status today?</li>
-  <li>How do status updates travel back: queues, <abbr title="Application Programming Interfaces: defined contracts that one program uses to call another.">APIs</abbr> or files? How long do they take at peak?</li>
-  <li>When Oracle rejects a change, what happens to that rejection today?</li>
-  <li>How many orders go out of sync in a typical week, and what does it cost in returns and credit holds?</li>
-  <li>Who owns the credit limit decision on a cancel?</li>
-  <li>Where does the proposed resolution stand, and who has to approve it?</li>
+  <li>When the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> confirms a cancel, does it check with Oracle first, in case the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> itself is behind?</li>
+  <li>Which queue product does MuleSoft use, and does it have dead-letter queues?</li>
+  <li>What happens to the status updates that are logged as failures? Who works that log?</li>
+  <li>How do you find orders that are out of sync today, and how many are there in a typical week?</li>
+  <li>Which Oracle (Fusion Cloud or E-Business Suite), and which <abbr title="International Business Machines: the US technology company.">IBM</abbr> order management version?</li>
+  <li>Where are the allowed actions per stage written down, and who owns them?</li>
+  <li>Is the move off Unified Service Desk on the roadmap?</li>
   <li>What would make this review a success for you in eight weeks?</li>
 </ul>
 <div class="box say"><b class="lbl">Say this</b>"What would make you say, in eight weeks, that this was worth it?" Their answer tells you the real scope.</div>
@@ -1844,16 +1923,16 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 
 <!-- ============ DESIGN ============ -->
 <section id="design">
-<h2 class="part">Walkthrough: the cancel-during-processing case</h2>
-<p class="part-sub">Practise this in 30 minutes on a blank page, out loud. It covers the problem, your method and the solution patterns together.</p>
+<h2 class="part">Walkthrough: the missing status update</h2>
+<p class="part-sub">Practise this in 30 minutes on a blank page, out loud. It is the live problem: cancel is fixed, status updates are not.</p>
 <article class="card" id="d-walk">
 <span class="tag"><span class="core">Core</span> · Practice case</span>
-<h3>"A rep cancels an order. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> accepts. Oracle has already started. The order ships."</h3>
-<p><b>Assume</b>: as in <a href="#pr-scen">P3</a>. Credit stays held. The team's idea is to make cancel synchronous everywhere.</p>
-<figure class="arch"><svg viewBox="0 0 760 130" class="d" role="img" aria-label="Six steps with time boxes: clarify 3 minutes, map 5, root causes 5, options 8, recommendation and roadmap 6, risks and questions 3. Total 30 minutes.">
+<h3>"Dynamics shows 'allocated'. The order has already shipped."</h3>
+<p><b>Assume</b>: a status update from the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> never reached Dynamics, or arrived late and was rejected by the sequence check. The rep sees "allocated", tells the customer it can still change, and tries to edit. Elsewhere, the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> is behind Oracle for a different order.</p>
+<figure class="arch"><svg viewBox="0 0 760 130" class="d" role="img" aria-label="Six steps with time boxes: clarify 3 minutes, map 5, hypotheses 5, options 8, recommendation and roadmap 6, risks and questions 3. Total 30 minutes.">
   <rect x="10" y="20" width="110" height="56" rx="8" class="ou"/><text x="65" y="44" class="t">1 Clarify</text><text x="65" y="62" class="s">3 min</text>
   <rect x="135" y="20" width="110" height="56" rx="8" class="ou"/><text x="190" y="44" class="t">2 Map</text><text x="190" y="62" class="s">5 min</text>
-  <rect x="260" y="20" width="110" height="56" rx="8" class="ou"/><text x="315" y="44" class="t">3 Causes</text><text x="315" y="62" class="s">5 min</text>
+  <rect x="260" y="20" width="110" height="56" rx="8" class="ou"/><text x="315" y="44" class="t">3 Hypotheses</text><text x="315" y="62" class="s">5 min</text>
   <rect x="385" y="20" width="110" height="56" rx="8" class="ou"/><text x="440" y="44" class="t">4 Options</text><text x="440" y="62" class="s">8 min</text>
   <rect x="510" y="20" width="110" height="56" rx="8" class="ou"/><text x="565" y="44" class="t">5 Recommend</text><text x="565" y="62" class="s">6 min</text>
   <rect x="635" y="20" width="115" height="56" rx="8" class="band"/><text x="692" y="44" class="t">6 Risks</text><text x="692" y="62" class="s">3 min</text>
@@ -1862,35 +1941,35 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 </svg><figcaption>Six steps with time boxes.</figcaption></figure>
 <details class="qa"><summary>1–2 · Clarify and map</summary><div class="ans">
 <ul>
-  <li>Ask: how often does it happen? What does each one cost? How do status updates travel back, and how fast?</li>
-  <li>Draw the four lifelines: Dynamics, MuleSoft, <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, Oracle and warehouse. Draw the cancel and the rejection (see <a href="#pr-scen">P3</a>).</li>
+  <li>Ask: how often does it happen, and at which hop? What does a wrong status cost: returns, credit, rep time?</li>
+  <li>Draw the hops: Dynamics, MuleSoft, <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>, procurement and warehouse, Oracle. Mark where updates are queued, retried and sequenced.</li>
 </ul></div></details>
-<details class="qa"><summary>3 · Root causes</summary><div class="ans">
+<details class="qa"><summary>3 · Hypotheses</summary><div class="ans">
 <ul>
-  <li>The cancel was allowed on a stale status (Dynamics and the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> both behind Oracle).</li>
-  <li>The cancel was committed before the owner agreed.</li>
-  <li>Oracle's rejection was not an event that upstream systems acted on.</li>
-  <li>Credit was tied to the "cancelled" status, which was false.</li>
+  <li>An update was lost after the Function's three retries, with no dead-letter queue.</li>
+  <li>An update was late, rejected by the sequence check, and the failure log was not worked.</li>
+  <li>The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> itself was behind Oracle, so it sent a stale status.</li>
+  <li>Dynamics lets the rep act on its own copy of the status.</li>
 </ul></div></details>
 <details class="qa"><summary>4 · Options</summary><div class="ans">
 <div class="tbl"><table>
 <tr><th>Option</th><th>Gain</th><th>Cost</th></tr>
-<tr><td>Synchronous cancel everywhere</td><td>Correct</td><td>Users wait; blocked when a system is down. The business already said no</td></tr>
-<tr><td>Cancel requested + owner confirms with Oracle + rejection event</td><td>Correct, and users don't wait</td><td>New state in Dynamics and the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>; rejection events from Oracle</td></tr>
-<tr><td>Block cancel in Dynamics after release, using the status feed</td><td>Quick, cheap</td><td>Only as good as the status lag</td></tr>
-<tr><td>Detect and repair (reconciliation)</td><td>Visible, no flow change</td><td>Finds problems after the fact</td></tr>
+<tr><td>Dead-letter queue with sequence-aware replay</td><td>No silent loss; replay never undoes newer data</td><td>Queue setup, an owner, a replay tool</td></tr>
+<tr><td>Reconciliation and exceptions list</td><td>Finds every mismatch, any hop</td><td>Finds problems after the fact</td></tr>
+<tr><td>Owner confirms risky changes</td><td>Reps cannot act on a stale status</td><td>A call to the owner for each risky change</td></tr>
+<tr><td>Shared state model and allowed-actions table</td><td>One rulebook for all systems</td><td>Agreement across teams</td></tr>
 </table></div></div></details>
 <details class="qa"><summary>5 · Recommendation and roadmap</summary><div class="ans">
 <ul>
-  <li><b>Now</b>: reconciliation and an alert on cancelled-but-shipped; block cancel in Dynamics after release.</li>
-  <li><b>Next</b>: cancel requested, owner confirms, rejection as an event, credit released only on confirmation.</li>
-  <li><b>Then</b>: extend the same pattern to other risky changes through the allowed-actions table.</li>
+  <li><b>Interim</b>: reconciliation, alerts on failed updates, hard stops after release.</li>
+  <li><b>Strengthen</b>: dead-letter queue with safe replay, owner confirmation for risky changes, shared allowed-actions table.</li>
+  <li><b>Evolve</b>: settle ownership of status per stage across every system.</li>
 </ul></div></details>
 <details class="qa"><summary>6 · Risks and open questions</summary><div class="ans">
 <ul>
-  <li>Can Oracle and the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> send rejection events? Effort for those teams.</li>
-  <li>What the rep sees if no answer arrives: timeout rule and alert.</li>
-  <li>Finance's rule for releasing credit.</li>
+  <li>Which queue product, and does it support dead-letter queues and ordering per order?</li>
+  <li>Effort for the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> and Oracle teams.</li>
+  <li>Who works the exceptions list every day.</li>
 </ul></div></details>
 <div class="box gotcha"><b class="lbl">Gotcha</b>Do not jump to the answer. The panel scores how you get there. Say "I would expect" and "I would check". Avoid "the answer is".</div>
 </article>
@@ -1939,7 +2018,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <h3>Partner and internal portals</h3>
 <ul>
   <li><a href="https://learn.microsoft.com/en-us/partner-center/" target="_blank" rel="noopener noreferrer">Microsoft Partner Center</a>: partner training and Dynamics 365 readiness material. Sign in with your company account.</li>
-  <li>The delivery team's Jira: the epics and features for each integration are the closest thing to design documents.</li>
+  <li>The delivery team's architecture diagrams and design history for each integration. Ask; they can be produced on request.</li>
   <li>Any architecture diagram the Dynamics team can find, even an old one.</li>
 </ul>
 </article>
@@ -1953,40 +2032,42 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <h3>One page</h3>
 <div class="grid2"><div>
 <h4>Their problem in one breath</h4>
-<p>Dynamics commits first and tells the others later, and it gates actions on its own stale status. So users edit or cancel orders the warehouse already has, and Oracle's "no" never flows back. Orders ship after cancel, credit stays held, returns follow.</p>
+<p>Status updates arrive late or not at all, at any hop. Dynamics can show "allocated" while the order ships, and reps act on it. Cancel is already fixed with confirm-then-commit. What is left: reliable status across every hop, and one rule for other changes.</p>
 <h4>Answer frame</h4>
 <p class="mnemonic">Play back → Owner → Pattern → Trade-off → Next step</p>
 <h4>Gap line</h4>
 <p>"No hands-on Dynamics or <abbr title="Enterprise Resource Planning: the system for finance, supply chain, orders and invoicing.">ERP</abbr>. My strength is how systems agree on state through middleware. Your Dynamics team has the product depth."</p>
 <h4>First deliverables</h4>
 <p>Status map · allowed-actions table · five traced orders · daily reconciliation.</p>
+<h4>Don't</h4>
+<p>Deep-dive scenarios unless asked · call hypotheses root causes · comment on their documentation · name anyone.</p>
 </div><div>
 <h4>The patterns</h4>
 <ul>
-  <li>One owner per phase: Dynamics to submit, then the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr></li>
+  <li>One owner of status per stage; Dynamics keeps requesting rights</li>
   <li>Shared state model + allowed actions</li>
-  <li>"Cancel requested": confirm, don't wait</li>
-  <li>Rejection is an event</li>
+  <li>Confirm-then-commit for cancel: <b>team has it</b></li>
+  <li>Sequence + event time: <b>team has it</b></li>
   <li>Version check (ETag, If-Match → 412)</li>
-  <li>Forward-only, ordered, idempotent status</li>
-  <li>Durable first hop, <abbr title="Dead-Letter Queue: a holding queue for messages that cannot be processed.">DLQ</abbr>, replay</li>
+  <li><abbr title="Dead-Letter Queue: a holding queue for messages that cannot be processed.">DLQ</abbr> with sequence-aware replay</li>
   <li>Reconciliation as the quick win</li>
 </ul>
 <h4>Facts</h4>
 <ul>
-  <li>Webhook: 60 s timeout, one retry for 502/503/504</li>
+  <li>Function: 3 retries, then stops; no <abbr title="Dead-Letter Queue: a holding queue for messages that cannot be processed.">DLQ</abbr></li>
+  <li>First recommendations: 4–6 weeks</li>
   <li>Oracle: no cancel after pick confirm (default)</li>
   <li><abbr title="International Business Machines: the US technology company.">IBM</abbr> <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr>: modification rules per status</li>
   <li>Anypoint <abbr title="Message Queue. Here, Anypoint MQ: MuleSoft&#x27;s managed queue service with standard and FIFO queues.">MQ</abbr> <abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr>: order per message group</li>
 </ul>
 <h4>Ask them</h4>
-<p>Is <abbr title="The client&#x27;s name for its CPQ ordering app in Dynamics 365. (Also the acronym of Unified Service Desk, an older Dynamics agent desktop.)">USD</abbr> your ordering app? Which Oracle? What happens to a rejection today?</p>
+<p>Does the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> check Oracle before confirming? Which queue? Who works the failure log?</p>
 </div></div>
 </article>
 </section>
 
 <footer>
-  <p>Integration assessment <abbr title="Enterprise Architecture: aligning business strategy and technology across the organisation.">EA</abbr> interview prep · Rebuilt 4 Nov 2026 around the order-sync problem. Version-sensitive facts marked <span class="ver">ver</span> were checked on that date. Evidence grades: [P] primary vendor source, [S] credible secondary. Progress is stored in this browser only.</p>
+  <p>Integration assessment <abbr title="Enterprise Architecture: aligning business strategy and technology across the organisation.">EA</abbr> interview prep · Rebuilt 4 Nov 2026 around the order-sync problem; updated 12 Nov 2026 after a technical briefing. Version-sensitive facts marked <span class="ver">ver</span> were checked on that date. Evidence grades: [P] primary vendor source, [S] credible secondary. Progress is stored in this browser only.</p>
   <p><a href="../">Back to Learn</a></p>
 </footer>
 
