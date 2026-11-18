@@ -1,0 +1,10 @@
+{
+  "slug": "agentic-guide",
+  "order": 11,
+  "title": "Agentic systems: learning guide",
+  "blurb": "Definitions, the agent loop, orchestration patterns with diagrams, choosing a design, building well, protocols, frameworks and free courses",
+  "static": true,
+  "note": "Hand-written single HTML file. Build leaves it alone. robots meta added by hand.",
+  "listed": false,
+  "noindex": true
+}

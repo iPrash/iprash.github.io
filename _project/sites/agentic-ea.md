@@ -19,7 +19,7 @@ Prash moved from interview prep to delivery: he is the lead architect on a UK an
 |---|---|
 | `_site.json` | Config. Static, `listed: false`, `noindex: true`. |
 | `index.html` | Hand-written. Self-contained: inline CSS, JS and SVG. Shell copied from ea-prep-02-aws. No backup other than git. |
-| `_glossary.json` | Site overrides: BI (business interruption), ODS (Open Data Standards), OS (Ordnance Survey). |
+| `_glossary.json` | Site overrides: BI (business interruption), ODS (Open Data Standards), OS (Ordnance Survey), PDF (the shared entry carries a site-specific "bill image" note). |
 
 ## Editing rules
 
@@ -47,6 +47,10 @@ Insurance acronyms (SOV, TIV, AAL, OED, CDR, UPRN and others) were added to the 
 - Guidewire agreement to acquire hyperexponential (27 Oct 2026; close expected Guidewire fiscal Q2 2027). Re-check after close.
 - EU AI Act high-risk obligations delayed to 2 Dec 2027 (secondary sources; confirm).
 - OED field names from v3; OED v4 in development.
+
+## Dates and links
+
+The W0–W4 plan assumes a design start on Mon 23 Nov 2026 (W4 ends Fri 18 Dec 2026). Scope (classes of business, placement routes) is not confirmed; the page carries a `[scope]` prompt in B3. General agentic patterns, definitions and learning links live in `learn/agentic-guide/`; Part E and session L6 link there.
 
 ## Open items
 

@@ -218,6 +218,7 @@ ol{padding-left:22px}
   </div></div>
   <div class="session"><span class="snum">L6</span><div>
     <p><b>Target design and patterns (2 h).</b> Part D <a href="#target">target state</a> and Part E <a href="#patterns">agentic patterns</a>. Draw the <a href="#t-ladder">decision ladder</a> from memory.</p>
+    <p class="meta">New to agentic patterns? Do sessions S1 to S4 of the <a href="../agentic-guide/">agentic learning guide</a> first.</p>
   </div></div>
   <div class="session"><span class="snum"><abbr title="Layer 7 (application layer): load balancing that reads HTTP (paths, headers, cookies).">L7</abbr></span><div>
     <p><b>Governance and the market (1 h).</b> Part H <a href="#governance">governance</a>, Part I <a href="#buy">buy or build</a>, and <a href="#changed">what changed</a>.</p>
@@ -228,12 +229,12 @@ ol{padding-left:22px}
 <h3>The design phase, week by week</h3>
 <p>The design statement of work runs about four weeks. Then comes a lighthouse <abbr title="Minimum Viable Product: the smallest working release that proves value.">MVP</abbr>, then production engineering. Each week has a card in <a href="#playbook">Part F</a> with activities, deliverables and a "done when" test.</p>
 <div class="tbl"><table>
-<tr><th>Week</th><th>Theme</th><th>Main deliverables</th></tr>
-<tr><td><a href="#w-0">W0</a></td><td>Before day one</td><td>Learning L1 to <abbr title="Layer 4 (transport layer): load balancing on TCP/UDP connections, without reading HTTP.">L4</abbr> done. Stakeholder list. Data request sent.</td></tr>
-<tr><td><a href="#w-1">W1</a></td><td>Discover</td><td>Current-state map, baseline metrics, sample <abbr title="Statement of Values: the broker&#x27;s schedule of insured locations with their values and characteristics.">SOV</abbr> set, pain-point log.</td></tr>
-<tr><td><a href="#w-2">W2</a></td><td>Analyse</td><td>Step classification (code, rule, <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr>, human), principles, capability map, buy-or-build scan.</td></tr>
-<tr><td><a href="#w-3">W3</a></td><td>Design</td><td>Target architecture, building blocks, agent cards, data model, <abbr title="Non-Functional Requirement: a quality target such as latency, availability, security or cost.">NFRs</abbr>, <abbr title="Architecture Decision Records: short documents that each record one decision, its context and consequences.">ADRs</abbr>.</td></tr>
-<tr><td><a href="#w-4">W4</a></td><td>Prove and hand over</td><td>Spike results, lighthouse choice, roadmap, risks, inputs to the engineering <abbr title="Statement of Work: the contract document that sets scope, deliverables and timeline for a phase.">SOW</abbr>.</td></tr>
+<tr><th>Week</th><th>Dates (2026)</th><th>Theme</th><th>Main deliverables</th></tr>
+<tr><td><a href="#w-0">W0</a></td><td>by Fri 20 Nov</td><td>Before day one</td><td>Learning L1 to <abbr title="Layer 4 (transport layer): load balancing on TCP/UDP connections, without reading HTTP.">L4</abbr> done. Stakeholder list. Data request sent.</td></tr>
+<tr><td><a href="#w-1">W1</a></td><td>Mon 23 – Fri 27 Nov</td><td>Discover</td><td>Current-state map, baseline metrics, sample <abbr title="Statement of Values: the broker&#x27;s schedule of insured locations with their values and characteristics.">SOV</abbr> set, pain-point log.</td></tr>
+<tr><td><a href="#w-2">W2</a></td><td>Mon 30 Nov – Fri 4 Dec</td><td>Analyse</td><td>Step classification (code, rule, <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr>, human), principles, capability map, buy-or-build scan.</td></tr>
+<tr><td><a href="#w-3">W3</a></td><td>Mon 7 – Fri 11 Dec</td><td>Design</td><td>Target architecture, building blocks, agent cards, data model, <abbr title="Non-Functional Requirement: a quality target such as latency, availability, security or cost.">NFRs</abbr>, <abbr title="Architecture Decision Records: short documents that each record one decision, its context and consequences.">ADRs</abbr>.</td></tr>
+<tr><td><a href="#w-4">W4</a></td><td>Mon 14 – Fri 18 Dec</td><td>Prove and hand over</td><td>Spike results, lighthouse choice, roadmap, risks, inputs to the engineering <abbr title="Statement of Work: the contract document that sets scope, deliverables and timeline for a phase.">SOW</abbr>.</td></tr>
 </table></div>
 </article>
 </section>
@@ -426,7 +427,7 @@ ol{padding-left:22px}
 <article class="card" id="d-sov">
 <span class="tag">A5 · Data</span>
 <h3>The statement of values (<abbr title="Statement of Values: the broker&#x27;s schedule of insured locations with their values and characteristics.">SOV</abbr>)</h3>
-<p>The <abbr title="Statement of Values: the broker&#x27;s schedule of insured locations with their values and characteristics.">SOV</abbr> is the broker's list of every location to be insured, with its values and characteristics. It is the main input to the cat model. It comes in any shape: an Excel workbook, a <abbr title="Comma-Separated Values: a plain-text table format.">CSV</abbr>, a <abbr title="Portable Document Format: a fixed-layout document file. Here, the bill image.">PDF</abbr> table, sometimes a scanned page. The underwriter needs it in one canonical form before anything can be modelled.</p>
+<p>The <abbr title="Statement of Values: the broker&#x27;s schedule of insured locations with their values and characteristics.">SOV</abbr> is the broker's list of every location to be insured, with its values and characteristics. It is the main input to the cat model. It comes in any shape: an Excel workbook, a <abbr title="Comma-Separated Values: a plain-text table format.">CSV</abbr>, a <abbr title="Portable Document Format: a fixed-layout document file.">PDF</abbr> table, sometimes a scanned page. The underwriter needs it in one canonical form before anything can be modelled.</p>
 <div class="grid2"><div>
 <h4>What a location row holds</h4>
 <ul>
@@ -454,7 +455,7 @@ ol{padding-left:22px}
 <tr><td>Abbreviations and free text in coded fields</td><td>"<abbr title="Building: a common abbreviation in broker statements of values.">BLDG</abbr>", "Whse", "conc frame"</td><td>2 Synonym rules, then 3 <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> with a score</td></tr>
 <tr><td>Values that do not add up</td><td>Row sum ≠ broker's stated total</td><td>2 Rules (reconcile), 4 Human if the gap exceeds tolerance</td></tr>
 <tr><td>Vague or partial address</td><td>"Unit 4, Portside Estate"</td><td>Geocoding loop (<a href="#d-geo">A6</a>)</td></tr>
-<tr><td>A table inside a <abbr title="Portable Document Format: a fixed-layout document file. Here, the bill image.">PDF</abbr></td><td>Scanned schedule</td><td>Document extraction (<abbr title="Optical Character Recognition: software that reads text from images and scans.">OCR</abbr> or vision model), then the same ladder</td></tr>
+<tr><td>A table inside a <abbr title="Portable Document Format: a fixed-layout document file.">PDF</abbr></td><td>Scanned schedule</td><td>Document extraction (<abbr title="Optical Character Recognition: software that reads text from images and scans.">OCR</abbr> or vision model), then the same ladder</td></tr>
 </table></div>
 <div class="box say"><b class="lbl">Say this</b>"The <abbr title="Statement of Values: the broker&#x27;s schedule of insured locations with their values and characteristics.">SOV</abbr> is the loan tape of property insurance, except someone else built it and every broker builds it differently. The first three rungs of the ladder are mostly about turning that into one canonical model."</div>
 <p class="src">Sources: <a href="https://oasislmf.github.io/sections/OED.html" target="_blank" rel="noopener noreferrer">Oasis <abbr title="Loss Modelling Framework: as in Oasis LMF, an open-source, not-for-profit catastrophe modelling platform.">LMF</abbr>: Open Exposure Data</a> [P]; <a href="https://github.com/OasisLMF/ODS_OpenExposureData" target="_blank" rel="noopener noreferrer"><abbr title="Open Exposure Data: an open, model-agnostic standard for insurance exposure data, curated by Oasis LMF.">OED</abbr> specification repository</a> [P]. Field names from <abbr title="Open Exposure Data: an open, model-agnostic standard for insurance exposure data, curated by Oasis LMF.">OED</abbr> v3; check the current version before you fix a schema <span class="ver">ver</span>. Checked 18 Nov 2026.</p>
@@ -629,6 +630,7 @@ ol{padding-left:22px}
 <div class="box intent"><b class="lbl">Business aspiration</b>Turnaround on a property submission falls from days to under an hour, with straight-through processing wherever a rules engine can decide. Faster quotes mean the broker gets an answer before a competitor's, which strengthens the revenue pipeline. <span class="prov m">[exact current and target times: private notes]</span></div>
 <div class="box gotcha"><b class="lbl">Gotchas</b><ul>
   <li>Your <abbr title="Subject Matter Expert: a person with deep knowledge of the business area.">SME</abbr> counterpart has decades in the business. Book regular time with them from day one. They are your source for what the documents do not say.</li>
+  <li>The classes of business and placement routes in scope are not confirmed yet. <span class="prov m">[scope: update when known]</span></li>
   <li>Agree the scope boundary in writing in week 1: which classes of business, which placement routes, intake to quote or intake to bind.</li>
 </ul></div>
 </article>
@@ -881,7 +883,7 @@ ol{padding-left:22px}
 <div class="tbl"><table>
 <tr><th><abbr title="Architecture Building Block: a logical capability in TOGAF, described without naming a product.">ABB</abbr></th><th>Purpose</th><th>Main rung</th><th>Reuse, build or buy</th></tr>
 <tr><td>1 Submission intake</td><td>Receive email and files, classify, open a case</td><td>Rules, <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr></td><td>Build on the agent platform. Replace the mailbox-to-CRM-case step or feed it.</td></tr>
-<tr><td>2 Document understanding</td><td>Extract tables and fields from Excel, <abbr title="Portable Document Format: a fixed-layout document file. Here, the bill image.">PDF</abbr>, scans</td><td>Code, <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr></td><td>Buy or reuse for <abbr title="Optical Character Recognition: software that reads text from images and scans.">OCR</abbr>. Build the mapping.</td></tr>
+<tr><td>2 Document understanding</td><td>Extract tables and fields from Excel, <abbr title="Portable Document Format: a fixed-layout document file.">PDF</abbr>, scans</td><td>Code, <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr></td><td>Buy or reuse for <abbr title="Optical Character Recognition: software that reads text from images and scans.">OCR</abbr>. Build the mapping.</td></tr>
 <tr><td>3 Clearance</td><td>Sanctions, duplicates, appetite, authority</td><td>Tools, rules</td><td>Reuse the global sanctions service. Build appetite rules per market.</td></tr>
 <tr><td>4 Triage and work queue</td><td>Score, prioritise, assign lane and <abbr title="Service Level Agreement: a committed service level, often with penalties.">SLA</abbr></td><td>Rules</td><td>Build or configure a workflow engine.</td></tr>
 <tr><td>5 Exposure data prep</td><td>The ladder, to canonical exposure</td><td>All rungs</td><td>Build. This is the core differentiator.</td></tr>
@@ -945,6 +947,7 @@ ol{padding-left:22px}
 <section id="patterns">
 <h2 class="part">Part E. Agentic patterns reference</h2>
 <p class="part-sub">Seven cards. The general patterns, each tied to an underwriting example. Use these when you write agent cards and choose orchestration per journey.</p>
+<div class="box intent"><b class="lbl">Learn the patterns first</b>Definitions, a diagram for every pattern, and the best courses and videos are in a separate guide: <a href="../agentic-guide/">Agentic systems: learning guide</a>. This part applies them to underwriting.</div>
 <nav class="toc">
   <a href="#a-when"><span>E1 · core</span>Agent, workflow or tool?</a>
   <a href="#a-orch"><span>E2 · deep</span>Orchestration patterns</a>
@@ -972,7 +975,7 @@ ol{padding-left:22px}
 <h4>An <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> step earns its place for</h4>
 <ul>
   <li>Summarising: a broker email or survey into a risk summary.</li>
-  <li>Extracting from unstructured input: <abbr title="Portable Document Format: a fixed-layout document file. Here, the bill image.">PDF</abbr> tables, slips.</li>
+  <li>Extracting from unstructured input: <abbr title="Portable Document Format: a fixed-layout document file.">PDF</abbr> tables, slips.</li>
   <li>Mapping ambiguous fields to a code list.</li>
   <li>Translating: foreign-language schedules.</li>
   <li>Retrieval over guidelines and wordings (<abbr title="Retrieval-Augmented Generation: the model answers from documents retrieved at query time.">RAG</abbr>).</li>
@@ -1130,7 +1133,7 @@ ol{padding-left:22px}
 <!-- ============ PART F PLAYBOOK ============ -->
 <section id="playbook">
 <h2 class="part">Part F. The design phase, week by week</h2>
-<p class="part-sub">Seven cards. Each week lists activities, deliverables, a "done when" test and the traps. Adjust the dates to the real <abbr title="Statement of Work: the contract document that sets scope, deliverables and timeline for a phase.">SOW</abbr>. <span class="prov m">[<abbr title="Statement of Work: the contract document that sets scope, deliverables and timeline for a phase.">SOW</abbr> start date]</span></p>
+<p class="part-sub">Seven cards. Each week lists activities, deliverables, a "done when" test and the traps. Dates assume a start on Monday 23 November 2026. Adjust them if the <abbr title="Statement of Work: the contract document that sets scope, deliverables and timeline for a phase.">SOW</abbr> moves.</p>
 <nav class="toc">
   <a href="#w-0"><span>W0</span>Before day one</a>
   <a href="#w-1"><span>W1</span>Discover</a>
@@ -1142,7 +1145,7 @@ ol{padding-left:22px}
 </nav>
 
 <article class="card" id="w-0">
-<span class="tag">W0 · Before day one</span>
+<span class="tag">W0 · Before day one · by Fri 20 Nov 2026</span>
 <h3>Before day one</h3>
 <h4>Activities</h4>
 <ul>
@@ -1160,7 +1163,7 @@ ol{padding-left:22px}
 </article>
 
 <article class="card" id="w-1">
-<span class="tag">W1 · Discover</span>
+<span class="tag">W1 · Discover · 23–27 Nov 2026</span>
 <h3>Week 1: Discover</h3>
 <h4>Activities</h4>
 <ul>
@@ -1181,13 +1184,14 @@ ol{padding-left:22px}
 </ul>
 <div class="box intent"><b class="lbl">Done when</b>You can walk the as-is flow end to end without notes, and every pain point has a number or an agreed way to get one.</div>
 <div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Thursday 26 November is Thanksgiving in the <abbr title="United States: the United States of America.">US</abbr>. <abbr title="United Kingdom: England, Scotland, Wales and Northern Ireland.">UK</abbr> colleagues work as normal. Decide early whether you work that day, and book interviews around it.</li>
   <li>Do not draw the target yet. People will anchor on it.</li>
   <li>Ask people to show you, step by step. The real process differs from the described one.</li>
 </ul></div>
 </article>
 
 <article class="card" id="w-2">
-<span class="tag">W2 · Analyse</span>
+<span class="tag">W2 · Analyse · 30 Nov – 4 Dec 2026</span>
 <h3>Week 2: Analyse</h3>
 <h4>Activities</h4>
 <ul>
@@ -1215,7 +1219,7 @@ ol{padding-left:22px}
 </article>
 
 <article class="card" id="w-3">
-<span class="tag">W3 · Design</span>
+<span class="tag">W3 · Design · 7–11 Dec 2026</span>
 <h3>Week 3: Design</h3>
 <h4>Activities</h4>
 <ul>
@@ -1235,7 +1239,7 @@ ol{padding-left:22px}
 </article>
 
 <article class="card" id="w-4">
-<span class="tag">W4 · Prove and hand over</span>
+<span class="tag">W4 · Prove and hand over · 14–18 Dec 2026</span>
 <h3>Week 4: Prove and hand over</h3>
 <h4>Activities</h4>
 <ul>
@@ -1250,6 +1254,7 @@ ol{padding-left:22px}
 <ul><li>Spike report. Lighthouse charter with baseline and target. Roadmap. <abbr title="Risks, Assumptions, Issues, Dependencies: a project control log.">RAID</abbr> log. Engineering <abbr title="Statement of Work: the contract document that sets scope, deliverables and timeline for a phase.">SOW</abbr> inputs. Final blueprint pack.</li></ul>
 <div class="box intent"><b class="lbl">Done when</b>Leadership signs the lighthouse charter and the engineering <abbr title="Statement of Work: the contract document that sets scope, deliverables and timeline for a phase.">SOW</abbr> can be drafted from your pack.</div>
 <div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>The <abbr title="United Kingdom: England, Scotland, Wales and Northern Ireland.">UK</abbr> Christmas break follows soon after 18 December. Book the leadership readout at the start of W4. Agree in W3 whether the lighthouse starts before or after the break.</li>
   <li>Show failures from the spike as well as successes. The failures tell people where the humans stay, which builds trust.</li>
 </ul></div>
 </article>
@@ -1560,11 +1565,11 @@ Change log:</code></pre>
 <h3>Insurance and the London market</h3>
 <ul>
   <li><a href="https://www.lloyds.com/about-lloyds/what-is-lloyds/lloyds-market" target="_blank" rel="noopener noreferrer">Lloyd's: How the market works</a>. Brokers, managing agents, syndicates, coverholders.</li>
-  <li><a href="https://assets.lloyds.com/media/db0c59e8-453e-4553-a4c1-54571de9f4d3/pdf-code-of-practice-delegated-underwriting-v2.pdf" target="_blank" rel="noopener noreferrer">Lloyd's: Code of practice, delegated underwriting</a> (<abbr title="Portable Document Format: a fixed-layout document file. Here, the bill image.">PDF</abbr>). Binders, line slips, consortia.</li>
+  <li><a href="https://assets.lloyds.com/media/db0c59e8-453e-4553-a4c1-54571de9f4d3/pdf-code-of-practice-delegated-underwriting-v2.pdf" target="_blank" rel="noopener noreferrer">Lloyd's: Code of practice, delegated underwriting</a> (<abbr title="Portable Document Format: a fixed-layout document file.">PDF</abbr>). Binders, line slips, consortia.</li>
   <li><a href="https://www.lloyds.com/conducting-business/delegated-authorities/compliance-and-operations/line-slips" target="_blank" rel="noopener noreferrer">Lloyd's: Line slips guidance</a>.</li>
   <li><a href="https://www.gov.uk/hmrc-internal-manuals/lloyds-manual/llm1100" target="_blank" rel="noopener noreferrer"><abbr title="His Majesty&#x27;s Revenue and Customs: the UK tax authority. Its Lloyd&#x27;s manual is a plain primer.">HMRC</abbr> Lloyd's manual: basic concepts and terms</a>. A clear plain-English primer.</li>
   <li><a href="https://www.cii.co.uk/learning/qualifications/unit-LM1/" target="_blank" rel="noopener noreferrer"><abbr title="Chartered Insurance Institute: the UK professional body for insurance, which runs the LM qualifications.">CII</abbr> <abbr title="London Market Insurance Essentials: the first CII London market unit.">LM1</abbr> London Market Insurance Essentials</a> (paid). <abbr title="London Market Insurance Essentials: the first CII London market unit.">LM1</abbr> plus <abbr title="London Market Insurance Principles and Practices: the second CII London market unit.">LM2</abbr> gives the Award in London Market Insurance. Adding <abbr title="London Market Underwriting Principles: the third CII London market unit, needed for the Certificate.">LM3</abbr> gives the Certificate.</li>
-  <li><a href="https://lmalloyds.com/wp-content/uploads/2026/04/Operations-Q1-2026-Update.pdf" target="_blank" rel="noopener noreferrer"><abbr title="Lloyd&#x27;s Market Association: the trade body for Lloyd&#x27;s managing agents.">LMA</abbr> Operations Q1 2026 update</a> (<abbr title="Portable Document Format: a fixed-layout document file. Here, the bill image.">PDF</abbr>). Market operations after Blueprint Two.</li>
+  <li><a href="https://lmalloyds.com/wp-content/uploads/2026/04/Operations-Q1-2026-Update.pdf" target="_blank" rel="noopener noreferrer"><abbr title="Lloyd&#x27;s Market Association: the trade body for Lloyd&#x27;s managing agents.">LMA</abbr> Operations Q1 2026 update</a> (<abbr title="Portable Document Format: a fixed-layout document file.">PDF</abbr>). Market operations after Blueprint Two.</li>
 </ul>
 </article>
 <article class="card" id="res-cat">

@@ -43,6 +43,7 @@ The root page is a **project index**. Study material is deliberately not listed 
 | `learn/ea-prep-02-aws/` | /learn/ea-prep-02-aws/ | AWS Enterprise Architect interview prep | Static HTML | `_project/sites/ea-prep-02-aws.md` |
 | `learn/ea-prep-03-intg/` | /learn/ea-prep-03-intg/ | Integration assessment EA interview prep | Static HTML | `_project/sites/ea-prep-03-intg.md` |
 | `learn/agentic-ea/` | /learn/agentic-ea/ | Agentic underwriting: design phase guide | Static HTML | `_project/sites/agentic-ea.md` |
+| `learn/agentic-guide/` | /learn/agentic-guide/ | Agentic systems: learning guide | Static HTML | `_project/sites/agentic-guide.md` |
 
 **Hub order (`learn/index.html`):** `claudecert` is pinned first. Every other site follows newest first, so a new site goes directly under `claudecert`, never at the bottom or next to a related site.
 

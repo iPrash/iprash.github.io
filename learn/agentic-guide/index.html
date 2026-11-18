@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<title>Agentic systems: learning guide</title>
+<meta name="description" content="Agentic AI learning guide: definitions, the agent loop, orchestration patterns with diagrams, how to choose, building well, protocols, frameworks and the best free courses and videos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23B5651D'/><text y='68' x='50' text-anchor='middle' font-size='34' font-family='monospace' fill='white'>AWS</text></svg>">
+<style>
+:root{
+  --paper:#F6F6F2;--surface:#FFFFFF;--ink:#141B26;--muted:#56606C;--faint:#868F9A;--line:#E3E2DA;
+  --accent:#234E8C;--accent-soft:#E6EDF7;--warn:#9A4A12;--warn-soft:#FBEEE3;--ok:#1F6B4A;--ok-soft:#E3F2EA;
+  --brass:#A87B2A;--code:#EEF0F3;
+  --display:'Space Grotesk',system-ui,sans-serif;--body:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0E1319;--surface:#151C25;--ink:#E5EAF0;--muted:#A0AAB5;--faint:#76818C;--line:#26313D;
+  --accent:#7FA8E8;--accent-soft:#1A2A40;--warn:#F0A56B;--warn-soft:#33241A;--ok:#6CCB9C;--ok-soft:#16302A;
+  --brass:#E1B65E;--code:#1E2733;}}
+:root[data-theme="dark"]{
+  --paper:#0E1319;--surface:#151C25;--ink:#E5EAF0;--muted:#A0AAB5;--faint:#76818C;--line:#26313D;
+  --accent:#7FA8E8;--accent-soft:#1A2A40;--warn:#F0A56B;--warn-soft:#33241A;--ok:#6CCB9C;--ok-soft:#16302A;
+  --brass:#E1B65E;--code:#1E2733;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+a[target="_blank"]::after{content:"\2197";content:"\2197" / "opens in a new tab";font-size:.8em;margin-left:.2em;text-decoration:none;display:inline-block}
+code{font-family:var(--mono);font-size:.86em;background:var(--code);padding:1px 5px;border-radius:4px}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+header.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar-inner{max-width:900px;margin:0 auto;padding:6px 16px;display:flex;flex-direction:column;gap:2px}
+.bar-row{display:flex;gap:4px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.bar-row::-webkit-scrollbar{display:none}
+.bar a{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--muted);padding:5px 9px;border-radius:8px;white-space:nowrap}
+.bar a:hover{background:var(--accent-soft);color:var(--accent)}
+.bar .prog{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--faint);white-space:nowrap;padding-left:8px}
+.hero{padding:48px 0 28px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin:0 0 12px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,5.5vw,48px);line-height:1.05;letter-spacing:-.02em;margin:0 0 14px}
+.lede{font-size:17px;color:var(--muted);max-width:64ch;margin:0 0 18px}
+h2.part{font-family:var(--display);font-size:clamp(24px,4vw,32px);letter-spacing:-.01em;margin:56px 0 6px}
+.part-sub{color:var(--muted);margin:0 0 22px;max-width:68ch}
+h3{font-family:var(--display);font-weight:600;font-size:21px;margin:0 0 4px;letter-spacing:-.01em}
+h4{font-family:var(--display);font-weight:600;font-size:15px;margin:16px 0 6px;color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 22px 18px;margin:0 0 18px;position:relative}
+.card.done{opacity:.72}
+.card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.card p{margin:8px 0}
+.card ul{margin:6px 0;padding-left:20px}
+.card li{margin:3px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:4px 22px}
+@media (max-width:700px){.grid2{grid-template-columns:1fr}}
+.box{border-radius:10px;padding:10px 14px;margin:12px 0 4px;font-size:15px}
+.box.gotcha{background:var(--warn-soft);border-left:3px solid var(--warn)}
+.box.say{background:var(--ok-soft);border-left:3px solid var(--ok)}
+.box.intent{background:var(--accent-soft);border-left:3px solid var(--accent)}
+.box b.lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:4px}
+.box.gotcha b.lbl{color:var(--warn)}.box.say b.lbl{color:var(--ok)}.box.intent b.lbl{color:var(--accent)}
+.box ul{margin:2px 0;padding-left:18px}
+.src{font-size:12.5px;color:var(--faint);margin-top:12px;border-top:1px dashed var(--line);padding-top:8px}
+.src a{color:var(--faint)}
+.ver{font-family:var(--mono);font-size:10px;background:var(--code);color:var(--brass);padding:1px 5px;border-radius:4px;vertical-align:1px}
+label.tick{position:absolute;top:18px;right:18px;font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;gap:6px;align-items:center;cursor:pointer;user-select:none}
+label.tick input{accent-color:var(--ok);width:16px;height:16px}
+.card-foot-row{display:flex;justify-content:flex-end;margin-top:14px}
+label.card-foot{display:inline-flex;gap:8px;align-items:center;cursor:pointer;user-select:none;font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 14px 7px 11px}
+label.card-foot:hover{border-color:var(--ok);color:var(--ok)}
+label.card-foot input{accent-color:var(--ok);width:16px;height:16px;margin:0}
+.card.done label.card-foot{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+.card h3{padding-right:76px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;margin:10px 0}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.tbl{overflow-x:auto}
+td{overflow-wrap:break-word}
+td:first-child{hyphens:manual}
+@media (max-width:600px){.card{padding:18px 14px 14px}th,td{padding:6px 5px}details.qa .ans{padding:0 12px 12px 14px}label.tick{top:14px;right:12px}}
+details.qa{border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--paper)}
+details.qa>summary{cursor:pointer;padding:10px 14px;font-weight:500;list-style:none;display:flex;gap:10px}
+details.qa>summary::-webkit-details-marker{display:none}
+details.qa>summary::before{content:"+";font-family:var(--mono);color:var(--accent);font-weight:600}
+details.qa[open]>summary::before{content:"−"}
+details.qa .ans{padding:0 16px 12px 34px}
+details.qa .ans p{margin:6px 0}
+.q-time{font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap;padding-top:3px}
+.session{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.session:last-child{border-bottom:none}
+.snum{font-family:var(--mono);font-weight:600;color:#fff;background:var(--ink);border-radius:8px;padding:4px 9px;height:fit-content;font-size:13px}
+:root[data-theme="dark"] .snum{color:var(--paper)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .snum{color:var(--paper)}}
+.session p{margin:4px 0}
+.session .meta{font-family:var(--mono);font-size:12px;color:var(--faint)}
+figure.arch{margin:12px 0;overflow-x:auto}
+figure.arch svg{min-width:640px;width:100%;height:auto;display:block}
+figure.arch figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+.mnemonic{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:.02em}
+footer{padding:40px 0 60px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin:14px 0}
+.toc a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;text-decoration:none;color:var(--ink);font-size:14px}
+.toc a:hover{border-color:var(--accent)}
+.toc a span{display:block;font-family:var(--mono);font-size:11px;color:var(--faint)}
+.toc a.is-done{border-color:var(--ok)}
+.toc a.is-done span::after{content:" · done";color:var(--ok)}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+button.mini{font-family:var(--mono);font-size:12px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+button.mini:hover{border-color:var(--accent)}
+abbr[title],abbr[data-def]{text-decoration:underline dotted;text-decoration-color:var(--faint);text-underline-offset:3px;cursor:help;border:0}
+abbr:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-radius:2px}
+#abbr-tip{position:fixed;z-index:50;max-width:min(320px,calc(100vw - 16px));background:var(--ink);color:var(--paper);font-size:13px;line-height:1.45;padding:8px 11px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.25);pointer-events:none;opacity:0;transition:opacity .12s}
+#abbr-tip.on{opacity:1}
+#abbr-tip b{font-family:var(--mono);font-size:12px}
+@media print{#abbr-tip{display:none}abbr{text-decoration:none}}
+.prov{font-family:var(--mono);font-size:10px;letter-spacing:.06em;padding:1px 6px;border-radius:4px;vertical-align:1px;white-space:nowrap;font-weight:600}
+.prov.y{background:var(--ok-soft);color:var(--ok)}.prov.e{background:var(--accent-soft);color:var(--accent)}.prov.m{background:var(--warn-soft);color:var(--warn)}
+pre{overflow-x:auto;background:var(--code);padding:10px 12px;border-radius:8px;font-size:12.5px;line-height:1.45;margin:10px 0}
+pre code{background:none;padding:0;font-size:inherit}
+@media print{
+  header.bar,.btnrow,label.tick,.card-foot-row{display:none}
+  body{background:#fff;color:#000;font-size:12px}
+  .card{break-inside:avoid;border-color:#ccc}
+  details.qa .ans{display:block}
+}
+
+svg.d rect{fill:var(--surface);stroke:var(--line);stroke-width:1.2}
+svg.d rect.ou{fill:var(--accent-soft);stroke:var(--accent)}
+svg.d rect.band{fill:var(--ok-soft);stroke:var(--ok)}
+svg.d line{stroke:var(--faint);stroke-width:1.4}
+svg.d line.thick{stroke:var(--accent);stroke-width:2.4}
+svg.d text{fill:var(--ink);font-family:var(--body);text-anchor:middle}
+svg.d text.t{font-size:13px;font-weight:600;font-family:var(--display)}
+svg.d text.s{font-size:11px;fill:var(--muted)}
+
+svg.d rect.wr{fill:var(--warn-soft);stroke:var(--warn)}
+svg.d rect.hu,svg.d circle.hu{fill:color-mix(in srgb,var(--brass) 16%,var(--surface));stroke:var(--brass);stroke-width:1.2}
+svg.d line.ar{marker-end:url(#ar)}
+svg.d polyline.ar{fill:none;stroke:var(--faint);stroke-width:1.4;marker-end:url(#ar)}
+svg.d line.ar2{marker-end:url(#ar);marker-start:url(#ar)}
+ol{padding-left:22px}
+.card ol li{margin:3px 0}
+</style>
+</head>
+<body>
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#868F9A"/></marker></defs></svg>
+<header class="bar"><nav class="bar-inner" aria-label="Sections">
+  <div class="bar-row">
+  <a href="#top">Top</a>
+  <a href="#plan">Plan</a>
+  <a href="#check">Self-check</a>
+  <a href="#found">1 Foundations</a>
+  <a href="#pat">2 Patterns</a>
+  <a href="#choose">3 Choosing</a>
+  </div>
+  <div class="bar-row">
+  <a href="#build">4 Building well</a>
+  <a href="#fw">5 Protocols and frameworks</a>
+  <a href="#res">6 Learn more</a>
+  <a href="#cheat">Cheat sheet</a>
+  <span class="prog" id="prog">0 / 0 done</span>
+  </div>
+</nav></header>
+
+<main class="wrap" id="top">
+<section class="hero">
+  <p class="eyebrow">Agentic <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> · Learning guide</p>
+  <h1>Agentic systems: definitions, patterns and where to learn more</h1>
+  <p class="lede">A general guide to agentic <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> for an architect. Learn the vocabulary, the building blocks and the orchestration patterns, then how to choose between them and how to build them well. Every pattern has a diagram and an example. Part 6 lists the best free courses, videos and reading, so you can go deeper by building. Start with the simplest thing that works. Add an agent only when the task needs one.</p>
+  <div class="box intent"><b class="lbl">How this site fits with the others</b>This guide is general and stays useful across roles. The insurance design-phase guide, <a href="../agentic-ea/">agentic-ea</a>, applies these patterns to one domain. Read the pattern here, then see it used there.</div>
+  <div class="btnrow">
+    <button class="mini" id="openAll" type="button">Open all answers</button>
+    <button class="mini" id="closeAll" type="button">Close all answers</button>
+    <button class="mini" id="theme" type="button">Toggle dark mode</button>
+    <button class="mini" id="reset" type="button">Reset progress</button>
+  </div>
+</section>
+
+<section id="plan">
+<h2 class="part">Study plan</h2>
+<p class="part-sub">Six sessions, about 8 hours of reading. Each session has a build task. Do the build first, then read the cards when you get stuck.</p>
+<article class="card" id="plan-sessions">
+<span class="tag">Sessions</span>
+<h3>Six sessions</h3>
+  <div class="session"><span class="snum">S1</span><div>
+    <p><b>Vocabulary and the agent loop (1 h).</b> <a href="#f-defs">Definitions</a>, <a href="#f-augmented">the augmented <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr></a>, <a href="#f-loop">the agent loop</a>.</p>
+    <p class="meta">Build: one <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> call with one tool, in plain Python. No framework.</p>
+  </div></div>
+  <div class="session"><span class="snum">S2</span><div>
+    <p><b>The complexity ladder and layers (1 h).</b> <a href="#f-spectrum">From one call to many agents</a>, <a href="#f-layers">enterprise layers</a>.</p>
+    <p class="meta">Build: draw the layers for a system you know, from memory.</p>
+  </div></div>
+  <div class="session"><span class="snum"><abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></span><div>
+    <p><b>Workflow patterns (2 h).</b> <a href="#p-overview">The overview</a>, then <a href="#p-chain">chaining</a>, <a href="#p-route">routing</a>, <a href="#p-parallel">parallel</a>, <a href="#p-orch">orchestrator-workers</a>, <a href="#p-eval">evaluator-optimizer</a>.</p>
+    <p class="meta">Build: a two-step chain with a code gate between the steps, then add a router in front.</p>
+  </div></div>
+  <div class="session"><span class="snum">S4</span><div>
+    <p><b>Agent patterns and choosing (1.5 h).</b> <a href="#p-agent">The autonomous agent</a>, <a href="#p-hier">hierarchical</a>, <a href="#p-chat">group chat</a>, <a href="#p-hitl">human gate</a>, then Part 3 <a href="#choose">choosing</a>.</p>
+    <p class="meta">Build: an evaluator-optimizer loop with an iteration limit.</p>
+  </div></div>
+  <div class="session"><span class="snum">S5</span><div>
+    <p><b>Building well (1.5 h).</b> Part 4: <a href="#b-context">context</a>, <a href="#b-tools">tools</a>, <a href="#b-memory">memory</a>, <a href="#b-evals">evals</a>, <a href="#b-obs">observability</a>, <a href="#b-sec">security</a>.</p>
+    <p class="meta">Build: an eval set of ten cases for your <abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr> chain, and a script that scores it.</p>
+  </div></div>
+  <div class="session"><span class="snum">S6</span><div>
+    <p><b>Protocols and frameworks (1 h).</b> Part 5: <a href="#fw-proto"><abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> and <abbr title="Agent2Agent: an open protocol, now at the Linux Foundation, for AI agents from different systems to discover each other and pass work.">A2A</abbr></a>, <a href="#fw-table">frameworks</a>.</p>
+    <p class="meta">Build: a small <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> server with one tool. The free Anthropic Academy <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> course walks you through it.</p>
+  </div></div>
+</article>
+</section>
+
+<section id="check">
+<h2 class="part">Self-check: twelve questions</h2>
+<p class="part-sub">Answer aloud in under 30 seconds each. A miss sends you to the named card.</p>
+<article class="card" id="c-check">
+<span class="tag">Triage</span>
+<h3>Where are the gaps?</h3>
+<details class="qa"><summary>1. What is the difference between a workflow and an agent?</summary><div class="ans"><p>In a workflow, code defines the path and <abbr title="Large Language Models: AI models trained on large amounts of text to understand and generate language.">LLMs</abbr> fill in steps. In an agent, the <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> decides its own steps and which tools to use. Both are "agentic systems". Card <a href="#f-defs">1.1</a>.</p></div></details>
+<details class="qa"><summary>2. What is the augmented LLM?</summary><div class="ans"><p>A model with retrieval, tools and memory attached. It is the building block for every pattern. Card <a href="#f-augmented">1.2</a>.</p></div></details>
+<details class="qa"><summary>3. Describe the agent loop in one line.</summary><div class="ans"><p>A model using tools in a loop: gather context, act, check the result, repeat until done or stopped. Card <a href="#f-loop">1.3</a>.</p></div></details>
+<details class="qa"><summary>4. When do you use routing instead of prompt chaining?</summary><div class="ans"><p>Chaining when every input follows the same fixed steps. Routing when the type of input decides which path, model or prompt to use. Cards <a href="#p-chain">2.1</a>, <a href="#p-route">2.2</a>.</p></div></details>
+<details class="qa"><summary>5. What separates orchestrator-workers from parallelisation?</summary><div class="ans"><p>In parallelisation, the subtasks are fixed in advance. In orchestrator-workers, the orchestrator decides the subtasks from the input. Card <a href="#p-orch">2.4</a>.</p></div></details>
+<details class="qa"><summary>6. What does reflection mean in Andrew Ng's patterns, and which Anthropic pattern is it?</summary><div class="ans"><p>The model critiques and improves its own output. It is close to the evaluator-optimizer pattern. Cards <a href="#p-eval">2.5</a>, <a href="#p-names">2.10</a>.</p></div></details>
+<details class="qa"><summary>7. Give the main argument for and against multi-agent systems.</summary><div class="ans"><p>For: parallel subagents with their own context windows do well on broad, breadth-first tasks. Against: they use many more tokens, and decisions made in separate contexts can conflict. Card <a href="#ch-multi">3.2</a>.</p></div></details>
+<details class="qa"><summary>8. What is context engineering?</summary><div class="ans"><p>Choosing and maintaining the smallest set of useful tokens in the context window: instructions, tools, examples, history and retrieved data. Long context degrades recall, so less is often more. Card <a href="#b-context">4.1</a>.</p></div></details>
+<details class="qa"><summary>9. Name two graders for an eval and when to use each.</summary><div class="ans"><p>Code graders for exact, checkable outputs. Model graders (LLM-as-judge) for open text, with a rubric. Add human graders to calibrate both. Card <a href="#b-evals">4.4</a>.</p></div></details>
+<details class="qa"><summary>10. Why is prompt injection worse for agents than for chat?</summary><div class="ans"><p>An agent reads untrusted content and can act with tools. Injected text can make it misuse a tool or its privileges. Card <a href="#b-sec">4.6</a>.</p></div></details>
+<details class="qa"><summary>11. MCP or A2A: which connects an agent to tools, and which connects agents to each other?</summary><div class="ans"><p><abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> connects agents to tools and data. <abbr title="Agent2Agent: an open protocol, now at the Linux Foundation, for AI agents from different systems to discover each other and pass work.">A2A</abbr> lets agents from different systems find each other and pass work. Card <a href="#fw-proto">5.1</a>.</p></div></details>
+<details class="qa"><summary>12. What is Microsoft's current agent framework, and what happened to AutoGen and Semantic Kernel?</summary><div class="ans"><p>Microsoft Agent Framework, 1.0 in April 2026. It is the successor to both. They now get maintenance only. Card <a href="#fw-table">5.2</a>.</p></div></details>
+</article>
+</section>
+
+<!-- ============ PART 1 FOUNDATIONS ============ -->
+<section id="found">
+<h2 class="part">Part 1. Foundations</h2>
+<p class="part-sub">Five cards. The words, the building block, the loop, the ladder of complexity, and the layers of an enterprise agentic system.</p>
+
+<article class="card" id="f-defs">
+<span class="tag">1.1 · Vocabulary</span>
+<h3>Definitions</h3>
+<div class="tbl"><table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td><abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr></td><td>A large language model. It reads tokens and predicts the next ones.</td></tr>
+<tr><td>Token</td><td>A piece of text the model reads or writes, roughly part of a word. Cost and limits are counted in tokens.</td></tr>
+<tr><td>Context window</td><td>Everything the model sees in one call: instructions, tools, examples, history, retrieved data. It has a fixed maximum size.</td></tr>
+<tr><td>System prompt</td><td>Standing instructions that set the model's role, rules and output format.</td></tr>
+<tr><td>Tool (function calling)</td><td>A function the model can ask to run, described by a name, a description and an input schema. Your code runs it and returns the result.</td></tr>
+<tr><td>Structured output</td><td>Output forced into a schema, such as <abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr> with fixed fields. It makes results checkable by code.</td></tr>
+<tr><td>Agentic system</td><td>Any system where <abbr title="Large Language Models: AI models trained on large amounts of text to understand and generate language.">LLMs</abbr> and tools work together on a task. Anthropic splits it into workflows and agents.</td></tr>
+<tr><td>Workflow</td><td><abbr title="Large Language Models: AI models trained on large amounts of text to understand and generate language.">LLMs</abbr> and tools run along a path that code defines in advance.</td></tr>
+<tr><td>Agent</td><td>An <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> that directs its own steps and tool use, in a loop, until the task is done or a limit stops it.</td></tr>
+<tr><td>Augmented <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr></td><td>A model with retrieval, tools and memory attached. The base unit of every pattern.</td></tr>
+<tr><td><abbr title="Retrieval-Augmented Generation: the model answers from documents retrieved at query time.">RAG</abbr></td><td>Retrieval-augmented generation. Fetch relevant documents at query time and put them in the context.</td></tr>
+<tr><td>Embedding, vector store</td><td>An embedding turns text into a list of numbers that captures meaning. A vector store finds similar items fast. Common in <abbr title="Retrieval-Augmented Generation: the model answers from documents retrieved at query time.">RAG</abbr>.</td></tr>
+<tr><td>Memory</td><td>Short-term: what is in the current context. Long-term: facts stored outside and fetched when needed.</td></tr>
+<tr><td>Planning</td><td>Breaking a goal into steps before or during the work.</td></tr>
+<tr><td>Reflection</td><td>The model, or a second model, reviews an output and improves it.</td></tr>
+<tr><td>Orchestrator</td><td>The part that decides what runs next: code in a workflow, an <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> in an agent.</td></tr>
+<tr><td>Subagent</td><td>An agent started by another agent for a subtask, usually with its own context window.</td></tr>
+<tr><td>Handoff</td><td>One agent passes control of the task to another agent.</td></tr>
+<tr><td>Guardrail</td><td>A check on input or output that blocks or corrects unsafe or invalid content.</td></tr>
+<tr><td><abbr title="Human in the loop: a person approves, corrects or rejects at set points in an automated flow.">HITL</abbr></td><td>Human in the loop. A person approves, corrects or rejects at set points.</td></tr>
+<tr><td>Eval</td><td>A test for an <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> system: a task, a way to grade the result, and a score.</td></tr>
+<tr><td>Trace</td><td>The full record of one run: every model call, tool call, input, output, time and cost.</td></tr>
+<tr><td><abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr></td><td>Model Context Protocol. An open standard for connecting agents to tools and data.</td></tr>
+<tr><td><abbr title="Agent2Agent: an open protocol, now at the Linux Foundation, for AI agents from different systems to discover each other and pass work.">A2A</abbr></td><td>Agent2Agent. An open protocol for agents in different systems to discover each other and pass work.</td></tr>
+<tr><td>Context engineering</td><td>Choosing and maintaining what goes into the context window across a long task.</td></tr>
+<tr><td>Prompt injection</td><td>Text in an input that tries to override the system's instructions.</td></tr>
+</table></div>
+<p class="src">Sources: <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic: Building effective agents</a> [P] (workflow and agent definitions); <a href="https://lilianweng.github.io/posts/2023-06-23-agent/" target="_blank" rel="noopener noreferrer">Lilian Weng: <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> Powered Autonomous Agents</a> [S] (planning, memory, tool use). Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="f-augmented">
+<span class="tag">1.2 · Building block</span>
+<h3>The augmented <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr></h3>
+<p>Every pattern in Part 2 is built from one unit: a model with retrieval, tools and memory around it. Get this unit right first. Clear tool descriptions and good retrieval do more for quality than adding agents.</p>
+<figure class="arch"><svg viewBox="0 0 760 250" class="d" role="img" aria-label="Augmented LLM: input and output around a model, with retrieval, tools and memory attached.">
+  <rect x="20" y="90" width="110" height="50" rx="8"/><text x="75" y="120" class="t">Input</text>
+  <rect x="300" y="80" width="160" height="70" rx="10" class="ou"/><text x="380" y="110" class="t">LLM</text><text x="380" y="128" class="s">instructions + context</text>
+  <rect x="630" y="90" width="110" height="50" rx="8"/><text x="685" y="120" class="t">Output</text>
+  <line x1="130" y1="115" x2="298" y2="115" class="ar"/><line x1="460" y1="115" x2="628" y2="115" class="ar"/>
+  <rect x="140" y="10" width="150" height="50" rx="8" class="band"/><text x="215" y="31" class="t">Retrieval</text><text x="215" y="47" class="s">search, RAG</text>
+  <rect x="305" y="192" width="150" height="50" rx="8" class="band"/><text x="380" y="213" class="t">Tools</text><text x="380" y="229" class="s">APIs, code, MCP servers</text>
+  <rect x="470" y="10" width="150" height="50" rx="8" class="band"/><text x="545" y="31" class="t">Memory</text><text x="545" y="47" class="s">notes, stored facts</text>
+  <line x1="250" y1="60" x2="330" y2="80" class="ar2"/><line x1="380" y1="153" x2="380" y2="189" class="ar2"/><line x1="510" y1="60" x2="430" y2="80" class="ar2"/>
+</svg><figcaption>Two-way arrows: the model asks for data or an action, and the result comes back into its context.</figcaption></figure>
+<div class="box say"><b class="lbl">Remember</b>Most "agent problems" are context problems: a vague tool description, missing data, or too much noise in the window.</div>
+</article>
+
+<article class="card" id="f-loop">
+<span class="tag">1.3 · Building block</span>
+<h3>The agent loop</h3>
+<p>An agent is a model using tools in a loop. It gathers context, takes an action, checks the result, and repeats. The ReAct style writes this out as thought, action and observation. A stop condition ends the loop: the task is done, a step or cost limit is hit, or a human is needed.</p>
+<figure class="arch"><svg viewBox="0 0 760 262" class="d" role="img" aria-label="Agent loop: goal, then gather context, act with a tool, observe and verify, decide done, repeating, with limits and human escalation.">
+  <rect x="20" y="100" width="110" height="50" rx="8"/><text x="75" y="122" class="t">Goal</text><text x="75" y="138" class="s">from user or system</text>
+  <rect x="200" y="20" width="160" height="56" rx="8" class="ou"/><text x="280" y="44" class="t">Gather context</text><text x="280" y="61" class="s">read, search, recall</text>
+  <rect x="420" y="20" width="160" height="56" rx="8" class="ou"/><text x="500" y="44" class="t">Act</text><text x="500" y="61" class="s">call a tool</text>
+  <rect x="420" y="170" width="160" height="56" rx="8" class="ou"/><text x="500" y="194" class="t">Observe and verify</text><text x="500" y="211" class="s">check the result</text>
+  <rect x="200" y="170" width="160" height="56" rx="8" class="ou"/><text x="280" y="194" class="t">Decide</text><text x="280" y="211" class="s">done? next step?</text>
+  <line x1="130" y1="115" x2="198" y2="60" class="ar"/><line x1="360" y1="48" x2="418" y2="48" class="ar"/><line x1="500" y1="76" x2="500" y2="168" class="ar"/><line x1="420" y1="198" x2="362" y2="198" class="ar"/><line x1="280" y1="170" x2="280" y2="78" class="ar"/>
+  <rect x="620" y="96" width="130" height="58" rx="8" class="band"/><text x="685" y="120" class="t">Stop</text><text x="685" y="137" class="s">done, limit, or human</text>
+  <polyline points="280,226 280,248 685,248 685,156" class="ar"/>
+</svg><figcaption>The loop is the whole architecture of a basic agent. Everything else is about what goes into the context, which tools exist, and when to stop.</figcaption></figure>
+<p class="src">Sources: <a href="https://ai.engineer/talks/effective-ai-agents" target="_blank" rel="noopener noreferrer"><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> Engineer: How We Build Effective Agents (Barry Zhang)</a> [P]; <a href="https://code.claude.com/docs/en/agent-sdk/overview" target="_blank" rel="noopener noreferrer">Claude Agent <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr> overview</a> [P]. Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="f-spectrum">
+<span class="tag">1.4 · Choosing</span>
+<h3>The complexity ladder</h3>
+<p>Each step up the ladder adds capability, and adds cost, latency and new ways to fail. Microsoft's guidance gives the spectrum as a direct model call, a single agent with tools, then multi-agent orchestration, and says to use the lowest level that reliably meets the need. Anthropic gives the same advice: find the simplest solution and add complexity only when needed.</p>
+<figure class="arch"><svg viewBox="0 0 760 220" class="d" role="img" aria-label="Complexity ladder: single call, workflow, single agent with tools, multi-agent system, with cost and risk rising.">
+  <rect x="10" y="150" width="170" height="56" rx="8" class="band"/><text x="95" y="174" class="t">1 Single call</text><text x="95" y="191" class="s">one prompt, maybe RAG</text>
+  <rect x="200" y="110" width="170" height="96" rx="8" class="band"/><text x="285" y="134" class="t">2 Workflow</text><text x="285" y="151" class="s">coded path, LLM steps</text><text x="285" y="167" class="s">chain, route, parallel</text>
+  <rect x="390" y="70" width="170" height="136" rx="8" class="ou"/><text x="475" y="94" class="t">3 Single agent</text><text x="475" y="111" class="s">model picks tools</text><text x="475" y="127" class="s">in a loop, with limits</text>
+  <rect x="580" y="30" width="170" height="176" rx="8" class="wr"/><text x="665" y="54" class="t">4 Multi-agent</text><text x="665" y="71" class="s">orchestrator, subagents,</text><text x="665" y="87" class="s">handoffs, group chat</text>
+  <line x1="40" y1="20" x2="560" y2="20" class="ar"/><text x="300" y="14" class="s">capability, cost, latency and risk all rise</text>
+</svg></figure>
+<div class="box say"><b class="lbl">Say this</b>"I start on the lowest rung that meets the requirement and move up only when a test shows I need to."</div>
+<p class="src">Sources: <a href="https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns" target="_blank" rel="noopener noreferrer">Azure Architecture Center: <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> agent orchestration patterns</a> [P]; <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic: Building effective agents</a> [P]. Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="f-layers">
+<span class="tag">1.5 · Architecture</span>
+<h3>Enterprise layers</h3>
+<p>A reference stack for an enterprise agentic system. Use it to place every component in a design review. The platform runs down the side: it gives every layer identity, guardrails, tracing, evals and cost control.</p>
+<figure class="arch"><svg viewBox="0 0 760 370" class="d" role="img" aria-label="Layered architecture: experience, orchestration, agents, context, tools via MCP, systems of record, with a platform band down the side.">
+  <rect x="10" y="10" width="590" height="50" rx="8" class="hu"/><text x="110" y="40" class="t">Experience</text><text x="390" y="40" class="s">user interface where humans review, approve and decide</text>
+  <rect x="10" y="70" width="590" height="50" rx="8" class="ou"/><text x="110" y="100" class="t">Orchestration</text><text x="390" y="100" class="s">workflow state, routing, retries, escalation to a human</text>
+  <rect x="10" y="130" width="590" height="50" rx="8" class="band"/><text x="110" y="160" class="t">Agents</text><text x="390" y="160" class="s">registry of single-purpose agents, versioned, with evals</text>
+  <rect x="10" y="190" width="590" height="50" rx="8" class="ou"/><text x="110" y="220" class="t">Context</text><text x="390" y="220" class="s">domain context packs, RAG over documents, memory</text>
+  <rect x="10" y="250" width="590" height="50" rx="8" class="ou"/><text x="110" y="280" class="t">Tools (MCP)</text><text x="390" y="280" class="s">MCP servers wrapping engines, APIs and data</text>
+  <rect x="10" y="310" width="590" height="50" rx="8"/><text x="110" y="340" class="t">Systems of record</text><text x="390" y="340" class="s">core platforms and data; agents write back through governed APIs</text>
+  <rect x="620" y="10" width="130" height="350" rx="10" class="wr"/><text x="685" y="110" class="t">Platform</text><text x="685" y="140" class="s">identity</text><text x="685" y="160" class="s">guardrails</text><text x="685" y="180" class="s">tracing</text><text x="685" y="200" class="s">evals</text><text x="685" y="220" class="s">cost, budgets</text><text x="685" y="240" class="s">model gateway</text>
+</svg><figcaption>Restored from the first quick-prep page and extended. An agent development kit plus a runtime usually delivers the platform column.</figcaption></figure>
+</article>
+</section>
+
+<!-- ============ PART 2 PATTERNS ============ -->
+<section id="pat">
+<h2 class="part">Part 2. Orchestration patterns</h2>
+<p class="part-sub">An overview diagram, then one card per pattern with its own diagram, a use, an example and the traps. The last cards map the names used by different vendors and walk through a worked example.</p>
+<nav class="toc">
+  <a href="#p-overview"><span>2.0</span>All patterns at a glance</a>
+  <a href="#p-chain"><span>2.1</span>Prompt chaining / sequential</a>
+  <a href="#p-route"><span>2.2</span>Routing / handoff</a>
+  <a href="#p-parallel"><span>2.3</span>Parallelisation / concurrent</a>
+  <a href="#p-orch"><span>2.4</span>Orchestrator-workers</a>
+  <a href="#p-eval"><span>2.5</span>Evaluator-optimizer</a>
+  <a href="#p-agent"><span>2.6</span>Autonomous agent</a>
+  <a href="#p-hier"><span>2.7</span>Hierarchical</a>
+  <a href="#p-chat"><span>2.8</span>Group chat</a>
+  <a href="#p-hitl"><span>2.9</span>Human gate</a>
+  <a href="#p-names"><span>2.10</span>Names across vendors</a>
+  <a href="#p-walk"><span>2.11</span>Worked example</a>
+</nav>
+
+<article class="card" id="p-overview">
+<span class="tag">2.0 · Overview</span>
+<h3>All patterns at a glance</h3>
+<figure class="arch"><svg viewBox="0 0 760 340" class="d" role="img" aria-label="Grid of eight pattern sketches: sequential, router, supervisor, parallel, evaluator, human gate, hierarchical, event-driven.">
+  <text x="20" y="22" class="t" style="text-anchor:start">1 Sequential</text>
+  <rect x="20" y="36" width="50" height="30" rx="5" class="band"/><rect x="100" y="36" width="50" height="30" rx="5" class="band"/><rect x="180" y="36" width="50" height="30" rx="5" class="band"/>
+  <line x1="70" y1="51" x2="98" y2="51" class="ar"/><line x1="150" y1="51" x2="178" y2="51" class="ar"/>
+  <text x="290" y="22" class="t" style="text-anchor:start">2 Router</text>
+  <rect x="300" y="38" width="56" height="26" rx="5" class="ou"/><text x="328" y="55" class="s">route</text>
+  <rect x="420" y="26" width="50" height="22" rx="5" class="band"/><rect x="420" y="56" width="50" height="22" rx="5" class="band"/>
+  <line x1="356" y1="51" x2="418" y2="37" class="ar"/><line x1="356" y1="51" x2="418" y2="67" class="ar"/>
+  <text x="540" y="22" class="t" style="text-anchor:start">3 Orchestrator-workers</text>
+  <rect x="600" y="34" width="90" height="28" rx="5" class="ou"/><text x="645" y="52" class="s">orchestrator</text>
+  <rect x="550" y="94" width="50" height="22" rx="5" class="band"/><rect x="620" y="94" width="50" height="22" rx="5" class="band"/><rect x="690" y="94" width="50" height="22" rx="5" class="band"/>
+  <line x1="625" y1="62" x2="578" y2="92" class="ar"/><line x1="645" y1="62" x2="645" y2="92" class="ar"/><line x1="665" y1="62" x2="712" y2="92" class="ar"/>
+  <text x="20" y="152" class="t" style="text-anchor:start">4 Parallel fan-out, fan-in</text>
+  <rect x="20" y="196" width="40" height="28" rx="5" class="ou"/>
+  <rect x="110" y="166" width="50" height="22" rx="5" class="band"/><rect x="110" y="199" width="50" height="22" rx="5" class="band"/><rect x="110" y="232" width="50" height="22" rx="5" class="band"/>
+  <rect x="210" y="196" width="40" height="28" rx="5" class="ou"/>
+  <line x1="60" y1="210" x2="108" y2="177" class="ar"/><line x1="60" y1="210" x2="108" y2="210" class="ar"/><line x1="60" y1="210" x2="108" y2="243" class="ar"/><line x1="160" y1="177" x2="208" y2="210" class="ar"/><line x1="160" y1="210" x2="208" y2="210" class="ar"/><line x1="160" y1="243" x2="208" y2="210" class="ar"/>
+  <text x="290" y="152" class="t" style="text-anchor:start">5 Evaluator-optimizer</text>
+  <rect x="300" y="190" width="80" height="30" rx="5" class="band"/><text x="340" y="209" class="s">generator</text>
+  <rect x="440" y="190" width="70" height="30" rx="5" class="ou"/><text x="475" y="209" class="s">evaluator</text>
+  <line x1="380" y1="198" x2="438" y2="198" class="ar"/><line x1="440" y1="214" x2="382" y2="214" class="ar"/>
+  <text x="540" y="152" class="t" style="text-anchor:start">6 Human gate</text>
+  <rect x="550" y="192" width="60" height="30" rx="5" class="band"/>
+  <circle cx="660" cy="207" r="24" class="hu"/><text x="660" y="211" class="s">human</text>
+  <rect x="710" y="192" width="40" height="30" rx="5" class="band"/>
+  <line x1="610" y1="207" x2="634" y2="207" class="ar"/><line x1="684" y1="207" x2="708" y2="207" class="ar"/>
+  <text x="20" y="292" class="t" style="text-anchor:start">7 Hierarchical: supervisors of supervisors</text>
+  <text x="20" y="316" class="s" style="text-anchor:start">One top orchestrator delegates to team leads, each with its own workers.</text>
+  <text x="420" y="292" class="t" style="text-anchor:start">8 Event-driven or blackboard</text>
+  <text x="420" y="316" class="s" style="text-anchor:start">Agents react to events or to changes on shared state.</text>
+</svg><figcaption>Restored from the first quick-prep page. Green: worker steps. Blue: control. Brass: a person.</figcaption></figure>
+<div class="tbl"><table>
+<tr><th>Pattern</th><th>Path decided by</th><th>Typical use</th><th>Main risk</th></tr>
+<tr><td>Sequential</td><td>Code</td><td>Fixed multi-step tasks</td><td>Errors cascade</td></tr>
+<tr><td>Router</td><td>Code or a classifier call</td><td>Different input types</td><td>Misroutes</td></tr>
+<tr><td>Parallel</td><td>Code</td><td>Independent checks, voting</td><td>Merge logic</td></tr>
+<tr><td>Orchestrator-workers</td><td>An <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr></td><td>Subtasks unknown in advance</td><td>Cost, loops</td></tr>
+<tr><td>Evaluator-optimizer</td><td>Code with an <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> judge</td><td>Clear quality bar</td><td>Endless revision</td></tr>
+<tr><td>Human gate</td><td>A person</td><td>Authority, low confidence</td><td>Rubber-stamping</td></tr>
+<tr><td>Hierarchical</td><td><abbr title="Large Language Models: AI models trained on large amounts of text to understand and generate language.">LLMs</abbr> at each level</td><td>Very large tasks</td><td>Hard to debug</td></tr>
+<tr><td>Event-driven</td><td>Events</td><td>Long-running, reactive work</td><td>Hard to trace</td></tr>
+</table></div>
+</article>
+
+<article class="card" id="p-chain">
+<span class="tag">2.1 · Workflow</span>
+<h3>Prompt chaining (sequential)</h3>
+<p>Split a task into fixed steps. Each <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> call handles one step and passes its output to the next. Put a code check, a "gate", between steps to stop bad output early. You trade latency for accuracy, because each call has an easier job.</p>
+<figure class="arch"><svg viewBox="0 0 760 120" class="d" role="img" aria-label="Prompt chain: input, LLM step 1, gate, LLM step 2, LLM step 3, output; gate fail exits.">
+  <rect x="10" y="40" width="80" height="40" rx="8"/><text x="50" y="65" class="t">Input</text>
+  <rect x="120" y="40" width="110" height="40" rx="8" class="band"/><text x="175" y="65" class="t">LLM step 1</text>
+  <rect x="260" y="40" width="80" height="40" rx="8" class="ou"/><text x="300" y="65" class="t">Gate</text>
+  <rect x="370" y="40" width="110" height="40" rx="8" class="band"/><text x="425" y="65" class="t">LLM step 2</text>
+  <rect x="510" y="40" width="110" height="40" rx="8" class="band"/><text x="565" y="65" class="t">LLM step 3</text>
+  <rect x="650" y="40" width="100" height="40" rx="8"/><text x="700" y="65" class="t">Output</text>
+  <line x1="90" y1="60" x2="118" y2="60" class="ar"/><line x1="230" y1="60" x2="258" y2="60" class="ar"/><line x1="340" y1="60" x2="368" y2="60" class="ar"/><line x1="480" y1="60" x2="508" y2="60" class="ar"/><line x1="620" y1="60" x2="648" y2="60" class="ar"/>
+  <text x="300" y="104" class="s">fail → stop or retry</text>
+</svg></figure>
+<div class="grid2"><div><h4>Use when</h4><ul><li>The steps are known and the same every time.</li><li>Each step can be checked.</li></ul></div><div><h4>Example</h4><p>Extract a table from a document, then map its columns to a schema, then validate the values, then write the output.</p></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul><li>One bad step spoils everything after it. Gates are not optional.</li><li>Latency adds up. Run independent steps in parallel instead (2.3).</li></ul></div>
+</article>
+
+<article class="card" id="p-route">
+<span class="tag">2.2 · Workflow</span>
+<h3>Routing (handoff)</h3>
+<p>Classify the input, then send it to a specialised path: a different prompt, a different tool set or a different model. Routing keeps each path simple and lets cheap models take easy cases. In multi-agent frameworks the same idea appears as a handoff: one agent passes control to a specialist.</p>
+<figure class="arch"><svg viewBox="0 0 760 170" class="d" role="img" aria-label="Router: input to classifier, then to one of three specialised paths.">
+  <rect x="10" y="65" width="90" height="40" rx="8"/><text x="55" y="90" class="t">Input</text>
+  <rect x="140" y="60" width="120" height="50" rx="8" class="ou"/><text x="200" y="82" class="t">Router</text><text x="200" y="98" class="s">rules or a small model</text>
+  <rect x="330" y="10" width="200" height="40" rx="8" class="band"/><text x="430" y="35" class="t">Path A · simple, cheap model</text>
+  <rect x="330" y="65" width="200" height="40" rx="8" class="band"/><text x="430" y="90" class="t">Path B · specialist prompt</text>
+  <rect x="330" y="120" width="200" height="40" rx="8" class="band"/><text x="430" y="145" class="t">Path C · human queue</text>
+  <line x1="100" y1="85" x2="138" y2="85" class="ar"/><line x1="260" y1="85" x2="328" y2="30" class="ar"/><line x1="260" y1="85" x2="328" y2="85" class="ar"/><line x1="260" y1="85" x2="328" y2="140" class="ar"/>
+  <rect x="590" y="65" width="150" height="40" rx="8"/><text x="665" y="90" class="t">Output</text>
+  <line x1="530" y1="30" x2="588" y2="80" class="ar"/><line x1="530" y1="85" x2="588" y2="85" class="ar"/>
+</svg></figure>
+<div class="grid2"><div><h4>Use when</h4><ul><li>Inputs fall into clear categories that need different handling.</li><li>You want to save cost on easy cases.</li></ul></div><div><h4>Example</h4><p>Route a customer message to billing, technical support or a refund flow. Route a document by type before extraction.</p></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul><li>Measure router accuracy as its own eval. A misroute looks like a failure of the downstream path.</li><li>Always have a fallback route, usually a human.</li></ul></div>
+</article>
+
+<article class="card" id="p-parallel">
+<span class="tag">2.3 · Workflow</span>
+<h3>Parallelisation (concurrent)</h3>
+<p>Run several <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> calls at once and combine the results. Anthropic names two forms. <b>Sectioning</b>: split the task into independent parts. <b>Voting</b>: run the same task several times and compare, to raise confidence.</p>
+<figure class="arch"><svg viewBox="0 0 760 170" class="d" role="img" aria-label="Fan-out to three parallel calls, then an aggregator.">
+  <rect x="10" y="65" width="100" height="40" rx="8"/><text x="60" y="90" class="t">Input</text>
+  <rect x="200" y="10" width="190" height="40" rx="8" class="band"/><text x="295" y="35" class="t">Check A</text>
+  <rect x="200" y="65" width="190" height="40" rx="8" class="band"/><text x="295" y="90" class="t">Check B</text>
+  <rect x="200" y="120" width="190" height="40" rx="8" class="band"/><text x="295" y="145" class="t">Check C</text>
+  <rect x="480" y="60" width="140" height="50" rx="8" class="ou"/><text x="550" y="82" class="t">Aggregator</text><text x="550" y="98" class="s">merge, vote, reconcile</text>
+  <rect x="660" y="65" width="90" height="40" rx="8"/><text x="705" y="90" class="t">Output</text>
+  <line x1="110" y1="85" x2="198" y2="30" class="ar"/><line x1="110" y1="85" x2="198" y2="85" class="ar"/><line x1="110" y1="85" x2="198" y2="140" class="ar"/>
+  <line x1="390" y1="30" x2="478" y2="80" class="ar"/><line x1="390" y1="85" x2="478" y2="85" class="ar"/><line x1="390" y1="140" x2="478" y2="92" class="ar"/><line x1="620" y1="85" x2="658" y2="85" class="ar"/>
+</svg></figure>
+<div class="grid2"><div><h4>Use when</h4><ul><li>Subtasks do not depend on each other.</li><li>Several views of the same thing raise accuracy.</li></ul></div><div><h4>Example</h4><p>Screen a request for policy, fraud and compliance at the same time. Run two models on a hard classification and accept only when they agree.</p></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul><li>Voting multiplies cost. Use it only on the hard cases.</li><li>Decide in advance what happens when results disagree.</li></ul></div>
+</article>
+
+<article class="card" id="p-orch">
+<span class="tag">2.4 · Workflow or agent</span>
+<h3>Orchestrator-workers (manager)</h3>
+<p>A central <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> breaks the task into subtasks, sends them to workers, and combines the results. It looks like parallelisation, with one key difference: the subtasks are not fixed in advance. The orchestrator decides them from the input. Microsoft's Magentic pattern is a manager agent that builds and updates a task list as it goes.</p>
+<figure class="arch"><svg viewBox="0 0 760 200" class="d" role="img" aria-label="Orchestrator plans, sends dynamic subtasks to workers, then synthesises.">
+  <rect x="10" y="75" width="90" height="44" rx="8"/><text x="55" y="101" class="t">Task</text>
+  <rect x="140" y="70" width="140" height="54" rx="8" class="ou"/><text x="210" y="93" class="t">Orchestrator</text><text x="210" y="110" class="s">plans subtasks</text>
+  <rect x="330" y="10" width="150" height="40" rx="8" class="band"/><text x="405" y="35" class="t">Worker 1</text>
+  <rect x="330" y="77" width="150" height="40" rx="8" class="band"/><text x="405" y="102" class="t">Worker 2</text>
+  <rect x="330" y="144" width="150" height="40" rx="8" class="band"/><text x="405" y="169" class="t">Worker n</text>
+  <rect x="530" y="70" width="130" height="54" rx="8" class="ou"/><text x="595" y="93" class="t">Synthesiser</text><text x="595" y="110" class="s">often the orchestrator</text>
+  <rect x="690" y="75" width="60" height="44" rx="8"/><text x="720" y="101" class="t">Result</text>
+  <line x1="100" y1="97" x2="138" y2="97" class="ar"/><line x1="280" y1="97" x2="328" y2="30" class="ar"/><line x1="280" y1="97" x2="328" y2="97" class="ar"/><line x1="280" y1="97" x2="328" y2="164" class="ar"/>
+  <line x1="480" y1="30" x2="528" y2="90" class="ar"/><line x1="480" y1="97" x2="528" y2="97" class="ar"/><line x1="480" y1="164" x2="528" y2="104" class="ar"/><line x1="660" y1="97" x2="688" y2="97" class="ar"/>
+</svg></figure>
+<div class="grid2"><div><h4>Use when</h4><ul><li>You cannot predict the subtasks.</li><li>The work is broad: many independent directions.</li></ul></div><div><h4>Example</h4><p>A research task where a lead agent starts subagents to search different angles, then writes the answer. A large spreadsheet split by tab, processed in parallel, then reconciled.</p></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul><li>Workers need enough context to do their part. A one-line task description is rarely enough.</li><li>Cap the number of workers, steps and tokens.</li></ul></div>
+<p class="src">Sources: <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic: Building effective agents</a> [P]; <a href="https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns" target="_blank" rel="noopener noreferrer">Azure: orchestration patterns (Magentic)</a> [P]. Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="p-eval">
+<span class="tag">2.5 · Workflow</span>
+<h3>Evaluator-optimizer (reflection)</h3>
+<p>One call produces an output. A second call grades it against criteria and gives feedback. The first call revises. Repeat until the output passes or a limit is hit. Andrew Ng calls the single-model version of this "reflection".</p>
+<figure class="arch"><svg viewBox="0 0 760 150" class="d" role="img" aria-label="Generator produces, evaluator critiques, loop until pass or limit.">
+  <rect x="10" y="50" width="90" height="44" rx="8"/><text x="55" y="76" class="t">Task</text>
+  <rect x="160" y="45" width="160" height="54" rx="8" class="band"/><text x="240" y="68" class="t">Generator</text><text x="240" y="85" class="s">draft, then revise</text>
+  <rect x="420" y="45" width="160" height="54" rx="8" class="ou"/><text x="500" y="68" class="t">Evaluator</text><text x="500" y="85" class="s">rubric, tests, checks</text>
+  <rect x="640" y="50" width="110" height="44" rx="8"/><text x="695" y="76" class="t">Pass</text>
+  <line x1="100" y1="72" x2="158" y2="72" class="ar"/><line x1="320" y1="62" x2="418" y2="62" class="ar"/><line x1="420" y1="86" x2="322" y2="86" class="ar"/><line x1="580" y1="72" x2="638" y2="72" class="ar"/>
+  <text x="370" y="120" class="s">feedback; stop after N rounds</text>
+</svg></figure>
+<div class="grid2"><div><h4>Use when</h4><ul><li>There is a clear standard to test against.</li><li>Feedback measurably improves the result.</li></ul></div><div><h4>Example</h4><p>A drafting step writes a customer letter. A checker tests it against required wording and tone. A code generator runs unit tests and fixes failures.</p></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul><li>Prefer code checks (tests, schema validation) over a model judge when you can.</li><li>Always set an iteration limit.</li></ul></div>
+</article>
+
+<article class="card" id="p-agent">
+<span class="tag">2.6 · Agent</span>
+<h3>The autonomous agent</h3>
+<p>The model plans and acts on its own in the loop from <a href="#f-loop">1.3</a>, using feedback from tools and its environment. It suits open problems where you cannot write the steps in advance. It costs more, takes longer, and can compound errors, so it needs strong tools, sandboxes, limits and tests.</p>
+<div class="grid2"><div><h4>Use when</h4><ul><li>The task is complex and valuable.</li><li>The path varies too much to code.</li><li>You can check the result: tests, a verifier, a human.</li></ul></div><div><h4>Example</h4><p>A coding agent that reads a repository, edits files, runs tests, and repeats until the tests pass.</p></div></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul><li>Errors compound over many steps. Checkpoints and human review points matter.</li><li>Test in a sandbox before giving real permissions.</li></ul></div>
+<p class="src">Sources: <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic: Building effective agents</a> [P]; <a href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" target="_blank" rel="noopener noreferrer">OpenAI: A practical guide to building agents</a> (<abbr title="Portable Document Format: a fixed-layout document file.">PDF</abbr>) [P]. Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="p-hier">
+<span class="tag">2.7 · Multi-agent</span>
+<h3>Hierarchical</h3>
+<p>Orchestrator-workers, nested. A top orchestrator delegates to team-level orchestrators, each with its own workers. Google's <abbr title="Agent Development Kit: Google’s open-source, model-agnostic framework for building and evaluating agents.">ADK</abbr> describes multi-agent systems as agents that often form a hierarchy.</p>
+<figure class="arch"><svg viewBox="0 0 760 190" class="d" role="img" aria-label="Top supervisor, two team leads, each with workers.">
+  <rect x="300" y="10" width="160" height="40" rx="8" class="ou"/><text x="380" y="35" class="t">Top orchestrator</text>
+  <rect x="120" y="80" width="160" height="40" rx="8" class="ou"/><text x="200" y="105" class="t">Team lead A</text>
+  <rect x="480" y="80" width="160" height="40" rx="8" class="ou"/><text x="560" y="105" class="t">Team lead B</text>
+  <rect x="60" y="145" width="100" height="34" rx="8" class="band"/><text x="110" y="167" class="s">worker</text>
+  <rect x="240" y="145" width="100" height="34" rx="8" class="band"/><text x="290" y="167" class="s">worker</text>
+  <rect x="420" y="145" width="100" height="34" rx="8" class="band"/><text x="470" y="167" class="s">worker</text>
+  <rect x="600" y="145" width="100" height="34" rx="8" class="band"/><text x="650" y="167" class="s">worker</text>
+  <line x1="350" y1="50" x2="220" y2="78" class="ar"/><line x1="410" y1="50" x2="540" y2="78" class="ar"/>
+  <line x1="180" y1="120" x2="120" y2="143" class="ar"/><line x1="220" y1="120" x2="280" y2="143" class="ar"/><line x1="540" y1="120" x2="480" y2="143" class="ar"/><line x1="580" y1="120" x2="640" y2="143" class="ar"/>
+</svg></figure>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul><li>Each level adds tokens, latency and a place for context to get lost. Use it only when one orchestrator cannot hold the work.</li></ul></div>
+<p class="src">Sources: <a href="https://google.github.io/adk-docs/agents/multi-agents/" target="_blank" rel="noopener noreferrer">Google <abbr title="Agent Development Kit: Google’s open-source, model-agnostic framework for building and evaluating agents.">ADK</abbr>: Multi-agent systems</a> [P]. Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="p-chat">
+<span class="tag">2.8 · Multi-agent</span>
+<h3>Group chat</h3>
+<p>Several agents work in one shared conversation. A chat manager chooses who speaks next. It suits review, debate and iterative refinement, where different roles comment on the same work.</p>
+<div class="grid2"><div><h4>Use when</h4><ul><li>You want several perspectives on one artefact.</li><li>Maker-checker review with distinct roles.</li></ul></div><div><h4>Watch out</h4><ul><li>Conversations can drift and loop. Limit turns.</li><li>Hard to test and audit. In regulated flows, prefer coded orchestration.</li></ul></div></div>
+<p class="src">Sources: <a href="https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/orchestrations/overview" target="_blank" rel="noopener noreferrer">Microsoft Agent Framework: orchestrations</a> [P]. Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="p-hitl">
+<span class="tag">2.9 · Control</span>
+<h3>The human gate</h3>
+<p>A person reviews at a set point and approves, corrects or rejects. Put gates where authority, accountability or low confidence demand it, and where actions cannot be undone. OpenAI's guide names two triggers for human intervention: exceeding failure thresholds and high-risk actions.</p>
+<div class="grid2"><div><h4>Design a good gate</h4><ul><li>Show the evidence with the proposal.</li><li>Make approve, correct and reject one click each, with a reason.</li><li>Capture corrections as data for evals and rules.</li></ul></div><div><h4>Watch out</h4><ul><li>Rubber-stamping: sample auto-approved items anyway, and track override rates.</li><li>Gates that see too much work become the bottleneck. Use confidence thresholds.</li></ul></div></div>
+<p class="src">Sources: <a href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" target="_blank" rel="noopener noreferrer">OpenAI: A practical guide to building agents</a> (<abbr title="Portable Document Format: a fixed-layout document file.">PDF</abbr>) [P]. Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="p-names">
+<span class="tag">2.10 · Vocabulary</span>
+<h3>The same patterns, different names</h3>
+<div class="tbl"><table>
+<tr><th>Idea</th><th>Anthropic</th><th>Microsoft</th><th>OpenAI guide</th><th>Andrew Ng</th></tr>
+<tr><td>Fixed steps in order</td><td>Prompt chaining</td><td>Sequential</td><td>-</td><td>-</td></tr>
+<tr><td>Model writes its own plan</td><td>Agent</td><td>Magentic (task ledger)</td><td>Single agent run loop</td><td>Planning</td></tr>
+<tr><td>Pick a path by input</td><td>Routing</td><td>Handoff</td><td>Decentralised (handoffs)</td><td>-</td></tr>
+<tr><td>Run at once and merge</td><td>Parallelisation</td><td>Concurrent</td><td>-</td><td>-</td></tr>
+<tr><td>Central planner and workers</td><td>Orchestrator-workers</td><td>Magentic</td><td>Manager (agents as tools)</td><td>Multi-agent collaboration</td></tr>
+<tr><td>Draft, critique, revise</td><td>Evaluator-optimizer</td><td>Group chat (maker-checker)</td><td>-</td><td>Reflection</td></tr>
+<tr><td>Call external functions</td><td>Augmented <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr></td><td>Tools</td><td>Tools</td><td>Tool use</td></tr>
+</table></div>
+<p>Andrew Ng's course teaches four design patterns: reflection, tool use, planning and multi-agent collaboration. They describe what an agent does. Anthropic's and Microsoft's patterns describe how you wire the calls together. You need both views.</p>
+<p class="src">Sources: <a href="https://www.deeplearning.ai/courses/agentic-ai" target="_blank" rel="noopener noreferrer">DeepLearning.AI: Agentic <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr></a> [P]; <a href="https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/orchestrations/overview" target="_blank" rel="noopener noreferrer">Microsoft Agent Framework orchestrations</a> [P]; <a href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" target="_blank" rel="noopener noreferrer">OpenAI practical guide</a> [P]. The mapping is this guide's own synthesis. Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="p-walk">
+<span class="tag">2.11 · Worked example</span>
+<h3>Worked example: submission to quote</h3>
+<p>One flow that uses five patterns. It comes from commercial insurance, and the same shape fits any document-heavy approval process.</p>
+<figure class="arch"><svg viewBox="0 0 760 250" class="d" role="img" aria-label="Submission flow: intake extraction, appetite router, parallel checks, pricing tool, summary with evaluator, human decision, system of record.">
+  <rect x="5" y="95" width="85" height="50" rx="6"/><text x="47" y="117" class="t">Request</text><text x="47" y="133" class="s">email + files</text>
+  <rect x="105" y="95" width="90" height="50" rx="6" class="band"/><text x="150" y="117" class="t">Extract</text><text x="150" y="133" class="s">chain + gate</text>
+  <rect x="210" y="95" width="80" height="50" rx="6" class="ou"/><text x="250" y="117" class="t">Route</text><text x="250" y="133" class="s">in appetite?</text>
+  <text x="250" y="170" class="s">no → decline draft</text>
+  <rect x="320" y="20" width="120" height="40" rx="6" class="band"/><text x="380" y="45" class="t">Sanctions check</text>
+  <rect x="320" y="100" width="120" height="40" rx="6" class="band"/><text x="380" y="125" class="t">Hazard check</text>
+  <rect x="320" y="180" width="120" height="40" rx="6" class="band"/><text x="380" y="205" class="t">Loss history</text>
+  <rect x="465" y="95" width="90" height="50" rx="6"/><text x="510" y="117" class="t">Price</text><text x="510" y="133" class="s">engine (tool)</text>
+  <rect x="570" y="95" width="80" height="50" rx="6" class="band"/><text x="610" y="117" class="t">Summary</text><text x="610" y="133" class="s">+ evaluator</text>
+  <circle cx="690" cy="120" r="24" class="hu"/><text x="690" y="124" class="s">decide</text>
+  <rect x="660" y="190" width="95" height="40" rx="6"/><text x="707" y="215" class="t">System</text>
+  <line x1="90" y1="120" x2="103" y2="120" class="ar"/><line x1="195" y1="120" x2="208" y2="120" class="ar"/>
+  <line x1="290" y1="120" x2="318" y2="40" class="ar"/><line x1="290" y1="120" x2="318" y2="120" class="ar"/><line x1="290" y1="120" x2="318" y2="200" class="ar"/>
+  <line x1="440" y1="40" x2="463" y2="112" class="ar"/><line x1="440" y1="120" x2="463" y2="120" class="ar"/><line x1="440" y1="200" x2="463" y2="128" class="ar"/>
+  <line x1="555" y1="120" x2="568" y2="120" class="ar"/><line x1="650" y1="120" x2="664" y2="120" class="ar"/><line x1="695" y1="144" x2="705" y2="188" class="ar"/>
+</svg><figcaption>Restored from the first quick-prep page. Sequential, then routing, then parallel checks, then a tool, then evaluator-optimizer, then a human gate.</figcaption></figure>
+<p>For how this applies to one real programme, with the decision ladder, confidence thresholds and lineage, see <a href="../agentic-ea/#t-pipeline">agentic-ea D2</a>.</p>
+</article>
+</section>
+
+<!-- ============ PART 3 CHOOSING ============ -->
+<section id="choose">
+<h2 class="part">Part 3. Choosing a design</h2>
+<p class="part-sub">Two cards. A decision tree for agent, workflow or tool, and the live debate about multi-agent systems.</p>
+
+<article class="card" id="ch-tree">
+<span class="tag">3.1 · Decision</span>
+<h3>Agent, workflow or tool?</h3>
+<figure class="arch"><svg viewBox="0 0 760 230" class="d" role="img" aria-label="Decision tree: deterministic to tool; fixed path to workflow; open-ended and verifiable to agent; add a human gate when stakes are high.">
+  <rect x="270" y="10" width="220" height="44" rx="8" class="ou"/><text x="380" y="37" class="t">Is the step deterministic?</text>
+  <rect x="20" y="86" width="200" height="50" rx="8" class="band"/><text x="120" y="108" class="t">Yes: tool or code</text><text x="120" y="124" class="s">rules, calculation, API call</text>
+  <rect x="270" y="86" width="220" height="50" rx="8" class="ou"/><text x="380" y="108" class="t">No: is the path known?</text><text x="380" y="124" class="s">same steps every time</text>
+  <rect x="230" y="166" width="200" height="50" rx="8" class="band"/><text x="330" y="188" class="t">Yes: workflow</text><text x="330" y="204" class="s">chain, route, parallel</text>
+  <rect x="460" y="166" width="210" height="50" rx="8"/><text x="565" y="188" class="t">No: agent, if verifiable</text><text x="565" y="204" class="s">tests, checks or human review</text>
+  <rect x="540" y="86" width="210" height="50" rx="8" class="hu"/><text x="645" y="108" class="t">High stakes or irreversible?</text><text x="645" y="124" class="s">add a human gate</text>
+  <line x1="320" y1="54" x2="140" y2="84" class="ar"/><line x1="380" y1="54" x2="380" y2="84" class="ar"/><line x1="360" y1="136" x2="330" y2="164" class="ar"/><line x1="420" y1="136" x2="555" y2="164" class="ar"/><line x1="490" y1="111" x2="538" y2="111" class="ar"/>
+</svg></figure>
+<h4>Barry Zhang's checklist for building an agent</h4>
+<ul>
+  <li><b>Complexity</b>: is the task ambiguous enough that you cannot map the decision tree? If you can map it, build a workflow.</li>
+  <li><b>Value</b>: does the outcome justify the extra cost? A budget of a few cents per task points to a workflow.</li>
+  <li><b>Capability</b>: can the model do each critical step well enough today?</li>
+  <li><b>Cost of error</b>: are mistakes cheap to find and fix? If not, limit autonomy and add review.</li>
+</ul>
+<p>His three principles: do not build agents for everything, keep it simple, and think like your agent by looking at exactly what is in its context window.</p>
+<p class="src">Sources: <a href="https://www.youtube.com/watch?v=D7_ipDqhtwk" target="_blank" rel="noopener noreferrer">How We Build Effective Agents, Barry Zhang (video, 15 min)</a> [P]; <a href="https://ai.engineer/talks/effective-ai-agents" target="_blank" rel="noopener noreferrer">talk page with slides</a> [P]. Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="ch-multi">
+<span class="tag">3.2 · Debate</span>
+<h3>Single agent or multi-agent?</h3>
+<p>Two credible teams reached different conclusions for different problems. Know both sides.</p>
+<div class="grid2"><div>
+<h4>The case for (Anthropic, research)</h4>
+<ul>
+  <li>Anthropic's research feature uses a lead agent that starts parallel subagents to search.</li>
+  <li>On their internal research eval, a multi-agent setup beat a single agent by 90.2%.</li>
+  <li>It works well for breadth-first questions with many independent directions.</li>
+  <li>The cost: agents used about 4 times the tokens of chat, and multi-agent systems about 15 times.</li>
+</ul></div><div>
+<h4>The case against (Cognition, coding)</h4>
+<ul>
+  <li>In June 2025, Cognition argued against multi-agent designs. Their principles: share full context, and remember that actions carry implicit decisions.</li>
+  <li>Parallel agents make conflicting choices that are hard to merge.</li>
+  <li>In April 2026 they reported multi-agent setups that do work in practice, such as review loops, while still doubting parallel-writer swarms.</li>
+</ul></div></div>
+<div class="box say"><b class="lbl">Synthesis</b>Use multiple agents for breadth: independent reads, searches and checks, each in its own context. Keep decisions that must agree in one place: one agent, or the orchestrator. Read-only subagents that report back are the safest form.</div>
+<p class="src">Sources: <a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener noreferrer">Anthropic: How we built our multi-agent research system</a> [P]; <a href="https://cognition.ai/blog/dont-build-multi-agents" target="_blank" rel="noopener noreferrer">Cognition: Don't Build Multi-Agents</a> [P]; <a href="https://cognition.com/blog/multi-agents-working" target="_blank" rel="noopener noreferrer">Cognition: Multi-Agents, What's Actually Working</a> [P] (Apr 2026). Checked 18 Nov 2026.</p>
+</article>
+</section>
+
+<!-- ============ PART 4 BUILDING WELL ============ -->
+<section id="build">
+<h2 class="part">Part 4. Building well</h2>
+<p class="part-sub">Six cards. What separates a demo from a system you can run: context, tools, memory, evals, observability and security.</p>
+
+<article class="card" id="b-context">
+<span class="tag">4.1 · Context</span>
+<h3>Context engineering</h3>
+<p>Anthropic describes context engineering as the next step after prompt engineering. It covers everything in the window: system instructions, tools, <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr>, examples, message history and retrieved data. Models have a limited attention budget. As context grows, recall falls, which Anthropic calls context rot. The aim is the smallest set of high-signal tokens that gets the result.</p>
+<ul>
+  <li><b>Instructions at the right altitude</b>: clear heuristics, neither brittle if-then rules nor vague advice.</li>
+  <li><b>Few, distinct tools</b>: if a human cannot tell which tool to use, the model cannot either.</li>
+  <li><b>Just-in-time retrieval</b>: keep references and fetch details when needed.</li>
+  <li><b>Compaction</b>: summarise old history and drop stale tool results.</li>
+  <li><b>Structured notes</b>: the agent writes notes outside the window and reads them later.</li>
+  <li><b>Subagents</b>: do detailed work in a separate context and return a short summary.</li>
+</ul>
+<p class="src">Sources: <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Anthropic: Effective context engineering for <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> agents</a> [P] (Sep 2025). Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="b-tools">
+<span class="tag">4.2 · Tools</span>
+<h3>Designing tools for agents</h3>
+<p>Anthropic calls tools a contract between deterministic systems and non-deterministic agents. Design them for the model. A thin wrapper over every <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> endpoint works badly.</p>
+<ul>
+  <li>Choose the right tools to build, and leave out the ones the model does not need.</li>
+  <li>Namespace tools so their boundaries are clear.</li>
+  <li>Return meaningful context, such as names instead of opaque <abbr title="Identifiers: values that name one record or thing each.">IDs</abbr>.</li>
+  <li>Keep responses token-efficient: filter, paginate, truncate.</li>
+  <li>Write the tool description like a prompt. It is one.</li>
+  <li>Evaluate tools with realistic tasks, and let an agent help improve them.</li>
+</ul>
+<p class="src">Sources: <a href="https://www.anthropic.com/engineering/writing-tools-for-agents" target="_blank" rel="noopener noreferrer">Anthropic: Writing effective tools for agents, with agents</a> [P] (Sep 2025). Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="b-memory">
+<span class="tag">4.3 · Memory</span>
+<h3>Memory</h3>
+<div class="tbl"><table>
+<tr><th>Type</th><th>What it is</th><th>Use for</th></tr>
+<tr><td>Working (short-term)</td><td>The current context window</td><td>The task in hand</td></tr>
+<tr><td>Session</td><td>History of the current conversation or run, often compacted</td><td>Multi-turn tasks</td></tr>
+<tr><td>Long-term facts</td><td>Stored facts or notes fetched by search</td><td>Preferences, past decisions, domain facts</td></tr>
+<tr><td>Procedural</td><td>Instructions and skills loaded when relevant</td><td>How to do a type of task</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul><li>Memory is also an attack surface. Treat stored content as data, never as instructions.</li><li>Decide retention and deletion rules up front.</li></ul></div>
+</article>
+
+<article class="card" id="b-evals">
+<span class="tag">4.4 · Quality</span>
+<h3>Evals</h3>
+<p>An eval gives the system a task, grades the result and records a score. Agents work over many turns with tools, so the grade can look at the final outcome, the steps taken, or both.</p>
+<div class="grid2"><div><h4>Kinds</h4><ul><li><b>Capability evals</b>: can it do the task at all?</li><li><b>Regression evals</b>: did a change break something that worked?</li></ul></div><div><h4>Graders</h4><ul><li><b>Code</b>: exact matches, tests, schema checks.</li><li><b>Model</b>: an <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> judge with a rubric. Let it answer "unknown".</li><li><b>Human</b>: a sample, to calibrate the others.</li></ul></div></div>
+<div class="box say"><b class="lbl">Start small</b>Twenty real cases with known answers beat a thousand synthetic ones. Write evals early. They force you to define success.</div>
+<p class="src">Sources: <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer">Anthropic: Demystifying evals for <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> agents</a> [P] (Jan 2026). Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="b-obs">
+<span class="tag">4.5 · Operations</span>
+<h3>Observability and cost</h3>
+<ul>
+  <li>Trace every run: model calls, tool calls, inputs, outputs, tokens, time, cost.</li>
+  <li>Set budgets per task with alerts and a hard stop.</li>
+  <li>Route by difficulty: small models for simple steps, large models only where needed.</li>
+  <li>Cache stable context. Batch work that is not urgent.</li>
+  <li>Make runs resumable from a checkpoint, so a failure does not restart a long task.</li>
+  <li>Report cost per task next to accuracy and time. A design that only looks good on one of the three is not finished.</li>
+</ul>
+</article>
+
+<article class="card" id="b-sec">
+<span class="tag">4.6 · Security</span>
+<h3>Security for agents</h3>
+<p>Agents read untrusted content and act with real permissions. That combination creates new risks. In December 2025, <abbr title="Open Worldwide Application Security Project: a nonprofit that publishes security guidance such as the Top 10.">OWASP</abbr> published a Top 10 for Agentic Applications. Its highlighted threats include agent behaviour hijacking, tool misuse and exploitation, and identity and privilege abuse.</p>
+<div class="tbl"><table>
+<tr><th>Risk</th><th>Control</th></tr>
+<tr><td>Prompt injection from documents, web pages or emails</td><td>Treat all external content as data. Separate it from instructions. Strip hidden text.</td></tr>
+<tr><td>Tool misuse</td><td>Narrow tool scopes. Validate tool inputs. Confirm destructive actions with a human.</td></tr>
+<tr><td>Excess privilege</td><td>Each agent gets its own identity and the least privilege it needs.</td></tr>
+<tr><td>Data leaks</td><td>Limit what reaches the model. Control where outputs go.</td></tr>
+<tr><td>Runaway behaviour</td><td>Step, time and cost limits. A kill switch.</td></tr>
+</table></div>
+<p class="src">Sources: <a href="https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/" target="_blank" rel="noopener noreferrer"><abbr title="Open Worldwide Application Security Project: a nonprofit that publishes security guidance such as the Top 10.">OWASP</abbr>: Top 10 for Agentic Applications</a> [P] (Dec 2025). Checked 18 Nov 2026.</p>
+</article>
+</section>
+
+<!-- ============ PART 5 PROTOCOLS AND FRAMEWORKS ============ -->
+<section id="fw">
+<h2 class="part">Part 5. Protocols and frameworks</h2>
+<p class="part-sub">Two cards. The two open protocols, and the main frameworks with when to pick each. Framework details change fast, so check the docs before you commit.</p>
+
+<article class="card" id="fw-proto">
+<span class="tag">5.1 · Protocols</span>
+<h3><abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> and <abbr title="Agent2Agent: an open protocol, now at the Linux Foundation, for AI agents from different systems to discover each other and pass work.">A2A</abbr></h3>
+<div class="grid2"><div>
+<h4><abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr>: agent to tools</h4>
+<ul>
+  <li>A server exposes tools, resources and prompts. Clients connect agents to servers.</li>
+  <li>The current specification is 2026-07-28 <span class="ver">ver</span>. It sends the protocol version with each request. Revisions up to 2025-11-25 used a handshake at connection.</li>
+</ul></div><div>
+<h4><abbr title="Agent2Agent: an open protocol, now at the Linux Foundation, for AI agents from different systems to discover each other and pass work.">A2A</abbr>: agent to agent</h4>
+<ul>
+  <li>Agents publish an agent card (<abbr title="JavaScript Object Notation: a lightweight text format for data.">JSON</abbr>) that describes their skills. Other agents find them and send tasks.</li>
+  <li>Google announced it in April 2025 and gave it to the Linux Foundation in June 2025.</li>
+</ul></div></div>
+<p>They work at different layers and fit together: <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> for tools inside an agent, <abbr title="Agent2Agent: an open protocol, now at the Linux Foundation, for AI agents from different systems to discover each other and pass work.">A2A</abbr> between agents that belong to different systems or vendors.</p>
+<p class="src">Sources: <a href="https://modelcontextprotocol.io/docs/learn/versioning" target="_blank" rel="noopener noreferrer"><abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> versioning</a> [P]; <a href="https://github.com/a2aproject" target="_blank" rel="noopener noreferrer"><abbr title="Agent2Agent: an open protocol, now at the Linux Foundation, for AI agents from different systems to discover each other and pass work.">A2A</abbr> project</a> [P]. Checked 18 Nov 2026.</p>
+</article>
+
+<article class="card" id="fw-table">
+<span class="tag">5.2 · Frameworks</span>
+<h3>Frameworks and when to pick them</h3>
+<div class="tbl"><table>
+<tr><th>Framework</th><th>What it is</th><th>Pick it when</th></tr>
+<tr><td>No framework</td><td>Direct <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr> calls in your own code</td><td>Learning, and simple workflows. Anthropic recommends starting here, because frameworks can hide prompts and responses.</td></tr>
+<tr><td>Claude Agent <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr></td><td>The tools, agent loop and context management behind Claude Code, in Python and TypeScript</td><td>You want a ready agent loop with file, shell, web and <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> tools.</td></tr>
+<tr><td>OpenAI Agents <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr></td><td>Lightweight Python framework: agents, tools, handoffs, guardrails, sessions, tracing</td><td>You want simple handoffs and guardrails with built-in tracing.</td></tr>
+<tr><td>Microsoft Agent Framework</td><td>Successor to Semantic Kernel and AutoGen, for .NET and Python. 1.0 shipped in April 2026 <span class="ver">ver</span>.</td><td>You build on Azure or .NET, or want the five Microsoft orchestration patterns built in.</td></tr>
+<tr><td>LangGraph</td><td>Graph-based, stateful agent workflows with persistence and human-in-the-loop</td><td>You need explicit state machines and checkpoints.</td></tr>
+<tr><td>Google <abbr title="Agent Development Kit: Google’s open-source, model-agnostic framework for building and evaluating agents.">ADK</abbr></td><td>Code-first, model-agnostic agent kit with multi-agent hierarchies and built-in evaluation</td><td>You build on Google Cloud, or want hierarchy and evaluation out of the box.</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Gotchas</b><ul>
+  <li>Semantic Kernel and AutoGen now get maintenance only. Start new Microsoft work on Agent Framework.</li>
+  <li>An enterprise often has its own agent platform. Learn the patterns, then map them onto whatever the platform gives you.</li>
+</ul></div>
+<p class="src">Sources: <a href="https://code.claude.com/docs/en/agent-sdk/overview" target="_blank" rel="noopener noreferrer">Claude Agent <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr></a> [P]; <a href="https://openai.github.io/openai-agents-python/" target="_blank" rel="noopener noreferrer">OpenAI Agents <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr></a> [P]; <a href="https://visualstudiomagazine.com/articles/2026/04/06/microsoft-ships-production-ready-agent-framework-1-0-for-net-and-python.aspx" target="_blank" rel="noopener noreferrer">Microsoft Agent Framework 1.0</a> [S]; <a href="https://academy.langchain.com/courses/intro-to-langgraph" target="_blank" rel="noopener noreferrer">LangGraph (LangChain Academy)</a> [P]; <a href="https://google.github.io/adk-docs/" target="_blank" rel="noopener noreferrer">Google <abbr title="Agent Development Kit: Google’s open-source, model-agnostic framework for building and evaluating agents.">ADK</abbr> docs</a> [P]. Checked 18 Nov 2026.</p>
+</article>
+</section>
+
+<!-- ============ PART 6 LEARN MORE ============ -->
+<section id="res">
+<h2 class="part">Part 6. Learn more</h2>
+<p class="part-sub">Courses, videos, reading and documentation. All free unless marked. Start with the first item in each list.</p>
+
+<article class="card" id="r-courses">
+<span class="tag">6.1 · Courses</span>
+<h3>Courses</h3>
+<div class="tbl"><table>
+<tr><th>Course</th><th>Provider</th><th>Why take it</th></tr>
+<tr><td><a href="https://www.deeplearning.ai/courses/agentic-ai" target="_blank" rel="noopener noreferrer">Agentic <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr></a></td><td>DeepLearning.AI, Andrew Ng</td><td>About 10 hours, 31 video lessons. Reflection, tool use, planning and multi-agent in plain Python. Free to audit; the certificate needs a paid plan.</td></tr>
+<tr><td><a href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank" rel="noopener noreferrer">Introduction to Model Context Protocol</a></td><td>Anthropic Academy</td><td>Build <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> servers and clients in Python. Free, with a certificate.</td></tr>
+<tr><td><a href="https://anthropic.skilljar.com/" target="_blank" rel="noopener noreferrer">Anthropic Academy catalogue</a></td><td>Anthropic</td><td>Free courses on the Claude <abbr title="Application Programming Interface: a defined contract that one program uses to call another.">API</abbr>, agent skills, subagents and advanced <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr>.</td></tr>
+<tr><td><a href="https://huggingface.co/learn/agents-course" target="_blank" rel="noopener noreferrer"><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> Agents Course</a></td><td>Hugging Face</td><td>Theory to deployment across several frameworks. Free certificate.</td></tr>
+<tr><td><a href="https://github.com/microsoft/ai-agents-for-beginners" target="_blank" rel="noopener noreferrer"><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> Agents for Beginners</a></td><td>Microsoft</td><td>Short lessons with videos and runnable code on GitHub.</td></tr>
+<tr><td><a href="https://academy.langchain.com/courses/intro-to-langgraph" target="_blank" rel="noopener noreferrer">Introduction to LangGraph</a></td><td>LangChain Academy</td><td>About 4 hours of video on state, memory, human-in-the-loop and multi-agent graphs.</td></tr>
+<tr><td><a href="https://blog.google/innovation-and-ai/technology/developers-tools/ai-agents-intensive-recap/" target="_blank" rel="noopener noreferrer">5-Day <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> Agents Intensive</a></td><td>Google and Kaggle</td><td>Whitepapers, codelabs and recorded livestreams, now a self-paced Kaggle Learn guide. Linked from this recap page.</td></tr>
+</table></div>
+</article>
+
+<article class="card" id="r-videos">
+<span class="tag">6.2 · Videos</span>
+<h3>Videos</h3>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=D7_ipDqhtwk" target="_blank" rel="noopener noreferrer">How We Build Effective Agents, Barry Zhang, Anthropic</a> (15 min). The best short talk on when to build an agent and how to keep it simple.</li>
+  <li>The DeepLearning.AI <a href="https://www.deeplearning.ai/courses/agentic-ai" target="_blank" rel="noopener noreferrer">Agentic <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr></a> course is mostly video. Module 1 alone is a good overview.</li>
+  <li>The Google and Kaggle intensive includes a recorded livestream for each day.</li>
+  <li>Microsoft's <a href="https://github.com/microsoft/ai-agents-for-beginners" target="_blank" rel="noopener noreferrer"><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> Agents for Beginners</a> has a short video per lesson.</li>
+</ul>
+</article>
+
+<article class="card" id="r-reading">
+<span class="tag">6.3 · Reading</span>
+<h3>Reading list, in order</h3>
+<ol>
+  <li><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic: Building effective agents</a>. The pattern catalogue. Read first.</li>
+  <li><a href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" target="_blank" rel="noopener noreferrer">OpenAI: A practical guide to building agents</a> (<abbr title="Portable Document Format: a fixed-layout document file.">PDF</abbr>, about 34 pages). Agent anatomy, single versus multi-agent, guardrails.</li>
+  <li><a href="https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns" target="_blank" rel="noopener noreferrer">Azure Architecture Center: <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> agent orchestration patterns</a>. Five patterns from an architect's view.</li>
+  <li><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Anthropic: Effective context engineering for <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> agents</a>.</li>
+  <li><a href="https://www.anthropic.com/engineering/writing-tools-for-agents" target="_blank" rel="noopener noreferrer">Anthropic: Writing effective tools for agents</a>.</li>
+  <li><a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer">Anthropic: Demystifying evals for <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> agents</a>.</li>
+  <li><a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener noreferrer">Anthropic: How we built our multi-agent research system</a>, then <a href="https://cognition.ai/blog/dont-build-multi-agents" target="_blank" rel="noopener noreferrer">Cognition: Don't Build Multi-Agents</a> and its <a href="https://cognition.com/blog/multi-agents-working" target="_blank" rel="noopener noreferrer">2026 follow-up</a>. Read them as a pair.</li>
+  <li><a href="https://lilianweng.github.io/posts/2023-06-23-agent/" target="_blank" rel="noopener noreferrer">Lilian Weng: <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> Powered Autonomous Agents</a> (2023). The classic overview of planning, memory and tool use. Older, but the concepts hold.</li>
+  <li><a href="https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/" target="_blank" rel="noopener noreferrer"><abbr title="Open Worldwide Application Security Project: a nonprofit that publishes security guidance such as the Top 10.">OWASP</abbr>: Top 10 for Agentic Applications</a>.</li>
+</ol>
+</article>
+
+<article class="card" id="r-docs">
+<span class="tag">6.4 · Documentation</span>
+<h3>Documentation to keep open</h3>
+<ul>
+  <li><a href="https://code.claude.com/docs/en/agent-sdk/overview" target="_blank" rel="noopener noreferrer">Claude Agent <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr></a></li>
+  <li><a href="https://openai.github.io/openai-agents-python/" target="_blank" rel="noopener noreferrer">OpenAI Agents <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr></a></li>
+  <li><a href="https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/orchestrations/overview" target="_blank" rel="noopener noreferrer">Microsoft Agent Framework: orchestrations</a></li>
+  <li><a href="https://google.github.io/adk-docs/" target="_blank" rel="noopener noreferrer">Google Agent Development Kit</a></li>
+  <li><a href="https://modelcontextprotocol.io/docs/learn/versioning" target="_blank" rel="noopener noreferrer">Model Context Protocol</a></li>
+  <li><a href="https://github.com/a2aproject" target="_blank" rel="noopener noreferrer"><abbr title="Agent2Agent: an open protocol, now at the Linux Foundation, for AI agents from different systems to discover each other and pass work.">A2A</abbr> protocol</a></li>
+</ul>
+</article>
+</section>
+
+<!-- ============ CHEAT SHEET ============ -->
+<section id="cheat">
+<h2 class="part">Cheat sheet</h2>
+<article class="card" id="cheat-card">
+<span class="tag">One page</span>
+<h3>Agentic systems on one page</h3>
+<div class="grid2"><div>
+<h4>The ladder</h4>
+<p class="mnemonic">Call → Workflow → Agent → Multi-agent</p>
+<p>Use the lowest rung that reliably works.</p>
+<h4>Patterns</h4>
+<ul>
+  <li>Chain: fixed steps with gates.</li>
+  <li>Route: pick a path by input.</li>
+  <li>Parallel: sections or votes.</li>
+  <li>Orchestrator-workers: dynamic subtasks.</li>
+  <li>Evaluator-optimizer: draft, grade, revise.</li>
+  <li>Human gate: authority and low confidence.</li>
+</ul></div><div>
+<h4>Building well</h4>
+<ul>
+  <li>Smallest high-signal context.</li>
+  <li>Few, clear, well-described tools.</li>
+  <li>Evals from day one: code, model, human graders.</li>
+  <li>Trace everything. Budget every run.</li>
+  <li>All external content is untrusted.</li>
+</ul>
+<h4>Protocols</h4>
+<p><abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> for tools. <abbr title="Agent2Agent: an open protocol, now at the Linux Foundation, for AI agents from different systems to discover each other and pass work.">A2A</abbr> between agents.</p>
+<h4>Three questions before any agent</h4>
+<ul><li>Can a workflow do it?</li><li>Is the value worth the tokens?</li><li>How will we know it is right?</li></ul>
+</div></div>
+</article>
+</section>
+
+<footer>
+<p>Personal study guide. Evidence checked 18 Nov 2026. Version-sensitive facts carry a <span class="ver">ver</span> mark. Sources graded [P] primary or [S] secondary.</p>
+<p><a href="../">Back to learning sites</a> · <a href="../agentic-ea/">Agentic underwriting design guide</a></p>
+</footer>
+
+<script>
+(function(){
+  var P='agg.';
+  function get(k){try{return localStorage.getItem(P+k);}catch(e){return null;}}
+  function set(k,v){try{if(v===null)localStorage.removeItem(P+k);else localStorage.setItem(P+k,v);}catch(e){}}
+  var cards=[].slice.call(document.querySelectorAll('article.card[id]'));
+  var prog=document.getElementById('prog');
+  var state={};cards.forEach(function(c){state[c.id]=get('done.'+c.id)==='1';});
+  function update(){
+    var d=0;
+    cards.forEach(function(c){
+      var on=!!state[c.id];
+      c.classList.toggle('done',on);
+      if(on)d++;
+      [].forEach.call(c.querySelectorAll('input.done-box'),function(i){i.checked=on;});
+      var f=c.querySelector('.card-foot span');if(f)f.textContent=on?'Done':'Mark done';
+      var t=document.querySelector('.toc a[href="#'+c.id+'"]');
+      if(t)t.classList.toggle('is-done',on);
+    });
+    prog.textContent=d+' / '+cards.length+' done';
+  }
+  function box(c,cls,text){
+    var l=document.createElement('label');l.className=cls;
+    var i=document.createElement('input');i.type='checkbox';i.className='done-box';
+    i.setAttribute('aria-label','Mark '+(c.querySelector('h3')||{}).textContent+' done');
+    i.addEventListener('change',function(){state[c.id]=i.checked;set('done.'+c.id,i.checked?'1':null);update();});
+    var t=document.createElement('span');t.textContent=text;
+    l.appendChild(i);l.appendChild(t);return l;
+  }
+  cards.forEach(function(c){
+    c.appendChild(box(c,'tick','done'));
+    var f=document.createElement('div');f.className='card-foot-row';
+    f.appendChild(box(c,'card-foot','Mark done'));
+    c.appendChild(f);
+  });
+  update();
+  var qa=function(){return [].slice.call(document.querySelectorAll('details.qa'));};
+  document.getElementById('openAll').onclick=function(){qa().forEach(function(d){d.open=true;});};
+  document.getElementById('closeAll').onclick=function(){qa().forEach(function(d){d.open=false;});};
+  document.getElementById('reset').onclick=function(){cards.forEach(function(c){state[c.id]=false;set('done.'+c.id,null);});update();};
+  var root=document.documentElement;
+  var th=get('theme');if(th)root.setAttribute('data-theme',th);
+  document.getElementById('theme').onclick=function(){
+    var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+    var n=dark?'light':'dark';root.setAttribute('data-theme',n);set('theme',n);
+  };
+  window.addEventListener('beforeprint',function(){qa().forEach(function(d){d.open=true;});});
+})();
+
+(function(){
+  var tip=document.createElement('div');tip.id='abbr-tip';tip.setAttribute('role','tooltip');document.body.appendChild(tip);
+  var cur=null;
+  [].forEach.call(document.querySelectorAll('abbr[title]'),function(a){
+    a.setAttribute('data-def',a.getAttribute('title'));a.removeAttribute('title');
+    a.setAttribute('aria-label',a.textContent+': '+a.getAttribute('data-def'));a.tabIndex=0;
+  });
+  function show(a){
+    cur=a;tip.innerHTML='';var b=document.createElement('b');b.textContent=a.textContent+' ';
+    tip.appendChild(b);tip.appendChild(document.createTextNode(a.getAttribute('data-def')));
+    tip.classList.add('on');
+    var r=a.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
+    var x=Math.max(8,Math.min(r.left+r.width/2-w/2,innerWidth-w-8));
+    var y=r.top-h-8;if(y<60)y=r.bottom+8;
+    tip.style.left=x+'px';tip.style.top=y+'px';
+  }
+  function hide(){cur=null;tip.classList.remove('on');}
+  document.addEventListener('pointerover',function(e){if(e.pointerType!=='mouse')return;var a=e.target.closest&&e.target.closest('abbr[data-def]');if(a)show(a);});
+  document.addEventListener('pointerout',function(e){if(e.pointerType!=='mouse')return;var a=e.target.closest&&e.target.closest('abbr[data-def]');if(a&&!a.contains(e.relatedTarget))hide();});
+  var ptr=0;document.addEventListener('pointerdown',function(){ptr=Date.now();},true);
+  document.addEventListener('focusin',function(e){if(Date.now()-ptr<800)return;if(e.target.matches&&e.target.matches('abbr[data-def]'))show(e.target);});
+  document.addEventListener('focusout',function(e){if(e.target.matches&&e.target.matches('abbr[data-def]'))hide();});
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('abbr[data-def]');if(a){if(cur===a){if(!matchMedia('(hover: hover)').matches)hide();}else{show(a);}}else if(cur){hide();}});
+  addEventListener('scroll',function(){if(cur)hide();},{passive:true});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')hide();});
+})();
+</script>
+</main>
+</body>
+</html>
