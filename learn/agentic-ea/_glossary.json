@@ -1,0 +1,8 @@
+{
+ "_about": "agentic-ea overrides for _build/glossary.json.",
+ "terms": {
+  "BI": "Business Interruption: cover for income lost when an insured site cannot trade after damage.",
+  "ODS": "Open Data Standards: the Oasis LMF family of open insurance data standards, including OED.",
+  "OS": "Ordnance Survey: Great Britain's national mapping agency, which publishes AddressBase and OS Open UPRN."
+ }
+}

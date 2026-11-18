@@ -1,8 +1,8 @@
 {
   "slug": "agentic-ea",
   "order": 10,
-  "title": "Agentic AI architect quick prep",
-  "blurb": "Multi-agent patterns for insurance underwriting: layers, when to make an agent, orchestration patterns, human in the loop",
+  "title": "Agentic underwriting: design phase guide",
+  "blurb": "London specialty market domain primer, the decision ladder, agent patterns, a week-by-week design playbook, templates and resources",
   "static": true,
   "note": "Hand-written single HTML file. Build leaves it alone. robots meta added by hand.",
   "listed": false,
