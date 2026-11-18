@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Agentic AI architect — quick prep</title>
+<style>
+:root{--bg:#0f1420;--card:#171e2e;--ink:#e6e9f0;--mut:#9aa4b8;--acc:#5fb3ff;--ok:#5fd39a;--warn:#ffb85f;--line:#2a3550}
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 system-ui,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+main{max-width:980px;margin:0 auto;padding:24px 18px 60px}h1{margin:0 0 4px;font-size:28px}h2{margin:36px 0 10px;font-size:21px;color:var(--acc);border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{margin:0 0 6px;font-size:17px}.sub{color:var(--mut);margin:0 0 18px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 8px}nav a{color:var(--ink);background:var(--card);border:1px solid var(--line);padding:4px 10px;border-radius:14px;text-decoration:none;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}.grid .card{margin:0}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}b{color:#fff}.say{border-left:3px solid var(--ok);padding:6px 12px;background:#132a22;border-radius:4px;margin:8px 0}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:10px;background:#24324f;color:var(--acc);margin-right:4px}
+svg{width:100%;height:auto;display:block;margin:6px 0}svg text{font-family:system-ui,sans-serif;fill:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:15px}td,th{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:#1d2740}
+abbr{text-decoration:underline dotted;cursor:help}footer{margin-top:40px;color:var(--mut);font-size:13px}footer a{color:var(--acc)}
+</style></head><body><main>
+<h1>Agentic AI architect — quick prep</h1>
+<p class="sub">Multi-agent systems for commercial insurance underwriting. Read top to bottom in 15 minutes.</p>
+<nav><a href="#core">Core idea</a><a href="#layers">Layers</a><a href="#bgfg">Background / foreground</a><a href="#agent">When is it an agent?</a><a href="#patterns">Orchestration patterns</a><a href="#usecase">Use case</a><a href="#lloyds">Specialty market fit</a><a href="#gov">Governance</a><a href="#lines">Lines to say</a></nav>
+
+<h2 id="core">1. The core idea</h2>
+<div class="card">
+<p><b>Problem:</b> many lines of business × geographies × products, each with its own underwriting process. Forcing them into one system of record (one big <abbr title="Customer Relationship Management">CRM</abbr>/policy platform rollout) is slow and costly, because the processes truly differ.</p>
+<p><b>Answer:</b> <b>same agents, different context.</b> Build a shared registry of reusable agents. Inject the market context (rules, appetite, forms, regulation, authority limits) at runtime. The business keeps its process variation; the architecture does not multiply.</p>
+<svg viewBox="0 0 900 170" role="img" aria-label="Same agents, different context">
+<rect x="10" y="20" width="250" height="130" rx="10" fill="#1d2740" stroke="#5fb3ff"/>
+<text x="135" y="45" text-anchor="middle" font-weight="700">Context packs</text>
+<text x="135" y="75" text-anchor="middle" font-size="14">North America property</text>
+<text x="135" y="100" text-anchor="middle" font-size="14">Continental Europe casualty</text>
+<text x="135" y="125" text-anchor="middle" font-size="14">London specialty / marine</text>
+<path d="M265 85 H360" stroke="#9aa4b8" stroke-width="2" marker-end="url(#a)"/>
+<rect x="365" y="20" width="250" height="130" rx="10" fill="#132a22" stroke="#5fd39a"/>
+<text x="490" y="45" text-anchor="middle" font-weight="700">Shared agent registry</text>
+<text x="490" y="75" text-anchor="middle" font-size="14">Intake · Extraction · Triage</text>
+<text x="490" y="100" text-anchor="middle" font-size="14">Risk · Pricing · Compliance</text>
+<text x="490" y="125" text-anchor="middle" font-size="14">Summary · Quote drafting</text>
+<path d="M620 85 H715" stroke="#9aa4b8" stroke-width="2" marker-end="url(#a)"/>
+<rect x="720" y="40" width="170" height="90" rx="10" fill="#2e2614" stroke="#ffb85f"/>
+<text x="805" y="80" text-anchor="middle" font-weight="700">Market-specific</text>
+<text x="805" y="102" text-anchor="middle" font-size="14">behaviour</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#9aa4b8"/></marker></defs>
+</svg>
+</div>
+
+<h2 id="layers">2. Reference layers</h2>
+<svg viewBox="0 0 900 400" role="img" aria-label="Layered agentic architecture">
+<g font-size="15">
+<rect x="10" y="10" width="880" height="52" rx="8" fill="#2e2614" stroke="#ffb85f"/><text x="30" y="42" font-weight="700">Experience</text><text x="230" y="42">Underwriter workbench — the human-in-the-loop foreground (approve / reject / approve with comment)</text>
+<rect x="10" y="72" width="880" height="52" rx="8" fill="#1d2740" stroke="#5fb3ff"/><text x="30" y="104" font-weight="700">Orchestration</text><text x="230" y="104">Supervisor / router · workflow state · retries · escalation to human</text>
+<rect x="10" y="134" width="880" height="52" rx="8" fill="#132a22" stroke="#5fd39a"/><text x="30" y="166" font-weight="700">Agents</text><text x="230" y="166">Agent registry: reusable agents, each with one job, versioned, with evals</text>
+<rect x="10" y="196" width="880" height="52" rx="8" fill="#1d2740" stroke="#5fb3ff"/><text x="30" y="228" font-weight="700">Context</text><text x="230" y="228">Market context packs · RAG over guidelines, wordings, appetite · memory</text>
+<rect x="10" y="258" width="880" height="52" rx="8" fill="#1d2740" stroke="#5fb3ff"/><text x="30" y="290" font-weight="700">Tools (MCP)</text><text x="230" y="290">MCP servers wrapping rating engines, sanctions, cat models, document store</text>
+<rect x="10" y="320" width="880" height="52" rx="8" fill="#23202e" stroke="#9aa4b8"/><text x="30" y="352" font-weight="700">Systems of record</text><text x="230" y="352">Legacy policy admin, mainframe / AS/400, data platform — agents write back via governed APIs</text>
+</g>
+<rect x="895" y="10" width="4" height="362" fill="#5fd39a"/>
+</svg>
+<div class="card"><b>Cross-cutting (the platform):</b> an <b>agent development SDK</b> plus a <b>runtime</b>. They provide identity, guardrails, observability and tracing, evals, cost metering, and model gateway and model choice. <span class="tag">say</span> "Platform gives the plumbing; my job is agent boundaries, orchestration and context design."</div>
+
+<h2 id="bgfg">3. Background vs foreground</h2>
+<div class="card">
+<p>Re-imagine the process instead of dropping agents into the legacy one. Map every underwriting step, then sort each step into one of two lanes:</p>
+<svg viewBox="0 0 900 150" role="img" aria-label="Background vs foreground steps">
+<rect x="10" y="20" width="700" height="50" rx="8" fill="#132a22" stroke="#5fd39a"/><text x="360" y="52" text-anchor="middle" font-size="16">Background — ~80% of steps run by agents (gather, extract, check, score, draft)</text>
+<rect x="720" y="20" width="170" height="50" rx="8" fill="#2e2614" stroke="#ffb85f"/><text x="805" y="52" text-anchor="middle" font-size="15">Foreground ~20%</text>
+<text x="805" y="100" text-anchor="middle" font-size="14">Human decides:</text>
+<text x="805" y="122" text-anchor="middle" font-size="14">approve · reject · comment</text>
+<text x="360" y="105" text-anchor="middle" font-size="14" fill="#9aa4b8">e.g. 250 manual steps → ~200 background, ~50 foreground judgment points</text>
+</svg>
+<ul><li>A human sits where there is <b>authority, accountability, or ambiguity</b>: binding, referral above authority, declining, and price sign-off.</li>
+<li>The agent's output arrives <b>pre-assembled with evidence</b>, so the underwriter reviews it rather than researching it.</li>
+<li>Comments from the human are captured. They feed evals and prompt or context improvement.</li></ul>
+</div>
+
+<h2 id="agent">4. When should something be an agent?</h2>
+<div class="grid">
+<div class="card"><h3>✅ Make it an agent when the task needs…</h3><ul><li>Summarisation (a broker submission → a risk summary)</li><li>Extraction from unstructured docs (slip, schedules, loss runs)</li><li>Translation or normalisation across languages and formats</li><li><abbr title="Retrieval-Augmented Generation">RAG</abbr> over guidelines and wordings</li><li>Classification and triage, and reasoning that leads to a plan</li></ul></div>
+<div class="card"><h3>❌ Keep it a tool or service when…</h3><ul><li>It is a deterministic API call (rate lookup, sanctions check, policy number)</li><li>Rules are fixed and auditable (authority limits → rules engine)</li><li>The math must be exact (pricing engine stays the pricing engine)</li></ul><p class="say">"An agent that only discovers and calls an API is just an expensive API client."</p></div>
+</div>
+<div class="card"><b>Design rules:</b> one job per agent · explicit input and output contract (schema) · tools exposed through <abbr title="Model Context Protocol: open standard for connecting models to tools and data">MCP</abbr> · stateless agent, with state held in the orchestrator · every agent has evals and a version in the registry.</div>
+
+<h2 id="patterns">5. Orchestration patterns (know these cold)</h2>
+<svg viewBox="0 0 900 330" role="img" aria-label="Orchestration patterns">
+<defs><marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8z" fill="#9aa4b8"/></marker></defs>
+<g font-size="13" stroke-width="1.5">
+<!-- sequential -->
+<text x="20" y="22" font-weight="700" font-size="15">1 Sequential</text>
+<rect x="20" y="35" width="50" height="30" rx="5" fill="#132a22" stroke="#5fd39a"/><rect x="100" y="35" width="50" height="30" rx="5" fill="#132a22" stroke="#5fd39a"/><rect x="180" y="35" width="50" height="30" rx="5" fill="#132a22" stroke="#5fd39a"/>
+<path d="M70 50H98M150 50H178" stroke="#9aa4b8" marker-end="url(#b)"/>
+<!-- router -->
+<text x="320" y="22" font-weight="700" font-size="15">2 Router</text>
+<polygon points="345,50 370,32 395,50 370,68" fill="#1d2740" stroke="#5fb3ff"/>
+<rect x="450" y="20" width="50" height="24" rx="5" fill="#132a22" stroke="#5fd39a"/><rect x="450" y="56" width="50" height="24" rx="5" fill="#132a22" stroke="#5fd39a"/>
+<path d="M395 50L448 32M395 50L448 68" stroke="#9aa4b8" marker-end="url(#b)"/>
+<!-- supervisor -->
+<text x="620" y="22" font-weight="700" font-size="15">3 Supervisor / workers</text>
+<rect x="690" y="32" width="80" height="28" rx="5" fill="#1d2740" stroke="#5fb3ff"/><text x="730" y="51" text-anchor="middle">supervisor</text>
+<rect x="630" y="90" width="50" height="24" rx="5" fill="#132a22" stroke="#5fd39a"/><rect x="705" y="90" width="50" height="24" rx="5" fill="#132a22" stroke="#5fd39a"/><rect x="780" y="90" width="50" height="24" rx="5" fill="#132a22" stroke="#5fd39a"/>
+<path d="M710 60L660 88M730 60V88M750 60L800 88" stroke="#9aa4b8" marker-end="url(#b)"/>
+<!-- parallel -->
+<text x="20" y="160" font-weight="700" font-size="15">4 Parallel fan-out / fan-in</text>
+<rect x="20" y="200" width="40" height="28" rx="5" fill="#1d2740" stroke="#5fb3ff"/>
+<rect x="110" y="172" width="50" height="22" rx="5" fill="#132a22" stroke="#5fd39a"/><rect x="110" y="203" width="50" height="22" rx="5" fill="#132a22" stroke="#5fd39a"/><rect x="110" y="234" width="50" height="22" rx="5" fill="#132a22" stroke="#5fd39a"/>
+<rect x="210" y="200" width="40" height="28" rx="5" fill="#1d2740" stroke="#5fb3ff"/>
+<path d="M60 214L108 183M60 214H108M60 214L108 245M160 183L208 214M160 214H208M160 245L208 214" stroke="#9aa4b8" marker-end="url(#b)"/>
+<!-- evaluator -->
+<text x="320" y="160" font-weight="700" font-size="15">5 Evaluator–optimizer</text>
+<rect x="330" y="195" width="70" height="30" rx="5" fill="#132a22" stroke="#5fd39a"/><text x="365" y="215" text-anchor="middle">generator</text>
+<rect x="470" y="195" width="60" height="30" rx="5" fill="#1d2740" stroke="#5fb3ff"/><text x="500" y="215" text-anchor="middle">critic</text>
+<path d="M400 203H468" stroke="#9aa4b8" marker-end="url(#b)"/><path d="M470 220H402" stroke="#ffb85f" marker-end="url(#b)"/>
+<!-- HITL -->
+<text x="620" y="160" font-weight="700" font-size="15">6 Human-in-the-loop gate</text>
+<rect x="630" y="195" width="60" height="30" rx="5" fill="#132a22" stroke="#5fd39a"/>
+<circle cx="745" cy="210" r="18" fill="#2e2614" stroke="#ffb85f"/><text x="745" y="215" text-anchor="middle">👤</text>
+<rect x="800" y="195" width="60" height="30" rx="5" fill="#132a22" stroke="#5fd39a"/>
+<path d="M690 210H725M763 210H798" stroke="#9aa4b8" marker-end="url(#b)"/>
+<text x="20" y="300" font-size="14" fill="#9aa4b8">7 Hierarchical = supervisors of supervisors (per line of business).   8 Event-driven / blackboard = agents react to events on a shared state.</text>
+</g></svg>
+<table>
+<tr><th>Pattern</th><th>Use when</th><th>Underwriting example</th><th>Watch out</th></tr>
+<tr><td>Sequential</td><td>Fixed order, each step needs the last</td><td>Ingest → extract → validate</td><td>Latency adds up; errors cascade</td></tr>
+<tr><td>Router</td><td>Input type decides the path</td><td>Route by line of business / class</td><td>Misroutes — log and evaluate the router</td></tr>
+<tr><td>Supervisor / workers</td><td>Dynamic plan, many specialists</td><td>Supervisor assembles a risk file</td><td>Cost and loops — cap steps and budget</td></tr>
+<tr><td>Parallel fan-out</td><td>Independent checks</td><td>Sanctions + cat exposure + loss history at once</td><td>Merge logic and timeouts</td></tr>
+<tr><td>Evaluator–optimizer</td><td>Quality bar on output</td><td>Quote letter checked against wording rules</td><td>Set an iteration limit</td></tr>
+<tr><td>Human gate</td><td>Authority, accountability, ambiguity</td><td>Bind / refer / decline decision</td><td>Don't create rubber-stamping — show evidence</td></tr>
+</table>
+<p class="say">"I pick the simplest pattern that works. I start sequential or router, and add supervisor dynamics only where the path truly varies. That keeps it debuggable and auditable."</p>
+
+<h2 id="usecase">6. Walk-through use case: submission to quote</h2>
+<svg viewBox="0 0 900 250" role="img" aria-label="Submission to quote flow">
+<defs><marker id="c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8z" fill="#9aa4b8"/></marker></defs>
+<g font-size="13">
+<rect x="10" y="95" width="95" height="50" rx="6" fill="#23202e" stroke="#9aa4b8"/><text x="57" y="117" text-anchor="middle">Broker email</text><text x="57" y="134" text-anchor="middle">+ attachments</text>
+<rect x="125" y="95" width="95" height="50" rx="6" fill="#132a22" stroke="#5fd39a"/><text x="172" y="117" text-anchor="middle">Intake &amp;</text><text x="172" y="134" text-anchor="middle">extraction</text>
+<polygon points="245,120 285,95 325,120 285,145" fill="#1d2740" stroke="#5fb3ff"/><text x="285" y="124" text-anchor="middle">appetite</text>
+<text x="285" y="175" text-anchor="middle" fill="#9aa4b8">out → decline draft</text>
+<rect x="350" y="25" width="110" height="38" rx="6" fill="#132a22" stroke="#5fd39a"/><text x="405" y="49" text-anchor="middle">Sanctions / KYC</text>
+<rect x="350" y="101" width="110" height="38" rx="6" fill="#132a22" stroke="#5fd39a"/><text x="405" y="125" text-anchor="middle">Exposure / cat</text>
+<rect x="350" y="177" width="110" height="38" rx="6" fill="#132a22" stroke="#5fd39a"/><text x="405" y="201" text-anchor="middle">Loss history</text>
+<rect x="490" y="95" width="105" height="50" rx="6" fill="#132a22" stroke="#5fd39a"/><text x="542" y="117" text-anchor="middle">Pricing agent</text><text x="542" y="134" text-anchor="middle">(calls engine)</text>
+<rect x="615" y="95" width="105" height="50" rx="6" fill="#132a22" stroke="#5fd39a"/><text x="667" y="117" text-anchor="middle">Risk summary</text><text x="667" y="134" text-anchor="middle">+ critic</text>
+<circle cx="770" cy="120" r="26" fill="#2e2614" stroke="#ffb85f"/><text x="770" y="125" text-anchor="middle">UW 👤</text>
+<rect x="815" y="95" width="80" height="50" rx="6" fill="#23202e" stroke="#9aa4b8"/><text x="855" y="117" text-anchor="middle">Quote →</text><text x="855" y="134" text-anchor="middle">policy sys</text>
+<g stroke="#9aa4b8" stroke-width="1.5" fill="none">
+<path d="M105 120H123M220 120H243" marker-end="url(#c)"/><path d="M325 120L348 44M325 120H348M325 120L348 196" marker-end="url(#c)"/>
+<path d="M460 44L488 120M460 120H488M460 196L488 120" marker-end="url(#c)"/><path d="M595 120H613M720 120H742M796 120H813" marker-end="url(#c)"/></g>
+</g></svg>
+<div class="card"><span class="tag">patterns used</span> sequential → router → parallel fan-out → evaluator → human gate. All steps before the underwriter are background; the underwriter is the foreground.
+<p class="say">Walk it end to end in 60 seconds. Name the pattern at each hop. Then say where you would put the evals and the audit trail.</p></div>
+
+<h2 id="lloyds">7. Fitting a base design to a specialty market (e.g. London / Lloyd's)</h2>
+<div class="grid">
+<div class="card"><h3>What is different</h3><ul><li>Broker-led placement; the <b>slip</b> / <abbr title="Market Reform Contract">MRC</abbr> is the core document</li><li><b>Lead and follow</b> lines; subscription market with several syndicates on one risk</li><li><b>Delegated authority</b>: coverholders, binders, bordereaux processing</li><li>Specialty classes (marine, energy, cyber, political risk) and heavy referral culture</li><li>Market data standards and modernisation (digital placement, core data record)</li></ul></div>
+<div class="card"><h3>How I would run the fit (design SOW)</h3><ol><li>Map the local process with the process engineers. Tag each step background or foreground.</li><li>Gap-check against the agent registry. Mark each agent <b>reuse / reconfigure / new</b>.</li><li>Build the market context pack: rules, appetite, authority, wordings, regulation.</li><li>Pick the orchestration pattern for each journey.</li><li>Define the human gates, evals and audit.</li><li>Choose the lighthouse (MVP) use case, then plan the engineering.</li></ol></div>
+</div>
+<div class="card"><b>Likely new agents:</b> slip / MRC reader · bordereaux validation agent · lead/follow line comparison · broker correspondence drafter.</div>
+
+<h2 id="gov">8. Governance and production readiness</h2>
+<div class="grid">
+<div class="card"><h3>Trust</h3><ul><li>Full trace per decision (inputs, tools called, model and version, output)</li><li>Explainability: cite the evidence behind every recommendation</li><li>Human owns the decision; the agent never binds on its own</li></ul></div>
+<div class="card"><h3>Quality</h3><ul><li>Evals per agent, and golden sets from real submissions</li><li>Underwriter comments become eval cases</li><li>Regression tests on every prompt or model change</li></ul></div>
+<div class="card"><h3>Control</h3><ul><li>Guardrails: PII, prompt injection from documents</li><li>Data residency (UK / EU), least-privilege tools</li><li>Cost and step budgets; caching; model routing</li></ul></div>
+</div>
+
+<h2 id="lines">9. Lines to say</h2>
+<div class="card">
+<p class="say">"Same agents, different context. We stop forcing the business to harmonise processes. We harmonise the agents and let context carry the variation."</p>
+<p class="say">"This is process re-imagination first. Background agents do the gathering and checking; the underwriter sits in the foreground making the decisions only a human should make."</p>
+<p class="say">"Not everything is an agent. If it's deterministic, it's a tool. Agents earn their place on summarisation, extraction, RAG and reasoning."</p>
+<p class="say">"I choose the simplest orchestration pattern that works and make every hop observable and evaluated."</p>
+<p class="say">"For a new market I'd map the process, gap it against the registry — reuse, reconfigure, new — build the context pack, and pick a lighthouse."</p>
+</div>
+<footer><a href="../">Back to learning sites</a></footer>
+</main></body></html>
