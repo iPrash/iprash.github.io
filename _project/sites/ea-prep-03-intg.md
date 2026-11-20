@@ -28,6 +28,8 @@ Badges: `.impl` ("Team has it") marks ideas already in place at the client.
 
 Acronyms: `_glossary.json` overrides USD and MQ and excludes S3, which is a card label here. The C4 card label sits in `<span data-noabbr>`.
 
+**Updated 20 Nov 2026** after the role was won. New part H (`h-goals`, `h-weeks`, `h-out`) is a reusable frame for planning a six-week EA assessment: objective and goals, week plan, outcomes and governance. It holds no client facts. The client-specific plan lives in a private Claude doc, outside this public repo.
+
 ## Why it exists
 
 Prash has deep MuleSoft and integration experience, no hands-on Dynamics 365, ERP or supply chain experience. The page positions him as the cross-system architect working with the client's Dynamics specialists, and prepares him to discuss the order-sync problem credibly.

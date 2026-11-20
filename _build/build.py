@@ -244,7 +244,9 @@ def _abbr_split(html):
             if m and not tok.startswith("<!"):
                 close, name = m.group(1), m.group(2).lower()
                 if close:
-                    if name in ABBR_SKIP:
+                    # close the innermost skipped element of this name; this also
+                    # covers data-noabbr on tags outside ABBR_SKIP, such as span
+                    if name in stack:
                         while stack and stack.pop() != name:
                             pass
                 elif (name in ABBR_SKIP or "data-noabbr" in tok) and name not in ABBR_VOID and not tok.endswith("/>"):
