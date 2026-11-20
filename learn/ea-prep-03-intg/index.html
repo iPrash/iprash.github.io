@@ -276,87 +276,99 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <!-- ============ ENGAGEMENT ============ -->
 <section id="engage">
 <h2 class="part">H. Running the engagement</h2>
-<p class="part-sub">The role is won. These three cards are a reusable frame for planning a short <abbr title="Enterprise Architecture: aligning business strategy and technology across the organisation.">EA</abbr> assessment: objective and goals, a six-week plan, and the outcomes to promise. The client-specific version lives in a private document, not on this public page.</p>
+<p class="part-sub">The role is won. These cards are a reusable frame for a short <abbr title="Enterprise Architecture: aligning business strategy and technology across the organisation.">EA</abbr> assessment that must finish in three weeks: objective and goals, a week-by-week plan, outcomes and governance, and one quick-win pattern. The client-specific version lives in a private document, not on this public page.</p>
 
 <article class="card" id="h-goals">
 <span class="tag"><span class="core">Core</span> · H1</span>
 <h3>Objective, goals and scope</h3>
-<p>Write the objective as one sentence a sponsor can repeat. Then give each goal a test that proves it was met.</p>
-<div class="box say"><b class="lbl">Objective pattern</b>"Give leadership an independent, evidence-based view of [the problem], and a prioritised, agreed path to fix it without [the constraint the business cares about]."</div>
+<p>Write the objective as one sentence a sponsor can repeat. Then give each goal a test that proves it was met, and the week it lands in.</p>
+<div class="box say"><b class="lbl">Objective pattern</b>"Give leadership an independent, evidence-based view of [the top issue], and an agreed design approach to fix it, with owners and an implementation plan, by [the last working day]."</div>
 <div class="tbl"><table>
-<tr><th>Goal type</th><th>Example</th><th>Proof it is met</th></tr>
-<tr><td>Shared picture</td><td>One agreed view of the lifecycle across all systems</td><td>Signed off by each system lead</td></tr>
-<tr><td>Measured baseline</td><td>The size of the problem in numbers</td><td>Counts and timings from real data</td></tr>
-<tr><td>Evidence-based causes</td><td>Why it happens</td><td>Each cause backed by logs, configuration or traced cases</td></tr>
-<tr><td>Prioritised options</td><td>What could be done</td><td>Rated on impact, effort, risk and fit</td></tr>
-<tr><td>Agreed roadmap</td><td>What happens next</td><td>Owners, timelines and measures for each step</td></tr>
+<tr><th>Goal type</th><th>Example</th><th>Proof it is met</th><th>Week</th></tr>
+<tr><td>Shared picture</td><td>One agreed view of the lifecycle across all systems</td><td>Baseline reviewed by each system lead</td><td>1</td></tr>
+<tr><td>Evidence-based causes</td><td>Why the top issue happens</td><td>Each cause backed by traced cases, logs or configuration</td><td>2</td></tr>
+<tr><td>Clear ownership</td><td>Who owns the status at each stage, and what actions are allowed</td><td>Status map and allowed-actions matrix accepted by the client architect</td><td>2 to 3</td></tr>
+<tr><td>Design approach</td><td>How to fix the top issue</td><td>Validated by client and internal architects</td><td>3</td></tr>
+<tr><td>Quick wins and roadmap</td><td>What happens next, and in what order</td><td>Owner, effort and timing for each step</td><td>3</td></tr>
 </table></div>
 <ul>
-  <li><b>Scope in:</b> name every system and the lifecycle span.</li>
-  <li><b>Scope out:</b> say it out loud. Building fixes, licensing and migrations are the usual exclusions.</li>
-  <li><b>Targets:</b> set them after the baseline exists, never before.</li>
+  <li><b>One or two issues at a time.</b> In three weeks, the top issue gets the deep dive. The second issue starts only when the first is on track.</li>
+  <li><b>Scope out:</b> say it out loud. Building and testing fixes, licensing, migrations, and anything another release already covers.</li>
+  <li><b>Implementation past the window:</b> plan and estimate it. The delivery teams run it.</li>
 </ul>
 </article>
 
 <article class="card" id="h-weeks">
 <span class="tag"><span class="core">Core</span> · H2</span>
-<h3>A six-week plan, week by week</h3>
-<figure class="arch"><svg viewBox="0 0 760 200" class="d" role="img" aria-label="Six weeks in four phases: discover and map in weeks 1 and 2, measure and validate in weeks 3 and 4, recommend in week 5, read out in week 6. Steering check-ins end weeks 2 and 4; the read-out is in week 6.">
-  <rect x="24" y="20" width="104" height="40" rx="8"/><text x="76" y="44" class="t">Week 1</text>
-  <rect x="136" y="20" width="104" height="40" rx="8"/><text x="188" y="44" class="t">Week 2</text>
-  <rect x="248" y="20" width="104" height="40" rx="8"/><text x="300" y="44" class="t">Week 3</text>
-  <rect x="360" y="20" width="104" height="40" rx="8"/><text x="412" y="44" class="t">Week 4</text>
-  <rect x="472" y="20" width="104" height="40" rx="8"/><text x="524" y="44" class="t">Week 5</text>
-  <rect x="584" y="20" width="104" height="40" rx="8"/><text x="636" y="44" class="t">Week 6</text>
-  <rect x="24" y="76" width="216" height="40" rx="8" class="ou"/><text x="132" y="100" class="t">Discover and map</text>
-  <rect x="248" y="76" width="216" height="40" rx="8" class="ou"/><text x="356" y="100" class="t">Measure and validate</text>
-  <rect x="472" y="76" width="104" height="40" rx="8" class="ou"/><text x="524" y="100" class="t">Recommend</text>
-  <rect x="584" y="76" width="104" height="40" rx="8" class="band"/><text x="636" y="100" class="t">Read out</text>
-  <line x1="24" y1="144" x2="688" y2="144"/>
-  <text x="44" y="168" class="s">kick-off</text>
-  <text x="240" y="168" class="s">steering 1</text>
-  <text x="352" y="186" class="s">baseline agreed</text>
-  <text x="464" y="168" class="s">steering 2</text>
-  <text x="576" y="186" class="s">drafts reviewed</text>
-  <text x="660" y="168" class="s">read-out</text>
-  <line x1="24" y1="138" x2="24" y2="150" class="thick"/><line x1="240" y1="138" x2="240" y2="150" class="thick"/><line x1="352" y1="138" x2="352" y2="150" class="thick"/><line x1="576" y1="138" x2="576" y2="150" class="thick"/><line x1="464" y1="138" x2="464" y2="150" class="thick"/><line x1="660" y1="138" x2="660" y2="150" class="thick"/>
-</svg><figcaption>Four phases, three checkpoints. Phases overlap in practice.</figcaption></figure>
+<h3>A three-week plan, week by week</h3>
+<figure class="arch"><svg viewBox="0 0 760 200" class="d" role="img" aria-label="Three weeks in three phases: discover in week 1, assess in week 2, recommend and conclude in week 3, then a hard stop. Milestones: kick-off, draft baseline, findings checkpoint at the end of week 2, solution validation and read-out early in week 3, and a buffer day.">
+  <rect x="24" y="20" width="200" height="40" rx="8"/><text x="124" y="44" class="t">Week 1</text>
+  <rect x="232" y="20" width="200" height="40" rx="8"/><text x="332" y="44" class="t">Week 2</text>
+  <rect x="440" y="20" width="200" height="40" rx="8"/><text x="540" y="44" class="t">Week 3</text>
+  <rect x="648" y="20" width="88" height="40" rx="8" class="band"/><text x="692" y="44" class="t">Stop</text>
+  <rect x="24" y="76" width="200" height="40" rx="8" class="ou"/><text x="124" y="100" class="t">Discover</text>
+  <rect x="232" y="76" width="200" height="40" rx="8" class="ou"/><text x="332" y="100" class="t">Assess</text>
+  <rect x="440" y="76" width="200" height="40" rx="8" class="ou"/><text x="540" y="100" class="t">Recommend, conclude</text>
+  <line x1="24" y1="144" x2="736" y2="144"/>
+  <text x="24" y="168" class="s">kick-off</text>
+  <text x="200" y="186" class="s">baseline draft</text>
+  <text x="432" y="168" class="s">findings checkpoint</text>
+  <text x="520" y="186" class="s">validation</text>
+  <text x="596" y="168" class="s">read-out</text>
+  <text x="640" y="186" class="s">buffer</text>
+  <line x1="24" y1="138" x2="24" y2="150" class="thick"/><line x1="200" y1="138" x2="200" y2="150" class="thick"/><line x1="432" y1="138" x2="432" y2="150" class="thick"/><line x1="520" y1="138" x2="520" y2="150" class="thick"/><line x1="596" y1="138" x2="596" y2="150" class="thick"/><line x1="640" y1="138" x2="640" y2="150" class="thick"/>
+</svg><figcaption>Three phases, two checkpoints, one buffer day before the hard stop.</figcaption></figure>
 <div class="tbl"><table>
-<tr><th>Week</th><th>Activities</th><th>Deliverables</th></tr>
-<tr><td>1</td><td>Kick-off, scope and decision owners, access, interviews with each system lead, review existing diagrams</td><td>Charter, interview plan</td></tr>
-<tr><td>2</td><td>Workshops per system, trace real cases end to end, draft current-state views</td><td>Current-state views, draft status map, hypotheses</td></tr>
-<tr><td>3</td><td>Baseline with the performance team, review retries, queues and failure logs</td><td>Baseline report, draft allowed-actions matrix</td></tr>
-<tr><td>4</td><td>Test each hypothesis, validate the team's measures and proposals</td><td>Findings matrix, validated causes, risk register</td></tr>
-<tr><td>5</td><td>Options with trade-offs, interim measures, draft roadmap reviewed with each team</td><td>Options analysis, draft roadmap</td></tr>
-<tr><td>6</td><td>Final report, executive read-out, decisions, handover</td><td>Report, executive summary, agreed roadmap</td></tr>
+<tr><th>Week</th><th>Activities</th><th>Outputs</th><th>Syncs</th></tr>
+<tr><td>1 Discover</td><td>Stakeholder interviews, document review, architecture walkthrough, confirm access, trace the first real cases in a test environment</td><td>Current-state baseline (draft), stakeholder map, initial issue list with priorities</td><td>Kick-off, client architect sync, internal architect sync</td></tr>
+<tr><td>2 Assess</td><td>Deep dives with each system's experts, root-cause analysis on traced cases and failure logs, dependency mapping, risk analysis</td><td>Issue and risk register, root-cause findings, dependency map, draft status ownership</td><td>Technical working sessions, findings checkpoint at the end of the week</td></tr>
+<tr><td>3 Recommend and conclude</td><td>Options with benefits, complexity and risk; quick wins; draft target state; implementation plan and estimate; finalise deliverables</td><td>Recommendation catalogue, quick wins, draft target architecture, phased roadmap, final pack, handover</td><td>Solution validation, final alignment, leadership read-out</td></tr>
 </table></div>
 <div class="box gotcha"><b class="lbl">Calendar traps</b><ul>
-  <li>Holidays: plan a pause and say where the read-out lands.</li>
-  <li>Production work and hot fixes eat team time. Book interview slots in week 1.</li>
-  <li>Offer a fast-track option, and say plainly what it gives up: validation time.</li>
+  <li>A holiday inside week 1 leaves three days. Book every session on day 1, and accept a draft baseline.</li>
+  <li>Put validation and the read-out early in week 3. Keep the last day as a buffer before a hard stop.</li>
+  <li>Production work eats expert time. Use traced cases and logs between sessions.</li>
+  <li>If someone asks for six weeks of work in three, say what goes: fewer issues covered and less validation time.</li>
 </ul></div>
 </article>
 
 <article class="card" id="h-out">
 <span class="tag"><span class="core">Core</span> · H3</span>
 <h3>Outcomes to promise, and governance</h3>
-<p>Promise things you can show, not effort. Each outcome names the artefact that demonstrates it.</p>
+<p>Promise things you can show. Each outcome names the artefact that demonstrates it.</p>
 <div class="tbl"><table>
 <tr><th>Outcome</th><th>Demonstrated by</th></tr>
-<tr><td>One agreed view of the lifecycle</td><td>Status map with the owner at each stage</td></tr>
-<tr><td>The size of the problem</td><td>Baseline numbers per hop</td></tr>
-<tr><td>Why it happens</td><td>Validated causes and a findings matrix</td></tr>
+<tr><td>One agreed view of the lifecycle</td><td>Baseline and a status map with the owner at each stage</td></tr>
+<tr><td>Why the top issue happens</td><td>Root-cause findings with evidence</td></tr>
 <tr><td>A rulebook for changes</td><td>Allowed-actions matrix</td></tr>
-<tr><td>What to do first</td><td>Prioritised options and interim measures</td></tr>
-<tr><td>How progress is tracked</td><td>Roadmap with owners and measures</td></tr>
+<tr><td>A fix the teams can build</td><td>Design approach with owners, plan and estimate</td></tr>
+<tr><td>Fast relief</td><td>Quick-win list with owner and effort</td></tr>
+<tr><td>A direction</td><td>Draft target architecture and a phased roadmap</td></tr>
+<tr><td>Continuity after you leave</td><td>Final pack, decision log and handover</td></tr>
 </table></div>
-<h4>Governance that keeps it on track</h4>
+<h4>Governance that fits three weeks</h4>
 <ul>
-  <li>Weekly status with the track lead and tech leads, and a one-page note after it.</li>
-  <li>Steering check-ins at the end of weeks 2 and 4: no surprises at the read-out.</li>
-  <li>A <abbr title="Responsible, Accountable, Consulted, Informed: a matrix of who does what.">RACI</abbr>: the <abbr title="Enterprise Architecture: aligning business strategy and technology across the organisation.">EA</abbr> owns the deliverables, each team owns its facts, the client owns the decisions.</li>
-  <li>Open questions for the first meeting: start date, sponsor, named contacts, priority scenarios, data access, read-out format.</li>
+  <li><b>Daily touchpoint</b> with the track lead, about 15 minutes: progress, blockers, decisions needed.</li>
+  <li><b>Daily progress log:</b> done, findings with evidence, decisions needed, blockers, next. It feeds the tracker.</li>
+  <li><b>Weekly target</b> at the start of each week, checked at the end. The findings checkpoint is the main one.</li>
+  <li><b>Tracker mapped to weeks:</b> give every tracker item a week and an output, so nobody asks where an item went.</li>
+  <li><b>Decision log:</b> each decision has an owner, a date and the options considered.</li>
+  <li><b>A <abbr title="Responsible, Accountable, Consulted, Informed: a matrix of who does what.">RACI</abbr>:</b> the <abbr title="Enterprise Architecture: aligning business strategy and technology across the organisation.">EA</abbr> owns the deliverables, each team owns its facts, the client owns the decisions.</li>
 </ul>
+</article>
+
+<article class="card" id="h-draft">
+<span class="tag"><span class="core">Core</span> · H4</span>
+<h3>Quick-win pattern: draft and submit</h3>
+<p>A common cause of "the order never reached the downstream system": the user saved changes but did not submit them. Requests then swing between auto-save and auto-submit. Settle it with one policy.</p>
+<ul>
+  <li><b>Auto-save the draft.</b> The user does not lose work.</li>
+  <li><b>Never auto-submit a change that has downstream effects.</b> Submit stays an explicit action, because it starts work in other systems.</li>
+  <li><b>Warn about unsent changes.</b> A clear banner, and a prompt when the user leaves the record.</li>
+  <li><b>Show the status plainly:</b> draft, submitted, confirmed, rejected.</li>
+  <li><b>One decision owner</b> for the policy, recorded in the decision log, plus short user training.</li>
+</ul>
+<div class="box say"><b class="lbl">Say this</b>"Auto-save protects the user's work. Submit tells the other systems to act. I'd keep them separate, make unsent changes obvious, and agree one policy with a named owner."</div>
 </article>
 </section>
 <!-- ============ PROBLEM ============ -->

@@ -28,7 +28,7 @@ Badges: `.impl` ("Team has it") marks ideas already in place at the client.
 
 Acronyms: `_glossary.json` overrides USD and MQ and excludes S3, which is a card label here. The C4 card label sits in `<span data-noabbr>`.
 
-**Updated 20 Nov 2026** after the role was won. New part H (`h-goals`, `h-weeks`, `h-out`) is a reusable frame for planning a six-week EA assessment: objective and goals, week plan, outcomes and governance. It holds no client facts. The client-specific plan lives in a private Claude doc, outside this public repo.
+**Updated 20 Nov 2026** after the role was won. New part H (`h-goals`, `h-weeks`, `h-out`) is a reusable frame for planning a short EA assessment. Revised the same day to a three-week version (discover, assess, recommend and conclude, with a buffer day before a hard stop) and a new card `h-draft` (draft and submit quick-win pattern); governance now covers a daily touchpoint, a daily progress log and a tracker mapped to weeks. It holds no client facts. The client-specific plan lives in a private Claude doc, outside this public repo.
 
 ## Why it exists
 
