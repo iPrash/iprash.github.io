@@ -25,7 +25,7 @@ Prash asked for a reusable agentic learning section after the agentic-ea rebuild
 
 **Everything here is hand-written.** Edit `index.html`, then run `python _build/build.py --acronyms-fix` and confirm `--acronyms` reports "All acronyms have tooltips."
 
-The robots meta is hand-maintained. Progress ticks use localStorage prefix `agg.`, keyed by card id (`plan-sessions`, `c-check`, `f-*`, `p-*`, `ch-*`, `b-*`, `fw-*`, `r-*`, `cheat-card`).
+The robots meta is hand-maintained. Progress ticks use localStorage prefix `agg.`, keyed by card id (`plan-sessions`, `c-check`, `f-*` including `f-objects` and `f-touch` added 23 Nov 2026, `p-*`, `ch-*`, `b-*`, `fw-*`, `r-*`, `cheat-card`).
 
 SVG arrows: shared marker `#ar` in a hidden `<svg id="defs">`; `line.ar` (one-way) and `line.ar2` (two-way). Rect classes: `band` (worker or code), `ou` (control), `wr` (warning or high cost), `hu` (human, also on circles).
 
@@ -40,6 +40,10 @@ General content only; no client material. Sources graded [P]/[S] with check date
 - Anthropic multi-agent research figures (90.2%, 4x and 15x tokens) from the June 2025 post.
 - Cognition follow-up post (Apr 2026).
 - Course details (lengths, certificates) for DeepLearning.AI, Anthropic Academy, Hugging Face, Kaggle.
+
+## Updates
+
+23 Nov 2026: added 1.6 business objects (agents advance request, offer and contract objects through an integration layer and data fabric) and 1.7 touch levels, plus definitions for colleague in the loop, copilot, touch level, system of experience, system of record, data fabric and AI gateway. General terms only.
 
 ## Open items
 

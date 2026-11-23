@@ -192,7 +192,7 @@ ol{padding-left:22px}
   </div></div>
   <div class="session"><span class="snum">S2</span><div>
     <p><b>The complexity ladder and layers (1 h).</b> <a href="#f-spectrum">From one call to many agents</a>, <a href="#f-layers">enterprise layers</a>.</p>
-    <p class="meta">Build: draw the layers for a system you know, from memory.</p>
+    <p class="meta">Build: draw the layers for a system you know, from memory. Then read <a href="#f-objects">1.6</a> and <a href="#f-touch">1.7</a>.</p>
   </div></div>
   <div class="session"><span class="snum"><abbr title="Simple Storage Service: Amazon’s object storage service.">S3</abbr></span><div>
     <p><b>Workflow patterns (2 h).</b> <a href="#p-overview">The overview</a>, then <a href="#p-chain">chaining</a>, <a href="#p-route">routing</a>, <a href="#p-parallel">parallel</a>, <a href="#p-orch">orchestrator-workers</a>, <a href="#p-eval">evaluator-optimizer</a>.</p>
@@ -237,7 +237,7 @@ ol{padding-left:22px}
 <!-- ============ PART 1 FOUNDATIONS ============ -->
 <section id="found">
 <h2 class="part">Part 1. Foundations</h2>
-<p class="part-sub">Five cards. The words, the building block, the loop, the ladder of complexity, and the layers of an enterprise agentic system.</p>
+<p class="part-sub">Seven cards. The words, the building block, the loop, the ladder of complexity, the layers of an enterprise agentic system, business objects, and touch levels.</p>
 
 <article class="card" id="f-defs">
 <span class="tag">1.1 · Vocabulary</span>
@@ -270,6 +270,13 @@ ol{padding-left:22px}
 <tr><td><abbr title="Agent2Agent: an open protocol, now at the Linux Foundation, for AI agents from different systems to discover each other and pass work.">A2A</abbr></td><td>Agent2Agent. An open protocol for agents in different systems to discover each other and pass work.</td></tr>
 <tr><td>Context engineering</td><td>Choosing and maintaining what goes into the context window across a long task.</td></tr>
 <tr><td>Prompt injection</td><td>Text in an input that tries to override the system's instructions.</td></tr>
+<tr><td>Colleague in the loop</td><td>Some enterprises' name for human in the loop. A colleague decision point is a step where a person must decide.</td></tr>
+<tr><td>Copilot</td><td>An assistant that helps a person while they work, in the foreground. An agent works on its own, in the background.</td></tr>
+<tr><td>Touch level</td><td>How much a person handles a case: no, low, mid or high touch. See 1.7.</td></tr>
+<tr><td>System of experience</td><td>The layer where people work: the workspace where decisions and reviews appear.</td></tr>
+<tr><td>System of record</td><td>The system that holds the official data, such as a policy admin or billing system.</td></tr>
+<tr><td>Data fabric</td><td>A governed layer that gives agents consistent access to data: an ontology (shared definitions), data products, retrieval, quality and lineage.</td></tr>
+<tr><td><abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> gateway</td><td>One controlled entry point to models: access rules, logging, cost limits and model routing.</td></tr>
 </table></div>
 <p class="src">Sources: <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic: Building effective agents</a> [P] (workflow and agent definitions); <a href="https://lilianweng.github.io/posts/2023-06-23-agent/" target="_blank" rel="noopener noreferrer">Lilian Weng: <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> Powered Autonomous Agents</a> [S] (planning, memory, tool use). Checked 18 Nov 2026.</p>
 </article>
@@ -336,6 +343,50 @@ ol{padding-left:22px}
   <rect x="10" y="310" width="590" height="50" rx="8"/><text x="110" y="340" class="t">Systems of record</text><text x="390" y="340" class="s">core platforms and data; agents write back through governed APIs</text>
   <rect x="620" y="10" width="130" height="350" rx="10" class="wr"/><text x="685" y="110" class="t">Platform</text><text x="685" y="140" class="s">identity</text><text x="685" y="160" class="s">guardrails</text><text x="685" y="180" class="s">tracing</text><text x="685" y="200" class="s">evals</text><text x="685" y="220" class="s">cost, budgets</text><text x="685" y="240" class="s">model gateway</text>
 </svg><figcaption>Restored from the first quick-prep page and extended. An agent development kit plus a runtime usually delivers the platform column.</figcaption></figure>
+</article>
+
+<article class="card" id="f-objects">
+<span class="tag">1.6 · Architecture</span>
+<h3>Agents advance business objects</h3>
+<p>A common enterprise pattern: the work is a business object that moves through states, and agents move it forward. The object holds the facts, the history and the audit trail. Agents and people read it and update it through one integration layer. This keeps agents stateless and makes every step traceable.</p>
+<figure class="arch"><svg viewBox="0 0 760 250" class="d" role="img" aria-label="Business objects request, case and outcome; agents at each stage advance the object; colleague decision points above; integration layer and data fabric below.">
+  <rect x="10" y="10" width="740" height="44" rx="8" class="hu"/><text x="380" y="30" class="t">Colleague decision points in one workspace</text><text x="380" y="46" class="s">review, approve or amend, sign off, handle exceptions</text>
+  <rect x="10" y="66" width="230" height="50" rx="8" class="ou"/><text x="125" y="87" class="t">Intake agents</text><text x="125" y="104" class="s">extract, enrich, triage</text>
+  <rect x="265" y="66" width="230" height="50" rx="8" class="ou"/><text x="380" y="87" class="t">Decision agents</text><text x="380" y="104" class="s">assess, recommend, price</text>
+  <rect x="520" y="66" width="230" height="50" rx="8" class="ou"/><text x="635" y="87" class="t">Fulfilment agents</text><text x="635" y="104" class="s">contract, documents, booking</text>
+  <rect x="10" y="128" width="740" height="26" rx="6" class="band"/><text x="380" y="145" class="s">Integration layer: API and MCP gateway, event streams</text>
+  <rect x="10" y="166" width="230" height="44" rx="8" class="band"/><text x="125" y="185" class="t">Request object</text><text x="125" y="201" class="s">facts, documents, audit</text>
+  <rect x="265" y="166" width="230" height="44" rx="8" class="band"/><text x="380" y="185" class="t">Offer object</text><text x="380" y="201" class="s">structure, price, rationale</text>
+  <rect x="520" y="166" width="230" height="44" rx="8" class="band"/><text x="635" y="185" class="t">Contract object</text><text x="635" y="201" class="s">agreed terms, data first</text>
+  <line x1="240" y1="188" x2="263" y2="188" class="ar"/><line x1="495" y1="188" x2="518" y2="188" class="ar"/>
+  <text x="380" y="234" class="s">Data fabric underneath: ontology, data products, retrieval, lineage, AI gateway. Systems of record sit behind APIs.</text>
+</svg><figcaption>In insurance the objects are submission, quote and policy. In lending they would be application, offer and loan.</figcaption></figure>
+<div class="grid2"><div>
+<h4>Why it works</h4>
+<ul>
+  <li>State lives in the object, so a run can stop and resume.</li>
+  <li>Every change is an event, so lineage comes free.</li>
+  <li>Agents can be swapped without changing the object.</li>
+</ul></div><div>
+<h4>Watch out</h4>
+<ul>
+  <li>Agree the object schemas early. They are the contract between teams.</li>
+  <li>Generate documents from data. Do not store the document as the only record.</li>
+</ul></div></div>
+</article>
+
+<article class="card" id="f-touch">
+<span class="tag">1.7 · Operating model</span>
+<h3>Touch levels</h3>
+<p>Enterprises often state an automation target as a touch level: how much a person handles a case. The level drives where you put human gates and how you set confidence thresholds.</p>
+<div class="tbl"><table>
+<tr><th>Level</th><th>What a person does</th><th>Fits</th></tr>
+<tr><td>No touch</td><td>Nothing for routine cases. Straight-through processing, with sampling.</td><td>Simple, standard, low-value work with clear rules</td></tr>
+<tr><td>Low touch</td><td>Approves at one or two decision points.</td><td>Standard products, mid-market</td></tr>
+<tr><td>Mid touch</td><td>Reviews evidence and decides at several points. Agents prepare everything.</td><td>Complex, high-value or specialist work</td></tr>
+<tr><td>High touch</td><td>Does most of the work, with a copilot.</td><td>Novel or bespoke cases</td></tr>
+</table></div>
+<div class="box say"><b class="lbl">Remember</b>One programme can hold several touch levels. Set the level per product or line of business.</div>
 </article>
 </section>
 

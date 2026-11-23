@@ -27,7 +27,7 @@ Prash moved from interview prep to delivery: he is the lead architect on a UK an
 
 The `<meta name="robots" content="noindex,nofollow">` is hand-maintained.
 
-Progress ticks use localStorage keys prefixed `aea.`, keyed by each card's `id` (`plan-*`, `c-check`, `d-*`, `p-*`, `c-asis`, `c-pain`, `t-*`, `a-*`, `w-*`, `tp-*`, `g-*`, `b-market`, `x-changed`, `q-bank`, `res-*`, `cheat-card`). Renaming an id resets that tick and breaks in-page links.
+Progress ticks use localStorage keys prefixed `aea.`, keyed by each card's `id` (`plan-*`, `c-check`, `d-*`, `p-*`, `c-asis`, `c-pain`, `t-*`, `a-*`, `w-*`, `tp-*`, `g-*`, `b-market`, `x-changed`, `q-bank`, `res-*`, `cheat-card`; added 23 Nov 2026: `d-bind`, `p-touch`, `p-refarch`, `p-tom`, `t-enhance`, `t-bind`, `t-riskvar`, `tp-legend`). Renaming an id resets that tick and breaks in-page links.
 
 SVG arrows use one shared marker `#ar` defined in a hidden `<svg id="defs">` at the top of the body; lines get `class="ar"`. Extra rect classes: `wr` (manual effort, warn colours) and `hu` (human decision, brass).
 
@@ -47,6 +47,10 @@ Insurance acronyms (SOV, TIV, AAL, OED, CDR, UPRN and others) were added to the 
 - Guidewire agreement to acquire hyperexponential (27 Oct 2026; close expected Guidewire fiscal Q2 2027). Re-check after close.
 - EU AI Act high-risk obligations delayed to 2 Dec 2027 (secondary sources; confirm).
 - OED field names from v3; OED v4 in development.
+
+## Workshop updates (23 Nov 2026)
+
+Added from the first client workshop, in general terms only (no names, no client or internal system names, no images): A9 quote, firm order and signed line (firm order first, signed line advice after a lag); B4 touch levels and the two regional variants (mid-market no-to-low touch versus UK and London low-to-mid touch, exposure and cat modelling kept), CITL term, capability-level detail decision, claims out of scope; B5 reference architecture redrawn (six stages by six layers, business objects submission, quote, policy); B6 target operating model; D10 and D11 future-state flows redrawn; D12 score-based risk variant; G6 process map conventions; three self-check questions; open points in the question bank. Decision pills in flows use `rect.wr` with `rx=25`.
 
 ## Dates and links
 

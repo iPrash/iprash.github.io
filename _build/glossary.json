@@ -452,6 +452,7 @@
   "UPRNs": "Unique Property Reference Numbers: persistent IDs for addressable places in Great Britain.",
   "USD": "United States dollar.",
   "ADK": "Agent Development Kit: Google’s open-source, model-agnostic framework for building and evaluating agents.",
-  "HITL": "Human in the loop: a person approves, corrects or rejects at set points in an automated flow."
+  "HITL": "Human in the loop: a person approves, corrects or rejects at set points in an automated flow.",
+  "CITL": "Colleague in the loop: an enterprise name for human in the loop, a step where a person must decide."
  }
 }
