@@ -2,3 +2,6 @@ Thumbs.db
 desktop.ini
 .DS_Store
 *.zip
+
+# Copies the Claude desktop app saves when files are sent to chat
+Claude outputs/
