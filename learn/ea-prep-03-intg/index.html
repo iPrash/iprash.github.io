@@ -480,6 +480,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <tr><td>Cancel</td><td><span class="prov y">BRIEFING</span> Confirm-then-commit, synchronous. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> answers within about 5–10 seconds. Failure shown at once</td><td>Does the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> check with Oracle before it confirms, when the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> itself may be behind?</td></tr>
 <tr><td>Other changes</td><td><span class="prov y">BRIEFING</span> Allowed per stage; confirm-then-commit is not used. It cannot be generalised without slowing the business</td><td>Which pattern for which action (<a href="#sol-matrix">S8</a>)</td></tr>
 <tr><td>Status ordering</td><td><span class="prov y">BRIEFING</span> Sequence numbers and event time per order. A late update is not applied; it is logged as a failure</td><td>Why do updates arrive late or not at all? Who acts on the logged failures?</td></tr>
+<tr><td>Per-order ordering</td><td><span class="prov y">WALKTHROUGH</span> A change is rolling out: one queue per group of locations, one integration flow, and a Service Bus queue with sessions keyed by sales order. It replaces a home-built lock in a database inside the Function app</td><td>Does every message type for one order now travel one ordered path? Sessions cannot repair order already reversed upstream (<a href="#sol-fifo">S10</a>)</td></tr>
 <tr><td>Failed delivery</td><td><span class="prov y">BRIEFING</span> The Azure Function retries three times, then gives up. No dead-letter queue, no replay</td><td>Durable delivery with safe replay (<a href="#sol-reliable">S6</a>)</td></tr>
 <tr><td>Missing orders at submit</td><td><span class="prov y">BRIEFING</span> Rare. Missing orders are found and re-sent by hand</td><td>Could reconciliation find them automatically?</td></tr>
 </table></div>
@@ -498,7 +499,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <tr><td>H2</td><td><b>Commit before confirm.</b> Dynamics commits, then informs downstream. <span class="impl">Fixed for cancel</span></td><td>Plug-in and webhook registrations; Azure Function code</td></tr>
 <tr><td>H3</td><td><b>Actions gated on a stale copy</b> of status in Dynamics.</td><td>Form rules and plug-ins that enable edit and cancel</td></tr>
 <tr><td>H4</td><td><b>Rejections are not first-class events.</b> A downstream "no" does not reverse upstream changes.</td><td>Error handling in MuleSoft and the <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> for rejected changes</td></tr>
-<tr><td>H5</td><td><b>Late or missing status updates.</b> Sequence numbers and event time are in place, so late updates are rejected. The question is why they are late, and what happens after the rejection. <span class="impl">Ordering in place</span></td><td>Failure logs, queue depth and message age per hop</td></tr>
+<tr><td>H5</td><td><b>Late or missing status updates.</b> Sequence numbers and event time are in place, so late updates are rejected. <span class="impl">Confirmed by the team</span> The main cause: each message type travels in its own queue, at its own speed, so messages for one order line overtake each other. The late one is rejected, even when it carries a hold, a shipment or an invoice. See <a href="#sol-fifo">S10</a>.</td><td>Failure logs, rejected-message counts per message type, queue depth and message age per hop</td></tr>
 <tr><td>H6</td><td><b>No durable retry.</b> The Function retries three times, then gives up, with no dead-letter queue or replay.</td><td>Function configuration, queue settings, failure counts</td></tr>
 <tr><td>H7</td><td><b>No shared state model.</b> Nobody has written down the order states across systems and the actions allowed in each.</td><td>Ask for it. If it does not exist, it is deliverable number one</td></tr>
 <tr><td>H8</td><td><b>No reconciliation.</b> Users find the mismatches. The system does not.</td><td>Reports, monitoring, support tickets</td></tr>
@@ -510,7 +511,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <!-- ============ SOLUTION ============ -->
 <section id="solution">
 <h2 class="part">S. Solution options for order sync</h2>
-<p class="part-sub">Ten cards. These are well-known distributed-systems patterns applied to their order lifecycle. Some the team already uses. Present the rest as options to test with the team and the other systems. The client's architect decides.</p>
+<p class="part-sub">Eleven cards. These are well-known distributed-systems patterns applied to their order lifecycle. Some the team already uses. Present the rest as options to test with the team and the other systems. The client's architect decides.</p>
 <nav class="toc">
   <a href="#sol-status"><span>S0</span>Where the team already is</a>
   <a href="#sol-own"><span>S1</span>Ownership handoff</a>
@@ -519,6 +520,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
   <a href="#sol-occ"><span>S4</span>Versioning</a>
   <a href="#sol-order"><span>S5</span>Ordering, idempotency</a>
   <a href="#sol-reliable"><span>S6</span>Reliable delivery</a>
+  <a href="#sol-fifo"><span>S10</span>Per-order FIFO</a>
   <a href="#sol-recon"><span>S7</span>Reconciliation</a>
   <a href="#sol-matrix"><span>S8</span>Decision matrix</a>
   <a href="#sol-road"><span>S9</span>Roadmap</a>
@@ -532,6 +534,7 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 <tr><th>Pattern</th><th>Status at the client</th><th>Card</th></tr>
 <tr><td>Confirm-then-commit for cancel</td><td><span class="impl">Team has it</span> Synchronous, 5–10 seconds, failure shown at once</td><td><a href="#sol-intent">S3</a></td></tr>
 <tr><td>Ordered status updates</td><td><span class="impl">Team has it</span> Sequence number and event time; late updates logged as failures</td><td><a href="#sol-order">S5</a></td></tr>
+<tr><td>Per-order <abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr> across the chain</td><td><span class="impl">Rolling out</span> Queues partitioned by location group; Service Bus sessions keyed by order</td><td><a href="#sol-fifo">S10</a></td></tr>
 <tr><td>Allowed actions per stage</td><td><b>Partly.</b> Rules exist (no cancel after pick; ship-method changes allowed while picking). Not yet one shared table across systems</td><td><a href="#sol-sm">S2</a></td></tr>
 <tr><td>Retries</td><td><b>Partly.</b> Three retries in the Azure Function, then stop</td><td><a href="#sol-reliable">S6</a></td></tr>
 <tr><td>One owner of status per stage</td><td><b>Open.</b> Each system keeps and acts on its own status</td><td><a href="#sol-own">S1</a></td></tr>
@@ -675,6 +678,68 @@ svg.d text.s{font-size:11px;fill:var(--muted)}
 </table></div>
 <div class="box say"><b class="lbl">Say this</b>"Three retries and then nothing means some updates are simply lost. I'd add a dead-letter queue with an owner and a replay tool. And as you pointed out, replay must check the sequence number, so an old update never undoes a newer one."</div>
 <p class="src">Sources: [P] <a href="https://learn.microsoft.com/en-us/power-apps/developer/data-platform/use-webhooks" target="_blank" rel="noopener noreferrer">Dataverse: use webhooks</a>; [P] <a href="https://learn.microsoft.com/en-us/power-apps/developer/data-platform/register-web-hook" target="_blank" rel="noopener noreferrer">Register a webhook (sync and async modes)</a>; [P] <a href="https://learn.microsoft.com/en-us/power-apps/developer/data-platform/azure-integration" target="_blank" rel="noopener noreferrer">Dataverse and Azure integration</a>; [P] <a href="https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-outbox-cosmos" target="_blank" rel="noopener noreferrer">Transactional outbox pattern</a>. Checked 4 Nov 2026.</p>
+</article>
+
+<article class="card" id="sol-fifo">
+<span class="tag"><span class="core">Core</span> · S10</span>
+<h3>Per-order <abbr title="First In, First Out: messages are delivered in the order they were sent.">FIFO</abbr> across the integration chain <span class="impl">Team is rolling it out</span></h3>
+<p><span class="prov y">WALKTHROUGH</span> The team confirmed the main cause of the status mismatch. The <abbr title="Order Management System: captures, splits, sources and tracks orders through fulfilment.">OMS</abbr> writes each message type (create, schedule, release, shipment, receipts) to its own queue. The queues carry different volumes, and the integration layer processes them at different speeds. A small release message can overtake the create message for the same order line. The status function then sees an older message after a newer one, and rejects it.</p>
+<figure class="arch"><svg viewBox="0 0 760 290" class="d" role="img" aria-label="Before: one queue per message type, so a release can overtake a create. Change in progress: one queue per location group, one consumer per group, and a Service Bus queue with sessions keyed by order.">
+  <text x="380" y="24" class="s">Before: one queue per message type</text>
+  <rect x="24" y="40" width="72" height="72" rx="8"/><text x="60" y="80" class="t">OMS</text>
+  <rect x="120" y="40" width="100" height="20" rx="6"/><text x="170" y="54" class="s">create</text>
+  <rect x="120" y="64" width="100" height="20" rx="6"/><text x="170" y="78" class="s">release</text>
+  <rect x="120" y="88" width="100" height="20" rx="6"/><text x="170" y="102" class="s">shipment</text>
+  <rect x="244" y="40" width="130" height="72" rx="8"/><text x="309" y="72" class="t">MuleSoft</text><text x="309" y="92" class="s">one flow per type</text>
+  <rect x="398" y="40" width="150" height="72" rx="8"/><text x="473" y="72" class="t">Function app</text><text x="473" y="92" class="s">many instances</text>
+  <rect x="572" y="56" width="140" height="40" rx="8"/><text x="642" y="80" class="t">Dynamics</text>
+  <line x1="96" y1="76" x2="120" y2="50"/><line x1="96" y1="76" x2="120" y2="74"/><line x1="96" y1="76" x2="120" y2="98"/>
+  <line x1="220" y1="50" x2="244" y2="50"/><line x1="220" y1="74" x2="244" y2="74"/><line x1="220" y1="98" x2="244" y2="98"/>
+  <line x1="374" y1="76" x2="398" y2="76"/><line x1="548" y1="76" x2="572" y2="76"/>
+  <text x="380" y="134" class="s">A small release message can overtake the create. The late create is then rejected.</text>
+  <text x="380" y="166" class="s">Change in progress: partition by location group, sessions keyed by order</text>
+  <rect x="24" y="182" width="72" height="72" rx="8"/><text x="60" y="222" class="t">OMS</text>
+  <rect x="120" y="182" width="100" height="20" rx="6"/><text x="170" y="196" class="s">group A</text>
+  <rect x="120" y="206" width="100" height="20" rx="6"/><text x="170" y="220" class="s">group B</text>
+  <rect x="120" y="230" width="100" height="20" rx="6"/><text x="170" y="244" class="s">group C</text>
+  <rect x="244" y="182" width="130" height="72" rx="8"/><text x="309" y="214" class="t">MuleSoft</text><text x="309" y="234" class="s">one reader per group</text>
+  <rect x="398" y="182" width="150" height="72" rx="8" class="ou"/><text x="473" y="214" class="t">Service Bus</text><text x="473" y="234" class="s">session = sales order</text>
+  <rect x="572" y="182" width="140" height="72" rx="8"/><text x="642" y="214" class="t">Function app</text><text x="642" y="234" class="s">then Dynamics</text>
+  <line x1="96" y1="218" x2="120" y2="192"/><line x1="96" y1="218" x2="120" y2="216"/><line x1="96" y1="218" x2="120" y2="240"/>
+  <line x1="220" y1="192" x2="244" y2="192"/><line x1="220" y1="216" x2="244" y2="216"/><line x1="220" y1="240" x2="244" y2="240"/>
+  <line x1="374" y1="218" x2="398" y2="218"/><line x1="548" y1="218" x2="572" y2="218"/>
+  <text x="380" y="278" class="s">Sessions keep the order in which messages reach Service Bus. The order must already be right upstream.</text>
+</svg><figcaption>Where ordering is lost today, and the change the team is rolling out.</figcaption></figure>
+<h4>What a rejected message costs</h4>
+<ul>
+  <li><b>Gaps in the history.</b> A line jumps from "awaiting allocation" to "shipped". Users lose trust in the status.</li>
+  <li><b>Lost business facts.</b> A hold that the warehouse put on a line, at the sales rep's request, can arrive late and be dropped.</li>
+  <li><b>Must-apply messages.</b> Shipment and invoice messages must never be discarded, whatever order they arrive in.</li>
+</ul>
+<h4>Three ways to keep the order per order</h4>
+<div class="tbl"><table>
+<tr><th>Topology</th><th>Order per order</th><th>Scale and risk</th></tr>
+<tr><td>One queue, one consumer</td><td>Simple and safe</td><td>One choke point. Too slow at high volume</td></tr>
+<tr><td>One queue, competing consumers</td><td>Unsafe without one owner per order</td><td>Parallel consumers can publish an order's messages out of sequence</td></tr>
+<tr><td>Partition by key, one owner per partition</td><td>Safe, because each order belongs to one partition and one consumer</td><td>Scales across partitions. A busy partition slows every order in it</td></tr>
+</table></div>
+<h4>Service Bus sessions in brief</h4>
+<ul>
+  <li>Each message carries a session <abbr title="Identifier: a value that names one record or thing.">ID</abbr>, here the sales order number.</li>
+  <li>Only one receiver can hold the lock on a session. It receives that session's messages in order.</li>
+  <li>Different sessions run in parallel, so many Function instances can work at once without overtaking each other.</li>
+  <li>The Azure Functions Service Bus trigger supports this with <code>isSessionsEnabled</code>. Microsoft calls the design the Sequential Convoy pattern.</li>
+  <li>It replaces a home-built lock in a database, which is harder to run and to scale.</li>
+</ul>
+<div class="box gotcha"><b class="lbl">Questions to test</b><ul>
+  <li>Sessions keep the order in which messages <i>reach</i> Service Bus. They cannot repair an order already reversed upstream. After the change, does every message type for one order travel the same ordered path?</li>
+  <li>Which time drives the "older message" check: the source event time, or a time stamped by the integration layer?</li>
+  <li>What happens to a message that is still out of order: park and retry, apply it because it must be applied, or reject it?</li>
+  <li>Partitioning by business groups invites more splits later. A hash of the order key into a fixed number of partitions keeps the design stable as locations grow.</li>
+  <li>How is the change tested: volume, mixed line types, and the warehouse sending pick, pack and ship in bulk?</li>
+</ul></div>
+<div class="box say"><b class="lbl">Say this</b>"Sessions are the right tool for keeping each order in sequence. The order has to be right before messages reach Service Bus, though. If release and create still travel different paths, sessions will keep the wrong order faithfully. And I'd never drop a late shipment, invoice or hold: park it and apply it, or raise it to a person."</div>
+<p class="src">Sources: [P] <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-sessions" target="_blank" rel="noopener noreferrer">Service Bus message sessions</a>; [P] <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/sequential-convoy" target="_blank" rel="noopener noreferrer">Sequential Convoy pattern</a>; [P] <a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger" target="_blank" rel="noopener noreferrer">Azure Functions Service Bus trigger</a>; [P] <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/competing-consumers" target="_blank" rel="noopener noreferrer">Competing Consumers pattern</a>. Checked 23 Nov 2026.</p>
 </article>
 
 <article class="card" id="sol-recon">

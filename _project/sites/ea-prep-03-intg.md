@@ -30,6 +30,8 @@ Acronyms: `_glossary.json` overrides USD and MQ and excludes S3, which is a card
 
 **Updated 20 Nov 2026** after the role was won. New part H (`h-goals`, `h-weeks`, `h-out`) is a reusable frame for planning a short EA assessment. Revised the same day to a three-week version (discover, assess, recommend and conclude, with a buffer day before a hard stop) and a new card `h-draft` (draft and submit quick-win pattern); governance now covers a daily touchpoint, a daily progress log and a tracker mapped to weeks. It holds no client facts. The client-specific plan lives in a private Claude doc, outside this public repo.
 
+**Updated 23 Nov 2026** after the first architecture walkthrough. New card `sol-fifo` (S10, per-order FIFO across the integration chain: per-type queues reorder messages; partition-by-key topologies; Service Bus sessions; "sessions cannot repair order reversed upstream"; must-apply messages). H5 in `pr-root`, a row in `pr-tried` and a row in `sol-status` updated to match. The provenance label WALKTHROUGH is in the global `_ignore`. Still no client names, numbers, dates or queue names on the page.
+
 ## Why it exists
 
 Prash has deep MuleSoft and integration experience, no hands-on Dynamics 365, ERP or supply chain experience. The page positions him as the cross-system architect working with the client's Dynamics specialists, and prepares him to discuss the order-sync problem credibly.
