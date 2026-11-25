@@ -163,6 +163,7 @@ ol{padding-left:22px}
   <a href="#templates">G Templates</a>
   <a href="#governance">H Governance</a>
   <a href="#buy">I Buy or build</a>
+  <a href="#insurance">J Insurance principles</a>
   <a href="#changed">What changed</a>
   <a href="#questions">Questions</a>
   <a href="#res">Resources</a>
@@ -195,7 +196,7 @@ ol{padding-left:22px}
 <!-- ============ PLAN ============ -->
 <section id="plan">
 <h2 class="part">How to use this guide</h2>
-<p class="part-sub">Two tracks run side by side. The learning track (L1 to <abbr title="Layer 7 (application layer): load balancing that reads HTTP (paths, headers, cookies).">L7</abbr>, about 10 hours) gives you the insurance domain from zero. The delivery track (W0 to W4) is the design phase itself. Start L1 to <abbr title="Layer 4 (transport layer): load balancing on TCP/UDP connections, without reading HTTP.">L4</abbr> before day one if you can. Each card has a tick. The counter in the top bar shows what is left.</p>
+<p class="part-sub">Two tracks run side by side. The learning track (L1 to <abbr title="Learning step 7: the last block of this guide&#x27;s learning track.">L7</abbr>, about 10 hours) gives you the insurance domain from zero. The delivery track (W0 to W4) is the design phase itself. Start L1 to <abbr title="Learning step 4: the fourth block of this guide&#x27;s learning track.">L4</abbr> before day one if you can. Each card has a tick. The counter in the top bar shows what is left.</p>
 <article class="card" id="plan-learn">
 <span class="tag">Track 1 · Learning</span>
 <h3>Learning sessions</h3>
@@ -209,7 +210,7 @@ ol{padding-left:22px}
   <div class="session"><span class="snum">L3</span><div>
     <p><b>The data problem (1.5 h).</b> <a href="#d-life">Submission to bind</a>, <a href="#d-sov">the statement of values</a>, and <a href="#d-geo">geocoding</a>.</p>
   </div></div>
-  <div class="session"><span class="snum"><abbr title="Layer 4 (transport layer): load balancing on TCP/UDP connections, without reading HTTP.">L4</abbr></span><div>
+  <div class="session"><span class="snum"><abbr title="Learning step 4: the fourth block of this guide&#x27;s learning track.">L4</abbr></span><div>
     <p><b>Cat modelling and pricing (1.5 h).</b> <a href="#d-cat">How a cat model works</a> and <a href="#d-price">how a quote is built</a>.</p>
     <p class="meta">Goal: say what <abbr title="Average Annual Loss: the expected catastrophe loss per year from a cat model; the cat part of a technical price.">AAL</abbr> and an <abbr title="Exceedance Probability: the chance in one year that loss exceeds a given amount; plotted as an EP curve.">EP</abbr> curve are, and why geocode resolution changes the price.</p>
   </div></div>
@@ -221,7 +222,7 @@ ol{padding-left:22px}
     <p><b>Target design and patterns (2 h).</b> Part D <a href="#target">target state</a> and Part E <a href="#patterns">agentic patterns</a>. Draw the <a href="#t-ladder">decision ladder</a> from memory.</p>
     <p class="meta">New to agentic patterns? Do sessions S1 to S4 of the <a href="../agentic-guide/">agentic learning guide</a> first.</p>
   </div></div>
-  <div class="session"><span class="snum"><abbr title="Layer 7 (application layer): load balancing that reads HTTP (paths, headers, cookies).">L7</abbr></span><div>
+  <div class="session"><span class="snum"><abbr title="Learning step 7: the last block of this guide&#x27;s learning track.">L7</abbr></span><div>
     <p><b>Governance and the market (1 h).</b> Part H <a href="#governance">governance</a>, Part I <a href="#buy">buy or build</a>, and <a href="#changed">what changed</a>.</p>
   </div></div>
 </article>
@@ -231,12 +232,13 @@ ol{padding-left:22px}
 <p>The design statement of work runs about four weeks. Then comes a lighthouse <abbr title="Minimum Viable Product: the smallest working release that proves value.">MVP</abbr>, then production engineering. Each week has a card in <a href="#playbook">Part F</a> with activities, deliverables and a "done when" test.</p>
 <div class="tbl"><table>
 <tr><th>Week</th><th>Dates (2026)</th><th>Theme</th><th>Main deliverables</th></tr>
-<tr><td><a href="#w-0">W0</a></td><td>by Fri 20 Nov</td><td>Before day one</td><td>Learning L1 to <abbr title="Layer 4 (transport layer): load balancing on TCP/UDP connections, without reading HTTP.">L4</abbr> done. Stakeholder list. Data request sent.</td></tr>
+<tr><td><a href="#w-0">W0</a></td><td>by Fri 20 Nov</td><td>Before day one</td><td>Learning L1 to <abbr title="Learning step 4: the fourth block of this guide&#x27;s learning track.">L4</abbr> done. Stakeholder list. Data request sent.</td></tr>
 <tr><td><a href="#w-1">W1</a></td><td>Mon 23 – Fri 27 Nov</td><td>Discover</td><td>Current-state map, baseline metrics, sample <abbr title="Statement of Values: the broker&#x27;s schedule of insured locations with their values and characteristics.">SOV</abbr> set, pain-point log.</td></tr>
 <tr><td><a href="#w-2">W2</a></td><td>Mon 30 Nov – Fri 4 Dec</td><td>Analyse</td><td>Step classification (code, rule, <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr>, human), principles, capability map, buy-or-build scan.</td></tr>
 <tr><td><a href="#w-3">W3</a></td><td>Mon 7 – Fri 11 Dec</td><td>Design</td><td>Target architecture, building blocks, agent cards, data model, <abbr title="Non-Functional Requirement: a quality target such as latency, availability, security or cost.">NFRs</abbr>, <abbr title="Architecture Decision Records: short documents that each record one decision, its context and consequences.">ADRs</abbr>.</td></tr>
 <tr><td><a href="#w-4">W4</a></td><td>Mon 14 – Fri 18 Dec</td><td>Prove and hand over</td><td>Spike results, lighthouse choice, roadmap, risks, inputs to the engineering <abbr title="Statement of Work: the contract document that sets scope, deliverables and timeline for a phase.">SOW</abbr>.</td></tr>
 </table></div>
+<div class="box gotcha"><b class="lbl">Update 24 Nov: the real plan is tighter</b>The programme plan runs one week ahead of this table. Process reimagination finished in the week of 16 Nov. Agent definition runs 23 to 27 Nov. Technical architecture is due 30 Nov to 5 Dec, and the high-level engineering roadmap 7 to 11 Dec. A short holiday freeze follows. Use the week cards in <a href="#playbook">Part F</a> for content and this note for dates. Use <a href="#insurance">Part J</a> as the review test for the architecture.</div>
 </article>
 </section>
 
@@ -1394,7 +1396,7 @@ ol{padding-left:22px}
 <h3>Before day one</h3>
 <h4>Activities</h4>
 <ul>
-  <li>Finish learning sessions L1 to <abbr title="Layer 4 (transport layer): load balancing on TCP/UDP connections, without reading HTTP.">L4</abbr>.</li>
+  <li>Finish learning sessions L1 to <abbr title="Learning step 4: the fourth block of this guide&#x27;s learning track.">L4</abbr>.</li>
   <li>Get the base design and the agent registry from the global work. Read them twice.</li>
   <li>Ask for access: the platform <abbr title="Software Development Kit: libraries and tools for building against a platform.">SDK</abbr> documentation, the design repository, the team channel.</li>
   <li>Send a data request: 20 to 30 anonymised <abbr title="Statements of Values: brokers&#x27; schedules of insured locations with their values and characteristics.">SOVs</abbr> across sizes and brokers, each with its cleaned output, plus the macro workbook and any process documents.</li>
@@ -1745,6 +1747,331 @@ Change log:</code></pre>
 </ul>
 <div class="box say"><b class="lbl">Say this</b>"I would buy the commodity parts and build the decision ladder, because the rules are where the insurer's knowledge lives. Any vendor gets the same test: our sample set, our metrics, a fixed time-box."</div>
 <p class="src">Sources: <a href="https://www.guidewire.com/about/press-center/press-releases/20261027/guidewire-signs-definitive-agreement-to-acquire-hyperexponential" target="_blank" rel="noopener noreferrer">Guidewire press release, 27 Oct 2026</a> [P]; <a href="https://www.sec.gov/Archives/edgar/data/0001528396/000119312526432656/d121813dex991.htm" target="_blank" rel="noopener noreferrer">Guidewire 8-K exhibit 99.1</a> [P]; <a href="https://valueaddvc.com/pulse/guidewire-1-7b-hyperexponential-acquisition-2026" target="_blank" rel="noopener noreferrer">deal terms summary</a> [S]. Checked 18 Nov 2026.</p>
+</article>
+</section>
+
+<!-- ============ PART J INSURANCE DESIGN PRINCIPLES ============ -->
+<section id="insurance">
+<h2 class="part">Part J. Agentic solutions in insurance and risk: design principles for architects</h2>
+<p class="part-sub">Thirteen cards. What changes when you put agents into underwriting and other risk work, and the principles an enterprise architect should hold the design to. Parts D and E show the mechanics. This part gives the rules for judging a design, including one that someone else drew.</p>
+<nav class="toc">
+  <a href="#ip-why"><span>J1 · core</span>Why insurance changes agent design</a>
+  <a href="#ip-principles"><span>J2 · core</span>Twelve design principles</a>
+  <a href="#ip-refarch"><span>J3 · deep</span>A reference architecture</a>
+  <a href="#ip-chain"><span>J4</span>From value chain to agents</a>
+  <a href="#ip-split"><span>J5</span>Agent or tool?</a>
+  <a href="#ip-orch"><span>J6 · deep</span>Orchestrating long-running work</a>
+  <a href="#ip-citl"><span>J7</span>Colleague in the loop as a product</a>
+  <a href="#ip-market"><span>J8</span>The subscription market</a>
+  <a href="#ip-data"><span>J9</span>Data, standards and memory</a>
+  <a href="#ip-legacy"><span>J10</span>Legacy systems of record</a>
+  <a href="#ip-risk"><span>J11</span>Risks and controls</a>
+  <a href="#ip-cost"><span>J12</span>Cost per submission</a>
+  <a href="#ip-review"><span>J13</span>Reviewing an agent catalogue</a>
+</nav>
+
+<article class="card" id="ip-why">
+<span class="tag">J1 · Core idea</span>
+<h3>Why insurance changes agent design</h3>
+<p>Most agent examples are short tasks: answer a question, file a ticket, write some code. Underwriting is different. A single submission can live for weeks, cross several teams, touch a dozen systems and end in a legal contract. Each trait below changes the architecture.</p>
+<div class="tbl"><table>
+<tr><th>Trait of the domain</th><th>Why it matters for agents</th><th>Design response</th></tr>
+<tr><td>Decisions carry authority and liability</td><td>An underwriter has a written authority: classes, limits and line sizes they may accept. A wrong bind is a legal commitment.</td><td>Keep the decision with a named person. Enforce authority in workflow code. Agents recommend and prepare evidence.</td></tr>
+<tr><td>Work runs for days or weeks</td><td>Brokers answer queries late. Cat model runs queue. Signed lines arrive after a lag.</td><td>A durable workflow engine owns the state. An agent never holds a conversation open for a week.</td></tr>
+<tr><td>Inputs are messy and untrusted</td><td>Emails, slips, schedules in Excel or <abbr title="Portable Document Format: a fixed-layout document file.">PDF</abbr>, loss runs, scanned forms. Each comes from outside the firm.</td><td>Extraction with schemas and confidence. Treat all inbound content as data, never as instructions.</td></tr>
+<tr><td>Rules vary by region, class and product</td><td>Harmonising one process across regions often fails. The variation is real.</td><td>Keep a common process skeleton. Put the variation in rules, question sets, prompts and worker agents.</td></tr>
+<tr><td>Much of the knowledge is tacit</td><td>Risk questions and appetite often live in underwriters' heads.</td><td>Plan rule capture as design work. An agent cannot apply a rule nobody wrote down.</td></tr>
+<tr><td>Heavy legacy core systems</td><td>Policy admin and rating engines are old, critical and slow to change.</td><td>Wrap them behind business tools and adapters. Replace a capability only after a parallel run.</td></tr>
+<tr><td>Calculations must be exact and repeatable</td><td>Premiums, taxes, cat losses and line splits are numbers someone will audit.</td><td>Engines and code compute. The <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> never calculates a price.</td></tr>
+<tr><td>Market structure adds steps</td><td>Subscription placement, lead and follow, written and signed lines.</td><td>Model these as explicit branches and states. See <a href="#ip-market">J8</a>.</td></tr>
+<tr><td>Regulators, auditors and the market ask "why?"</td><td>Model risk, conduct and data rules apply. The firm must show how each outcome was reached.</td><td>Evidence and lineage on every output; versioned prompts and models; evaluation before release.</td></tr>
+</table></div>
+<div class="box say"><b class="lbl">Say this</b>"Insurance gives agents long-running work, untrusted inputs, exact numbers and decisions with legal weight. So the agents prepare and recommend, the engines calculate, the workflow keeps the state and the underwriter decides."</div>
+</article>
+
+<article class="card" id="ip-principles">
+<span class="tag">J2 · Core idea</span>
+<h3>Twelve design principles</h3>
+<p>Use these as the review test for any agentic design in underwriting, claims or risk. The right column is the smell (the sign in a design that a principle is broken).</p>
+<div class="tbl"><table>
+<tr><th>#</th><th>Principle</th><th>What it means</th><th>Smell</th></tr>
+<tr><td>1</td><td>Variation lives in configuration</td><td>Stages, states and human decision points are common. Region and class differences sit in rules, question sets, prompts and worker agents.</td><td>A separate end-to-end flow per region "because they work differently"</td></tr>
+<tr><td>2</td><td>Use the lowest rung that works</td><td>Code, then rules, then <abbr title="Machine Learning: models that learn patterns from data.">ML</abbr>, then an <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> with a confidence score, then a person. See <a href="#t-ladder">D1</a>.</td><td>An <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> call for a lookup, a sum or a fixed decision table</td></tr>
+<tr><td>3</td><td>The workflow engine owns state</td><td>A durable state machine sequences stages, waits, retries and records every step.</td><td>Agents decide "what happens next" from chat history</td></tr>
+<tr><td>4</td><td>People decide where authority sits</td><td>Triage, coverage, price, line and bind need a named colleague. Authority limits are enforced in code.</td><td>Authority rules written into a prompt</td></tr>
+<tr><td>5</td><td>No direct writes to a system of record</td><td>Agents call business tools ("create quote", "bind policy") through a gateway. Only adapters know the core system.</td><td>An agent with database credentials for the policy system</td></tr>
+<tr><td>6</td><td>One canonical data model</td><td>Submission, exposure, quote and policy objects are defined once and shared, aligned to market standards.</td><td>Each agent keeps its own copy of the risk</td></tr>
+<tr><td>7</td><td>Every output carries its evidence</td><td>Inputs, sources, rules, model and prompt versions and a confidence score travel with each value and recommendation.</td><td>"The model said so" in a review meeting</td></tr>
+<tr><td>8</td><td>Inbound content is untrusted</td><td>Broker documents are data. Instructions found in them are ignored. Tool access is allow-listed.</td><td>An agent that takes actions because an attachment asked it to</td></tr>
+<tr><td>9</td><td>Evaluation gates every release</td><td>Each agent has a test set built from real past work. A new prompt or model ships only if it matches or beats the current one.</td><td>Testing by trying a few examples in a demo</td></tr>
+<tr><td>10</td><td>Wrap, shadow, then replace</td><td>Put agents in front of legacy, run them in shadow mode, then in a parallel run, then decommission.</td><td>A big-bang cutover date on the first roadmap</td></tr>
+<tr><td>11</td><td>Measure cost and outcome per submission</td><td>Track cost, turnaround, straight-through rate and override rate per agent from day one.</td><td>Token bills reviewed once a quarter</td></tr>
+<tr><td>12</td><td>Not every step is an agent</td><td>Deterministic steps become tools or services. Agents do the reasoning. See <a href="#ip-split">J5</a>.</td><td>An agent catalogue where half the "agents" make no model call</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Watch for</b>Principles that nobody tests are decoration. Turn each one into a question on the design review checklist (<a href="#ip-review">J13</a>) and into an architecture decision record where a choice was made.</div>
+</article>
+
+<article class="card" id="ip-refarch">
+<span class="tag">J3 · Deep</span>
+<h3>A reference architecture for agentic underwriting</h3>
+<p>A layered view that fits most commercial insurers. Stages run left to right. A submission enters at the top and becomes a policy at the right. Agents move business objects through the data fabric. People act at the decision points in their workspace.</p>
+<figure class="arch"><svg viewBox="0 0 760 420" class="d" role="img" aria-label="Reference architecture: broker and market, underwriting workspace with decision queues, integration gateways, workflow engine, agents per stage, data fabric with business objects, and wrapped core systems.">
+  <rect x="10" y="10" width="100" height="40" rx="6"/><text x="60" y="34" class="t">Broker</text>
+  <rect x="120" y="10" width="630" height="40" rx="6"/><text x="435" y="27" class="t">Submissions in by email, platform or portal</text><text x="435" y="43" class="s">queries, quotes, lines and policy documents out</text>
+  <rect x="10" y="60" width="100" height="56" rx="6"/><text x="60" y="84" class="t">People</text><text x="60" y="100" class="s">UW · assistants</text>
+  <rect x="120" y="60" width="630" height="56" rx="6" class="hu"/><text x="435" y="81" class="t">Underwriter workspace (copilot) with decision queues</text><text x="435" y="99" class="s">clarify data · refer compliance · approve quote · confirm line · approve bind · instruct a task</text>
+  <rect x="10" y="126" width="100" height="34" rx="6"/><text x="60" y="148" class="t">Integration</text>
+  <rect x="120" y="126" width="630" height="34" rx="6"/><text x="435" y="148" class="s">AI gateway · MCP gateway · API gateway · event streams · identity and access</text>
+  <rect x="10" y="170" width="100" height="34" rx="6"/><text x="60" y="192" class="t">Orchestration</text>
+  <rect x="120" y="170" width="630" height="34" rx="6" class="wr"/><text x="435" y="192" class="s">Workflow engine owns state · master orchestrator: sequence, fan-out, fan-in, retry, timers, audit</text>
+  <rect x="10" y="214" width="100" height="70" rx="6"/><text x="60" y="246" class="t">Agents</text><text x="60" y="262" class="s">master + workers</text>
+  <rect x="120" y="214" width="99" height="70" rx="6" class="ou"/><text x="169" y="240" class="t">Intake</text><text x="169" y="258" class="s">classify</text><text x="169" y="272" class="s">extract</text>
+  <rect x="225" y="214" width="99" height="70" rx="6" class="ou"/><text x="274" y="240" class="t">Enrich</text><text x="274" y="258" class="s">validate</text><text x="274" y="272" class="s">fill gaps</text>
+  <rect x="330" y="214" width="99" height="70" rx="6" class="ou"/><text x="379" y="240" class="t">Entity</text><text x="379" y="258" class="s">clearance</text><text x="379" y="272" class="s">insight</text>
+  <rect x="435" y="214" width="99" height="70" rx="6" class="ou"/><text x="484" y="240" class="t">Exposure</text><text x="484" y="258" class="s">schedules</text><text x="484" y="272" class="s">cat hand-off</text>
+  <rect x="540" y="214" width="99" height="70" rx="6" class="ou"/><text x="589" y="240" class="t">Price</text><text x="589" y="258" class="s">structure</text><text x="589" y="272" class="s">engine fan-out</text>
+  <rect x="645" y="214" width="105" height="70" rx="6" class="ou"/><text x="697" y="240" class="t">Quote, bind</text><text x="697" y="258" class="s">documents</text><text x="697" y="272" class="s">line · bind</text>
+  <rect x="10" y="294" width="100" height="62" rx="6"/><text x="60" y="322" class="t">Data fabric</text><text x="60" y="338" class="s">governed access</text>
+  <rect x="120" y="294" width="118" height="62" rx="6" class="band"/><text x="179" y="320" class="t">Submission</text><text x="179" y="338" class="s">facts, documents</text>
+  <rect x="248" y="294" width="118" height="62" rx="6" class="band"/><text x="307" y="320" class="t">Exposure</text><text x="307" y="338" class="s">locations, models</text>
+  <rect x="376" y="294" width="118" height="62" rx="6" class="band"/><text x="435" y="320" class="t">Quote</text><text x="435" y="338" class="s">versions, rationale</text>
+  <rect x="504" y="294" width="118" height="62" rx="6" class="band"/><text x="563" y="320" class="t">Policy</text><text x="563" y="338" class="s">contract record</text>
+  <rect x="632" y="294" width="118" height="62" rx="6"/><text x="691" y="320" class="t">Reference</text><text x="691" y="338" class="s">clauses, appetite</text>
+  <line x1="238" y1="325" x2="246" y2="325" class="ar"/><line x1="366" y1="325" x2="374" y2="325" class="ar"/><line x1="494" y1="325" x2="502" y2="325" class="ar"/>
+  <rect x="10" y="366" width="100" height="44" rx="6"/><text x="60" y="386" class="t">Core</text><text x="60" y="401" class="s">AI-wrapped</text>
+  <rect x="120" y="366" width="630" height="44" rx="6"/><text x="435" y="385" class="s">policy admin · billing · documents · master data · claims · rating and cat engines · third-party data</text><text x="435" y="401" class="s">reached only through the integration layer</text>
+</svg><figcaption>Blue: agents. Green: business objects. Brass: people and decisions. Orange: the workflow engine that owns state.</figcaption></figure>
+<div class="tbl"><table>
+<tr><th>Layer</th><th>Job</th><th>Architect's question</th></tr>
+<tr><td>Broker and market</td><td>Where work enters and leaves</td><td>Which channels carry structured data, and which only carry documents?</td></tr>
+<tr><td>People</td><td>Decide, approve, instruct</td><td>Is there one workspace, or do people jump between tools?</td></tr>
+<tr><td>Integration</td><td>One controlled door for models, tools and systems</td><td>Can we see and stop every model call and tool call in one place?</td></tr>
+<tr><td>Orchestration</td><td>Owns state and order</td><td>What happens when a broker answers after ten days?</td></tr>
+<tr><td>Agents</td><td>Reason inside a stage</td><td>Which rung does each agent need, and why?</td></tr>
+<tr><td>Data fabric</td><td>Consistent objects with lineage</td><td>Can we rebuild any quote from what we stored?</td></tr>
+<tr><td>Core systems</td><td>Legal record and calculation</td><td>Which adapters exist today, and which must we build?</td></tr>
+</table></div>
+<div class="box say"><b class="lbl">Say this</b>"Seven layers, six stages. The workflow owns the state, agents do the work inside each stage, the data fabric keeps one version of the truth, and the core systems stay the legal record behind adapters."</div>
+</article>
+
+<article class="card" id="ip-chain">
+<span class="tag">J4 · Map</span>
+<h3>From value chain to agents</h3>
+<p>Start from the business process, never from a list of agents. For each stage, name the background work, the human decision and the systems. The agent list falls out of this table.</p>
+<div class="tbl"><table>
+<tr><th>Stage</th><th>Typical background work</th><th>Usual rung</th><th>Human decision</th><th>Typical systems</th></tr>
+<tr><td>Intake</td><td>Read emails and attachments; classify new or existing; extract key fields</td><td>Rules plus <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> extraction</td><td>Only when classification is unclear</td><td>Mailboxes, placing platforms, document store</td></tr>
+<tr><td>Enrich and validate</td><td>Check mandatory fields; find anomalies; fill gaps from third parties; detect duplicates and renewals</td><td>Rules, <abbr title="Machine Learning: models that learn patterns from data.">ML</abbr>, <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> for gaps</td><td>Clarify data; ask the broker</td><td>Firmographic data, product rules</td></tr>
+<tr><td>Entity and clearance</td><td>Resolve legal entity and parent; name clearance; sanctions and <abbr title="Know Your Customer: checks that confirm who a customer is before doing business.">KYC</abbr> screening</td><td>Tools and rules</td><td>Any screening result that is not a clean pass</td><td>Master data, screening services, credit bureaus</td></tr>
+<tr><td>Insight</td><td>Claims history, loss ratios, hazard, geopolitical and regulatory signals</td><td>Tools plus <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> summary</td><td>Referral above appetite thresholds</td><td>Claims system, hazard and risk data feeds</td></tr>
+<tr><td>Triage</td><td>Appetite, eligibility, priority, route</td><td>Rules and scoring</td><td>Underwriter confirms triage</td><td>Rules engine, workspace</td></tr>
+<tr><td>Exposure and cat</td><td>Clean the schedule of values; geocode; enrich hazard; package for cat modelling</td><td>Code and rules; <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> for messy headers</td><td>Defaults applied; model results accepted</td><td>Geocoders, hazard data, cat models</td></tr>
+<tr><td>Structure and price</td><td>Structure layers and limits; call rating engines per class; build options; draft rationale</td><td>Engines; <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> for rationale</td><td>Quote approval</td><td>Rating engines, cat models, policy history</td></tr>
+<tr><td>Quote and place</td><td>Assemble quote documents; follow-market terms check; match signed line</td><td>Templates; <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> for documents</td><td>Line decision; line confirmation</td><td>Document generation, clause library</td></tr>
+<tr><td>Bind and issue</td><td>Build sections and references; write contract record; issue documents</td><td>Code and rules</td><td>Bind approval</td><td>Policy admin, billing, e-signature</td></tr>
+<tr><td>Renewal</td><td>Pre-fill from policy and claims; portfolio health check; chase updated data</td><td>Tools plus <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> summary</td><td>Renew, re-price or decline</td><td>Policy, claims and portfolio data</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Watch for</b>Agent lists copied from another region or line of business. Most stages carry over. The parts that differ (exposure, placement type, local rules) are where the value and the risk sit. Mark each agent as "carry over", "adapt" or "new".</div>
+</article>
+
+<article class="card" id="ip-split">
+<span class="tag">J5 · Rule</span>
+<h3>Agent or tool? Classify every step</h3>
+<p>Calling every step an agent inflates cost, test effort and governance load. Classify each step with four questions. General version in <a href="#a-when">E1</a>.</p>
+<ol>
+  <li><b>Is the answer fixed by a table, formula or lookup?</b> Then it is code or a rule. Make it a tool.</li>
+  <li><b>Does it call one engine or service and pass the result on?</b> Then it is a tool call inside a master agent.</li>
+  <li><b>Does it need to read unstructured content, weigh evidence or plan several steps?</b> Then it is an agent.</li>
+  <li><b>Would two experts disagree on the answer?</b> Then it needs a confidence score and a human decision point.</li>
+</ol>
+<div class="tbl"><table>
+<tr><th>Step often listed as an "agent"</th><th>What it usually is</th></tr>
+<tr><td>Classify against a predefined decision matrix</td><td>Rule service. Keep an <abbr title="Large Language Model: an AI model trained on large text corpora to understand and generate language.">LLM</abbr> only for unclear intent.</td></tr>
+<tr><td>Score and order a work queue</td><td>Scoring service (<abbr title="Machine Learning: models that learn patterns from data.">ML</abbr> or rules) called as a tool</td></tr>
+<tr><td>Append hazard or flood data to locations</td><td>Deterministic tool step</td></tr>
+<tr><td>Invoke the rating engines</td><td>Tool calls under the pricing orchestrator</td></tr>
+<tr><td>Verify a company against a credit bureau</td><td>Tool call under the entity agent</td></tr>
+<tr><td>Summarise a group's claims history for the underwriter</td><td>Agent (reasoning and writing)</td></tr>
+<tr><td>Extract terms from a slip or contract</td><td>Agent with schema and confidence</td></tr>
+<tr><td>Form quote options from structure, history and broker asks</td><td>Agent</td></tr>
+</table></div>
+<div class="box say"><b class="lbl">Say this</b>"Let us keep the word agent for steps that reason. Everything deterministic becomes a tool the agents call. We get fewer moving parts, lower cost and an agent list that is easier to govern."</div>
+</article>
+
+<article class="card" id="ip-orch">
+<span class="tag">J6 · Deep</span>
+<h3>Orchestrating long-running underwriting work</h3>
+<p>Use two levels of orchestration. They solve different problems, so do not force one tool to do both.</p>
+<div class="grid2"><div>
+<h4>Process level: the workflow engine</h4>
+<ul>
+  <li>A durable state machine per submission: received, cleared, triaged, exposure ready, priced, quote approved, quoted, firm order, line signed, bound, issued.</li>
+  <li>Handles timers (chase a broker after two working days), human tasks, retries with back-off and compensation (undo steps) when a later step fails.</li>
+  <li>Writes the audit trail. Survives restarts. Waits for weeks at no cost.</li>
+</ul></div><div>
+<h4>Agent level: master agents</h4>
+<ul>
+  <li>Short reasoning loops inside one stage.</li>
+  <li>Call workers as typed tools: a task in, a result out. No free-text chat between agents.</li>
+  <li>Use the patterns in <a href="#a-orch">E2</a>: sequential chains, routing, parallel fan-out and fan-in, evaluator loops with an iteration limit.</li>
+</ul></div></div>
+<h4>Three shapes that recur in underwriting</h4>
+<div class="tbl"><table>
+<tr><th>Shape</th><th>Where</th><th>How</th></tr>
+<tr><td>Sequential with gates</td><td>Intake, enrich, validate</td><td>Each step must pass before the next starts; gaps go to a clarification queue</td></tr>
+<tr><td>Parallel on demand</td><td>Entity, claims and geo or regulatory insight</td><td>The orchestrator calls any, all or none, then fans in the results</td></tr>
+<tr><td>Parallel across classes, iterative within a class</td><td>Pricing</td><td>Call each class's engine at the same time; within one class, re-run with new parameters to build versions (base, broader limits, restricted cover); store every run</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Watch for</b>A multi-week process modelled as one agent graph in an agent framework. Agent frameworks are good at minutes of reasoning. A durable workflow service is good at weeks of waiting.</div>
+</article>
+
+<article class="card" id="ip-citl">
+<span class="tag">J7 · Design</span>
+<h3>Colleague in the loop as a product</h3>
+<p>Human review is where the business sees the system. Design the queues with the same care as the agents. A clear queue taxonomy keeps the number of screens small and the metrics clean.</p>
+<div class="tbl"><table>
+<tr><th>Queue</th><th>Fires when</th><th>Colleague sees</th><th>Actions</th></tr>
+<tr><td>Data clarification</td><td>Low confidence, ambiguous entity, anomalies, defaults applied</td><td>The field, candidate values with sources, the confidence, the reason</td><td>Confirm, correct, ask the broker</td></tr>
+<tr><td>Awaiting broker</td><td>Only the broker can supply it</td><td>A drafted request, due date, chase history</td><td>Send, edit, cancel</td></tr>
+<tr><td>Compliance and risk referral</td><td>Screening not clean; appetite or loss-ratio threshold breached</td><td>The match, its source list, the breached rule</td><td>Pass, refer, decline with reason</td></tr>
+<tr><td>Quote approval</td><td>Every quote version</td><td>Premium, rating factors, rationale, version comparison</td><td>Approve, amend, decline</td></tr>
+<tr><td>Bind approval</td><td>Broker accepts; bind triggered</td><td>Accepted terms against the approved quote; signed line match</td><td>Commit, return</td></tr>
+<tr><td>Instructed task</td><td>Work that templates cannot do</td><td>A bounded instruction from the underwriter</td><td>Complete, query</td></tr>
+<tr><td>Technical escalation</td><td>A tool or engine fails after retries</td><td>The error and retry history</td><td>Retry, route to support (underwriters never see it)</td></tr>
+</table></div>
+<h4>Design rules</h4>
+<ul>
+  <li>Every item carries its evidence. Nobody should need to open another system to decide.</li>
+  <li>Route by the authority matrix. A colleague cannot approve above their authority.</li>
+  <li>Record every action and correction as labelled data for evaluation.</li>
+  <li>Track override rate per agent and per field. A high rate means the agent needs work.</li>
+  <li>Give each queue an owner and a service level.</li>
+</ul>
+</article>
+
+<article class="card" id="ip-market">
+<span class="tag">J8 · London market</span>
+<h3>The subscription market: lead, follow and the signed line</h3>
+<p>In a subscription market, several insurers share one risk. The basics are in <a href="#d-london">A2</a> and <a href="#d-bind">A9</a>. Here is what changes for the agents.</p>
+<div class="tbl"><table>
+<tr><th>Situation</th><th>What the agents do</th><th>What the underwriter decides</th></tr>
+<tr><td>We lead</td><td>Full analysis: exposure, cat model, structure, price, terms, quote documents with the written line</td><td>Terms, price and line</td></tr>
+<tr><td>We follow</td><td>Extract the lead's terms from the slip; price our share on the same structure; report an adequacy ratio (lead premium divided by our technical premium); check appetite and accumulation</td><td>Whether to follow and at what line</td></tr>
+<tr><td>Firm order received</td><td>Move the state; start the bind preparation</td><td>None at this point</td></tr>
+<tr><td>Signed line advice arrives</td><td>Match it to the quote and firm order; flag any change in line or terms; apply signing down</td><td>Confirm the signed line; send material changes back to pricing</td></tr>
+<tr><td>Bind</td><td>Book at the signed share; write the contract data record</td><td>Bind approval</td></tr>
+</table></div>
+<div class="box gotcha"><b class="lbl">Watch for</b>Designs drawn only for the lead case. In many London portfolios a large share of lines are follow lines, and the follow branch needs its own agent work and decision point.</div>
+</article>
+
+<article class="card" id="ip-data">
+<span class="tag">J9 · Data</span>
+<h3>Data, standards and memory</h3>
+<div class="grid2"><div>
+<h4>Business objects</h4>
+<ul>
+  <li><b>Submission:</b> facts with source and confidence, document references, clearance, triage.</li>
+  <li><b>Exposure:</b> locations, values, <abbr title="Construction, Occupancy, Protection, Exposure: the four groups of property risk characteristics per location.">COPE</abbr>, geocodes, hazard, model results, defaults applied.</li>
+  <li><b>Quote:</b> structure, versions, every engine run, rating factors, rationale, approval.</li>
+  <li><b>Policy:</b> bound contract, signed line, contract data record, documents.</li>
+  <li><b>Reference:</b> clauses, appetite, authority, guidelines, precedents.</li>
+</ul></div><div>
+<h4>Standards to align with</h4>
+<ul>
+  <li><b><abbr title="Association for Cooperative Operations Research and Development: the body that publishes insurance data standards.">ACORD</abbr></b> data standards for messages and records.</li>
+  <li>The London market <b><abbr title="Core Data Record: the London market&#x27;s agreed data set for a placement, built on ACORD standards.">CDR</abbr></b> (Core Data Record) for the contract data at bind. Watch for local documents that reuse "<abbr title="Core Data Record: the London market&#x27;s agreed data set for a placement, built on ACORD standards.">CDR</abbr>" for something else.</li>
+  <li><b><abbr title="Open Exposure Data: an open, model-agnostic standard for insurance exposure data, curated by Oasis LMF.">OED</abbr></b> (Open Exposure Data) for exposure, so one object can feed several cat models. See <a href="#t-data">D8</a>.</li>
+</ul></div></div>
+<h4>Memory scopes</h4>
+<div class="tbl"><table>
+<tr><th>Scope</th><th>Holds</th><th>Rule</th></tr>
+<tr><td>Run</td><td>Working context for one agent run</td><td>Discard at the end of the run</td></tr>
+<tr><td>Submission (episodic)</td><td>Decisions, clarifications and broker answers for one submission</td><td>Keep for the life of the submission plus audit retention</td></tr>
+<tr><td>Long-term</td><td>Facts about entities, brokers and portfolios</td><td>Accept only facts a colleague or a rule approved</td></tr>
+</table></div>
+<div class="box say"><b class="lbl">Say this</b>"One set of business objects, aligned to market standards, with lineage on every field. Long-term memory takes only approved facts. That is how we rebuild any quote on demand."</div>
+</article>
+
+<article class="card" id="ip-legacy">
+<span class="tag">J10 · Integration</span>
+<h3>Legacy systems of record: wrap, shadow, replace</h3>
+<figure class="arch"><svg viewBox="0 0 760 150" class="d" role="img" aria-label="Agent calls a gateway, which calls a business tool, which calls a system adapter, which calls the system of record. Events flow back.">
+  <rect x="10" y="20" width="130" height="60" rx="8" class="ou"/><text x="75" y="46" class="t">Agent</text><text x="75" y="64" class="s">pricing or bind</text>
+  <rect x="165" y="20" width="130" height="60" rx="8"/><text x="230" y="46" class="t">Gateway</text><text x="230" y="64" class="s">identity · limits · audit</text>
+  <rect x="320" y="20" width="130" height="60" rx="8" class="ou"/><text x="385" y="46" class="t">Business tool</text><text x="385" y="64" class="s">"create quote"</text>
+  <rect x="475" y="20" width="130" height="60" rx="8"/><text x="540" y="46" class="t">System adapter</text><text x="540" y="64" class="s">quote and bind APIs</text>
+  <rect x="630" y="20" width="120" height="60" rx="8" class="wr"/><text x="690" y="46" class="t">System of record</text><text x="690" y="64" class="s">legal record</text>
+  <line x1="140" y1="50" x2="163" y2="50" class="ar"/><line x1="295" y1="50" x2="318" y2="50" class="ar"/><line x1="450" y1="50" x2="473" y2="50" class="ar"/><line x1="605" y1="50" x2="628" y2="50" class="ar"/>
+  <polyline points="690,80 690,110 75,110 75,82" fill="none" class="ar" style="stroke:var(--faint);stroke-width:1.4;stroke-dasharray:5 4;marker-end:url(#ar)"/>
+  <text x="380" y="132" class="s">events back: bound, issued, changed</text>
+</svg><figcaption>Only the adapter knows the core system. Change the core system and the agents do not change.</figcaption></figure>
+<div class="grid2"><div>
+<h4>Pattern 1: wrap and strangle</h4>
+<ul>
+  <li>Move high-touch work (intake, triage, enrichment, documents) into agents and services first.</li>
+  <li>Leave complex, low-touch calculations and the legal record in the legacy system.</li>
+  <li>Replace one capability at a time, after a parallel run proves the new path.</li>
+</ul></div><div>
+<h4>Pattern 2: business tools over adapters</h4>
+<ul>
+  <li>Group tools by business domain (submission, party, exposure, pricing, documents, policy), for example as <abbr title="Model Context Protocol: an open standard for connecting AI agents to tools and data.">MCP</abbr> servers.</li>
+  <li>Each tool declares read or write. Writes take an idempotency key, so a retry cannot book a policy twice.</li>
+  <li>Read paths first; write paths after the decision points are proven.</li>
+</ul></div></div>
+</article>
+
+<article class="card" id="ip-risk">
+<span class="tag">J11 · Controls</span>
+<h3>Risks and controls specific to insurance agents</h3>
+<div class="tbl"><table>
+<tr><th>Risk</th><th>Example</th><th>Control</th></tr>
+<tr><td>Prompt injection through broker content</td><td>A slip or schedule contains text that tells the model to approve or to send data elsewhere</td><td>Treat inbound content as data; allow-listed tools; no action driven only by document text; output checks at the <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> gateway</td></tr>
+<tr><td>Authority breach</td><td>An agent prepares a bind above the acting underwriter's limit</td><td>Authority matrix enforced by the workflow; bind needs approval</td></tr>
+<tr><td>Wrong booking</td><td>A retry creates a duplicate policy</td><td>Idempotent write tools; compensation steps</td></tr>
+<tr><td>Silent assumptions</td><td>Default limits or deductibles applied to a schedule without saying so</td><td>Every default goes to a clarification queue; never finalised silently</td></tr>
+<tr><td>Model drift</td><td>A model update changes extraction quality</td><td>Evaluation gate on a fixed test set; shadow mode; rollback by version</td></tr>
+<tr><td>Automation bias</td><td>Colleagues approve without reading</td><td>Evidence in every item; sample checks of approved work; override metrics</td></tr>
+<tr><td>Data leakage</td><td>Personal or commercially sensitive data reaches a model outside approved regions</td><td><abbr title="Personally Identifiable Information: data that can identify a person.">PII</abbr> masking at the gateway; region-pinned models; least-privilege tools</td></tr>
+<tr><td>Accumulation blind spot</td><td>Each risk looks fine; together they breach the firm's appetite for one area or event</td><td>Accumulation check as a tool in triage and the follow branch</td></tr>
+</table></div>
+<p>Regulation: see <a href="#g-reg">H1</a>. Under the <abbr title="European Union: the political and economic union of 27 European states.">EU</abbr> <abbr title="Artificial Intelligence: software that does tasks that normally need human judgement.">AI</abbr> Act, the insurance entries in the high-risk list cover life and health insurance for individuals. Commercial underwriting usually falls outside them, but model risk, data protection, conduct and market rules still apply. Confirm the position with compliance.</p>
+</article>
+
+<article class="card" id="ip-cost">
+<span class="tag">J12 · <abbr title="Cloud financial operations: engineering, finance and business sharing ownership of cloud spend.">FinOps</abbr></span>
+<h3>Cost per submission</h3>
+<p>Agent cost grows with the number of steps and calls in each job. One submission can fan out into dozens of model and tool calls. Measure cost against the business unit the firm cares about.</p>
+<ul>
+  <li><b>Unit:</b> cost per submission and per bound policy, broken down by agent and by model.</li>
+  <li><b>Biggest saver:</b> the decision ladder. A deterministic step makes no model call.</li>
+  <li><b>Model routing:</b> small models for classification and checks; larger models for rationale, options and hard documents.</li>
+  <li><b>Token tactics:</b> cache stable prompts and tool definitions; load tools on demand; summarise history; compress tool outputs; cap output length per task.</li>
+  <li><b>Budgets:</b> a token and step budget per agent run, with alerts before the limit.</li>
+  <li><b>Sequence:</b> first route all model traffic through one gateway and capture usage; then attribute cost and publish dashboards; then add budgets and chargeback.</li>
+</ul>
+<div class="box say"><b class="lbl">Say this</b>"We will report cost per submission from the first release, by agent and by model. If we cannot see it, we cannot control it."</div>
+</article>
+
+<article class="card" id="ip-review">
+<span class="tag">J13 · Checklist</span>
+<h3>Reviewing an agent catalogue</h3>
+<p>Use this when someone hands you an agent list or an architecture deck. It finds most problems in an hour.</p>
+<div class="tbl"><table>
+<tr><th>Check</th><th>Question</th></tr>
+<tr><td>Process first</td><td>Does every agent map to a step in the agreed process? Is any process step left without an owner?</td></tr>
+<tr><td>Agent or tool</td><td>Which "agents" make no model call? Reclassify them as tools (<a href="#ip-split">J5</a>).</td></tr>
+<tr><td>Rung</td><td>Is the highest rung recorded for each agent, with the confidence signal and threshold?</td></tr>
+<tr><td>Decision points</td><td>Does every agent that can change a decision raise a named queue? Is every queue owned?</td></tr>
+<tr><td>Coverage of variants</td><td>Are follow business, renewals and the local exposure steps covered, or only the main path?</td></tr>
+<tr><td>Naming</td><td>Does each agent have one name across sheets, decks and flows?</td></tr>
+<tr><td>Systems</td><td>Do all artefacts agree on the target system of record? Is each interface known or marked to confirm?</td></tr>
+<tr><td>Terms</td><td>Does any acronym mean two things (a local "<abbr title="Core Data Record: the London market&#x27;s agreed data set for a placement, built on ACORD standards.">CDR</abbr>" against the market <abbr title="Core Data Record: the London market&#x27;s agreed data set for a placement, built on ACORD standards.">CDR</abbr>, for example)?</td></tr>
+<tr><td>Memory</td><td>Is each agent's memory scope stated and justified?</td></tr>
+<tr><td>Dependencies</td><td>Which agents depend on platform pieces that do not exist yet (rules engine, decision-queue workflow, document intelligence)?</td></tr>
+<tr><td><abbr title="Minimum Viable Product: the smallest working release that proves value.">MVP</abbr></td><td>Does the first release use read paths first and keep writes to the system of record behind approval?</td></tr>
+<tr><td>Evidence</td><td>Is there a test set and a metric for each agent before it is built?</td></tr>
+</table></div>
+<div class="box say"><b class="lbl">Say this</b>"The list is a good base. Before we detail it, let us agree one name per agent, mark which steps are tools, add the steps our market needs, and attach a queue and a test set to every agent."</div>
 </article>
 </section>
 

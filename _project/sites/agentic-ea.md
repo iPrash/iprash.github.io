@@ -7,7 +7,7 @@
 
 ## What it is
 
-A step-by-step field guide for the design phase of an agentic underwriting programme in the London specialty market. It teaches the insurance domain from zero (Lloyd's, placement routes, SOV, geocoding, cat modelling, pricing), sets out the target design around the decision ladder (code, rules, LLM with a confidence score, human, then audit and four eyes), gives agentic pattern references, a week-by-week playbook (W0 to W4), templates, governance, buy-or-build, a question bank, resources and a cheat sheet.
+A step-by-step field guide for the design phase of an agentic underwriting programme in the London specialty market. It teaches the insurance domain from zero (Lloyd's, placement routes, SOV, geocoding, cat modelling, pricing), sets out the target design around the decision ladder (code, rules, LLM with a confidence score, human, then audit and four eyes), gives agentic pattern references, a week-by-week playbook (W0 to W4), templates, governance, buy-or-build, a question bank, resources and a cheat sheet. Part J (added 24 Nov 2026) sets out design principles for agentic solutions in insurance and risk: twelve principles, a reference architecture, agent-or-tool rules, orchestration for long-running work, colleague-in-the-loop queues, the subscription market, data standards and memory, legacy wrapping, controls, cost per submission and an agent-catalogue review checklist.
 
 ## Why it exists
 
